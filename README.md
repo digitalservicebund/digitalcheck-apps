@@ -2,15 +2,37 @@
 
 This repository contains web applications in the Digitalcheck context.
 
+## Prerequisites
+
+### Git Hooks
+
+For the provided Git hooks you will need to install [lefthook](https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md)
+(git hook manager):
+
+```bash
+brew install lefthook
+./run.sh init
+```
+
+The following hooks are specified in the `lefthook.yml`:
+
+- `commitlint` - write [conventional commit messages](https://chris.beams.io/posts/git-commit/)
+- `lint` - avoid committing code violating linting rules
+- `format` - avoid committing wrongly formatted code
+
+Before pushing, the following checks are additionally ran:
+
+- `licenses-audit` - uses `license-checker` to verify dependency licenses
+
 ## Contributing
 
 🇬🇧
-Everyone is welcome to contribute the development of the _remix-application-template_. You can contribute by opening pull request,
+Everyone is welcome to contribute the development of the Digitalcheck applications. You can contribute by opening pull request,
 providing documentation or answering questions or giving feedback. Please always follow the guidelines and our
 [Code of Conduct](CODE_OF_CONDUCT.md).
 
 🇩🇪
-Jede:r ist herzlich eingeladen, die Entwicklung der _remix-application-template_ mitzugestalten. Du kannst einen Beitrag leisten,
+Jede:r ist herzlich eingeladen, die Entwicklung der Digitalcheck Applikationen mitzugestalten. Du kannst einen Beitrag leisten,
 indem du Pull-Requests eröffnest, die Dokumentation erweiterst, Fragen beantwortest oder Feedback gibst.
 Bitte befolge immer die Richtlinien und unseren [Verhaltenskodex](CODE_OF_CONDUCT_DE.md).
 

@@ -10,9 +10,11 @@ module.exports = {
     "plugin:playwright/jest-playwright",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    // FIXME: find a way to include those plugins
+    // "@remix-run/eslint-config",
+    // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: ["/*", "!/src", "!/test"],
   overrides: [
     {
       env: {

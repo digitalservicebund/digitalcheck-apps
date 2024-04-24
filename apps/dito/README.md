@@ -31,42 +31,6 @@ For E2E and a11y testing with [Playwright](https://playwright.dev/docs/intro) yo
 npx playwright install
 ```
 
-### Git Hooks
-
-For the provided Git hooks you will need to install [lefthook](https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md)
-(git hook manager) and [talisman](https://thoughtworks.github.io/talisman/docs) (secrets scanner):
-
-```bash
-brew install lefthook talisman
-```
-
-The following hooks are specified in the `lefthook.yml`:
-
-- `commitlint` - write [conventional commit messages](https://chris.beams.io/posts/git-commit/)
-- `lint` - avoid committing code violating linting rules
-- `format` - avoid committing wrongly formatted code
-
-Before pushing, the following checks are additionally ran:
-
-- `licenses-audit` - uses `license-checker` to verify depency licenses
-- `secrets-audit` - avoid accidental pushes of [secrets and sensitive information](https://thoughtworks.github.io/talisman/)
-
-### Finish project setup
-
-To then finish the setup of the git hooks and to change the project name from the template name you can run:
-
-```bash
-./run.sh init
-```
-
-### security.txt
-
-This template contains a [security.txt](https://securitytxt.org/), where you probably want to update the expiration date. The following entry may also be added:
-
-```
-Canonical: https://<<PROJECT_URL>>/.well-known/security.txt
-```
-
 ## Development
 
 From your terminal:

@@ -24,7 +24,7 @@ _user() {
 }
 
 _find_placeholder_strings() {
-  grep -rlZ 'remix-application-template' --exclude-dir=.git --exclude-dir=node_modules --exclude=run.sh .
+  grep -rlZ 'digitalcheck-apps' --exclude-dir=.git --exclude-dir=node_modules --exclude=run.sh .
 }
 
 _setup_repo() {
@@ -36,7 +36,7 @@ _setup_repo() {
     if [ -z "$newname" ]; then
       newname=$defaultname
     fi
-    _find_placeholder_strings | xargs sed -i '' 's/remix-application-template/'"$newname"'/g'
+    _find_placeholder_strings | xargs sed -i '' 's/digitalcheck-apps/'"$newname"'/g'
     _info "Renamed, please commit the changes!"
   fi
 }
@@ -47,10 +47,6 @@ _setup_git_hooks() {
   if [ "$answer" = "y" ]; then
     if ! command -v lefthook >/dev/null 2>&1; then
       _fail "Setup requires Lefthook, please install first: \`brew install lefthook\`"
-      exit 1
-    fi
-    if ! command -v talisman >/dev/null 2>&1; then
-      _fail "Setup requires Talisman, please install first: \`brew install talisman\`"
       exit 1
     fi
     lefthook install

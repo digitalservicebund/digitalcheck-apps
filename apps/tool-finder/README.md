@@ -1,6 +1,6 @@
 # Digitalcheck Werkzeugfinder aka Tool Finder
 
-[![Pipeline](https://github.com/digitalservicebund/digitalcheck-tool-finder/actions/workflows/pipeline.yml/badge.svg)](https://github.com/digitalservicebund/digitalcheck-tool-finder/actions/workflows/pipeline.yml)
+[![Pipeline](https://github.com/digitalservicebund/digitalcheck-apps/actions/workflows/pipeline.yml/badge.svg)](https://github.com/digitalservicebund/digitalcheck-apps/actions/workflows/pipeline.yml)
 
 A simple web-application to enable anyone working on policy making in the german government to find the right tools for visualisation.
 
@@ -17,35 +17,6 @@ For E2E and a11y testing with [Playwright](https://playwright.dev/docs/intro) yo
 
 ```bash
 npx playwright install
-```
-
-### Git Hooks
-
-For the provided Git hooks you will need to install [lefthook](https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md)
-(git hook manager):
-
-```bash
-brew install lefthook
-./run.sh init
-```
-
-The following hooks are specified in the `lefthook.yml`:
-
-- `commitlint` - write [conventional commit messages](https://chris.beams.io/posts/git-commit/)
-- `lint` - avoid committing code violating linting rules
-- `format` - avoid committing wrongly formatted code
-
-Before pushing, the following checks are additionally ran:
-
-- `licenses-audit` - uses `license-checker` to verify depency licenses
-
-### security.txt
-
-This template contains a [security.txt](https://securitytxt.org/), where you probably want to update the expiration date. The following entries may also be added:
-
-```
-Policy: https://raw.githubusercontent.com/digitalservicebund/<<REPO_NAME>>/main/SECURITY.md
-Canonical: https://<<PROJECT_URL>>/.well-known/security.txt
 ```
 
 ## Development
@@ -113,12 +84,12 @@ brew install adr-tools
 ## Contributing
 
 🇬🇧
-Everyone is welcome to contribute the development of the _digitalcheck-tool-finder_. You can contribute by opening pull request,
+Everyone is welcome to contribute the development of the _digitalcheck-apps_. You can contribute by opening pull request,
 providing documentation or answering questions or giving feedback. Please always follow the guidelines and our
 [Code of Conduct](CODE_OF_CONDUCT.md).
 
 🇩🇪  
-Jede:r ist herzlich eingeladen, die Entwicklung der _digitalcheck-tool-finder_ mitzugestalten. Du kannst einen Beitrag leisten,
+Jede:r ist herzlich eingeladen, die Entwicklung der _digitalcheck-apps_ mitzugestalten. Du kannst einen Beitrag leisten,
 indem du Pull-Requests eröffnest, die Dokumentation erweiterst, Fragen beantwortest oder Feedback gibst.
 Bitte befolge immer die Richtlinien und unseren [Verhaltenskodex](CODE_OF_CONDUCT_DE.md).
 
