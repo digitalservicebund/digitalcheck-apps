@@ -9,6 +9,14 @@
     "apps/dito"
   ],
   "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspaces",
+    "clean": "npm run clean --workspaces --if-present",
+    "test": "npm run test --workspaces",
+    "test:e2e": "npm run test:e2e --workspaces",
+    "test:a11y": "npm run test:a11y --workspaces",
+    "tests": "npm run build && npm run test && npm run test:e2e && npm run test:a11y",
     "audit:licences": "license-checker --production --excludePrivatePackages --onlyAllow 'MIT;BSD-3-Clause;ISC;Apache-2.0;BlueOak-1.0.0' --summary",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write --ignore-unknown .",

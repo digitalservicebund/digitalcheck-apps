@@ -5,21 +5,14 @@
   "type": "module",
   "homepage": "https://digitalservicebund.github.io/digitalcheck-apps/",
   "scripts": {
-    "build": "remix build",
     "dev": "remix dev --manual",
+    "build": "remix build",
     "start": "remix-serve ./build/index.js",
-    "typecheck": "tsc",
+    "clean": "rm -rf build/",
     "test": "jest test",
     "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
     "test:a11y": "playwright test --config=tests/a11y/playwright.config.ts",
-    "test:generate-coverage": "jest --coverage",
-    "lint:check": "eslint --ext .js,.ts --ignore-path .gitignore .",
-    "lint:fix": "npm run lint:check -- --fix",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write --ignore-unknown .",
-    "style:check": "npm run format:check && npm run lint:check",
-    "style:fix": "npm run format:fix && npm run lint:fix",
-    "audit:licences": "license-checker --production --excludePrivatePackages --onlyAllow '' --summary"
+    "test:generate-coverage": "jest --coverage"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.9.1",
