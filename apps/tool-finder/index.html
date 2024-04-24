@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon_32.png" sizes="32x32" />
+    <link rel="icon" href="/favicon_64.png" sizes="64x64" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digitalcheck: Prototyp Werkzeugfinder</title>
+    <meta
+      name="description"
+      content="Der Werkzeugfinder erleichtert es, Visualisierungen in der Regelungsarbeit zu nutzen."
+    />
+    <style id="antiClickjack">
+      body {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      if (self === top) {
+        let antiClickjack = document.getElementById("antiClickjack");
+        antiClickjack.parentNode.removeChild(antiClickjack);
+      } else {
+        top.location = self.location; // NOSONAR https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html#best-for-now-legacy-browser-frame-breaking-script
+      }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
