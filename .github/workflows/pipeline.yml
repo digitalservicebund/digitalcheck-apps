@@ -1,0 +1,220 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Allow to run this workflow manually
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Cache npm dependencies
+        id: cache-npm-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Check build
+        run: npm run build
+
+      - name: Check format
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint:check
+
+      - name: Run tests
+        run: npm test
+
+      - name: Install E2E & A11y test dependencies
+        run: |
+          npx --yes playwright install --with-deps
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: playwright-e2e-test-results
+          path: tests/e2e/playwright-report
+
+      - name: Run A11y tests
+        run: npm run test:a11y
+        env:
+          # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
+          # starting to occur with playwright/test 1.28.0:
+          # Error: http://localhost:4173 is already used ...
+          # See https://github.com/digitalservicebund/typescript-vite-application-template/actions/runs/3486985178/jobs/5834089375
+          VITE_PORT: 4183
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: playwright-a11y-test-results
+          path: tests/a11y/playwright-report
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
+
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  audit-licenses:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Cache npm dependencies
+        id: cache-npm-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Audit used licences
+        run: npm run audit:licences
+
+      - name: Send status to Slack
+        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  vulnerability-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: validate github workflow files to have pinned versions
+        uses: digitalservicebund/github-actions-linter@dccac3ada437947aada4bc901daff08ceb87c3f1 # v0.1.11
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
+        env:
+          TRIVY_USERNAME: ${{ github.actor }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          scan-type: "fs"
+          skip-dirs: "node_modules" # See https://github.com/aquasecurity/trivy/issues/1283
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
+          exit-code: "1" # Fail the build!
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@4355270be187e1b672a7a1c7c7bae5afdc1ab94a # v3.24.10
+        if: always() # Bypass non-zero exit code..
+        with:
+          sarif_file: "trivy-results.sarif"
+
+      - name: Send status to Slack
+        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' && false }}
+    needs:
+      - build
+      - audit-licenses
+      - vulnerability-scan
+    permissions:
+      contents: read
+      id-token: write # This is used to complete the identity challenge with sigstore/fulcio..
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image from Dockerfile
+        run: |
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
+
+      - name: Generate cosign vulnerability scan record
+        # Third-party action, pin to commit SHA!
+        # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
+        uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
+        with:
+          image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          format: "cosign-vuln"
+          output: "vulnerabilities.json"
+
+      - name: Upload cosign vulnerability scan record
+        uses: actions/upload-artifact@v4
+        with:
+          name: "vulnerabilities.json"
+          path: "vulnerabilities.json"
+          if-no-files-found: error
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@e1523de7571e31dbe865fd2e80c5c7c23ae71eb4 # v3.4.0
+
+      - name: Login to container registry
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        with:
+          registry: "ghcr.io"
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image
+        run: |
+          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}
+          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push --all-tags ghcr.io/${{ env.IMAGE_NAME }}
+
+      - name: Create SBOM
+        uses: digitalservicebund/create-sbom@095884614dac5ea922dfcb09cce2e22f3d6391a3 # v1.1.0
+        with:
+          image_name: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Sign the published Docker image
+        run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Attest the vulnerability scan
+        run: cosign attest --yes --replace --predicate vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
