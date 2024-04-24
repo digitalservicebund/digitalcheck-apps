@@ -1,7 +1,6 @@
 # Remix
-/.cache
-/build
-/public/build
+.cache
+build
 
 # Logs
 logs
@@ -146,9 +145,9 @@ dist
 *.sw?
 
 # Playwright
-/test-results/
-**/playwright-report/
-/playwright/.cache/
+test-results/
+playwright-report/
+playwright/.cache/
 
 # Lefthook
 lefthook-local.yml

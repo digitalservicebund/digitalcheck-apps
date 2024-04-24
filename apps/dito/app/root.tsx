@@ -9,27 +9,27 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import stylesheet from "~/styles.css";
+import stylesheet from "./styles.css";
 import fontsStylesheet from "@digitalservice4germany/angie/fonts.css";
-import fontRegular from "~/../public/fonts/BundesSansWeb-Regular.woff2";
-import fontBold from "~/../public/fonts/BundesSansWeb-Bold.woff2";
+// import fontRegular from "../../../public/fonts/BundesSansWeb-Regular.woff2";
+// import fontBold from "../../../public/fonts/BundesSansWeb-Bold.woff2";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  {
-    rel: "preload",
-    as: "font",
-    type: "font/woff2",
-    href: fontRegular,
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "preload",
-    as: "font",
-    type: "font/woff2",
-    href: fontBold,
-    crossOrigin: "anonymous",
-  },
+  // {
+  //   rel: "preload",
+  //   as: "font",
+  //   type: "font/woff2",
+  //   href: fontRegular,
+  //   crossOrigin: "anonymous",
+  // },
+  // {
+  //   rel: "preload",
+  //   as: "font",
+  //   type: "font/woff2",
+  //   href: fontBold,
+  //   crossOrigin: "anonymous",
+  // },
   { rel: "stylesheet", href: fontsStylesheet },
   { rel: "stylesheet", href: stylesheet },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
