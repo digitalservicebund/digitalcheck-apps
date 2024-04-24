@@ -9,7 +9,7 @@
     "apps/dito"
   ],
   "scripts": {
-    "audit:licences": "license-checker --production --excludePrivatePackages --onlyAllow 'MIT;BSD-3-Clause;ISC;Apache-2.0' --summary",
+    "audit:licences": "license-checker --production --excludePrivatePackages --onlyAllow 'MIT;BSD-3-Clause;ISC;Apache-2.0;BlueOak-1.0.0' --summary",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write --ignore-unknown .",
     "lint:check": "eslint --ext .js,.ts --ignore-path .gitignore",
