@@ -1,6 +1,6 @@
 Contact: mailto:security@digitalservice.bund.de
 Expires: 2023-12-31T23:59:59.000Z
 Preferred-Languages: en, de
-Policy: https://raw.githubusercontent.com/digitalservicebund/digitalcheck-tool-finder/main/SECURITY.md
+Policy: https://raw.githubusercontent.com/digitalservicebund/digitalcheck-apps/main/SECURITY.md
 Hiring: https://digitalservice.bund.de/en/career
 Encryption: https://raw.githubusercontent.com/digitalservicebund/public-keys/main/pgp-public-key-security-mail.pem
