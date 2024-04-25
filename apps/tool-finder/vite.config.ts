@@ -11,12 +11,4 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  css: {
-    postcss: {
-      plugins: {
-        tailwindcss: { config: "./tailwind.config.cjs" },
-        autoprefixer: {},
-      },
-    },
-  },
 });
