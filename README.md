@@ -49,9 +49,21 @@ Before pushing, the following checks are additionally ran:
 
 - `licenses-audit` - uses `license-checker` to verify dependency licenses
 
-## Testing
+## Development
 
-The application has
+### Run locally
+
+From your terminal:
+
+```sh
+npm run dev --workspace="apps/<app-name>"
+```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+### Testing
+
+The applications have
 
 - unit tests (using [Jest](https://jestjs.io/docs/getting-started))
 - end-to-end tests (using [Playwright](https://playwright.dev/docs/intro))
@@ -59,8 +71,9 @@ The application has
 
 **Test commands**
 
-- Run unit tests: `npm test`
-- Run unit tests with watcher: `npm test -- --watch`
+- Run all tests: `npm run tests`
+- Run unit tests: `npm run test`
+- Run unit tests with watcher: `npm run test -- --watch`
 - Run E2E tests: `npm run test:e2e`
 - Run A11y tests: `npm run test:a11y`
 
@@ -76,6 +89,20 @@ The project uses [ESLint](https://eslint.org/docs/latest/) for linting and [Pret
 - Autofix lint issues: `npm run lint:fix`
 - Check style (formatting & linting): `npm run style:check`
 - Autofix style issues (formatting & linting): `npm run style:fix`
+
+## Build and start
+
+Build all apps for production:
+
+```sh
+npm run build
+```
+
+Preview the production build:
+
+```sh
+npm run start --workspace="apps/<app-name>"
+```
 
 ## Contributing
 

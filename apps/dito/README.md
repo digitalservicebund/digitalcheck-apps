@@ -2,6 +2,10 @@
 
 A digital touchpoint for the Digtialcheck.
 
+## Prerequisites
+
+See prerequisites section in the top-level README.md.
+
 ## Development
 
 From your terminal:

@@ -2,6 +2,10 @@
 
 A simple web-application to enable anyone working on policy making in the german government to find the right tools for visualisation.
 
+## Prerequisites
+
+See prerequisites section in the top-level README.md.
+
 ## Development
 
 From your terminal:
