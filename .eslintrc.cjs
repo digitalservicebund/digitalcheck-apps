@@ -37,8 +37,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "react-refresh", "testing-library"],
   rules: {
     "@typescript-eslint/ban-ts-comment": "warn",
-    // "@typescript-eslint/no-unsafe-argument": "warn",
-    // "@typescript-eslint/no-unsafe-assignment": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "warn",
     "@typescript-eslint/no-unsafe-member-access": "warn",
     "@typescript-eslint/no-unsafe-return": "warn",
     "@typescript-eslint/restrict-template-expressions": "warn",
@@ -50,6 +50,8 @@ module.exports = {
     "testing-library/no-await-sync-queries": "error",
     "testing-library/no-debugging-utils": "warn",
     "testing-library/no-dom-import": "off",
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off",
   },
   settings: {
     react: {

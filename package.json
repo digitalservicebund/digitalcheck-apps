@@ -9,7 +9,6 @@
     "apps/dito"
   ],
   "scripts": {
-    "dev": "npm run dev --workspaces",
     "build": "npm run build --workspaces",
     "start": "npm run start --workspaces",
     "clean": "npm run clean --workspaces --if-present",
