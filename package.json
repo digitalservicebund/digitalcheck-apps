@@ -31,7 +31,7 @@
     "@digitalservice4germany/angie": "^1.1.1",
     "@digitalservice4germany/style-dictionary": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.0",
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
