@@ -12,7 +12,8 @@
     "clean": "rm -rf dist/",
     "test": "jest test",
     "test:e2e": "playwright test --config=test/e2e/playwright.config.ts",
-    "test:a11y": "playwright test --config=test/a11y/playwright.config.ts"
+    "test:a11y": "playwright test --config=test/a11y/playwright.config.ts",
+    "tests": "npm run build && npm run test && npm run test:e2e && npm run test:a11y"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

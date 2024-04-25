@@ -15,6 +15,7 @@ module.exports = {
     // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
+  ignorePatterns: ["**/remix.config.js", "**/tailwind.config.js"],
   overrides: [
     {
       env: {
@@ -36,8 +37,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "react-refresh", "testing-library"],
   rules: {
     "@typescript-eslint/ban-ts-comment": "warn",
-    "@typescript-eslint/no-unsafe-argument": "warn",
-    "@typescript-eslint/no-unsafe-assignment": "warn",
+    // "@typescript-eslint/no-unsafe-argument": "warn",
+    // "@typescript-eslint/no-unsafe-assignment": "warn",
     "@typescript-eslint/no-unsafe-member-access": "warn",
     "@typescript-eslint/no-unsafe-return": "warn",
     "@typescript-eslint/restrict-template-expressions": "warn",
