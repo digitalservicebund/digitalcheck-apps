@@ -15,7 +15,12 @@ module.exports = {
     // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: ["**/remix.config.js", "**/tailwind.config.js"],
+  ignorePatterns: [
+    "**/remix.config.js",
+    "**/tailwind.config.js",
+    "tailwind.preset.js",
+    "**/*.cjs",
+  ],
   overrides: [
     {
       env: {
