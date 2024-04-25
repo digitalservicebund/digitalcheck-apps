@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import Breadcrumbs, { BreadcrumbsProps } from "./components/Breadcrumbs";
-import FeedbackBanner from "./components/FeedbackBanner";
-import Footer from "./components/Footer";
-import PageHeader from "./components/PageHeader";
+import Breadcrumbs, { BreadcrumbsProps } from "~/components/Breadcrumbs";
+import FeedbackBanner from "~/components/FeedbackBanner";
+import Footer from "~/components/Footer";
+import PageHeader from "~/components/PageHeader";
 
 import Flowchart from "./routes/Flowchart";
 import Imprint from "./routes/Imprint";
@@ -13,8 +13,9 @@ import ResultPage, { ResultPageProps } from "./routes/ResultPage";
 
 import { useEffect } from "react";
 import { z } from "zod";
-import { Aria } from "./components/Aria";
-import ScrollToTop from "./components/ScrollToTop";
+import { Aria } from "~/components/Aria";
+import ScrollToTop from "~/components/ScrollToTop";
+import useStorage from "~/services/useStorage";
 import type { Reason } from "./models/Reason";
 import type { Ressort } from "./models/Ressort";
 import type { VisualisationObject } from "./models/VisualisationObject";
@@ -33,7 +34,6 @@ import Accessibility from "./routes/Accessibility";
 import DecisionTree from "./routes/DecisionTree";
 import Diagram from "./routes/Diagram";
 import Privacy from "./routes/Privacy";
-import useStorage from "./services/useStorage";
 
 export const RoutesPropsSchema = z.array(
   z.object({

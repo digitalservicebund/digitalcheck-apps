@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "../components/Box";
-import Container from "../components/Container";
-import FeedbackForm from "../components/FeedbackForm";
-import Image from "../components/Image";
-import Recommendation from "../components/Recommendation";
+import Box from "~/components/Box";
+import Container from "~/components/Container";
+import FeedbackForm from "~/components/FeedbackForm";
+import Image from "~/components/Image";
+import Recommendation from "~/components/Recommendation";
+import { getImageUrl } from "~/services/getImageUrl";
 import type { Reason } from "../models/Reason";
 import type { Ressort } from "../models/Ressort";
 import type { VisualisationObject } from "../models/VisualisationObject";
 import { findResultByObjectAndRessort } from "../persistance/repository";
-import { getImageUrl } from "../services/getImageUrl";
 import useTitle from "../services/useTitle";
 import { PATH_QUIZ } from "./";
 

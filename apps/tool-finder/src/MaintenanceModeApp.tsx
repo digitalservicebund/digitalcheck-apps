@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from "react-router-dom";
-import Container from "./components/Container";
-import PageHeader from "./components/PageHeader";
+import Container from "~/components/Container";
+import PageHeader from "~/components/PageHeader";
 import { PATH_IMPRINT, PATH_INFO } from "./routes";
 import Imprint from "./routes/Imprint";
 import MaintenanceModePage from "./routes/MaintenanceModePage";

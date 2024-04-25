@@ -1,13 +1,13 @@
-import Background from "../components/Background";
-import Box from "../components/Box";
-import Container from "../components/Container";
-import Header from "../components/Header";
+import Background from "~/components/Background";
+import Box from "~/components/Box";
+import Container from "~/components/Container";
+import Header from "~/components/Header";
 import useTitle from "../services/useTitle";
 
+import Button from "~/components/Button";
+import ButtonContainer from "~/components/ButtonContainer";
+import Image from "~/components/Image";
 import flowchartElementsImage from "../../resources/img/flowchart-elements.png";
-import Button from "../components/Button";
-import ButtonContainer from "../components/ButtonContainer";
-import Image from "../components/Image";
 import { PATH_RESULT } from "./";
 
 function Flowchart() {
