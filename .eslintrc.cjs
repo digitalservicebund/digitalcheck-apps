@@ -39,7 +39,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
   },
-  plugins: ["@typescript-eslint", "react-refresh", "testing-library"],
+  plugins: ["@typescript-eslint", "react", "react-refresh", "testing-library"],
   rules: {
     "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-unsafe-argument": "warn",
