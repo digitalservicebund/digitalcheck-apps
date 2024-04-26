@@ -2,7 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Remix Application Template" },
+    { title: "Dito" },
     { name: "description", content: "Hello DigitalService!" },
   ];
 };
