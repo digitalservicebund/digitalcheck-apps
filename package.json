@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces",
-    "start": "npm run start --workspaces",
     "clean": "npm run clean --workspaces --if-present",
     "test": "npm run test --workspaces",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
