@@ -5,9 +5,9 @@
   "type": "module",
   "homepage": "https://digitalservicebund.github.io/digitalcheck-apps/",
   "scripts": {
-    "dev": "remix dev --manual",
-    "build": "remix build",
-    "start": "remix-serve ./build/index.js",
+    "dev": "remix vite:dev --manual",
+    "build": "remix vite:build",
+    "start": "remix-serve ./build/server/index.js",
     "clean": "rm -rf build/",
     "test": "jest test",
     "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
