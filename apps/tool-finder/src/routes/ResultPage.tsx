@@ -1,10 +1,10 @@
+import Recommendation from "apps/tool-finder/src/components/Recommendation";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
 import FeedbackForm from "~/components/FeedbackForm";
 import Image from "~/components/Image";
-import Recommendation from "~/components/Recommendation";
 import { getImageUrl } from "~/services/getImageUrl";
 import type { Reason } from "../models/Reason";
 import type { Ressort } from "../models/Ressort";

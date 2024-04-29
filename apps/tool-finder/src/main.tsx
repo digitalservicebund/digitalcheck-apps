@@ -1,7 +1,7 @@
+import { enableTracking } from "apps/tool-finder/src/services/tracking.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import { enableTracking } from "~/services/tracking";
 import App from "./App.tsx";
 import MaintenanceModeApp from "./MaintenanceModeApp";
 import "./style.css";

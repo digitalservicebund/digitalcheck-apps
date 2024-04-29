@@ -1,8 +1,9 @@
+import Heading from "../../../shared/components/Heading";
+import Image from "../../../shared/components/Image";
+import RichText from "../../../shared/components/RichText";
+import { getImageUrl } from "../../../shared/services/getImageUrl";
 import type { Recommendation } from "../models/Result";
-import { getImageUrl } from "../services/getImageUrl";
-import Heading from "./Heading";
-import Image from "./Image";
-import RichText from "./RichText";
+import type { Tool } from "../models/Tool";
 
 export interface RecommendationProps {
   clusterName: string;
@@ -52,11 +53,13 @@ export default function renderRecommendation({
                     erstellen:
                   </p>
                   <ul>
-                    {recommendation.alternativeTools.map((alternative) => (
-                      <li key={`alternative-${alternative.id}`}>
-                        {alternative.name}
-                      </li>
-                    ))}
+                    {recommendation.alternativeTools.map(
+                      (alternative: Tool) => (
+                        <li key={`alternative-${alternative.id}`}>
+                          {alternative.name}
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               )}
