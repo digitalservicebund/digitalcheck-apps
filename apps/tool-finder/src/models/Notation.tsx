@@ -1,4 +1,4 @@
-import data from "resources/data";
+import data from "../../resources/data";
 import type { Entity } from "./Entity";
 
 export type NotationId = (typeof data)["notations"][number]["id"];
