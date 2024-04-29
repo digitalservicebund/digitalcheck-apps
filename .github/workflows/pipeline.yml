@@ -11,8 +11,14 @@ on:
 env:
   IMAGE_NAME: ${{ github.repository }}
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages" # FIXME
+  cancel-in-progress: false
+
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,7 +44,7 @@ jobs:
         if: steps.cache-npm-deps.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Check build
+      - name: Build for tests
         run: npm run build
 
       - name: Check format
@@ -46,6 +52,9 @@ jobs:
 
       - name: Lint
         run: npm run lint:check
+
+      - name: Check types
+        run: npm run typecheck
 
       - name: Run tests
         run: npm test
@@ -61,7 +70,7 @@ jobs:
         if: ${{ failure() }}
         with:
           name: playwright-e2e-test-results
-          path: tests/e2e/playwright-report
+          path: tests/e2e/playwright-report # FIXME
 
       - name: Run A11y tests
         run: npm run test:a11y
@@ -76,14 +85,10 @@ jobs:
         if: ${{ failure() }}
         with:
           name: playwright-a11y-test-results
-          path: tests/a11y/playwright-report
-
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
-
+          path: tests/a11y/playwright-report # FIXME
+      
       - name: Send failure to Slack
-        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
         if: ${{ failure() }}
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -118,7 +123,7 @@ jobs:
         run: npm run audit:licences
 
       - name: Send status to Slack
-        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
         if: ${{ failure() }}
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -152,21 +157,21 @@ jobs:
           sarif_file: "trivy-results.sarif"
 
       - name: Send status to Slack
-        uses: digitalservicebund/notify-on-failure-gha@15dd05b628141b7bac0ad26e08c1935cb3ba6bc8 # v1.4.0
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
         if: ${{ failure() }}
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   build-and-push-image:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' && false }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs:
-      - build
+      - test
       - audit-licenses
       - vulnerability-scan
     permissions:
       contents: read
-      id-token: write # This is used to complete the identity challenge with sigstore/fulcio..
+      id-token: write # This is used to complete the identity challenge with sigstore/fulcio.
       packages: write
     steps:
       - name: Checkout code
@@ -193,7 +198,7 @@ jobs:
           if-no-files-found: error
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@e1523de7571e31dbe865fd2e80c5c7c23ae71eb4 # v3.4.0
+        uses: sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20 # v3.5.0
 
       - name: Login to container registry
         uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
@@ -211,10 +216,40 @@ jobs:
       - name: Create SBOM
         uses: digitalservicebund/create-sbom@095884614dac5ea922dfcb09cce2e22f3d6391a3 # v1.1.0
         with:
-          image_name: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            image_name: ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Sign the published Docker image
         run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Attest the vulnerability scan
         run: cosign attest --yes --replace --predicate vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+
+  deploy:
+    needs: [build-and-push-image]
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    timeout-minutes: 10
+    permissions:
+      packages: read
+    environment: production
+    steps:
+      - name: Deploy latest container image
+        uses: digitalservicebund/argocd-deploy@4fac1bb67c92ed168f6d9b22f8779ce241a9e412 # v1.0.0
+        with:
+          environment: production
+          version: ${{ github.sha }}
+          deploying_repo: ${{ github.event.repository.name }}
+          infra_repo: ${{ github.event.repository.name }}-infra
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          app: ${{ github.event.repository.name }}-production
+          argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
+          argocd_server: ${{ secrets.ARGOCD_SERVER }}
+
+      - name: Report Deployment
+        uses: digitalservicebund/github-actions/track-deployment@34a48d29a9c4cc2fd6710b8eb37e13618a08fa88 # v1.0.0
+        with:
+          project: ${{ github.event.repository.name }}
+          environment: production
+          metrics_deployment_webhook_url: ${{ secrets.METRICS_DEPLOYMENT_WEBHOOK_URL }}
+          metrics_webhook_token: ${{ secrets.METRICS_WEBHOOK_TOKEN }}
