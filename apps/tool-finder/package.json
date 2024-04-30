@@ -1,5 +1,5 @@
 {
-  "name": "digitalcheck-tool-finder",
+  "name": "@digitalcheck/tool-finder",
   "private": true,
   "sideEffects": false,
   "type": "module",

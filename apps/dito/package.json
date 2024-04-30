@@ -1,5 +1,5 @@
 {
-  "name": "digitalcheck-dito",
+  "name": "@digitalcheck/dito",
   "private": true,
   "sideEffects": false,
   "type": "module",
