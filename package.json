@@ -8,7 +8,7 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "test": "npm run test --workspaces",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
@@ -26,6 +26,7 @@
     "typecheck": "npm run typecheck --workspaces"
   },
   "dependencies": {
+    "@digitalcheck/shared": "*",
     "@digitalservice4germany/angie": "^1.1.1",
     "@digitalservice4germany/style-dictionary": "^2.0.0",
     "react": "^18.2.0",
