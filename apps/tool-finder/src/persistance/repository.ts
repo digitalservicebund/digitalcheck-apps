@@ -4,7 +4,7 @@ import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";
 import type { Result } from "models/Result";
 import type { VisualisationObject } from "models/VisualisationObject";
-import rawData from "../../resources/data";
+import rawData from "resources/data";
 
 const data: Data = rawData;
 

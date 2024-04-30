@@ -7,7 +7,7 @@ import useTitle from "services/useTitle";
 import Button from "@shared/components/Button";
 import ButtonContainer from "@shared/components/ButtonContainer";
 import Image from "@shared/components/Image";
-import flowchartElementsImage from "../../resources/img/flowchart-elements.png";
+import flowchartElementsImage from "resources/img/flowchart-elements.png";
 import { PATH_RESULT } from "./";
 
 function Flowchart() {

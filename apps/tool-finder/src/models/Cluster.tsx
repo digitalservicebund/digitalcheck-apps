@@ -1,4 +1,4 @@
-import data from "../../resources/data";
+import data from "resources/data";
 import type { Entity } from "./Entity";
 import type { FidelityId } from "./Fidelity";
 import type { Image } from "./Image";

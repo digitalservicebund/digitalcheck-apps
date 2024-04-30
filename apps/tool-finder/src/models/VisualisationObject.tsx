@@ -1,4 +1,4 @@
-import data from "../../resources/data";
+import data from "resources/data";
 import type { ClusterId } from "./Cluster";
 import type { Entity } from "./Entity";
 
