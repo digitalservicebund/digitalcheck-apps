@@ -15,5 +15,5 @@
     "useUnknownInCatchVariables": false,
     "noEmit": true,
     "skipLibCheck": true
-  },
+  }
 }
