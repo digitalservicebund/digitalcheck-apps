@@ -5,8 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "workspaces": [
-    "apps/tool-finder",
-    "apps/dito"
+    "apps/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
