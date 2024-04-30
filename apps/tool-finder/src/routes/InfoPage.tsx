@@ -1,10 +1,10 @@
-import Background from "~/components/Background";
-import Box from "~/components/Box";
-import Container from "~/components/Container";
-import Header from "~/components/Header";
+import Background from "@shared/components/Background";
+import Box from "@shared/components/Box";
+import Container from "@shared/components/Container";
+import Header from "@shared/components/Header";
 import useTitle from "../services/useTitle";
 
-import BetaBanner from "~/components/BetaBanner";
+import BetaBanner from "@shared/components/BetaBanner";
 import { PATH_QUIZ } from "./";
 
 function InfoPage() {

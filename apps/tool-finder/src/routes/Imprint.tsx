@@ -1,7 +1,7 @@
-import Background from "~/components/Background";
-import Box from "~/components/Box";
-import Container from "~/components/Container";
-import Header from "~/components/Header";
+import Background from "@shared/components/Background";
+import Box from "@shared/components/Box";
+import Container from "@shared/components/Container";
+import Header from "@shared/components/Header";
 import { PATH_A11Y, PATH_PRIVACY } from ".";
 import useTitle from "../services/useTitle";
 

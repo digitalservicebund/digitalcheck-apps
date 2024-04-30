@@ -1,18 +1,15 @@
-import Background from "~/components/Background";
-import Button from "~/components/Button";
-import ButtonContainer from "~/components/ButtonContainer";
-import Container from "~/components/Container";
-import Header from "~/components/Header";
-import useTitle from "../services/useTitle";
-
-import { trackSelection } from "apps/tool-finder/src/services/tracking";
+import Background from "@shared/components/Background";
+import BetaBanner from "@shared/components/BetaBanner";
+import Button from "@shared/components/Button";
+import ButtonContainer from "@shared/components/ButtonContainer";
+import Container from "@shared/components/Container";
+import Header from "@shared/components/Header";
+import Question from "@shared/components/Question";
+import { RadioOptionsProps } from "@shared/components/RadioGroup";
+import { SelectOptionsProps } from "@shared/components/Select";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { UseFormReturn, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import BetaBanner from "~/components/BetaBanner";
-import Question from "~/components/Question";
-import { RadioOptionsProps } from "~/components/RadioGroup";
-import { SelectOptionsProps } from "~/components/Select";
 import type { Entity } from "../models/Entity";
 import type { Reason } from "../models/Reason";
 import type { Ressort } from "../models/Ressort";
@@ -22,6 +19,8 @@ import {
   getAllReasons,
   getAllRessorts,
 } from "../persistance/repository";
+import { trackSelection } from "../services/tracking";
+import useTitle from "../services/useTitle";
 import { PATH_RESULT } from "./";
 
 export type QuizPageProps = {

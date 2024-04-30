@@ -1,12 +1,12 @@
-import Background from "~/components/Background";
-import Box from "~/components/Box";
-import Container from "~/components/Container";
-import Header from "~/components/Header";
+import Background from "@shared/components/Background";
+import Box from "@shared/components/Box";
+import Container from "@shared/components/Container";
+import Header from "@shared/components/Header";
 import useTitle from "../services/useTitle";
 
-import Button from "~/components/Button";
-import ButtonContainer from "~/components/ButtonContainer";
-import Image from "~/components/Image";
+import Button from "@shared/components/Button";
+import ButtonContainer from "@shared/components/ButtonContainer";
+import Image from "@shared/components/Image";
 import flowchartElementsImage from "../../resources/img/flowchart-elements.png";
 import { PATH_RESULT } from "./";
 

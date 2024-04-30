@@ -1,7 +1,7 @@
-import Heading from "../../../shared/components/Heading";
-import Image from "../../../shared/components/Image";
-import RichText from "../../../shared/components/RichText";
-import { getImageUrl } from "../../../shared/services/getImageUrl";
+import Heading from "@shared/components/Heading";
+import Image from "@shared/components/Image";
+import RichText from "@shared/components/RichText";
+import { getImageUrl } from "@shared/services/getImageUrl";
 import type { Recommendation } from "../models/Result";
 import type { Tool } from "../models/Tool";
 

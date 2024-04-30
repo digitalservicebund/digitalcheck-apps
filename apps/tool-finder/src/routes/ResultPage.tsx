@@ -1,11 +1,11 @@
-import Recommendation from "apps/tool-finder/src/components/Recommendation";
+import Box from "@shared/components/Box";
+import Container from "@shared/components/Container";
+import FeedbackForm from "@shared/components/FeedbackForm";
+import Image from "@shared/components/Image";
+import { getImageUrl } from "@shared/services/getImageUrl";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "~/components/Box";
-import Container from "~/components/Container";
-import FeedbackForm from "~/components/FeedbackForm";
-import Image from "~/components/Image";
-import { getImageUrl } from "~/services/getImageUrl";
+import Recommendation from "../components/Recommendation";
 import type { Reason } from "../models/Reason";
 import type { Ressort } from "../models/Ressort";
 import type { VisualisationObject } from "../models/VisualisationObject";
