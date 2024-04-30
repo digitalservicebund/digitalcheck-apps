@@ -75,7 +75,7 @@ function QuizPage({
   setObject,
   reason,
   setReason,
-}: QuizPageProps) {
+}: Readonly<QuizPageProps>) {
   useTitle("Werkzeugfinder für Visualisierungen");
 
   const navigate = useNavigate();
