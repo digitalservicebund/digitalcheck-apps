@@ -68,7 +68,9 @@ module.exports = {
       node: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
-      typescript: {},
+      typescript: {
+        "project": "./tsconfig.json",
+      },
     },
   },
 };
