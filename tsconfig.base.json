@@ -12,7 +12,6 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "useUnknownInCatchVariables": false,
     "noEmit": true,
     "skipLibCheck": true,

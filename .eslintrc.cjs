@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
@@ -15,12 +16,7 @@ module.exports = {
     // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: [
-    "**/remix.config.js",
-    "**/tailwind.config.js",
-    "tailwind.preset.js",
-    "**/*.cjs",
-  ],
+  ignorePatterns: ["node_modules/", "tailwind.preset.js", ".eslintrc.cjs"],
   overrides: [
     {
       env: {
