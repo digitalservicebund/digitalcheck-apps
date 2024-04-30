@@ -1,9 +1,9 @@
-import Container from "@shared/components/Container";
-import PageHeader from "@shared/components/PageHeader";
+import Container from "@digitalcheck/shared/components/Container";
+import PageHeader from "@digitalcheck/shared/components/PageHeader";
 import { Link, Route, Routes } from "react-router-dom";
-import { PATH_IMPRINT, PATH_INFO } from "routes";
-import Imprint from "routes/Imprint";
-import MaintenanceModePage from "routes/MaintenanceModePage";
+import { PATH_IMPRINT, PATH_INFO } from "src/routes";
+import Imprint from "src/routes/Imprint";
+import MaintenanceModePage from "src/routes/MaintenanceModePage";
 
 function MaintenanceModeApp() {
   return (

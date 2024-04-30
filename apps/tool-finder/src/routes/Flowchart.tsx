@@ -1,12 +1,12 @@
-import Background from "@shared/components/Background";
-import Box from "@shared/components/Box";
-import Container from "@shared/components/Container";
-import Header from "@shared/components/Header";
-import useTitle from "services/useTitle";
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import useTitle from "src/services/useTitle";
 
-import Button from "@shared/components/Button";
-import ButtonContainer from "@shared/components/ButtonContainer";
-import Image from "@shared/components/Image";
+import Button from "@digitalcheck/shared/components/Button";
+import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import Image from "@digitalcheck/shared/components/Image";
 import flowchartElementsImage from "resources/img/flowchart-elements.png";
 import { PATH_RESULT } from "./";
 

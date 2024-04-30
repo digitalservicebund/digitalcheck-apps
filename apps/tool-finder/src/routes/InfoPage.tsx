@@ -1,9 +1,9 @@
-import Background from "@shared/components/Background";
-import BetaBanner from "@shared/components/BetaBanner";
-import Box from "@shared/components/Box";
-import Container from "@shared/components/Container";
-import Header from "@shared/components/Header";
-import useTitle from "services/useTitle";
+import Background from "@digitalcheck/shared/components/Background";
+import BetaBanner from "@digitalcheck/shared/components/BetaBanner";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import useTitle from "src/services/useTitle";
 import { PATH_QUIZ } from ".";
 
 function InfoPage() {

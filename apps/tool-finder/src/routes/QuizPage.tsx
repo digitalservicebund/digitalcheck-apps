@@ -1,26 +1,26 @@
-import Background from "@shared/components/Background";
-import BetaBanner from "@shared/components/BetaBanner";
-import Button from "@shared/components/Button";
-import ButtonContainer from "@shared/components/ButtonContainer";
-import Container from "@shared/components/Container";
-import Header from "@shared/components/Header";
-import Question from "@shared/components/Question";
-import { RadioOptionsProps } from "@shared/components/RadioGroup";
-import { SelectOptionsProps } from "@shared/components/Select";
-import type { Entity } from "models/Entity";
-import type { Reason } from "models/Reason";
-import type { Ressort } from "models/Ressort";
-import type { VisualisationObject } from "models/VisualisationObject";
+import Background from "@digitalcheck/shared/components/Background";
+import BetaBanner from "@digitalcheck/shared/components/BetaBanner";
+import Button from "@digitalcheck/shared/components/Button";
+import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import Question from "@digitalcheck/shared/components/Question";
+import { RadioOptionsProps } from "@digitalcheck/shared/components/RadioGroup";
+import { SelectOptionsProps } from "@digitalcheck/shared/components/Select";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { UseFormReturn, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import type { Entity } from "src/models/Entity";
+import type { Reason } from "src/models/Reason";
+import type { Ressort } from "src/models/Ressort";
+import type { VisualisationObject } from "src/models/VisualisationObject";
 import {
   getAllObjects,
   getAllReasons,
   getAllRessorts,
-} from "persistance/repository";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { UseFormReturn, useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { trackSelection } from "services/tracking";
-import useTitle from "services/useTitle";
+} from "src/persistance/repository";
+import { trackSelection } from "src/services/tracking";
+import useTitle from "src/services/useTitle";
 import { PATH_RESULT } from ".";
 
 export type QuizPageProps = {
