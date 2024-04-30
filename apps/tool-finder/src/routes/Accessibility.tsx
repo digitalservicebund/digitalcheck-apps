@@ -2,7 +2,7 @@ import Background from "@shared/components/Background";
 import Box from "@shared/components/Box";
 import Container from "@shared/components/Container";
 import Header from "@shared/components/Header";
-import useTitle from "../services/useTitle";
+import useTitle from "services/useTitle";
 
 function Accessibility() {
   useTitle("Erklärung zur Barrierefreiheit");

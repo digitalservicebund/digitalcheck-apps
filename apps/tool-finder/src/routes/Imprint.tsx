@@ -2,8 +2,8 @@ import Background from "@shared/components/Background";
 import Box from "@shared/components/Box";
 import Container from "@shared/components/Container";
 import Header from "@shared/components/Header";
+import useTitle from "services/useTitle";
 import { PATH_A11Y, PATH_PRIVACY } from ".";
-import useTitle from "../services/useTitle";
 
 function Imprint() {
   useTitle("Impressum");

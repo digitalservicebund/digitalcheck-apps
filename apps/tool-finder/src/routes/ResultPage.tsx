@@ -3,15 +3,15 @@ import Container from "@shared/components/Container";
 import FeedbackForm from "@shared/components/FeedbackForm";
 import Image from "@shared/components/Image";
 import { getImageUrl } from "@shared/services/getImageUrl";
+import Recommendation from "components/Recommendation";
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { VisualisationObject } from "models/VisualisationObject";
+import { findResultByObjectAndRessort } from "persistance/repository";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Recommendation from "../components/Recommendation";
-import type { Reason } from "../models/Reason";
-import type { Ressort } from "../models/Ressort";
-import type { VisualisationObject } from "../models/VisualisationObject";
-import { findResultByObjectAndRessort } from "../persistance/repository";
-import useTitle from "../services/useTitle";
-import { PATH_QUIZ } from "./";
+import useTitle from "services/useTitle";
+import { PATH_QUIZ } from ".";
 
 export type ResultPageProps = {
   ressort: Ressort | null;

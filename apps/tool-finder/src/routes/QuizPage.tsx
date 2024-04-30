@@ -7,21 +7,21 @@ import Header from "@shared/components/Header";
 import Question from "@shared/components/Question";
 import { RadioOptionsProps } from "@shared/components/RadioGroup";
 import { SelectOptionsProps } from "@shared/components/Select";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { UseFormReturn, useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import type { Entity } from "../models/Entity";
-import type { Reason } from "../models/Reason";
-import type { Ressort } from "../models/Ressort";
-import type { VisualisationObject } from "../models/VisualisationObject";
+import type { Entity } from "models/Entity";
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { VisualisationObject } from "models/VisualisationObject";
 import {
   getAllObjects,
   getAllReasons,
   getAllRessorts,
-} from "../persistance/repository";
-import { trackSelection } from "../services/tracking";
-import useTitle from "../services/useTitle";
-import { PATH_RESULT } from "./";
+} from "persistance/repository";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { UseFormReturn, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { trackSelection } from "services/tracking";
+import useTitle from "services/useTitle";
+import { PATH_RESULT } from ".";
 
 export type QuizPageProps = {
   ressort: Ressort | null;

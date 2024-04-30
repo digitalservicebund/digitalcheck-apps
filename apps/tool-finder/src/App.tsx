@@ -1,24 +1,18 @@
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { z } from "zod";
 
+import { Aria } from "@shared/components/Aria";
 import Breadcrumbs, { BreadcrumbsProps } from "@shared/components/Breadcrumbs";
 import FeedbackBanner from "@shared/components/FeedbackBanner";
 import Footer from "@shared/components/Footer";
 import PageHeader from "@shared/components/PageHeader";
-
-import Flowchart from "./routes/Flowchart";
-import Imprint from "./routes/Imprint";
-import InfoPage from "./routes/InfoPage";
-import QuizPage, { QuizPageProps } from "./routes/QuizPage";
-import ResultPage, { ResultPageProps } from "./routes/ResultPage";
-
-import { Aria } from "@shared/components/Aria";
 import ScrollToTop from "@shared/components/ScrollToTop";
 import useStorage from "@shared/services/useStorage";
-import { useEffect } from "react";
-import { z } from "zod";
-import type { Reason } from "./models/Reason";
-import type { Ressort } from "./models/Ressort";
-import type { VisualisationObject } from "./models/VisualisationObject";
+
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { VisualisationObject } from "models/VisualisationObject";
 import {
   PATH_A11Y,
   PATH_DECISIONTREE,
@@ -29,11 +23,16 @@ import {
   PATH_PRIVACY,
   PATH_QUIZ,
   PATH_RESULT,
-} from "./routes";
-import Accessibility from "./routes/Accessibility";
-import DecisionTree from "./routes/DecisionTree";
-import Diagram from "./routes/Diagram";
-import Privacy from "./routes/Privacy";
+} from "routes";
+import Accessibility from "routes/Accessibility";
+import DecisionTree from "routes/DecisionTree";
+import Diagram from "routes/Diagram";
+import Flowchart from "routes/Flowchart";
+import Imprint from "routes/Imprint";
+import InfoPage from "routes/InfoPage";
+import Privacy from "routes/Privacy";
+import QuizPage, { QuizPageProps } from "routes/QuizPage";
+import ResultPage, { ResultPageProps } from "routes/ResultPage";
 
 export const RoutesPropsSchema = z.array(
   z.object({

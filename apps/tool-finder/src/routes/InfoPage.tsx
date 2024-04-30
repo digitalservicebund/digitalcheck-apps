@@ -1,11 +1,10 @@
 import Background from "@shared/components/Background";
+import BetaBanner from "@shared/components/BetaBanner";
 import Box from "@shared/components/Box";
 import Container from "@shared/components/Container";
 import Header from "@shared/components/Header";
-import useTitle from "../services/useTitle";
-
-import BetaBanner from "@shared/components/BetaBanner";
-import { PATH_QUIZ } from "./";
+import useTitle from "services/useTitle";
+import { PATH_QUIZ } from ".";
 
 function InfoPage() {
   useTitle("Visualisieren im Digitalcheck");
