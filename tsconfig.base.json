@@ -1,5 +1,4 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2023"],
     "isolatedModules": true,
@@ -17,8 +16,5 @@
     "useUnknownInCatchVariables": false,
     "noEmit": true,
     "skipLibCheck": true,
-    "paths": {
-      "@shared/*": ["apps/shared/*"]
-    }
   }
 }
