@@ -1,6 +1,7 @@
 import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
+  modulePaths: ["<rootDir>"],
   moduleFileExtensions: ["js", "ts", "tsx", "json"],
   transform: {
     "^.+\\.(j|)tsx?$": "ts-jest",
