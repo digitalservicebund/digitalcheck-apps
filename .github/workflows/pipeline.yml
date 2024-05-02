@@ -70,7 +70,7 @@ jobs:
         if: ${{ failure() }}
         with:
           name: playwright-e2e-test-results
-          path: tests/e2e/playwright-report # FIXME
+          path: test/e2e/playwright-report # FIXME
 
       - name: Run A11y tests
         run: npm run test:a11y
@@ -85,7 +85,7 @@ jobs:
         if: ${{ failure() }}
         with:
           name: playwright-a11y-test-results
-          path: tests/a11y/playwright-report # FIXME
+          path: test/a11y/playwright-report # FIXME
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
