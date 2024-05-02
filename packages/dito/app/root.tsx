@@ -13,14 +13,14 @@ export const links: LinksFunction = () => [
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
-    href: "/favicon_32.svg",
-    type: "image/svg+xml",
+    href: "/favicon_32.png",
+    type: "image/png",
     sizes: "32x32",
   },
   {
     rel: "icon",
-    href: "/favicon_64.svg",
-    type: "image/svg+xml",
+    href: "/favicon_64.png",
+    type: "image/png",
     sizes: "64x64",
   },
 ];
