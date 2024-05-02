@@ -56,7 +56,7 @@ Before pushing, the following checks are additionally ran:
 From your terminal:
 
 ```sh
-npm run dev --workspace="apps/<app-name>"
+npm run dev --workspace="packages/<app-name>"
 ```
 
 This starts your app in development mode, rebuilding assets on file changes.
@@ -101,7 +101,7 @@ npm run build
 Preview the production build:
 
 ```sh
-npm run start --workspace="apps/<app-name>"
+npm run start --workspace="packages/<app-name>"
 ```
 
 ## Contributing

@@ -2,7 +2,7 @@
 *
 
 # Include files required for building the application (except for node_modules these are installed by docker)
-!apps/dito/app
+!packages/dito/app
 !public
 public/build
 !LICENSE

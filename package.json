@@ -5,7 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "workspaces": [
-    "apps/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
