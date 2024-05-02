@@ -1,10 +1,10 @@
+import bmiLogo from "public/img/bmi-logo.png";
 import { Link } from "react-router-dom";
 import {
   PATH_A11Y,
   PATH_IMPRINT,
   PATH_PRIVACY,
 } from "../../tool-finder/src/routes";
-import bmiLogo from "../public/img/bmi-logo.png";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import Container from "./Container";
 import Image from "./Image";
