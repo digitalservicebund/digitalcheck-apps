@@ -1,92 +1,29 @@
-import { defineConfig, devices } from "@playwright/test";
-import dotenv from "dotenv";
+import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
+const port = parseInt(process.env.VITE_PORT ?? "4173"); // Vite's default port when running `vite preview`
+const timeout = parseInt(process.env.WAIT_ON_TIMEOUT ?? `${20 * 1000}`);
 
-// Load both .env and test.env
-dotenv.config();
-dotenv.config({ path: "../test.env" });
-
-const useDefaultBaseUrl = ["", undefined].includes(process.env.E2E_BASE_URL);
-const baseURL = useDefaultBaseUrl
-  ? "http://127.0.0.1:3000"
-  : process.env.E2E_BASE_URL;
-
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
-export default defineConfig({
+const config: PlaywrightTestConfig = {
   testDir: ".",
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    [
-      "html",
-      {
-        outputFolder: "./playwright-report",
-      },
-    ],
-  ],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  timeout: 10000,
+  retries: process.env.CI === "true" ? 1 : 0,
   use: {
-    /* Base URL to use in actions like `await page.goto("/")`. */
-    baseURL,
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    viewport: { width: 1280, height: 720 },
+    acceptDownloads: true,
+    baseURL: `http://localhost:${port}`,
+    screenshot: "only-on-failure",
   },
-
-  /* Configure projects for major browsers */
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
-
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
-    //
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: "Mobile Chrome",
-    //   use: { ...devices["Pixel 5"] },
-    // },
-    // {
-    //   name: "Mobile Safari",
-    //   use: { ...devices["iPhone 12"] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: "Microsoft Edge",
-    //   use: { ...devices["Desktop Edge"], channel: "msedge" },
-    // },
-    // {
-    //   name: "Google Chrome",
-    //   use: { ...devices["Desktop Chrome"], channel: "chrome" },
-    // },
   ],
-
-  /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm run dev",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
+    command: `npm run dev -- --port ${port}`,
+    port,
+    timeout,
   },
-});
+};
+
+export default config;
