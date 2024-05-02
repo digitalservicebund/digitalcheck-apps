@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { Aria } from "@digitalcheck/shared/components/Aria";
 import Breadcrumbs, {
-    BreadcrumbsProps,
+  BreadcrumbsProps,
 } from "@digitalcheck/shared/components/Breadcrumbs";
 import FeedbackBanner from "@digitalcheck/shared/components/FeedbackBanner";
 import Footer from "@digitalcheck/shared/components/Footer";
@@ -16,15 +16,15 @@ import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";
 import type { VisualisationObject } from "models/VisualisationObject";
 import {
-    PATH_A11Y,
-    PATH_DECISIONTREE,
-    PATH_DIAGRAM,
-    PATH_FLOWCHART,
-    PATH_IMPRINT,
-    PATH_INFO,
-    PATH_PRIVACY,
-    PATH_QUIZ,
-    PATH_RESULT,
+  PATH_A11Y,
+  PATH_DECISIONTREE,
+  PATH_DIAGRAM,
+  PATH_FLOWCHART,
+  PATH_IMPRINT,
+  PATH_INFO,
+  PATH_PRIVACY,
+  PATH_QUIZ,
+  PATH_RESULT,
 } from "routes";
 import Accessibility from "routes/Accessibility";
 import DecisionTree from "routes/DecisionTree";

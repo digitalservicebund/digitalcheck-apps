@@ -12,9 +12,9 @@ import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";
 import type { VisualisationObject } from "models/VisualisationObject";
 import {
-    getAllObjects,
-    getAllReasons,
-    getAllRessorts,
+  getAllObjects,
+  getAllReasons,
+  getAllRessorts,
 } from "persistance/repository";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { UseFormReturn, useForm } from "react-hook-form";
