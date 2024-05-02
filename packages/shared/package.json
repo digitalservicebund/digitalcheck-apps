@@ -4,6 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "test": "echo 'tests not implementes yet'",
     "typecheck": "tsc"
   },
   "engines": {
