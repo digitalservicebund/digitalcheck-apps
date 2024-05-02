@@ -144,6 +144,14 @@ function App() {
     },
   ];
 
+  const footerLinks = [
+    { url: PATH_IMPRINT, text: "Impressum" },
+    { url: PATH_PRIVACY, text: "Datenschutzerklärung" },
+    // { url: PATH_COOKIE, text: "Cookie-Einstellungen" },
+    { url: PATH_A11Y, text: "Barrierefreiheit" },
+    // { url: PATH_OSS, text: "Open Source Code" },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
@@ -165,7 +173,7 @@ function App() {
         </div>
         <FeedbackBanner />
       </main>
-      <Footer />
+      <Footer links={footerLinks} />
       <Aria />
     </div>
   );

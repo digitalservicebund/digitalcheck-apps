@@ -1,10 +1,5 @@
 import bmiLogo from "public/img/bmi-logo.png";
 import { Link } from "react-router-dom";
-import {
-  PATH_A11Y,
-  PATH_IMPRINT,
-  PATH_PRIVACY,
-} from "../../tool-finder/src/routes";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import Container from "./Container";
 import Image from "./Image";
@@ -26,15 +21,8 @@ const paragraphs = [
       "Im Auftrag des [Bundesministerium des Innern und für Heimat](https://www.bmi.bund.de/)",
   },
 ];
-const links = [
-  { url: PATH_IMPRINT, text: "Impressum" },
-  { url: PATH_PRIVACY, text: "Datenschutzerklärung" },
-  // { url: PATH_COOKIE, text: "Cookie-Einstellungen" },
-  { url: PATH_A11Y, text: "Barrierefreiheit" },
-  // { url: PATH_OSS, text: "Open Source Code" },
-];
 
-export default function Footer() {
+export default function Footer({ links }: { links: LinkProps[] }) {
   const linksMiddleIndex = Math.ceil(links.length / 2);
   const linksFirstColumn: typeof links = links.slice(0, linksMiddleIndex);
   const linksSecondColumn: typeof links = links.slice(linksMiddleIndex);
