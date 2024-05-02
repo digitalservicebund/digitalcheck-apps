@@ -1,10 +1,10 @@
+import App from "App.tsx";
+import MaintenanceModeApp from "MaintenanceModeApp";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import App from "src/App.tsx";
-import MaintenanceModeApp from "src/MaintenanceModeApp";
-import { enableTracking } from "src/services/tracking";
-import "src/style.css";
+import { enableTracking } from "services/tracking";
+import "style.css";
 
 const maintenanceMode: boolean =
   import.meta.env.VITE_MAINTENANCE_MODE == "true";

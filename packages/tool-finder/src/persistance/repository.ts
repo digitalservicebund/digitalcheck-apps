@@ -1,10 +1,10 @@
+import type { Data } from "models/Data";
+import type { Entity } from "models/Entity";
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { Result } from "models/Result";
+import type { VisualisationObject } from "models/VisualisationObject";
 import rawData from "resources/data";
-import type { Data } from "src/models/Data";
-import type { Entity } from "src/models/Entity";
-import type { Reason } from "src/models/Reason";
-import type { Ressort } from "src/models/Ressort";
-import type { Result } from "src/models/Result";
-import type { VisualisationObject } from "src/models/VisualisationObject";
 
 const data: Data = rawData;
 

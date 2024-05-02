@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { Aria } from "@digitalcheck/shared/components/Aria";
 import Breadcrumbs, {
-  BreadcrumbsProps,
+    BreadcrumbsProps,
 } from "@digitalcheck/shared/components/Breadcrumbs";
 import FeedbackBanner from "@digitalcheck/shared/components/FeedbackBanner";
 import Footer from "@digitalcheck/shared/components/Footer";
@@ -12,29 +12,29 @@ import PageHeader from "@digitalcheck/shared/components/PageHeader";
 import ScrollToTop from "@digitalcheck/shared/components/ScrollToTop";
 import useStorage from "@digitalcheck/shared/services/useStorage";
 
-import type { Reason } from "src/models/Reason";
-import type { Ressort } from "src/models/Ressort";
-import type { VisualisationObject } from "src/models/VisualisationObject";
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { VisualisationObject } from "models/VisualisationObject";
 import {
-  PATH_A11Y,
-  PATH_DECISIONTREE,
-  PATH_DIAGRAM,
-  PATH_FLOWCHART,
-  PATH_IMPRINT,
-  PATH_INFO,
-  PATH_PRIVACY,
-  PATH_QUIZ,
-  PATH_RESULT,
-} from "src/routes";
-import Accessibility from "src/routes/Accessibility";
-import DecisionTree from "src/routes/DecisionTree";
-import Diagram from "src/routes/Diagram";
-import Flowchart from "src/routes/Flowchart";
-import Imprint from "src/routes/Imprint";
-import InfoPage from "src/routes/InfoPage";
-import Privacy from "src/routes/Privacy";
-import QuizPage, { QuizPageProps } from "src/routes/QuizPage";
-import ResultPage, { ResultPageProps } from "src/routes/ResultPage";
+    PATH_A11Y,
+    PATH_DECISIONTREE,
+    PATH_DIAGRAM,
+    PATH_FLOWCHART,
+    PATH_IMPRINT,
+    PATH_INFO,
+    PATH_PRIVACY,
+    PATH_QUIZ,
+    PATH_RESULT,
+} from "routes";
+import Accessibility from "routes/Accessibility";
+import DecisionTree from "routes/DecisionTree";
+import Diagram from "routes/Diagram";
+import Flowchart from "routes/Flowchart";
+import Imprint from "routes/Imprint";
+import InfoPage from "routes/InfoPage";
+import Privacy from "routes/Privacy";
+import QuizPage, { QuizPageProps } from "routes/QuizPage";
+import ResultPage, { ResultPageProps } from "routes/ResultPage";
 
 export const RoutesPropsSchema = z.array(
   z.object({

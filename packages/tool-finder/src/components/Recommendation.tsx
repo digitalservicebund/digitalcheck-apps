@@ -2,8 +2,8 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { getImageUrl } from "@digitalcheck/shared/services/getImageUrl";
-import type { Recommendation } from "src/models/Result";
-import type { Tool } from "src/models/Tool";
+import type { Recommendation } from "models/Result";
+import type { Tool } from "models/Tool";
 
 export interface RecommendationProps {
   clusterName: string;

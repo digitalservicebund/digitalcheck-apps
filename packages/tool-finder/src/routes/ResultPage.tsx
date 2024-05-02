@@ -3,14 +3,14 @@ import Container from "@digitalcheck/shared/components/Container";
 import FeedbackForm from "@digitalcheck/shared/components/FeedbackForm";
 import Image from "@digitalcheck/shared/components/Image";
 import { getImageUrl } from "@digitalcheck/shared/services/getImageUrl";
+import Recommendation from "components/Recommendation";
+import type { Reason } from "models/Reason";
+import type { Ressort } from "models/Ressort";
+import type { VisualisationObject } from "models/VisualisationObject";
+import { findResultByObjectAndRessort } from "persistance/repository";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Recommendation from "src/components/Recommendation";
-import type { Reason } from "src/models/Reason";
-import type { Ressort } from "src/models/Ressort";
-import type { VisualisationObject } from "src/models/VisualisationObject";
-import { findResultByObjectAndRessort } from "src/persistance/repository";
-import useTitle from "src/services/useTitle";
+import useTitle from "services/useTitle";
 import { PATH_QUIZ } from ".";
 
 export type ResultPageProps = {
