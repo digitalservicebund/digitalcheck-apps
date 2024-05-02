@@ -18,7 +18,7 @@
     "audit:licences": "license-checker --production --excludePrivatePackages --onlyAllow 'MIT;BSD-3-Clause;ISC;Apache-2.0;BlueOak-1.0.0' --summary",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write --ignore-unknown .",
-    "lint:check": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "lint:check": "eslint --ext .js,.ts --cache --ignore-path .gitignore .",
     "lint:fix": "npm run lint:check -- --fix",
     "pre-commit": "npm run style:fix && npm run tests && npm run typecheck",
     "style:check": "npm run format:check && npm run lint:check",

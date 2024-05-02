@@ -16,7 +16,7 @@ module.exports = {
     // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: ["node_modules/", "tailwind.preset.js", ".eslintrc.cjs"],
+  ignorePatterns: ["tailwind.preset.js", ".eslintrc.cjs"],
   overrides: [
     {
       env: {
