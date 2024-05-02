@@ -1,7 +1,7 @@
 import Plausible from "plausible-tracker";
-import type { Reason } from "../models/Reason";
-import type { Ressort } from "../models/Ressort";
-import type { VisualisationObject } from "../models/VisualisationObject";
+import type { Reason } from "src/models/Reason";
+import type { Ressort } from "src/models/Ressort";
+import type { VisualisationObject } from "src/models/VisualisationObject";
 
 const EVENT_BUTTON_CLICK = "Button: Click";
 const EVENT_FEEDBACK_CLICK = "Feedback: Click";

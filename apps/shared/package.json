@@ -1,0 +1,12 @@
+{
+  "name": "@digitalcheck/shared",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

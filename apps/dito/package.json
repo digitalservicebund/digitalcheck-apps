@@ -1,19 +1,24 @@
 {
-  "name": "digitalcheck-dito",
+  "name": "@digitalcheck/dito",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "homepage": "https://digitalservicebund.github.io/digitalcheck-apps/",
   "scripts": {
-    "dev": "remix dev --manual",
-    "build": "remix build",
-    "start": "remix-serve ./build/index.js",
+    "dev": "remix vite:dev --manual",
+    "build": "remix vite:build",
+    "start": "remix-serve ./build/server/index.js",
     "clean": "rm -rf build/",
     "test": "jest test",
     "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
     "test:a11y": "playwright test --config=tests/a11y/playwright.config.ts",
     "tests": "npm run build && npm run test && npm run test:e2e && npm run test:a11y",
-    "test:generate-coverage": "jest --coverage"
+    "test:generate-coverage": "jest --coverage",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.8.1",
+    "@remix-run/eslint-config": "^2.8.1"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.9.1",

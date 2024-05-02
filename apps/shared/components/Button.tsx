@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { cloneElement, type ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
-import { trackButtonClick } from "../services/tracking";
+import { trackButtonClick } from "../../tool-finder/src/services/tracking";
 
 export const ButtonPropsSchema = z.object({
   text: z.string().optional(),

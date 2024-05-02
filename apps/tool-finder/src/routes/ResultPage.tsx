@@ -1,17 +1,17 @@
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import FeedbackForm from "@digitalcheck/shared/components/FeedbackForm";
+import Image from "@digitalcheck/shared/components/Image";
+import { getImageUrl } from "@digitalcheck/shared/services/getImageUrl";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "../components/Box";
-import Container from "../components/Container";
-import FeedbackForm from "../components/FeedbackForm";
-import Image from "../components/Image";
-import Recommendation from "../components/Recommendation";
-import type { Reason } from "../models/Reason";
-import type { Ressort } from "../models/Ressort";
-import type { VisualisationObject } from "../models/VisualisationObject";
-import { findResultByObjectAndRessort } from "../persistance/repository";
-import { getImageUrl } from "../services/getImageUrl";
-import useTitle from "../services/useTitle";
-import { PATH_QUIZ } from "./";
+import Recommendation from "src/components/Recommendation";
+import type { Reason } from "src/models/Reason";
+import type { Ressort } from "src/models/Ressort";
+import type { VisualisationObject } from "src/models/VisualisationObject";
+import { findResultByObjectAndRessort } from "src/persistance/repository";
+import useTitle from "src/services/useTitle";
+import { PATH_QUIZ } from ".";
 
 export type ResultPageProps = {
   ressort: Ressort | null;

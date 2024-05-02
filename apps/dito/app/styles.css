@@ -1,3 +1,5 @@
+@import "@digitalservice4germany/angie/fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

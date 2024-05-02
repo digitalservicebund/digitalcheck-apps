@@ -1,5 +1,4 @@
 {
-  "include": ["**/*.ts", "**/*.tsx", "**/remix.env.d.ts"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2023"],
     "isolatedModules": true,
@@ -13,12 +12,8 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "useUnknownInCatchVariables": false,
     "noEmit": true,
-    "skipLibCheck": true,
-    "paths": {
-      "~/*": ["./apps/dito/*", "./apps/tool-finder/*"]
-    }
+    "skipLibCheck": true
   }
 }

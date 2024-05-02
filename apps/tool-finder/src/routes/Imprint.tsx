@@ -1,9 +1,9 @@
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import useTitle from "src/services/useTitle";
 import { PATH_A11Y, PATH_PRIVACY } from ".";
-import Background from "../components/Background";
-import Box from "../components/Box";
-import Container from "../components/Container";
-import Header from "../components/Header";
-import useTitle from "../services/useTitle";
 
 function Imprint() {
   useTitle("Impressum");

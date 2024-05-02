@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
@@ -15,7 +16,7 @@ module.exports = {
     // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: ["**/remix.config.js", "**/tailwind.config.js"],
+  ignorePatterns: ["node_modules/", "tailwind.preset.js", ".eslintrc.cjs"],
   overrides: [
     {
       env: {
@@ -32,9 +33,9 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
     tsconfigRootDir: __dirname,
-    project: ["./tsconfig.json"],
+    project: ["apps/*/tsconfig.json"],
   },
-  plugins: ["@typescript-eslint", "react-refresh", "testing-library"],
+  plugins: ["@typescript-eslint", "react", "react-refresh", "testing-library"],
   rules: {
     "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-unsafe-argument": "warn",
@@ -62,6 +63,9 @@ module.exports = {
     "import/resolver": {
       node: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+      typescript: {
+        project: ["apps/*/tsconfig.json"],
       },
     },
   },

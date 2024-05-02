@@ -1,4 +1,4 @@
-import { trackFeedbackClick } from "../services/tracking";
+import { trackFeedbackClick } from "../../tool-finder/src/services/tracking";
 import Background from "./Background";
 import Box from "./Box";
 import Container from "./Container";
