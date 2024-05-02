@@ -2,6 +2,7 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
+import { trackButtonClick } from "services/tracking";
 import useTitle from "services/useTitle";
 
 import Button from "@digitalcheck/shared/components/Button";
@@ -104,11 +105,10 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
       <Container paddingTop="0" paddingBottom="48">
         <ButtonContainer>
           <Button
-            {...{
-              id: "flowchart-guide-page-back-button",
-              text: "Zurück",
-              href: PATH_RESULT,
-            }}
+            id="flowchart-guide-page-back-button"
+            text="Zurück"
+            href={PATH_RESULT}
+            trackButtonClick={trackButtonClick}
           />
         </ButtonContainer>
       </Container>

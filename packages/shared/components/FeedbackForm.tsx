@@ -1,4 +1,3 @@
-import { trackFeedbackClick } from "../../tool-finder/src/services/tracking";
 import Background from "./Background";
 import Box from "./Box";
 import Container from "./Container";
@@ -82,10 +81,18 @@ export default function FeedbackForm({
   ressort,
   object,
   reason,
+  trackFeedbackClick,
 }: Readonly<{
   ressort: string;
   object: string;
   reason: string;
+  trackFeedbackClick: (
+    name: string,
+    value: number,
+    ressort: string,
+    object: string,
+    reason: string,
+  ) => void;
 }>) {
   function sendFeedback(name: string, value: number) {
     trackFeedbackClick(name, value, ressort, object, reason);

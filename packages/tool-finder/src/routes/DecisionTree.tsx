@@ -4,6 +4,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import useTitle from "services/useTitle";
 
+import { trackButtonClick } from "services/tracking";
 import { PATH_RESULT } from "./";
 
 function DecisionTree() {
@@ -36,6 +37,7 @@ function DecisionTree() {
               id: "diagram-guide-page-back-button",
               text: "Zurück",
               href: PATH_RESULT,
+              trackButtonClick,
             },
           ]}
         ></Box>

@@ -1,21 +1,18 @@
 import classNames from "classnames";
 import { cloneElement, type ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { z } from "zod";
-import { trackButtonClick } from "../../tool-finder/src/services/tracking";
 
-export const ButtonPropsSchema = z.object({
-  text: z.string().optional(),
-  look: z.enum(["primary", "secondary", "tertiary", "ghost"]).optional(),
-  size: z.enum(["large", "medium", "small"]).optional(),
-  href: z.string().optional(),
-  iconLeft: z.custom<ReactElement>().optional(),
-  iconRight: z.custom<ReactElement>().optional(),
-  fullWidth: z.boolean().optional(),
-  onClickCallback: z.function().optional(),
-});
-
-type Props = z.infer<typeof ButtonPropsSchema>;
+type Props = {
+  text?: string;
+  look?: "primary" | "secondary" | "tertiary" | "ghost";
+  size?: "large" | "medium" | "small";
+  href?: string;
+  iconLeft?: ReactElement;
+  iconRight?: ReactElement;
+  fullWidth?: boolean;
+  trackButtonClick?: (id?: string, href?: string) => void;
+  onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+};
 
 export interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
@@ -40,6 +37,7 @@ function Button({
   look,
   size,
   href,
+  trackButtonClick,
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
@@ -74,7 +72,9 @@ function Button({
   };
 
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    trackButtonClick(id, href);
+    if (trackButtonClick) {
+      trackButtonClick(id, href);
+    }
     if (onClickCallback) {
       onClickCallback(event);
     }
