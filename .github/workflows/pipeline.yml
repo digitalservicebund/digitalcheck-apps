@@ -85,7 +85,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         if: ${{ failure() && steps.a11y.outcome == 'failure' }}
-        
+
         with:
           name: playwright-a11y-test-results
           path: packages/*/test/a11y/playwright-report
