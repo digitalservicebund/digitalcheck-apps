@@ -14,6 +14,10 @@ const config: PlaywrightTestConfig = {
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },
+  reporter: [
+    [process.env.CI ? "github" : "list"],
+    ["html", { outputFolder: "./playwright-report" }],
+  ],
   projects: [
     {
       name: "chromium",

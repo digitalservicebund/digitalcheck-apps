@@ -13,6 +13,10 @@ const config: PlaywrightTestConfig = {
     baseURL: `http://localhost:${port}`,
     screenshot: "only-on-failure",
   },
+  reporter: [
+    [process.env.CI ? "github" : "list"],
+    ["html", { outputFolder: "./playwright-report" }],
+  ],
   projects: [
     {
       name: "chromium",
