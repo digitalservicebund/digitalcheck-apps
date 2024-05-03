@@ -135,7 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: read
+      actions: read
       security-events: write
     steps:
       - uses: actions/checkout@v4
