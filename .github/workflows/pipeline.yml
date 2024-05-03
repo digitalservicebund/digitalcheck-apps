@@ -64,15 +64,17 @@ jobs:
           npx --yes playwright install --with-deps
 
       - name: Run E2E tests
+        id: e2e
         run: npm run test:e2e
 
       - uses: actions/upload-artifact@v4
-        if: ${{ failure() }}
+        if: ${{ failure() && steps.e2e.outcome == 'failure' }}
         with:
           name: playwright-e2e-test-results
           path: packages/*/test/e2e/playwright-report
 
       - name: Run A11y tests
+        id: a11y
         run: npm run test:a11y
         env:
           # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
@@ -82,7 +84,8 @@ jobs:
           VITE_PORT: 4183
 
       - uses: actions/upload-artifact@v4
-        if: ${{ failure() }}
+        if: ${{ failure() && steps.a11y.outcome == 'failure' }}
+        
         with:
           name: playwright-a11y-test-results
           path: packages/*/test/a11y/playwright-report
