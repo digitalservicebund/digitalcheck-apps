@@ -24,7 +24,7 @@ jobs:
       - name: Build image from Dockerfile
         working-directory: ${{ inputs.directory }}
         run: |
-          docker build -t ${{ inputs.name }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
+          docker build -t ${{ inputs.name }}:${{ github.sha }} . -f ${{ inputs.directory }}/Dockerfile --build-arg COMMIT_SHA=${{ github.sha }}
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
