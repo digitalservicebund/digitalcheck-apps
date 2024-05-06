@@ -32,13 +32,13 @@ jobs:
         with:
           image-ref: ${{ inputs.name }}:${{ github.sha }}
           format: "cosign-vuln"
-          output: "vulnerabilities.json"
+          output: "${{ inputs.name }}-vulnerabilities.json"
 
       - name: Upload cosign vulnerability scan record
         uses: actions/upload-artifact@v4
         with:
-          name: "vulnerabilities.json"
-          path: "vulnerabilities.json"
+          name: "${{ inputs.name }}-vulnerabilities.json"
+          path: "${{ inputs.name }}-vulnerabilities.json"
           if-no-files-found: error
 
       - name: Install cosign
