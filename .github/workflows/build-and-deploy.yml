@@ -73,7 +73,6 @@ jobs:
 
   deploy:
     needs: [build-and-push-image]
-    if: ${{ false }} # FIXME: Enable this job when the deployment is ready.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
