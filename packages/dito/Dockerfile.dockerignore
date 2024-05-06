@@ -1,0 +1,20 @@
+# Ignore everything
+*
+
+# Whitelist for root level files and shared
+!packages/shared/
+!package.json
+!package-lock.json
+!tailwind.preset.js
+!tsconfig.base.json
+!LICENSE
+!SECURITY.md
+!README.md
+
+# Whitelist for packages/dito
+!packages/dito/app/
+!packages/dito/package.json
+!packages/dito/postcss.config.cjs
+!packages/dito/tailwind.config.js
+!packages/dito/tsconfig.json
+!packages/dito/vite.config.ts
