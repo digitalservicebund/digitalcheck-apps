@@ -69,7 +69,7 @@ jobs:
         run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Attest the vulnerability scan
-        run: cosign attest --yes --replace --predicate vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        run: cosign attest --yes --replace --predicate ${{ inputs.name }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
   deploy:
     needs: [build-and-push-image]
