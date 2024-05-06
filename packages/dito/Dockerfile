@@ -1,12 +1,12 @@
 # Download and install the dependenciees for building the app
-FROM node:20-alpine AS build-dependencies
+FROM node:22-alpine AS build-dependencies
 
 WORKDIR /src
 COPY package*.json ./
 RUN npm ci
 
 # Download and install the dependencies for running the app
-FROM node:20-alpine AS production-dependencies
+FROM node:22-alpine AS production-dependencies
 
 ENV NODE_ENV production
 WORKDIR /src
@@ -14,7 +14,7 @@ COPY package*.json ./
 RUN npm ci
 
 # Build the app
-FROM node:20-alpine AS build
+FROM node:22-alpine AS build
 
 ARG COMMIT_SHA
 ENV APP_VERSION=$COMMIT_SHA
@@ -30,7 +30,7 @@ COPY . ./
 RUN npm run build
 
 # Final image that runs the app
-FROM node:20.11.0-alpine3.19
+FROM node:22.1.0-alpine3.18
 
 USER node
 ENV NODE_ENV=production
