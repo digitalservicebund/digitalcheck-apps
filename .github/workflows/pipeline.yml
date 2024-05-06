@@ -179,7 +179,7 @@ jobs:
       matrix:
         packages:
           - name: digitalcheck-dito
-            directory: packages/ditor
+            directory: packages/dito
           - name: digitalcheck-tool-finder
             directory: packages/tool-finder
     with:
