@@ -84,10 +84,10 @@ jobs:
         with:
           environment: production
           version: ${{ github.sha }}
-          deploying_repo: ${{ github.event.repository.name }} # FIXME: change to image name?
+          deploying_repo: ${{ env.IMAGE_NAME }}
           infra_repo: ${{ github.event.repository.name }}-infra
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          app: ${{ github.event.repository.name }}-production
+          app: ${{ inputs.name }}-production
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
 
