@@ -169,7 +169,7 @@ jobs:
 
   build-and-deploy:
     needs:
-      # - test
+      - test
       - audit-licenses
       - vulnerability-scan
     if: ${{ github.ref == 'refs/heads/main' }}
