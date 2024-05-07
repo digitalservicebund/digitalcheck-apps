@@ -84,7 +84,7 @@ jobs:
         with:
           environment: production
           version: ${{ github.sha }}
-          deploying_repo: ${{ env.IMAGE_NAME }}
+          deploying_repo: ${{ inputs.name }}
           infra_repo: ${{ github.event.repository.name }}-infra
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           app: ${{ inputs.name }}-production
