@@ -185,3 +185,4 @@ jobs:
     with:
       name: ${{ matrix.packages.name }}
       directory: ${{ matrix.packages.directory }}
+    secrets: inherit
