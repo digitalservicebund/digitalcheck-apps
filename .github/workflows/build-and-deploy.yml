@@ -6,15 +6,19 @@ on:
       name:
         required: true
         type: string
+        description: "Name of the application or package to be build and deployed (e.g. digitalcheck-tool-finder)."
       directory:
         required: true
         type: string
+        description: "Directory in this repository where the application or package is located in (e.g. packages/tool-finder)."
       handle:
         required: true
         type: string
+        description: "Short handle of the application or package to be used to identify the right subdirectory in the infra repo (e.g. tool-finder)."
       environment:
         required: true
         type: string
+        description: "Name of the environment to deploy on (e.g. production)"
 
 env:
   IMAGE_NAME: digitalservicebund/${{ inputs.name }}
