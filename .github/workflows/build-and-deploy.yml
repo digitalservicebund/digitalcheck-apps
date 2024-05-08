@@ -64,6 +64,7 @@ jobs:
         uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # main
         with:
           image_name: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          artifact_name: SBOM-${{ inputs.name }}
 
       - name: Sign the published Docker image
         run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
