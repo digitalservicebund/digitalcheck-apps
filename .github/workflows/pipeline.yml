@@ -185,3 +185,4 @@ jobs:
     with:
       name: ${{ matrix.packages.name }}
       directory: ${{ matrix.packages.directory }}
+      deploy_key: ${{ secrets.DEPLOY_KEY }}
