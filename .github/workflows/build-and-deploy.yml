@@ -9,9 +9,6 @@ on:
       directory:
         required: true
         type: string
-      deploy_key:
-        required: true
-        type: string
 
 env:
   IMAGE_NAME: digitalservicebund/${{ inputs.name }}
@@ -90,7 +87,7 @@ jobs:
           version: ${{ github.sha }}
           deploying_repo: ${{ inputs.name }}
           infra_repo: ${{ github.event.repository.name }}-infra
-          deploy_key: ${{ inputs.deploy_key }}
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
           app: ${{ inputs.name }}-production
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
