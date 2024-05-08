@@ -9,6 +9,12 @@ on:
       directory:
         required: true
         type: string
+      handle:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
 
 env:
   IMAGE_NAME: digitalservicebund/${{ inputs.name }}
@@ -33,7 +39,7 @@ jobs:
         # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
         uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
         with:
-          image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          image-ref: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
           format: "cosign-vuln"
           output: "${{ inputs.name }}-vulnerabilities.json"
 
@@ -63,7 +69,7 @@ jobs:
       - name: Create SBOM
         uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # v1.2.1
         with:
-          image_name: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          image_name: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
           artifact_name: SBOM-${{ inputs.name }}
 
       - name: Sign the published Docker image
@@ -78,17 +84,17 @@ jobs:
     timeout-minutes: 10
     permissions:
       packages: read
-    environment: production # FIXME: Create environment.
+    environment: ${{ inputs.environment }}
     steps:
       - name: Deploy latest container image
         uses: digitalservicebund/argocd-deploy@4fac1bb67c92ed168f6d9b22f8779ce241a9e412 # v1.0.0
         with:
-          environment: production
+          environment: "${{ inputs.handle }}/${{ inputs.environment }}"
           version: ${{ github.sha }}
           deploying_repo: ${{ inputs.name }}
           infra_repo: ${{ github.event.repository.name }}-infra
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          app: ${{ inputs.name }}-production
+          app: "${{ inputs.name }}-${{ inputs.environment }}"
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
 
@@ -96,6 +102,6 @@ jobs:
         uses: digitalservicebund/github-actions/track-deployment@34a48d29a9c4cc2fd6710b8eb37e13618a08fa88 # v1.0.0
         with:
           project: ${{ github.event.repository.name }}
-          environment: production
+          environment: ${{ inputs.environment }}
           metrics_deployment_webhook_url: ${{ secrets.METRICS_DEPLOYMENT_WEBHOOK_URL }}
           metrics_webhook_token: ${{ secrets.METRICS_WEBHOOK_TOKEN }}

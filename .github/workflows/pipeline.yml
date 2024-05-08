@@ -36,7 +36,7 @@ jobs:
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
           restore-keys: |
             ${{ runner.os }}-node-
 
@@ -114,7 +114,7 @@ jobs:
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
           restore-keys: |
             ${{ runner.os }}-node-
 
@@ -180,9 +180,13 @@ jobs:
         packages:
           - name: digitalcheck-dito
             directory: packages/dito
+            handle: dito
           - name: digitalcheck-tool-finder
             directory: packages/tool-finder
+            handle: tool-finder
     with:
       name: ${{ matrix.packages.name }}
       directory: ${{ matrix.packages.directory }}
+      handle: ${{ matrix.packages.handle }}
+      environment: production
     secrets: inherit
