@@ -185,7 +185,7 @@ jobs:
     with:
       name: digitalcheck-tool-finder
       directory: packages/tool-finder
-      deploy_key: ${{ secrets.DEPLOY_KEY }}
+    secrets: inherit
 #  build-and-push-image:
 #    runs-on: ubuntu-latest
 #    if: ${{ github.ref == 'refs/heads/main' }}
