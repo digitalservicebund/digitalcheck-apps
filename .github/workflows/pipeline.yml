@@ -167,25 +167,25 @@ jobs:
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-  build-and-deploy:
-    needs:
-      - test
-      - audit-licenses
-      - vulnerability-scan
-    if: ${{ github.ref == 'refs/heads/main' }}
-    uses: ./.github/workflows/build-and-deploy.yml
-    #      strategy:
-    #        fail-fast: false
-    #        matrix:
-    #          packages:
-    #            - name: digitalcheck-dito
-    #              directory: packages/dito
-    #            - name: digitalcheck-tool-finder
-    #              directory: packages/tool-finder
-    with:
-      name: digitalcheck-tool-finder
-      directory: packages/tool-finder
-      deploy_key: ${{ secrets.DEPLOY_KEY }}
+    build-and-deploy:
+      needs:
+        - test
+        - audit-licenses
+        - vulnerability-scan
+      if: ${{ github.ref == 'refs/heads/main' }}
+      uses: ./.github/workflows/build-and-deploy.yml
+      #      strategy:
+      #        fail-fast: false
+      #        matrix:
+      #          packages:
+      #            - name: digitalcheck-dito
+      #              directory: packages/dito
+      #            - name: digitalcheck-tool-finder
+      #              directory: packages/tool-finder
+      with:
+        name: digitalcheck-tool-finder
+        directory: packages/tool-finder
+        deploy_key: ${{ secrets.DEPLOY_KEY }}
 #  build-and-push-image:
 #    runs-on: ubuntu-latest
 #    if: ${{ github.ref == 'refs/heads/main' }}
