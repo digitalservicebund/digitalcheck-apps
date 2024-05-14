@@ -104,6 +104,30 @@ Preview the production build:
 npm run start --workspace="packages/<app-name>"
 ```
 
+## Add a new application
+
+Do the following steps to add a new application to this Monorepo.
+
+1. Create a new directory under `packages/`
+2. Add the application code there
+3. Depending on the tack stack, make sure that:
+   - shared dependencies are configured in the top-level [package.json](./package.json)
+   - the `tailwind.config.js` uses the top-level [tailwind.preset.js](./tailwind.preset.js)
+   - the `tsconfig.json` extends the top-level [tsconfig.base.json](./tsconfig.base.json)
+   - the `postcss.config.cjs` uses the
+4. The new project needs at least:
+   - a `package.json` which defines the project specific dependencies an implements the following scripts:
+     - `build`: build the application for production
+     - `test`: run unit tests
+     - `test:e2e`: run e2e tests
+     - `test:a11y`: run a11y tests
+     - `tests`: run all tests
+   - a `Dockerfile` which builds a Docker container from your application (and if needed a `Dockerfile.dockerignore`)
+5. Before proceeding with the next step, make sure the infrastructure of the application is in place.
+   Follow the steps in the [digitalcheck-apps-infra README.md](https://github.com/digitalservicebund/digitalcheck-apps-infra).
+6. Add the new project to the list in the [pipeline.yml](./.github/workflows/pipeline.yml) workflow at the `build-and-deploy` step.
+7. You are done! The new application will be build and deployed on commit.
+
 ## Contributing
 
 🇬🇧
