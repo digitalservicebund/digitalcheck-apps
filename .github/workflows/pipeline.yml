@@ -177,16 +177,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        packages:
-          - name: digitalcheck-dito
-            directory: packages/dito
-            handle: dito
-          - name: digitalcheck-tool-finder
-            directory: packages/tool-finder
-            handle: tool-finder
+        package: [dito, tool-finder]
     with:
-      name: ${{ matrix.packages.name }}
-      directory: ${{ matrix.packages.directory }}
-      handle: ${{ matrix.packages.handle }}
+      name: ${{ matrix.package }}
       environment: production
     secrets: inherit

@@ -3,25 +3,19 @@ name: Build and Deploy
 on:
   workflow_call:
     inputs:
-      name:
+      package:
         required: true
         type: string
-        description: "Name of the application or package to be build and deployed (e.g. digitalcheck-tool-finder)."
-      directory:
-        required: true
-        type: string
-        description: "Directory in this repository where the application or package is located in (e.g. packages/tool-finder)."
-      handle:
-        required: true
-        type: string
-        description: "Short handle of the application or package to be used to identify the right subdirectory in the infra repo (e.g. tool-finder)."
+        description: "Name of the application or package to be build and deployed (e.g. tool-finder). Needs to be the same as the directory name in /packages and in the infra repo."
       environment:
         required: true
         type: string
         description: "Name of the environment to deploy on (e.g. production)"
 
 env:
-  IMAGE_NAME: digitalservicebund/${{ inputs.name }}
+  PACKAGE_NAME: digitalcheck-${{ inputs.package }}
+  DIR_NAME: packages/${{ inputs.package }}
+  IMAGE_NAME: digitalservicebund/digitalcheck-${{ inputs.package }}
 
 jobs:
   build-and-push-image:
@@ -36,7 +30,7 @@ jobs:
 
       - name: Build image from Dockerfile
         run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . -f ${{ inputs.directory }}/Dockerfile --build-arg COMMIT_SHA=${{ github.sha }}
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . -f ${{ env.DIR_NAME }}/Dockerfile --build-arg COMMIT_SHA=${{ github.sha }}
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
@@ -45,13 +39,13 @@ jobs:
         with:
           image-ref: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
           format: "cosign-vuln"
-          output: "${{ inputs.name }}-vulnerabilities.json"
+          output: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
 
       - name: Upload cosign vulnerability scan record
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ inputs.name }}-vulnerabilities.json"
-          path: "${{ inputs.name }}-vulnerabilities.json"
+          name: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
+          path: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
           if-no-files-found: error
 
       - name: Install cosign
@@ -74,13 +68,13 @@ jobs:
         uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # v1.2.1
         with:
           image_name: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          artifact_name: SBOM-${{ inputs.name }}
+          artifact_name: SBOM-${{ env.PACKAGE_NAME }}
 
       - name: Sign the published Docker image
         run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Attest the vulnerability scan
-        run: cosign attest --yes --replace --predicate ${{ inputs.name }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        run: cosign attest --yes --replace --predicate ${{ env.PACKAGE_NAME }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
   deploy:
     needs: [build-and-push-image]
@@ -93,19 +87,19 @@ jobs:
       - name: Deploy latest container image
         uses: digitalservicebund/argocd-deploy@4fac1bb67c92ed168f6d9b22f8779ce241a9e412 # v1.0.0
         with:
-          environment: "${{ inputs.handle }}/${{ inputs.environment }}"
+          environment: "${{ inputs.package }}/${{ inputs.environment }}"
           version: ${{ github.sha }}
-          deploying_repo: ${{ inputs.name }}
+          deploying_repo: ${{ env.PACKAGE_NAME }}
           infra_repo: ${{ github.event.repository.name }}-infra
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          app: "${{ inputs.name }}-${{ inputs.environment }}"
+          app: "${{ env.PACKAGE_NAME }}-${{ inputs.environment }}"
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
 
       - name: Report Deployment
         uses: digitalservicebund/track-deployment@5a2815e150e1268983aac5ca04c8c046ed1b614a # v1.1.0
         with:
-          project: ${{ inputs.name }}
+          project: ${{ env.PACKAGE_NAME }}
           environment: ${{ inputs.environment }}
           metrics_deployment_webhook_url: ${{ secrets.METRICS_DEPLOYMENT_WEBHOOK_URL }}
           metrics_webhook_token: ${{ secrets.METRICS_WEBHOOK_TOKEN }}
