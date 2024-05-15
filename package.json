@@ -23,7 +23,7 @@
     "pre-commit": "npm run style:fix && npm run tests && npm run typecheck",
     "style:check": "npm run format:check && npm run lint:check",
     "style:fix": "npm run format:fix && npm run lint:fix",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces"
   },
   "dependencies": {
     "@digitalcheck/shared": "*",
