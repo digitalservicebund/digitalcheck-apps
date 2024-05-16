@@ -1,12 +1,16 @@
 name: Pipeline
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  # Allow to run this workflow manually
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+        description: "Name of the application or package to be build and deployed (e.g. tool-finder). Needs to be the same as the directory name in /packages and in the infra repo."
+      flag:
+        required: false
+        type: string
+        description: "Additional flag to pass to the build script (e.g. --workspace=dito)"
 
 env:
   IMAGE_NAME: ${{ github.repository }}
@@ -132,11 +136,11 @@ jobs:
       - vulnerability-scan
     if: ${{ github.ref == 'refs/heads/main' }}
     uses: ./.github/workflows/build-and-deploy.yml
-    strategy:
-      fail-fast: false
-      matrix:
-        package: [dito, tool-finder]
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     package: [dito, tool-finder]
     with:
-      package: ${{ matrix.package }}
+      package: ${{ inputs.package }}
       environment: production
     secrets: inherit
