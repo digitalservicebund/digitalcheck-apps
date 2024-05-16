@@ -1,19 +1,23 @@
-name: Pipeline-DiTo
+name: PipelineDiTo
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["packages/dito/**"]
+    paths:
+      - "packages/dito/**"
+      - ".github/workflows/pipeline-dito.yml"
   pull_request:
     branches: [main]
-    paths: ["packages/dito/**"]
+    paths:
+      - "packages/dito/**"
+      - ".github/workflows/pipeline-dito.yml"
 
 jobs:
   check-and-test:
     uses: ./.github/workflows/check-and-test.yml
     with:
-      flag: "--workspace=dito"
+      flag: "--workspace=packages/dito"
 
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
@@ -24,11 +28,7 @@ jobs:
       - vulnerability-scan
     if: ${{ github.ref == 'refs/heads/main' }}
     uses: ./.github/workflows/build-and-deploy.yml
-    strategy:
-      fail-fast: false
-      matrix:
-        package: [dito, tool-finder]
     with:
-      package: ${{ matrix.package }}
+      package: dito
       environment: production
     secrets: inherit
