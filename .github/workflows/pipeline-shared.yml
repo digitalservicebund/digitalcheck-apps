@@ -9,7 +9,7 @@ on:
       - "packages/tool-finder/**"
   pull_request:
     branches: [main]
-    paths:
+    paths-ignore:
       - "packages/dito/**"
       - "packages/tool-finder/**"
 
