@@ -1,4 +1,4 @@
-name: Pipeline-Shared
+name: PipelineShared
 
 on:
   workflow_dispatch:
