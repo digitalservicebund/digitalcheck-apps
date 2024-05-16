@@ -10,9 +10,25 @@ on:
     paths: ["packages/dito/**"]
 
 jobs:
-  run-pipeline:
-    uses: ./.github/workflows/pipeline.yml
+  check-and-test:
+    uses: ./.github/workflows/check-and-test.yml
     with:
-      package: "dito"
       flag: "--workspace=dito"
+
+  vulnerability-scan:
+    uses: ./.github/workflows/scan.yml
+
+  build-and-deploy:
+    needs:
+      - check-and-test
+      - vulnerability-scan
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: ./.github/workflows/build-and-deploy.yml
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [dito, tool-finder]
+    with:
+      package: ${{ matrix.package }}
+      environment: production
     secrets: inherit
