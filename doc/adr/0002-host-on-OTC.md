@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-The website needs to be hosted somewhere for public access.
+The websites needs to be hosted somewhere for public access.
 This hosting has to generally conform with the demands of GDPR and specifically with the needs of the BMI, which is the patron of the project.
 We identified two possible hosting options with their respective pros and cons:
 
@@ -29,7 +29,7 @@ We will host the application on **Open Telekom Cloud**, using the existing templ
 ## Consequences
 
 We setup nginx as a server for our application and use docker for building a shippable image.
-We create an additional infrastrucure repository and follow the platform docs to deploy our application on the DigitalService kubernetes cluster.
+We create an additional infrastructure repository and follow the platform docs to deploy our application on the DigitalService kubernetes cluster.
 
 There is a higher risk of the application breaking down. We either need to make sure to always have an engineer not on vacation or live with that risk (someone from plattform could probably also mitigate the issue). This is especially relevant from 2025 on, as we might not work on the project anymore.
 
