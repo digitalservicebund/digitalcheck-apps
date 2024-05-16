@@ -25,7 +25,7 @@ npm run build
 npm start
 ```
 
-### Docker
+### Docker 
 
 The project includes a Dockerfile to create a Docker Image for the project.
 
