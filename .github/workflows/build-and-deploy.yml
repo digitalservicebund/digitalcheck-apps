@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     concurrency:
-      group: "dito-apps-deploy"
+      group: "digitalcheck-apps-deploy"
       cancel-in-progress: false
     permissions:
       packages: read
