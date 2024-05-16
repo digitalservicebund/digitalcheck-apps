@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Audit used licences
-        run: npm run audit:licences ${{ inputs.flag }}
+        run: npm run audit:licences
 
       - name: Check format
         run: npm run format:check ${{ inputs.flag }}
