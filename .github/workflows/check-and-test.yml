@@ -29,10 +29,10 @@ jobs:
         run: npm run audit:licences
 
       - name: Check format
-        run: npm run format:check ${{ inputs.flag }}
+        run: npm run format:check
 
       - name: Lint
-        run: npm run lint:check ${{ inputs.flag }}
+        run: npm run lint:check
 
       - name: Check types
         run: npm run typecheck ${{ inputs.flag }}
