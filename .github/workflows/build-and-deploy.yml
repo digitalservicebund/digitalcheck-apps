@@ -39,7 +39,7 @@ jobs:
 
       - name: Push changes
         run: |
-          git push origin main    
+          git push origin main
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
