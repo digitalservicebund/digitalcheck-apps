@@ -1,0 +1,25 @@
+name: Pipeline-DiTo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "packages/dito/**"
+      - "packages/tool-finder/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/dito/**"
+      - "packages/tool-finder/**"
+
+jobs:
+  run-pipeline:
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [dito, tool-finder]
+    uses: ./.github/workflows/pipeline.yml
+    with:
+      package: ${{ matrix.package }}
+    secrets: inherit
