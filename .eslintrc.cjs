@@ -53,6 +53,13 @@ module.exports = {
     "testing-library/no-dom-import": "off",
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
+    // support eol for all os
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   },
   settings: {
     react: {
