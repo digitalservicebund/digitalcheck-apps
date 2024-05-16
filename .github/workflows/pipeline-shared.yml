@@ -6,12 +6,16 @@ on:
     branches: [main]
     paths-ignore:
       - "packages/dito/**"
+      - ".github/workflows/pipeline-dito.yml"
       - "packages/tool-finder/**"
+      - ".github/workflows/pipeline-tool-finder.yml"
   pull_request:
     branches: [main]
     paths-ignore:
       - "packages/dito/**"
+      - ".github/workflows/pipeline-dito.yml"
       - "packages/tool-finder/**"
+      - ".github/workflows/pipeline-tool-finder.yml"
 
 jobs:
   check-and-test:
