@@ -12,6 +12,10 @@ on:
         type: string
         description: "Name of the environment to deploy on (e.g. production)"
 
+concurrency:
+  group: "dito-apps-deploy"
+  cancel-in-progress: false
+
 env:
   PACKAGE_NAME: digitalcheck-${{ inputs.package }}
   DIR_NAME: packages/${{ inputs.package }}
