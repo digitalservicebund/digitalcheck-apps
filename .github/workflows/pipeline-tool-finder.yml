@@ -20,6 +20,7 @@ jobs:
     uses: ./.github/workflows/check-and-test.yml
     with:
       flag: "--workspace=packages/tool-finder"
+    secrets: inherit
 
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
