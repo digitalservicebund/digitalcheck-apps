@@ -1,0 +1,34 @@
+name: PipelineToolFinder
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "packages/tool-finder/**"
+      - ".github/workflows/pipeline-tool-finder.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/tool-finder/**"
+      - ".github/workflows/pipeline-tool-finder.yml"
+
+jobs:
+  check-and-test:
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      flag: "--workspace=packages/tool-finder"
+
+  vulnerability-scan:
+    uses: ./.github/workflows/scan.yml
+
+  build-and-deploy:
+    needs:
+      - check-and-test
+      - vulnerability-scan
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: ./.github/workflows/build-and-deploy.yml
+    with:
+      package: tool-finder
+      environment: production
+    secrets: inherit
