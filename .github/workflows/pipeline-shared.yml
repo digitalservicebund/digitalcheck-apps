@@ -20,9 +20,11 @@ on:
 jobs:
   check-and-test:
     uses: ./.github/workflows/check-and-test.yml
+    secrets: inherit
 
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
+    secrets: inherit
 
   build-and-deploy:
     needs:

@@ -24,6 +24,7 @@ jobs:
 
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
+    secrets: inherit
 
   build-and-deploy:
     needs:
