@@ -124,7 +124,10 @@ Do the following steps to add a new application to this Monorepo.
 4. Add the application code. It should now be able to import shared components.
 5. Before proceeding with the next step, make sure the infrastructure of the application is in place.
    Follow the steps in the [digitalcheck-apps-infra README.md](https://github.com/digitalservicebund/digitalcheck-apps-infra).
-6. Add the new package to the list in the [pipeline.yml](./.github/workflows/pipeline.yml) workflow at the `build-and-deploy` step.
+6. Update the GitHub workflows as follows:
+   - Copy an existing application pipeline file from the `.github/workflows/` directory and substitute the new application name.
+   - Add the new package directory and pipeline file to the two `paths-ignore` list in [pipeline-shared.yml](./.github/workflows/pipeline-shared.yml).
+   - Add the new package name to the package list in the `build-and-deploy` matrix in [pipeline-shared.yml](./.github/workflows/pipeline-shared.yml).
 7. You are done! The new application will be build and deployed on commit.
 
 ## Contributing
