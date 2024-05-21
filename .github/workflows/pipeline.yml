@@ -45,6 +45,9 @@ jobs:
     secrets: inherit
 
   build-and-deploy:
+    concurrency:
+      group: "digitalcheck-apps-deploy-matrix"
+      cancel-in-progress: false
     needs:
       - changes
       - check-and-test
