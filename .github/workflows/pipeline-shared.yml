@@ -4,22 +4,39 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - "**"
-      - "!packages/**"
-      - "packages/shared/**"
-      - "!.github/workflows/pipeline-*"
-      - ".github/workflows/pipeline-shared.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "**"
-      - "!packages/**"
-      - "packages/shared/**"
-      - "!.github/workflows/pipeline-*"
-      - ".github/workflows/pipeline-shared.yml"
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      packages: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            dito:
+              - "**"
+              - "!packages/**"
+              - "packages/shared/**"
+              - "packages/dito/**"
+              - "!.github/workflows/pipeline-*"
+              - ".github/workflows/pipeline-shared.yml"
+              - ".github/workflows/pipeline-dito.yml"
+            tool-finder:
+              - "**"
+              - "!packages/**"
+              - "packages/shared/**"
+              - "packages/tool-finder/**"
+              - "!.github/workflows/pipeline-*"
+              - ".github/workflows/pipeline-shared.yml"
+              - ".github/workflows/pipeline-tool-finder.yml"
+
   check-and-test:
     uses: ./.github/workflows/check-and-test.yml
     secrets: inherit
@@ -30,14 +47,16 @@ jobs:
 
   build-and-deploy:
     needs:
+      - changes
       - check-and-test
       - vulnerability-scan
     if: ${{ github.ref == 'refs/heads/main' }}
     uses: ./.github/workflows/build-and-deploy.yml
     strategy:
       fail-fast: false
+      max-parallel: 2
       matrix:
-        package: [dito, tool-finder]
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
     with:
       package: ${{ matrix.package }}
       environment: production
