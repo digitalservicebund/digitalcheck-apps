@@ -1,11 +1,12 @@
 name: PipelineShared
 
 on:
-  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  # Allow to run this workflow manually
+  workflow_dispatch:
 
 jobs:
   changes:
