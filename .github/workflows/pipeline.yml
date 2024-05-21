@@ -14,7 +14,7 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
-      packages: ${{ steps.filter.outputs.changes }}
+      packages: ${{ steps.filter.outputs.changes }} # Contains the list of packages that have changed
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -26,15 +26,11 @@ jobs:
               - "!packages/**"
               - "packages/shared/**"
               - "packages/dito/**"
-              - "!.github/workflows/pipeline-*"
-              - ".github/workflows/pipeline-dito.yml"
             tool-finder:
               - "**"
               - "!packages/**"
               - "packages/shared/**"
               - "packages/tool-finder/**"
-              - "!.github/workflows/pipeline-*"
-              - ".github/workflows/pipeline-tool-finder.yml"
 
   check-and-test:
     uses: ./.github/workflows/check-and-test.yml
@@ -53,12 +49,12 @@ jobs:
       - check-and-test
       - vulnerability-scan
     if: ${{ github.ref == 'refs/heads/main' }}
-    uses: ./.github/workflows/build-and-deploy.yml
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    uses: ./.github/workflows/build-and-deploy.yml
     with:
       package: ${{ matrix.package }}
       environment: production
