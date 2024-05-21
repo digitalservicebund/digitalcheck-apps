@@ -7,13 +7,13 @@ on:
     paths:
       - "packages/dito/**"
       - ".github/workflows/**"
-      - "!.github/workflows/shared.yml"
+      - "!.github/workflows/pipeline-shared.yml"
   pull_request:
     branches: [main]
     paths:
       - "packages/dito/**"
       - ".github/workflows/**"
-      - "!.github/workflows/shared.yml"
+      - "!.github/workflows/pipeline-shared.yml"
 
 jobs:
   check-and-test:
