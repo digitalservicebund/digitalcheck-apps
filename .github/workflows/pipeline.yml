@@ -27,7 +27,6 @@ jobs:
               - "packages/shared/**"
               - "packages/dito/**"
               - "!.github/workflows/pipeline-*"
-              - ".github/workflows/pipeline-shared.yml"
               - ".github/workflows/pipeline-dito.yml"
             tool-finder:
               - "**"
@@ -35,7 +34,6 @@ jobs:
               - "packages/shared/**"
               - "packages/tool-finder/**"
               - "!.github/workflows/pipeline-*"
-              - ".github/workflows/pipeline-shared.yml"
               - ".github/workflows/pipeline-tool-finder.yml"
 
   check-and-test:
