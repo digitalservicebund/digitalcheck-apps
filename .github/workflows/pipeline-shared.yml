@@ -12,12 +12,12 @@ on:
       - ".github/workflows/pipeline-shared.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "**"
-      - "!packages/**"
-      - "packages/shared/**"
-      - "!.github/workflows/pipeline-*"
-      - ".github/workflows/pipeline-shared.yml"
+    # paths:
+    #   - "**"
+    #   - "!packages/**"
+    #   - "packages/shared/**"
+    #   - "!.github/workflows/pipeline-*"
+    #   - ".github/workflows/pipeline-shared.yml"
 
 jobs:
   check-and-test:
