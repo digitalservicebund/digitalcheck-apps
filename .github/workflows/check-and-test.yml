@@ -3,10 +3,10 @@ name: Pipeline
 on:
   workflow_call:
     inputs:
-      flag:
-        required: false
+      package:
+        required: true
         type: string
-        description: "Additional flag to pass to the build script (e.g. --workspace=dito)"
+        description: "Package to check and test."
 
 jobs:
   check-and-test:
@@ -46,10 +46,10 @@ jobs:
         run: npm run lint:check
 
       - name: Check types
-        run: npm run typecheck ${{ inputs.flag }}
+        run: npm run typecheck
 
       - name: Run unit tests
-        run: npm test ${{ inputs.flag }}
+        run: npm test
 
       - name: Install E2E & A11y test dependencies
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run E2E tests
         id: e2e
-        run: npm run test:e2e ${{ inputs.flag }}
+        run: npm run test:e2e --workspace packages/${{ inputs.package }}
 
       - uses: actions/upload-artifact@v4
         if: ${{ failure() && steps.e2e.outcome == 'failure' }}
@@ -67,7 +67,7 @@ jobs:
 
       - name: Run A11y tests
         id: a11y
-        run: npm run test:a11y ${{ inputs.flag }}
+        run: npm run test:a11y --workspace packages/${{ inputs.package }}
         env:
           # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
           # starting to occur with playwright/test 1.28.0:

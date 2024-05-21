@@ -33,7 +33,15 @@ jobs:
               - "packages/tool-finder/**"
 
   check-and-test:
+    needs:
+      - changes
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
     uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: ${{ matrix.package }}
     secrets: inherit
 
   vulnerability-scan:
