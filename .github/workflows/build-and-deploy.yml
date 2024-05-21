@@ -77,6 +77,9 @@ jobs:
         run: cosign attest --yes --replace --predicate ${{ env.PACKAGE_NAME }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
   deploy:
+    concurrency:
+      group: digitalcheck-${{ inputs.package }}-${{ inputs.environment }}
+      cancel-in-progress: true
     needs: [build-and-push-image]
     runs-on: ubuntu-latest
     timeout-minutes: 10
