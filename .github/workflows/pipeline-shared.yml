@@ -4,18 +4,20 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore:
-      - "packages/**"
-      - "!packages/shared/**"
-      - ".github/workflows/pipeline-*"
-      - "!.github/workflows/pipeline-shared.yml"
+    paths:
+      - "**"
+      - "!packages/**"
+      - "packages/shared/**"
+      - "!.github/workflows/pipeline-*"
+      - ".github/workflows/pipeline-shared.yml"
   pull_request:
     branches: [main]
-    paths-ignore:
-      - "packages/**"
-      - "!packages/shared/**"
-      - ".github/workflows/pipeline-*"
-      - "!.github/workflows/pipeline-shared.yml"
+    paths:
+      - "**"
+      - "!packages/**"
+      - "packages/shared/**"
+      - "!.github/workflows/pipeline-*"
+      - ".github/workflows/pipeline-shared.yml"
 
 jobs:
   check-and-test:
