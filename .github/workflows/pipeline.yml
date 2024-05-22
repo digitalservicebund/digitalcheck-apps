@@ -22,13 +22,13 @@ jobs:
         with:
           filters: |
             dito:
-              - *
+              - "*"
               - .github/**
               - doc/**
               - packages/shared/**
               - packages/dito/**
             tool-finder:
-              - *
+              - "*"
               - .github/**
               - doc/**
               - packages/shared/**
