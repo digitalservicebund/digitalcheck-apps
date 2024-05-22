@@ -22,15 +22,17 @@ jobs:
         with:
           filters: |
             dito:
-              - "**"
-              - "!packages/**"
-              - "packages/shared/**"
-              - "packages/dito/**"
+              - *
+              - .github/**
+              - doc/**
+              - packages/shared/**
+              - packages/dito/**
             tool-finder:
-              - "**"
-              - "!packages/**"
-              - "packages/shared/**"
-              - "packages/tool-finder/**"
+              - *
+              - .github/**
+              - doc/**
+              - packages/shared/**
+              - packages/tool-finder/**
 
   check-and-test:
     needs:
