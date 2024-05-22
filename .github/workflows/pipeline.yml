@@ -21,17 +21,16 @@ jobs:
         id: filter
         with:
           filters: |
-            dito:
+            shared: &shared
               - "*"
               - .github/**
               - doc/**
               - packages/shared/**
+            dito:
+              - *shared
               - packages/dito/**
             tool-finder:
-              - "*"
-              - .github/**
-              - doc/**
-              - packages/shared/**
+              - *shared
               - packages/tool-finder/**
 
   check-and-test:
