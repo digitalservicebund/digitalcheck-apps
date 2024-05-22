@@ -1,0 +1,88 @@
+name: CheckAndTest
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+        description: "Package to check and test."
+
+jobs:
+  check-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Cache npm dependencies
+        id: cache-npm-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Audit used licences
+        run: npm run audit:licences
+
+      - name: Check format
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint:check
+
+      - name: Check types
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Install E2E & A11y test dependencies
+        run: |
+          npx --yes playwright install --with-deps
+
+      - name: Run E2E tests
+        id: e2e
+        run: npm run test:e2e --workspace packages/${{ inputs.package }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() && steps.e2e.outcome == 'failure' }}
+        with:
+          name: playwright-e2e-test-results
+          path: packages/*/test/e2e/playwright-report
+
+      - name: Run A11y tests
+        id: a11y
+        run: npm run test:a11y --workspace packages/${{ inputs.package }}
+        env:
+          # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
+          # starting to occur with playwright/test 1.28.0:
+          # Error: http://localhost:4173 is already used ...
+          # See https://github.com/digitalservicebund/typescript-vite-application-template/actions/runs/3486985178/jobs/5834089375
+          VITE_PORT: 4183
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() && steps.a11y.outcome == 'failure' }}
+        with:
+          name: playwright-a11y-test-results
+          path: packages/*/test/a11y/playwright-report
+
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

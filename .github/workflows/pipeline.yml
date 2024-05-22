@@ -8,170 +8,58 @@ on:
   # Allow to run this workflow manually
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
-
-      - name: Cache npm dependencies
-        id: cache-npm-deps
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Build for tests
-        run: npm run build
-
-      - name: Check format
-        run: npm run format:check
-
-      - name: Lint
-        run: npm run lint:check
-
-      - name: Check types
-        run: npm run typecheck
-
-      - name: Run unit tests
-        run: npm test
-
-      - name: Install E2E & A11y test dependencies
-        run: |
-          npx --yes playwright install --with-deps
-
-      - name: Run E2E tests
-        id: e2e
-        run: npm run test:e2e
-
-      - uses: actions/upload-artifact@v4
-        if: ${{ failure() && steps.e2e.outcome == 'failure' }}
-        with:
-          name: playwright-e2e-test-results
-          path: packages/*/test/e2e/playwright-report
-
-      - name: Run A11y tests
-        id: a11y
-        run: npm run test:a11y
-        env:
-          # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
-          # starting to occur with playwright/test 1.28.0:
-          # Error: http://localhost:4173 is already used ...
-          # See https://github.com/digitalservicebund/typescript-vite-application-template/actions/runs/3486985178/jobs/5834089375
-          VITE_PORT: 4183
-
-      - uses: actions/upload-artifact@v4
-        if: ${{ failure() && steps.a11y.outcome == 'failure' }}
-
-        with:
-          name: playwright-a11y-test-results
-          path: packages/*/test/a11y/playwright-report
-
-      - name: Send failure to Slack
-        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
-        if: ${{ failure() }}
-        with:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  audit-licenses:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
-
-      - name: Cache npm dependencies
-        id: cache-npm-deps
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Audit used licences
-        run: npm run audit:licences
-
-      - name: Send status to Slack
-        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
-        if: ${{ failure() }}
-        with:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  vulnerability-scan:
+  changes:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      actions: read
-      security-events: write
+      pull-requests: read
+    outputs:
+      packages: ${{ steps.filter.outputs.changes }} # Contains the list of packages that have changed
     steps:
       - uses: actions/checkout@v4
-      - name: validate github workflow files to have pinned versions
-        uses: digitalservicebund/github-actions-linter@dccac3ada437947aada4bc901daff08ceb87c3f1 # v0.1.11
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # v0.20.0
-        env:
-          TRIVY_USERNAME: ${{ github.actor }}
-          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      - uses: dorny/paths-filter@v3
+        id: filter
         with:
-          scan-type: "fs"
-          skip-dirs: "node_modules" # See https://github.com/aquasecurity/trivy/issues/1283
-          format: "sarif"
-          output: "trivy-results.sarif"
-          severity: "CRITICAL,HIGH"
-          exit-code: "1" # Fail the build!
+          filters: |
+            dito:
+              - "**"
+              - "!packages/**"
+              - "packages/shared/**"
+              - "packages/dito/**"
+            tool-finder:
+              - "**"
+              - "!packages/**"
+              - "packages/shared/**"
+              - "packages/tool-finder/**"
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
-        if: always() # Bypass non-zero exit code..
-        with:
-          sarif_file: "trivy-results.sarif"
-
-      - name: Send status to Slack
-        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
-        if: ${{ failure() }}
-        with:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  build-and-deploy:
+  check-and-test:
     needs:
-      - test
-      - audit-licenses
-      - vulnerability-scan
-    if: ${{ github.ref == 'refs/heads/main' }}
-    uses: ./.github/workflows/build-and-deploy.yml
+      - changes
     strategy:
       fail-fast: false
       matrix:
-        package: [dito, tool-finder]
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: ${{ matrix.package }}
+    secrets: inherit
+
+  vulnerability-scan:
+    uses: ./.github/workflows/scan.yml
+    secrets: inherit
+
+  build-and-deploy:
+    needs:
+      - changes
+      - check-and-test
+      - vulnerability-scan
+    if: ${{ github.ref == 'refs/heads/main' }}
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    uses: ./.github/workflows/build-and-deploy.yml
     with:
       package: ${{ matrix.package }}
       environment: production
