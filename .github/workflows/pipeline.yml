@@ -23,15 +23,15 @@ jobs:
           filters: |
             shared: &shared
               - "*"
-              - .github/**
-              - doc/**
-              - packages/shared/**
+              - ".github/**"
+              - "doc/**"
+              - "packages/shared/**"
             dito:
-              - *shared
-              - packages/dito/**
+              - "*shared"
+              - "packages/dito/**"
             tool-finder:
-              - *shared
-              - packages/tool-finder/**
+              - "*shared"
+              - "packages/tool-finder/**"
 
   check-and-test:
     needs:
@@ -40,6 +40,8 @@ jobs:
       fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
+        exclude:
+          - package: shared
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ matrix.package }}
@@ -60,6 +62,8 @@ jobs:
       max-parallel: 1
       matrix:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
+        exclude:
+          - package: shared
     uses: ./.github/workflows/build-and-deploy.yml
     with:
       package: ${{ matrix.package }}
