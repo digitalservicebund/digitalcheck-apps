@@ -16,7 +16,7 @@ npm run dev
 
 This starts your app in development mode, rebuilding assets on file changes.
 
-## Build and Start
+## Build and start
 
 Build the app for production:
 
