@@ -27,10 +27,10 @@ jobs:
               - "doc/**"
               - "packages/shared/**"
             dito:
-              - "*shared"
+              - *shared
               - "packages/dito/**"
             tool-finder:
-              - "*shared"
+              - *shared
               - "packages/tool-finder/**"
 
   check-and-test:
