@@ -53,7 +53,7 @@ jobs:
       - changes
       - check-and-test
       - vulnerability-scan
-    if: ${{ github.ref == 'refs/heads/main' }}
+    # if: ${{ github.ref == 'refs/heads/main' }}
     strategy:
       fail-fast: false
       max-parallel: 1
