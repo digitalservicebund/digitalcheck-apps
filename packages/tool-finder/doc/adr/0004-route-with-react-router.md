@@ -21,7 +21,8 @@ We will use React Router and not Remix, Next.js or a similar meta-framework to h
 
 ## Consequences
 
-We will deploy the application as a frontend-only static site, reducing infrastructure requirements. However, we still need a server to host the static files, but this will be a simple nginx server according to [ADR 0002](/doc/adr/0002-host-on-OTC.md).
+We will deploy the application as a frontend-only static site, reducing infrastructure requirements.
+However, we still need a server to host the static files, but this will be a simple nginx server according to [ADR 0002](/doc/adr/0002-host-on-OTC.md).
 
 The following drawbacks are to be considered:
 
