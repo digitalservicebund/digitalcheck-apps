@@ -1,4 +1,4 @@
-# 3. Make pipeline run dynamically for applications based on changes
+# 4. Make pipeline run dynamically for applications based on changes
 
 Date: 2024-05-22
 
