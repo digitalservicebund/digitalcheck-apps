@@ -8,7 +8,13 @@ Accepted
 
 ## Context
 
-We have the option to organize the Digitalcheck codebase using either a single repository that unifies all applications into one, a monorepo that keeps them somewhat separate but allows for shared dependencies and configuration, or leave each application separate in its own repository (polyrepo). Each approach has distinct advantages and disadvantages that we need to consider:
+We have the option to organize the Digitalcheck codebase in one of three ways:
+
+- a single repository that unifies all applications into one monolith
+- a monorepo that keeps the applications somewhat separate but allows for shared dependencies and configuration
+- leave each application separate in its own repository (polyrepo)
+
+Each approach has distinct advantages and disadvantages that we need to consider:
 
 ### Unified Application
 
@@ -30,7 +36,7 @@ We have the option to organize the Digitalcheck codebase using either a single r
 
 - We would need to rewrite the _tool finder_ in parts, as it uses React Router, while the _Digital Touchpoint_ uses Remix
 - More complex routing when using a mixture of subdomains and nested paths
-- Way less flexibility when adding new functionality with separate technological requirements and also when removing or separating parts in the future
+- Way less flexibility when adding new functionality with different technological requirements and also when removing or separating parts in the future
 - Potentially larger bundle size (not that relevant)
 
 </td>
@@ -39,7 +45,7 @@ We have the option to organize the Digitalcheck codebase using either a single r
 
 ### Monorepo
 
-The usual concerns of (large) monorepos like sluggish performance, unrelatedness of projects or teams, notification spam etc. do not apply in our case.
+The usual concerns of (large) monorepos such as sluggish performance, unrelatedness of projects or teams, notification spam etc. do not apply in our case.
 
 <table>
 <tr>
@@ -69,7 +75,7 @@ Compared to a single app:
 <td>
 
 - Extra work to setup the monorepo, not easily done and no template exists in DigitalService
-- More complex development, build and deployment setup
+- Increased complexity of development, build and deployment setup
 - We might want to iterate on the component architecture and not reuse components
 - A broken pipeline, main branch or shared code can affect all applications
 
@@ -88,13 +94,13 @@ Compared to a single app:
 <td>
 
 - Clear-cut and proven setup process for applications
-- Even better separation of concerns and possibility to archive applications
+- Even better separation of concerns and possibility to retire applications
 - Possibility to use completely different frameworks for different applications (which would negate the benefits of the monorepo approach to some extent)
 
 </td>
 <td>
 
-- Components cannot be reused directly without extra effort (only copy-pasted)
+- Components cannot be reused directly without extra effort (only copy-pasted or published as package)
 - More maintenance work as we need to keep multiple repositories up to date, with all configurations, pipelines and dependencies this entails
 - Might lead to less care for "old" apps and them falling out of date
 - Could result in more work for setting up future apps as we need to start from scratch every time and take many decisions again
@@ -105,9 +111,9 @@ Compared to a single app:
 
 ## Decision
 
-We will use a monorepo for Digitalcheck application code. This means that all Digitalcheck applications will be live in the same single repository.
+We will use a monorepo for Digitalcheck application code. This means that all Digitalcheck applications will live in the same single repository.
 
-We will separate applications into different folders under `/packages`, each containing a separate application with an additional `/packages/shared` folder for shared components and utility function.
+We will separate applications into different folders under `/packages`, each containing a separate application with an additional `/packages/shared` folder for shared components and utility functions.
 
 We will use a shared pipeline and base typescript, formatting and linting configurations that live on the root level.
 
@@ -123,7 +129,8 @@ We will create a monorepo structure and migrate the existing _tool finder_ into 
 
 We will reap the benefits described in the context section, such as easier reuse of components and styles, shared dependencies, less maintenance and consistent coding standards.
 
-We will create a robust, shared CI/CD pipeline setup to manage and mitigate the risk of pipeline issues.
+We will create a robust, shared CI/CD pipeline setup that is capable of deploying applications conditionally if their codebase was touched.
+We thereby manage and mitigate the risk of pipeline issues.
 
 We will establish clear guidelines for code structure and dependencies to reduce interference and maintain separation of concerns.
 
