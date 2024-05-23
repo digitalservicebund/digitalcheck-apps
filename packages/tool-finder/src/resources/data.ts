@@ -115,8 +115,8 @@ export default {
             },
             {
               ressorts: ["bmas"],
-              primaryTool: "bundescloud-drawio-schaubild",
-              alternativeTools: ["conceptboard-schaubild", "powerpoint"],
+              primaryTool: "conceptboard-schaubild",
+              alternativeTools: ["bundescloud-drawio-schaubild", "powerpoint"],
             },
             {
               ressorts: ["bmf"],
@@ -184,9 +184,9 @@ export default {
           toolMap: [
             {
               ressorts: ["bmas"],
-              primaryTool: "bundescloud-drawio-entscheidungsbaum",
+              primaryTool: "conceptboard-entscheidungsbaum",
               alternativeTools: [
-                "conceptboard-entscheidungsbaum",
+                "bundescloud-drawio-entscheidungsbaum",
                 "powerpoint",
               ],
             },
@@ -290,9 +290,9 @@ export default {
             },
             {
               ressorts: ["bmas"],
-              primaryTool: "bundescloud-drawio-flussdiagramm",
+              primaryTool: "conceptboard-flussdiagramm",
               alternativeTools: [
-                "conceptboard-flussdiagramm",
+                "bundescloud-drawio-flussdiagramm",
                 "modulo",
                 "powerpoint",
               ],
