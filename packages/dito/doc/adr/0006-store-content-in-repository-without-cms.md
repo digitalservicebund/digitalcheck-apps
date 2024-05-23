@@ -18,8 +18,11 @@ Additionally, the code remains cleaner and more focused on functionality.
 
 However, a CMS introduces technical complexity and adds another dependency to the application, which must be managed.
 It needs to be either purchased as a managed service or self-hosted, both of which require setup
-and maintenance effort. The complexity of application deployment also increases, as it must be triggered by
-changes in the CMS and be capable of handling different environments.
+and maintenance effort.
+
+Remix ist not capable of SSG, so we would need to fetch the content at runtime,
+which would slow down the application and lead to added load on the CMS.
+We could however make use of SWR to cache the content and mitigate this issue.
 
 Looking ahead, this increased complexity can make it more difficult to hand over the project to another party
 for operation or further development. However, once it is running, it might be easier for non-technical users to manage.
