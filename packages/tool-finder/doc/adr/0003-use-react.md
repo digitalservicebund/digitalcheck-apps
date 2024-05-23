@@ -1,4 +1,4 @@
-# 2. Use React as the frontend framework
+# 3. Use React as the frontend framework
 
 Date: 2024-04-11
 

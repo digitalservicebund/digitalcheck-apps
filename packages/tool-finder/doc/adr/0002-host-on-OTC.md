@@ -1,10 +1,10 @@
 # 2. Host on OTC
 
-Date: 2024-05-16
+Date: 2024-04-10
 
 ## Status
 
-Accepted
+Deprecated (2024-05-23: see shared [ADR-0002](0002-use-monorepo.md))
 
 ## Context
 

@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-The context is similar to the one described for the [tool-finder here](../../../tool-finder/doc/adr/0002-use-react.md).
+The context is similar to the one described for the [tool-finder here](../../../tool-finder/doc/adr/0003-use-react.md).
 Additionally, the components already developed for the tool-finder should be re-used.
 
 ## Decision
@@ -17,4 +17,4 @@ We will use React as the frontend framework since it aligns well with the outlin
 
 ## Consequences
 
-The consequences are similar to the ones described for the [tool-finder here](../../../tool-finder/doc/adr/0002-use-react.md).
+The consequences are similar to the ones described for the [tool-finder here](../../../tool-finder/doc/adr/0003-use-react.md).
