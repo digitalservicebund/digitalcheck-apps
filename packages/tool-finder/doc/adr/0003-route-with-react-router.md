@@ -1,4 +1,4 @@
-# 5. Use React Router for routing
+# 3. Use React Router for routing
 
 Date: 2024-04-15
 

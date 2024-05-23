@@ -1,4 +1,4 @@
-# 4. Use TypeScript with React
+# 3. Use TypeScript with React
 
 Date: 2024-04-15
 
@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-We need to decide on whether to use TypeScript or pure JavaScript for developing the web application.
+We need to decide on whether to use TypeScript or pure JavaScript for developing the web applications.
 
 TypeScript is a superset of JavaScript that adds static type definitions.
 It is widely used in the industry and has been adopted by many companies, including DigitalService, for frontend development.
@@ -18,9 +18,7 @@ TypeScript also offers good tooling support, such as autocompletion and type che
 
 ## Decision
 
-We will use TypeScript for developing the web application.
-
-We will use a template that includes TypeScript support for React (see [ADR-0003](/doc/adr/0003-use-react.md)) to set up the project and integrate type checking into the build process.
+We will use TypeScript for developing the web applications.
 
 ## Consequences
 
