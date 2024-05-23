@@ -1,4 +1,4 @@
-name: CheckAndTest
+name: Check and Test
 
 on:
   workflow_call:
