@@ -128,4 +128,3 @@ We will create a robust, shared CI/CD pipeline setup to manage and mitigate the 
 We will establish clear guidelines for code structure and dependencies to reduce interference and maintain separation of concerns.
 
 Overall, moving to a monorepo will streamline our development process, improve code reuse, and reduce maintenance overhead, making it the best choice for our organization at this time.
-
