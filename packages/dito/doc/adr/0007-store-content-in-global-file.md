@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-Based on the decision outlined in[0006-store-content-in-repository-without-cms.md](0006-store-content-in-repository-without-cms.md),
+Based on the decision outlined in [0006-store-content-in-repository-without-cms.md](0006-store-content-in-repository-without-cms.md),
 we need to decide whether to store the content hardcoded in the template files or in a central location, such as a global file.
 
 Storing the content in a global file offers significant advantages, particularly for non-technical team members.
