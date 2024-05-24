@@ -2,6 +2,6 @@
   "extends": "../../tsconfig-base",
   "compilerOptions": {
     "baseUrl": "./",
-    "types": ["@testing-library/react"]
+    "types": ["@testing-library/react", "vite/client"]
   }
 }
