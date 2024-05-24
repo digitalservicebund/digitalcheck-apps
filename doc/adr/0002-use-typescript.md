@@ -1,4 +1,4 @@
-# 3. Use TypeScript with React
+# 2. Use TypeScript
 
 Date: 2024-05-22
 
@@ -13,7 +13,7 @@ We need to decide on whether to use TypeScript or pure JavaScript for developing
 TypeScript is a superset of JavaScript that adds static type definitions.
 It is widely used in the industry and has been adopted by many companies, including DigitalService, for frontend development.
 Through its type safety, TypeScript improves reliability and maintainability while adding a moderate amount of engineering overhead.
-The usage of TypeScript is independent of the frontend framework chosen, but it is well-suited for React, as it allows for type-safe components and props and can be integrated into the build process with minimal effort.
+The usage of TypeScript is independent of the frontend framework chosen, but it is for example well-suited for React, as it allows for type-safe components and props and can be integrated into the build process with minimal effort.
 TypeScript also offers good tooling support, such as autocompletion and type checking in the editor.
 
 ## Decision
