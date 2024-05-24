@@ -28,13 +28,15 @@ or decorative elements, as these are all integrated within the template code.
 
 We store content in a global file since we aim to enable the whole team to maintain content.
 
+We will use Markdown as the content format, as it is easy to read and write even for non-developers.
+
 ## Consequences
 
-When creating new parts of the application, we store the content in a global file and implement a way to
+When creating new parts of the application, we store the content in the global file and implement a way to
 inject it into the templates.
 
-To minimize the need for splitting text content for formatting and styling via HTML/CSS,
-we develop components that can render Markdown into HTML.
+Markdown minimizes the need for splitting text content for formatting and styling via HTML/CSS.
+Our components will be able to render Markdown into HTML.
 
 We enable and support our non-technical colleagues to use Markdown and maintain content using the GitHub web
-application or any other IDE / editor.
+application or any other IDE / editor by offering a workshop and close support.
