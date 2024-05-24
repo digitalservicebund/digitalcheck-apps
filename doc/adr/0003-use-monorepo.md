@@ -115,7 +115,10 @@ We will use a monorepo for Digitalcheck application code. This means that all Di
 
 We will separate applications into different folders under `/packages`, each containing a separate application with an additional `/packages/shared` folder for shared components and utility functions.
 
-We will use a shared pipeline and base typescript, formatting and linting configurations that live on the root level.
+We will use a shared pipeline setup for all applications.
+
+We will provide base formatting and linting configurations on the root level that all applications will use.
+We will not use [typescript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) as we are using vite to build the applications, but we we will still have a base typescript config that all projects will extend in their respective `tsconfig.json`s.
 
 We use npm workspaces to manage dependencies and scripts across applications from a root `package.json` and install shared dependencies there.
 
