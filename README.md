@@ -112,7 +112,7 @@ Do the following steps to add a new application to this Monorepo.
 2. Depending on the tech stack, make sure that:
    - shared dependencies are configured in the top-level [package.json](./package.json)
    - the `tailwind.config.js` uses the top-level [tailwind.preset.js](./tailwind.preset.js)
-   - the `tsconfig.json` extends the top-level [tsconfig.base.json](./tsconfig.base.json)
+   - the `tsconfig.json` extends the top-level [tsconfig-base.json](./tsconfig-base.json)
 3. The new project needs at least:
    - a `package.json` which defines the project specific dependencies an implements the following scripts:
      - `build`: build the application for production
