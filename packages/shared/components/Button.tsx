@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import { cloneElement, type ReactElement } from "react";
+import { cloneElement, useContext, type ReactElement } from "react";
 import { Link } from "react-router-dom";
+import TrackingContext from "../contexts/trackingContext.ts";
 
 type Props = {
   text?: string;
@@ -10,7 +11,6 @@ type Props = {
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
-  trackButtonClick?: (id?: string, href?: string) => void;
   onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
@@ -37,7 +37,6 @@ function Button({
   look,
   size,
   href,
-  trackButtonClick,
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
@@ -71,10 +70,10 @@ function Button({
     }
   };
 
+  const tracking = useContext(TrackingContext);
+
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (trackButtonClick) {
-      trackButtonClick(id, href);
-    }
+    tracking.trackButtonClick(id, href);
     if (onClickCallback) {
       onClickCallback(event);
     }

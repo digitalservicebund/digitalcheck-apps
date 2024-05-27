@@ -10,7 +10,7 @@ import { findResultByObjectAndRessort } from "persistance/repository";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "services/getImageUrl";
-import { trackButtonClick, trackFeedbackClick } from "services/tracking";
+import tracking from "services/tracking";
 import useTitle from "services/useTitle";
 import { PATH_QUIZ } from ".";
 
@@ -70,7 +70,6 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
                     href: `/${result.cluster.id}`,
                     size: "small",
                     look: "tertiary",
-                    trackButtonClick,
                   },
                 ]}
               ></Box>
@@ -112,7 +111,6 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
               size: "small",
               look: "tertiary",
               href: PATH_QUIZ,
-              trackButtonClick,
             },
           ]}
         ></Box>
@@ -121,7 +119,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
         ressort={ressort.name}
         object={object.name}
         reason={reason.name}
-        trackFeedbackClick={trackFeedbackClick}
+        trackFeedbackClick={tracking.trackFeedbackClick}
       />
     </>
   ) : (
@@ -141,7 +139,6 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
             id: "result-error-page-back-button",
             text: "Zurück",
             href: PATH_QUIZ,
-            trackButtonClick,
           },
         ]}
       ></Box>
