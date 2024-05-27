@@ -8,9 +8,9 @@ import Breadcrumbs, {
 } from "@digitalcheck/shared/components/Breadcrumbs";
 import FeedbackBanner from "@digitalcheck/shared/components/FeedbackBanner";
 import Footer from "@digitalcheck/shared/components/Footer";
-import PageHeader from "@digitalcheck/shared/components/PageHeader";
 import ScrollToTop from "@digitalcheck/shared/components/ScrollToTop";
 import useStorage from "@digitalcheck/shared/services/useStorage";
+import PageHeader from "components/PageHeader";
 
 import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";

@@ -1,6 +1,6 @@
-import bundLogo from "public/img/bund-logo.png";
+import Image from "@digitalcheck/shared/components/Image";
+import bundLogo from "@digitalcheck/shared/public/img/bund-logo.png";
 import { Link } from "react-router-dom";
-import Image from "./Image";
 
 export default function Header() {
   return (
