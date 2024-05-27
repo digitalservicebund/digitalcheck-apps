@@ -1,5 +1,5 @@
 import Container from "@digitalcheck/shared/components/Container";
-import PageHeader from "@digitalcheck/shared/components/PageHeader";
+import PageHeader from "components/PageHeader";
 import { Link, Route, Routes } from "react-router-dom";
 import { PATH_IMPRINT, PATH_INFO } from "routes";
 import Imprint from "routes/Imprint";
