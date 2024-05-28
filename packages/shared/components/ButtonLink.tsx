@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { cloneElement, type ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   text: string;
@@ -8,11 +9,10 @@ type Props = {
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
-  onClickCallback: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
-export interface ButtonProps
-  extends React.ComponentPropsWithoutRef<"button">,
+export interface ButtonLinkProps
+  extends React.ComponentPropsWithoutRef<"a">,
     Props {}
 
 function formatIcon(icon: ReactElement | undefined) {
@@ -21,7 +21,7 @@ function formatIcon(icon: ReactElement | undefined) {
   return cloneElement(icon, { className });
 }
 
-function Button({
+function ButtonLink({
   id,
   children,
   text,
@@ -30,9 +30,9 @@ function Button({
   fullWidth,
   look,
   size,
-  onClickCallback,
+  href,
   ...props
-}: ButtonProps) {
+}: ButtonLinkProps) {
   const buttonClasses = classNames(
     "ds-button",
     {
@@ -53,27 +53,16 @@ function Button({
   iconLeft = formatIcon(iconLeft);
   iconRight = formatIcon(iconRight);
 
-  // for links that have role="button" we need to add an event handler so that it can
-  // be activated with the space bar
-  // see: https://github.com/alphagov/govuk_elements/pull/272#issuecomment-233028270
-  const onKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
-    if (event.code === "Space") {
-      event.currentTarget.click();
-      event.preventDefault();
-    }
-  };
-
-  const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onClickCallback) {
-      onClickCallback(event);
-    }
-  };
-
   return (
-    <button {...(props as ButtonProps)} className={buttonClasses}>
+    <Link
+      {...(props as ButtonLinkProps)}
+      to={href || "#"}
+      className={buttonClasses}
+      id={id}
+    >
       {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
-    </button>
+    </Link>
   );
 }
 
-export default Button;
+export default ButtonLink;

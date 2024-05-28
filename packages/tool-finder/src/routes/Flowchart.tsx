@@ -4,8 +4,8 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import useTitle from "services/useTitle";
 
-import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import ButtonLink from "@digitalcheck/shared/components/ButtonLink.tsx";
 import Image from "@digitalcheck/shared/components/Image";
 import flowchartElementsImage from "resources/img/flowchart-elements.png";
 import { PATH_RESULT } from "./";
@@ -103,7 +103,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
       </Container>
       <Container paddingTop="0" paddingBottom="48">
         <ButtonContainer>
-          <Button
+          <ButtonLink
             id="flowchart-guide-page-back-button"
             text="Zurück"
             href={PATH_RESULT}
