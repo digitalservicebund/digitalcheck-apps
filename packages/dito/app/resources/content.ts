@@ -1,3 +1,8 @@
+export const siteMeta = {
+  title: "Digitalcheck",
+  description: "Digitaltaugliche Regelungsvorhaben erarbeiten",
+};
+
 export const header = {
   title: "Digitaltaugliche Gesetzgebung",
   contact: {

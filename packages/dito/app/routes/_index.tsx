@@ -1,10 +1,13 @@
 import type { MetaFunction } from "@remix-run/node";
-import { landing } from "resources/content";
+import { landing, siteMeta } from "resources/content";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Dito" },
-    { name: "description", content: "Hello DigitalService!" },
+    { title: siteMeta.title },
+    {
+      name: "description",
+      content: siteMeta.description,
+    },
   ];
 };
 
