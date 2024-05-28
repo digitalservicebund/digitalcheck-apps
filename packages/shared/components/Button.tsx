@@ -10,7 +10,6 @@ type Props = {
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
-  trackButtonClick?: (id?: string, href?: string) => void;
   onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
@@ -37,7 +36,6 @@ function Button({
   look,
   size,
   href,
-  trackButtonClick,
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
@@ -72,9 +70,6 @@ function Button({
   };
 
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (trackButtonClick) {
-      trackButtonClick(id, href);
-    }
     if (onClickCallback) {
       onClickCallback(event);
     }
