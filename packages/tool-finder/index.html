@@ -27,6 +27,18 @@
         top.location = self.location; // NOSONAR https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html#best-for-now-legacy-browser-frame-breaking-script
       }
     </script>
+    <script
+      defer
+      data-domain="visualisieren.digitalcheck.bund.de"
+      src="https://plausible.io/js/script.tagged-events.outbound-links.js"
+    ></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,28 +1,16 @@
 import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";
 import type { VisualisationObject } from "models/VisualisationObject";
-import Plausible from "plausible-tracker";
 
 const EVENT_BUTTON_CLICK = "Button: Click";
 const EVENT_FEEDBACK_CLICK = "Feedback: Click";
 const EVENT_SELECTION_SUBMIT = "Selection: Submit";
 
-const { enableAutoPageviews, enableAutoOutboundTracking, trackEvent } =
-  Plausible({
-    domain: "visualisieren.digitalcheck.bund.de",
-    hashMode: true,
-  });
-
-export function enableTracking() {
-  enableAutoPageviews();
-  enableAutoOutboundTracking();
-}
-
 export function trackButtonClick(
   id: string | undefined,
   href: string | undefined,
 ) {
-  trackEvent(EVENT_BUTTON_CLICK, {
+  window.plausible(EVENT_BUTTON_CLICK, {
     props: {
       id: id ?? "",
       href: href ?? "",
@@ -47,7 +35,7 @@ export function trackSelection(
   const objectName = object.name;
   const reasonName = reason.name;
 
-  trackEvent(EVENT_SELECTION_SUBMIT, {
+  window.plausible(EVENT_SELECTION_SUBMIT, {
     props: {
       ressort: ressortName,
       object: objectName,
@@ -68,7 +56,7 @@ export function trackFeedbackClick(
   reason: string,
 ) {
   const valueString = value.toString();
-  trackEvent(EVENT_FEEDBACK_CLICK, {
+  window.plausible(EVENT_FEEDBACK_CLICK, {
     props: {
       questionAndValue: combine(question, valueString),
       questionAndValueForSelection: combine(
