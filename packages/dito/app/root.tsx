@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react";
 
 import Footer from "@digitalcheck/shared/components/Footer";
+import "@digitalcheck/shared/styles.css";
 import content from "resources/content";
 import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/routes";
 import "./styles.css";
