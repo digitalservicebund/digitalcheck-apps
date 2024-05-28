@@ -7,7 +7,9 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import Footer from "@digitalcheck/shared/components/Footer";
 import content from "resources/content";
+import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/routes";
 import "./styles.css";
 
 export const links: LinksFunction = () => [
@@ -24,6 +26,12 @@ export const links: LinksFunction = () => [
     type: "image/png",
     sizes: "64x64",
   },
+];
+
+const footerLinks = [
+  { url: PATH_IMPRINT, text: "Impressum" },
+  { url: PATH_PRIVACY, text: "Datenschutzerklärung" },
+  { url: PATH_A11Y, text: "Barrierefreiheit" },
 ];
 
 export default function App() {
@@ -43,6 +51,7 @@ export default function App() {
           </span>
         </header>
         <Outlet />
+        <Footer links={footerLinks} />
         <ScrollRestoration />
         <Scripts />
       </body>
