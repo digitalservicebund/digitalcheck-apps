@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import content from "resources/content";
 import "./styles.css";
 
 export const links: LinksFunction = () => [
@@ -35,6 +36,12 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <header className="p-8 w-100 flex justify-between">
+          <span className="font-semibold">{content.header.title}</span>
+          <span>
+            {content.header.contact.msg} {content.header.contact.number}
+          </span>
+        </header>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
