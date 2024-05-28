@@ -51,8 +51,10 @@ export default function App() {
       <body>
         <header className="p-8 w-100 flex justify-between">
           <span className="font-semibold">{header.title}</span>
-          <span>
-            {header.contact.msg} <PhoneOutlined /> {header.contact.number}
+          <span className="flex">
+            {header.contact.msg}
+            <PhoneOutlined className="mx-8" />
+            {header.contact.number}
           </span>
         </header>
         <Outlet />
