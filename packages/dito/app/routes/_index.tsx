@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { landing } from "resources/content";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,11 +10,13 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className={"flex flex-col items-center m-40"}>
-      <h1 className={"ds-heading-01-reg mb-40"}>Hello DigitalService!</h1>
-      <button className="ds-button ds-button-large">
-        <span className="ds-button-label">Click me for nothing :)</span>
-      </button>
+    <main className="">
+      <div className="bg-blue-100 py-48">
+        <div className="container ds-stack-16">
+          <h1>{landing.title}</h1>
+          <p>{landing.subtitle}</p>
+        </div>
+      </div>
     </main>
   );
 }
