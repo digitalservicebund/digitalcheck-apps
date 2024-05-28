@@ -9,7 +9,7 @@ import {
 
 import Footer from "@digitalcheck/shared/components/Footer";
 import "@digitalcheck/shared/styles.css";
-import content from "resources/content";
+import { header } from "resources/content";
 import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/routes";
 import "./styles.css";
 
@@ -46,9 +46,9 @@ export default function App() {
       </head>
       <body>
         <header className="p-8 w-100 flex justify-between">
-          <span className="font-semibold">{content.header.title}</span>
+          <span className="font-semibold">{header.title}</span>
           <span>
-            {content.header.contact.msg} {content.header.contact.number}
+            {header.contact.msg} {header.contact.number}
           </span>
         </header>
         <Outlet />
