@@ -1,18 +1,23 @@
 import classNames from "classnames";
 import { cloneElement, type ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
-  text: string;
+  text?: string;
   look?: "primary" | "secondary" | "tertiary" | "ghost";
   size?: "large" | "medium" | "small";
+  href?: string;
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
-  onClickCallback: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
 export interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
+    Props {}
+export interface ButtonLinkProps
+  extends React.ComponentPropsWithoutRef<"a">,
     Props {}
 
 function formatIcon(icon: ReactElement | undefined) {
@@ -30,9 +35,10 @@ function Button({
   fullWidth,
   look,
   size,
+  href,
   onClickCallback,
   ...props
-}: ButtonProps) {
+}: ButtonProps | ButtonLinkProps) {
   const buttonClasses = classNames(
     "ds-button",
     {
@@ -68,6 +74,21 @@ function Button({
       onClickCallback(event);
     }
   };
+
+  if (href) {
+    return (
+      <Link
+        {...(props as ButtonLinkProps)}
+        to={href}
+        className={buttonClasses}
+        onKeyDown={onKeyDown}
+        onClick={onClick}
+        id={id}
+      >
+        {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
+      </Link>
+    );
+  }
 
   return (
     <button {...(props as ButtonProps)} className={buttonClasses}>
