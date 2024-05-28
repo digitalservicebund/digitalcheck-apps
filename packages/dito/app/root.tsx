@@ -8,12 +8,16 @@ import {
 } from "@remix-run/react";
 
 import Footer from "@digitalcheck/shared/components/Footer";
-import "@digitalcheck/shared/styles.css";
+import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import { header } from "resources/content";
 import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/routes";
-import "./styles.css";
+import styles from "./styles.css?url";
+
+import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+  { rel: "stylesheet", href: sharedStyles },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
@@ -48,7 +52,7 @@ export default function App() {
         <header className="p-8 w-100 flex justify-between">
           <span className="font-semibold">{header.title}</span>
           <span>
-            {header.contact.msg} {header.contact.number}
+            {header.contact.msg} <PhoneOutlined /> {header.contact.number}
           </span>
         </header>
         <Outlet />
