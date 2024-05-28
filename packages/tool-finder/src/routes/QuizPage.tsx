@@ -19,7 +19,7 @@ import {
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { UseFormReturn, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { trackButtonClick, trackSelection } from "services/tracking";
+import { trackSelection } from "services/tracking";
 import useTitle from "services/useTitle";
 import { PATH_RESULT } from ".";
 
@@ -169,7 +169,6 @@ function QuizPage({
                 text={"Werkzeug suchen"}
                 size={"large"}
                 type={"submit"}
-                trackButtonClick={trackButtonClick}
               />
             </ButtonContainer>
           </Container>
