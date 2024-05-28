@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import Button, { ButtonLinkProps, ButtonProps } from "./Button";
+import Button, { ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
+import ButtonLink, { ButtonLinkProps } from "./ButtonLink.tsx";
 import Heading, { type HeadingProps } from "./Heading";
 import RichText, { type RichTextProps } from "./RichText";
 
@@ -36,9 +37,15 @@ const Box = ({
       </div>
       {buttons && buttons.length > 0 && (
         <ButtonContainer>
-          {buttons.map((button) => (
-            <Button key={button.text ?? button.href} {...button} />
-          ))}
+          {buttons.map((button) => {
+            if ("href" in button) {
+              return <ButtonLink key={button.text} {...button} />;
+            } else if ("onClickCallback" in button) {
+              return <Button key={button.text} {...button} />;
+            } else {
+              return null;
+            }
+          })}
         </ButtonContainer>
       )}
     </div>
