@@ -1,3 +1,4 @@
+import RichText from "@digitalcheck/shared/components/RichText";
 import type { MetaFunction } from "@remix-run/node";
 import NumberedList from "components/NumberedList";
 import { landing, siteMeta } from "resources/content";
@@ -26,6 +27,12 @@ export default function Index() {
           title={landing.list.title}
           listItems={landing.list.items}
         />
+      </div>
+      <div className="bg-blue-100">
+        <div className="container ds-stack-16 pt-40 pb-48">
+          <h3>{landing.explanation.title}</h3>
+          <RichText markdown={landing.explanation.text} />
+        </div>
       </div>
     </main>
   );

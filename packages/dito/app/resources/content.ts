@@ -40,4 +40,14 @@ export const landing = {
       },
     ],
   },
+  explanation: {
+    title: "Warum ist Digitaltauglichkeit wichtig?",
+    text: `Fast alle Regelungen werden mindestens zum Teil digital umgesetzt: Zum Beispiel eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird. Oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
+<br />
+<br />
+Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt einerseits, dass **der digitalen Umsetzung nichts im Wege steht**, wie zum Beispiel das persönliche Einreichen von Dokumenten. Auf der anderen Seite soll aktiv gefördert werden, dass **möglichst viele Schritte von Computern durchgeführt oder unterstützt werden**.
+<br />
+<br />
+Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
+  },
 };
