@@ -3,7 +3,6 @@ import BetaBanner from "@digitalcheck/shared/components/BetaBanner";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import { trackButtonClick } from "services/tracking";
 import useTitle from "services/useTitle";
 import { PATH_QUIZ } from ".";
 
@@ -42,7 +41,6 @@ function InfoPage() {
               text: "Werkzeug finden",
               href: PATH_QUIZ,
               size: "large",
-              trackButtonClick,
             },
           ]}
         ></Box>
