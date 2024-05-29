@@ -45,7 +45,7 @@ jobs:
         run: npm run audit:licences
 
       - name: Check format
-        run: npm run format:check --workspace packages/${{ inputs.package }}
+        run: npm run format:check
 
       - name: Lint
         run: npm run lint:check --workspace packages/${{ inputs.package }}
