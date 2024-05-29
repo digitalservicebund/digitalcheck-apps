@@ -34,22 +34,22 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-npm-deps.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --workspace packages/${{ inputs.package }}
 
       - name: Audit used licences
-        run: npm run audit:licences
+        run: npm run audit:licences --workspace packages/${{ inputs.package }}
 
       - name: Check format
-        run: npm run format:check
+        run: npm run format:check --workspace packages/${{ inputs.package }}
 
       - name: Lint
-        run: npm run lint:check
+        run: npm run lint:check --workspace packages/${{ inputs.package }}
 
       - name: Check types
-        run: npm run typecheck
+        run: npm run typecheck --workspace packages/${{ inputs.package }}
 
       - name: Run unit tests
-        run: npm test
+        run: npm test --workspace packages/${{ inputs.package }}
 
       - name: Install E2E & A11y test dependencies
         run: |

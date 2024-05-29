@@ -33,30 +33,25 @@ jobs:
               - *shared
               - "packages/tool-finder/**"
 
-  check-and-test:
-    needs:
-      - changes
-    strategy:
-      fail-fast: false
-      matrix:
-        package: ${{ fromJSON(needs.changes.outputs.packages) }}
-        exclude:
-          - package: shared
-    uses: ./.github/workflows/check-and-test.yml
-    with:
-      package: ${{ matrix.package }}
-    secrets: inherit
-
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
     secrets: inherit
 
-  build-and-deploy:
+  check-and-test-shared:
     needs:
       - changes
-      - check-and-test
+    if: contains(needs.changes.outputs.packages, 'shared')
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: shared
+    secrets: inherit
+
+  whole-pipeline:
+    needs:
+      - changes
+      - check-and-test-shared
       - vulnerability-scan
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ !contains(needs.changes.outputs.packages, 'shared') }}
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -64,8 +59,8 @@ jobs:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
         exclude:
           - package: shared
-    uses: ./.github/workflows/build-and-deploy.yml
+    uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ matrix.package }}
-      environment: production
+      # environment: production
     secrets: inherit
