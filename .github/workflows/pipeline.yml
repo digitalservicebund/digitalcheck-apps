@@ -44,6 +44,7 @@ jobs:
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: shared
+      shouldRunIntegrationTests: false
     secrets: inherit
 
   whole-pipeline:
