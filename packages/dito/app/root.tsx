@@ -49,12 +49,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <header className="p-8 w-100 flex justify-between">
-          <span className="font-semibold">{header.title}</span>
-          <span className="flex">
-            {header.contact.msg}
-            <PhoneOutlined className="mx-8" />
-            {header.contact.number}
+        <header className="h-64 px-16 py-8 w-100 flex justify-between items-center">
+          <span className="ds-label-01-bold">{header.title}</span>
+          <span className="flex items-center">
+            <span className="ds-label-02-reg">{header.contact.msg}</span>
+            <PhoneOutlined className="mx-8 w-18" />
+            <span className="ds-link-01-bold">{header.contact.number}</span>
           </span>
         </header>
         <Outlet />
