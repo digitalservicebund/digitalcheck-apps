@@ -37,7 +37,7 @@ jobs:
         run: npm ci --workspace packages/${{ inputs.package }}
 
       - name: Audit used licences
-        run: npm run audit:licences --workspace packages/${{ inputs.package }}
+        run: npm run audit:licences
 
       - name: Check format
         run: npm run format:check --workspace packages/${{ inputs.package }}
