@@ -13,26 +13,30 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+function Container({ children }: { children: React.ReactNode }) {
+  return <div className="container ds-stack-16 pt-40 pb-48">{children}</div>;
+}
+
 export default function Index() {
   return (
     <main className="">
       <div className="bg-blue-100">
-        <div className="container ds-stack-16 pt-40 pb-48">
+        <Container>
           <h1>{landing.title}</h1>
           <p className="ds-subhead">{landing.subtitle}</p>
-        </div>
+        </Container>
       </div>
-      <div className="container ds-stack-16 pt-40 pb-48">
+      <Container>
         <NumberedList
           title={landing.list.title}
           listItems={landing.list.items}
         />
-      </div>
+      </Container>
       <div className="bg-blue-100">
-        <div className="container ds-stack-16 pt-40 pb-48">
+        <Container>
           <h3>{landing.explanation.title}</h3>
           <RichText markdown={landing.explanation.text} />
-        </div>
+        </Container>
       </div>
     </main>
   );
