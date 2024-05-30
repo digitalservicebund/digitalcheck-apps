@@ -52,7 +52,8 @@ jobs:
       - changes
       - check-and-test-shared
       - vulnerability-scan
-    if: ${{ needs.check-and-test-shared.result == 'success' || needs.check-and-test-shared.result == 'skipped' }}
+    # always() ensures that the job runs even if the needed jobs are skipped
+    if: ${{ always() && (needs.check-and-test-shared.result == 'success' || needs.check-and-test-shared.result == 'skipped') }}
     strategy:
       fail-fast: false
       max-parallel: 1
