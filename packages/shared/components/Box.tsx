@@ -24,6 +24,7 @@ const Box = ({
   return (
     <div
       className={classNames(
+        "box",
         additionalClassNames ?? "",
         "ds-stack-16 scroll-my-40",
       )}
