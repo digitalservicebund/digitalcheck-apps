@@ -61,8 +61,8 @@ jobs:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
         exclude:
           - package: shared
-    uses: ./.github/workflows/check-and-test.yml
+    uses: ./.github/workflows/test-build-deploy.yml
     with:
       package: ${{ matrix.package }}
-      # environment: production
+      environment: production
     secrets: inherit
