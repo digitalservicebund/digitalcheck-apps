@@ -51,3 +51,9 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
   },
 };
+
+export const pdf = {
+  title: "Bekommen Sie die Einschätzung als PDF",
+  subtitle:
+    "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
+};
