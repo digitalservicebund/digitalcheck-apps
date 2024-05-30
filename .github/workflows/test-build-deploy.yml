@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Test, Build and Deploy
 
 on:
   workflow_call:
@@ -18,6 +18,12 @@ env:
   IMAGE_NAME: digitalservicebund/digitalcheck-${{ inputs.package }}
 
 jobs:
+  check-and-test-shared:
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: ${{ inputs.package }}
+    secrets: inherit
+
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
