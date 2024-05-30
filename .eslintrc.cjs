@@ -11,9 +11,6 @@ module.exports = {
     "plugin:playwright/jest-playwright",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    // FIXME: find a way to include those plugins
-    // "@remix-run/eslint-config",
-    // "@remix-run/eslint-config/node",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
   ignorePatterns: ["tailwind.preset.js", ".eslintrc.cjs"],
@@ -33,7 +30,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
     tsconfigRootDir: __dirname,
-    project: ["packages/*/tsconfig.json"],
+    project: ["**/tsconfig.json"],
   },
   plugins: ["@typescript-eslint", "react", "react-refresh", "testing-library"],
   rules: {
@@ -72,7 +69,7 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
       typescript: {
-        project: ["packages/*/tsconfig.json"],
+        project: ["**/tsconfig.json"],
       },
     },
   },
