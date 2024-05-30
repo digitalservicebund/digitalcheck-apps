@@ -1,4 +1,7 @@
-import RichText from "@digitalcheck/shared/components/RichText";
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
 import type { MetaFunction } from "@remix-run/node";
 import NumberedList from "components/NumberedList";
 import { landing, siteMeta } from "resources/content";
@@ -13,31 +16,41 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-function Container({ children }: { children: React.ReactNode }) {
-  return <div className="container ds-stack-16 pt-40 pb-48">{children}</div>;
-}
-
 export default function Index() {
   return (
-    <main className="">
-      <div className="bg-blue-100">
+    <main>
+      <Background backgroundColor="blue">
         <Container>
-          <h1>{landing.title}</h1>
-          <p className="ds-subhead">{landing.subtitle}</p>
+          <Header
+            heading={{
+              tagName: "h1",
+              text: landing.title,
+            }}
+            content={{
+              markdown: landing.subtitle,
+            }}
+          ></Header>
         </Container>
-      </div>
+      </Background>
       <Container>
         <NumberedList
           title={landing.list.title}
           listItems={landing.list.items}
         />
       </Container>
-      <div className="bg-blue-100">
+      <Background backgroundColor="blue">
         <Container>
-          <h3>{landing.explanation.title}</h3>
-          <RichText markdown={landing.explanation.text} />
+          <Box
+            heading={{
+              tagName: "h3",
+              text: landing.explanation.title,
+            }}
+            content={{
+              markdown: landing.explanation.text,
+            }}
+          ></Box>
         </Container>
-      </div>
+      </Background>
     </main>
   );
 }

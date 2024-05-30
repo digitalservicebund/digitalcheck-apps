@@ -1,4 +1,4 @@
-main .rich-text p {
+.box .rich-text p {
   @apply ds-body-01-reg;
 }
 
