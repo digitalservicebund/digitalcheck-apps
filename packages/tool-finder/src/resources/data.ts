@@ -478,8 +478,8 @@ export default {
         "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
       link: "",
       img: {
-        src: "",
-        alt: "",
+        src: "tools/tool_Conceptboard.png",
+        alt: "Die Benutzeroberfläche von Conceptboard, die mehrere Diagramme und mit Ihnen interagierende Personen zeigt.",
       },
     },
     {
@@ -491,8 +491,8 @@ export default {
         "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
       link: "",
       img: {
-        src: "",
-        alt: "",
+        src: "tools/tool_Conceptboard.png",
+        alt: "Die Benutzeroberfläche von Conceptboard, die mehrere Diagramme und mit Ihnen interagierende Personen zeigt.",
       },
     },
     {
@@ -504,8 +504,8 @@ export default {
         "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
       link: "",
       img: {
-        src: "",
-        alt: "",
+        src: "tools/tool_Conceptboard.png",
+        alt: "Die Benutzeroberfläche von Conceptboard, die mehrere Diagramme und mit Ihnen interagierende Personen zeigt.",
       },
     },
     {
