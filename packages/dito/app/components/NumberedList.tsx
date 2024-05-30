@@ -1,5 +1,4 @@
-import Button from "@digitalcheck/shared/components/Button";
-import RichText from "@digitalcheck/shared/components/RichText";
+import Box from "@digitalcheck/shared/components/Box";
 
 type NumberedListProps = {
   listItems: {
@@ -26,13 +25,18 @@ export default function NumberedList({
             <div className="border border-gray-400 rounded-full w-40 h-40 flex justify-center items-center">
               {index + 1}
             </div>
-            <div className="ds-stack-8 items-start">
-              <h3 className="ds-heading-03-reg">{item.title}</h3>
-              <RichText markdown={item.text} />
-              {item.link && (
-                <Button href={item.link.url}>{item.link.text}</Button>
-              )}
-            </div>
+            <Box
+              heading={{ tagName: "h3", text: item.title }}
+              content={{ markdown: item.text }}
+              buttons={
+                item.link && [
+                  {
+                    text: item.link.text,
+                    href: item.link.url,
+                  },
+                ]
+              }
+            />
           </li>
         ))}
       </ol>
