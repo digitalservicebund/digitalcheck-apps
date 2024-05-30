@@ -50,7 +50,9 @@ jobs:
   whole-pipeline:
     needs:
       - changes
-    if: ${{ !contains(needs.changes.outputs.packages, 'shared') }}
+      - check-and-test-shared
+      - vulnerability-scan
+    if: ${{ needs.check-and-test-shared.result == 'success' || needs.check-and-test-shared.result == 'skipped' }}
     strategy:
       fail-fast: false
       max-parallel: 1
