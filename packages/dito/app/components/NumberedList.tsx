@@ -13,7 +13,10 @@ type NumberedListProps = {
   title?: string;
 };
 
-export default function NumberedList({ listItems, title }: NumberedListProps) {
+export default function NumberedList({
+  listItems,
+  title,
+}: Readonly<NumberedListProps>) {
   return (
     <div className="numbered-list ds-stack-32">
       {title && <h2>{title}</h2>}
