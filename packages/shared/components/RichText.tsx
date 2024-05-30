@@ -8,23 +8,24 @@ export type RichTextProps = {
 
 const RichText = ({ markdown, className, ...props }: RichTextProps) => {
   const marked = new Marked();
-
-  const renderer = new marked.Renderer();
-  const linkRenderer = renderer.link;
-  renderer.link = (href, title, text) => {
-    const linkHtml = linkRenderer.call(renderer, href, title, text);
-    // Open external links in new tab
-    // TODO: This doesnt work due to enableAutoOutboundTracking() from Plausible
-    if (href.startsWith("http")) {
-      return linkHtml.replace(
-        /^<a /,
-        `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
-      );
-    }
-    return linkHtml;
+  const originalRenderer = new marked.Renderer();
+  const renderer = {
+    link(href: string, title: string | null | undefined, text: string) {
+      const linkHtml = originalRenderer.link(href, title, text);
+      // Open external links in new tab
+      // TODO: This doesnt work due to enableAutoOutboundTracking() from Plausible
+      if (href.startsWith("http")) {
+        return linkHtml.replace(
+          /^<a /,
+          `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
+        );
+      }
+      return "linkHtml";
+    },
   };
 
-  const html = marked.parse(markdown, { renderer });
+  marked.use({ renderer });
+  const html = marked.parse(markdown);
 
   return html ? (
     <div

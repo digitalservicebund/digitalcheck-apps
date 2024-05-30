@@ -12,7 +12,7 @@ export default function useStorage<Type>(
     if (!value) {
       return null;
     }
-    return JSON.parse(value);
+    return JSON.parse(value) as Type;
   }
 
   useEffect(() => {
