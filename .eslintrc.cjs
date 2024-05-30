@@ -1,55 +1,32 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
+  root: true,
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   env: {
     browser: true,
     es2021: true,
     node: true,
+    commonjs: true,
   },
+
+  // Base configs
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
     "plugin:playwright/jest-playwright",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
-  ignorePatterns: ["tailwind.preset.js", ".eslintrc.cjs"],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: [".eslintrc.{js,cjs}"],
-      parserOptions: {
-        sourceType: "script",
-      },
-    },
-  ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    tsconfigRootDir: __dirname,
-    project: ["**/tsconfig.json"],
-  },
-  plugins: ["@typescript-eslint", "react", "react-refresh", "testing-library"],
+
   rules: {
-    "@typescript-eslint/ban-ts-comment": "warn",
-    "@typescript-eslint/no-unsafe-argument": "warn",
-    "@typescript-eslint/no-unsafe-assignment": "warn",
-    "@typescript-eslint/no-unsafe-member-access": "warn",
-    "@typescript-eslint/no-unsafe-return": "warn",
-    "@typescript-eslint/restrict-template-expressions": "warn",
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
     "testing-library/await-async-queries": "error",
     "testing-library/no-await-sync-queries": "error",
     "testing-library/no-debugging-utils": "warn",
     "testing-library/no-dom-import": "off",
-    // suppress errors for missing 'import React' in files
-    "react/react-in-jsx-scope": "off",
     // support eol for all os
     "prettier/prettier": [
       "error",
@@ -58,19 +35,92 @@ module.exports = {
       },
     ],
   },
-  settings: {
-    react: {
-      version: "detect", // React version. "detect" automatically picks the version you have installed.
-      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-      // It will default to "latest" and warn if missing, and to "detect" in the future
-    },
-    "import/resolver": {
-      node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
+
+  overrides: [
+    // React
+    {
+      files: ["**/*.{js,jsx,ts,tsx}"],
+      plugins: ["react", "jsx-a11y", "react-refresh"],
+      extends: [
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+      ],
+      settings: {
+        react: {
+          version: "detect",
+        },
+        formComponents: ["Form"],
+        linkComponents: [
+          { name: "Link", linkAttribute: "to" },
+          { name: "NavLink", linkAttribute: "to" },
+        ],
+        "import/resolver": {
+          typescript: {},
+        },
       },
-      typescript: {
-        project: ["**/tsconfig.json"],
+      rules: {
+        "react-refresh/only-export-components": [
+          "warn",
+          { allowConstantExport: true },
+        ],
       },
     },
-  },
+
+    // Typescript
+    {
+      files: ["**/*.{ts,tsx}"],
+      plugins: ["@typescript-eslint", "import", "testing-library"],
+      extends: [
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
+      ],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        tsconfigRootDir: __dirname,
+        project: ["packages/*/tsconfig.json"],
+      },
+      settings: {
+        "import/internal-regex": "^~/",
+        "import/resolver": {
+          node: {
+            extensions: [".ts", ".tsx"],
+          },
+          typescript: {
+            alwaysTryTypes: true,
+            tsconfigRootDir: __dirname,
+            project: ["packages/*/tsconfig.json"],
+          },
+        },
+      },
+      rules: {
+        "@typescript-eslint/ban-ts-comment": "warn",
+        "@typescript-eslint/no-unsafe-argument": "warn",
+        "@typescript-eslint/no-unsafe-assignment": "warn",
+        "@typescript-eslint/no-unsafe-member-access": "warn",
+        "@typescript-eslint/no-unsafe-return": "warn",
+        "@typescript-eslint/restrict-template-expressions": "warn",
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            checksVoidReturn: {
+              attributes: false,
+            },
+          },
+        ],
+      },
+    },
+
+    // Node
+    {
+      files: [".eslintrc.cjs"],
+      env: {
+        node: true,
+      },
+    },
+  ],
 };
