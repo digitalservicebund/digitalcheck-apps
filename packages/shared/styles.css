@@ -26,8 +26,11 @@
     color: currentcolor;
   }
 
-  .rich-text {
-    max-width: 40rem;
+  .container h1,
+  .container h2,
+  .container h3,
+  .container p {
+    max-width: 80ch;
   }
 
   .rich-text a {
@@ -80,6 +83,13 @@
     @apply text-[#4c2c92];
   }
 
+  /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
+  @media (hover: hover) {
+    .text-link:hover {
+      @apply decoration-[3px];
+    }
+  }
+
   /* browsers without :focus-visible support */
   .text-link:focus {
     @apply outline;
@@ -124,22 +134,5 @@
     bottom: -0.75rem;
     left: -0.75rem;
     right: -0.75rem;
-  }
-}
-
-@layer screen {
-  /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
-  @media (hover: hover) {
-    .text-link:hover {
-      @apply decoration-[3px];
-    }
-  }
-
-  @media (max-width: 499px) {
-    /* project-specific overwriting of angie styling */
-    .ds-heading-01-reg {
-      font-size: 2.25rem;
-      line-height: 1.2222;
-    }
   }
 }
