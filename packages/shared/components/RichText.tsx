@@ -20,7 +20,7 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
           `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
         );
       }
-      return "linkHtml";
+      return linkHtml;
     },
   };
 
