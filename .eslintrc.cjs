@@ -82,7 +82,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
         tsconfigRootDir: __dirname,
-        project: ["packages/*/tsconfig.json"],
+        project: ["**/tsconfig.json"],
       },
       settings: {
         "import/internal-regex": "^~/",
@@ -93,7 +93,7 @@ module.exports = {
           typescript: {
             alwaysTryTypes: true,
             tsconfigRootDir: __dirname,
-            project: ["packages/*/tsconfig.json"],
+            project: ["**/tsconfig.json"],
           },
         },
       },
