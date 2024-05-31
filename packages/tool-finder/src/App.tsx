@@ -3,9 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { z } from "zod";
 
 import { Aria } from "@digitalcheck/shared/components/Aria";
-import Breadcrumbs, {
-  BreadcrumbsProps,
-} from "@digitalcheck/shared/components/Breadcrumbs";
+import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import FeedbackBanner from "@digitalcheck/shared/components/FeedbackBanner";
 import Footer from "@digitalcheck/shared/components/Footer";
 import ScrollToTop from "@digitalcheck/shared/components/ScrollToTop";
@@ -46,14 +44,6 @@ export const RoutesPropsSchema = z.array(
 );
 
 export type RoutesProps = z.infer<typeof RoutesPropsSchema>;
-
-function getBreadcrumbs(routes: RoutesProps): BreadcrumbsProps {
-  return {
-    breadcrumbs: routes.map((route) => {
-      return { url: route.url, title: route.title, parent: route.parent };
-    }),
-  };
-}
 
 function App() {
   const [ressort, setRessort] = useStorage<Ressort | null>("ressort", null);
@@ -156,7 +146,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
       <PageHeader />
-      <Breadcrumbs {...getBreadcrumbs(routes)} />
+      <Breadcrumbs breadcrumbs={routes} />
       <main className={"flex-grow flex flex-col"}>
         <div className={"flex-grow"}>
           <Routes>
