@@ -51,3 +51,16 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
   },
 };
+
+export const vorpruefung = {
+  start: {
+    title: "Digitalbezug einschätzen",
+    subtitle:
+      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+    buttonText: "Digitalbezug einschätzen",
+    tip: {
+      title: "Digitalbezug",
+      text: "Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website. ",
+    },
+  },
+};
