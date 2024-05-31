@@ -57,3 +57,16 @@ export const pdf = {
   subtitle:
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
 };
+
+export const vorpruefung = {
+  start: {
+    title: "Digitalbezug einschätzen",
+    subtitle:
+      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+    buttonText: "Digitalbezug einschätzen",
+    tip: {
+      title: "Digitalbezug",
+      text: "Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website. ",
+    },
+  },
+};
