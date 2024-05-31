@@ -7,12 +7,19 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Footer from "@digitalcheck/shared/components/Footer";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import { header } from "resources/content";
-import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/routes";
+import {
+  PATH_A11Y,
+  PATH_IMPRINT,
+  PATH_PRIVACY,
+  ROUTES,
+} from "resources/routes";
 import styles from "./styles.css?url";
 
+import Background from "@digitalcheck/shared/components/Background";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 
 export const links: LinksFunction = () => [
@@ -49,13 +56,18 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <header className="h-64 px-16 py-8 w-100 flex justify-between items-center">
-          <span className="ds-label-01-bold">{header.title}</span>
-          <span className="flex items-center">
-            <span className="ds-label-02-reg">{header.contact.msg}</span>
-            <PhoneOutlined className="mx-8 w-18" />
-            <span className="ds-link-01-bold">{header.contact.number}</span>
-          </span>
+        <header>
+          <div className="h-64 px-16 py-8 flex justify-between items-center">
+            <span className="ds-label-01-bold">{header.title}</span>
+            <span className="flex items-center">
+              <span className="ds-label-02-reg">{header.contact.msg}</span>
+              <PhoneOutlined className="mx-8 w-18" />
+              <span className="ds-link-01-bold">{header.contact.number}</span>
+            </span>
+          </div>
+          <Background backgroundColor="blue">
+            <Breadcrumbs breadcrumbs={ROUTES} />
+          </Background>
         </header>
         <main>
           <Outlet />
