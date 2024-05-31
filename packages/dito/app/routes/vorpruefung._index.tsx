@@ -3,8 +3,7 @@ import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
-import { vorpruefung } from "resources/content";
-import { PATH_LANDING } from "resources/routes";
+import { PATH_LANDING, precheck } from "resources/content";
 
 export default function Index() {
   return (
@@ -13,34 +12,34 @@ export default function Index() {
         <Box
           heading={{
             tagName: "h2",
-            text: vorpruefung.start.title,
+            text: precheck.start.title,
           }}
           content={{
-            markdown: vorpruefung.start.subtitle,
+            markdown: precheck.start.subtitle,
           }}
         ></Box>
       </Container>
       <Container paddingBottom="0">
         <ButtonContainer>
           <Button
-            id="vorpruefung-back-button"
+            id="precheck-back-button"
             text="Zurück"
             href={PATH_LANDING}
             look="tertiary"
           ></Button>
           <Button
-            id="vorpruefung-start-button"
-            text={vorpruefung.start.buttonText}
-            href={PATH_LANDING}
+            id="precheck-start-button"
+            text={precheck.start.buttonText}
+            href={precheck.questions[0].url}
           ></Button>
         </ButtonContainer>
       </Container>
       <Container>
         <InlineNotice
           look="tips"
-          title={vorpruefung.start.tip.title}
+          title={precheck.start.hint.title}
           tagName="h2"
-          content={vorpruefung.start.tip.text}
+          content={precheck.start.hint.text}
         ></InlineNotice>
       </Container>
     </>
