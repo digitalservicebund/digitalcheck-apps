@@ -27,7 +27,7 @@ export const SelectPropsSchema = z.object({
   error: z.custom<GlobalError | undefined>(),
 });
 
-type SelectProps = z.infer<typeof SelectPropsSchema>;
+export type SelectProps = z.infer<typeof SelectPropsSchema>;
 
 const Select = ({
   name,

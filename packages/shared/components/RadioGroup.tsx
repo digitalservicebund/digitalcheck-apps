@@ -26,7 +26,7 @@ export const RadioGroupPropsSchema = z.object({
   error: z.custom<GlobalError | undefined>(),
 });
 
-type RadioGroupProps = z.infer<typeof RadioGroupPropsSchema>;
+export type RadioGroupProps = z.infer<typeof RadioGroupPropsSchema>;
 
 const RadioGroup = ({
   name,
