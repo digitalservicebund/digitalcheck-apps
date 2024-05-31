@@ -10,13 +10,13 @@ import {
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Footer from "@digitalcheck/shared/components/Footer";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
-import { header } from "resources/content";
 import {
+  header,
   PATH_A11Y,
   PATH_IMPRINT,
   PATH_PRIVACY,
   ROUTES,
-} from "resources/routes";
+} from "resources/content";
 import styles from "./styles.css?url";
 
 import Background from "@digitalcheck/shared/components/Background";

@@ -1,3 +1,11 @@
+import { HomeOutlined } from "@digitalservicebund/icons";
+
+export const PATH_LANDING: string = "/";
+export const PATH_PRECHECK: string = "/vorpruefung";
+export const PATH_IMPRINT: string = "/impressum";
+export const PATH_PRIVACY: string = "/datenschutz";
+export const PATH_A11Y: string = "/barrierefreiheit";
+
 export const siteMeta = {
   title: "Digitalcheck",
   description: "Digitaltaugliche Regelungsvorhaben erarbeiten",
@@ -52,15 +60,113 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
-export const vorpruefung = {
+export const precheck = {
   start: {
     title: "Digitalbezug einschätzen",
     subtitle:
       "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttonText: "Digitalbezug einschätzen",
-    tip: {
+    hint: {
       title: "Digitalbezug",
       text: "Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website. ",
     },
   },
+  nextButton: "Übernehmen & weiter",
+  questions: [
+    {
+      id: "it-system",
+      title: "IT-System",
+      question:
+        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich eine Anpassung oder Neuentwicklung einer IT-Lösung zur Folge haben?",
+      result:
+        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich eine Anpassung oder Neuentwicklung einer IT-Lösung zur Folge haben.",
+      text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
+      hint: {
+        title: "Was ist ein IT-System?",
+        text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommens-steuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
+      <br />
+      <br />
+      Einige IT-Systeme haben eine Benutzeroberfläche, in der manuell Daten eingegeben werden – wie in diesem Formular. In anderen kommunizieren Computer im Hintergrund untereinander, wenn zum Beispiel Daten abgerufen und an anderer Stelle verwendet werden.`,
+      },
+    },
+    {
+      id: "verpflichtungen-fuer-beteiligte",
+      title: "Verpflichtungen für Beteiligte",
+      question:
+        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich Verpflichtungen für Beteiligte* zur Folge haben?",
+      result:
+        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich Verpflichtungen für Beteiligte* zur Folge haben.",
+      text: "* Beteiligte sind in diesem Zusammenhang Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine.",
+    },
+    {
+      id: "datenaustausch",
+      title: "Datenaustausch",
+      question:
+        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich einen Datenaustausch oder eine Wiederverwendung von Daten zur Folge haben, oder könnte durch diese vereinfacht werden?",
+      result:
+        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich einen Datenaustausch oder eine Wiederverwendung von Daten zur Folge haben, oder könnte durch diese vereinfacht werden",
+      text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
+    },
+    {
+      id: "kommunikation",
+      title: "Interaktion und Kommunikation",
+      question:
+        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich Interaktion und/oder Kommunikation zwischen Beteiligten* zur Folge haben?",
+      result:
+        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich Interaktion und/oder Kommunikation zwischen Beteiligten* zur Folge haben.",
+      text: "Praxisbeispiel: ",
+    },
+    {
+      id: "automatisierung",
+      title: "Automatisierung",
+      question:
+        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich durch (Teil-)Automatisierung und/oder digitaler Dokumentation verbessert?",
+      result:
+        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich durch (Teil-)Automatisierung und/oder digitaler Dokumentation verbessert.",
+      text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
+    },
+  ].map((question, index, questions) => ({
+    // generate list from the questions such that each list has a path, a previous link and a next link
+    ...question,
+    url: `${PATH_PRECHECK}/${question.id}`,
+    prevLink:
+      index === 0
+        ? PATH_PRECHECK
+        : `${PATH_PRECHECK}/${questions[index - 1].id}`,
+    nextLink:
+      index === questions.length - 1
+        ? PATH_LANDING
+        : `${PATH_PRECHECK}/${questions[index + 1].id}`,
+  })),
 };
+
+export const ROUTES = [
+  {
+    url: PATH_LANDING,
+    Icon: HomeOutlined,
+  },
+  {
+    url: PATH_PRECHECK,
+    title: "Digitalbezug einschätzen",
+    parent: PATH_LANDING,
+  },
+  {
+    url: PATH_IMPRINT,
+    title: "Impressum",
+    parent: PATH_LANDING,
+  },
+  {
+    url: PATH_A11Y,
+    title: "Barrierefreiheit",
+    parent: PATH_LANDING,
+  },
+  {
+    url: PATH_PRIVACY,
+    title: "Datenschutzerklärung",
+    parent: PATH_LANDING,
+  },
+  ...precheck.questions.map((question) => ({
+    ...question,
+    parent: PATH_PRECHECK,
+  })),
+];
