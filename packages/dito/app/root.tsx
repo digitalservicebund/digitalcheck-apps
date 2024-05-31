@@ -57,7 +57,9 @@ export default function App() {
             <span className="ds-link-01-bold">{header.contact.number}</span>
           </span>
         </header>
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
         <Footer links={footerLinks} />
         <ScrollRestoration />
         <Scripts />

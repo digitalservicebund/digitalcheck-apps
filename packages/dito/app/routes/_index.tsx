@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main>
+    <>
       <Background backgroundColor="blue">
         <Container>
           <Header
@@ -51,6 +51,6 @@ export default function Index() {
           ></Box>
         </Container>
       </Background>
-    </main>
+    </>
   );
 }
