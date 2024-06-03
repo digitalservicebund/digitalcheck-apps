@@ -87,7 +87,7 @@ export default function Index() {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               setSelectedOption(e.target.value),
             formRegister: register,
-            error: errors["option"],
+            error: errors[question.id],
           }}
         />
         <Container paddingBottom="0" paddingTop="0">
