@@ -25,6 +25,7 @@ jobs:
     secrets: inherit
 
   build-and-push-image:
+    needs: [check-and-test-shared]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -89,10 +90,10 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   deploy:
+    needs: [build-and-push-image]
     concurrency:
       group: digitalcheck-${{ inputs.package }}-${{ inputs.environment }}
       cancel-in-progress: true
-    needs: [build-and-push-image]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
