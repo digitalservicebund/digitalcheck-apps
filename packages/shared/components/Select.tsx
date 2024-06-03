@@ -2,32 +2,24 @@ import classNames from "classnames";
 import type { ReactNode } from "react";
 import { ChangeEvent } from "react";
 import { FieldValues, GlobalError, UseFormRegister } from "react-hook-form";
-import { z } from "zod";
 import InputError from "./InputError";
 
-export const SelectOptionsPropsSchema = z.array(
-  z.object({ value: z.string(), text: z.string() }),
-);
+export type SelectOptionsProps = {
+  value: string;
+  text: string;
+}[];
 
-export type SelectOptionsProps = z.infer<typeof SelectOptionsPropsSchema>;
-
-export const SelectPropsSchema = z.object({
-  name: z.string(),
-  options: SelectOptionsPropsSchema,
-  label: z.custom<ReactNode>(),
-  altLabel: z.string().optional(),
-  placeholder: z.string().optional(),
-  value: z.string().optional(),
-  onChange: z
-    .function()
-    .args(z.custom<ChangeEvent<HTMLInputElement>>())
-    .returns(z.void())
-    .optional(),
-  formRegister: z.custom<UseFormRegister<FieldValues>>(),
-  error: z.custom<GlobalError | undefined>(),
-});
-
-export type SelectProps = z.infer<typeof SelectPropsSchema>;
+export type SelectProps = {
+  name: string;
+  options: SelectOptionsProps;
+  label: ReactNode;
+  altLabel?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  formRegister: UseFormRegister<FieldValues>;
+  error?: GlobalError;
+};
 
 const Select = ({
   name,
