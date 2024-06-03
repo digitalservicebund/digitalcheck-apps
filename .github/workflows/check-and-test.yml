@@ -42,7 +42,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-npm-deps.outputs.cache-hit != 'true'
-        run: npm ci --workspace ${{ env.WORKSPACE }}
+        run: npm ci
 
       - name: Audit used licences
         run: npm run audit:licences
