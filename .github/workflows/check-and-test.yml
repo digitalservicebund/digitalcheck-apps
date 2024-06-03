@@ -13,6 +13,9 @@ on:
         description: "Whether to run integration tests (E2E and A11y). Default is true."
         default: true
 
+env:
+  WORKSPACE: "@digitalcheck/${{ inputs.package }}"
+
 jobs:
   check-and-test:
     runs-on: ubuntu-latest
@@ -39,22 +42,22 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-npm-deps.outputs.cache-hit != 'true'
-        run: npm ci --workspace packages/${{ inputs.package }}
+        run: npm ci --workspace ${{ env.WORKSPACE }}
 
       - name: Audit used licences
         run: npm run audit:licences
 
       - name: Check format
-        run: npm run format:check --workspace packages/${{ inputs.package }}
+        run: npm run format:check --workspace ${{ env.WORKSPACE }}
 
       - name: Lint
-        run: npm run lint:check --workspace packages/${{ inputs.package }}
+        run: npm run lint:check --workspace ${{ env.WORKSPACE }}
 
       - name: Check types
-        run: npm run typecheck --workspace packages/${{ inputs.package }}
+        run: npm run typecheck --workspace ${{ env.WORKSPACE }}
 
       - name: Run unit tests
-        run: npm test --workspace packages/${{ inputs.package }}
+        run: npm test --workspace ${{ env.WORKSPACE }}
 
       - name: Install E2E & A11y test dependencies
         if: ${{ inputs.shouldRunIntegrationTests == true }}
@@ -64,7 +67,7 @@ jobs:
       - name: Run E2E tests
         if: ${{ inputs.shouldRunIntegrationTests == true }}
         id: e2e
-        run: npm run test:e2e --workspace packages/${{ inputs.package }}
+        run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
       - uses: actions/upload-artifact@v4
         if: ${{ failure() && steps.e2e.outcome == 'failure' }}
@@ -75,7 +78,7 @@ jobs:
       - name: Run A11y tests
         if: ${{ inputs.shouldRunIntegrationTests == true }}
         id: a11y
-        run: npm run test:a11y --workspace packages/${{ inputs.package }}
+        run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
         env:
           # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
           # starting to occur with playwright/test 1.28.0:
