@@ -2,6 +2,7 @@ import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -16,11 +17,22 @@ import {
   PATH_IMPRINT,
   PATH_PRIVACY,
   ROUTES,
+  siteMeta,
 } from "resources/content";
 import styles from "./styles.css?url";
 
 import Background from "@digitalcheck/shared/components/Background";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: siteMeta.title },
+    {
+      name: "description",
+      content: siteMeta.description,
+    },
+  ];
+};
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
