@@ -57,11 +57,16 @@ export default function Index() {
   const [selectedOption, setSelectedOption] = useState<string | undefined>();
 
   useEffect(() => {
-    setSelectedOption(localStorage.getItem(question.id) ?? undefined);
+    if (typeof window !== "undefined") {
+      const selectedOption = localStorage.getItem(question.id) ?? undefined;
+      setSelectedOption(selectedOption);
+    }
   }, [question.id]);
 
   const onSubmit = () => {
-    localStorage.setItem(question.id, selectedOption!);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(question.id, selectedOption!);
+    }
     navigate(question.nextLink);
   };
 
