@@ -1,13 +1,9 @@
-import { z } from "zod";
-
-export const ImagePropsSchema = z.object({
-  url: z.string(),
-  width: z.number().optional(),
-  height: z.number().optional(),
-  alternativeText: z.string().optional(),
-});
-
-type ImageProps = z.infer<typeof ImagePropsSchema>;
+type ImageProps = {
+  url: string;
+  width?: number;
+  height?: number;
+  alternativeText?: string;
+};
 
 function Image({ url, width, height, alternativeText, ...props }: ImageProps) {
   if (!url) return null;

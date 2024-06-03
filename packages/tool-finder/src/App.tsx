@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { z } from "zod";
 
 import { Aria } from "@digitalcheck/shared/components/Aria";
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
@@ -34,16 +33,12 @@ import Privacy from "routes/Privacy";
 import QuizPage, { QuizPageProps } from "routes/QuizPage";
 import ResultPage, { ResultPageProps } from "routes/ResultPage";
 
-export const RoutesPropsSchema = z.array(
-  z.object({
-    url: z.string(),
-    title: z.string(),
-    parent: z.string().optional(),
-    element: z.custom<JSX.Element>(),
-  }),
-);
-
-export type RoutesProps = z.infer<typeof RoutesPropsSchema>;
+export type RoutesProps = {
+  url: string;
+  title: string;
+  parent?: string;
+  element: JSX.Element;
+}[];
 
 function App() {
   const [ressort, setRessort] = useStorage<Ressort | null>("ressort", null);
