@@ -3,9 +3,10 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import Question from "@digitalcheck/shared/components/Question";
-import { LoaderFunctionArgs, json } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useNavigate } from "@remix-run/react";
-import { UseFormReturn, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
 
 type Question = {
@@ -29,52 +30,62 @@ export function loader({ params }: LoaderFunctionArgs) {
   });
 }
 
+const options = [
+  {
+    value: "yes",
+    text: "Ja",
+  },
+  {
+    value: "no",
+    text: "Nein",
+  },
+  {
+    value: "not-sure",
+    text: "Ich bin unsicher",
+  },
+];
+
 export default function Index() {
   const { question } = useLoaderData<{ question: Question }>();
-
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  }: UseFormReturn = useForm();
+  } = useForm();
 
-  const options = [
-    {
-      value: "yes",
-      text: "Ja",
-    },
-    {
-      value: "no",
-      text: "Nein",
-    },
-    {
-      value: "not-sure",
-      text: "Ich bin unsicher",
-    },
-  ];
+  const [selectedOption, setSelectedOption] = useState<string | undefined>();
+
+  useEffect(() => {
+    setSelectedOption(localStorage.getItem(question.id) ?? undefined);
+  }, [question.id]);
 
   const onSubmit = () => {
+    localStorage.setItem(question.id, selectedOption!);
     navigate(question.nextLink);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Container paddingBottom="0">
-          <Question
-            heading={question.title}
-            description={question.text}
-            radio={{
-              name: "option",
-              options: options,
-              formRegister: register,
-              error: errors["option"],
-            }}
-          />
-        </Container>
-        <Container paddingBottom="0">
+      <form
+        key={question.id}
+        onSubmit={handleSubmit(onSubmit)}
+        className="pt-48"
+      >
+        <Question
+          heading={question.title}
+          description={question.text}
+          radio={{
+            name: question.id,
+            options: options,
+            selectedValue: selectedOption,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+              setSelectedOption(e.target.value),
+            formRegister: register,
+            error: errors["option"],
+          }}
+        />
+        <Container paddingBottom="0" paddingTop="0">
           <ButtonContainer>
             <Button
               id="precheck-back-button"
