@@ -20,6 +20,10 @@
     "test:generate-coverage": "jest --coverage",
     "typecheck": "tsc"
   },
+  "devDependencies": {
+    "@remix-run/dev": "^2.8.1",
+    "@remix-run/eslint-config": "^2.8.1"
+  },
   "dependencies": {
     "@remix-run/css-bundle": "^2.9.1",
     "@remix-run/node": "^2.9.1",
