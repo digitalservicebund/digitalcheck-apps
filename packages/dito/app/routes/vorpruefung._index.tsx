@@ -3,11 +3,23 @@ import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
+import { ActionFunctionArgs, redirect } from "@remix-run/node";
+import { userAnswers } from "cookies.server";
 import { PATH_LANDING, precheck } from "resources/content";
 
-export default function Index() {
-  if (typeof window !== "undefined") localStorage.clear(); // reset precheck state on start
+export async function action({ request }: ActionFunctionArgs) {
+  const cookieHeader = request.headers.get("Cookie");
+  const cookie = (await userAnswers.parse(cookieHeader)) || {};
+  cookie.answers = {};
 
+  return redirect(precheck.questions[0].url, {
+    headers: {
+      "Set-Cookie": await userAnswers.serialize(cookie),
+    },
+  });
+}
+
+export default function Index() {
   return (
     <>
       <Container paddingBottom="0">
@@ -29,11 +41,13 @@ export default function Index() {
             href={PATH_LANDING}
             look="tertiary"
           ></Button>
-          <Button
-            id="precheck-start-button"
-            text={precheck.start.buttonText}
-            href={precheck.questions[0].url}
-          ></Button>
+          <form method="post">
+            <Button
+              id="precheck-start-button"
+              text={precheck.start.buttonText}
+              type="submit"
+            ></Button>
+          </form>
         </ButtonContainer>
       </Container>
       <Container>
