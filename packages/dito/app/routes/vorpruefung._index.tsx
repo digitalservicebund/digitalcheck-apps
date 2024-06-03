@@ -6,6 +6,8 @@ import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { PATH_LANDING, precheck } from "resources/content";
 
 export default function Index() {
+  if (typeof window !== "undefined") localStorage.clear(); // reset precheck state on start
+
   return (
     <>
       <Container paddingBottom="0">
