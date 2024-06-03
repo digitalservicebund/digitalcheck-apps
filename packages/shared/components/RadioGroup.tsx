@@ -1,32 +1,25 @@
 import { ChangeEvent } from "react";
-import { FieldValues, GlobalError, UseFormRegister } from "react-hook-form";
-import { z } from "zod";
+import type {
+  FieldValues,
+  GlobalError,
+  UseFormRegister,
+} from "react-hook-form";
 import InputError from "./InputError";
 
-export const RadioOptionsPropsSchema = z.array(
-  z.object({
-    value: z.string(),
-    text: z.string(),
-    subText: z.string().optional(),
-  }),
-);
+export type RadioOptionsProps = {
+  value: string;
+  text: string;
+  subText?: string;
+}[];
 
-export type RadioOptionsProps = z.infer<typeof RadioOptionsPropsSchema>;
-
-export const RadioGroupPropsSchema = z.object({
-  name: z.string(),
-  options: RadioOptionsPropsSchema,
-  selectedValue: z.string().optional(),
-  onChange: z
-    .function()
-    .args(z.custom<ChangeEvent<HTMLInputElement>>())
-    .returns(z.void())
-    .optional(),
-  formRegister: z.custom<UseFormRegister<FieldValues>>(),
-  error: z.custom<GlobalError | undefined>(),
-});
-
-export type RadioGroupProps = z.infer<typeof RadioGroupPropsSchema>;
+export type RadioGroupProps = {
+  name: string;
+  options: RadioOptionsProps;
+  selectedValue?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  formRegister: UseFormRegister<FieldValues>;
+  error?: GlobalError;
+};
 
 const RadioGroup = ({
   name,
