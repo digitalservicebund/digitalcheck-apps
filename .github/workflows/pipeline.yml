@@ -47,7 +47,7 @@ jobs:
       shouldRunIntegrationTests: false
     secrets: inherit
 
-  whole-pipeline:
+  check-test-build-deploy:
     needs:
       - changes
       - check-and-test-shared
