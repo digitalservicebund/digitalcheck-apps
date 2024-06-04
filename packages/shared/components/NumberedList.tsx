@@ -1,4 +1,4 @@
-import Box from "@digitalcheck/shared/components/Box";
+import Box from "./Box";
 
 type NumberedListProps = {
   listItems: {
