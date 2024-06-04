@@ -16,12 +16,20 @@ import { precheck } from "resources/content";
 import { SideNav } from "./sideNav";
 import { Answers, Option, TQuestion } from "./types";
 
+const { questions, answerOptions, nextButton } = precheck;
+
 export async function loader({ request, params }: LoaderFunctionArgs) {
-  const cookie = await getCookie(request);
-  return json({
-    question: precheck.questions.find((q) => q.id === params.questionId),
-    answers: cookie.answers,
-  });
+  const { answers } = await getCookie(request);
+  const questionIdx = questions.findIndex((q) => q.id === params.questionId);
+  // if the user accesses a question where they haven't answered the previous questions, redirect them to the first unanswered question
+  const firstUnansweredQuestionIdx = Object.keys(answers).length;
+  if (questionIdx > firstUnansweredQuestionIdx) {
+    return redirect(questions[firstUnansweredQuestionIdx].url, {
+      status: 302,
+    });
+  }
+
+  return json({ question: questions[questionIdx], answers });
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -76,7 +84,7 @@ export default function Index() {
     );
   };
 
-  const options: Option[] = Object.entries(precheck.options).map(
+  const options: Option[] = Object.entries(answerOptions).map(
     ([value, text]) => ({ value: value as Option["value"], text }),
   );
 
@@ -110,7 +118,7 @@ export default function Index() {
               ></Button>
               <Button
                 id="precheck-next-button"
-                text={precheck.nextButton}
+                text={nextButton}
                 type={"submit"}
               ></Button>
             </ButtonContainer>
