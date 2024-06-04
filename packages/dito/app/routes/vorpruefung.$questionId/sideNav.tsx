@@ -1,7 +1,7 @@
 import CheckCircleOutline from "@digitalservicebund/icons/CheckCircleOutline";
 import RadioButtonUncheckedOutlined from "@digitalservicebund/icons/RadioButtonUncheckedOutlined";
 import { precheck } from "resources/content";
-import type { Answers, TQuestion } from "./types";
+import type { Answers, TQuestion } from "./route";
 
 type SideNavProps = {
   question: TQuestion;
