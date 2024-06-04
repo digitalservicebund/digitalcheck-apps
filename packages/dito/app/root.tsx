@@ -74,7 +74,12 @@ export default function App() {
             <span className="flex items-center">
               <span className="ds-label-02-reg">{header.contact.msg}</span>
               <PhoneOutlined className="mx-8 w-18" />
-              <span className="ds-link-01-bold">{header.contact.number}</span>
+              <a
+                href={`tel:${header.contact.number}`}
+                className="ds-link-01-bold underline text-black"
+              >
+                {header.contact.number}
+              </a>
             </span>
           </div>
           <Background backgroundColor="blue">
