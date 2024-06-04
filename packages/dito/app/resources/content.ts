@@ -79,6 +79,11 @@ export const vorpruefung = {
     },
   },
   nextButton: "Übernehmen & weiter",
+  options: {
+    yes: "Ja",
+    no: "Nein",
+    unsure: "Ich bin unsicher",
+  },
   questions: [
     {
       id: "it-system",
