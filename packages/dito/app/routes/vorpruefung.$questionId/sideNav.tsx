@@ -13,7 +13,7 @@ export function SideNav({ question, answers }: SideNavProps) {
   const questions = precheck.questions;
 
   return (
-    <nav className="pt-48 px-16">
+    <nav className="pt-48 px-16 max-sm:hidden">
       <ul className="space-y-16">
         {questions.map((q: TQuestion) => {
           const isAnswered = q.id in answers;
