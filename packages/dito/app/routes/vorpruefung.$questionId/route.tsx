@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
 import { SideNav } from "./sideNav";
-import { Answers, Option, TQuestion } from "./types";
 
 const { questions, answerOptions, nextButton } = precheck;
 
@@ -47,6 +46,29 @@ export async function action({ request }: ActionFunctionArgs) {
     },
   });
 }
+
+export type TQuestion = {
+  id: string;
+  title: string;
+  question: string;
+  text: string;
+  url: string;
+  prevLink: string;
+  nextLink: string;
+  hint?: {
+    title: string;
+    text: string;
+  };
+};
+
+export type Option = {
+  value: "yes" | "no" | "unsure";
+  text: string;
+};
+
+export type Answers = {
+  [x: string]: Option["value"];
+};
 
 export default function Index() {
   const { question, answers } = useLoaderData<{
