@@ -12,7 +12,7 @@ import {
 } from "@remix-run/node";
 import { redirect, useLoaderData } from "@remix-run/react";
 import { userAnswers } from "cookies.server";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
 
@@ -91,6 +91,9 @@ export default function Index() {
     answers?.[question.id],
   );
 
+  useEffect(() => {
+    setSelectedOption(answers?.[question.id]);
+  }, [question.id, answers]);
   return (
     <div className="flex">
       <nav className="pt-48 px-16">
