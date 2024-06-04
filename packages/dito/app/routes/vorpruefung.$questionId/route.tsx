@@ -19,9 +19,7 @@ import { Answers, Option, TQuestion } from "./types";
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const cookie = await getCookie(request);
   return json({
-    question: precheck.questions.find(
-      (question) => question.id === params.questionId,
-    ),
+    question: precheck.questions.find((q) => q.id === params.questionId),
     answers: cookie.answers,
   });
 }
@@ -29,18 +27,13 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
   const cookie = await getCookie(request);
   const bodyParams = await request.formData();
+  const { questionId, nextLink, answer } = Object.fromEntries(bodyParams);
+  if (typeof questionId !== "string" || typeof nextLink !== "string") {
+    return redirect("/vorpruefung", { status: 400 });
+  }
+  cookie.answers[questionId] = answer as Option["value"];
 
-  const question = precheck.questions.find(
-    (q) => q.id === bodyParams.get("questionId"),
-  );
-  if (!question) return redirect("/vorpruefung");
-
-  cookie.answers = {
-    ...cookie.answers,
-    [question.id]: bodyParams.get(question.id),
-  };
-
-  return redirect(question.nextLink, {
+  return redirect(nextLink, {
     headers: {
       "Set-Cookie": await userAnswers.serialize(cookie),
     },
@@ -52,6 +45,7 @@ export default function Index() {
     question: TQuestion;
     answers: Answers;
   }>();
+  const existingAnswer = answers?.[question.id];
   const fetcher = useFetcher();
   const {
     register,
@@ -61,19 +55,20 @@ export default function Index() {
   } = useForm();
   const [selectedOption, setSelectedOption] = useState<
     Option["value"] | undefined
-  >(answers?.[question.id]);
+  >(existingAnswer);
 
   useEffect(() => {
-    setSelectedOption(answers?.[question.id]);
+    setSelectedOption(existingAnswer);
     // needed to keep data in sync with the form
-    setValue(question.id, answers?.[question.id]);
-  }, [question.id, answers, setValue]);
+    setValue(question.id, existingAnswer);
+  }, [question.id, existingAnswer, setValue]);
 
   const onSubmit = (data: Record<string, string>) => {
     fetcher.submit(
       {
         questionId: question.id,
-        [question.id]: data[question.id],
+        nextLink: question.nextLink,
+        answer: data[question.id],
       },
       {
         method: "post",
