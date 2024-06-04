@@ -49,21 +49,6 @@ export async function action({ request }: ActionFunctionArgs) {
   });
 }
 
-const options: Option[] = [
-  {
-    value: "yes",
-    text: "Ja",
-  },
-  {
-    value: "no",
-    text: "Nein",
-  },
-  {
-    value: "not-sure",
-    text: "Ich bin unsicher",
-  },
-];
-
 export default function Index() {
   const { question, answers } = useLoaderData<{
     question: TQuestion;
@@ -97,6 +82,10 @@ export default function Index() {
       },
     );
   };
+
+  const options: Option[] = Object.entries(precheck.options).map(
+    ([value, text]) => ({ value: value as Option["value"], text }),
+  );
 
   return (
     <div className="flex">

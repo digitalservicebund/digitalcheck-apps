@@ -13,7 +13,7 @@ export type TQuestion = {
 };
 
 export type Option = {
-  value: "yes" | "no" | "not-sure";
+  value: "yes" | "no" | "unsure";
   text: string;
 };
 
