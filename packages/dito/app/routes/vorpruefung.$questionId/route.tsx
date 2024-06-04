@@ -8,7 +8,7 @@ import {
   json,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import { redirect, useLoaderData } from "@remix-run/react";
+import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
 import { userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -69,8 +69,10 @@ export default function Index() {
     question: TQuestion;
     answers: Answers;
   }>();
+  const fetcher = useFetcher();
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectedOption] = useState<
@@ -81,16 +83,23 @@ export default function Index() {
     setSelectedOption(answers?.[question.id]);
   }, [question.id, answers]);
 
+  const onSubmit = (data: Record<string, string>) => {
+    fetcher.submit(
+      {
+        questionId: question.id,
+        [question.id]: data[question.id],
+      },
+      {
+        method: "post",
+      },
+    );
+  };
+
   return (
     <div className="flex">
       <SideNav question={question} answers={answers} />
       <section>
-        <form
-          key={question.id}
-          method="post"
-          action={`/vorpruefung/${question.id}`}
-          className="pt-48"
-        >
+        <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="questionId" value={question.id} />
           <Question
             heading={question.title}
@@ -121,7 +130,7 @@ export default function Index() {
               ></Button>
             </ButtonContainer>
           </Container>
-        </form>
+        </fetcher.Form>
         {question.hint && (
           <Container>
             <InlineNotice
