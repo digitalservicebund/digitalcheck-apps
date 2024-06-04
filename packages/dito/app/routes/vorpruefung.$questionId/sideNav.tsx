@@ -23,13 +23,15 @@ export function SideNav({ question, answers }: SideNavProps) {
             isAnswered || q.id === questions[firstUnansweredQuestionIdx]?.id;
           return (
             <li key={q.id} className="flex space-x-4">
-              {isAnswered ? (
-                <CheckCircleOutline className="fill-green-600" />
-              ) : (
-                <RadioButtonUncheckedOutlined
-                  className={isSelectable ? "fill-gray-900" : "fill-gray-600"}
-                />
-              )}
+              <span className="flex-none">
+                {isAnswered ? (
+                  <CheckCircleOutline className="fill-green-600" />
+                ) : (
+                  <RadioButtonUncheckedOutlined
+                    className={isSelectable ? "fill-gray-900" : "fill-gray-600"}
+                  />
+                )}
+              </span>
               {
                 // only link to answered questions or the first unanswered question
                 isSelectable ? (
