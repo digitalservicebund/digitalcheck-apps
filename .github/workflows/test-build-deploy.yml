@@ -26,6 +26,7 @@ jobs:
 
   build-and-push-image:
     needs: [check-and-test-shared]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -91,6 +92,7 @@ jobs:
 
   deploy:
     needs: [build-and-push-image]
+    if: ${{ github.ref == 'refs/heads/main' }}
     concurrency:
       group: digitalcheck-${{ inputs.package }}-${{ inputs.environment }}
       cancel-in-progress: true
