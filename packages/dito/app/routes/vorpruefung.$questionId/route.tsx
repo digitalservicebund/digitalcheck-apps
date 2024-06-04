@@ -3,8 +3,6 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import Question from "@digitalcheck/shared/components/Question";
-import { RadioButtonUncheckedOutlined } from "@digitalservicebund/icons";
-import CheckCircleOutlineIcon from "@digitalservicebund/icons/CheckCircleOutline";
 import {
   ActionFunctionArgs,
   json,
@@ -15,6 +13,8 @@ import { userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
+import { SideNav } from "./sideNav";
+import { Answers, Option, TQuestion } from "./types";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -49,20 +49,7 @@ export async function action({ request }: ActionFunctionArgs) {
   });
 }
 
-type Question = {
-  id: string;
-  title: string;
-  text: string;
-  url: string;
-  prevLink: string;
-  nextLink: string;
-  hint?: {
-    title: string;
-    text: string;
-  };
-};
-
-const options = [
+const options: Option[] = [
   {
     value: "yes",
     text: "Ja",
@@ -79,62 +66,24 @@ const options = [
 
 export default function Index() {
   const { question, answers } = useLoaderData<{
-    question: Question;
-    answers: { [x: string]: string };
+    question: TQuestion;
+    answers: Answers;
   }>();
   const {
     register,
     formState: { errors },
   } = useForm();
-
-  const [selectedOption, setSelectedOption] = useState<string | undefined>(
-    answers?.[question.id],
-  );
+  const [selectedOption, setSelectedOption] = useState<
+    Option["value"] | undefined
+  >(answers?.[question.id]);
 
   useEffect(() => {
     setSelectedOption(answers?.[question.id]);
   }, [question.id, answers]);
 
-  const firstUnansweredQuestionIndex = Object.keys(answers).length;
-
   return (
     <div className="flex">
-      <nav className="pt-48 px-16">
-        <ul className="space-y-16">
-          {precheck.questions.map((q) => {
-            const isAnswered = answers[q.id];
-            const isSelected = q.id === question.id;
-            // only answered questions and the first unanswered question are selectable
-            const isSelectable =
-              isAnswered ||
-              q.id === precheck.questions[firstUnansweredQuestionIndex]?.id;
-            return (
-              <li key={q.id} className="flex space-x-4">
-                {isAnswered ? (
-                  <CheckCircleOutlineIcon className="fill-green-600" />
-                ) : (
-                  <RadioButtonUncheckedOutlined
-                    className={isSelectable ? "fill-gray-900" : "fill-gray-600"}
-                  />
-                )}
-                {
-                  // only link to answered questions or the first unanswered question
-                  isSelectable ? (
-                    <a
-                      href={q.url}
-                      className={isSelected ? "font-semibold" : ""}
-                    >
-                      {q.title}
-                    </a>
-                  ) : (
-                    <span className="text-gray-400">{q.title}</span>
-                  )
-                }
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <SideNav question={question} answers={answers} />
       <section>
         <form
           key={question.id}
@@ -152,7 +101,7 @@ export default function Index() {
               options: options,
               selectedValue: selectedOption,
               onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setSelectedOption(e.target.value),
+                setSelectedOption(e.target.value as Option["value"]),
               formRegister: register,
               error: errors[question.id],
             }}
