@@ -73,7 +73,7 @@ export const precheck = {
     },
   },
   nextButton: "Übernehmen & weiter",
-  options: {
+  answerOptions: {
     yes: "Ja",
     no: "Nein",
     unsure: "Ich bin unsicher",
