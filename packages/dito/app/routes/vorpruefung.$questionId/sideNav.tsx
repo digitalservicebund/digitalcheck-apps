@@ -9,7 +9,7 @@ type SideNavProps = {
 };
 
 export function SideNav({ question, answers }: SideNavProps) {
-  const firstUnansweredQuestionIndex = Object.keys(answers).length;
+  const firstUnansweredQuestionIdx = Object.keys(answers).length;
   const questions = precheck.questions;
 
   return (
@@ -20,7 +20,7 @@ export function SideNav({ question, answers }: SideNavProps) {
           const isSelected = q.id === question.id;
           // only answered questions and the first unanswered question are selectable
           const isSelectable =
-            isAnswered || q.id === questions[firstUnansweredQuestionIndex]?.id;
+            isAnswered || q.id === questions[firstUnansweredQuestionIdx]?.id;
           return (
             <li key={q.id} className="flex space-x-4">
               {isAnswered ? (
