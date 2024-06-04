@@ -9,7 +9,7 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
-import { userAnswers } from "cookies.server";
+import { getCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
@@ -17,8 +17,7 @@ import { SideNav } from "./sideNav";
 import { Answers, Option, TQuestion } from "./types";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
-  const cookieHeader = request.headers.get("Cookie");
-  const cookie = (await userAnswers.parse(cookieHeader)) || {};
+  const cookie = await getCookie(request);
   return json({
     question: precheck.questions.find(
       (question) => question.id === params.questionId,
@@ -28,8 +27,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  const cookieHeader = request.headers.get("Cookie");
-  const cookie = (await userAnswers.parse(cookieHeader)) || {};
+  const cookie = await getCookie(request);
   const bodyParams = await request.formData();
 
   const question = precheck.questions.find(

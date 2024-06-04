@@ -4,12 +4,11 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
-import { userAnswers } from "cookies.server";
+import { getCookie, userAnswers } from "cookies.server";
 import { PATH_LANDING, precheck } from "resources/content";
 
 export async function action({ request }: ActionFunctionArgs) {
-  const cookieHeader = request.headers.get("Cookie");
-  const cookie = (await userAnswers.parse(cookieHeader)) || {};
+  const cookie = await getCookie(request);
   cookie.answers = {};
 
   return redirect(precheck.questions[0].url, {
