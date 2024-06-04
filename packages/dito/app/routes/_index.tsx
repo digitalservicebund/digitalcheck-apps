@@ -2,7 +2,7 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import NumberedList from "components/NumberedList";
+import NumberedList from "@digitalcheck/shared/components/NumberedList";
 import { landing } from "resources/content";
 
 export default function Index() {
