@@ -94,6 +94,9 @@ export default function Index() {
   useEffect(() => {
     setSelectedOption(answers?.[question.id]);
   }, [question.id, answers]);
+
+  const firstUnansweredQuestionIndex = Object.keys(answers).length;
+
   return (
     <div className="flex">
       <nav className="pt-48 px-16">
@@ -101,21 +104,32 @@ export default function Index() {
           {precheck.questions.map((q) => {
             const isAnswered = answers[q.id];
             const isSelected = q.id === question.id;
+            // only answered questions and the first unanswered question are selectable
+            const isSelectable =
+              isAnswered ||
+              q.id === precheck.questions[firstUnansweredQuestionIndex]?.id;
             return (
-              <li key={q.id} className="flex">
+              <li key={q.id} className="flex space-x-4">
                 {isAnswered ? (
                   <CheckCircleOutlineIcon className="fill-green-600" />
                 ) : (
                   <RadioButtonUncheckedOutlined
-                    className={isSelected ? "fill-gray-900" : "fill-gray-600"}
+                    className={isSelectable ? "fill-gray-900" : "fill-gray-600"}
                   />
                 )}
-                <a
-                  href={q.url}
-                  className={`ml-4${isSelected ? " font-semibold" : !isAnswered ? " text-gray-600" : ""}`}
-                >
-                  {q.title}
-                </a>
+                {
+                  // only link to answered questions or the first unanswered question
+                  isSelectable ? (
+                    <a
+                      href={q.url}
+                      className={isSelected ? "font-semibold" : ""}
+                    >
+                      {q.title}
+                    </a>
+                  ) : (
+                    <span className="text-gray-400">{q.title}</span>
+                  )
+                }
               </li>
             );
           })}
