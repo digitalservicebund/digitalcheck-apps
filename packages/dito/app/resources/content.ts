@@ -1,4 +1,5 @@
 import { HomeOutlined } from "@digitalservicebund/icons";
+import { TQuestion } from "routes/vorpruefung.$questionId/types";
 
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
@@ -143,7 +144,7 @@ export const vorpruefung = {
       index === questions.length - 1
         ? PATH_LANDING
         : `${PATH_PRECHECK}/${questions[index + 1].id}`,
-  })),
+  })) as TQuestion[],
 };
 
 export const ROUTES = [
