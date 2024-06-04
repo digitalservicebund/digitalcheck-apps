@@ -1,3 +1,4 @@
+import "@digitalcheck/shared/styles.css";
 import App from "App.tsx";
 import MaintenanceModeApp from "MaintenanceModeApp";
 import React from "react";
