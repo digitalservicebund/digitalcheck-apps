@@ -74,6 +74,7 @@ export default function Index() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const [selectedOption, setSelectedOption] = useState<
     Option["value"] | undefined
@@ -81,7 +82,9 @@ export default function Index() {
 
   useEffect(() => {
     setSelectedOption(answers?.[question.id]);
-  }, [question.id, answers]);
+    // needed to keep data in sync with the form
+    setValue(question.id, answers?.[question.id]);
+  }, [question.id, answers, setValue]);
 
   const onSubmit = (data: Record<string, string>) => {
     fetcher.submit(
