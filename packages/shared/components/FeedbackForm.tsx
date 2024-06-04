@@ -108,6 +108,7 @@ export default function FeedbackForm({
         <Box
           heading={{
             tagName: "h3",
+            look: "ds-heading-03-bold",
             text: "Ihr Feedback hilft uns weiter!",
           }}
         ></Box>

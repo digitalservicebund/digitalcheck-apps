@@ -10,6 +10,10 @@
     font-size: 16px;
   }
 
+  body {
+    min-height: 100vh;
+  }
+
   h1 {
     @apply ds-heading-01-reg max-sm:text-5xl max-md:text-6xl;
   }
@@ -22,23 +26,11 @@
     @apply ds-heading-03-reg;
   }
 
-  a {
-    color: currentcolor;
-  }
-
   .container h1,
   .container h2,
   .container h3,
   .container p {
     max-width: 80ch;
-  }
-
-  .rich-text a {
-    @apply text-link;
-  }
-
-  footer a {
-    @apply increase-tap-area whitespace-nowrap;
   }
 }
 
@@ -118,6 +110,14 @@
 
   .text-link:active {
     @apply text-black;
+  }
+
+  .rich-text a {
+    @apply text-link;
+  }
+
+  footer a {
+    @apply increase-tap-area whitespace-nowrap;
   }
 }
 
