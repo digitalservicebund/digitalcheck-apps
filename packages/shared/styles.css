@@ -26,10 +26,10 @@
     @apply ds-heading-03-reg;
   }
 
-  .container h1,
-  .container h2,
-  .container h3,
-  .container p {
+  h1,
+  h2,
+  h3,
+  p {
     max-width: 80ch;
   }
 }
