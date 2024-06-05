@@ -13,7 +13,7 @@ import { getCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
-import { SideNav } from "./sideNav";
+import { NavigationList } from "./NavigationList";
 
 const { questions, answerOptions, nextButton } = precheck;
 
@@ -111,8 +111,10 @@ export default function Index() {
   );
 
   return (
-    <div className="flex">
-      <SideNav question={question} answers={answers} />
+    <div className="flex bg-blue-100">
+      <div className="hidden lg:block pt-64">
+        <NavigationList question={question} answers={answers} />
+      </div>
       <section>
         <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="questionId" value={question.id} />
@@ -130,7 +132,7 @@ export default function Index() {
               error: errors[question.id],
             }}
           />
-          <Container paddingBottom="0" paddingTop="0">
+          <Container paddingTop="0">
             <ButtonContainer>
               <Button
                 id="precheck-back-button"
@@ -147,7 +149,7 @@ export default function Index() {
           </Container>
         </fetcher.Form>
         {question.hint && (
-          <Container>
+          <Container paddingTop="0">
             <InlineNotice
               look="tips"
               title={question.hint.title}
@@ -156,6 +158,9 @@ export default function Index() {
             ></InlineNotice>
           </Container>
         )}
+        <Container paddingTop="0" additionalClassNames="lg:hidden">
+          <NavigationList question={question} answers={answers} />
+        </Container>
       </section>
     </div>
   );
