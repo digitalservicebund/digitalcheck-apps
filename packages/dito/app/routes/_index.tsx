@@ -2,10 +2,23 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import NumberedList from "@digitalcheck/shared/components/NumberedList";
+import List from "@digitalcheck/shared/components/List";
 import { landing } from "resources/content";
 
 export default function Index() {
+  const listItems = landing.list.items.map((item) => ({
+    headline: {
+      tagName: "h3",
+      text: item.title,
+    },
+    content: item.text,
+    buttons: item.link && [
+      {
+        text: item.link.text,
+        href: item.link.url,
+      },
+    ],
+  }));
   return (
     <>
       <Background backgroundColor="blue">
@@ -22,9 +35,13 @@ export default function Index() {
         </Container>
       </Background>
       <Container>
-        <NumberedList
-          title={landing.list.title}
-          listItems={landing.list.items}
+        <List
+          heading={{
+            tagName: "h2",
+            text: landing.list.title,
+          }}
+          items={listItems}
+          isNumeric
         />
       </Container>
       <Background backgroundColor="blue">
