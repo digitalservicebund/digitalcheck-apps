@@ -130,7 +130,7 @@ Do the following steps to add a new application to this Monorepo.
 ## Contributing
 
 🇬🇧
-Everyone is welcome to contribute the development of the Digitalcheck applications. You can contribute by opening pull request,
+Everyone is welcome to contribute the development of the Digitalcheck applications. You can contribute by opening a pull request,
 providing documentation or answering questions or giving feedback. Please always follow the guidelines and our
 [Code of Conduct](CODE_OF_CONDUCT.md).
 
