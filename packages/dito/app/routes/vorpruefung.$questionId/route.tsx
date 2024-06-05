@@ -112,7 +112,7 @@ export default function Index() {
 
   return (
     <div className="flex bg-blue-100">
-      <div className="hidden lg:block pt-64">
+      <div className="hidden lg:block pt-48">
         <NavigationList question={question} answers={answers} />
       </div>
       <section>
