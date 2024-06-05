@@ -26,9 +26,7 @@ For the modular pipeline specifically, we identified several approaches that cou
 
 ## Decision
 
-We will build a modular pipeline that takes into consideration whose applications code changed. We will only run E2E tests, A11y tests, build and deployment steps for these applications. However, we will install dependencies, audit licenses, check format, lint, check types and run unit tests globally, as these steps are less time sensitive.
-
-We will use a shared pipeline file that employs [dorny/paths-filter](https://github.com/marketplace/actions/paths-changes-filter) with application specific path filters. The output is used as part of a matrix strategy to run the steps for all applications whose code changed.
+We will build a modular pipeline that takes into consideration whose applications code changed. We will use a shared pipeline file that employs [dorny/paths-filter](https://github.com/marketplace/actions/paths-changes-filter) with application specific path filters. The output is used as part of a matrix strategy to run the steps for all applications whose code changed. If the code of the shared packages changed, we will first [check and test](/.github/workflows/check-and-test.yml) the shared code, and then [check, test, build and deploy](/.github/workflows/test-build-deploy.yml) all applications. If only the code of an application changed, we will only run the steps for that application. This way, even if a deployment fails, future fixes will lead to the required deployments.
 
 To mitigate the twofold issue of git conflicts and pending deployments being cancelled, we will implement a solution consisting of two parts described in the context:
 
