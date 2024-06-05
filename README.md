@@ -146,7 +146,7 @@ Open a pull request with your changes and it will be reviewed by someone from th
 you declare that you have the right to license your contribution to the DigitalService and the community.
 By submitting the patch, you agree that your contributions are licensed under the MIT license.
 
-Please make sure that your changes have been tested befor submitting a pull request.
+Please make sure that your changes have been tested before submitting a pull request.
 
 🇩🇪
 Nach dem Erstellen eines Pull Requests wird dieser von einer Person aus dem Team überprüft. Wenn du einen Pull-Request
