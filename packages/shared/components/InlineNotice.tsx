@@ -37,7 +37,7 @@ const InlineNotice = ({
 
   return (
     <div
-      className={`ds-stack-8 scroll-my-40 p-16 ${backgroundColor} md:max-w-[630px] border ${borderColor} border-2 border-l-8`}
+      className={`ds-stack-8 scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
       id={identifier}
     >
       <div className="flex flex-row gap-[4px] items-center">
