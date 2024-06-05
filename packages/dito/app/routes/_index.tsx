@@ -8,7 +8,7 @@ import { landing } from "resources/content";
 export default function Index() {
   const listItems = landing.list.items.map((item) => ({
     headline: {
-      tagName: "h3",
+      tagName: "h3" as const,
       text: item.title,
     },
     content: item.text,
