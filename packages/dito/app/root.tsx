@@ -8,9 +8,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import "@digitalcheck/shared/styles.css";
+import "./styles.css";
+
+import Background from "@digitalcheck/shared/components/Background";
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Footer from "@digitalcheck/shared/components/Footer";
-import sharedStyles from "@digitalcheck/shared/styles.css?url";
+import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import {
   header,
   PATH_A11Y,
@@ -19,10 +23,6 @@ import {
   ROUTES,
   siteMeta,
 } from "resources/content";
-import styles from "./styles.css?url";
-
-import Background from "@digitalcheck/shared/components/Background";
-import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 
 export const meta: MetaFunction = () => {
   return [
@@ -35,8 +35,6 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  { rel: "stylesheet", href: sharedStyles },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
