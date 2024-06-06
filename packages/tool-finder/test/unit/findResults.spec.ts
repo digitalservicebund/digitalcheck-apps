@@ -1,10 +1,10 @@
-import { Ressort } from "../../src/models/Ressort";
-import { VisualisationObject } from "../../src/models/VisualisationObject";
+import { Ressort } from "models/Ressort";
+import { VisualisationObject } from "models/VisualisationObject";
 import {
   findResultByObjectAndRessort,
   getAllObjects,
   getAllRessorts,
-} from "../../src/persistance/repository";
+} from "persistance/repository";
 
 describe("Repository", () => {
   test.each(createTestCases())(
