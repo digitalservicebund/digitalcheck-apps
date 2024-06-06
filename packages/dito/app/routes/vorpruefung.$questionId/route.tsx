@@ -119,9 +119,20 @@ export default function Index() {
         <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="questionId" value={question.id} />
           <Question
-            heading={question.title}
-            description={question.text}
             paddingBottom="32"
+            box={{
+              label: {
+                text: `Frage ${Object.keys(answers).length + 1} von ${
+                  questions.length
+                }`,
+              },
+              heading: {
+                text: question.question,
+              },
+              content: {
+                markdown: question.text,
+              },
+            }}
             radio={{
               name: question.id,
               options: options,

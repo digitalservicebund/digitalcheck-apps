@@ -4,7 +4,7 @@ import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";
 import RichText, { type RichTextProps } from "./RichText";
 
-type BoxProps = {
+export type BoxProps = {
   identifier?: string;
   label?: HeadingProps;
   heading?: HeadingProps;
@@ -31,8 +31,8 @@ const Box = ({
       id={identifier}
     >
       <div className="ds-stack-8">
-        {label && <Heading {...label} />}
-        {heading && <Heading {...heading} />}
+        {label && <Heading tagName="p" look="ds-label-02" {...label} />}
+        {heading && <Heading tagName="h2" {...heading} />}
         {content && <RichText {...content} />}
       </div>
       {buttons && buttons.length > 0 && (
