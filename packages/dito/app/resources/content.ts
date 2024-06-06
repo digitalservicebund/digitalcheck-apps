@@ -1,11 +1,5 @@
-import { HomeOutlined } from "@digitalservicebund/icons";
 import { TQuestion } from "routes/vorpruefung.$questionId/route";
-
-export const PATH_LANDING: string = "/";
-export const PATH_PRECHECK: string = "/vorpruefung";
-export const PATH_IMPRINT: string = "/impressum";
-export const PATH_PRIVACY: string = "/datenschutz";
-export const PATH_A11Y: string = "/barrierefreiheit";
+import { PATH_LANDING, PATH_PRECHECK } from "./staticRoutes";
 
 export const siteMeta = {
   title: "Digitalcheck",
@@ -145,34 +139,3 @@ export const precheck = {
         : `${PATH_PRECHECK}/${questions[index + 1].id}`,
   })) as TQuestion[],
 };
-
-export const ROUTES = [
-  {
-    url: PATH_LANDING,
-    Icon: HomeOutlined,
-  },
-  {
-    url: PATH_PRECHECK,
-    title: "Digitalbezug einschätzen",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_IMPRINT,
-    title: "Impressum",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_A11Y,
-    title: "Barrierefreiheit",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_PRIVACY,
-    title: "Datenschutzerklärung",
-    parent: PATH_LANDING,
-  },
-  ...precheck.questions.map((question) => ({
-    ...question,
-    parent: PATH_PRECHECK,
-  })),
-];
