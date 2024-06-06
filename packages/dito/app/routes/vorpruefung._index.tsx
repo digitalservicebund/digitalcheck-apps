@@ -5,7 +5,8 @@ import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
 import { getCookie, userAnswers } from "cookies.server";
-import { PATH_LANDING, precheck } from "resources/content";
+import { precheck } from "resources/content";
+import { PATH_LANDING } from "resources/staticRoutes";
 
 export async function action({ request }: ActionFunctionArgs) {
   const cookie = await getCookie(request);

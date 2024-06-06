@@ -15,14 +15,9 @@ import Background from "@digitalcheck/shared/components/Background";
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Footer from "@digitalcheck/shared/components/Footer";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
-import {
-  header,
-  PATH_A11Y,
-  PATH_IMPRINT,
-  PATH_PRIVACY,
-  ROUTES,
-  siteMeta,
-} from "resources/content";
+import routes from "resources/allRoutes";
+import { header, siteMeta } from "resources/content";
+import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
   return [
@@ -81,7 +76,7 @@ export default function App() {
             </span>
           </div>
           <Background backgroundColor="blue">
-            <Breadcrumbs breadcrumbs={ROUTES} />
+            <Breadcrumbs breadcrumbs={routes} />
           </Background>
         </header>
         <main>
