@@ -14,7 +14,7 @@ export function NavigationList({ question, answers }: NavigationListProps) {
   const questions = precheck.questions;
 
   return (
-    <nav>
+    <nav aria-label="Fragenliste">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
           const isDone = q.id in answers;
