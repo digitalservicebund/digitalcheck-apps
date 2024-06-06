@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 
 export type Breadcrumb = {
   url: string;
+  title: string;
   parent?: string;
-} & (
-  | { title: string }
-  | { Icon: React.ComponentType<SVGProps<SVGSVGElement>> }
-);
+  Icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
+};
 
 function filterBreadcrumbs(
   list: Breadcrumb[],
@@ -40,12 +39,14 @@ export default function Breadcrumbs({
         data-testid="breadcrumbs-menu"
       >
         {filteredBreadcrumbs.map((breadcrumb, idx, arr) => {
-          const displayElement =
-            "title" in breadcrumb ? (
-              <span>{breadcrumb.title}</span>
-            ) : (
+          const displayElement = breadcrumb.Icon ? (
+            <>
               <breadcrumb.Icon />
-            );
+              <span className="sr-only">{breadcrumb.title}</span>
+            </>
+          ) : (
+            <span>{breadcrumb.title}</span>
+          );
           return (
             <div key={breadcrumb.url}>
               {idx !== 0 ? <span className="mx-8">/</span> : ""}
