@@ -123,9 +123,18 @@ function QuizPage({
       <div className={"pt-80 max-w-2xl m-auto"}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Question
-            heading={"In welchem Ressort arbeiten Sie?"}
-            label={"1 von 3"}
-            description={`Diese Information benötigen wir, um in Ihrem Haus verfügbare Werkzeuge zu finden.`}
+            box={{
+              label: {
+                text: "1 von 3",
+              },
+              heading: {
+                text: "In welchem Ressort arbeiten Sie?",
+              },
+              content: {
+                markdown:
+                  "Diese Information benötigen wir, um in Ihrem Haus verfügbare Werkzeuge zu finden.",
+              },
+            }}
             select={{
               name: "ressort",
               label: "Ressort",
@@ -137,9 +146,18 @@ function QuizPage({
             }}
           />
           <Question
-            heading={"Was möchten Sie darstellen?"}
-            label={"2 von 3"}
-            description={`Die Art der Darstellung gibt vor, welches Werkzeug am besten passt.`}
+            box={{
+              label: {
+                text: "2 von 3",
+              },
+              heading: {
+                text: "Was möchten Sie darstellen?",
+              },
+              content: {
+                markdown:
+                  "Die Art der Darstellung gibt vor, welches Werkzeug am besten passt.",
+              },
+            }}
             radio={{
               name: "object",
               selectedValue: object?.id,
@@ -150,9 +168,18 @@ function QuizPage({
             }}
           />
           <Question
-            heading={"Wofür möchten Sie die Visualisierung erstellen?"}
-            label={"3 von 3"}
-            description={`Bei mehreren Gründen nennen Sie uns den wichtigsten.`}
+            box={{
+              label: {
+                text: "3 von 3",
+              },
+              heading: {
+                text: "Wofür möchten Sie die Visualisierung erstellen?",
+              },
+              content: {
+                markdown:
+                  "Bei mehreren Gründen nennen Sie uns den wichtigsten.",
+              },
+            }}
             radio={{
               name: "reason",
               selectedValue: reason?.id,
