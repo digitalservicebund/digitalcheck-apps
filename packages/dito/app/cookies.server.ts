@@ -7,7 +7,8 @@ export const userAnswers = createCookie("user-answers", {
 
 export const getCookie = async (request: Request) => {
   const cookieHeader = request.headers.get("Cookie");
-  return ((await userAnswers.parse(cookieHeader)) || {}) as {
+  const cookie = (await userAnswers.parse(cookieHeader)) as {
     answers: Answers;
-  };
+  } | null;
+  return cookie ? cookie : { answers: {} };
 };
