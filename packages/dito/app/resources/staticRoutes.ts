@@ -1,4 +1,4 @@
-import { HomeOutlined } from "@digitalservicebund/icons";
+import HomeOutlined from "@digitalservicebund/icons/HomeOutlined";
 import { SVGProps } from "react";
 
 export const PATH_LANDING: string = "/";
@@ -9,15 +9,15 @@ export const PATH_A11Y: string = "/barrierefreiheit";
 
 export type Route = {
   url: string;
+  title: string;
   parent?: string;
-} & (
-  | { title: string }
-  | { Icon: React.ComponentType<SVGProps<SVGSVGElement>> }
-);
+  Icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
+};
 
 const routes: Route[] = [
   {
     url: PATH_LANDING,
+    title: "Startseite",
     Icon: HomeOutlined,
   },
   {
