@@ -32,7 +32,7 @@ export const landing = {
         text: "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
         link: {
           text: "Digitalbezug einschätzen",
-          url: "/vorpruefung",
+          url: PATH_PRECHECK,
         },
       },
       {
