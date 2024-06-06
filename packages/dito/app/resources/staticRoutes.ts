@@ -1,4 +1,4 @@
-import HomeOutlined from "@digitalservicebund/icons/HomeOutlined";
+import { HomeOutlined } from "@digitalservicebund/icons";
 import { SVGProps } from "react";
 
 export const PATH_LANDING: string = "/";

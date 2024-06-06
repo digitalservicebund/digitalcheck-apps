@@ -25,8 +25,9 @@ export default function Index() {
       <Container paddingBottom="0">
         <Box
           heading={{
-            tagName: "h2",
+            tagName: "h1",
             text: precheck.start.title,
+            look: "ds-heading-02-reg",
           }}
           content={{
             markdown: precheck.start.subtitle,
