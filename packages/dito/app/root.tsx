@@ -76,7 +76,7 @@ export default function App() {
             </span>
           </div>
           <Background backgroundColor="blue">
-            <Breadcrumbs breadcrumbs={routes} />
+            <Breadcrumbs breadcrumbs={routes} useIconForHome />
           </Background>
         </header>
         <main>

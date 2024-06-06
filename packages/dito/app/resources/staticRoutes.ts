@@ -1,6 +1,3 @@
-import HomeOutlined from "@digitalservicebund/icons/HomeOutlined";
-import { SVGProps } from "react";
-
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_IMPRINT: string = "/impressum";
@@ -11,14 +8,12 @@ export type Route = {
   url: string;
   title: string;
   parent?: string;
-  Icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 const routes: Route[] = [
   {
     url: PATH_LANDING,
     title: "Startseite",
-    Icon: HomeOutlined,
   },
   {
     url: PATH_PRECHECK,
