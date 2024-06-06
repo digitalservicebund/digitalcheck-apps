@@ -83,13 +83,13 @@ export const vorpruefung = {
       id: "it-system",
       title: "IT-System",
       question:
-        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich eine Anpassung oder Neuentwicklung einer IT-Lösung zur Folge haben?",
+        "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
       result:
         "Die Umsetzung des Regelungsvorhabens wird voraussichtlich eine Anpassung oder Neuentwicklung einer IT-Lösung zur Folge haben.",
       text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
       hint: {
         title: "Was ist ein IT-System?",
-        text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommens-steuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
+        text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
       <br />
       <br />
       Einige IT-Systeme haben eine Benutzeroberfläche, in der manuell Daten eingegeben werden – wie in diesem Formular. In anderen kommunizieren Computer im Hintergrund untereinander, wenn zum Beispiel Daten abgerufen und an anderer Stelle verwendet werden.`,
