@@ -1,11 +1,10 @@
-import React, { SVGProps } from "react";
+import HomeOutlined from "@digitalservicebund/icons/HomeOutlined";
 import { Link, useLocation } from "react-router-dom";
 
 export type Breadcrumb = {
   url: string;
   title: string;
   parent?: string;
-  Icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 function filterBreadcrumbs(
@@ -26,8 +25,10 @@ function filterBreadcrumbs(
 
 export default function Breadcrumbs({
   breadcrumbs,
+  useIconForHome = false,
 }: {
   breadcrumbs: Breadcrumb[];
+  useIconForHome?: boolean;
 }) {
   const location = useLocation();
   const filteredBreadcrumbs = filterBreadcrumbs(breadcrumbs, location.pathname);
@@ -40,14 +41,15 @@ export default function Breadcrumbs({
         aria-label="navigation"
       >
         {filteredBreadcrumbs.map((breadcrumb, idx, arr) => {
-          const displayElement = breadcrumb.Icon ? (
-            <>
-              <breadcrumb.Icon />
-              <span className="sr-only">{breadcrumb.title}</span>
-            </>
-          ) : (
-            <span>{breadcrumb.title}</span>
-          );
+          let displayElement = <span>{breadcrumb.title}</span>;
+          if (idx === 0 && useIconForHome) {
+            displayElement = (
+              <>
+                <HomeOutlined />
+                <span className="sr-only">{breadcrumb.title}</span>
+              </>
+            );
+          }
           return (
             <div key={breadcrumb.url}>
               {idx !== 0 ? <span className="mx-8">/</span> : ""}
