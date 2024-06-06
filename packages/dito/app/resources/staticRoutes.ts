@@ -20,21 +20,21 @@ const routes: Route[] = [
     title: "Digitalbezug einschätzen",
     parent: PATH_LANDING,
   },
-  {
-    url: PATH_IMPRINT,
-    title: "Impressum",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_A11Y,
-    title: "Barrierefreiheit",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_PRIVACY,
-    title: "Datenschutzerklärung",
-    parent: PATH_LANDING,
-  },
+  // {
+  //   url: PATH_IMPRINT,
+  //   title: "Impressum",
+  //   parent: PATH_LANDING,
+  // },
+  // {
+  //   url: PATH_A11Y,
+  //   title: "Barrierefreiheit",
+  //   parent: PATH_LANDING,
+  // },
+  // {
+  //   url: PATH_PRIVACY,
+  //   title: "Datenschutzerklärung",
+  //   parent: PATH_LANDING,
+  // },
 ];
 
 export default routes;
