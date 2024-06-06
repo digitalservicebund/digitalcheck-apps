@@ -32,7 +32,7 @@ const config: PlaywrightTestConfig = {
   ],
   webServer: {
     command: "npm run build && npm start",
-    port: 3000,
+    port: 4173,
     timeout,
   },
 };
