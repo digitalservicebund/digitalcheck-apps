@@ -14,7 +14,7 @@ type LinkProps = {
 const paragraphs = [
   {
     markdown:
-      "Ein Online Dienst der [DigitalService GmbH des Bundes](https://digitalservice.bund.de/)",
+      "Ein Onlinedienst der [DigitalService GmbH des Bundes](https://digitalservice.bund.de/)",
   },
   {
     markdown:
