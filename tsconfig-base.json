@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "target": "ES2022",
