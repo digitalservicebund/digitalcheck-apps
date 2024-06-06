@@ -1,11 +1,19 @@
 import { HomeOutlined } from "@digitalservicebund/icons";
-import { type Route } from "./allRoutes";
+import { SVGProps } from "react";
 
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
+
+export type Route = {
+  url: string;
+  parent?: string;
+} & (
+  | { title: string }
+  | { Icon: React.ComponentType<SVGProps<SVGSVGElement>> }
+);
 
 const routes: Route[] = [
   {
