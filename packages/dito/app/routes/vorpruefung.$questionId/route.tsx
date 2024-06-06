@@ -128,6 +128,8 @@ export default function Index() {
               },
               heading: {
                 text: question.question,
+                tagName: "h1",
+                look: "ds-heading-02-reg",
               },
               content: {
                 markdown: question.text,
