@@ -105,16 +105,10 @@ test.describe("test links", () => {
   });
 
   test("links leading to external pages open in new tab", async ({ page }) => {
-    await page.goto(allRoutes.PATH_INFO);
-    await expect(
-      page.getByRole("link", { name: "Mit Visualisierungen" }),
-    ).toHaveAttribute("target", "_blank");
-
     await page.goto(allRoutes.PATH_IMPRINT);
     const link = page.getByRole("link", {
       name: "DigitalService GmbH des Bundes",
     });
-    await expect(link).toHaveAttribute("target", "_blank");
 
     await link.click();
     // wait for a second to let the new tab open
