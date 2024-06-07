@@ -12,6 +12,8 @@
 
   body {
     min-height: 100vh;
+    font-size: 1.125rem;
+    line-height: 1.5;
   }
 
   h1 {
@@ -112,12 +114,21 @@
     @apply text-black;
   }
 
+  footer a {
+    @apply increase-tap-area whitespace-nowrap;
+  }
+
   .rich-text a {
     @apply text-link;
   }
 
-  footer a {
-    @apply increase-tap-area whitespace-nowrap;
+  .rich-text ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  .rich-text p {
+    @apply text-lg;
   }
 }
 
