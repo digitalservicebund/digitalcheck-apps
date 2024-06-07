@@ -116,12 +116,10 @@ test.describe("test links", () => {
     });
     await expect(link).toHaveAttribute("target", "_blank");
 
-    // THIS CURRENTLY DOES NOT WORK DUE TO AN ISSUE WITH PLAUSIBLE
-    // https://github.com/plausible/plausible-tracker/issues/12
-    // await link.click();
+    await link.click();
     // wait for a second to let the new tab open
-    // await page.waitForTimeout(1000);
-    // await expect(page).toHaveURL(allRoutes.PATH_IMPRINT);
+    await page.waitForTimeout(1000);
+    await expect(page).toHaveURL(allRoutes.PATH_IMPRINT);
   });
 });
 
