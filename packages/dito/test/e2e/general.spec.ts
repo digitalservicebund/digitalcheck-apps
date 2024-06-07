@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
-import { PATH_LANDING } from "resources/staticRoutes";
+import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
   test("landing is reachable and has h1", async ({ page }) => {
@@ -23,24 +23,37 @@ test.describe("test general availability", () => {
   });
 });
 
-test("links leading to external pages open in new tab", async ({ page }) => {
-  await page.goto(PATH_LANDING);
-  const link = page.getByRole("link", {
-    name: "DigitalService GmbH des Bundes",
+test.describe("test internal links", () => {
+  test("links in footer work", async ({ page }) => {
+    // TODO: reenable once the pages are implemented (remove 404 and extra gotos)
+    await page.goto(staticRoutes.PATH_LANDING);
+    await page.getByRole("link", { name: "Datenschutzerklärung" }).click();
+    await expect(page.getByRole("main")).toContainText("404");
+    // await expect(page).toHaveURL(staticRoutes.PATH_PRIVACY);
+    await page.goto(staticRoutes.PATH_LANDING);
+    await page.getByRole("link", { name: "Barrierefreiheit" }).click();
+    await expect(page.getByRole("main")).toContainText("404");
+    // await expect(page).toHaveURL(staticRoutes.PATH_A11Y);
+    await page.goto(staticRoutes.PATH_LANDING);
+    await page.getByRole("link", { name: "Impressum" }).click();
+    await expect(page.getByRole("main")).toContainText("404");
+    // await expect(page).toHaveURL(staticRoutes.PATH_IMPRINT);
   });
-
-  await link.click();
-  // wait for a second to let the new tab open
-  await page.waitForTimeout(1000);
-  await expect(page).toHaveURL(PATH_LANDING);
 });
 
-// test.describe("test links", () => {
-//   test("link in header works", async ({ page }) => {
-//     await page.goto(allRoutes.PATH_QUIZ);
-//     await page.getByLabel("Werkzeugfinder - Zurück zur").click();
-//     await expect(page).toHaveURL(allRoutes.PATH_INFO);
-//   });
+test.describe("test general links", () => {
+  test("links leading to external pages open in new tab", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_LANDING);
+    const link = page.getByRole("link", {
+      name: "DigitalService GmbH des Bundes",
+    });
+
+    await link.click();
+    // wait for a second to let the new tab open
+    await page.waitForTimeout(1000);
+    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+  });
+});
 
 //   test("examplary breadcrumbs are correct", async ({ page }) => {
 //     await page.goto(allRoutes.PATH_INFO);
