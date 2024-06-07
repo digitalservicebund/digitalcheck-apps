@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
+import { precheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
@@ -44,6 +45,29 @@ test.describe("test internal links", () => {
     await page.getByRole("link", { name: "Impressum" }).click();
     await expect(page.getByRole("main")).toContainText("404");
     // await expect(page).toHaveURL(staticRoutes.PATH_IMPRINT);
+  });
+
+  test("breadcrumb landing link works", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_PRECHECK);
+    await page.getByRole("navigation").getByRole("link").click();
+    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+    await page.goto(precheck.questions[0].url);
+    // using label here as there is a sidebar with the same role
+    await page
+      .getByLabel("navigation")
+      .getByRole("link", { name: "Startseite" })
+      .click();
+    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+  });
+
+  test("breadcrumb parent link works", async ({ page }) => {
+    // using label here as there is a sidebar with the same role
+    await page.goto(precheck.questions[0].url);
+    await expect(page.getByLabel("navigation").getByRole("link")).toHaveCount(
+      2,
+    );
+    await page.getByLabel("navigation").getByRole("link").last().click();
+    await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
   });
 });
 
