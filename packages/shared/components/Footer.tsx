@@ -22,7 +22,7 @@ const paragraphs = [
   },
 ];
 
-export default function Footer({ links }: { links: LinkProps[] }) {
+export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
   const linksMiddleIndex = Math.ceil(links.length / 2);
   const linksFirstColumn: typeof links = links.slice(0, linksMiddleIndex);
   const linksSecondColumn: typeof links = links.slice(linksMiddleIndex);
