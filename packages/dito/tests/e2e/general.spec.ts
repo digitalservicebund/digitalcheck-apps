@@ -4,15 +4,6 @@ import { precheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
-  test("landing is reachable and has h1", async ({ page }) => {
-    await page.goto("/");
-    await expect(
-      page.locator(
-        "h1:has-text('Digitaltaugliche Regelungsvorhaben erarbeiten')",
-      ),
-    ).toBeVisible();
-  });
-
   test("all routes are reachable and have a breadcrumb menu + title", async ({
     page,
   }) => {
@@ -24,13 +15,40 @@ test.describe("test general availability", () => {
   });
 });
 
-test.describe("test internal links", () => {
+test.describe("test landing page", () => {
+  test("landing is reachable and has h1", async ({ page }) => {
+    await page.goto("/");
+    await expect(
+      page.locator(
+        "h1:has-text('Digitaltaugliche Regelungsvorhaben erarbeiten')",
+      ),
+    ).toBeVisible();
+  });
+
   test("CTA on landing works", async ({ page }) => {
     await page.goto(staticRoutes.PATH_LANDING);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
   });
 
+  test("list items on landing page are visible", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_LANDING);
+    await expect(page.getByRole("main")).toContainText(
+      "1Vorprüfung: Digitalbezug einschätzen",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "2Digitaltaugliches Regelungsvorhaben erarbeiten",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "3Abschließende Dokumentation",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "4Digitalcheck durch den NKR",
+    );
+  });
+});
+
+test.describe("test internal links", () => {
   test("links in footer work", async ({ page }) => {
     // TODO: reenable once the pages are implemented (remove 404 and extra gotos)
     await page.goto(staticRoutes.PATH_LANDING);
