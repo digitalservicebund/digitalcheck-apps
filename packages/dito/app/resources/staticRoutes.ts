@@ -1,5 +1,6 @@
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
+export const PATH_RESULT: string = PATH_PRECHECK + "/ergebnis";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
@@ -19,6 +20,11 @@ const routes: Route[] = [
     url: PATH_PRECHECK,
     title: "Digitalbezug einschätzen",
     parent: PATH_LANDING,
+  },
+  {
+    url: PATH_RESULT,
+    title: "Ergebnis der Vorprüfung",
+    parent: PATH_PRECHECK,
   },
   // {
   //   url: PATH_IMPRINT,

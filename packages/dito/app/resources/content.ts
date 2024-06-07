@@ -1,5 +1,5 @@
 import { TQuestion } from "routes/vorpruefung.$questionId/route";
-import { PATH_LANDING, PATH_PRECHECK } from "./staticRoutes";
+import { PATH_PRECHECK, PATH_RESULT } from "./staticRoutes";
 
 export const siteMeta = {
   title: "Digitalcheck",
@@ -135,7 +135,33 @@ export const precheck = {
         : `${PATH_PRECHECK}/${questions[index - 1].id}`,
     nextLink:
       index === questions.length - 1
-        ? PATH_LANDING
+        ? PATH_RESULT
         : `${PATH_PRECHECK}/${questions[index + 1].id}`,
   })) as TQuestion[],
+
+  result: {
+    title: "Ergebnis der Vorprüfung",
+    positive: "Ihr Regelungsvorhaben hat einen Digitalbezug.",
+    nextSteps: {
+      title: "Das sind Ihre nächsten Schritte",
+      steps: [
+        {
+          title: "Digitaltaugliches Regelungsvorhaben erarbeiten",
+          text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+          link: {
+            text: "Zu den Hilfestellungen und Methoden",
+            url: "/methoden",
+          },
+        },
+        {
+          title: "Abschließende Dokumentation",
+          text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/dokumentation)",
+        },
+        {
+          title: "Digitalcheck durch den NKR",
+          text: "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
+        },
+      ],
+    },
+  },
 };
