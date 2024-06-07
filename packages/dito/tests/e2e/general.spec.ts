@@ -24,6 +24,12 @@ test.describe("test general availability", () => {
 });
 
 test.describe("test internal links", () => {
+  test("CTA on landing works", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_LANDING);
+    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
+  });
+
   test("links in footer work", async ({ page }) => {
     // TODO: reenable once the pages are implemented (remove 404 and extra gotos)
     await page.goto(staticRoutes.PATH_LANDING);
