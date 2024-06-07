@@ -1,3 +1,4 @@
+import CheckCircleOutlinedIcon from "@digitalservicebund/icons/CheckCircleOutlined";
 import LightbulbOutlinedIcon from "@digitalservicebund/icons/LightbulbOutlined";
 import WarningAmberIcon from "@digitalservicebund/icons/WarningAmber";
 import Heading from "./Heading";
@@ -7,13 +8,18 @@ type InlineNoticeProps = {
   identifier?: string;
   title: string;
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
-  look: "warning" | "tips";
+  look: "success" | "warning" | "tips";
   content?: string;
 };
 
 // We can't set border-[${borderColor}] in the template because it causes inconsistent behavior in Storybook.
 // Therefore, it's set in the config.
 const lookConfig = {
+  success: {
+    backgroundColor: "bg-green-100",
+    borderColor: "border-[#005E34]",
+    IconComponent: CheckCircleOutlinedIcon,
+  },
   warning: {
     backgroundColor: "bg-yellow-200",
     borderColor: "border-[#E5CE5C]",
