@@ -9,7 +9,7 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
-import { getCookie, userAnswers } from "cookies.server";
+import { getAnswersFromCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
@@ -18,7 +18,7 @@ import { NavigationList } from "./NavigationList";
 const { questions, answerOptions, nextButton } = precheck;
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
-  const { answers } = await getCookie(request);
+  const { answers } = await getAnswersFromCookie(request);
   const questionIdx = questions.findIndex((q) => q.id === params.questionId);
   // if the user accesses a question where they haven't answered the previous questions, redirect them to the first unanswered question
   const firstUnansweredQuestionIdx = Object.keys(answers).length;
@@ -32,7 +32,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  const cookie = await getCookie(request);
+  const cookie = await getAnswersFromCookie(request);
   const bodyParams = await request.formData();
   const { questionId, nextLink, answer } = Object.fromEntries(bodyParams);
   if (typeof questionId !== "string" || typeof nextLink !== "string") {
