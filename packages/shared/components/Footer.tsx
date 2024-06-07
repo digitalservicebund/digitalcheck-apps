@@ -53,12 +53,14 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
     <footer className="text-base leading-snug">
       <Container paddingTop="48">
         <div className="flex flex-wrap items-start justify-between gap-y-32">
-          <div className="flex flex-col sm:flex-row gap-32">
-            <Image
-              url={bmiLogo}
-              width={120}
-              alternativeText="Logo des Bundesministerium des Innern und für Heimat"
-            />
+          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-8 gap-x-16">
+            <div className="py-4 pr-4">
+              <Image
+                url={bmiLogo}
+                width={120}
+                alternativeText="Logo des Bundesministerium des Innern und für Heimat"
+              />
+            </div>
             <div className="ds-stack-8">
               {paragraphs.map((paragraph) => (
                 <div key={paragraph.markdown}>
