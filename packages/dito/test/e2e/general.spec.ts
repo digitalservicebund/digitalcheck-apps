@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
+import { PATH_LANDING } from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
   test("landing is reachable and has h1", async ({ page }) => {
@@ -20,6 +21,18 @@ test.describe("test general availability", () => {
       await expect(page).toHaveTitle(/Digitalcheck$/);
     }
   });
+});
+
+test("links leading to external pages open in new tab", async ({ page }) => {
+  await page.goto(PATH_LANDING);
+  const link = page.getByRole("link", {
+    name: "DigitalService GmbH des Bundes",
+  });
+
+  await link.click();
+  // wait for a second to let the new tab open
+  await page.waitForTimeout(1000);
+  await expect(page).toHaveURL(PATH_LANDING);
 });
 
 // test.describe("test links", () => {
