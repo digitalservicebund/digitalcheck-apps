@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
 
-test.describe("landing is reachable and has h1", () => {
-  test("shows hello message", async ({ page }) => {
+test.describe("test general availability", () => {
+  test("landing is reachable and has h1", async ({ page }) => {
     await page.goto("/");
     await expect(
       page.locator(
@@ -10,9 +10,7 @@ test.describe("landing is reachable and has h1", () => {
       ),
     ).toBeVisible();
   });
-});
 
-test.describe("test general availability", () => {
   test("all routes are reachable and have a breadcrumb menu + title", async ({
     page,
   }) => {
