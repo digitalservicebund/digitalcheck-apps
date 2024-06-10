@@ -27,7 +27,7 @@ export default function Index() {
   return (
     <div className="flex bg-blue-100">
       <div className="hidden lg:block pt-48">
-        <PreCheckNavigation answers={{}} />
+        <PreCheckNavigation />
       </div>
       <section>
         <Container paddingBottom="0">
