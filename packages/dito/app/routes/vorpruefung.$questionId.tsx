@@ -13,7 +13,7 @@ import { getAnswersFromCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { precheck } from "resources/content";
-import { NavigationList } from "./NavigationList";
+import { NavigationList } from "../components/NavigationList";
 
 const { questions, answerOptions, nextButton } = precheck;
 

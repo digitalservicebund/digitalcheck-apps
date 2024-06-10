@@ -1,4 +1,4 @@
-import { TQuestion } from "routes/vorpruefung.$questionId/route";
+import type { TQuestion } from "routes/vorpruefung.$questionId";
 import { PATH_PRECHECK, PATH_RESULT } from "./staticRoutes";
 
 export const siteMeta = {
