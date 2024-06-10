@@ -5,7 +5,7 @@ import { precheck } from "resources/content";
 import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
 
 type NavigationListProps = {
-  question: TQuestion;
+  question?: TQuestion;
   answers: Answers;
 };
 
@@ -18,7 +18,7 @@ export function NavigationList({ question, answers }: NavigationListProps) {
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
           const isDone = q.id in answers;
-          const isCurrent = q.id === question.id;
+          const isCurrent = q.id === question?.id;
           const isDisabled = idx > firstUnansweredQuestionIdx;
           return (
             <NavItem
