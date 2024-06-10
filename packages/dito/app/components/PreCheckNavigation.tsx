@@ -4,12 +4,15 @@ import { useId } from "react";
 import { preCheck } from "resources/content";
 import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
 
-type NavigationListProps = {
+type PreCheckNavigationProps = {
   question?: TQuestion;
   answers: Answers;
 };
 
-export function NavigationList({ question, answers }: NavigationListProps) {
+export default function PreCheckNavigation({
+  question,
+  answers,
+}: PreCheckNavigationProps) {
   const firstUnansweredQuestionIdx = Object.keys(answers).length;
   const questions = preCheck.questions;
 
