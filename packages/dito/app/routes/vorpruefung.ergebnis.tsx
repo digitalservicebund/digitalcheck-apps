@@ -6,7 +6,7 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
 import { preCheck } from "resources/content";
-import { type Answers } from "./vorpruefung.$questionId";
+import { type Answers } from "./vorpruefung.($questionId)/route";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
