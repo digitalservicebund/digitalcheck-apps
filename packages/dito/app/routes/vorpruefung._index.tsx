@@ -4,10 +4,10 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
+import PreCheckNavigation from "components/PreCheckNavigation";
 import { getAnswersFromCookie, userAnswers } from "cookies.server";
 import { preCheck } from "resources/content";
 import { PATH_LANDING } from "resources/staticRoutes";
-import { NavigationList } from "../components/PreCheckNavigationList";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookie = await getAnswersFromCookie(request);
@@ -27,7 +27,7 @@ export default function Index() {
   return (
     <div className="flex bg-blue-100">
       <div className="hidden lg:block pt-48">
-        <NavigationList answers={{}} />
+        <PreCheckNavigation answers={{}} />
       </div>
       <section>
         <Container paddingBottom="0">

@@ -9,11 +9,11 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
+import PreCheckNavigation from "components/PreCheckNavigation";
 import { getAnswersFromCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { preCheck } from "resources/content";
-import { NavigationList } from "../components/PreCheckNavigationList";
 
 const { questions, answerOptions, nextButton } = preCheck;
 
@@ -114,7 +114,7 @@ export default function Index() {
   return (
     <div className="flex bg-blue-100">
       <div className="hidden lg:block pt-48">
-        <NavigationList question={question} answers={answers} />
+        <PreCheckNavigation question={question} answers={answers} />
       </div>
       <section>
         <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
@@ -173,7 +173,7 @@ export default function Index() {
           </Container>
         )}
         <Container paddingTop="0" additionalClassNames="lg:hidden">
-          <NavigationList question={question} answers={answers} />
+          <PreCheckNavigation question={question} answers={answers} />
         </Container>
       </section>
     </div>
