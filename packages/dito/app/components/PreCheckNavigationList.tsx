@@ -1,7 +1,7 @@
 import Check from "@digitalservicebund/icons/Check";
 import classNames from "classnames";
 import { useId } from "react";
-import { precheck } from "resources/content";
+import { preCheck } from "resources/content";
 import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
 
 type NavigationListProps = {
@@ -11,7 +11,7 @@ type NavigationListProps = {
 
 export function NavigationList({ question, answers }: NavigationListProps) {
   const firstUnansweredQuestionIdx = Object.keys(answers).length;
-  const questions = precheck.questions;
+  const questions = preCheck.questions;
 
   return (
     <nav aria-label="Fragenliste">

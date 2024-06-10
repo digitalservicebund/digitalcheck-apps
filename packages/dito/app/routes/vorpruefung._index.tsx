@@ -5,7 +5,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { getAnswersFromCookie, userAnswers } from "cookies.server";
-import { precheck } from "resources/content";
+import { preCheck } from "resources/content";
 import { PATH_LANDING } from "resources/staticRoutes";
 import { NavigationList } from "../components/PreCheckNavigationList";
 
@@ -34,26 +34,26 @@ export default function Index() {
           <Box
             heading={{
               tagName: "h1",
-              text: precheck.start.title,
+              text: preCheck.start.title,
               look: "ds-heading-02-reg",
             }}
             content={{
-              markdown: precheck.start.subtitle,
+              markdown: preCheck.start.subtitle,
             }}
           ></Box>
         </Container>
         <Container paddingBottom="0">
           <ButtonContainer>
             <Button
-              id="precheck-back-button"
+              id="preCheck-back-button"
               text="Zurück"
               href={PATH_LANDING}
               look="tertiary"
             ></Button>
             <Button
-              id="precheck-start-button"
-              text={precheck.start.buttonText}
-              href={precheck.questions[0].url}
+              id="preCheck-start-button"
+              text={preCheck.start.buttonText}
+              href={preCheck.questions[0].url}
               type="submit"
             ></Button>
           </ButtonContainer>
@@ -61,9 +61,9 @@ export default function Index() {
         <Container>
           <InlineNotice
             look="tips"
-            title={precheck.start.hint.title}
+            title={preCheck.start.hint.title}
             tagName="h2"
-            content={precheck.start.hint.text}
+            content={preCheck.start.hint.text}
           ></InlineNotice>
         </Container>
       </section>

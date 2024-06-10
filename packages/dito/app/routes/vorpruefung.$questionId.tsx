@@ -12,10 +12,10 @@ import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie, userAnswers } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { precheck } from "resources/content";
+import { preCheck } from "resources/content";
 import { NavigationList } from "../components/PreCheckNavigationList";
 
-const { questions, answerOptions, nextButton } = precheck;
+const { questions, answerOptions, nextButton } = preCheck;
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
@@ -149,13 +149,13 @@ export default function Index() {
           <Container paddingTop="0">
             <ButtonContainer>
               <Button
-                id="precheck-back-button"
+                id="preCheck-back-button"
                 text="Zurück"
                 href={question.prevLink}
                 look="tertiary"
               ></Button>
               <Button
-                id="precheck-next-button"
+                id="preCheck-next-button"
                 text={nextButton}
                 type={"submit"}
               ></Button>

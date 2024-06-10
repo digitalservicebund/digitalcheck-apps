@@ -61,7 +61,7 @@ export const pdf = {
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
 };
 
-export const vorpruefung = {
+export const preCheck = {
   start: {
     title: "Digitalbezug einschätzen",
     subtitle:
