@@ -55,7 +55,7 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
-export const precheck = {
+export const preCheck = {
   start: {
     title: "Digitalbezug einschätzen",
     subtitle:

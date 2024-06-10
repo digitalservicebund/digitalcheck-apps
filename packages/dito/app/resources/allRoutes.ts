@@ -1,9 +1,9 @@
-import { precheck } from "./content";
+import { preCheck } from "./content";
 import routes, { PATH_PRECHECK, type Route } from "./staticRoutes";
 
 const allRoutes: Route[] = [
   ...routes,
-  ...precheck.questions.map((question) => ({
+  ...preCheck.questions.map((question) => ({
     ...question,
     parent: PATH_PRECHECK,
   })),

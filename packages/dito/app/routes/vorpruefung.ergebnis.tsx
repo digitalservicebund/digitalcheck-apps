@@ -5,7 +5,7 @@ import List from "@digitalcheck/shared/components/List";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { precheck } from "resources/content";
+import { preCheck } from "resources/content";
 import { type Answers } from "./vorpruefung.$questionId";
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -25,12 +25,12 @@ export default function Result() {
 
   const reasons = getPositiveQuestions(answers).map(
     (questionId) =>
-      precheck.questions.find((question) => question.id === questionId)?.result,
+      preCheck.questions.find((question) => question.id === questionId)?.result,
   );
 
   const reasonsText = reasons.map((reason) => `- ${reason}`).join("\n");
 
-  const listItems = precheck.result.nextSteps.steps.map((step) => ({
+  const listItems = preCheck.result.nextSteps.steps.map((step) => ({
     headline: {
       tagName: "h3" as const,
       text: step.title,
@@ -49,13 +49,13 @@ export default function Result() {
       <Container>
         <Heading
           tagName="h1"
-          text={precheck.result.title}
+          text={preCheck.result.title}
           look="ds-heading-02-reg"
           className="mb-32"
         />
         <InlineNotice
           look="success"
-          title={precheck.result.positive}
+          title={preCheck.result.positive}
           tagName="h2"
           content={reasonsText}
         />
@@ -63,7 +63,7 @@ export default function Result() {
       <Container>
         <List
           heading={{
-            text: precheck.result.nextSteps.title,
+            text: preCheck.result.nextSteps.title,
             tagName: "h2",
           }}
           items={listItems}
