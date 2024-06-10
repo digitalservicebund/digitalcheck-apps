@@ -66,6 +66,9 @@ export default function Index() {
             content={preCheck.start.hint.text}
           ></InlineNotice>
         </Container>
+        <Container paddingTop="0" additionalClassNames="lg:hidden">
+          <PreCheckNavigation />
+        </Container>
       </section>
     </div>
   );
