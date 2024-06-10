@@ -2,7 +2,7 @@ import Check from "@digitalservicebund/icons/Check";
 import classNames from "classnames";
 import { useId } from "react";
 import { precheck } from "resources/content";
-import type { Answers, TQuestion } from "./route";
+import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
 
 type NavigationListProps = {
   question: TQuestion;
