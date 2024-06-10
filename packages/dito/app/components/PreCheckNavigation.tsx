@@ -6,21 +6,21 @@ import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
 
 type PreCheckNavigationProps = {
   question?: TQuestion;
-  answers: Answers;
+  answers?: Answers;
 };
 
 export default function PreCheckNavigation({
   question,
   answers,
 }: PreCheckNavigationProps) {
-  const firstUnansweredQuestionIdx = Object.keys(answers).length;
+  const firstUnansweredQuestionIdx = answers ? Object.keys(answers).length : 0;
   const questions = preCheck.questions;
 
   return (
     <nav aria-label="Fragenliste">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
-          const isDone = q.id in answers;
+          const isDone = answers ? q.id in answers : false;
           const isCurrent = q.id === question?.id;
           const isDisabled = idx > firstUnansweredQuestionIdx;
           return (
