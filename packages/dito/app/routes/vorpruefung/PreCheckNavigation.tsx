@@ -5,7 +5,7 @@ import { preCheck } from "resources/content";
 import type { Answers, TQuestion } from "routes/vorpruefung.$questionId";
 
 type PreCheckNavigationProps = {
-  question?: TQuestion;
+  question?: TQuestion | null;
   answers: Answers;
 };
 
