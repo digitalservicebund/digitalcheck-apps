@@ -67,7 +67,10 @@ test.describe("test internal links", () => {
 
   test("breadcrumb landing link works", async ({ page }) => {
     await page.goto(staticRoutes.PATH_PRECHECK);
-    await page.getByRole("navigation").getByRole("link").click();
+    await page
+      .getByLabel("navigation")
+      .getByRole("link", { name: "Startseite" })
+      .click();
     await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
     await page.goto(preCheck.questions[0].url);
     // using label here as there is a sidebar with the same role
