@@ -1,5 +1,5 @@
 import type { TQuestion } from "routes/vorpruefung.$questionId";
-import { PATH_PRECHECK, PATH_RESULT } from "./staticRoutes";
+import { PATH_ASSESSMENT, PATH_PRECHECK, PATH_RESULT } from "./staticRoutes";
 
 export const siteMeta = {
   title: "Digitalcheck",
@@ -55,10 +55,15 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
-export const pdf = {
+export const assessment = {
   title: "Bekommen Sie die Einschätzung als PDF",
   subtitle:
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
+  downloadPdfButton: {
+    text: "Einschätzung als PDF bekommen",
+    href: "digitalcheck-vorpruefung.pdf",
+    reloadDocument: true,
+  },
 };
 
 export const preCheck = {
@@ -148,6 +153,10 @@ export const preCheck = {
   result: {
     title: "Ergebnis der Vorprüfung",
     positive: "Ihr Regelungsvorhaben hat einen Digitalbezug.",
+    generatePdfButton: {
+      text: "Einschätzung als PDF bekommen",
+      href: PATH_ASSESSMENT,
+    },
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
       steps: [
