@@ -48,7 +48,7 @@ test.describe("test landing page", () => {
   });
 });
 
-test.describe("test internal links", () => {
+test.describe("test links", () => {
   test("links in footer work", async ({ page }) => {
     // TODO: reenable once the pages are implemented (remove 404 and extra gotos)
     await page.goto(staticRoutes.PATH_LANDING);
@@ -90,9 +90,13 @@ test.describe("test internal links", () => {
     await page.getByLabel("navigation").getByRole("link").last().click();
     await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
   });
-});
 
-test.describe("test general links", () => {
+  test("links in landing page work", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_LANDING);
+    await page.getByRole("link", { name: "Zur Dokumentation" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_DOCUMENTATION);
+  });
+
   test("links leading to external pages open in new tab", async ({ page }) => {
     await page.goto(staticRoutes.PATH_LANDING);
     const link = page.getByRole("link", {

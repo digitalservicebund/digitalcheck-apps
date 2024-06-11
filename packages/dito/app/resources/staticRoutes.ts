@@ -1,6 +1,7 @@
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_RESULT: string = PATH_PRECHECK + "/ergebnis";
+export const PATH_DOCUMENTATION: string = "/dokumentation";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
