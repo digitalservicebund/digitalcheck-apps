@@ -71,10 +71,7 @@ export type Answers = {
 };
 
 export default function Index() {
-  const { question, answers } = useLoaderData<{
-    question: TQuestion;
-    answers: Answers;
-  }>();
+  const { question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const fetcher = useFetcher();
   const {
