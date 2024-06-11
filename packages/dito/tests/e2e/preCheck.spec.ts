@@ -31,6 +31,17 @@ test.describe("test result page", () => {
     await expect(page.getByRole("main")).not.toContainText("IT-System");
   });
 
+  test("result page links to documentation", async ({ page }) => {
+    await page.goto(staticRoutes.PATH_PRECHECK);
+    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    for (let i = 0; i < 5; i++) {
+      await page.getByLabel("Ja").click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await page.getByRole("link", { name: "Dokumentation" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_DOCUMENTATION);
+  });
+
   test("result page with no answers redirects to precheck", async ({
     page,
   }) => {
