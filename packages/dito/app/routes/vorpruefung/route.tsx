@@ -4,21 +4,20 @@ import { loader as questionLoader } from "routes/vorpruefung.$questionId";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 export default function PreCheck() {
-  const data = useRouteLoaderData<typeof questionLoader>(
-    "routes/vorpruefung.$questionId",
-  );
-  const question = data ? data.question : null;
-  const answers = data ? data.answers : {};
+  const { question, answers } =
+    useRouteLoaderData<typeof questionLoader>(
+      "routes/vorpruefung.$questionId",
+    ) || {};
 
   return (
     <div className="flex bg-blue-100">
       <div className="hidden lg:block flex-none pt-48">
-        <PreCheckNavigation question={question} answers={answers} />
+        <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
         <Outlet />
         <Container paddingTop="0" additionalClassNames="lg:hidden">
-          <PreCheckNavigation question={question} answers={answers} />
+          <PreCheckNavigation question={question} answers={answers ?? {}} />
         </Container>
       </section>
     </div>
