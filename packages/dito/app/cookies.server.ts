@@ -12,3 +12,7 @@ export const getAnswersFromCookie = async (request: Request) => {
   } | null;
   return cookie ? cookie : { answers: {} };
 };
+
+export const getHeaderFromCookie = async (cookie: { answers: Answers }) => {
+  return { headers: { "Set-Cookie": await userAnswers.serialize(cookie) } };
+};

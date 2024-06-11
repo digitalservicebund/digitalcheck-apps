@@ -9,7 +9,7 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
-import { getAnswersFromCookie, userAnswers } from "cookies.server";
+import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { preCheck } from "resources/content";
@@ -39,11 +39,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
   cookie.answers[questionId] = answer as Option["value"];
 
-  return redirect(nextLink, {
-    headers: {
-      "Set-Cookie": await userAnswers.serialize(cookie),
-    },
-  });
+  return redirect(nextLink, await getHeaderFromCookie(cookie));
 }
 
 export type TQuestion = {
