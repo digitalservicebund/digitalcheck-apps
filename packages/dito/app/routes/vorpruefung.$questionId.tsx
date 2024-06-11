@@ -27,7 +27,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     });
   }
 
-  return json({ question: questions[questionIdx], answers });
+  return json({ questionIdx, question: questions[questionIdx], answers });
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -67,7 +67,7 @@ export type Answers = {
 };
 
 export default function Index() {
-  const { question, answers } = useLoaderData<typeof loader>();
+  const { questionIdx, question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const fetcher = useFetcher();
   const {
@@ -111,9 +111,7 @@ export default function Index() {
           paddingBottom="32"
           box={{
             label: {
-              text: `Frage ${Object.keys(answers).length + 1} von ${
-                questions.length
-              }`,
+              text: `Frage ${questionIdx + 1} von ${questions.length}`,
             },
             heading: {
               text: question.question,
