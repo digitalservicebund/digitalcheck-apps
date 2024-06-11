@@ -10,6 +10,7 @@ const config: PlaywrightTestConfig = {
     viewport: { width: 1280, height: 720 },
     acceptDownloads: true,
     screenshot: "only-on-failure",
+    trace: "retain-on-failure",
   },
   reporter: [
     [process.env.CI ? "github" : "list"],
