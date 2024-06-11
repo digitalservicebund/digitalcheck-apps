@@ -10,7 +10,7 @@ export const getAnswersFromCookie = async (request: Request) => {
   const cookie = (await userAnswers.parse(cookieHeader)) as {
     answers: Answers;
   } | null;
-  return cookie ? cookie : { answers: {} };
+  return cookie ?? { answers: {} };
 };
 
 export const getHeaderFromCookie = async (cookie: { answers: Answers }) => {
