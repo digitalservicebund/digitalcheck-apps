@@ -4,10 +4,9 @@ import { loader as questionLoader } from "routes/vorpruefung.$questionId";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 export default function PreCheck() {
+  const questionRoute = "routes/vorpruefung.$questionId";
   const { question, answers } =
-    useRouteLoaderData<typeof questionLoader>(
-      "routes/vorpruefung.$questionId",
-    ) || {};
+    useRouteLoaderData<typeof questionLoader>(questionRoute) || {};
 
   return (
     <div className="flex bg-blue-100">
