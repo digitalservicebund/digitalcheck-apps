@@ -3,24 +3,14 @@ import { Link } from "react-router-dom";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import Container from "./Container";
 import Image from "./Image";
-import RichText from "./RichText";
 
 type LinkProps = {
+  preText?: string;
+  postText?: string;
   url: string;
   text: string;
   openInNewTab?: boolean;
 };
-
-const paragraphs = [
-  {
-    markdown:
-      "Ein Onlinedienst der [DigitalService GmbH des Bundes](https://digitalservice.bund.de/)",
-  },
-  {
-    markdown:
-      "Im Auftrag des [Bundesministerium des Innern und für Heimat](https://www.bmi.bund.de/)",
-  },
-];
 
 export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
   const linksMiddleIndex = Math.ceil(links.length / 2);
@@ -29,6 +19,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
 
   const renderLink = (link: LinkProps) => (
     <li key={link.url}>
+      {link?.preText}{" "}
       <Link
         to={link.url}
         className="text-link increase-tap-area"
@@ -39,7 +30,8 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
         }
       >
         {link.text}
-      </Link>
+      </Link>{" "}
+      {link?.postText}
     </li>
   );
 
@@ -61,13 +53,20 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
                 alternativeText="Logo des Bundesministerium des Innern und für Heimat"
               />
             </div>
-            <div className="ds-stack-8">
-              {paragraphs.map((paragraph) => (
-                <div key={paragraph.markdown}>
-                  <RichText {...paragraph} />
-                </div>
-              ))}
-            </div>
+            {renderLinks([
+              {
+                preText: "Ein Onlinedienst der",
+                text: "DigitalService GmbH des Bundes",
+                url: "https://digitalservice.bund.de/",
+                openInNewTab: true,
+              },
+              {
+                preText: "Im Auftrag des",
+                text: "Bundesministerium des Innern und für Heimat",
+                url: "https://www.bmi.bund.de/",
+                openInNewTab: true,
+              },
+            ])}
           </div>
 
           <div className="flex flex-wrap gap-x-32 gap-y-8">
