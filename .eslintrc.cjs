@@ -64,14 +64,7 @@ module.exports = {
           "warn",
           {
             allowConstantExport: true,
-            allowExportNames: [
-              "meta",
-              "links",
-              "headers",
-              "loader",
-              "action",
-              "shouldRevalidate",
-            ],
+            allowExportNames: ["meta", "links", "headers", "loader", "action"],
           },
         ],
       },
