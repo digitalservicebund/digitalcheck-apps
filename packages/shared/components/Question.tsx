@@ -1,30 +1,44 @@
-import { z } from "zod";
-import RadioGroup, { RadioGroupPropsSchema } from "./RadioGroup";
-import Select, { SelectPropsSchema } from "./Select";
+import classNames from "classnames";
+import { PropsWithChildren } from "react";
+import Box, { type BoxProps } from "./Box";
+import { CommonWrapperProps } from "./CommonWrapperProps";
+import RadioGroup, { type RadioGroupProps } from "./RadioGroup";
+import Select, { type SelectProps } from "./Select";
 
-export const QuestionPropsSchema = z.object({
-  heading: z.string(),
-  label: z.string(),
-  description: z.string(),
-  select: SelectPropsSchema.optional(),
-  radio: RadioGroupPropsSchema.optional(),
-});
+const DEFAULT_PADDING_TOP = "0";
+const DEFAULT_PADDING_BOTTOM = "80";
 
-type QuestionProps = z.infer<typeof QuestionPropsSchema>;
+export type QuestionProps = {
+  box: BoxProps;
+  select?: SelectProps;
+  radio?: RadioGroupProps;
+  additionalClassNames?: string;
+} & PropsWithChildren<CommonWrapperProps>;
 
 export default function Question({
-  heading,
-  label,
-  description,
+  paddingTop = "default",
+  paddingBottom = "default",
+  backgroundColor = "default",
+  box,
   select,
   radio,
+  additionalClassNames,
 }: QuestionProps) {
+  let cssClasses = additionalClassNames ?? "";
+  cssClasses = classNames(
+    cssClasses,
+    "container",
+    `!pt-${paddingTop === "default" ? DEFAULT_PADDING_TOP : paddingTop}`,
+    `!pb-${
+      paddingBottom === "default" ? DEFAULT_PADDING_BOTTOM : paddingBottom
+    }`,
+    backgroundColor !== "default" && "text-black",
+  );
+
   return (
-    <fieldset className="container pt-0 pb-80">
+    <fieldset className={cssClasses}>
       <legend className="pb-16 ds-stack-8">
-        <p className="ds-label-02-reg">{label}</p>
-        <h2>{heading}</h2>
-        <p>{description}</p>
+        <Box {...box} />
       </legend>
       {select && <Select placeholder={"Bitte auswählen"} {...select} />}
       {radio && <RadioGroup {...radio} />}

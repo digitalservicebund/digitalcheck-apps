@@ -76,6 +76,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
           additionalClassNames={"pt-20"}
           heading={{
             tagName: "h3",
+            look: "ds-heading-03-bold",
             text: "Die Darstellungen helfen auch bei der Umsetzung",
           }}
           content={{
@@ -88,6 +89,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
             additionalClassNames={"p-20"}
             heading={{
               tagName: "h3",
+              look: "ds-heading-03-bold",
               text: "Tipp: Schaffen Sie ein gemeinsames Verständnis",
             }}
             content={{

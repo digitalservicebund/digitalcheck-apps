@@ -28,7 +28,7 @@ export default function renderRecommendation({
           tagName="p"
           text={fidelity.name}
         />
-        <Heading tagName="h3" text={tool.name} />
+        <Heading tagName="h3" look="ds-heading-03-bold" text={tool.name} />
         <div className="flex flex-col sm:flex-row gap-16 sm:gap-24">
           <RichText
             className="flex-1 [word-break:break-word]"

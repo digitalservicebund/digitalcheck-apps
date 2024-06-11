@@ -1,0 +1,64 @@
+import CheckCircleOutlinedIcon from "@digitalservicebund/icons/CheckCircleOutlined";
+import LightbulbOutlinedIcon from "@digitalservicebund/icons/LightbulbOutlined";
+import WarningAmberIcon from "@digitalservicebund/icons/WarningAmber";
+import Heading from "./Heading";
+import RichText from "./RichText";
+
+type InlineNoticeProps = {
+  identifier?: string;
+  title: string;
+  tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+  look: "success" | "warning" | "tips";
+  content?: string;
+};
+
+// We can't set border-[${borderColor}] in the template because it causes inconsistent behavior in Storybook.
+// Therefore, it's set in the config.
+const lookConfig = {
+  success: {
+    backgroundColor: "bg-green-100",
+    borderColor: "border-[#005E34]",
+    IconComponent: CheckCircleOutlinedIcon,
+  },
+  warning: {
+    backgroundColor: "bg-yellow-200",
+    borderColor: "border-[#E5CE5C]",
+    IconComponent: WarningAmberIcon,
+  },
+  tips: {
+    backgroundColor: "bg-gray-100",
+    borderColor: "border-[#B8BDC3]",
+    IconComponent: LightbulbOutlinedIcon,
+  },
+};
+
+const InlineNotice = ({
+  identifier,
+  title,
+  tagName,
+  look,
+  content,
+}: InlineNoticeProps) => {
+  const { backgroundColor, borderColor, IconComponent } = lookConfig[look];
+
+  return (
+    <div
+      className={`ds-stack-8 scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
+      id={identifier}
+    >
+      <div className="flex flex-row gap-[4px] items-center">
+        <IconComponent style={{ width: 24, height: 24 }} />
+        <Heading tagName={tagName} look="ds-label-01-bold">
+          {title}
+        </Heading>
+      </div>
+      {content && (
+        <div className="tracking-[0.16px] leading-[26px]">
+          {content && <RichText markdown={content} />}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default InlineNotice;

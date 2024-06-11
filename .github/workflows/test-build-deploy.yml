@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Test, Build and Deploy
 
 on:
   workflow_call:
@@ -18,7 +18,15 @@ env:
   IMAGE_NAME: digitalservicebund/digitalcheck-${{ inputs.package }}
 
 jobs:
+  check-and-test-shared:
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: ${{ inputs.package }}
+    secrets: inherit
+
   build-and-push-image:
+    needs: [check-and-test-shared]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -35,7 +43,7 @@ jobs:
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
         # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
-        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
+        uses: aquasecurity/trivy-action@595be6a0f6560a0a8fc419ddf630567fc623531d # v0.22.0
         with:
           image-ref: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
           format: "cosign-vuln"
@@ -76,11 +84,18 @@ jobs:
       - name: Attest the vulnerability scan
         run: cosign attest --yes --replace --predicate ${{ env.PACKAGE_NAME }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
   deploy:
+    needs: [build-and-push-image]
+    if: ${{ github.ref == 'refs/heads/main' }}
     concurrency:
       group: digitalcheck-${{ inputs.package }}-${{ inputs.environment }}
       cancel-in-progress: true
-    needs: [build-and-push-image]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -98,6 +113,7 @@ jobs:
           app: "${{ env.PACKAGE_NAME }}-${{ inputs.environment }}"
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
+          argocd_sync_timeout: 240
 
       - name: Report Deployment
         uses: digitalservicebund/track-deployment@5a2815e150e1268983aac5ca04c8c046ed1b614a # v1.1.0
@@ -106,3 +122,9 @@ jobs:
           environment: ${{ inputs.environment }}
           metrics_deployment_webhook_url: ${{ secrets.METRICS_DEPLOYMENT_WEBHOOK_URL }}
           metrics_webhook_token: ${{ secrets.METRICS_WEBHOOK_TOKEN }}
+
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

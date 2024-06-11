@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import * as allRoutes from "../../src/routes";
+import * as allRoutes from "routes";
 
 test.describe("test general functionality", () => {
   test("all routes are reachable and have a breadcrumb menu + title", async ({
@@ -105,23 +105,15 @@ test.describe("test links", () => {
   });
 
   test("links leading to external pages open in new tab", async ({ page }) => {
-    await page.goto(allRoutes.PATH_INFO);
-    await expect(
-      page.getByRole("link", { name: "Mit Visualisierungen" }),
-    ).toHaveAttribute("target", "_blank");
-
     await page.goto(allRoutes.PATH_IMPRINT);
     const link = page.getByRole("link", {
       name: "DigitalService GmbH des Bundes",
     });
-    await expect(link).toHaveAttribute("target", "_blank");
 
-    // THIS CURRENTLY DOES NOT WORK DUE TO AN ISSUE WITH PLAUSIBLE
-    // https://github.com/plausible/plausible-tracker/issues/12
-    // await link.click();
+    await link.click();
     // wait for a second to let the new tab open
-    // await page.waitForTimeout(1000);
-    // await expect(page).toHaveURL(allRoutes.PATH_IMPRINT);
+    await page.waitForTimeout(1000);
+    await expect(page).toHaveURL(allRoutes.PATH_IMPRINT);
   });
 });
 

@@ -1,39 +1,62 @@
-import RichText from "@digitalcheck/shared/components/RichText";
-import type { MetaFunction } from "@remix-run/node";
-import NumberedList from "components/NumberedList";
-import { landing, siteMeta } from "resources/content";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: siteMeta.title },
-    {
-      name: "description",
-      content: siteMeta.description,
-    },
-  ];
-};
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import List from "@digitalcheck/shared/components/List";
+import { landing } from "resources/content";
 
 export default function Index() {
+  const listItems = landing.list.items.map((item) => ({
+    headline: {
+      tagName: "h3" as const,
+      text: item.title,
+    },
+    content: item.text,
+    buttons: item.link && [
+      {
+        text: item.link.text,
+        href: item.link.url,
+      },
+    ],
+  }));
   return (
-    <main className="">
-      <div className="bg-blue-100">
-        <div className="container ds-stack-16 pt-64 pb-48">
-          <h1>{landing.title}</h1>
-          <p className="ds-subhead">{landing.subtitle}</p>
-        </div>
-      </div>
-      <div className="container ds-stack-16 pt-40 pb-48">
-        <NumberedList
-          title={landing.list.title}
-          listItems={landing.list.items}
+    <>
+      <Background backgroundColor="blue">
+        <Container>
+          <Header
+            heading={{
+              tagName: "h1",
+              text: landing.title,
+            }}
+            content={{
+              markdown: landing.subtitle,
+            }}
+          ></Header>
+        </Container>
+      </Background>
+      <Container>
+        <List
+          heading={{
+            tagName: "h2",
+            text: landing.list.title,
+          }}
+          items={listItems}
+          isNumeric
         />
-      </div>
-      <div className="bg-blue-100">
-        <div className="container ds-stack-16 pt-40 pb-48">
-          <h3>{landing.explanation.title}</h3>
-          <RichText markdown={landing.explanation.text} />
-        </div>
-      </div>
-    </main>
+      </Container>
+      <Background backgroundColor="blue">
+        <Container>
+          <Box
+            heading={{
+              tagName: "h3",
+              text: landing.explanation.title,
+            }}
+            content={{
+              markdown: landing.explanation.text,
+            }}
+          ></Box>
+        </Container>
+      </Background>
+    </>
   );
 }

@@ -10,6 +10,12 @@
     font-size: 16px;
   }
 
+  body {
+    min-height: 100vh;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
   h1 {
     @apply ds-heading-01-reg max-sm:text-5xl max-md:text-6xl;
   }
@@ -22,20 +28,11 @@
     @apply ds-heading-03-reg;
   }
 
-  a {
-    color: currentcolor;
-  }
-
-  .rich-text {
-    max-width: 40rem;
-  }
-
-  .rich-text a {
-    @apply text-link;
-  }
-
-  footer a {
-    @apply increase-tap-area whitespace-nowrap;
+  h1,
+  h2,
+  h3,
+  p {
+    max-width: 80ch;
   }
 }
 
@@ -80,6 +77,13 @@
     @apply text-[#4c2c92];
   }
 
+  /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
+  @media (hover: hover) {
+    .text-link:hover {
+      @apply decoration-[3px];
+    }
+  }
+
   /* browsers without :focus-visible support */
   .text-link:focus {
     @apply outline;
@@ -109,6 +113,23 @@
   .text-link:active {
     @apply text-black;
   }
+
+  footer a {
+    @apply increase-tap-area whitespace-nowrap;
+  }
+
+  .rich-text a {
+    @apply text-link;
+  }
+
+  .rich-text ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  .rich-text p {
+    @apply text-lg;
+  }
 }
 
 @layer utilities {
@@ -124,22 +145,5 @@
     bottom: -0.75rem;
     left: -0.75rem;
     right: -0.75rem;
-  }
-}
-
-@layer screen {
-  /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
-  @media (hover: hover) {
-    .text-link:hover {
-      @apply decoration-[3px];
-    }
-  }
-
-  @media (max-width: 499px) {
-    /* project-specific overwriting of angie styling */
-    .ds-heading-01-reg {
-      font-size: 2.25rem;
-      line-height: 1.2222;
-    }
   }
 }

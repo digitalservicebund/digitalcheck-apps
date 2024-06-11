@@ -1,7 +1,3 @@
-main .rich-text p {
-  @apply ds-body-01-reg;
-}
-
 main .rich-text a {
   @apply text-black font-bold;
 }

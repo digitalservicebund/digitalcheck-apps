@@ -35,7 +35,7 @@ function RadioAnswer({
 const disagreeAnnotation = "Ich stimme überhaupt nicht zu.";
 const agreeAnnotation = "Ich stimme voll und ganz zu.";
 
-function Question({
+function FeedbackQuestion({
   question,
   name,
   onFeedbackClick,
@@ -108,6 +108,7 @@ export default function FeedbackForm({
         <Box
           heading={{
             tagName: "h3",
+            look: "ds-heading-03-bold",
             text: "Ihr Feedback hilft uns weiter!",
           }}
         ></Box>
@@ -115,13 +116,13 @@ export default function FeedbackForm({
           <p className="">1 = {disagreeAnnotation}</p>
           <p className="">5 = {agreeAnnotation}</p>
         </div>
-        <Question
+        <FeedbackQuestion
           name="question-useful"
           question="Ich habe gefunden, was ich brauche."
           hasAnnotations
           onFeedbackClick={sendFeedback}
         />
-        <Question
+        <FeedbackQuestion
           name="question-simple"
           question="Die Anwendung war einfach zu nutzen."
           onFeedbackClick={sendFeedback}

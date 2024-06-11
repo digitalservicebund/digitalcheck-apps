@@ -1,0 +1,17 @@
+/* Remove the margin above lists and below small headlines */
+.rich-text ul,
+.rich-text .ds-label-01-bold + p {
+  @apply mt-0;
+}
+
+/***********************************************
+* Markdown only pages (imprint etc.) adaptions *
+************************************************/
+.rich-text h2:not(:first-child) {
+  @apply pt-40;
+}
+
+main ul li,
+main ol li {
+  @apply pt-8;
+}

@@ -12,15 +12,13 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
   const renderer = {
     link(href: string, title: string | null | undefined, text: string) {
       const linkHtml = originalRenderer.link(href, title, text);
-      // Open external links in new tab
-      // TODO: This doesnt work due to enableAutoOutboundTracking() from Plausible
       if (href.startsWith("http")) {
         return linkHtml.replace(
           /^<a /,
           `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
         );
       }
-      return "linkHtml";
+      return linkHtml;
     },
   };
 

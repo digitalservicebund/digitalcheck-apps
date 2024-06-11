@@ -47,12 +47,13 @@ jobs:
       shouldRunIntegrationTests: false
     secrets: inherit
 
-  whole-pipeline:
+  check-test-build-deploy:
     needs:
       - changes
       - check-and-test-shared
       - vulnerability-scan
-    if: ${{ needs.check-and-test-shared.result == 'success' || !contains(needs.changes.outputs.packages, 'shared') }}
+    # always() ensures that the job runs even if the needed jobs are skipped
+    if: ${{ always() && (needs.check-and-test-shared.result == 'success' || needs.check-and-test-shared.result == 'skipped') }}
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -60,8 +61,8 @@ jobs:
         package: ${{ fromJSON(needs.changes.outputs.packages) }}
         exclude:
           - package: shared
-    uses: ./.github/workflows/check-and-test.yml
+    uses: ./.github/workflows/test-build-deploy.yml
     with:
       package: ${{ matrix.package }}
-      # environment: production
+      environment: production
     secrets: inherit

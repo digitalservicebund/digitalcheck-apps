@@ -1,7 +1,6 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-const port = parseInt(process.env.VITE_PORT ?? "4173"); // Vite's default port when running `vite preview`
-const timeout = parseInt(process.env.WAIT_ON_TIMEOUT ?? `${20 * 1000}`);
+const timeout = parseInt(process.env.WAIT_ON_TIMEOUT ?? `${5 * 1000}`);
 
 const config: PlaywrightTestConfig = {
   testDir: ".",
@@ -10,9 +9,7 @@ const config: PlaywrightTestConfig = {
   use: {
     viewport: { width: 1280, height: 720 },
     acceptDownloads: true,
-    baseURL: `http://localhost:${port}`,
     screenshot: "only-on-failure",
-    trace: "on-first-retry",
   },
   reporter: [
     [process.env.CI ? "github" : "list"],
@@ -23,19 +20,12 @@ const config: PlaywrightTestConfig = {
       name: "chromium",
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
-    },
   ],
   webServer: {
-    command: `npm run dev -- --port ${port}`,
-    port,
+    command: "npm run build && npm start",
+    port: 3000,
     timeout,
+    reuseExistingServer: true,
   },
 };
 

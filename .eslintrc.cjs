@@ -18,7 +18,6 @@ module.exports = {
   // Base configs
   extends: [
     "eslint:recommended",
-    "plugin:playwright/jest-playwright",
     "plugin:prettier/recommended", // Make sure this is always the last element in the array.
   ],
 
@@ -63,7 +62,10 @@ module.exports = {
       rules: {
         "react-refresh/only-export-components": [
           "warn",
-          { allowConstantExport: true },
+          {
+            allowConstantExport: true,
+            allowExportNames: ["meta", "links", "headers", "loader", "action"],
+          },
         ],
       },
     },
@@ -82,7 +84,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
         tsconfigRootDir: __dirname,
-        project: ["packages/*/tsconfig.json"],
+        project: ["**/tsconfig.json"],
       },
       settings: {
         "import/internal-regex": "^~/",
@@ -93,7 +95,7 @@ module.exports = {
           typescript: {
             alwaysTryTypes: true,
             tsconfigRootDir: __dirname,
-            project: ["packages/*/tsconfig.json"],
+            project: ["**/tsconfig.json"],
           },
         },
       },
@@ -113,6 +115,15 @@ module.exports = {
           },
         ],
       },
+    },
+
+    // Playwright
+    {
+      files: [
+        "**/a11y/*.test.{js,ts,jsx,tsx}",
+        "**/e2e/*.test.{js,ts,jsx,tsx}",
+      ],
+      extends: ["plugin:playwright/jest-playwright"],
     },
 
     // Node
