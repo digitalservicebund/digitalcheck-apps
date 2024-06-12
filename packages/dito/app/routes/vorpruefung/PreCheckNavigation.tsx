@@ -2,25 +2,25 @@ import Check from "@digitalservicebund/icons/Check";
 import classNames from "classnames";
 import { useId } from "react";
 import { preCheck } from "resources/content";
-import type { Answers, TQuestion } from "../routes/vorpruefung.$questionId";
+import type { Answers, TQuestion } from "routes/vorpruefung.$questionId";
 
-type PreCheckNavigationProps = {
+type PreCheckNavigationProps = Readonly<{
   question?: TQuestion;
-  answers?: Answers;
-};
+  answers: Answers;
+}>;
 
 export default function PreCheckNavigation({
   question,
   answers,
 }: PreCheckNavigationProps) {
-  const firstUnansweredQuestionIdx = answers ? Object.keys(answers).length : 0;
+  const firstUnansweredQuestionIdx = Object.keys(answers).length;
   const questions = preCheck.questions;
 
   return (
     <nav aria-label="Fragenliste">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
-          const isDone = answers ? q.id in answers : false;
+          const isDone = q.id in answers;
           const isCurrent = q.id === question?.id;
           const isDisabled = idx > firstUnansweredQuestionIdx;
           return (

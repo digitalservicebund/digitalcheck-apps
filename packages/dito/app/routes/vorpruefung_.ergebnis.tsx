@@ -2,15 +2,19 @@ import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
 import { preCheck } from "resources/content";
+import { PATH_PRECHECK } from "resources/staticRoutes";
 import { type Answers } from "./vorpruefung.$questionId";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
-
+  // redirect to precheck if not all answers are present
+  if (Object.keys(answers).length !== preCheck.questions.length) {
+    return redirect(PATH_PRECHECK);
+  }
   return json({ answers });
 }
 
@@ -27,7 +31,6 @@ export default function Result() {
     (questionId) =>
       preCheck.questions.find((question) => question.id === questionId)?.result,
   );
-
   const reasonsText = reasons.map((reason) => `- ${reason}`).join("\n");
 
   const listItems = preCheck.result.nextSteps.steps.map((step) => ({
