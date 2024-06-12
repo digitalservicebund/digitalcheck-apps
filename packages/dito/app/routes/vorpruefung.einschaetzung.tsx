@@ -44,12 +44,29 @@ export default function Assessment() {
           }}
         ></Box>
       </Container>
-      <Container paddingBottom="0">
+      <Container paddingBottom="48">
         <Form method="post" reloadDocument>
-          <input type="text" name="email" />
-          <input type="text" name="policyTitle" />
-          <input type="text" name="department" />
-          {/* <Button {...assessment.downloadPdfButton} /> */}
+          <input
+            type="text"
+            name="email"
+            placeholder="email"
+            className="border-2 border-black border-solid"
+          />
+          <br />
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            className="border-2 border-black border-solid"
+          />
+          <br />
+          <input
+            type="text"
+            name="department"
+            placeholder="department"
+            className="border-2 border-black border-solid"
+          />
+          <br />
           <ButtonContainer>
             <Button
               id="assessment-back-button"

@@ -154,9 +154,9 @@ export const preCheck = {
   result: {
     title: "Ergebnis der Vorprüfung",
     positive: "Ihr Regelungsvorhaben hat einen Digitalbezug.",
-    generatePdfButton: {
+    receivePdfButton: {
       text: "Einschätzung als PDF bekommen",
-      href: PATH_ASSESSMENT,
+      url: PATH_ASSESSMENT,
     },
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
