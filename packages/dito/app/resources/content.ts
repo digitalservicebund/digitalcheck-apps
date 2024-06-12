@@ -60,9 +60,10 @@ export const assessment = {
   subtitle:
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
   downloadPdfButton: {
-    text: "Einschätzung als PDF bekommen",
-    href: "digitalcheck-vorpruefung.pdf",
-    reloadDocument: true,
+    text: "Als PDF herunterladen",
+  },
+  receiveEmailButton: {
+    text: "Per E-Mail erhalten",
   },
 };
 
