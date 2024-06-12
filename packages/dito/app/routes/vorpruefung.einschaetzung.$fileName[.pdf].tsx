@@ -66,12 +66,17 @@ const createFilledPDF = async function (
   - Force the file to download (ready, commented out)
 */
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  //const { fileName } = params;
+export async function loader({ params, request }: LoaderFunctionArgs) {
+  const { fileName } = params;
   const url = new URL(request.url);
 
   const searchParams = Object.fromEntries(url.searchParams.entries());
-  const { title = "", negativeAssessment = "", ...answers } = searchParams;
+  const {
+    title = "",
+    negativeAssessment = "",
+    download = false,
+    ...answers
+  } = searchParams;
 
   const positiveRegex = /^(yes|unsure)$/;
   const negativeRegex = /^(no)$/;
@@ -118,8 +123,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      // "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
-      // "Content-Length": `${pdfData.byteLength}`,
+      ...(download && {
+        "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
+        "Content-Length": `${pdfData.byteLength}`,
+      }),
     },
   });
 }
