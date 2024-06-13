@@ -59,11 +59,8 @@ const createFilledPDF = async function (
 };
 
 /* TODO:
-  - Update template to accept contact email and department (ressort)
-  - Update to accept reasoning for negative outcome
   - Add more error checking around parameters
   - Improve type checking
-  - Force the file to download (ready, commented out)
 */
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
