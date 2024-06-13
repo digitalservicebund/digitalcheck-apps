@@ -53,15 +53,11 @@ const createFilledPDF = async function (
 
     return await pdfDoc.save();
   } catch (err) {
+    // TODO: Logging on failure
     console.error("Error processing PDF:", err);
     throw err;
   }
 };
-
-/* TODO:
-  - Add more error checking around parameters
-  - Improve type checking
-*/
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const { fileName } = params;
