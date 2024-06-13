@@ -78,42 +78,42 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     ...answers
   } = searchParams;
 
-  const positiveRegex = /^(yes|unsure)$/;
-  const negativeRegex = /^(no)$/;
+  const positive = ["yes", "unsure"];
+  const negative = "no";
 
   const pdfData: Uint8Array = await createFilledPDF({
     title,
     answers: [
       {
         name: FIELD_NAME_PRE_CHECK_POSITIVE_1,
-        checked: positiveRegex.test(answers?.["it-system"]),
+        checked: positive.indexOf(answers?.["it-system"]) > -1,
       },
       {
         name: FIELD_NAME_PRE_CHECK_POSITIVE_2,
-        checked: positiveRegex.test(
-          answers?.["verpflichtungen-fuer-beteiligte"],
-        ),
+        checked:
+          positive.indexOf(answers?.["verpflichtungen-fuer-beteiligte"]) > -1,
       },
       {
         name: FIELD_NAME_PRE_CHECK_POSITIVE_3,
-        checked: positiveRegex.test(answers?.["datenaustausch"]),
+        checked: positive.indexOf(answers?.["datenaustausch"]) > -1,
       },
       {
         name: FIELD_NAME_PRE_CHECK_POSITIVE_4,
-        checked: positiveRegex.test(answers?.["kommunikation"]),
+        checked: positive.indexOf(answers?.["kommunikation"]) > -1,
       },
       {
         name: FIELD_NAME_PRE_CHECK_POSITIVE_5,
-        checked: positiveRegex.test(answers?.["automatisierung"]),
+        checked: positive.indexOf(answers?.["automatisierung"]) > -1,
       },
       {
         name: FIELD_NAME_PRE_CHECK_NEGATIVE,
-        checked:
-          negativeRegex.test(answers?.["it-system"]) &&
-          negativeRegex.test(answers?.["verpflichtungen-fuer-beteiligte"]) &&
-          negativeRegex.test(answers?.["datenaustausch"]) &&
-          negativeRegex.test(answers?.["kommunikation"]) &&
-          negativeRegex.test(answers?.["automatisierung"]),
+        checked: [
+          answers?.["it-system"],
+          answers?.["verpflichtungen-fuer-beteiligte"],
+          answers?.["datenaustausch"],
+          answers?.["kommunikation"],
+          answers?.["automatisierung"],
+        ].every((answer) => answer === negative),
       },
     ],
     negativeAssessment,
