@@ -56,7 +56,7 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
 };
 
 export const assessment = {
-  title: "Bekommen Sie die Einschätzung als PDF",
+  title: "Erhalten Sie die Einschätzung als PDF",
   subtitle:
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
   downloadPdfButton: {
