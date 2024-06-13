@@ -67,7 +67,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const {
     title = "",
     negativeAssessment = "",
-    download = false,
+    download,
     ...answers
   } = searchParams;
 
@@ -116,7 +116,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      ...(download && {
+      ...(download !== undefined && {
         "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
         "Content-Length": `${pdfData.byteLength}`,
       }),

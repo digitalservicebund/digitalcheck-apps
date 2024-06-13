@@ -1,3 +1,4 @@
+import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
@@ -62,14 +63,14 @@ export default function Result() {
           tagName="h2"
           content={reasonsText}
         />
-        <div
+        {/* <div
           dangerouslySetInnerHTML={{
             __html: `<!-- ${preCheck.result.receivePdfButton.url} -->`,
           }}
-        />
-        {/* <div className="mt-16">
+        /> */}
+        <div className="mt-16">
           <Button {...preCheck.result.receivePdfButton} look="tertiary" />
-        </div> */}
+        </div>
       </Container>
       <Container>
         <List

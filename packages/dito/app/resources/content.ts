@@ -55,18 +55,6 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
-export const assessment = {
-  title: "Erhalten Sie die Einschätzung als PDF",
-  subtitle:
-    "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
-  downloadPdfButton: {
-    text: "Als PDF herunterladen",
-  },
-  receiveEmailButton: {
-    text: "Per E-Mail erhalten",
-  },
-};
-
 export const preCheck = {
   start: {
     title: "Digitalbezug einschätzen",
@@ -156,7 +144,7 @@ export const preCheck = {
     positive: "Ihr Regelungsvorhaben hat einen Digitalbezug.",
     receivePdfButton: {
       text: "Einschätzung als PDF bekommen",
-      url: PATH_ASSESSMENT,
+      href: PATH_ASSESSMENT,
     },
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
@@ -178,6 +166,21 @@ export const preCheck = {
           text: "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
         },
       ],
+    },
+  },
+};
+
+export const assessment = {
+  title: "Erhalten Sie die Einschätzung als PDF",
+  subtitle:
+    "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
+  form: {
+    policyTitleLabel: "Arbeitstitel des Vorhabens",
+    downloadPdfButton: {
+      text: "Als PDF herunterladen",
+    },
+    receiveEmailButton: {
+      text: "Per E-Mail erhalten",
     },
   },
 };

@@ -76,7 +76,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="label-text mt-6" id={helperId}>
           {helperText}
         </div>
-        <InputError id={errorId}>{error}</InputError>
+        {error && <InputError id={errorId}>{error}</InputError>}
       </div>
     );
   },
