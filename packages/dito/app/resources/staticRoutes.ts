@@ -28,6 +28,11 @@ const routes: Route[] = [
     title: "Ergebnis der Vorprüfung",
     parent: PATH_PRECHECK,
   },
+  {
+    url: PATH_ASSESSMENT,
+    title: "Einschätzung als PDF",
+    parent: PATH_PRECHECK,
+  },
   // {
   //   url: PATH_IMPRINT,
   //   title: "Impressum",
