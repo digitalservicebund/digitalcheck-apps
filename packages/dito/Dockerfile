@@ -1,4 +1,4 @@
-# Download and install the dependenciees for building the app
+# Download and install the dependencies for building the app
 FROM node:22-alpine AS build-dependencies
 
 WORKDIR /src
@@ -48,6 +48,7 @@ COPY --chown=node:node package*.json LICENSE SECURITY.md ./
 COPY --chown=node:node packages/dito/package.json packages/dito/
 COPY --chown=node:node --from=production-dependencies /src/node_modules/ ./node_modules/
 COPY --chown=node:node --from=build /src/packages/dito/build/ ./packages/dito/build/
+COPY --chown=node:node --from=build /src/packages/dito/public/ ./packages/dito/public/
 
 EXPOSE 3000
 CMD ["npm", "run", "start", "--workspace", "packages/dito"]
