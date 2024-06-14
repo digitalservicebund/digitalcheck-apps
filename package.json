@@ -31,7 +31,8 @@
     "@digitalservice4germany/style-dictionary": "^2.0.0",
     "@digitalservicebund/icons": "^1.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-plugin-static-copy": "^1.0.5"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",
