@@ -3,14 +3,14 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument, PDFForm, PDFTextField } from "pdf-lib";
 
-const FIELD_NAME_POLICY_TITLE: string = "Titel des Regelungsvorhabens";
-const FIELD_NAME_PRE_CHECK_POSITIVE_1: string = "Vorprüfung positiv - 1";
-const FIELD_NAME_PRE_CHECK_POSITIVE_2: string = "Vorprüfung positiv - 2";
-const FIELD_NAME_PRE_CHECK_POSITIVE_3: string = "Vorprüfung positiv - 3";
-const FIELD_NAME_PRE_CHECK_POSITIVE_4: string = "Vorprüfung positiv - 4";
-const FIELD_NAME_PRE_CHECK_POSITIVE_5: string = "Vorprüfung positiv - 5";
-const FIELD_NAME_PRE_CHECK_NEGATIVE: string = "Vorprüfung negativ";
-const FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT: string =
+export const FIELD_NAME_POLICY_TITLE: string = "Titel des Regelungsvorhabens";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_1: string = "Vorprüfung positiv - 1";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_2: string = "Vorprüfung positiv - 2";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_3: string = "Vorprüfung positiv - 3";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_4: string = "Vorprüfung positiv - 4";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_5: string = "Vorprüfung positiv - 5";
+export const FIELD_NAME_PRE_CHECK_NEGATIVE: string = "Vorprüfung negativ";
+export const FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT: string =
   "Vorprüfung negativ - Erläuterung";
 
 interface PreCheckAnswer {
