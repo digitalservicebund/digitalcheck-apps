@@ -27,7 +27,7 @@ interface UserInput {
 const createFilledPDF = async function (
   userInput: UserInput,
 ): Promise<Uint8Array> {
-  const filePath = path.resolve("public/digitalcheck-vorpruefung.pdf");
+  const filePath = path.resolve("public/assets/digitalcheck-vorpruefung.pdf");
   const fileData = fs.readFileSync(filePath);
 
   try {

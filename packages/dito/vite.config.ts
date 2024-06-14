@@ -4,7 +4,7 @@ import { cjsInterop } from "vite-plugin-cjs-interop";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  publicDir: "../shared/public",
+  // publicDir: "../shared/public",
   plugins: [
     remix(),
     tsconfigPaths(),
