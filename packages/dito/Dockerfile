@@ -48,6 +48,7 @@ COPY --chown=node:node package*.json LICENSE SECURITY.md ./
 COPY --chown=node:node packages/dito/package.json packages/dito/
 COPY --chown=node:node --from=production-dependencies /src/node_modules/ ./node_modules/
 COPY --chown=node:node --from=build /src/packages/dito/build/ ./packages/dito/build/
+# We need to explicitly bring in the public folder here, so that dynamic PDF generation can happen on the server 
 COPY --chown=node:node --from=build /src/packages/dito/public/ ./packages/dito/public/
 
 EXPOSE 3000
