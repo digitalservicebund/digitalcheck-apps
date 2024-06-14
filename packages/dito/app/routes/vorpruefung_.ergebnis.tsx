@@ -63,11 +63,6 @@ export default function Result() {
           tagName="h2"
           content={reasonsText}
         />
-        {/* <div
-          dangerouslySetInnerHTML={{
-            __html: `<!-- ${preCheck.result.receivePdfButton.url} -->`,
-          }}
-        /> */}
         <div className="mt-16">
           <Button {...preCheck.result.receivePdfButton} look="tertiary" />
         </div>
