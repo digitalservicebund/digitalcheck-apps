@@ -3,6 +3,7 @@ import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
+import Download from "@digitalservicebund/icons/Download";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { Form, redirect } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
@@ -71,6 +72,7 @@ export default function Assessment() {
               name="_action"
               value="downloadPdf"
               look="primary"
+              iconLeft={<Download />}
             ></Button>
           </ButtonContainer>
         </Form>
