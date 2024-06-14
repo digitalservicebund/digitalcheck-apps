@@ -13,6 +13,7 @@
 
 # Whitelist for packages/dito
 !packages/dito/app/
+!packages/dito/public/
 !packages/dito/package.json
 !packages/dito/postcss.config.cjs
 !packages/dito/tailwind.config.js
