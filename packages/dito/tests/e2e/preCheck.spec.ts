@@ -461,8 +461,9 @@ test.describe("test result page", () => {
       .isChecked();
     expect(negative).toBe(true);
   });
-  // test("generates PDF with user input", async ({ page }) => {
-  // test("generates correct PDF in negative case", async ({ page }) => {
+
+  // TODO:
+  // test("negative reasoning is be provided to PDF", async ({ page }) => {
 
   test("result page links to documentation", async ({ page }) => {
     await page.goto(PATH_PRECHECK);
