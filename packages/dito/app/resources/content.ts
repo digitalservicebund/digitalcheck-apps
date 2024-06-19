@@ -57,13 +57,17 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
 
 export const preCheck = {
   start: {
-    title: "Digitalbezug einschätzen",
+    title: "Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+      "**TODO** Konsequenzen + Umsetzung mitdenken\n\n Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttonText: "Digitalbezug einschätzen",
     hint: {
       title: "Digitalbezug",
-      text: "Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website. ",
+      text: `**TODO** neuer Text
+      
+Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**.
+Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfllen eines Formulars in ELSTER, um die Steuererklärung einzureichen.
+Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website.`,
     },
   },
   nextButton: "Übernehmen & weiter",
@@ -78,9 +82,8 @@ export const preCheck = {
       title: "IT-System",
       question:
         "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
-      result:
-        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich eine Anpassung oder Neuentwicklung einer IT-Lösung zur Folge haben.",
-      text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
+      result: "zur Anpassung oder Neuentwicklung einer IT-Systems führen.",
+      text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst. **TODO** weiteres Beispiel",
       hint: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
@@ -93,37 +96,51 @@ export const preCheck = {
       id: "verpflichtungen-fuer-beteiligte",
       title: "Verpflichtungen für Beteiligte",
       question:
-        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich Verpflichtungen für Beteiligte* zur Folge haben?",
-      result:
-        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich Verpflichtungen für Beteiligte* zur Folge haben.",
-      text: "* Beteiligte sind in diesem Zusammenhang Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine.",
+        "Beinhaltet das Regelungsvorhabens Verpflichtungen für Beteiligte?",
+      result: "Verpflichtungen für Beteiligte beinhalten.",
+      text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
+      hint: {
+        title: "Beteiligte",
+        text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
+      },
     },
     {
       id: "datenaustausch",
       title: "Datenaustausch",
       question:
-        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich einen Datenaustausch oder eine Wiederverwendung von Daten zur Folge haben, oder könnte durch diese vereinfacht werden?",
+        "Hat das Regelungsvorhabens einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
       result:
-        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich einen Datenaustausch oder eine Wiederverwendung von Daten zur Folge haben, oder könnte durch diese vereinfacht werden",
+        "einen Datenaustausch zur Folge haben oder könnten durch Wiederverwendung von Daten vereinfacht werden.",
       text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
     },
     {
       id: "kommunikation",
-      title: "Interaktion und Kommunikation",
+      title: "Digitale Kommunikation",
       question:
-        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich Interaktion und/oder Kommunikation zwischen Beteiligten* zur Folge haben?",
+        "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
       result:
-        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich Interaktion und/oder Kommunikation zwischen Beteiligten* zur Folge haben.",
-      text: "Praxisbeispiel: ",
+        "Interaktion und/oder Kommunikation zwischen Beteiligten ein Rolle spielen.",
+      text: "**TODO** Praxisbeispiel: ",
+      hint: {
+        title: "Beteiligte",
+        text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
+      },
     },
     {
       id: "automatisierung",
       title: "Automatisierung",
       question:
-        "Wird die Umsetzung des Regelungsvorhabens voraussichtlich durch (Teil-)Automatisierung und/oder digitaler Dokumentation verbessert?",
+        "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? <br \\> Kann digitale Dokumentation die Umsetzung verbessern?",
       result:
-        "Die Umsetzung des Regelungsvorhabens wird voraussichtlich durch (Teil-)Automatisierung und/oder digitaler Dokumentation verbessert.",
+        "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert.",
       text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
+      hint: {
+        title: "Betroffene",
+        text: `Betroffene können sein:
+- Bürgerinnen und Bürger
+- Unternehmen, Vereine, weitere Organisationen
+- Kommunen, Verwaltung und Behörden`,
+      },
     },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
@@ -146,6 +163,8 @@ export const preCheck = {
       text: "Einschätzung als PDF bekommen",
       href: PATH_ASSESSMENT,
     },
+    reasonIntro:
+      "Die Regelungsvorhaben und seine Umsetzung werden voraussichtlich ...",
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
       steps: [

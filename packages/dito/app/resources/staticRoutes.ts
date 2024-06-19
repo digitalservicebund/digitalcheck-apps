@@ -20,7 +20,7 @@ const routes: Route[] = [
   },
   {
     url: PATH_PRECHECK,
-    title: "Digitalbezug einschätzen",
+    title: "Vorprüfung",
     parent: PATH_LANDING,
   },
   {

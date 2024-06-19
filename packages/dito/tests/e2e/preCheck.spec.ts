@@ -315,7 +315,7 @@ test.describe("test result page", () => {
     await expect(page.getByRole("main")).toContainText(
       "Ihr Regelungsvorhaben hat einen Digitalbezug.",
     );
-    await expect(page.getByRole("main")).not.toContainText("IT-System");
+    await expect(page.getByRole("main")).not.toContainText("IT-Systems");
   });
 
   test("assessment page is available", async ({ page }) => {

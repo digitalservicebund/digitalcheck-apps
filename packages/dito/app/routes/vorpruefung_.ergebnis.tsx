@@ -32,7 +32,7 @@ export default function Result() {
     (questionId) =>
       preCheck.questions.find((question) => question.id === questionId)?.result,
   );
-  const reasonsText = reasons.map((reason) => `- ${reason}`).join("\n");
+  const reasonsText = `${preCheck.result.reasonIntro}\n\n${reasons.map((reason) => `- ${reason}`).join("\n")}`;
 
   const listItems = preCheck.result.nextSteps.steps.map((step) => ({
     headline: {
