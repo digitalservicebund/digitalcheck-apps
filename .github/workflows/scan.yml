@@ -21,7 +21,7 @@ jobs:
         uses: digitalservicebund/github-actions-linter@dccac3ada437947aada4bc901daff08ceb87c3f1 # v0.1.11
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@595be6a0f6560a0a8fc419ddf630567fc623531d # v0.22.0
+        uses: aquasecurity/trivy-action@7c2007bcb556501da015201bcba5aa14069b74e2 # v0.23.0
         env:
           TRIVY_USERNAME: ${{ github.actor }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
