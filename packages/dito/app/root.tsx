@@ -20,13 +20,7 @@ import { header, siteMeta } from "resources/content";
 import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: siteMeta.title },
-    {
-      name: "description",
-      content: siteMeta.description,
-    },
-  ];
+  return [{ title: siteMeta.title }];
 };
 
 export const links: LinksFunction = () => [
@@ -57,6 +51,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={siteMeta.description} />
         <Meta />
         <Links />
       </head>
