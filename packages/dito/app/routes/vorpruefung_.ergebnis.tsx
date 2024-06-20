@@ -4,9 +4,9 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { preCheck } from "resources/content";
+import { preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import { type Answers } from "./vorpruefung.$questionId";
 
@@ -23,6 +23,9 @@ const getPositiveQuestions = (answers: Answers) => {
   return Object.entries(answers)
     .filter((answer) => answer[1] === "yes")
     .map((answer) => answer[0]);
+};
+export const meta: MetaFunction = () => {
+  return [{ title: `${preCheck.result.title} — ${siteMeta.title}` }];
 };
 
 export default function Result() {

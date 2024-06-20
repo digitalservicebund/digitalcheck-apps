@@ -5,9 +5,9 @@ import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import Download from "@digitalservicebund/icons/Download";
 import { type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, redirect } from "@remix-run/react";
+import { Form, MetaFunction, redirect } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { assessment } from "resources/content";
+import { assessment, siteMeta } from "resources/content";
 import { PATH_RESULT } from "resources/staticRoutes";
 
 export async function action({ request }: LoaderFunctionArgs) {
@@ -30,6 +30,10 @@ export async function action({ request }: LoaderFunctionArgs) {
 
   return true;
 }
+
+export const meta: MetaFunction = () => {
+  return [{ title: `${assessment.title} — ${siteMeta.title}` }];
+};
 
 export default function Assessment() {
   return (

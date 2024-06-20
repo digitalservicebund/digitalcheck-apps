@@ -3,7 +3,12 @@ import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import List from "@digitalcheck/shared/components/List";
-import { landing } from "resources/content";
+import { MetaFunction } from "@remix-run/react";
+import { landing, siteMeta } from "resources/content";
+
+export const meta: MetaFunction = () => {
+  return [{ title: `${landing.title} — ${siteMeta.title}` }];
+};
 
 export default function Index() {
   const listItems = landing.list.items.map((item) => ({

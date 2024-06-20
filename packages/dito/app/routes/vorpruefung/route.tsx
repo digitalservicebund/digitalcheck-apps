@@ -1,7 +1,12 @@
 import Container from "@digitalcheck/shared/components/Container";
-import { Outlet, useRouteLoaderData } from "@remix-run/react";
+import { MetaFunction, Outlet, useRouteLoaderData } from "@remix-run/react";
+import { preCheck, siteMeta } from "resources/content";
 import { loader as questionLoader } from "routes/vorpruefung.$questionId";
 import PreCheckNavigation from "./PreCheckNavigation";
+
+export const meta: MetaFunction = () => {
+  return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];
+};
 
 export default function PreCheck() {
   const questionRoute = "routes/vorpruefung.$questionId";
