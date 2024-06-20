@@ -35,7 +35,7 @@ export const landing = {
       },
       {
         title: "Abschließende Dokumentation",
-        text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/dokumentation)",
+        text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
       },
       {
         title: "Digitalcheck durch den NKR",
@@ -178,7 +178,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         },
         {
           title: "Abschließende Dokumentation",
-          text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/dokumentation)",
+          text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
         },
         {
           title: "Digitalcheck durch den NKR",
