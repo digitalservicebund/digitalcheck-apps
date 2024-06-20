@@ -5,7 +5,7 @@ import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
 import {
   PATH_ASSESSMENT,
-  PATH_DOCUMENTATION,
+  PATH_DOCUMENTATION_PDF,
   PATH_PRECHECK,
   PATH_RESULT,
 } from "resources/staticRoutes";
@@ -473,7 +473,7 @@ test.describe("test result page", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await page.getByRole("link", { name: "Dokumentation" }).click();
-    await expect(page).toHaveURL(PATH_DOCUMENTATION);
+    await expect(page).toHaveURL(PATH_DOCUMENTATION_PDF);
   });
 
   test("result page with no answers redirects to precheck", async ({
