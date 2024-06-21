@@ -1,10 +1,10 @@
 import { initialize } from "unleash-client";
 
 const unleash = initialize({
-  url: process.env.UNLEASH_API_URL || "",
-  appName: process.env.UNLEASH_APP || "",
+  url: process.env.UNLEASH_API_URL ?? "",
+  appName: process.env.UNLEASH_APP ?? "",
   customHeaders: {
-    Authorization: process.env.UNLEASH_KEY || "",
+    Authorization: process.env.UNLEASH_KEY ?? "",
   },
 });
 
