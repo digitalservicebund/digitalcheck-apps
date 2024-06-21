@@ -96,8 +96,8 @@ test.describe("test links", () => {
 
   test("links in landing page work", async ({ page }) => {
     await page.goto(staticRoutes.PATH_LANDING);
-    await page.getByRole("link", { name: "Zur Dokumentation" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_DOCUMENTATION_PDF);
+    await page.getByRole("link", { name: "Hilfestellungen" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_METHODS);
   });
 
   test("links leading to external pages open in new tab", async ({ page }) => {

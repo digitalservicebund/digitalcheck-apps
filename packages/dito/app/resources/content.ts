@@ -1,5 +1,10 @@
 import type { TQuestion } from "routes/vorpruefung.$questionId";
-import { PATH_ASSESSMENT, PATH_PRECHECK, PATH_RESULT } from "./staticRoutes";
+import {
+  PATH_ASSESSMENT,
+  PATH_METHODS,
+  PATH_PRECHECK,
+  PATH_RESULT,
+} from "./staticRoutes";
 
 export const siteMeta = {
   title: "Digitalcheck",
@@ -173,7 +178,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
           text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
           link: {
             text: "Zu den Hilfestellungen und Methoden",
-            url: "/methoden",
+            url: PATH_METHODS,
           },
         },
         {
