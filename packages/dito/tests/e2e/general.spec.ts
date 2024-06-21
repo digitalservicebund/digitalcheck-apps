@@ -4,11 +4,14 @@ import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
-  test("all routes are reachable and have a breadcrumb menu + title", async ({
+  test("all routes are reachable and have a breadcrumb menu + title if they aren't PDF", async ({
     page,
   }) => {
     for await (const route of allRoutes) {
       await page.goto(route.url);
+      if (route.url.endsWith(".pdf")) {
+        continue;
+      }
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(/Digitalcheck$/);
     }
