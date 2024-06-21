@@ -94,8 +94,10 @@ test.describe("test questions form", () => {
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await expect(page).toHaveURL(questions[3].url);
     await page.getByLabel("Ja").click();
     await page.reload();
+    await expect(page).toHaveURL(questions[3].url);
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page.getByLabel("Ich bin unsicher")).toBeChecked();
