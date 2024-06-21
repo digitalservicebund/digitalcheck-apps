@@ -135,7 +135,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       id: "automatisierung",
       title: "Automatisierung",
       question:
-        "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? <br \\> Kann digitale Dokumentation die Umsetzung verbessern?",
+        "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
       result:
         "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert.",
       text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",

@@ -149,7 +149,7 @@ test.describe("test questions form", () => {
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Vorprüfung" }).click();
     await page.goto(questions[0].url);
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await page.getByLabel("Ja").click();
