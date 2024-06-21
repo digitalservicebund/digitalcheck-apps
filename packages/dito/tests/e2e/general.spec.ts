@@ -8,10 +8,10 @@ test.describe("test general availability", () => {
     page,
   }) => {
     for await (const route of allRoutes) {
-      await page.goto(route.url);
       if (route.url.endsWith(".pdf")) {
         continue;
       }
+      await page.goto(route.url);
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(/Digitalcheck$/);
     }
