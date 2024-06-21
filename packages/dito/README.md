@@ -4,7 +4,11 @@ A digital touchpoint for the Digtialcheck.
 
 ## Prerequisites
 
-See prerequisites section in the top-level README.md.
+!!! See prerequisites section in the top-level README.md.
+
+The application requires a `.env` file with the following values configured. You can copy and rename the file `.env.example`, and if running locally shouldn't need to change the value configured there.
+
+- `BASE_URL`: Used so the application knows at which URL it is running — **be sure to omit any trailing slashes!**
 
 ## Development
 
