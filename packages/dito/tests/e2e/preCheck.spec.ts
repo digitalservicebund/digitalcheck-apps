@@ -5,7 +5,6 @@ import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
 import {
   PATH_ASSESSMENT,
-  PATH_DOCUMENTATION_PDF,
   PATH_PRECHECK,
   PATH_RESULT,
 } from "resources/staticRoutes";
@@ -472,8 +471,11 @@ test.describe("test result page", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
+    const downloadPromise = page.waitForEvent("download");
     await page.getByRole("link", { name: "Dokumentation" }).click();
-    await expect(page).toHaveURL(PATH_DOCUMENTATION_PDF);
+    expect((await downloadPromise).suggestedFilename()).toBe(
+      "digitalcheck-begleitende-dokumentation.pdf",
+    );
   });
 
   test("result page with no answers redirects to precheck", async ({
