@@ -16,9 +16,8 @@ export async function action({ request }: LoaderFunctionArgs) {
   const body = await request.formData();
   const { _action, ...values } = Object.fromEntries(body);
 
-  const pdfValues = { ...values, ...answers };
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-  const queryParams = new URLSearchParams(pdfValues as any).toString();
+  const pdfValues = { ...(values as Record<string, string>), ...answers };
+  const queryParams = new URLSearchParams(pdfValues).toString();
 
   // TODO:
   // if (_action === "receiveEmail") {
