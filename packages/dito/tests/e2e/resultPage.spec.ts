@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
+import { preCheck } from "resources/content";
 import {
   PATH_ASSESSMENT,
   PATH_PRECHECK,
@@ -17,24 +18,37 @@ import {
   FIELD_NAME_PRE_CHECK_POSITIVE_5,
 } from "routes/vorpruefung_.ergebnis.einschaetzung.$fileName[.pdf]";
 
-test.describe("test result page", () => {
-  test("happy path leads to positive result", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    // click through all 5 question pages
+test.describe("test result page general content", () => {
+  test.beforeEach("Click though preCheck", async ({ page }) => {
+    await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
+  });
+
+  test("happy path leads to positive result", async ({ page }) => {
     await expect(page).toHaveURL(PATH_RESULT);
     await expect(page.getByRole("main")).toContainText(
-      "Ihr Regelungsvorhaben hat Digitalbezug.",
+      "Ihr Regelungsvorhaben hat einen Digitalbezug.",
     );
   });
 
+  test("result page links to documentation", async ({ page }) => {
+    const downloadPromise = page.waitForEvent("download");
+    await page.getByRole("link", { name: "Dokumentation" }).click();
+    expect((await downloadPromise).suggestedFilename()).toBe(
+      "digitalcheck-begleitende-dokumentation.pdf",
+    );
+  });
+});
+
+test.describe("test result page reasoning", () => {
+  test.beforeEach("Start preCheck", async ({ page }) => {
+    await page.goto(preCheck.questions[0].url);
+  });
+
   test("only positive answers are shown as reasons", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 0; i < 4; i++) {
@@ -43,10 +57,31 @@ test.describe("test result page", () => {
     }
     await expect(page.getByRole("main")).not.toContainText("IT-Systems");
   });
+});
 
-  test("assessment page is available", async ({ page }) => {
+test.describe("test result page redirects", () => {
+  test("result page with no answers redirects to precheck", async ({
+    page,
+  }) => {
+    await page.goto(PATH_RESULT);
+    await expect(page).toHaveURL(PATH_PRECHECK);
+  });
+
+  test("result page without all answers redirects to precheck", async ({
+    page,
+  }) => {
     await page.goto(PATH_PRECHECK);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByLabel("Nein").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.goto(PATH_RESULT);
+    await expect(page).toHaveURL(PATH_PRECHECK);
+  });
+});
+
+test.describe("test assessment page and PDF", () => {
+  test.beforeEach("Go to assessment page", async ({ page }) => {
+    await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -54,19 +89,13 @@ test.describe("test result page", () => {
     await page
       .getByRole("link", { name: "Einschätzung als PDF bekommen" })
       .click();
+  });
+
+  test("assessment page is available", async ({ page }) => {
     await expect(page).toHaveURL(PATH_ASSESSMENT);
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    for (let i = 0; i < 5; i++) {
-      await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
-    }
-    await page
-      .getByRole("link", { name: "Einschätzung als PDF bekommen" })
-      .click();
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy #123",
@@ -75,15 +104,6 @@ test.describe("test result page", () => {
   });
 
   test("generates and downloads PDF with user input", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    for (let i = 0; i < 5; i++) {
-      await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
-    }
-    await page
-      .getByRole("link", { name: "Einschätzung als PDF bekommen" })
-      .click();
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
@@ -132,15 +152,6 @@ test.describe("test result page", () => {
   });
 
   test("generates correct PDF in negative case", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    for (let i = 0; i < 5; i++) {
-      await page.getByLabel("Nein").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
-    }
-    await page
-      .getByRole("link", { name: "Einschätzung als PDF bekommen" })
-      .click();
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
@@ -190,35 +201,4 @@ test.describe("test result page", () => {
 
   // TODO:
   // test("negative reasoning is be provided to PDF", async ({ page }) => {
-  test("result page links to documentation", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    for (let i = 0; i < 5; i++) {
-      await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
-    }
-    const downloadPromise = page.waitForEvent("download");
-    await page.getByRole("link", { name: "Dokumentation" }).click();
-    expect((await downloadPromise).suggestedFilename()).toBe(
-      "digitalcheck-begleitende-dokumentation.pdf",
-    );
-  });
-
-  test("result page with no answers redirects to precheck", async ({
-    page,
-  }) => {
-    await page.goto(PATH_RESULT);
-    await expect(page).toHaveURL(PATH_PRECHECK);
-  });
-
-  test("result page without all answers redirects to precheck", async ({
-    page,
-  }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.goto(PATH_RESULT);
-    await expect(page).toHaveURL(PATH_PRECHECK);
-  });
 });
