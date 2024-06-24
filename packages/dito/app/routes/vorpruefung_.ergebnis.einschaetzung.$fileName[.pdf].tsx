@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { PDFDocument, PDFForm, PDFTextField } from "pdf-lib";
+import { PDFDocument } from "pdf-lib";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
@@ -31,15 +31,15 @@ const createPreCheckPDF = async function (
 
   try {
     const rawPdfBytes = new Uint8Array(fileData);
-    const pdfDoc: PDFDocument = await PDFDocument.load(rawPdfBytes);
-    const form: PDFForm = pdfDoc.getForm();
+    const pdfDoc = await PDFDocument.load(rawPdfBytes);
+    const form = pdfDoc.getForm();
 
     const { title, answers, negativeAssessment } = userInput;
 
     const positive = ["yes", "unsure"];
     const negative = "no";
 
-    const titleField: PDFTextField = form.getTextField(FIELD_NAME_POLICY_TITLE);
+    const titleField = form.getTextField(FIELD_NAME_POLICY_TITLE);
     titleField.setText(title);
     titleField.setFontSize(12);
 
@@ -71,7 +71,7 @@ const createPreCheckPDF = async function (
       form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
     }
 
-    const negativeAssessmentField: PDFTextField = form.getTextField(
+    const negativeAssessmentField = form.getTextField(
       FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT,
     );
     negativeAssessmentField.setText(negativeAssessment);
@@ -97,7 +97,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     ...answers
   } = searchParams;
 
-  const pdfData: Uint8Array = await createPreCheckPDF({
+  const pdfData = await createPreCheckPDF({
     title,
     answers,
     negativeAssessment,
