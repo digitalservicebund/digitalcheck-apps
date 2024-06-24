@@ -19,3 +19,4 @@
 !packages/dito/tailwind.config.js
 !packages/dito/tsconfig.json
 !packages/dito/vite.config.ts
+!packages/dito/start.sh

@@ -13,6 +13,7 @@ FROM node:22-alpine AS production-dependencies
 ENV NODE_ENV production
 WORKDIR /src
 COPY package*.json ./
+COPY packages/dito/start.sh packages/dito/
 COPY packages/dito/package.json packages/dito/
 COPY packages/shared/package.json packages/shared/
 RUN npm ci
@@ -47,9 +48,10 @@ WORKDIR /home/node/src
 COPY --chown=node:node package*.json LICENSE SECURITY.md ./
 COPY --chown=node:node packages/dito/package.json packages/dito/
 COPY --chown=node:node --from=production-dependencies /src/node_modules/ ./node_modules/
+COPY --chown=node:node --from=production-dependencies /src/packages/dito/start.sh packages/dito/
 COPY --chown=node:node --from=build /src/packages/dito/build/ ./packages/dito/build/
 # We need to explicitly bring in the public folder here, so that dynamic PDF generation can happen on the server 
 COPY --chown=node:node --from=build /src/packages/dito/public/ ./packages/dito/public/
 
 EXPOSE 3000
-CMD ["npm", "run", "start", "--workspace", "packages/dito"]
+CMD ["sh", "packages/dito/start.sh"]
