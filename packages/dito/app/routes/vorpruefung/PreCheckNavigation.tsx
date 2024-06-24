@@ -17,7 +17,7 @@ export default function PreCheckNavigation({
   const questions = preCheck.questions;
 
   return (
-    <nav aria-label="Navigation Vorprüfung">
+    <nav aria-label="Navigation Vorprüfung" className="precheck-navigation">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
           const isDone = q.id in answers;
@@ -54,7 +54,7 @@ function NavItem({
   isCurrent,
   isDone,
 }: Readonly<NavItem>) {
-  const liClassNames = classNames("list-none border-l-[1px] mb-1", {
+  const liClassNames = classNames("list-none border-l-[4px] mb-1", {
     "text-gray-600 pointer-events-none": isDisabled,
     "border-l-blue-800 pointer-events-none": isCurrent,
     "border-l-blue-100": !isCurrent,
@@ -62,9 +62,9 @@ function NavItem({
 
   // Transparent left borders to avoid layout shifts
   const itemClassNames = classNames(
-    "bg-blue-100 w-full ds-label-02-reg p-16 border-l-[3px] border-transparent flex gap-x-4 items-center hover:underline hover:bg-blue-300 active:bg-white focus-visible:shadow-[inset_0px_0px_0px_4px] focus:shadow-blue-800",
+    "bg-blue-100 w-full ds-label-02-reg p-16 flex gap-x-4 items-center hover:underline hover:bg-blue-300 active:bg-white focus-visible:shadow-[inset_0px_0px_0px_4px] focus:shadow-blue-800",
     {
-      "ds-label-02-bold bg-blue-500 border-l-blue-800": isCurrent,
+      "ds-label-02-bold bg-blue-500": isCurrent,
     },
   );
   const iconId = useId();
@@ -79,7 +79,7 @@ function NavItem({
         aria-describedby={iconId}
       >
         {isDone && <Check id={iconId} className="shrink-0" />}
-        {label}
+        <span title={label}>{label}</span>
       </a>
     </li>
   );
