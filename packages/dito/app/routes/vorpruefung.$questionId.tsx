@@ -106,7 +106,6 @@ export default function Index() {
   return (
     <>
       <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
-        <input type="hidden" name="questionId" value={question.id} />
         <Question
           paddingBottom="32"
           box={{
