@@ -3,28 +3,27 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument, PDFForm, PDFTextField } from "pdf-lib";
 
-export const FIELD_NAME_POLICY_TITLE: string = "Titel des Regelungsvorhabens";
-export const FIELD_NAME_PRE_CHECK_POSITIVE_1: string = "Vorprüfung positiv - 1";
-export const FIELD_NAME_PRE_CHECK_POSITIVE_2: string = "Vorprüfung positiv - 2";
-export const FIELD_NAME_PRE_CHECK_POSITIVE_3: string = "Vorprüfung positiv - 3";
-export const FIELD_NAME_PRE_CHECK_POSITIVE_4: string = "Vorprüfung positiv - 4";
-export const FIELD_NAME_PRE_CHECK_POSITIVE_5: string = "Vorprüfung positiv - 5";
-export const FIELD_NAME_PRE_CHECK_NEGATIVE: string = "Vorprüfung negativ";
-export const FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT: string =
+export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_2 = "Vorprüfung positiv - 2";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_3 = "Vorprüfung positiv - 3";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_4 = "Vorprüfung positiv - 4";
+export const FIELD_NAME_PRE_CHECK_POSITIVE_5 = "Vorprüfung positiv - 5";
+export const FIELD_NAME_PRE_CHECK_NEGATIVE = "Vorprüfung negativ";
+export const FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT =
   "Vorprüfung negativ - Erläuterung";
 
 interface PreCheckAnswer {
-  name: string;
-  checked: boolean;
+  [k: string]: string;
 }
 
 interface UserInput {
   title: string;
-  answers: PreCheckAnswer[];
+  answers: PreCheckAnswer;
   negativeAssessment?: string;
 }
 
-const createFilledPDF = async function (
+const createPreCheckPDF = async function (
   userInput: UserInput,
 ): Promise<Uint8Array> {
   const filePath = path.resolve("public/assets/digitalcheck-vorpruefung.pdf");
@@ -35,20 +34,47 @@ const createFilledPDF = async function (
     const pdfDoc: PDFDocument = await PDFDocument.load(rawPdfBytes);
     const form: PDFForm = pdfDoc.getForm();
 
+    const { title, answers, negativeAssessment } = userInput;
+
+    const positive = ["yes", "unsure"];
+    const negative = "no";
+
     const titleField: PDFTextField = form.getTextField(FIELD_NAME_POLICY_TITLE);
-    titleField.setText(userInput.title);
+    titleField.setText(title);
     titleField.setFontSize(12);
 
-    userInput.answers.forEach((answer: PreCheckAnswer) => {
-      if (answer.checked) {
-        form.getCheckBox(answer.name).check();
-      }
-    });
+    if (positive.includes(answers?.["it-system"])) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
+    }
+    if (positive.includes(answers?.["verpflichtungen-fuer-beteiligte"])) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
+    }
+    if (positive.includes(answers?.["datenaustausch"])) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
+    }
+    if (positive.includes(answers?.["kommunikation"])) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
+    }
+    if (positive.includes(answers?.["automatisierung"])) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
+    }
+
+    if (
+      [
+        answers?.["it-system"],
+        answers?.["verpflichtungen-fuer-beteiligte"],
+        answers?.["datenaustausch"],
+        answers?.["kommunikation"],
+        answers?.["automatisierung"],
+      ].every((answer) => answer === negative)
+    ) {
+      form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
+    }
 
     const negativeAssessmentField: PDFTextField = form.getTextField(
       FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT,
     );
-    negativeAssessmentField.setText(userInput.negativeAssessment);
+    negativeAssessmentField.setText(negativeAssessment);
     negativeAssessmentField.setFontSize(12);
 
     return await pdfDoc.save();
@@ -71,44 +97,9 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     ...answers
   } = searchParams;
 
-  const positive = ["yes", "unsure"];
-  const negative = "no";
-
-  const pdfData: Uint8Array = await createFilledPDF({
+  const pdfData: Uint8Array = await createPreCheckPDF({
     title,
-    answers: [
-      {
-        name: FIELD_NAME_PRE_CHECK_POSITIVE_1,
-        checked: positive.indexOf(answers?.["it-system"]) > -1,
-      },
-      {
-        name: FIELD_NAME_PRE_CHECK_POSITIVE_2,
-        checked:
-          positive.indexOf(answers?.["verpflichtungen-fuer-beteiligte"]) > -1,
-      },
-      {
-        name: FIELD_NAME_PRE_CHECK_POSITIVE_3,
-        checked: positive.indexOf(answers?.["datenaustausch"]) > -1,
-      },
-      {
-        name: FIELD_NAME_PRE_CHECK_POSITIVE_4,
-        checked: positive.indexOf(answers?.["kommunikation"]) > -1,
-      },
-      {
-        name: FIELD_NAME_PRE_CHECK_POSITIVE_5,
-        checked: positive.indexOf(answers?.["automatisierung"]) > -1,
-      },
-      {
-        name: FIELD_NAME_PRE_CHECK_NEGATIVE,
-        checked: [
-          answers?.["it-system"],
-          answers?.["verpflichtungen-fuer-beteiligte"],
-          answers?.["datenaustausch"],
-          answers?.["kommunikation"],
-          answers?.["automatisierung"],
-        ].every((answer) => answer === negative),
-      },
-    ],
+    answers,
     negativeAssessment,
   });
 
