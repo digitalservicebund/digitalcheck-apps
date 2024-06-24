@@ -17,7 +17,7 @@ export default function PreCheckNavigation({
   const questions = preCheck.questions;
 
   return (
-    <nav aria-label="Fragenliste">
+    <nav aria-label="Navigation Vorprüfung">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
           const isDone = q.id in answers;
