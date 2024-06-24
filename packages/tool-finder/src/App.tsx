@@ -142,8 +142,8 @@ function App() {
       <ScrollToTop />
       <PageHeader />
       <Breadcrumbs breadcrumbs={routes} />
-      <main className={"flex-grow flex flex-col"}>
-        <div className={"flex-grow"}>
+      <main className="flex-grow flex flex-col">
+        <div className="flex-grow">
           <Routes>
             {routes.map((route) => {
               return (

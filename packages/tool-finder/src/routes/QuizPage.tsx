@@ -120,7 +120,7 @@ function QuizPage({
         </Container>
       </Background>
       <BetaBanner />
-      <div className={"pt-80 max-w-2xl m-auto"}>
+      <div className="pt-80 max-w-2xl m-auto">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Question
             box={{
@@ -192,10 +192,10 @@ function QuizPage({
           <Container paddingTop="0" paddingBottom="80">
             <ButtonContainer>
               <Button
-                id={"quiz-find-tool"}
-                text={"Werkzeug suchen"}
-                size={"large"}
-                type={"submit"}
+                id="quiz-find-tool"
+                text="Werkzeug suchen"
+                size="large"
+                type="submit"
               />
             </ButtonContainer>
           </Container>

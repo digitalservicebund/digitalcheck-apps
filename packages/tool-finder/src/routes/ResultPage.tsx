@@ -43,14 +43,14 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
         paddingBottom="24"
         additionalClassNames="max-sm:px-0"
       >
-        <div className={"border-4 sm:border-8 sm:rounded-lg border-[#EBF3FD]"}>
+        <div className="border-4 sm:border-8 sm:rounded-lg border-[#EBF3FD]">
           <Image
             url={getImageUrl(result.cluster.img.src)}
             alternativeText={result.cluster.img.alt}
             data-testid="cluster-img"
           />
-          <div className={"p-12 md:p-24 pt-16"}>
-            <div className={"p-12 md:p-24 pb-32"}>
+          <div className="p-12 md:p-24 pt-16">
+            <div className="p-12 md:p-24 pb-32">
               <p className="ds-label-section text-gray-900">
                 Wir empfehlen Ihnen eine Visualisierung als:
               </p>
@@ -125,7 +125,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
   ) : (
     <Container paddingTop="48" paddingBottom="48">
       <Box
-        identifier={"info-section-why-visualisation"}
+        identifier="info-section-why-visualisation"
         heading={{
           tagName: "h2",
           text: "Es ist ein Fehler aufgetreten.",

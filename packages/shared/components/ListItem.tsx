@@ -23,10 +23,7 @@ const ListItem = ({
   numeric,
 }: ListItemProps & { readonly numeric?: number }) => {
   return (
-    <div
-      id={identifier}
-      className={"flex flex-row items-center justify-center"}
-    >
+    <div id={identifier} className="flex flex-row items-center justify-center">
       {image && (
         <Image
           {...image}

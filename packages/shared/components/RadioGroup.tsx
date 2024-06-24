@@ -47,7 +47,7 @@ const RadioGroup = ({
           return (
             <li className="flex items-center" key={value}>
               <input
-                type={"radio"}
+                type="radio"
                 id={id}
                 value={value}
                 className="ds-radio"
@@ -60,7 +60,7 @@ const RadioGroup = ({
               />
               <label htmlFor={id}>
                 {text}
-                <div className={"text-gray-800 ds-body-02-reg"}>{subText}</div>
+                <div className="text-gray-800 ds-body-02-reg">{subText}</div>
               </label>
             </li>
           );

@@ -49,7 +49,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
             `,
           }}
         ></Box>
-        <div className={"pb-16"}></div>
+        <div className="pb-16"></div>
         <Image
           url={flowchartElementsImage}
           alternativeText="Beispielhafte Darstellung von Elementen eines Flussdiagramms"
