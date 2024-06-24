@@ -12,8 +12,11 @@ We need to implement Feature Flags to the application in control the release of 
 
 Standard options available to us within Digitalservice are:
 
+- **Environment variables**: A home-spun solution that checks for environment variables to display/hide features
 - **PostHog**: All-in-one platform that provides Feature Flags as just one of many features for large scale applications
 - **Unleash**: An open-source, self-hosted solution that offers basic functionality.
+
+Environment variables offer a way to quickly hide/show functionality without needing to leave the codebase for an external interface, adding an external dependency, or requiring considerations to performance. However, they can quickly get unwieldy and difficult to manage with more than a few of them set in an application. Making changes to their values also requires code changes and a deployment, which can take some time and introduce undesired friction.
 
 [PostHog](https://posthog.com/) offers a plethora of features and a highly integrated solution that goes beyond Feature Flags — it offers A/B testing, Analytics, Session replay, Surveys and many other features that can be useful for certain types of application development. Typically this would be a large scale application with many visitors where quantative data on user activity is useful for decision making. These features come at a cost however, with effeciency of scale only making sense with many thousands or millions of users.
 
@@ -21,7 +24,7 @@ Standard options available to us within Digitalservice are:
 
 ## Decision
 
-We will use **Unleash** for Feature Flags within the Digitalcheck project. Our audience is very small, and the complexity of features we can envisage in the future that would require Feature Flags are relatively uncomplicated. PostHog offers a bunch of functionality that we likely won't need with our audience size, or have alternatives for e.g. tracking. It's costs are also prohibitive for an application of our scale.
+We will use **Unleash** for Feature Flags within the Digitalcheck project. Our audience is very small, and the complexity of features we can envisage in the future that would require Feature Flags are relatively uncomplicated. PostHog offers a bunch of functionality that we likely won't need with our audience size, or have alternatives for e.g. tracking. It's costs are also prohibitive for an application of our scale. Environment variables were also considered, but the advantages of an easy to administer dashboard for instant toggling of features as well as the relatively low cost and friciton of installation for Unleash outweighed a home-spun solution.
 
 ## Consequences
 
