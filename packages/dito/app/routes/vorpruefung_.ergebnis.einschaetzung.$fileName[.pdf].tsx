@@ -43,29 +43,29 @@ const createPreCheckPDF = async function (
     titleField.setText(title);
     titleField.setFontSize(12);
 
-    if (positive.includes(answers?.["it-system"])) {
+    if (positive.includes(answers["it-system"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
     }
-    if (positive.includes(answers?.["verpflichtungen-fuer-beteiligte"])) {
+    if (positive.includes(answers["verpflichtungen-fuer-beteiligte"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
     }
-    if (positive.includes(answers?.["datenaustausch"])) {
+    if (positive.includes(answers["datenaustausch"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
     }
-    if (positive.includes(answers?.["kommunikation"])) {
+    if (positive.includes(answers["kommunikation"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
     }
-    if (positive.includes(answers?.["automatisierung"])) {
+    if (positive.includes(answers["automatisierung"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
     }
 
     if (
       [
-        answers?.["it-system"],
-        answers?.["verpflichtungen-fuer-beteiligte"],
-        answers?.["datenaustausch"],
-        answers?.["kommunikation"],
-        answers?.["automatisierung"],
+        answers["it-system"],
+        answers["verpflichtungen-fuer-beteiligte"],
+        answers["datenaustausch"],
+        answers["kommunikation"],
+        answers["automatisierung"],
       ].every((answer) => answer === negative)
     ) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
