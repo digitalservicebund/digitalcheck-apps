@@ -41,12 +41,14 @@ export default function Index() {
             id="preCheck-back-button"
             text="Zurück"
             href={PATH_LANDING}
+            size="large"
             look="tertiary"
           ></Button>
           <Button
             id="preCheck-start-button"
             text={preCheck.start.buttonText}
             href={preCheck.questions[0].url}
+            size="large"
             type="submit"
           ></Button>
         </ButtonContainer>

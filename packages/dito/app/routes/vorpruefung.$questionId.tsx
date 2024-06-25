@@ -135,11 +135,13 @@ export default function Index() {
               id="preCheck-back-button"
               text="Zurück"
               href={question.prevLink}
+              size="large"
               look="tertiary"
             ></Button>
             <Button
               id="preCheck-next-button"
               text={nextButton}
+              size="large"
               type="submit"
             ></Button>
           </ButtonContainer>
