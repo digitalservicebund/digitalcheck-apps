@@ -33,14 +33,70 @@ test.describe("test result page reasoning", () => {
     await page.goto(preCheck.questions[0].url);
   });
 
-  test("only positive answers are shown as reasons", async ({ page }) => {
+  test("one positive answer leads to positive result", async ({ page }) => {
+    await page.getByLabel("Ja").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 0; i < 4; i++) {
+      await page.getByLabel("Nein").click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page.getByRole("main")).toContainText(
+      "Ihr Regelungsvorhaben hat Digitalbezug.",
+    );
+  });
+
+  test("only positive answers are shown as reasons in positive case", async ({
+    page,
+  }) => {
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 0; i < 4; i++) {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
+    await expect(page.getByRole("main")).toContainText(`mit "Ja" beantwortet`);
     await expect(page.getByRole("main")).not.toContainText("IT-Systems");
+  });
+
+  test("checking all negative answers leads to negative result", async ({
+    page,
+  }) => {
+    await page.getByLabel("Nein").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 0; i < 4; i++) {
+      await page.getByLabel("Nein").click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page.getByRole("main")).toContainText(
+      "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      `mit "Nein" beantwortet`,
+    );
+  });
+
+  test("checking mix of unsure and negative answers leads to unsure result", async ({
+    page,
+  }) => {
+    await page.getByLabel("Ich bin unsicher").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 0; i < 4; i++) {
+      await page.getByLabel("Nein").click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
+    await expect(page.getByRole("main")).toContainText(
+      "Es ist nicht klar, ob Ihr Regelungsvorhaben Digitalbezug hat.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      `mit "Unsicher" beantwortet`,
+    );
+    await expect(page.getByRole("main")).toContainText(
+      `mit "Nein" beantwortet`,
+    );
+    await expect(page.getByRole("main")).not.toContainText("nächsten Schritte");
   });
 });
 
