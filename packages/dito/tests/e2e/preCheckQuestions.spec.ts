@@ -222,7 +222,7 @@ test.describe("test question navigation", () => {
       page.getByRole("link", { name: questions[0].title }),
     ).toHaveAttribute("aria-current", "true");
     await expect(
-      page.getByRole("link", { name: questions[0].title }),
+      page.getByRole("listitem").filter({ hasText: questions[0].title }),
     ).toHaveClass(/border-l-/);
 
     // Navigate to the second question
