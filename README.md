@@ -104,6 +104,18 @@ Preview the production build:
 npm run start --workspace="packages/<app-name>"
 ```
 
+## Build & run via Docker
+
+Build and run an app locally to simulate the production environment.
+
+```sh
+npm run docker
+```
+
+You will br prompted to select which app to build and run.
+
+After running this command, the website is then available under http://localhost:3000
+
 ## Add a new application
 
 Do the following steps to add a new application to this Monorepo.

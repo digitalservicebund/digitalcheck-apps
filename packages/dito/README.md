@@ -36,19 +36,19 @@ npm start
 
 The project includes a Dockerfile to create a Docker Image for the project.
 
-You can build the Docker Image using
+Because we are using a monorepo, there are a few caveats to be aware of. The application relies on components within a shared package, so the most straightforward way is to run docker commands from the root of the application.
+
+For convenience, an interactive script has been created in the root directory called `docker.sh`. From the roont of the application, run it with the following command:
 
 ```sh
-docker build -t remix-application-template .
+npm run docker
 ```
 
-and then start it using
+You will br prompted to select which app to build and run.
 
-```sh
-docker run -d -p 3000:3000 --name remix-application-template remix-application-template
-```
+It can be annoying to constantly switch directories though, so for even more convenience the script accepts a parameter to pre-select the app to run. You can run the same command from above _from within the package directory of your app of choice_ and it will run the helper script with this parameter already set.
 
-The website is then available under http://localhost:3000
+After running this command, the website is then available under http://localhost:3000
 
 If you want to include any additional files during the build that are not in the `app` or `public` directories you need to add them to the `.dockerignore` file.
 
