@@ -11,6 +11,7 @@ type InlineNoticeProps = {
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
   look: "success" | "info" | "warning" | "tips";
   content?: string;
+  showIcon?: boolean;
 };
 
 // We can't set border-[${borderColor}] in the template because it causes inconsistent behavior in Storybook.
@@ -44,6 +45,7 @@ const InlineNotice = ({
   tagName,
   look,
   content,
+  showIcon = true,
 }: InlineNoticeProps) => {
   const { backgroundColor, borderColor, IconComponent } = lookConfig[look];
 
@@ -53,7 +55,7 @@ const InlineNotice = ({
       id={identifier}
     >
       <div className="flex flex-row gap-[4px] items-center">
-        <IconComponent style={{ width: 24, height: 24 }} />
+        {showIcon && <IconComponent style={{ width: 24, height: 24 }} />}
         <Heading tagName={tagName} look="ds-label-01-bold">
           {title}
         </Heading>
