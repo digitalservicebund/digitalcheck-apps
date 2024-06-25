@@ -88,7 +88,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
       result: "zur Anpassung oder Neuentwicklung einer IT-Systems führen.",
-      text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst. **TODO** weiteres Beispiel",
+      // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst. **TODO** weiteres Beispiel",
       hint: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
@@ -103,7 +103,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       result: "Verpflichtungen für Beteiligte beinhalten.",
-      text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
+      // text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
       hint: {
         title: "Beteiligte",
         text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
@@ -116,7 +116,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
       result:
         "einen Datenaustausch zur Folge haben oder könnten durch Wiederverwendung von Daten vereinfacht werden.",
-      text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
+      // text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
     },
     {
       id: "kommunikation",
@@ -125,7 +125,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
       result:
         "Interaktion und/oder Kommunikation zwischen Beteiligten ein Rolle spielen.",
-      text: "**TODO** Praxisbeispiel: ",
+      // text: "**TODO** Praxisbeispiel: ",
       hint: {
         title: "Beteiligte",
         text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
@@ -138,7 +138,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
       result:
         "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert.",
-      text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
+      // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
       hint: {
         title: "Betroffene",
         text: `Betroffene können sein:

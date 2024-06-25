@@ -47,7 +47,7 @@ export type TQuestion = {
   title: string;
   question: string;
   result: string;
-  text: string;
+  text?: string;
   url: string;
   prevLink: string;
   nextLink: string;
@@ -117,9 +117,7 @@ export default function Index() {
               tagName: "h1",
               look: "ds-heading-02-reg",
             },
-            content: {
-              markdown: question.text,
-            },
+            content: question.text ? { markdown: question.text } : undefined,
           }}
           radio={{
             name: question.id,
