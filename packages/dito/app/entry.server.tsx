@@ -110,7 +110,7 @@ function handleRequestWithMode(
       console.error("404 Not Found: ", request.url);
       void sendAlert({
         labels: {
-          alertname: `${responseStatusCode}Error`,
+          alertname: `${responseStatusCode} Error time: ${new Date().toISOString()}`,
           severity: responseStatusCode >= 500 ? "critical" : "warning",
         },
         annotations: {
