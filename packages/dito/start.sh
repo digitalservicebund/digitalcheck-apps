@@ -1,5 +1,4 @@
 #!/bin/sh
-# source '.env'
 set -euf
 
 # Exporting only if not already set, see https://stackoverflow.com/a/11686912
