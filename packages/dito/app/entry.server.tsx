@@ -20,6 +20,8 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext,
 ) {
+  logResponseStatus(responseStatusCode, request);
+
   return isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
@@ -133,4 +135,12 @@ function handleBrowserRequest(
 
     setTimeout(abort, ABORT_DELAY);
   });
+}
+
+function logResponseStatus(statusCode: number, request: Request) {
+  if (statusCode >= 400 && statusCode < 600) {
+    console.error(
+      `Error: status_code:${statusCode} for request to request_url:${request.url}`,
+    );
+  }
 }
