@@ -237,7 +237,7 @@ test.describe("test question navigation", () => {
       page.getByRole("link", { name: questions[1].title }),
     ).toHaveAttribute("aria-current", "true");
     await expect(
-      page.getByRole("link", { name: questions[1].title }),
+      page.getByRole("listitem").filter({ hasText: questions[0].title }),
     ).toHaveClass(/border-l-/);
   });
 
