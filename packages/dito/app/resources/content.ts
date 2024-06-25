@@ -169,6 +169,8 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
   result: {
     title: "Ergebnis der Vorprüfung",
     positive: "Ihr Regelungsvorhaben hat Digitalbezug.",
+    negative: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
+    unsure: "Es ist nicht klar, ob Ihr Regelungsvorhaben Digitalbezug hat.",
     receivePdfButton: {
       text: "Einschätzung als PDF bekommen",
       href: PATH_ASSESSMENT,
