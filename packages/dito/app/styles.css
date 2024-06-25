@@ -1,3 +1,13 @@
 main .rich-text a {
   @apply text-black font-bold;
 }
+
+.precheck-navigation span::after {
+  @apply ds-label-02-bold;
+  display: block;
+  content: attr(title);
+  height: 1px;
+  color: transparent;
+  overflow: hidden;
+  visibility: hidden;
+}

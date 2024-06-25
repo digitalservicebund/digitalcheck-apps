@@ -27,7 +27,7 @@ function InfoPage() {
       <BetaBanner />
       <Container paddingTop="48" paddingBottom="48">
         <Box
-          identifier={"info-section-which-tool"}
+          identifier="info-section-which-tool"
           heading={{
             tagName: "h2",
             text: "Mit welchem Werkzeug visualisieren?",
@@ -48,7 +48,7 @@ function InfoPage() {
       <Container paddingTop="0" paddingBottom="48">
         <Box
           additionalClassNames="ds-stack-16"
-          identifier={"info-section-why-visualisation"}
+          identifier="info-section-why-visualisation"
           heading={{
             tagName: "h2",
             text: "Wobei helfen Ihnen Visualisierungen?",
@@ -73,7 +73,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
         }
       >
         <Box
-          additionalClassNames={"pt-20"}
+          additionalClassNames="pt-20"
           heading={{
             tagName: "h3",
             look: "ds-heading-03-bold",
@@ -86,7 +86,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
         ></Box>
         <Background backgroundColor="midBlue" paddingTop="0" paddingBottom="0">
           <Box
-            additionalClassNames={"p-20"}
+            additionalClassNames="p-20"
             heading={{
               tagName: "h3",
               look: "ds-heading-03-bold",

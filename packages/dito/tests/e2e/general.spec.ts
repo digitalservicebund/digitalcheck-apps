@@ -4,10 +4,13 @@ import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
-  test("all routes are reachable and have a breadcrumb menu + title", async ({
+  test("all routes are reachable and have a breadcrumb menu + title if they aren't PDF", async ({
     page,
   }) => {
     for await (const route of allRoutes) {
+      if (route.url.endsWith(".pdf")) {
+        continue;
+      }
       await page.goto(route.url);
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(/Digitalcheck$/);
@@ -84,17 +87,17 @@ test.describe("test links", () => {
   test("breadcrumb parent link works", async ({ page }) => {
     // using label here as there is a sidebar with the same role
     await page.goto(preCheck.questions[0].url);
-    await expect(page.getByLabel("navigation").getByRole("link")).toHaveCount(
-      2,
-    );
-    await page.getByLabel("navigation").getByRole("link").last().click();
+    await expect(
+      page.getByTestId("breadcrumbs-menu").getByRole("link"),
+    ).toHaveCount(2);
+    await page.getByTestId("breadcrumbs-menu").getByRole("link").last().click();
     await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
   });
 
   test("links in landing page work", async ({ page }) => {
     await page.goto(staticRoutes.PATH_LANDING);
-    await page.getByRole("link", { name: "Zur Dokumentation" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_DOCUMENTATION_PDF);
+    await page.getByRole("link", { name: "Hilfestellungen" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_METHODS);
   });
 
   test("links leading to external pages open in new tab", async ({ page }) => {

@@ -40,7 +40,7 @@ export default function Question({
       <legend className="pb-16 ds-stack-8">
         <Box {...box} />
       </legend>
-      {select && <Select placeholder={"Bitte auswählen"} {...select} />}
+      {select && <Select placeholder="Bitte auswählen" {...select} />}
       {radio && <RadioGroup {...radio} />}
     </fieldset>
   );

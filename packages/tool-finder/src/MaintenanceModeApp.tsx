@@ -8,7 +8,7 @@ import MaintenanceModePage from "routes/MaintenanceModePage";
 function MaintenanceModeApp() {
   return (
     <div className="flex flex-col min-h-screen">
-      <main className={"flex-grow flex flex-col"}>
+      <main className="flex-grow flex flex-col">
         <PageHeader />
         <Routes>
           <Route path={PATH_INFO} element={<MaintenanceModePage />} />
