@@ -1,4 +1,5 @@
 import CheckCircleOutlinedIcon from "@digitalservicebund/icons/CheckCircleOutlined";
+import InfoOutlinedIcon from "@digitalservicebund/icons/InfoOutlined";
 import LightbulbOutlinedIcon from "@digitalservicebund/icons/LightbulbOutlined";
 import WarningAmberIcon from "@digitalservicebund/icons/WarningAmber";
 import Heading from "./Heading";
@@ -8,7 +9,7 @@ type InlineNoticeProps = {
   identifier?: string;
   title: string;
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
-  look: "success" | "warning" | "tips";
+  look: "success" | "info" | "warning" | "tips";
   content?: string;
 };
 
@@ -19,6 +20,11 @@ const lookConfig = {
     backgroundColor: "bg-green-100",
     borderColor: "border-[#005E34]",
     IconComponent: CheckCircleOutlinedIcon,
+  },
+  info: {
+    backgroundColor: "bg-blue-300",
+    borderColor: "border-blue-700",
+    IconComponent: InfoOutlinedIcon,
   },
   warning: {
     backgroundColor: "bg-yellow-200",

@@ -80,6 +80,10 @@ export const preCheck = {
     subtitle:
       "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttonText: "Digitalbezug einschätzen",
+    info: {
+      title: "Mehr als eine Regelung?",
+      text: "Hat ihr Vorhaben mehrere Regelungen, schätzen Sie den Digitalbezug für alle gemeinsam ein.",
+    },
     hint: {
       title: "Digitalbezug",
       // TODO: neuer Text

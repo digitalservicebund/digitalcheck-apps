@@ -53,6 +53,14 @@ export default function Index() {
           ></Button>
         </ButtonContainer>
       </Container>
+      <Container paddingBottom="0">
+        <InlineNotice
+          look="info"
+          title={preCheck.start.info.title}
+          tagName="h2"
+          content={preCheck.start.info.text}
+        ></InlineNotice>
+      </Container>
       <Container>
         <InlineNotice
           look="tips"
