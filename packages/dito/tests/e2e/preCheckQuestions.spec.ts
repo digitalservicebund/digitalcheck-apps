@@ -27,7 +27,7 @@ test.describe("test questions form", () => {
     for (let i = 0; i < 5; i++) {
       // check that the page shows correct question
       await expect(page).toHaveURL(questions[i].url);
-      await expect(page.getByLabel("navigation")).toContainText(
+      await expect(page.getByTestId("breadcrumbs-menu")).toContainText(
         questions[i].title,
       );
       await expect(page.getByRole("main")).toContainText(`Frage ${i + 1}`);
