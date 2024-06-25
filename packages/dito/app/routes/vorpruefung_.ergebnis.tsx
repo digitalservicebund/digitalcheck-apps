@@ -61,10 +61,11 @@ export default function Result() {
           className="mb-32"
         />
         <InlineNotice
-          look="success"
+          look="info"
           title={preCheck.result.positive}
           tagName="h2"
           content={reasonsText}
+          showIcon={false}
         />
         <div className="mt-16">
           <Button {...preCheck.result.receivePdfButton} look="tertiary" />
