@@ -1,10 +1,14 @@
 import { initialize } from "unleash-client";
 
+const UNLEASH_API_URL = "https://features.p.digitalservice.dev/api/";
+const UNLEASH_APP = "default";
+const UNLEASH_KEY = process.env.UNLEASH_KEY ?? "";
+
 const unleash = initialize({
-  url: process.env.UNLEASH_API_URL ?? "",
-  appName: process.env.UNLEASH_APP ?? "",
+  url: UNLEASH_API_URL,
+  appName: UNLEASH_APP,
   customHeaders: {
-    Authorization: process.env.UNLEASH_KEY ?? "",
+    Authorization: UNLEASH_KEY,
   },
 });
 

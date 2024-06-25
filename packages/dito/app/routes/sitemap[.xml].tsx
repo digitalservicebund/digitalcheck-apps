@@ -1,7 +1,9 @@
 import allRoutes from "resources/allRoutes";
 
+const BASE_URL = process.env.BASE_URL ?? "";
+
 export const loader = () => {
-  const urls = allRoutes.map((route) => `${process.env.BASE_URL}${route.url}`);
+  const urls = allRoutes.map((route) => `${BASE_URL}${route.url}`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset
