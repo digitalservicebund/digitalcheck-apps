@@ -101,7 +101,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       id: "verpflichtungen-fuer-beteiligte",
       title: "Verpflichtungen für Beteiligte",
       question:
-        "Beinhaltet das Regelungsvorhabens Verpflichtungen für Beteiligte?",
+        "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       result: "Verpflichtungen für Beteiligte beinhalten.",
       text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
       hint: {
@@ -113,7 +113,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       id: "datenaustausch",
       title: "Datenaustausch",
       question:
-        "Hat das Regelungsvorhabens einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
+        "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
       result:
         "einen Datenaustausch zur Folge haben oder könnten durch Wiederverwendung von Daten vereinfacht werden.",
       text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
@@ -169,7 +169,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       href: PATH_ASSESSMENT,
     },
     reasonIntro:
-      "Die Regelungsvorhaben und seine Umsetzung werden voraussichtlich ...",
+      "Das Regelungsvorhaben und seine Umsetzung werden voraussichtlich ...",
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
       steps: [
