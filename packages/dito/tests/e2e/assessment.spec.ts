@@ -18,6 +18,7 @@ test.describe("test assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
+      await expect(page).toHaveURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -93,6 +94,7 @@ test.describe("test PDF generation in negative case", () => {
     async ({ page }) => {
       await page.goto(preCheck.questions[0].url);
       for (let i = 0; i < 5; i++) {
+        await expect(page).toHaveURL(preCheck.questions[i].url);
         await page.getByLabel("Nein").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
