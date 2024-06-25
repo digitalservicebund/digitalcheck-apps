@@ -1,7 +1,7 @@
 const ALERTMANAGER_URL =
-  process.env.ALERTMANAGER_URL || "http://localhost:9093/api/v1/alerts";
+  process.env.ALERTMANAGER_URL || "http://localhost:9093/api/v2/alerts";
 const ALERTMANAGER_STATUS_URL =
-  process.env.ALERTMANAGER_STATUS_URL || "http://localhost:9093/api/v1/status";
+  process.env.ALERTMANAGER_STATUS_URL || "http://localhost:9093/api/v2/status";
 
 interface Alert {
   labels: {
