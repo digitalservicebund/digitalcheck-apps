@@ -46,15 +46,19 @@ const createPreCheckPDF = async function (
     if (positive.includes(answers["it-system"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
     }
+
     if (positive.includes(answers["verpflichtungen-fuer-beteiligte"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
     }
+
     if (positive.includes(answers["datenaustausch"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
     }
+
     if (positive.includes(answers["kommunikation"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
     }
+
     if (positive.includes(answers["automatisierung"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
     }
