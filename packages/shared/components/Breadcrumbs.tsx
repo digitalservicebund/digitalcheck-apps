@@ -38,7 +38,7 @@ export default function Breadcrumbs({
       <nav
         className="py-8 px-16 bg-blue-100 flex flex-wrap items-center text-base"
         data-testid="breadcrumbs-menu"
-        aria-label="navigation"
+        aria-label="breadcrumb navigation"
       >
         {filteredBreadcrumbs.map((breadcrumb, idx, arr) => {
           let displayElement = <span>{breadcrumb.title}</span>;

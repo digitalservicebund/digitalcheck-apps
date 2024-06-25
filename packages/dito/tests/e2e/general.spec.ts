@@ -87,10 +87,10 @@ test.describe("test links", () => {
   test("breadcrumb parent link works", async ({ page }) => {
     // using label here as there is a sidebar with the same role
     await page.goto(preCheck.questions[0].url);
-    await expect(page.getByLabel("navigation").getByRole("link")).toHaveCount(
-      2,
-    );
-    await page.getByLabel("navigation").getByRole("link").last().click();
+    await expect(
+      page.getByTestId("breadcrumbs-menu").getByRole("link"),
+    ).toHaveCount(2);
+    await page.getByTestId("breadcrumbs-menu").getByRole("link").last().click();
     await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
   });
 
