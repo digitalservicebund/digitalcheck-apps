@@ -60,17 +60,30 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
+const hintInvolved = {
+  title: "Wer sind Beteiligte?",
+  text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteure als auch Betroffene sein.
+    
+Beispiele für Beteiligte sind:
+- Bürgerinnen und Bürger,
+- Einwohnende,
+- Kommunen, die Verwaltung und Behörden, deren IT- oder Rechtsabteilungen,
+- IT-Dienstleistende,
+- Unternehmen und
+- weitere Organisationen wie z.B. Vereine.`,
+};
+
 export const preCheck = {
   start: {
     title: "Vorprüfung: Digitalbezug einschätzen",
+    // TODO: Konsequenzen + Umsetzung mitdenken
     subtitle:
-      "**TODO** Konsequenzen + Umsetzung mitdenken\n\n Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttonText: "Digitalbezug einschätzen",
     hint: {
       title: "Digitalbezug",
-      text: `**TODO** neuer Text
-      
-Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**.
+      // TODO: neuer Text
+      text: `Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**.
 Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfllen eines Formulars in ELSTER, um die Steuererklärung einzureichen.
 Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website.`,
     },
@@ -104,10 +117,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       result: "Verpflichtungen für Beteiligte beinhalten.",
       // text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
-      hint: {
-        title: "Beteiligte",
-        text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
-      },
+      hint: hintInvolved,
     },
     {
       id: "datenaustausch",
@@ -126,10 +136,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       result:
         "Interaktion und/oder Kommunikation zwischen Beteiligten ein Rolle spielen.",
       // text: "**TODO** Praxisbeispiel: ",
-      hint: {
-        title: "Beteiligte",
-        text: "**TODO** beteiligt vs betroffen \n\n Beteiligte sind in diesem Zusammenhang diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können Bürgerinnen und Bürger, Einwohnende, die Verwaltung, Unternehmen und weitere Organisationen wie z.B. Vereine sein.",
-      },
+      hint: hintInvolved,
     },
     {
       id: "automatisierung",
@@ -139,13 +146,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       result:
         "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert.",
       // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
-      hint: {
-        title: "Betroffene",
-        text: `Betroffene können sein:
-- Bürgerinnen und Bürger
-- Unternehmen, Vereine, weitere Organisationen
-- Kommunen, Verwaltung und Behörden`,
-      },
+      hint: hintInvolved,
     },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
