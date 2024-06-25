@@ -6,6 +6,7 @@ test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
+      await expect(page).toHaveURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
