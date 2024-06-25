@@ -8,6 +8,5 @@ export UNLEASH_API_URL="${UNLEASH_API_URL:=$(cat /etc/secrets-opaque/unleash-api
 export UNLEASH_APP="${UNLEASH_APP:=$(cat /etc/secrets-opaque/unleash-app)}"
 export UNLEASH_KEY="${UNLEASH_KEY:=$(cat /etc/secrets-sealed/unleash-key)}"
 
+# Run the application
 npm run start --workspace packages/dito
-
-# source packages/dito/.env && docker build -t digitalcheck-dito:latest . -f packages/dito/Dockerfile --build-arg BASE_URL=$BASE_URL --build-arg UNLEASH_API_URL=$UNLEASH_API_URL --build-arg UNLEASH_APP=$UNLEASH_APP --build-arg UNLEASH_KEY=$UNLEASH_KEY
