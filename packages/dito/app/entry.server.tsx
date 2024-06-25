@@ -138,9 +138,25 @@ function handleBrowserRequest(
 }
 
 function logResponseStatus(statusCode: number, request: Request) {
-  if (statusCode >= 400 && statusCode < 600) {
-    console.error(
-      `Error: status_code:${statusCode} for request to request_url:${request.url}`,
-    );
+  if (statusCode >= 400 && statusCode < 500) {
+    const log = {
+      level: "warning",
+      message: `HTTP warning response`,
+      statusCode: statusCode,
+      url: request.url,
+      method: request.method,
+      timestamp: new Date().toISOString(),
+    };
+    console.warn(JSON.stringify(log));
+  } else if (statusCode >= 500) {
+    const log = {
+      level: "error",
+      message: `HTTP error response`,
+      statusCode: statusCode,
+      url: request.url,
+      method: request.method,
+      timestamp: new Date().toISOString(),
+    };
+    console.error(JSON.stringify(log));
   }
 }
