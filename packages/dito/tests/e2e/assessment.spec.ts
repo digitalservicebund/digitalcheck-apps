@@ -85,6 +85,22 @@ test.describe("test assessment page and PDF", () => {
       .isChecked();
     expect(negative).toBe(false);
   });
+});
+
+test.describe("test PDF generation in negative case", () => {
+  test.beforeEach(
+    "Fill preCheck questions with negative answers",
+    async ({ page }) => {
+      await page.goto(preCheck.questions[0].url);
+      for (let i = 0; i < 5; i++) {
+        await page.getByLabel("Nein").click();
+        await page.getByRole("button", { name: "Übernehmen" }).click();
+      }
+      await page
+        .getByRole("link", { name: "Einschätzung als PDF bekommen" })
+        .click();
+    },
+  );
 
   test("generates correct PDF in negative case", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
