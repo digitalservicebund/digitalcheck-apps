@@ -15,7 +15,7 @@ test.describe("test result page general content", () => {
   test("happy path leads to positive result", async ({ page }) => {
     await expect(page).toHaveURL(PATH_RESULT);
     await expect(page.getByRole("main")).toContainText(
-      "Ihr Regelungsvorhaben hat einen Digitalbezug.",
+      "Ihr Regelungsvorhaben hat Digitalbezug.",
     );
   });
 
