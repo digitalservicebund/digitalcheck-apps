@@ -1,3 +1,4 @@
+import Box from "@digitalcheck/shared/components/Box";
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -118,14 +119,33 @@ export default function Result() {
         </div>
       </Container>
       <Container>
-        <List
-          heading={{
-            text: preCheck.result.nextSteps.title,
-            tagName: "h2",
-          }}
-          items={listItems}
-          isNumeric
-        />
+        {result === "unsure" ? (
+          <Box
+            heading={{
+              text: preCheck.result.boxUnsure.title,
+            }}
+            content={{
+              markdown: preCheck.result.boxUnsure.text,
+            }}
+            buttons={[
+              {
+                id: "result-method-button",
+                text: preCheck.result.boxUnsure.link.text,
+                href: preCheck.result.boxUnsure.link.url,
+                look: "tertiary",
+              },
+            ]}
+          />
+        ) : (
+          <List
+            heading={{
+              text: preCheck.result.nextSteps.title,
+              tagName: "h2",
+            }}
+            items={listItems}
+            isNumeric
+          />
+        )}
       </Container>
     </>
   );

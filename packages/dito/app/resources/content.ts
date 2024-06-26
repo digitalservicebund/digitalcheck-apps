@@ -202,6 +202,15 @@ Damit ist der Digitalcheck für Sie beendet.`,
         },
       ],
     },
+    boxUnsure: {
+      title:
+        "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
+      text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+      link: {
+        text: "Zu den Hilfestellungen und Methoden",
+        url: PATH_METHODS,
+      },
+    },
   },
 };
 
