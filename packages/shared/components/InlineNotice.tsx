@@ -1,4 +1,5 @@
 import CheckCircleOutlinedIcon from "@digitalservicebund/icons/CheckCircleOutlined";
+import ContactSupportOutlinedIcon from "@digitalservicebund/icons/ContactSupportOutlined";
 import InfoOutlinedIcon from "@digitalservicebund/icons/InfoOutlined";
 import LightbulbOutlinedIcon from "@digitalservicebund/icons/LightbulbOutlined";
 import WarningAmberIcon from "@digitalservicebund/icons/WarningAmber";
@@ -9,7 +10,7 @@ type InlineNoticeProps = {
   identifier?: string;
   title: string;
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
-  look: "success" | "info" | "warning" | "tips";
+  look: "success" | "info" | "warning" | "support" | "tips";
   content?: string;
   showIcon?: boolean;
 };
@@ -31,6 +32,11 @@ const lookConfig = {
     backgroundColor: "bg-yellow-200",
     borderColor: "border-[#E5CE5C]",
     IconComponent: WarningAmberIcon,
+  },
+  support: {
+    backgroundColor: "bg-yellow-200",
+    borderColor: "border-[#E5CE5C]",
+    IconComponent: ContactSupportOutlinedIcon,
   },
   tips: {
     backgroundColor: "bg-gray-100",
