@@ -104,7 +104,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       title: "IT-System",
       question:
         "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
-      result: "zur Anpassung oder Neuentwicklung einer IT-Systems führen.",
+      result: "zur Anpassung oder Neuentwicklung eines IT-Systems führt.",
       // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst. **TODO** weiteres Beispiel",
       hint: {
         title: "Was ist ein IT-System?",
@@ -119,7 +119,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       title: "Verpflichtungen für Beteiligte",
       question:
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
-      result: "Verpflichtungen für Beteiligte beinhalten.",
+      result: "Verpflichtungen für Beteiligte zur Folge haben wird.",
       // text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
       hint: hintInvolved,
     },
@@ -129,7 +129,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
       result:
-        "einen Datenaustausch zur Folge haben oder könnten durch Wiederverwendung von Daten vereinfacht werden.",
+        "einen Datenaustausch zur Folge hat oder durch Wiederverwendung von Daten vereinfacht würde.",
       // text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
     },
     {
@@ -138,7 +138,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
       result:
-        "Interaktion und/oder Kommunikation zwischen Beteiligten ein Rolle spielen.",
+        "Interaktion und/oder Kommunikation zwischen Beteiligten beinhaltet.",
       // text: "**TODO** Praxisbeispiel: ",
       hint: hintInvolved,
     },
@@ -148,7 +148,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
       result:
-        "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert.",
+        "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert wird.",
       // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
       hint: hintInvolved,
     },
@@ -176,7 +176,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       href: PATH_ASSESSMENT,
     },
     reasonIntro:
-      "Das Regelungsvorhaben und seine Umsetzung werden voraussichtlich ...",
+      "Digitalbezug liegt vor, wenn die Umsetzung des Regelungsvorhabens voraussichtlich ...",
     nextSteps: {
       title: "Das sind Ihre nächsten Schritte",
       steps: [
