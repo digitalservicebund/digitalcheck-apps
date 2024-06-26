@@ -112,3 +112,13 @@ test.describe("test links", () => {
     await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
   });
 });
+
+test.describe("test error pages", () => {
+  test("error page is displayed for 404s", async ({ page }) => {
+    await page.goto("/does-not-exist");
+    await expect(page.getByRole("main")).toContainText("404 — Not Found");
+    await expect(page.getByRole("main")).toContainText(
+      'No route matches URL "/does-not-exist"',
+    );
+  });
+});
