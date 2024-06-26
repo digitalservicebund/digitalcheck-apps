@@ -127,7 +127,10 @@ export default function Result() {
         />
         {result != "unsure" && (
           <div className="mt-32">
-            <Button {...preCheck.result.receivePdfButton} look="tertiary" />
+            <Button
+              {...preCheck.result.receivePdfButton}
+              look={result === "negative" ? "primary" : "tertiary"}
+            />
           </div>
         )}
       </Container>
