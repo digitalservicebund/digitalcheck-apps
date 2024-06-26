@@ -193,8 +193,12 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
           text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
         },
         {
-          title: "Digitalcheck durch den NKR",
-          text: "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
+          title: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
+          text: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
+
+
+Die für Ihr Haus zuständige Ansprechperson finden Sie hier: www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html
+Damit ist der Digitalcheck für Sie beendet.`,
         },
       ],
     },
