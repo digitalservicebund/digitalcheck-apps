@@ -11,159 +11,145 @@ import { preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "./vorpruefung.$questionId";
 
+const { result, questions } = preCheck;
+
 export const meta: MetaFunction = () => {
-  return [{ title: `${preCheck.result.title} — ${siteMeta.title}` }];
+  return [{ title: `${result.title} — ${siteMeta.title}` }];
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   // redirect to precheck if not all answers are present
-  if (Object.keys(answers).length !== preCheck.questions.length) {
+  if (Object.keys(answers).length !== questions.length) {
     return redirect(PATH_PRECHECK);
   }
   return json({ answers });
 }
 
-const getQuestionsOfOption = (answers: Answers, option: Option["value"]) => {
-  return Object.entries(answers)
-    .filter((answer) => answer[1] === option)
-    .map((answer) => answer[0]);
-};
-
-const getResult = (answers: Answers) => {
-  if (getQuestionsOfOption(answers, "yes").length > 0) {
-    return "positive";
-  }
-  if (getQuestionsOfOption(answers, "unsure").length > 0) {
-    return "unsure";
-  }
-  return "negative";
-};
+const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
+  Object.keys(answers).filter((key) => answers[key] === option);
 
 export default function Result() {
   const { answers } = useLoaderData<typeof loader>();
+  const positiveQuestions = getQuestionIDsOfOption(answers, "yes");
+  const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
+  const negativeQuestions = getQuestionIDsOfOption(answers, "no");
 
-  const result = getResult(answers);
+  const heading = (
+    <Heading
+      tagName="h1"
+      text={result.title}
+      look="ds-heading-02-reg"
+      className="mb-32"
+    />
+  );
+  const getReasoningNotice = (title: string, content: string) => (
+    <InlineNotice
+      look="info"
+      title={title}
+      tagName="h2"
+      content={content}
+      showIcon={false}
+    />
+  );
+  const getReasoningText = (answer: string, questionIds: string[]) => {
+    const reasons = questionIds
+      .map((qId) => `- ${questions.find((q) => q.id === qId)?.result}`)
+      .join("\n");
+    return `**Folgende Fragen haben Sie mit "${answer}" beantwortet:**\n\n${result.reasonIntro}\n${reasons}`;
+  };
 
-  let reasonsTitle = "";
-  let reasonsText = "";
-  switch (result) {
-    case "positive": {
-      const reasons = getQuestionsOfOption(answers, "yes")
-        .map(
-          (questionId) =>
-            `- ${preCheck.questions.find((question) => question.id === questionId)?.result}`,
-        )
-        .join("\n");
-      reasonsTitle = preCheck.result.positive;
-      reasonsText = `**Folgende Fragen haben Sie mit "Ja" beantwortet:**\n\n${preCheck.result.reasonIntro}\n${reasons}`;
-      break;
-    }
-    case "unsure": {
-      const reasonsUnsure = getQuestionsOfOption(answers, "unsure")
-        .map(
-          (questionId) =>
-            `- ${preCheck.questions.find((question) => question.id === questionId)?.result}`,
-        )
-        .join("\n");
-      const reasonsNegative = getQuestionsOfOption(answers, "no")
-        .map(
-          (questionId) =>
-            `- ${preCheck.questions.find((question) => question.id === questionId)?.result}`,
-        )
-        .join("\n");
-      reasonsTitle = preCheck.result.unsure;
-      reasonsText = `**Folgende Fragen haben Sie mit "Unsicher" beantwortet:**\n\n${preCheck.result.reasonIntro}\n${reasonsUnsure}\n\n**Folgende Fragen haben Sie mit "Nein" beantwortet:**\n\n${preCheck.result.reasonIntro}\n${reasonsNegative}`;
-      break;
-    }
-    case "negative": {
-      // all answers are negative
-      const reasons = preCheck.questions.map((question) => question.result);
-      reasonsTitle = preCheck.result.negative;
-      reasonsText = `**Folgende Fragen haben Sie mit "Nein" beantwortet:**\n\n${preCheck.result.reasonIntro}\n${reasons.map((reason) => `- ${reason}`).join("\n")}`;
-      break;
-    }
+  if (positiveQuestions.length > 0) {
+    const reasonsText = getReasoningText("Ja", positiveQuestions);
+    return (
+      <>
+        <Container>
+          {heading}
+          {getReasoningNotice(result.positive, reasonsText)}
+          <div className="mt-32">
+            <Button {...result.receivePdfButton} look="tertiary" />
+          </div>
+        </Container>
+        <Container>
+          <List
+            heading={{
+              text: result.nextStepsPositive.title,
+              tagName: "h2",
+            }}
+            items={result.nextStepsPositive.steps}
+            isNumeric
+          />
+        </Container>
+      </>
+    );
   }
 
-  return (
-    <>
-      <Container>
-        <Heading
-          tagName="h1"
-          text={preCheck.result.title}
-          look="ds-heading-02-reg"
-          className="mb-32"
-        />
-        {result === "unsure" && (
+  if (unsureQuestions.length > 0) {
+    const reasonsTextUnsure = getReasoningText("Unsicher", unsureQuestions);
+    const reasonsTextNegative = getReasoningText("Nein", negativeQuestions);
+    const reasonsText = `${reasonsTextUnsure}\n\n${reasonsTextNegative}`;
+    return (
+      <>
+        <Container>
+          {heading}
           <div className="mb-32">
             <InlineNotice
               look="support"
-              title={preCheck.result.noticeUnsure.title}
+              title={result.noticeUnsure.title}
               tagName="h2"
-              content={preCheck.result.noticeUnsure.text}
+              content={result.noticeUnsure.text}
             />
           </div>
-        )}
-        <InlineNotice
-          look="info"
-          title={reasonsTitle}
-          tagName="h2"
-          content={reasonsText}
-          showIcon={false}
-        />
-        {result != "unsure" && (
-          <div className="mt-32">
-            <Button
-              {...preCheck.result.receivePdfButton}
-              look={result === "negative" ? "primary" : "tertiary"}
-            />
-          </div>
-        )}
-      </Container>
-      <Container>
-        {result === "positive" && (
-          <List
-            heading={{
-              text: preCheck.result.nextStepsPositive.title,
-              tagName: "h2",
-            }}
-            items={preCheck.result.nextStepsPositive.steps}
-            isNumeric
-          />
-        )}
-        {result === "unsure" && (
+          {getReasoningNotice(result.unsure, reasonsText)}
+        </Container>
+        <Container>
           <Box
             heading={{
-              text: preCheck.result.boxUnsure.title,
+              text: result.boxUnsure.title,
             }}
             content={{
-              markdown: preCheck.result.boxUnsure.text,
+              markdown: result.boxUnsure.text,
             }}
             buttons={[
               {
                 id: "result-method-button",
-                text: preCheck.result.boxUnsure.link.text,
-                href: preCheck.result.boxUnsure.link.url,
+                text: result.boxUnsure.link.text,
+                href: result.boxUnsure.link.url,
                 look: "tertiary",
               },
             ]}
           />
-        )}
-        {result === "negative" && (
-          <>
-            <Heading
-              tagName="h2"
-              text={preCheck.result.nextStepsNegative.title}
-              className="mb-32"
-            />
-            <Box
-              heading={preCheck.result.nextStepsNegative.step.headline}
-              content={{
-                markdown: preCheck.result.nextStepsNegative.step.content,
-              }}
-            />
-          </>
-        )}
+        </Container>
+      </>
+    );
+  }
+
+  // all answers are negative
+  const reasonsText = getReasoningText("Nein", negativeQuestions);
+  return (
+    <>
+      <Container>
+        {heading}
+        {getReasoningNotice(result.negative, reasonsText)}
+        <div className="mt-32">
+          <Button {...result.receivePdfButton} look="primary" />
+        </div>
+      </Container>
+      <Container>
+        <Heading
+          tagName="h2"
+          text={result.nextStepsNegative.title}
+          className="mb-32"
+        />
+        <Box
+          heading={{
+            ...result.nextStepsNegative.step.headline,
+            tagName: "h3",
+          }}
+          content={{
+            markdown: result.nextStepsNegative.step.content,
+          }}
+        />
       </Container>
     </>
   );
