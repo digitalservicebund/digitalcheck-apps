@@ -10,7 +10,7 @@ export const FIELD_NAME_PRE_CHECK_POSITIVE_3 = "Vorprüfung positiv - 3";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_4 = "Vorprüfung positiv - 4";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_5 = "Vorprüfung positiv - 5";
 export const FIELD_NAME_PRE_CHECK_NEGATIVE = "Vorprüfung negativ";
-export const FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT =
+export const FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING =
   "Vorprüfung negativ - Erläuterung";
 
 interface PreCheckAnswer {
@@ -20,7 +20,7 @@ interface PreCheckAnswer {
 interface UserInput {
   title: string;
   answers: PreCheckAnswer;
-  negativeAssessment?: string;
+  negativeReasoning?: string;
 }
 
 const createPreCheckPDF = async function (
@@ -34,7 +34,7 @@ const createPreCheckPDF = async function (
     const pdfDoc = await PDFDocument.load(rawPdfBytes);
     const form = pdfDoc.getForm();
 
-    const { title, answers, negativeAssessment } = userInput;
+    const { title, answers, negativeReasoning } = userInput;
 
     const positive = ["yes", "unsure"];
     const negative = "no";
@@ -75,11 +75,11 @@ const createPreCheckPDF = async function (
       form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
     }
 
-    const negativeAssessmentField = form.getTextField(
-      FIELD_NAME_PRE_CHECK_NEGATIVE_ASSESMENT,
+    const negativeReasoningField = form.getTextField(
+      FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING,
     );
-    negativeAssessmentField.setText(negativeAssessment);
-    negativeAssessmentField.setFontSize(12);
+    negativeReasoningField.setText(negativeReasoning);
+    negativeReasoningField.setFontSize(12);
 
     return await pdfDoc.save();
   } catch (err) {
@@ -96,7 +96,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const searchParams = Object.fromEntries(url.searchParams.entries());
   const {
     title = "",
-    negativeAssessment = "",
+    negativeReasoning = "",
     download,
     ...answers
   } = searchParams;
@@ -104,7 +104,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const pdfData = await createPreCheckPDF({
     title,
     answers,
-    negativeAssessment,
+    negativeReasoning,
   });
 
   return new Response(pdfData, {
