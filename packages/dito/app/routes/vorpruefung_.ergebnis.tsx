@@ -8,9 +8,9 @@ import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
+import { MetaFunction, useFetcher, useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "./vorpruefung.$questionId";
@@ -30,6 +30,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ answers });
 }
 
+export async function action({ request }: LoaderFunctionArgs) {
+  const { answers } = await getAnswersFromCookie(request);
+  const body = await request.formData();
+  const values = Object.fromEntries(body);
+
+  const pdfValues = { ...(values as Record<string, string>), ...answers };
+  const queryParams = new URLSearchParams(pdfValues).toString();
+
+  return redirect(
+    `einschaetzung/digitalcheck-vorpruefung.pdf?${queryParams}&download`,
+  );
+}
+
 const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
   Object.keys(answers).filter((key) => answers[key] === option);
 
@@ -39,12 +52,12 @@ export default function Result() {
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
   const negativeQuestions = getQuestionIDsOfOption(answers, "no");
 
+  const fetcher = useFetcher();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   const heading = (
     <Heading
@@ -136,26 +149,35 @@ export default function Result() {
   }
 
   // all answers are negative
+  const onSubmit = (data: Record<string, string>) => {
+    fetcher.submit(data, {
+      method: "post",
+    });
+  };
   const reasonsText = getReasoningText("Nein", negativeQuestions);
+
   return (
     <>
       <Container>
         {heading}
         {getReasoningNotice(result.negative, reasonsText)}
-        <Form onSubmit={handleSubmit(onSubmit)} className="mt-32 ds-stack-32">
+        <fetcher.Form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mt-32 ds-stack-32"
+        >
           <Textarea
-            name="reason"
+            name="negativeReasoning"
             label={assessment.form.reasonLabel}
             formRegister={register}
             required={assessment.form.reasonRequired}
-            error={errors.reason}
+            error={errors["negativeReasoning"]}
           />
           <Input
             name="title"
             label={assessment.form.policyTitleLabel}
             formRegister={register}
             required={assessment.form.policyTitleRequired}
-            error={errors.title}
+            error={errors["title"]}
           />
           <Button
             text={result.receivePdfButton.text}
@@ -164,7 +186,7 @@ export default function Result() {
             type="submit"
             className="self-start"
           />
-        </Form>
+        </fetcher.Form>
       </Container>
       <Container>
         <Heading
