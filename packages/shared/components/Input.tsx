@@ -1,5 +1,9 @@
 import classNames from "classnames";
-import React from "react";
+import type {
+  FieldValues,
+  GlobalError,
+  UseFormRegister,
+} from "react-hook-form";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 
@@ -9,9 +13,11 @@ export type InputProps = Readonly<{
   type?: string;
   prefix?: string;
   suffix?: string;
-  error?: string;
   helperText?: string;
   width?: "3" | "5" | "7" | "10" | "16" | "24" | "36" | "54";
+  formRegister: UseFormRegister<FieldValues>;
+  required?: boolean | string;
+  error?: GlobalError;
 }>;
 
 const widthClass = (width: string) => {
@@ -27,59 +33,51 @@ const widthClass = (width: string) => {
   }[width];
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  function InputComponent(
-    {
-      name,
-      label,
-      type = "text",
-      prefix,
-      suffix,
-      error,
-      helperText,
-      width,
-      ...props
-    },
-    ref,
-  ) {
-    const errorId = `${name}-error`;
-    const helperId = `${name}-helper`;
+export default function Input({
+  name,
+  label,
+  type = "text",
+  prefix,
+  suffix,
+  helperText,
+  width,
+  formRegister,
+  required,
+  error,
+}: InputProps) {
+  const errorId = `${name}-error`;
+  const helperId = `${name}-helper`;
 
-    return (
-      <div>
-        {label && <InputLabel id={name}>{label}</InputLabel>}
-        <div className="ds-input-group">
-          {prefix && <div className="ds-input-prefix">{prefix}</div>}
-          <input
-            id={name}
-            name={name}
-            type={type}
-            ref={ref}
-            className={classNames(
-              "ds-input forced-color-adjust-none",
-              { "has-error": error },
-              width && widthClass(width),
-            )}
-            aria-invalid={error !== undefined}
-            aria-describedby={[error && errorId, helperText && helperId].join(
-              " ",
-            )}
-            aria-errormessage={error && errorId}
-            {...props}
-          />
-          {suffix && (
-            <div className="ds-input-suffix" aria-hidden="true">
-              {suffix}
-            </div>
+  return (
+    <div>
+      {label && <InputLabel id={name}>{label}</InputLabel>}
+      <div className="ds-input-group">
+        {prefix && <div className="ds-input-prefix">{prefix}</div>}
+        <input
+          id={name}
+          type={type}
+          {...formRegister(name, { required })}
+          className={classNames(
+            "ds-input forced-color-adjust-none",
+            { "has-error": error },
+            width && widthClass(width),
           )}
-        </div>
-        <div className="label-text mt-6" id={helperId}>
-          {helperText}
-        </div>
-        {error && <InputError id={errorId}>{error}</InputError>}
+          aria-invalid={error !== undefined}
+          aria-describedby={[error && errorId, helperText && helperId].join(
+            " ",
+          )}
+          aria-errormessage={error && errorId}
+        />
+        {suffix && (
+          <div className="ds-input-suffix" aria-hidden="true">
+            {suffix}
+          </div>
+        )}
       </div>
-    );
-  },
-);
-
-export default Input;
+      <div className="label-text mt-6" id={helperId}>
+        {helperText}
+      </div>
+      {error && <InputError id={errorId}>{error.message}</InputError>}
+    </div>
+  );
+}

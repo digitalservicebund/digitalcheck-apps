@@ -1,5 +1,10 @@
 import classNames from "classnames";
 import type { ReactNode } from "react";
+import type {
+  FieldValues,
+  GlobalError,
+  UseFormRegister,
+} from "react-hook-form";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 import RichText from "./RichText";
@@ -9,7 +14,9 @@ type TextareaProps = Readonly<{
   description?: string;
   label?: ReactNode;
   placeholder?: string;
-  error?: string;
+  formRegister: UseFormRegister<FieldValues>;
+  required?: boolean | string;
+  error?: GlobalError;
   formId?: string;
 }>;
 
@@ -17,6 +24,8 @@ const Textarea = ({
   name,
   description,
   label,
+  formRegister,
+  required,
   error,
   ...props
 }: TextareaProps) => {
@@ -37,7 +46,7 @@ const Textarea = ({
       )}
       <textarea
         id={name}
-        name={name}
+        {...formRegister(name, { required })}
         className={classNames(
           "ds-textarea forced-color-adjust-none placeholder-gray-600",
           {
@@ -49,7 +58,7 @@ const Textarea = ({
         aria-errormessage={error && errorId}
         {...props}
       />
-      <InputError id={errorId}>{error}</InputError>
+      {error && <InputError id={errorId}>{error.message}</InputError>}
     </div>
   );
 };
