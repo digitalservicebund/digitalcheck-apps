@@ -85,20 +85,6 @@ export default function Result() {
     }
   }
 
-  const listItems = preCheck.result.nextStepsPositive.steps.map((step) => ({
-    headline: {
-      tagName: "h3" as const,
-      text: step.title,
-    },
-    content: step.text,
-    buttons: step.link && [
-      {
-        text: step.link.text,
-        href: step.link.url,
-      },
-    ],
-  }));
-
   return (
     <>
       <Container>
@@ -141,7 +127,7 @@ export default function Result() {
               text: preCheck.result.nextStepsPositive.title,
               tagName: "h2",
             }}
-            items={listItems}
+            items={preCheck.result.nextStepsPositive.steps}
             isNumeric
           />
         )}
@@ -171,12 +157,9 @@ export default function Result() {
               className="mb-32"
             />
             <Box
-              heading={{
-                tagName: "h3",
-                text: preCheck.result.nextStepsNegative.step.title,
-              }}
+              heading={preCheck.result.nextStepsNegative.step.headline}
               content={{
-                markdown: preCheck.result.nextStepsNegative.step.text,
+                markdown: preCheck.result.nextStepsNegative.step.content,
               }}
             />
           </>

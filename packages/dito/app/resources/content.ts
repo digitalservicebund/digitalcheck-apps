@@ -74,11 +74,14 @@ Beispiele für Beteiligte sind:
 };
 
 const stepNKR = {
-  title: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
-  text: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
-
+  headline: {
+    tagName: "h3" as const,
+    text: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
+  },
+  content: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
 
 Die für Ihr Haus zuständige Ansprechperson finden Sie hier: www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html
+
 Damit ist der Digitalcheck für Sie beendet.`,
 };
 
@@ -190,16 +193,26 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       title: "Das sind Ihre nächsten Schritte",
       steps: [
         {
-          title: "Digitaltaugliches Regelungsvorhaben erarbeiten",
-          text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
-          link: {
-            text: "Zu den Hilfestellungen und Methoden",
-            url: PATH_METHODS,
+          headline: {
+            tagName: "h3" as const,
+            text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
           },
+          content:
+            "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+          buttons: [
+            {
+              text: "Zu den Hilfestellungen und Methoden",
+              url: PATH_METHODS,
+            },
+          ],
         },
         {
-          title: "Abschließende Dokumentation",
-          text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
+          headline: {
+            tagName: "h3" as const,
+            text: "Abschließende Dokumentation",
+          },
+          content:
+            "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
         },
         stepNKR,
       ],
