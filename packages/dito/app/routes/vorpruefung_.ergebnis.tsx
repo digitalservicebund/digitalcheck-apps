@@ -107,6 +107,16 @@ export default function Result() {
           look="ds-heading-02-reg"
           className="mb-32"
         />
+        {result === "unsure" && (
+          <div className="mb-32">
+            <InlineNotice
+              look="support"
+              title={preCheck.result.noticeUnsure.title}
+              tagName="h2"
+              content={preCheck.result.noticeUnsure.text}
+            />
+          </div>
+        )}
         <InlineNotice
           look="info"
           title={reasonsTitle}
@@ -114,9 +124,11 @@ export default function Result() {
           content={reasonsText}
           showIcon={false}
         />
-        <div className="mt-16">
-          <Button {...preCheck.result.receivePdfButton} look="tertiary" />
-        </div>
+        {result != "unsure" && (
+          <div className="mt-32">
+            <Button {...preCheck.result.receivePdfButton} look="tertiary" />
+          </div>
+        )}
       </Container>
       <Container>
         {result === "unsure" ? (

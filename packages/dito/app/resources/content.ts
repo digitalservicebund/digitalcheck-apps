@@ -202,6 +202,10 @@ Damit ist der Digitalcheck für Sie beendet.`,
         },
       ],
     },
+    noticeUnsure: {
+      title: `Sie haben mehrere Aussagen mit "Unsicher" beantwortet.`,
+      text: `Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.`,
+    },
     boxUnsure: {
       title:
         "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
