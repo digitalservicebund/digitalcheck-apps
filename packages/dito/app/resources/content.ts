@@ -73,6 +73,15 @@ Beispiele für Beteiligte sind:
 - weitere Organisationen wie z.B. Vereine.`,
 };
 
+const stepNKR = {
+  title: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
+  text: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
+
+
+Die für Ihr Haus zuständige Ansprechperson finden Sie hier: www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html
+Damit ist der Digitalcheck für Sie beendet.`,
+};
+
 export const preCheck = {
   start: {
     title: "Vorprüfung: Digitalbezug einschätzen",
@@ -177,7 +186,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
     },
     reasonIntro:
       "Digitalbezug liegt vor, wenn die Umsetzung des Regelungsvorhabens voraussichtlich ...",
-    nextSteps: {
+    nextStepsPositive: {
       title: "Das sind Ihre nächsten Schritte",
       steps: [
         {
@@ -192,14 +201,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
           title: "Abschließende Dokumentation",
           text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
         },
-        {
-          title: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
-          text: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
-
-
-Die für Ihr Haus zuständige Ansprechperson finden Sie hier: www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html
-Damit ist der Digitalcheck für Sie beendet.`,
-        },
+        stepNKR,
       ],
     },
     noticeUnsure: {
@@ -214,6 +216,10 @@ Damit ist der Digitalcheck für Sie beendet.`,
         text: "Zu den Hilfestellungen und Methoden",
         url: PATH_METHODS,
       },
+    },
+    nextStepsNegative: {
+      title: "Das sind Ihre nächsten Schritte",
+      step: stepNKR,
     },
   },
 };

@@ -85,7 +85,7 @@ export default function Result() {
     }
   }
 
-  const listItems = preCheck.result.nextSteps.steps.map((step) => ({
+  const listItems = preCheck.result.nextStepsPositive.steps.map((step) => ({
     headline: {
       tagName: "h3" as const,
       text: step.title,
@@ -132,7 +132,17 @@ export default function Result() {
         )}
       </Container>
       <Container>
-        {result === "unsure" ? (
+        {result === "positive" && (
+          <List
+            heading={{
+              text: preCheck.result.nextStepsPositive.title,
+              tagName: "h2",
+            }}
+            items={listItems}
+            isNumeric
+          />
+        )}
+        {result === "unsure" && (
           <Box
             heading={{
               text: preCheck.result.boxUnsure.title,
@@ -149,15 +159,24 @@ export default function Result() {
               },
             ]}
           />
-        ) : (
-          <List
-            heading={{
-              text: preCheck.result.nextSteps.title,
-              tagName: "h2",
-            }}
-            items={listItems}
-            isNumeric
-          />
+        )}
+        {result === "negative" && (
+          <>
+            <Heading
+              tagName="h2"
+              text={preCheck.result.nextStepsNegative.title}
+              className="mb-32"
+            />
+            <Box
+              heading={{
+                tagName: "h3",
+                text: preCheck.result.nextStepsNegative.step.title,
+              }}
+              content={{
+                markdown: preCheck.result.nextStepsNegative.step.text,
+              }}
+            />
+          </>
         )}
       </Container>
     </>
