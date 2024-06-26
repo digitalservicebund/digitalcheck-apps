@@ -20,7 +20,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext,
 ) {
-  logResponseStatus(responseStatusCode, request);
+  const startTime = Date.now();
 
   return isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
@@ -28,12 +28,14 @@ export default function handleRequest(
         responseStatusCode,
         responseHeaders,
         remixContext,
+        startTime,
       )
     : handleBrowserRequest(
         request,
         responseStatusCode,
         responseHeaders,
         remixContext,
+        startTime,
       );
 }
 
@@ -42,6 +44,7 @@ function handleBotRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
+  startTime: number,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
@@ -71,13 +74,13 @@ function handleBotRequest(
         onShellError(error: unknown) {
           reject(error);
         },
-        onError(error: unknown) {
+        onError() {
           responseStatusCode = 500;
           // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
-            console.error(error);
+            logResponseStatus(responseStatusCode, request, startTime, true);
           }
         },
       },
@@ -92,6 +95,7 @@ function handleBrowserRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
+  startTime: number,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
@@ -134,11 +138,25 @@ function handleBrowserRequest(
     );
 
     setTimeout(abort, ABORT_DELAY);
-  });
+  })
+    .then((response) => {
+      logResponseStatus((response as Response).status, request, startTime);
+      return response;
+    })
+    .catch((error) => {
+      logResponseStatus(500, request, startTime);
+      throw error;
+    });
 }
 
-function logResponseStatus(statusCode: number, request: Request) {
+function logResponseStatus(
+  statusCode: number,
+  request: Request,
+  startTime: number,
+  isBot = false,
+) {
   const timestamp = new Date().toISOString();
+  const duration = Date.now() - startTime;
 
   function createLog(level: string, message: string) {
     return {
@@ -148,6 +166,8 @@ function logResponseStatus(statusCode: number, request: Request) {
       url: request.url,
       method: request.method,
       timestamp,
+      isBot,
+      duration,
     };
   }
 
