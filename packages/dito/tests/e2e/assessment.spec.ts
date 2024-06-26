@@ -98,16 +98,16 @@ test.describe("test PDF generation in negative case", () => {
         await page.getByLabel("Nein").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
-      await page
-        .getByRole("link", { name: "Einschätzung als PDF bekommen" })
-        .click();
     },
   );
 
   test("generates correct PDF in negative case", async ({ page }) => {
+    await page
+      .getByLabel("Begründung")
+      .fill("Dieses Vorhaben hat keinen Digitalbezug.");
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
-    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await page.getByRole("button", { name: "PDF bekommen" }).click();
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT +
@@ -152,6 +152,11 @@ test.describe("test PDF generation in negative case", () => {
     expect(negative).toBe(true);
   });
 
-  // TODO:
-  // test("negative reasoning is be provided to PDF", async ({ page }) => {
+  test("negative reasoning is needed for PDF", async ({ page }) => {
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
+    await page.getByRole("button", { name: "PDF bekommen" }).click();
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
+    );
+  });
 });
