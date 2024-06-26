@@ -12,7 +12,7 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
   return (
     <div className="ds-stack-8 scroll-my-40" id={identifier}>
       {heading && <Heading {...heading} />}
-      <ol className="list-none ds-stack-32 ps-0">
+      <ol className="list-none ds-stack-64 ps-0">
         {items.map((item, index) => (
           <li
             key={
