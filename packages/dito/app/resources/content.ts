@@ -75,7 +75,6 @@ Beispiele für Beteiligte sind:
 
 const stepNKR = {
   headline: {
-    tagName: "h3" as const,
     text: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
   },
   content: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
@@ -194,7 +193,6 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       steps: [
         {
           headline: {
-            tagName: "h3" as const,
             text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
           },
           content:
@@ -208,7 +206,6 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         },
         {
           headline: {
-            tagName: "h3" as const,
             text: "Abschließende Dokumentation",
           },
           content:

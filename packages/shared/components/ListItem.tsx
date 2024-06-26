@@ -46,7 +46,7 @@ const ListItem = ({
             <div className="w-[16px] min-h-[1px] border border-solid border-black mr-[5px] ml-[17px]" />
           )}
           {label && <Heading {...label} />}
-          {headline && <Heading {...headline} />}
+          {headline && <Heading tagName="h3" {...headline} />}
         </div>
         {content && <RichText markdown={content} className="ml-[56px]" />}
         {buttons && buttons.length > 0 && (
