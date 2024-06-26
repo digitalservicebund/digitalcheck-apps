@@ -27,24 +27,38 @@ export const landing = {
     title: "So gehen Sie vor:",
     items: [
       {
-        title: "Vorprüfung: Digitalbezug einschätzen",
-        text: "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
-        link: {
-          text: "Digitalbezug einschätzen",
-          url: PATH_PRECHECK,
+        headline: {
+          text: "Vorprüfung: Digitalbezug einschätzen",
         },
+        content:
+          "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+        buttons: [
+          {
+            text: "Digitalbezug einschätzen",
+            url: PATH_PRECHECK,
+          },
+        ],
       },
       {
-        title: "Digitaltaugliches Regelungsvorhaben erarbeiten",
-        text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden. [Zu den Hilfestellungen und Methoden](/methoden)",
+        headline: {
+          text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
+        },
+        content:
+          "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden. [Zu den Hilfestellungen und Methoden](/methoden)",
       },
       {
-        title: "Abschließende Dokumentation",
-        text: "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
+        headline: {
+          text: "Abschließende Dokumentation",
+        },
+        content:
+          "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
       },
       {
-        title: "Digitalcheck durch den NKR",
-        text: "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
+        headline: {
+          text: "Digitalcheck durch den NKR",
+        },
+        content:
+          "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
       },
     ],
   },

@@ -11,18 +11,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const listItems = landing.list.items.map((item) => ({
-    headline: {
-      text: item.title,
-    },
-    content: item.text,
-    buttons: item.link && [
-      {
-        text: item.link.text,
-        href: item.link.url,
-      },
-    ],
-  }));
   return (
     <>
       <Background backgroundColor="blue">
@@ -44,7 +32,7 @@ export default function Index() {
             tagName: "h2",
             text: landing.list.title,
           }}
-          items={listItems}
+          items={landing.list.items}
           isNumeric
         />
       </Container>
