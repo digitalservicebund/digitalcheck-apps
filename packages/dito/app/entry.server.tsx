@@ -21,22 +21,27 @@ export default function handleRequest(
   remixContext: EntryContext,
 ) {
   const startTime = Date.now();
+  const isReadinessCheck =
+    request.headers.get("X-Readiness-Check") === "readiness-check";
+  const userAgent = request.headers.get("user-agent");
 
-  return isbot(request.headers.get("user-agent"))
-    ? handleBotRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext,
-        startTime,
-      )
-    : handleBrowserRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext,
-        startTime,
-      );
+  if (isReadinessCheck || isbot(userAgent)) {
+    return handleBotRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext,
+      startTime,
+    );
+  } else {
+    return handleBrowserRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext,
+      startTime,
+    );
+  }
 }
 
 function handleBotRequest(
