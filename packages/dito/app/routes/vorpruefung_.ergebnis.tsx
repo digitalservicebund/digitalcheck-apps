@@ -11,6 +11,10 @@ import { preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "./vorpruefung.$questionId";
 
+export const meta: MetaFunction = () => {
+  return [{ title: `${preCheck.result.title} — ${siteMeta.title}` }];
+};
+
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   // redirect to precheck if not all answers are present
@@ -24,9 +28,6 @@ const getQuestionsOfOption = (answers: Answers, option: Option["value"]) => {
   return Object.entries(answers)
     .filter((answer) => answer[1] === option)
     .map((answer) => answer[0]);
-};
-export const meta: MetaFunction = () => {
-  return [{ title: `${preCheck.result.title} — ${siteMeta.title}` }];
 };
 
 const getResult = (answers: Answers) => {

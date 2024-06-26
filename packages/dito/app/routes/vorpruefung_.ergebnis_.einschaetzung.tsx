@@ -10,6 +10,10 @@ import { getAnswersFromCookie } from "cookies.server";
 import { assessment, siteMeta } from "resources/content";
 import { PATH_RESULT } from "resources/staticRoutes";
 
+export const meta: MetaFunction = () => {
+  return [{ title: `${assessment.title} — ${siteMeta.title}` }];
+};
+
 export async function action({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
 
@@ -29,10 +33,6 @@ export async function action({ request }: LoaderFunctionArgs) {
 
   return true;
 }
-
-export const meta: MetaFunction = () => {
-  return [{ title: `${assessment.title} — ${siteMeta.title}` }];
-};
 
 export default function Assessment() {
   return (

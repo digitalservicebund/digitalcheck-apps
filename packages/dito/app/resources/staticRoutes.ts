@@ -28,7 +28,7 @@ const routes: Route[] = [
   },
   {
     url: PATH_RESULT,
-    title: "Ergebnis der Vorprüfung",
+    title: "Ergebnis",
     parent: PATH_PRECHECK,
   },
   {
