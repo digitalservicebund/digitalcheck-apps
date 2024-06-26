@@ -35,7 +35,7 @@ export const landing = {
         buttons: [
           {
             text: "Digitalbezug einschätzen",
-            url: PATH_PRECHECK,
+            href: PATH_PRECHECK,
           },
         ],
       },
@@ -214,7 +214,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
           buttons: [
             {
               text: "Zu den Hilfestellungen und Methoden",
-              url: PATH_METHODS,
+              href: PATH_METHODS,
             },
           ],
         },
@@ -238,7 +238,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
       link: {
         text: "Zu den Hilfestellungen und Methoden",
-        url: PATH_METHODS,
+        href: PATH_METHODS,
       },
     },
     nextStepsNegative: {

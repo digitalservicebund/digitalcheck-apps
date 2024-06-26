@@ -114,7 +114,7 @@ export default function Result() {
               {
                 id: "result-method-button",
                 text: result.boxUnsure.link.text,
-                href: result.boxUnsure.link.url,
+                href: result.boxUnsure.link.href,
                 look: "tertiary",
               },
             ]}
