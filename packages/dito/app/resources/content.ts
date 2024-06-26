@@ -254,6 +254,10 @@ export const assessment = {
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
   form: {
     policyTitleLabel: "Arbeitstitel des Vorhabens",
+    policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
+    reasonLabel: "Begründung",
+    reasonRequired:
+      "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     downloadPdfButton: {
       text: "Als PDF herunterladen",
     },

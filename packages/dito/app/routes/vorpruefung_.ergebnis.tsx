@@ -3,11 +3,15 @@ import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
+import Input from "@digitalcheck/shared/components/Input";
 import List from "@digitalcheck/shared/components/List";
+import Textarea from "@digitalcheck/shared/components/Textarea";
+import Download from "@digitalservicebund/icons/Download";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { preCheck, siteMeta } from "resources/content";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "./vorpruefung.$questionId";
 
@@ -34,6 +38,13 @@ export default function Result() {
   const positiveQuestions = getQuestionIDsOfOption(answers, "yes");
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
   const negativeQuestions = getQuestionIDsOfOption(answers, "no");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   const heading = (
     <Heading
@@ -131,9 +142,29 @@ export default function Result() {
       <Container>
         {heading}
         {getReasoningNotice(result.negative, reasonsText)}
-        <div className="mt-32">
-          <Button {...result.receivePdfButton} look="primary" />
-        </div>
+        <Form onSubmit={handleSubmit(onSubmit)} className="mt-32 ds-stack-32">
+          <Textarea
+            name="reason"
+            label={assessment.form.reasonLabel}
+            formRegister={register}
+            required={assessment.form.reasonRequired}
+            error={errors.reason}
+          />
+          <Input
+            name="title"
+            label={assessment.form.policyTitleLabel}
+            formRegister={register}
+            required={assessment.form.policyTitleRequired}
+            error={errors.title}
+          />
+          <Button
+            text={result.receivePdfButton.text}
+            look="primary"
+            iconLeft={<Download />}
+            type="submit"
+            className="self-start"
+          />
+        </Form>
       </Container>
       <Container>
         <Heading
