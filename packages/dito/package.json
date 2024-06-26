@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "remix vite:dev --manual",
     "build": "remix vite:build",
-    "start": "remix-serve ./build/server/index.js",
+    "start": "export $(grep -v '^#' .env | xargs) && remix-serve ./build/server/index.js",
     "clean": "rm -rf build/",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write --ignore-unknown .",
