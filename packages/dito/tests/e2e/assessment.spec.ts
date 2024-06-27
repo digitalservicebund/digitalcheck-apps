@@ -116,7 +116,7 @@ test.describe("test PDF generation in negative case", () => {
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
-    await page.getByRole("button", { name: "PDF bekommen" }).click();
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT +

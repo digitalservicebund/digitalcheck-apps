@@ -38,6 +38,7 @@ test.describe("test result page reasoning", () => {
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 0; i < 4; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -52,6 +53,7 @@ test.describe("test result page reasoning", () => {
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 0; i < 4; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
