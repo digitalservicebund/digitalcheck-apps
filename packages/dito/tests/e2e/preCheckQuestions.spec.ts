@@ -8,14 +8,19 @@ test.describe("test questions form", () => {
   test("all answer options are submittable", async ({ page }) => {
     await page.goto(PATH_PRECHECK);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.waitForURL(preCheck.questions[0].url);
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(preCheck.questions[1].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(preCheck.questions[2].url);
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(preCheck.questions[3].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(preCheck.questions[4].url);
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await expect(page).toHaveURL(PATH_RESULT);

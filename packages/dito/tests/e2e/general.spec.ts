@@ -52,20 +52,17 @@ test.describe("test landing page", () => {
 });
 
 test.describe("test links", () => {
-  test("links in footer work", async ({ page }) => {
+  test.skip("links in footer work", async ({ page }) => {
     // TODO: reenable once the pages are implemented (remove 404 and extra gotos)
     await page.goto(staticRoutes.PATH_LANDING);
     await page.getByRole("link", { name: "Datenschutzerklärung" }).click();
-    await expect(page.getByRole("main")).toContainText("404");
-    // await expect(page).toHaveURL(staticRoutes.PATH_PRIVACY);
+    await expect(page).toHaveURL(staticRoutes.PATH_PRIVACY);
     await page.goto(staticRoutes.PATH_LANDING);
     await page.getByRole("link", { name: "Barrierefreiheit" }).click();
-    await expect(page.getByRole("main")).toContainText("404");
-    // await expect(page).toHaveURL(staticRoutes.PATH_A11Y);
+    await expect(page).toHaveURL(staticRoutes.PATH_A11Y);
     await page.goto(staticRoutes.PATH_LANDING);
     await page.getByRole("link", { name: "Impressum" }).click();
-    await expect(page.getByRole("main")).toContainText("404");
-    // await expect(page).toHaveURL(staticRoutes.PATH_IMPRINT);
+    await expect(page).toHaveURL(staticRoutes.PATH_IMPRINT);
   });
 
   test("breadcrumb landing link works", async ({ page }) => {

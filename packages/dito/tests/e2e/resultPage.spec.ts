@@ -6,10 +6,11 @@ test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
-      await expect(page).toHaveURL(preCheck.questions[i].url);
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
+    await page.waitForURL(PATH_RESULT);
   });
 
   test("happy path leads to positive result", async ({ page }) => {
@@ -82,6 +83,7 @@ test.describe("test result page reasoning", () => {
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 0; i < 4; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }

@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
-import { PATH_ASSESSMENT } from "resources/staticRoutes";
+import { PATH_ASSESSMENT, PATH_RESULT } from "resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
@@ -19,10 +19,11 @@ test.describe("test assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
-      await expect(page).toHaveURL(preCheck.questions[i].url);
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
+    await page.waitForURL(PATH_RESULT);
     await page
       .getByRole("link", { name: "Einschätzung als PDF bekommen" })
       .click();
@@ -167,7 +168,7 @@ test.describe("test PDF generation in negative case", () => {
 
   test("negative reasoning is required for PDF", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
-    await page.getByRole("button", { name: "PDF herunterladen" }).click();
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     );
@@ -177,7 +178,7 @@ test.describe("test PDF generation in negative case", () => {
     await page
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
-    await page.getByRole("button", { name: "PDF herunterladen" }).click();
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
