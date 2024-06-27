@@ -7,6 +7,7 @@ import { PATH_ASSESSMENT } from "resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
+  FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING,
   FIELD_NAME_PRE_CHECK_POSITIVE_1,
   FIELD_NAME_PRE_CHECK_POSITIVE_2,
   FIELD_NAME_PRE_CHECK_POSITIVE_3,
@@ -111,7 +112,7 @@ test.describe("test PDF generation in negative case", () => {
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT +
-        "/digitalcheck-vorpruefung.pdf?title=Policy+%23987&it-system=no&verpflichtungen-fuer-beteiligte=no&datenaustausch=no&kommunikation=no&automatisierung=no&download",
+        "/digitalcheck-vorpruefung.pdf?negativeReasoning=Dieses+Vorhaben+hat+keinen+Digitalbezug.&title=Policy+%23987&it-system=no&verpflichtungen-fuer-beteiligte=no&datenaustausch=no&kommunikation=no&automatisierung=no&download",
     );
     const filePath = path.resolve(await download.path());
     const fileData = fs.readFileSync(filePath);
@@ -150,13 +151,28 @@ test.describe("test PDF generation in negative case", () => {
       .getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE)
       .isChecked();
     expect(negative).toBe(true);
+
+    const negativeReasoning = form
+      .getTextField(FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING)
+      .getText();
+    expect(negativeReasoning).toBe("Dieses Vorhaben hat keinen Digitalbezug.");
   });
 
-  test("negative reasoning is needed for PDF", async ({ page }) => {
+  test("negative reasoning is required for PDF", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     await page.getByRole("button", { name: "PDF bekommen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
+    );
+  });
+
+  test("title is required for PDF", async ({ page }) => {
+    await page
+      .getByLabel("Begründung")
+      .fill("Dieses Vorhaben hat keinen Digitalbezug.");
+    await page.getByRole("button", { name: "PDF bekommen" }).click();
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
   });
 });
