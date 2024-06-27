@@ -4,9 +4,10 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import Download from "@digitalservicebund/icons/Download";
-import { type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, MetaFunction, redirect } from "@remix-run/react";
+import { redirectDocument, type LoaderFunctionArgs } from "@remix-run/node";
+import { MetaFunction, useFetcher } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { assessment, siteMeta } from "resources/content";
 import { PATH_RESULT } from "resources/staticRoutes";
 
@@ -16,25 +17,27 @@ export const meta: MetaFunction = () => {
 
 export async function action({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
-
   const body = await request.formData();
-  const { _action, ...values } = Object.fromEntries(body);
-
-  const pdfValues = { ...(values as Record<string, string>), ...answers };
+  const values = Object.fromEntries(body) as FieldValues;
+  const pdfValues = { ...values, ...answers };
   const queryParams = new URLSearchParams(pdfValues).toString();
 
-  // TODO:
-  // if (_action === "receiveEmail") {
-  // }
-
-  if (_action === "downloadPdf") {
-    return redirect(`digitalcheck-vorpruefung.pdf?${queryParams}&download`);
-  }
-
-  return true;
+  return redirectDocument(
+    `digitalcheck-vorpruefung.pdf?${queryParams}&download`,
+  );
 }
 
 export default function Assessment() {
+  const fetcher = useFetcher();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    fetcher.submit(data, { method: "post" });
+  };
+
   return (
     <>
       <Container paddingBottom="0">
@@ -50,10 +53,14 @@ export default function Assessment() {
         ></Box>
       </Container>
       <Container paddingBottom="48">
-        <Form method="post" reloadDocument>
-          {/* <Input name="email" label={assessment.form.emailLabel} /> */}
-          <Input name="title" label={assessment.form.policyTitleLabel} />
-          {/* <Input name="title" label={assessment.form.policyTitleLabel} /> */}
+        <fetcher.Form onSubmit={handleSubmit(onSubmit)} method="post">
+          <Input
+            name="title"
+            label={assessment.form.policyTitleLabel}
+            formRegister={register}
+            required={assessment.form.policyTitleRequired}
+            error={errors["title"]}
+          />
           <br />
           <ButtonContainer>
             <Button
@@ -62,23 +69,15 @@ export default function Assessment() {
               href={PATH_RESULT}
               look="tertiary"
             ></Button>
-            {/* <Button
-              id="assessment-email-button"
-              text={assessment.form.receiveEmailButton.text}
-              name="_action"
-              value="receiveEmail"
-              look="primary"
-            ></Button> */}
             <Button
               id="assessment-download-button"
               text={assessment.form.downloadPdfButton.text}
-              name="_action"
-              value="downloadPdf"
+              // type="submit"
               look="primary"
               iconLeft={<Download />}
             ></Button>
           </ButtonContainer>
-        </Form>
+        </fetcher.Form>
       </Container>
     </>
   );
