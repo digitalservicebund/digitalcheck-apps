@@ -7,10 +7,16 @@ import Input from "@digitalcheck/shared/components/Input";
 import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
-import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  json,
+  redirect,
+  redirectDocument,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
 import { MetaFunction, useFetcher, useLoaderData } from "@remix-run/react";
 import { getAnswersFromCookie } from "cookies.server";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "./vorpruefung.$questionId";
@@ -30,15 +36,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ answers });
 }
 
-export async function action({ request }: LoaderFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   const body = await request.formData();
-  const values = Object.fromEntries(body);
-
-  const pdfValues = { ...(values as Record<string, string>), ...answers };
+  const values = Object.fromEntries(body) as FieldValues;
+  const pdfValues = { ...values, ...answers };
   const queryParams = new URLSearchParams(pdfValues).toString();
 
-  return redirect(
+  // using redirectDocument to force the browser to download the PDF instead of changing the URL on the client side
+  return redirectDocument(
     `einschaetzung/digitalcheck-vorpruefung.pdf?${queryParams}&download`,
   );
 }
@@ -57,7 +63,7 @@ export default function Result() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FieldValues>();
 
   const heading = (
     <Heading
@@ -149,10 +155,8 @@ export default function Result() {
   }
 
   // all answers are negative
-  const onSubmit = (data: Record<string, string>) => {
-    fetcher.submit(data, {
-      method: "post",
-    });
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    fetcher.submit(data, { method: "post" });
   };
   const reasonsText = getReasoningText("Nein", negativeQuestions);
 
