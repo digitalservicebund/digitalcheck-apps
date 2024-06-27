@@ -87,6 +87,13 @@ test.describe("test assessment page and PDF", () => {
       .isChecked();
     expect(negative).toBe(false);
   });
+
+  test("title is required for PDF", async ({ page }) => {
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
+    );
+  });
 });
 
 test.describe("test PDF generation in negative case", () => {
