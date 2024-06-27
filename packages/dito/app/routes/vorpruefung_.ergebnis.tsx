@@ -165,31 +165,31 @@ export default function Result() {
       <Container>
         {heading}
         {getReasoningNotice(result.negative, reasonsText)}
-        <fetcher.Form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mt-32 ds-stack-32"
-        >
-          <Textarea
-            name="negativeReasoning"
-            label={assessment.form.reasonLabel}
-            formRegister={register}
-            required={assessment.form.reasonRequired}
-            error={errors["negativeReasoning"]}
-          />
-          <Input
-            name="title"
-            label={assessment.form.policyTitleLabel}
-            formRegister={register}
-            required={assessment.form.policyTitleRequired}
-            error={errors["title"]}
-          />
-          <Button
-            text={result.receivePdfButton.text}
-            look="primary"
-            iconLeft={<Download />}
-            type="submit"
-            className="self-start"
-          />
+        <fetcher.Form onSubmit={handleSubmit(onSubmit)} className="mt-32">
+          <fieldset className="ds-stack-32">
+            <legend>{assessment.form.formLegend}</legend>
+            <Textarea
+              name="negativeReasoning"
+              label={assessment.form.reasonLabel}
+              formRegister={register}
+              required={assessment.form.reasonRequired}
+              error={errors["negativeReasoning"]}
+            />
+            <Input
+              name="title"
+              label={assessment.form.policyTitleLabel}
+              formRegister={register}
+              required={assessment.form.policyTitleRequired}
+              error={errors["title"]}
+            />
+            <Button
+              text={result.receivePdfButton.text}
+              look="primary"
+              iconLeft={<Download />}
+              type="submit"
+              className="self-start"
+            />
+          </fieldset>
         </fetcher.Form>
       </Container>
       <Container>
