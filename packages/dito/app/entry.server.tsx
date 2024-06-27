@@ -190,7 +190,8 @@ function logResponseStatus(
   if (statusCode >= 200 && statusCode < 300) {
     logMessage("info", "HTTP successful response");
   } else if (statusCode >= 400 && statusCode < 500) {
-    logMessage("warning", "HTTP warning response");
+    statusCode = 500;
+    logMessage("error", "HTTP warning response");
   } else if (statusCode >= 500) {
     logMessage("error", "HTTP error response");
   }
