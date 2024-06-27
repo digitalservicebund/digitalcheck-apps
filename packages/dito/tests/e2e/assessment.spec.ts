@@ -160,7 +160,7 @@ test.describe("test PDF generation in negative case", () => {
 
   test("negative reasoning is required for PDF", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
-    await page.getByRole("button", { name: "PDF bekommen" }).click();
+    await page.getByRole("button", { name: "PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     );
@@ -170,7 +170,7 @@ test.describe("test PDF generation in negative case", () => {
     await page
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
-    await page.getByRole("button", { name: "PDF bekommen" }).click();
+    await page.getByRole("button", { name: "PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );

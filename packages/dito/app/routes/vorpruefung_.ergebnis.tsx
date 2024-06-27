@@ -183,7 +183,7 @@ export default function Result() {
               error={errors["title"]}
             />
             <Button
-              text={result.receivePdfButton.text}
+              text={assessment.form.downloadPdfButton.text}
               look="primary"
               iconLeft={<Download />}
               type="submit"
