@@ -1,4 +1,4 @@
-import data from "src/resources/data";
+import data from "resources/data";
 import type { Entity } from "./Entity";
 
 export type FidelityId = (typeof data)["fidelities"][number]["id"];

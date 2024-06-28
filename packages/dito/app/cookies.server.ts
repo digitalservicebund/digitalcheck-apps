@@ -1,5 +1,5 @@
 import { createCookie } from "@remix-run/node";
-import type { Answers } from "app/routes/vorpruefung.$questionId";
+import type { Answers } from "routes/vorpruefung.$questionId";
 
 export const userAnswers = createCookie("user-answers", {
   maxAge: 604_800, // one week

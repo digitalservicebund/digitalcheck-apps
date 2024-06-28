@@ -2,12 +2,12 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import useTitle from "src/services/useTitle";
+import useTitle from "services/useTitle";
 
 import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Image from "@digitalcheck/shared/components/Image";
-import flowchartElementsImage from "src/resources/img/flowchart-elements.png";
+import flowchartElementsImage from "resources/img/flowchart-elements.png";
 import { PATH_RESULT } from "./";
 
 function Flowchart() {

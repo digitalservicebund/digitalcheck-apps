@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig-base",
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": "src"
   }
 }

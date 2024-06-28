@@ -5,9 +5,9 @@ import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
-import { getAnswersFromCookie, getHeaderFromCookie } from "app/cookies.server";
-import { preCheck, siteMeta } from "app/resources/content";
-import { PATH_LANDING } from "app/resources/staticRoutes";
+import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
+import { preCheck, siteMeta } from "resources/content";
+import { PATH_LANDING } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];

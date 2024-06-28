@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { preCheck } from "app/resources/content";
-import { PATH_PRECHECK, PATH_RESULT } from "app/resources/staticRoutes";
+import { preCheck } from "resources/content";
+import { PATH_PRECHECK, PATH_RESULT } from "resources/staticRoutes";
 
 const { questions } = preCheck;
 

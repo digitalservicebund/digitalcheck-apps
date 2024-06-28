@@ -1,8 +1,8 @@
 import Check from "@digitalservicebund/icons/Check";
-import { preCheck } from "app/resources/content";
-import type { Answers, TQuestion } from "app/routes/vorpruefung.$questionId";
 import classNames from "classnames";
 import { useId } from "react";
+import { preCheck } from "resources/content";
+import type { Answers, TQuestion } from "routes/vorpruefung.$questionId";
 
 type PreCheckNavigationProps = Readonly<{
   question?: TQuestion;
