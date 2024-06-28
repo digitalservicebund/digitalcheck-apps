@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import * as allRoutes from "routes";
+import * as allRoutes from "src/routes";
 
 test.describe("test general functionality", () => {
   test("all routes are reachable and have a breadcrumb menu + title", async ({
