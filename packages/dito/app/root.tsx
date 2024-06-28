@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import type { HeadersFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -26,6 +26,16 @@ import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/staticRoutes";
 export const meta: MetaFunction = () => {
   return [{ title: siteMeta.title }];
 };
+
+export const headers: HeadersFunction = () => ({
+  "Content-Security-Policy":
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'self'; connect-src 'self'",
+  "X-Frame-Options": "SAMEORIGIN",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy":
+    "geolocation=(), midi=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), fullscreen=(self), payment=(), usb=()",
+});
 
 export const links: LinksFunction = () => [
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
