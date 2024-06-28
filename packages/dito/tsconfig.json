@@ -2,6 +2,11 @@
   "extends": "../../tsconfig-base",
   "compilerOptions": {
     "baseUrl": "app",
-    "types": ["@remix-run/dev", "@remix-run/node", "vite/client"]
+    "types": ["@remix-run/dev", "@remix-run/node", "vite/client"],
+    "paths": {
+      "@digitalservicebund/icons/*": [
+        "../../../node_modules/@digitalservicebund/icons/*"
+      ]
+    }
   }
 }

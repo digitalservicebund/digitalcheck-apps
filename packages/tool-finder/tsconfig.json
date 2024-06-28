@@ -1,6 +1,11 @@
 {
   "extends": "../../tsconfig-base",
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@digitalservicebund/icons/*": [
+        "../../../node_modules/@digitalservicebund/icons/*"
+      ]
+    }
   }
 }

@@ -20,12 +20,6 @@
     "useUnknownInCatchVariables": false,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["vite/client"],
-    "paths": {
-      // this is relative to the individual packages baseURL as it is set in each tsconfig.json
-      "@digitalservicebund/icons/*": [
-        "${configDir}../../node_modules/@digitalservicebund/icons/*"
-      ]
-    }
+    "types": ["vite/client"]
   }
 }
