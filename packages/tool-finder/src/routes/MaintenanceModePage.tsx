@@ -2,7 +2,7 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import useTitle from "services/useTitle";
+import useTitle from "src/services/useTitle";
 
 function MaintenanceModePage() {
   useTitle();

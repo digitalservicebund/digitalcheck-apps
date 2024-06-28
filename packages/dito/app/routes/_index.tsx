@@ -4,7 +4,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import List from "@digitalcheck/shared/components/List";
 import { MetaFunction } from "@remix-run/react";
-import { landing, siteMeta } from "resources/content";
+import { landing, siteMeta } from "app/resources/content";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${landing.title} — ${siteMeta.title}` }];

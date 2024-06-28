@@ -1,9 +1,4 @@
 {
-  "references": [
-    {
-      "path": "./packages/shared"
-    }
-  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2023"],
     "isolatedModules": true,

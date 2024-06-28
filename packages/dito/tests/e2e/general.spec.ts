@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
-import allRoutes from "resources/allRoutes";
-import { preCheck } from "resources/content";
-import * as staticRoutes from "resources/staticRoutes";
+import allRoutes from "app/resources/allRoutes";
+import { preCheck } from "app/resources/content";
+import * as staticRoutes from "app/resources/staticRoutes";
 
 test.describe("test general availability", () => {
   test("all routes are reachable and have a breadcrumb menu + title if they aren't PDF", async ({

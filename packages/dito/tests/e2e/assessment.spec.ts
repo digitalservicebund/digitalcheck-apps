@@ -1,9 +1,6 @@
 import { expect, test } from "@playwright/test";
-import * as fs from "node:fs";
-import * as path from "node:path";
-import { PDFDocument } from "pdf-lib";
-import { preCheck } from "resources/content";
-import { PATH_ASSESSMENT, PATH_RESULT } from "resources/staticRoutes";
+import { preCheck } from "app/resources/content";
+import { PATH_ASSESSMENT, PATH_RESULT } from "app/resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
@@ -13,7 +10,10 @@ import {
   FIELD_NAME_PRE_CHECK_POSITIVE_3,
   FIELD_NAME_PRE_CHECK_POSITIVE_4,
   FIELD_NAME_PRE_CHECK_POSITIVE_5,
-} from "routes/vorpruefung_.ergebnis.einschaetzung.$fileName[.pdf]";
+} from "app/routes/vorpruefung_.ergebnis.einschaetzung.$fileName[.pdf]";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { PDFDocument } from "pdf-lib";
 
 test.describe("test assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {

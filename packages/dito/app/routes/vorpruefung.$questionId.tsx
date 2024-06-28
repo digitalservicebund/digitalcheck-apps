@@ -9,10 +9,10 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
-import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
+import { getAnswersFromCookie, getHeaderFromCookie } from "app/cookies.server";
+import { preCheck } from "app/resources/content";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { preCheck } from "resources/content";
 
 const { questions, answerOptions, nextButton } = preCheck;
 

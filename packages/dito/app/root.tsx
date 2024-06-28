@@ -19,9 +19,13 @@ import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
 import Header from "@digitalcheck/shared/components/Header";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
-import routes from "resources/allRoutes";
-import { header, siteMeta } from "resources/content";
-import { PATH_A11Y, PATH_IMPRINT, PATH_PRIVACY } from "resources/staticRoutes";
+import routes from "app/resources/allRoutes";
+import { header, siteMeta } from "app/resources/content";
+import {
+  PATH_A11Y,
+  PATH_IMPRINT,
+  PATH_PRIVACY,
+} from "app/resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
   return [{ title: siteMeta.title }];

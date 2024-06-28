@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig-base",
   "compilerOptions": {
-    "baseUrl": "app",
+    "baseUrl": "./",
     "types": ["@remix-run/dev", "@remix-run/node", "vite/client"]
   }
 }
