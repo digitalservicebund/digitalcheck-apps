@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import unleash, { getFeatureToggleDefinitions } from "app/feature-flags.server";
+import unleash, { getFeatureToggleDefinitions } from "feature-flags.server";
 
 export const loader = () => {
   const definitions = getFeatureToggleDefinitions() || [];
