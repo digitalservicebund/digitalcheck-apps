@@ -24,7 +24,7 @@
     "paths": {
       // this is relative to the individual packages baseURL as it is set in each tsconfig.json
       "@digitalservicebund/icons/*": [
-        "../../node_modules/@digitalservicebund/icons/*"
+        "${configDir}../../node_modules/@digitalservicebund/icons/*"
       ]
     }
   }
