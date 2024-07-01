@@ -11,22 +11,9 @@
       name="description"
       content="Der Werkzeugfinder erleichtert es, Visualisierungen in der Regelungsarbeit zu nutzen."
     />
-    <style id="antiClickjack">
-      body {
-        display: none !important;
-      }
-    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/javascript">
-      if (self === top) {
-        let antiClickjack = document.getElementById("antiClickjack");
-        antiClickjack.parentNode.removeChild(antiClickjack);
-      } else {
-        top.location = self.location; // NOSONAR https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html#best-for-now-legacy-browser-frame-breaking-script
-      }
-    </script>
     <script
       defer
       data-domain="visualisieren.digitalcheck.bund.de"
