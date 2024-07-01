@@ -95,6 +95,11 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={siteMeta.description} />
+        <script
+          defer
+          data-domain="digitalcheck-dito.prod.ds4g.net"
+          src="https://plausible.io/js/script.js"
+        ></script>
         <Meta />
         <Links />
       </head>
