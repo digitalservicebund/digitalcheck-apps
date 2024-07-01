@@ -29,7 +29,7 @@ export const meta: MetaFunction = () => {
 
 export const headers: HeadersFunction = () => ({
   "Content-Security-Policy":
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'self'; connect-src 'self'",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'self'; connect-src 'self' https://plausible.io",
   "X-Frame-Options": "SAMEORIGIN",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
