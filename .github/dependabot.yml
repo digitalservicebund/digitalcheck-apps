@@ -6,6 +6,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      remix:
+        patterns:
+          - "@remix-run/*"
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
     # Too much noise with patch releases...
     ignore:
       - dependency-name: "*"
