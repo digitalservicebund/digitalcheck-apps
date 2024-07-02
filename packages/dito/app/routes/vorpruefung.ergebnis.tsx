@@ -19,7 +19,7 @@ import { getAnswersFromCookie } from "cookies.server";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
-import type { Answers, Option } from "./vorpruefung.$questionId";
+import type { Answers, Option } from "./vorpruefung.$questionId/route";
 
 const { result, questions } = preCheck;
 

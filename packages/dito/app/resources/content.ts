@@ -1,4 +1,4 @@
-import type { TQuestion } from "routes/vorpruefung.$questionId";
+import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_ASSESSMENT,
   PATH_METHODS,
