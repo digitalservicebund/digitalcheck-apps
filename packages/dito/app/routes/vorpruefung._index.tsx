@@ -1,7 +1,9 @@
+import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
+import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
@@ -23,51 +25,53 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Index() {
   return (
     <>
-      <Container paddingBottom="0">
-        <Box
-          heading={{
-            tagName: "h1",
-            text: preCheck.start.title,
-            look: "ds-heading-02-reg",
-          }}
-          content={{
-            markdown: preCheck.start.subtitle,
-          }}
-        ></Box>
-      </Container>
-      <Container paddingBottom="0">
-        <ButtonContainer>
-          <Button
-            id="preCheck-back-button"
-            text="Zurück"
-            href={PATH_LANDING}
-            size="large"
-            look="tertiary"
-          ></Button>
-          <Button
-            id="preCheck-start-button"
-            text={preCheck.start.buttonText}
-            href={preCheck.questions[0].url}
-            size="large"
-            type="submit"
-          ></Button>
-        </ButtonContainer>
-      </Container>
-      <Container paddingBottom="0">
+      <Background backgroundColor="blue" paddingTop="48" paddingBottom="48">
+        <Container paddingTop="0">
+          <Box
+            heading={{
+              tagName: "h1",
+              text: preCheck.start.title,
+            }}
+            content={{
+              markdown: preCheck.start.subtitle,
+            }}
+          ></Box>
+        </Container>
+        <Container paddingTop="0" paddingBottom="0">
+          <ButtonContainer>
+            <Button
+              id="preCheck-start-button"
+              text={preCheck.start.buttonText}
+              href={preCheck.questions[0].url}
+              size="large"
+              type="submit"
+            ></Button>
+            <Button
+              id="preCheck-back-button"
+              text="Zurück"
+              href={PATH_LANDING}
+              size="large"
+              look="tertiary"
+            ></Button>
+          </ButtonContainer>
+        </Container>
+      </Background>
+      <Container>
         <InlineNotice
-          look="info"
+          look="warning"
           title={preCheck.start.info.title}
           tagName="h2"
           content={preCheck.start.info.text}
         ></InlineNotice>
       </Container>
       <Container>
-        <InlineNotice
-          look="tips"
-          title={preCheck.start.hint.title}
-          tagName="h2"
-          content={preCheck.start.hint.text}
-        ></InlineNotice>
+        <InfoBox
+          heading={{
+            text: preCheck.start.summary.title,
+            tagName: "h2",
+          }}
+          items={preCheck.start.summary.items}
+        ></InfoBox>
       </Container>
     </>
   );

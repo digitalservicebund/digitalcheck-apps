@@ -100,21 +100,33 @@ Damit ist der Digitalcheck für Sie beendet.`,
 
 export const preCheck = {
   start: {
-    title: "Vorprüfung: Digitalbezug einschätzen",
+    title: "1. Vorprüfung: Digitalbezug einschätzen",
     // TODO: Konsequenzen + Umsetzung mitdenken
     subtitle:
       "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttonText: "Digitalbezug einschätzen",
     info: {
-      title: "Mehr als eine Regelung?",
-      text: "Hat ihr Vorhaben mehrere Regelungen, schätzen Sie den Digitalbezug für alle gemeinsam ein.",
+      title: "Haben Sie mehr als eine Regelung in Ihrem Vorhaben?",
+      text: "Wenn Sie mehrere Regelungen ändern, bündeln Sie diese als inhaltlich zusammenhängende Vorhaben, für die Sie jeweils eine Vorprüfung ausfüllen.",
     },
-    hint: {
-      title: "Digitalbezug",
-      // TODO: neuer Text
-      text: `Wir sprechen von digitaler Umsetzung, wenn ein Prozess **zumindest teilweise von einem IT-System abgebildet wird**.
-Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfllen eines Formulars in ELSTER, um die Steuererklärung einzureichen.
-Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website.`,
+    summary: {
+      title: "Zusammenfassung",
+      items: [
+        {
+          headline: {
+            text: "Beginnen Sie so früh wie möglich",
+          },
+          content:
+            "Führen Sie die Vorprüfung zu Beginn Ihrer Arbeit an einem Regelungsvorhaben durch, das heißt: vor der Formulierung eines Regelungstextes.",
+        },
+        {
+          headline: {
+            text: "Was ist Digitalbezug?",
+          },
+          content:
+            "Wir sprechen von digitaler Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet wird. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website.",
+        },
+      ],
     },
   },
   nextButton: "Übernehmen & weiter",
