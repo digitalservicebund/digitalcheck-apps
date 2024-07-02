@@ -115,11 +115,11 @@ export default function Index() {
 
   return (
     <div className="flex bg-blue-100">
-      <div className="hidden lg:block flex-none pt-48">
+      <div className="hidden lg:block flex-none pt-32 pl-32">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
-        <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
+        <fetcher.Form className="pt-32" onSubmit={handleSubmit(onSubmit)}>
           <Question
             paddingBottom="32"
             box={{
