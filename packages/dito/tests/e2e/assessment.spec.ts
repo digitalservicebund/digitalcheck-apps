@@ -13,7 +13,7 @@ import {
   FIELD_NAME_PRE_CHECK_POSITIVE_3,
   FIELD_NAME_PRE_CHECK_POSITIVE_4,
   FIELD_NAME_PRE_CHECK_POSITIVE_5,
-} from "routes/vorpruefung_.ergebnis.einschaetzung.$fileName[.pdf]";
+} from "routes/vorpruefung.ergebnis.einschaetzung.$fileName[.pdf]";
 
 test.describe("test assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
