@@ -74,6 +74,11 @@ Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Z
   },
 };
 
+export const feedbackBanner = {
+  title: "Haben Sie Fragen oder Anmerkungen?",
+  text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über digitalcheck@digitalservice.bund.de oder <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
+};
+
 const hintInvolved = {
   title: "Wer sind Beteiligte?",
   text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteure als auch Betroffene sein.
