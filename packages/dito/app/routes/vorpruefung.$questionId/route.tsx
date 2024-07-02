@@ -77,7 +77,7 @@ export type Answers = {
 };
 
 export default function Index() {
-  const { questionIdx, question, answers } = useLoaderData<typeof loader>();
+  const { question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const fetcher = useFetcher();
   const {
@@ -123,9 +123,6 @@ export default function Index() {
           <Question
             paddingBottom="32"
             box={{
-              label: {
-                text: `Frage ${questionIdx + 1} von ${questions.length}`,
-              },
               heading: {
                 text: question.question,
                 tagName: "h1",
