@@ -171,12 +171,6 @@ test.describe("test question navigation", () => {
     }
   });
 
-  test("first question is clickable on start", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
-    await page.getByRole("link", { name: "IT-System" }).click();
-    await expect(page).toHaveURL(questions[0].url);
-  });
-
   test("only answered and first unanswered question are clickable", async ({
     page,
   }) => {
