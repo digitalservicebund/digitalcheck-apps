@@ -146,17 +146,17 @@ export default function Index() {
           <Container paddingTop="0">
             <ButtonContainer>
               <Button
+                id="preCheck-next-button"
+                text={nextButton}
+                size="large"
+                type="submit"
+              ></Button>
+              <Button
                 id="preCheck-back-button"
                 text="Zurück"
                 href={question.prevLink}
                 size="large"
                 look="tertiary"
-              ></Button>
-              <Button
-                id="preCheck-next-button"
-                text={nextButton}
-                size="large"
-                type="submit"
               ></Button>
             </ButtonContainer>
           </Container>
