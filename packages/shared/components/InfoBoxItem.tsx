@@ -54,7 +54,7 @@ const InfoBoxItem = ({
         }`}
       >
         {label && <Heading {...label} />}
-        {headline && <Heading {...headline} />}
+        {headline && <Heading tagName="h3" {...headline} />}
         {content && <RichText markdown={content} />}
         {detailsSummary && !Array.isArray(detailsSummary) && (
           <DetailsSummary {...detailsSummary} />
