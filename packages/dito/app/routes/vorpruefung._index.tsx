@@ -7,6 +7,7 @@ import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
+import FeedbackBanner from "components/FeedbackBanner";
 import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
 import { preCheck, siteMeta } from "resources/content";
 import { PATH_LANDING } from "resources/staticRoutes";
@@ -25,8 +26,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Index() {
   return (
     <>
-      <Background backgroundColor="blue" paddingTop="48" paddingBottom="48">
-        <Container paddingTop="0">
+      <Background backgroundColor="blue">
+        <Container>
           <Box
             heading={{
               tagName: "h1",
@@ -37,7 +38,7 @@ export default function Index() {
             }}
           ></Box>
         </Container>
-        <Container paddingTop="0" paddingBottom="0">
+        <Container paddingTop="0">
           <ButtonContainer>
             <Button
               id="preCheck-start-button"
@@ -73,6 +74,7 @@ export default function Index() {
           items={preCheck.start.summary.items}
         ></InfoBox>
       </Container>
+      <FeedbackBanner />
     </>
   );
 }

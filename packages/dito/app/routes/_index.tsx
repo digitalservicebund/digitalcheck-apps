@@ -4,6 +4,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import List from "@digitalcheck/shared/components/List";
 import { MetaFunction } from "@remix-run/react";
+import FeedbackBanner from "components/FeedbackBanner";
 import { landing, siteMeta } from "resources/content";
 
 export const meta: MetaFunction = () => {
@@ -49,6 +50,7 @@ export default function Index() {
           ></Box>
         </Container>
       </Background>
+      <FeedbackBanner />
     </>
   );
 }
