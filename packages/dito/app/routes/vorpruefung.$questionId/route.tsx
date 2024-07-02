@@ -8,13 +8,23 @@ import {
   json,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import { redirect, useFetcher, useLoaderData } from "@remix-run/react";
+import {
+  MetaFunction,
+  redirect,
+  useFetcher,
+  useLoaderData,
+} from "@remix-run/react";
 import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { preCheck } from "resources/content";
+import { preCheck, siteMeta } from "resources/content";
+import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
+
+export const meta: MetaFunction = () => {
+  return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];
+};
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
@@ -104,59 +114,67 @@ export default function Index() {
   );
 
   return (
-    <>
-      <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
-        <Question
-          paddingBottom="32"
-          box={{
-            label: {
-              text: `Frage ${questionIdx + 1} von ${questions.length}`,
-            },
-            heading: {
-              text: question.question,
-              tagName: "h1",
-              look: "ds-heading-02-reg",
-            },
-            content: question.text ? { markdown: question.text } : undefined,
-          }}
-          radio={{
-            name: question.id,
-            options: options,
-            selectedValue: selectedOption,
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-              setSelectedOption(e.target.value as Option["value"]),
-            formRegister: register,
-            error: errors[question.id],
-          }}
-        />
-        <Container paddingTop="0">
-          <ButtonContainer>
-            <Button
-              id="preCheck-back-button"
-              text="Zurück"
-              href={question.prevLink}
-              size="large"
-              look="tertiary"
-            ></Button>
-            <Button
-              id="preCheck-next-button"
-              text={nextButton}
-              size="large"
-              type="submit"
-            ></Button>
-          </ButtonContainer>
+    <div className="flex bg-blue-100">
+      <div className="hidden lg:block flex-none pt-48">
+        <PreCheckNavigation question={question} answers={answers ?? {}} />
+      </div>
+      <section>
+        <fetcher.Form className="pt-48" onSubmit={handleSubmit(onSubmit)}>
+          <Question
+            paddingBottom="32"
+            box={{
+              label: {
+                text: `Frage ${questionIdx + 1} von ${questions.length}`,
+              },
+              heading: {
+                text: question.question,
+                tagName: "h1",
+                look: "ds-heading-02-reg",
+              },
+              content: question.text ? { markdown: question.text } : undefined,
+            }}
+            radio={{
+              name: question.id,
+              options: options,
+              selectedValue: selectedOption,
+              onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                setSelectedOption(e.target.value as Option["value"]),
+              formRegister: register,
+              error: errors[question.id],
+            }}
+          />
+          <Container paddingTop="0">
+            <ButtonContainer>
+              <Button
+                id="preCheck-back-button"
+                text="Zurück"
+                href={question.prevLink}
+                size="large"
+                look="tertiary"
+              ></Button>
+              <Button
+                id="preCheck-next-button"
+                text={nextButton}
+                size="large"
+                type="submit"
+              ></Button>
+            </ButtonContainer>
+          </Container>
+        </fetcher.Form>
+        {question.hint && (
+          <Container paddingTop="0">
+            <InlineNotice
+              look="tips"
+              title={question.hint.title}
+              tagName="h2"
+              content={question.hint.text}
+            ></InlineNotice>
+          </Container>
+        )}
+        <Container paddingTop="0" additionalClassNames="lg:hidden">
+          <PreCheckNavigation question={question} answers={answers ?? {}} />
         </Container>
-      </fetcher.Form>
-      {question.hint && (
-        <Container paddingTop="0">
-          <InlineNotice
-            look="tips"
-            title={question.hint.title}
-            tagName="h2"
-            content={question.hint.text}
-          ></InlineNotice>
-        </Container>
-      )}
-    </>
+      </section>
+    </div>
   );
 }
