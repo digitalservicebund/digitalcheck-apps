@@ -130,7 +130,7 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
       result: "zur Anpassung oder Neuentwicklung eines IT-Systems führt.",
-      // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst. **TODO** weiteres Beispiel",
+      // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
       hint: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
@@ -145,7 +145,6 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
       question:
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       result: "Verpflichtungen für Beteiligte zur Folge haben wird.",
-      // text: "**TODO** Gutes Beispiel, finde die Frage schwammig",
       hint: hintInvolved,
     },
     {
@@ -164,7 +163,6 @@ Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um d
         "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
       result:
         "Interaktion und/oder Kommunikation zwischen Beteiligten beinhaltet.",
-      // text: "**TODO** Praxisbeispiel: ",
       hint: hintInvolved,
     },
     {
