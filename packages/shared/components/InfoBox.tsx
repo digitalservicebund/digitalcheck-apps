@@ -4,6 +4,7 @@ import InfoBoxItem, { type InfoBoxItemProps } from "./InfoBoxItem";
 
 type InfoBoxProps = {
   identifier?: string;
+  label?: HeadingProps;
   heading?: HeadingProps;
   separator?: boolean;
   items: InfoBoxItemProps[];
@@ -12,11 +13,13 @@ type InfoBoxProps = {
 const InfoBox = ({
   identifier,
   items,
+  label,
   heading,
   separator = true,
 }: InfoBoxProps) => {
   return (
     <div className="ds-stack-8 scroll-my-40" id={identifier}>
+      {label && <Heading {...label} />}
       {heading && <Heading {...heading} />}
       <ul
         className={classNames("list-none ps-0 info-box", {

@@ -110,7 +110,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
 5. Prinzip 5: Automatisierung ermöglichen
 
-[Details und Beispiele](/5-prinzipien)`,
+[Details und Beispiele](/fuenf-prinzipien)`,
   },
 };
 
@@ -321,4 +321,90 @@ export const assessment = {
       text: "Per E-Mail erhalten",
     },
   },
+};
+
+export const fivePrincipals = {
+  title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+  principals: [
+    {
+      label: "Prinzip 1",
+      title: "Digitale Kommunikation sicherstellen",
+      content: `### Darum ist das wichtig
+
+Bürgerinnen und Bürger, Mitarbeitende in Unternehmen, weiteren Organisationen und der Verwaltung sind meist an digitale Kommunikation gewöhnt. In der Verwaltung und den Behörden erlaubt eine durchgehend digitale Dokumentation, Bearbeitung und ggf. Prüfung eine effizientere Bearbeitung.
+
+Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein – in bestimmten Fällen kann z. B. ergänzend auch die Schriftform sinnvoll sein, sofern eine digitale Weiterverarbeitung sichergestellt ist.
+<br />
+<br />
+<br />
+### Tipps für Ihr Regelungsvorhaben
+
+- Wählen Sie Formulierungen, die den Einsatz von unterschiedlichen Medien, Technologien und Verfahren ermöglichen.
+- Sollten Sie technologische Lösungen festschreiben, ermöglichen Sie den Einsatz von offenen Technologien, so sorgen Sie für Transparenz und Wiederverwendbarkeit.
+- Ersetzen oder ergänzen Sie Schriftformerfordernisse und analoge Nachweispflichten. Prüfen Sie etwa, ob die Textform ausreichend ist und ermöglichen Sie die digitale Bearbeitung.
+- Vermeiden Sie Medienbrüche. Diese können z. B. durch visuelle Darstellung des Vollzugs, wie Flussdiagramme, erkennbar werden.
+- Erfüllen Sie Anforderungen der Barrierefreiheit und beachten Sie die Bedarfe unterschiedlicher Personengruppen.`,
+    },
+    {
+      label: "Prinzip 2",
+      title: "Wiederverwendung von Daten und Standards ermöglichen",
+      content: `### Darum ist das wichtig
+
+Häufig sind Daten von Personen oder Organisationen in verschiedenen Prozessen relevant. Das heißt, dass die Daten, die für Ihr Regelungsvorhaben benötigt werden, an anderer Stelle bereits vorliegen könnten. Sie sollten wiederverwendet werden, damit Bürgerinnen und Bürger oder Unternehmen Daten kein weiteres Mal angeben müssen und Verfahren vereinfacht werden. Auch die Wiederverwendung von Open-Source-Software, Standards oder sogar einzelner Design- oder Software-Komponenten vereinfacht Verfahren und spart Ressourcen.
+<br />
+<br />
+<br />
+### Tipps für Ihr Regelungsvorhaben
+
+Recherchieren Sie für Ihr Regelungsvorhaben relevante bestehende Standards, Komponenten, Richtlinien, Verfahren zur Datenerfassung, Datenaustauschverfahren (Once-Only-Prinzip) sowie Register und weitere Quellen. Erste Anhaltspunkte finden Sie zum Beispiel auf:
+- der Verwaltungsdaten-Informationsplattform: [verwaltungsdaten-informationsplattform.de](https://verwaltungsdaten-informationsplattform.de)
+- der Registerlandkarte: [registerlandkarte.de](https://registerlandkarte.de)
+- der Open Source Plattform der Verwaltung: [opencode.de](https://opencode.de)`,
+    },
+    {
+      label: "Prinzip 3",
+      title: "Datenschutz und Informationssicherheit gewährleisten",
+      content: `### Darum ist das wichtig
+
+Datenschutz und Informationssicherheit sind zentrale Voraussetzungen für praxistaugliche Digitalisierung – frühzeitig mitgedacht können Bedürfnisse von Betroffenen auf einfache Weise mit Daten- und Informationssicherheit vereinbart werden. Das Regelungsvorhaben soll eine datenschutzkonforme Umsetzung ermöglichen: Vor der Erhebung von Daten muss definiert werden, welche Daten zu welchem Zweck benötigt und wie sie geschützt werden.
+<br />
+<br />
+<br />
+### Tipps für Ihr Regelungsvorhaben
+
+- Beteiligen Sie frühzeitig Expertinnen und Experten für Datenschutz und Informationssicherheit, um datenschutzkonforme Regelungen zu schreiben. Anhaltspunkte dafür geben auch geltende Richtlinien und Ausführungsbestimmungen z.B. vom BSI.
+- Schaffen Sie die Rechtsgrundlage, um alle benötigten Daten zu erfassen und zu verarbeiten.
+- Berücksichtigen Sie die finanziellen und personellen Ressourcen, die für die Umsetzung der Vorgaben der Informationssicherheit nötig sind.`,
+    },
+    {
+      label: "Prinzip 4",
+      title: "Klare Regelungen für eine digitale Ausführung finden",
+      content: `### Darum ist das wichtig
+
+Durch eindeutige und klare Formulierungen können die Regelungen verständlich dargestellt und die digitale Umsetzung erleichtert werden. Komplizierte, schwer verständliche Regelungskonstrukte erschweren eine digitale Ausführung.
+<br />
+<br />
+<br />
+### Tipps für Ihr Regelungsvorhaben
+
+- Formulieren Sie die Texte Ihres Regelungsvorhaben so, dass es in der Umsetzung in Auf- gaben und chronologische Schritte übersetzt werden kann.
+- Formulieren Sie klare Entscheidungsstrukturen. Nutzen Sie dafür eindeutige Kriterien und eine kohärente und logische Systematik. Ausnahmen sind klar gekennzeichnet. Testen Sie die Verständlichkeit mit den Personen, die an der Umsetzung beteiligt sind.
+- Versuchen Sie, Rechtsbegriffe zu harmonisieren. Verwenden Sie definierte Rechtsbegriffe aus Ihrem Rechtsbereich. Auslegungen verhindern eine einheitliche Umsetzung.`,
+    },
+    {
+      label: "Prinzip 5",
+      title: "Automatisierung ermöglichen",
+      content: `### Darum ist das wichtig
+
+Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation” oder Skalierung kostet jedoch (fast) nichts. Daher ist es personell und wirtschaftlich sinnvoll, sich wiederholende Schritte, Prozesse oder Vorgehen zu automatisieren. Ein Regelungsvorhaben, das Ermessensspielraum lässt, kann nicht vollständig automatisiert werden: Soweit es dem Regelungsziel dient, sollte darauf verzichtet werden. Dadurch entstehen zeitliche und finanzielle Freiräume für Fälle, die eine gesonderte Auseinandersetzung benötigen.
+<br />
+<br />
+<br />
+### Tipps für Ihr Regelungsvorhaben
+
+- Schaffen Sie die rechtlichen Möglichkeiten für automatisierte und/oder antragslose Verfahren. Prüfen Sie z. B. die Möglichkeit von Pauschalen.
+- Formulieren Sie klare Entscheidungsstrukturen. Nutzen Sie dafür eindeutige Kriterien und eine kohärente und logische Systematik. Beziehen Sie IT-Expertise mit ein.
+- Versuchen Sie, Rechtsbegriffe zu harmonisieren. Verwenden Sie definierte Rechtsbegriffe aus Ihrem Rechtsbereich. Auslegungen verhindern die vollständige Automatisierung von Umsetzungsprozessen.`,
+    },
+  ],
 };
