@@ -40,10 +40,10 @@ test.describe("test landing page", () => {
       "1Vorprüfung: Digitalbezug einschätzen",
     );
     await expect(page.getByRole("main")).toContainText(
-      "2Digitaltaugliches Regelungsvorhaben erarbeiten",
+      "2Erarbeiten eines digitaltauglichen Regelungsvorhabens",
     );
     await expect(page.getByRole("main")).toContainText(
-      "3Abschließende Dokumentation",
+      "3Dokumentieren der Digitaltauglichkeit",
     );
     await expect(page.getByRole("main")).toContainText(
       "4Digitalcheck durch den NKR",
