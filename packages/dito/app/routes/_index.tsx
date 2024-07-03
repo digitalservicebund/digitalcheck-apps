@@ -64,6 +64,7 @@ export default function Index() {
           items={landing.summary.items}
         />
       </Container>
+      <FeedbackBanner />
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
         <Container>
           <div className="ds-stack-16 scroll-my-40">
@@ -85,7 +86,6 @@ export default function Index() {
           </div>
         </Container>
       </Background>
-      <FeedbackBanner />
     </>
   );
 }
