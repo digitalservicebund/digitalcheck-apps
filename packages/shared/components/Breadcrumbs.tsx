@@ -34,7 +34,7 @@ export default function Breadcrumbs({
   const filteredBreadcrumbs = filterBreadcrumbs(breadcrumbs, location.pathname);
 
   return (
-    filteredBreadcrumbs.length > 0 && (
+    filteredBreadcrumbs.length > 1 && (
       <nav
         className="py-8 px-16 bg-blue-100 flex flex-wrap items-center text-base"
         data-testid="breadcrumbs-menu"
