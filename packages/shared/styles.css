@@ -77,6 +77,15 @@
     @apply text-[#4c2c92];
   }
 
+  .text-link-white {
+    @apply text-link;
+    @apply text-gray-100;
+  }
+
+  .text-link-white:visited {
+    @apply text-gray-300;
+  }
+
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
   @media (hover: hover) {
     .text-link:hover {
@@ -120,6 +129,10 @@
 
   .rich-text a {
     @apply text-link;
+  }
+
+  .text-white .rich-text a {
+    @apply text-link-white;
   }
 
   .rich-text ul {

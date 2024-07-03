@@ -1,6 +1,7 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
@@ -63,6 +64,27 @@ export default function Index() {
           items={landing.summary.items}
         />
       </Container>
+      <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
+        <Container>
+          <div className="ds-stack-16 scroll-my-40">
+            <Heading tagName="h3" text={landing.principals.title} />
+            <RichText
+              markdown={landing.principals.content}
+              className="!mt-32 !ds-stack-16
+              [&_ol]:mb-16
+              [&_ol_li+li]:mt-8
+              [&_ol_li+li:before]:content-['']
+              [&_ol_li+li:before]:block
+              [&_ol_li+li:before]:w-1/2
+              [&_ol_li+li:before]:mb-8
+              [&_ol_li+li:before]:border-t
+              [&_ol_li+li:before]:border-blue-700
+              "
+              // These strange looking classes are because we are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
+            />
+          </div>
+        </Container>
+      </Background>
       <FeedbackBanner />
     </>
   );
