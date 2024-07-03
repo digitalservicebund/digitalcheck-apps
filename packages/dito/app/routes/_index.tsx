@@ -81,7 +81,7 @@ export default function Index() {
               [&_ol_li+li:before]:border-t
               [&_ol_li+li:before]:border-blue-700
               "
-              // These strange looking classes are because we are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
+              // These strange class names are because we are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
             />
           </div>
         </Container>
