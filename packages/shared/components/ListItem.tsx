@@ -8,7 +8,7 @@ export type ListItemProps = {
   identifier?: string;
   label?: HeadingProps;
   headline?: HeadingProps;
-  spacer?: HeadingProps;
+  spacer?: true | HeadingProps;
   image?: ImageProps;
   content?: string;
   buttons?: ButtonProps[];
@@ -40,13 +40,17 @@ const ListItem = ({
         className={`break-words ds-stack-16 w-full ${image ? "min-[500px]:ml-16" : ""}`}
       >
         {spacer && (
-          <div className="flex flex-row gap-16 items-center border-t-2 pt-32 pb-16">
-            <span className="display-block w-[40px]" />
-            <Heading
-              tagName="h4"
-              className="ds-label-section text-gray-900"
-              {...spacer}
-            />
+          <div className="flex flex-row gap-16 items-center border-t-2 pb-16">
+            {spacer !== true && (
+              <>
+                <span className="display-block w-[40px] mt-32" />
+                <Heading
+                  tagName="h4"
+                  className="ds-label-section text-gray-900 mt-32"
+                  {...spacer}
+                />
+              </>
+            )}
           </div>
         )}
         <div className="flex flex-row gap-16 items-center">

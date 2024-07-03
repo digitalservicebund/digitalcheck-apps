@@ -20,7 +20,6 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
                 item.identifier ??
                 item.label?.text ??
                 item.headline?.text ??
-                item.spacer?.text ??
                 item.content
               }
               className="first:pt-0 scroll-my-40"
