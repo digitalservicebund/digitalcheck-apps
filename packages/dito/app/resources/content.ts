@@ -74,15 +74,33 @@ export const landing = {
     content:
       "Wenn Sie eine Pause in der Erarbeitung machen möchten, kehren Sie einfach wieder an den Punkt zurück, an dem Sie aufgehört haben.",
   },
-  explanation: {
-    title: "Warum ist Digitaltauglichkeit wichtig?",
-    text: `Fast alle Regelungen werden mindestens zum Teil digital umgesetzt: Zum Beispiel eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird. Oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
+  summary: {
+    title: "Zusammengefasst",
+    items: [
+      {
+        headline: {
+          text: "Was ist Digitaltauglichkeit?",
+        },
+        content: `Fast alle Regelungen werden mindestens zum Teil digital umgesetzt: Zum Beispiel eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird. Oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
 <br />
 <br />
-Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt einerseits, dass **der digitalen Umsetzung nichts im Wege steht**, wie zum Beispiel das persönliche Einreichen von Dokumenten. Auf der anderen Seite soll aktiv gefördert werden, dass **möglichst viele Schritte von Computern durchgeführt oder unterstützt werden**.
-<br />
-<br />
-Eine gute digitale Umsetzung **spart langfristig Zeit** und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
+Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt einerseits, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Auf der anderen Seite soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
+      },
+      {
+        spacer: true,
+        headline: {
+          text: "Digitaltaugliche Regelungen sparen dem Staat Geld",
+        },
+        content: `Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
+      },
+      {
+        spacer: true,
+        headline: {
+          text: "Alle Regelungsvorhaben sind betroffen",
+        },
+        content: `Der Digitalcheck gilt für alle Regelungsvorhaben (Gesetze, Verordnungen und Verwaltungsvorschriften), sowohl für neue Vorhaben als auch für Änderungen an bestehenden Regelungen.`,
+      },
+    ],
   },
 };
 

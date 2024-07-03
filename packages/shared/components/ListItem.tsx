@@ -8,7 +8,7 @@ export type ListItemProps = {
   identifier?: string;
   label?: HeadingProps;
   headline?: HeadingProps;
-  spacer?: true | HeadingProps;
+  spacer?: boolean | HeadingProps;
   image?: ImageProps;
   content?: string;
   buttons?: ButtonProps[];

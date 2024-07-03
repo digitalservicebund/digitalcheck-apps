@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
@@ -53,19 +52,15 @@ export default function Index() {
           content={landing.dataNotice.content}
         ></InlineNotice>
       </Container>
-      <Background backgroundColor="blue">
-        <Container>
-          <Box
-            heading={{
-              tagName: "h3",
-              text: landing.explanation.title,
-            }}
-            content={{
-              markdown: landing.explanation.text,
-            }}
-          ></Box>
-        </Container>
-      </Background>
+      <Container>
+        <List
+          heading={{
+            tagName: "h2",
+            text: landing.summary.title,
+          }}
+          items={landing.summary.items}
+        />
+      </Container>
       <FeedbackBanner />
     </>
   );
