@@ -1,6 +1,7 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
+import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
@@ -52,8 +53,9 @@ export default function Index() {
           content={landing.dataNotice.content}
         ></InlineNotice>
       </Container>
+      {/* TODO: Add in case study here, if & when we have one... */}
       <Container>
-        <List
+        <InfoBox
           heading={{
             tagName: "h2",
             text: landing.summary.title,
