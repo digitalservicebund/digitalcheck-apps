@@ -125,4 +125,11 @@ test.describe("test error pages", () => {
       'No route matches URL "/does-not-exist"',
     );
   });
+
+  test("can return to landing page from an error", async ({ page }) => {
+    const response = await page.goto("/does-not-exist");
+    expect(response?.status()).toBe(404);
+    await page.getByRole("link", { name: "Zurück zur Startseite" }).click();
+    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+  });
 });
