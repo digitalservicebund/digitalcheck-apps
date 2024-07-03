@@ -9,14 +9,11 @@ type ListProps = {
 };
 
 const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
-  let counter = 0;
-
   return (
     <div className="ds-stack-8 scroll-my-40" id={identifier}>
       {heading && <Heading {...heading} />}
       <ol className="list-none ds-stack-32 ps-0">
-        {items.map((item) => {
-          counter = isNumeric && !item.spacer ? counter + 1 : counter;
+        {items.map((item, index) => {
           return (
             <li
               key={
@@ -28,7 +25,7 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
               }
               className="first:pt-0 scroll-my-40"
             >
-              <ListItem {...item} numeric={isNumeric ? counter : undefined} />
+              <ListItem {...item} numeric={isNumeric ? index + 1 : undefined} />
             </li>
           );
         })}

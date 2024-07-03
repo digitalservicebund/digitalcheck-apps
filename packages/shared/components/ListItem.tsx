@@ -39,25 +39,22 @@ const ListItem = ({
       <div
         className={`break-words ds-stack-16 w-full ${image ? "min-[500px]:ml-16" : ""}`}
       >
-        <div
-          className={`flex flex-row gap-16 items-center ${spacer && "border-t-2 pt-24"}`}
-        >
-          {spacer && (
-            <>
-              <span className="display-block w-[40px]" />
-              <Heading
-                tagName="h4"
-                className="ds-label-section text-gray-900"
-                {...spacer}
-              />
-            </>
-          )}
-          {numeric && !spacer && (
+        {spacer && (
+          <div className="flex flex-row gap-16 items-center border-t-2 pt-32 pb-16">
+            <span className="display-block w-[40px]" />
+            <Heading
+              tagName="h4"
+              className="ds-label-section text-gray-900"
+              {...spacer}
+            />
+          </div>
+        )}
+        <div className="flex flex-row gap-16 items-center">
+          {numeric ? (
             <div className="min-w-[40px] w-[40px] h-[40px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">
               {numeric}
             </div>
-          )}
-          {!numeric && !spacer && (
+          ) : (
             <div className="w-[16px] min-h-[1px] border border-solid border-black mr-[5px] ml-[17px]" />
           )}
           {label && <Heading {...label} />}
