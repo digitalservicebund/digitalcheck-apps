@@ -17,7 +17,11 @@ function Heading({
   children,
 }: HeadingProps) {
   const Tag = tagName as keyof React.JSX.IntrinsicElements;
-  const cssClasses = classNames(look === "default" ? null : look, className);
+  const cssClasses = classNames(
+    look === "default" ? null : look,
+    className,
+    "hyphens-none",
+  );
 
   if (children) {
     return <Tag className={cssClasses}>{children}</Tag>;
