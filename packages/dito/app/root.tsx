@@ -1,5 +1,6 @@
 import type { HeadersFunction, LinksFunction } from "@remix-run/node";
 import {
+  Link,
   Links,
   Meta,
   MetaFunction,
@@ -74,7 +75,9 @@ const PageHeader = ({
   <>
     <header>
       <div className="h-64 px-16 py-8 flex justify-between items-center">
-        <span className="ds-label-01-bold">{header.title}</span>
+        <Link to={PATH_LANDING} className="ds-label-01-bold">
+          {header.title}
+        </Link>
         <span className="flex items-center">
           <span className="ds-label-02-reg">{header.contact.msg}</span>
           <PhoneOutlined className="mx-8 w-18" />
