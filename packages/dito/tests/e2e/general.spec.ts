@@ -4,10 +4,16 @@ import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
-  test("all routes are reachable and have a breadcrumb menu + title if they aren't PDF", async ({
+  test("landing page to not have breadcrumbs", async ({ page }) => {
+    await page.goto(allRoutes[0].url);
+    await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
+  });
+
+  test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
     page,
   }) => {
-    for await (const route of allRoutes) {
+    // Remove first page from allRoutes array
+    for await (const route of allRoutes.slice(1)) {
       if (route.url.endsWith(".pdf")) {
         continue;
       }
