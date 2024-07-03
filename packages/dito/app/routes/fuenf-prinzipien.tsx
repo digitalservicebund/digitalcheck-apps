@@ -22,7 +22,7 @@ export default function Index() {
               text: fivePrincipals.title,
             }}
           ></Header>
-          <div className="ds-stack-16">
+          <div className="ds-stack-16 mt-64">
             <Heading tagName="h4" text="Inhalt" className="font-bold" />
             <ol>
               {fivePrincipals.principals.map((principal) => (
