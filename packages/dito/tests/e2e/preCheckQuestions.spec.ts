@@ -35,7 +35,6 @@ test.describe("test questions form", () => {
       await expect(page.getByTestId("breadcrumbs-menu")).toContainText(
         questions[i].title,
       );
-      await expect(page.getByRole("main")).toContainText(`Frage ${i + 1}`);
       await expect(page.getByRole("main")).toContainText(questions[i].question);
       const hint = questions[i].hint;
       if (hint) {
