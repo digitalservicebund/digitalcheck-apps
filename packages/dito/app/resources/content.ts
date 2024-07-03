@@ -17,6 +17,8 @@ export const header = {
     msg: "Kontaktieren Sie uns:",
     number: "0151/40 76 78 39",
   },
+  underConstruction:
+    "Dieses Angebot befindet sich im Aufbau und wird auf Basis Ihrer Rückmeldung weiterentwickelt.",
 };
 
 export const landing = {
@@ -40,27 +42,37 @@ export const landing = {
         ],
       },
       {
-        headline: {
-          text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
+        spacer: {
+          text: "Bei positiver Vorprüfung:",
         },
-        content:
-          "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden. [Zu den Hilfestellungen und Methoden](/methoden)",
+        headline: {
+          text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+        },
+        content: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.
+        <br />
+        [Zu den Hilfestellungen und Methoden](/methoden)`,
       },
       {
         headline: {
-          text: "Abschließende Dokumentation",
+          text: "Dokumentieren der Digitaltauglichkeit",
         },
-        content:
-          "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
+        content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.
+          <br />
+          [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)`,
       },
       {
         headline: {
           text: "Digitalcheck durch den NKR",
         },
         content:
-          "Sie haben in diesem Schritt keine Aufgaben und können sich anderem widmen. Falls Fragen aufkommen, wird der NKR auf Sie zukommen.",
+          "Der NKR prüft ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.",
       },
     ],
+  },
+  dataNotice: {
+    headline: "Arbeitsstände werden nicht gespeichert.",
+    content:
+      "Wenn Sie eine Pause in der Erarbeitung machen möchten, kehren Sie einfach wieder an den Punkt zurück, an dem Sie aufgehört haben.",
   },
   explanation: {
     title: "Warum ist Digitaltauglichkeit wichtig?",

@@ -130,6 +130,10 @@
   .rich-text p {
     @apply text-lg;
   }
+
+  .rich-text-2xl p {
+    @apply text-2xl;
+  }
 }
 
 @layer utilities {
