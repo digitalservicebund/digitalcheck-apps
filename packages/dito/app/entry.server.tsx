@@ -4,6 +4,7 @@
  * For more information, see https://remix.run/file-conventions/entry.server
  */
 
+import crypto from "node:crypto";
 import { PassThrough } from "node:stream";
 
 import type { EntryContext } from "@remix-run/node";
@@ -11,6 +12,7 @@ import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import { NonceProvider } from "utils/nonce";
 
 const ABORT_DELAY = 5_000;
 
@@ -102,14 +104,23 @@ function handleBrowserRequest(
   remixContext: EntryContext,
   startTime: number,
 ) {
+  const nonce = crypto.randomBytes(16).toString("hex");
+
+  responseHeaders.set(
+    "Content-Security-Policy",
+    `default-src 'none'; script-src 'self' https: 'nonce-${nonce}'; style-src 'self'; font-src 'self'; img-src 'self'; frame-ancestors 'self'; connect-src 'self' https://plausible.io`,
+  );
+
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer
-        context={remixContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />,
+      <NonceProvider value={nonce}>
+        <RemixServer
+          context={remixContext}
+          url={request.url}
+          abortDelay={ABORT_DELAY}
+        />
+      </NonceProvider>,
       {
         onShellReady() {
           shellRendered = true;

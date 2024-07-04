@@ -30,14 +30,13 @@ import {
   PATH_LANDING,
   PATH_PRIVACY,
 } from "resources/staticRoutes";
+import { useNonce } from "utils/nonce";
 
 export const meta: MetaFunction = () => {
   return [{ title: siteMeta.title }];
 };
 
 export const headers: HeadersFunction = () => ({
-  "Content-Security-Policy":
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'self'; connect-src 'self' https://plausible.io",
   "X-Frame-Options": "SAMEORIGIN",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -99,6 +98,7 @@ const PageHeader = ({
 );
 
 export default function App() {
+  const nonce = useNonce();
   return (
     <html lang="de">
       <head>
@@ -119,14 +119,15 @@ export default function App() {
           <Outlet />
         </main>
         <Footer links={footerLinks} />
-        <ScrollRestoration />
-        <Scripts />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
       </body>
     </html>
   );
 }
 
 export function ErrorBoundary() {
+  const nonce = useNonce();
   const error = useRouteError();
 
   let errorTitle = "Unbekannter Fehler";
@@ -176,8 +177,8 @@ export function ErrorBoundary() {
           </Background>
         </main>
         <Footer links={footerLinks} />
-        <ScrollRestoration />
-        <Scripts />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
       </body>
     </html>
   );
