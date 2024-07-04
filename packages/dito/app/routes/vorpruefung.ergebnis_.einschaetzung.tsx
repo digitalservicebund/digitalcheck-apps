@@ -50,10 +50,14 @@ export default function Assessment() {
           reloadDocument
         >
           <Input
-            name="title"
             label={assessment.form.policyTitleLabel}
-            formRegister={register}
-            required={assessment.form.policyTitleRequired}
+            register={register("title", {
+              required: assessment.form.policyTitleRequired,
+              maxLength: {
+                value: 500,
+                message: assessment.form.policyTitleTooLong,
+              },
+            })}
             error={formState.errors["title"]}
           />
           <br />
