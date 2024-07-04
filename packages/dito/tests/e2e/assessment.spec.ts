@@ -15,7 +15,7 @@ import {
   FIELD_NAME_PRE_CHECK_POSITIVE_5,
 } from "routes/vorpruefung.ergebnis.einschaetzung.$fileName[.pdf]";
 
-test.describe("test assessment page and PDF", () => {
+test.describe("test positive assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < 5; i++) {
