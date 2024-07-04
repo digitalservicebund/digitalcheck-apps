@@ -101,13 +101,13 @@ const PageHeader = ({
 function Document({
   children,
   error,
-}: {
+}: Readonly<{
   children: ReactNode;
   error?: {
     title: string;
     message: string;
   };
-}) {
+}>) {
   const nonce = useNonce();
   return (
     <html lang="de">
@@ -127,7 +127,7 @@ function Document({
         <Links />
       </head>
       <body>
-        <PageHeader includeBreadcrumbs={!!error} />
+        <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
