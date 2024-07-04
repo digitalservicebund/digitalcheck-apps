@@ -11,8 +11,8 @@ import {
   useRouteError,
 } from "@remix-run/react";
 
-import "@digitalcheck/shared/styles.css";
-import "./styles.css";
+import sharedStyles from "@digitalcheck/shared/styles.css?url";
+import styles from "./styles.css?url";
 
 import Background from "@digitalcheck/shared/components/Background";
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
@@ -46,6 +46,8 @@ export const headers: HeadersFunction = () => ({
 });
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: sharedStyles },
+  { rel: "stylesheet", href: styles },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
