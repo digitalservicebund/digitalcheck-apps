@@ -22,13 +22,14 @@ export default function Index() {
               text: fivePrincipals.title,
             }}
           ></Header>
-          <div className="ds-stack-16 mt-64">
+          <div className="mt-64">
             <Heading tagName="h4" text="Inhalt" className="font-bold" />
-            <ol>
+            <ol className="ds-stack-8 mt-16">
               {fivePrincipals.principals.map((principal) => (
                 <li key={principal.label}>
                   <a
                     href={`#${principal.label.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-")}`}
+                    className="underline underline-offset-4 decoration-1"
                   >
                     ↓ {principal.label}: {principal.title}
                   </a>
