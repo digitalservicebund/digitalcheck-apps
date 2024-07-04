@@ -311,9 +311,11 @@ export const assessment = {
     formLegend: "Bitte erläutern Sie, warum kein Digitalbezug exisitiert.",
     policyTitleLabel: "Arbeitstitel des Vorhabens",
     policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
+    policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
     reasonLabel: "Begründung",
     reasonRequired:
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
+    reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
     downloadPdfButton: {
       text: "Als PDF herunterladen",
     },

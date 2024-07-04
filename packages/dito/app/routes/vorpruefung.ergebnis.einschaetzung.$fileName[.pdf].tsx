@@ -2,6 +2,7 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
+import { assessment } from "resources/content";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
@@ -100,6 +101,18 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     download,
     ...answers
   } = searchParams;
+
+  // reject requests with long titles or negativeReasonings to prevent DOS and maybe memory overflow attacks
+  if (title.length > 500) {
+    throw new Response(assessment.form.policyTitleTooLong, {
+      status: 413,
+    });
+  }
+  if (negativeReasoning.length > 5000) {
+    throw new Response(assessment.form.reasonTooLong, {
+      status: 413,
+    });
+  }
 
   const pdfData = await createPreCheckPDF({
     title,
