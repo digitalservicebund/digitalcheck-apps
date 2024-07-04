@@ -169,17 +169,25 @@ export default function Result() {
           <fieldset className="ds-stack-32">
             <legend>{assessment.form.formLegend}</legend>
             <Textarea
-              name="negativeReasoning"
               label={assessment.form.reasonLabel}
-              formRegister={register}
-              required={assessment.form.reasonRequired}
+              register={register("negativeReasoning", {
+                required: assessment.form.reasonRequired,
+                maxLength: {
+                  value: 5000,
+                  message: assessment.form.reasonTooLong,
+                },
+              })}
               error={errors["negativeReasoning"]}
             />
             <Input
-              name="title"
               label={assessment.form.policyTitleLabel}
-              formRegister={register}
-              required={assessment.form.policyTitleRequired}
+              register={register("title", {
+                required: assessment.form.policyTitleRequired,
+                maxLength: {
+                  value: 500,
+                  message: assessment.form.policyTitleTooLong,
+                },
+              })}
               error={errors["title"]}
             />
             <Button

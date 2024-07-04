@@ -1,22 +1,16 @@
 import classNames from "classnames";
-import type {
-  FieldValues,
-  GlobalError,
-  UseFormRegister,
-} from "react-hook-form";
+import type { GlobalError, UseFormRegisterReturn } from "react-hook-form";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 
 export type InputProps = Readonly<{
-  name: string;
   label?: string;
   type?: string;
   prefix?: string;
   suffix?: string;
   helperText?: string;
   width?: "3" | "5" | "7" | "10" | "16" | "24" | "36" | "54";
-  formRegister: UseFormRegister<FieldValues>;
-  required?: boolean | string;
+  register: UseFormRegisterReturn;
   error?: GlobalError;
 }>;
 
@@ -34,17 +28,16 @@ const widthClass = (width: string) => {
 };
 
 export default function Input({
-  name,
   label,
   type = "text",
   prefix,
   suffix,
   helperText,
   width,
-  formRegister,
-  required,
   error,
+  register,
 }: InputProps) {
+  const { name } = register;
   const errorId = `${name}-error`;
   const helperId = `${name}-helper`;
 
@@ -56,7 +49,7 @@ export default function Input({
         <input
           id={name}
           type={type}
-          {...formRegister(name, { required })}
+          {...register}
           className={classNames(
             "ds-input forced-color-adjust-none",
             { "has-error": error },

@@ -1,34 +1,27 @@
 import classNames from "classnames";
 import type { ReactNode } from "react";
-import type {
-  FieldValues,
-  GlobalError,
-  UseFormRegister,
-} from "react-hook-form";
+import type { GlobalError, UseFormRegisterReturn } from "react-hook-form";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 import RichText from "./RichText";
 
 type TextareaProps = Readonly<{
-  name: string;
   description?: string;
   label?: ReactNode;
   placeholder?: string;
-  formRegister: UseFormRegister<FieldValues>;
-  required?: boolean | string;
-  error?: GlobalError;
   formId?: string;
+  register: UseFormRegisterReturn;
+  error?: GlobalError;
 }>;
 
 const Textarea = ({
-  name,
   description,
   label,
-  formRegister,
-  required,
+  register,
   error,
   ...props
 }: TextareaProps) => {
+  const { name } = register;
   const errorId = `${name}-error`;
 
   return (
@@ -46,7 +39,7 @@ const Textarea = ({
       )}
       <textarea
         id={name}
-        {...formRegister(name, { required })}
+        {...register}
         className={classNames(
           "ds-textarea forced-color-adjust-none placeholder-gray-600",
           {
