@@ -127,13 +127,13 @@ export async function action({ params, request }: ActionFunctionArgs) {
   }
 
   // reject requests with long titles or negativeReasonings to prevent DOS and maybe memory overflow attacks
-  if (title.length > 500) {
+  if (title && title.length > 500) {
     throw new Response(assessment.form.policyTitleTooLong, {
       status: 413,
     });
   }
 
-  if (negativeReasoning.length > 5000) {
+  if (negativeReasoning && negativeReasoning.length > 5000) {
     throw new Response(assessment.form.reasonTooLong, {
       status: 413,
     });
