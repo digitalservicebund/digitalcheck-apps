@@ -45,8 +45,8 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const cookie = await getAnswersFromCookie(request);
-  const bodyParams = await request.formData();
-  const { questionId, nextLink, answer } = Object.fromEntries(bodyParams);
+  const formData = await request.formData();
+  const { questionId, nextLink, answer } = Object.fromEntries(formData);
   if (typeof questionId !== "string" || typeof nextLink !== "string") {
     return redirect("/vorpruefung", { status: 400 });
   }
