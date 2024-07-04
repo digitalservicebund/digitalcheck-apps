@@ -4,38 +4,27 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import Download from "@digitalservicebund/icons/Download";
-import { redirectDocument, type LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useFetcher } from "@remix-run/react";
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { Form, MetaFunction } from "@remix-run/react";
+import { FormEventHandler } from "react";
+import { useForm, type FieldValues } from "react-hook-form";
 import { assessment, siteMeta } from "resources/content";
 import { PATH_RESULT } from "resources/staticRoutes";
-import { getAnswersFromCookie } from "utils/cookies.server";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${assessment.title} — ${siteMeta.title}` }];
 };
 
-export async function action({ request }: LoaderFunctionArgs) {
-  const { answers } = await getAnswersFromCookie(request);
-  const body = await request.formData();
-  const values = Object.fromEntries(body) as FieldValues;
-  const pdfValues = { ...values, ...answers };
-  const queryParams = new URLSearchParams(pdfValues).toString();
-
-  return redirectDocument(
-    `digitalcheck-vorpruefung.pdf?${queryParams}&download`,
-  );
-}
-
 export default function Assessment() {
-  const fetcher = useFetcher();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    fetcher.submit(data, { method: "post" });
+  const { register, formState, trigger } = useForm<FieldValues>();
+  // The recommended way to handle forms with react-hook-form is to use the `handleSubmit` function, however that will always hikack the form submit event and prevent the default behaviour.
+  // In our case, we only want to call `event.preventDefault()` when we have validation errors, so we implement a home-made solution that achieves this.
+  const onSubmit: FormEventHandler = (event) => {
+    void trigger();
+    const valid = formState.isValid;
+
+    if (!valid) {
+      event.preventDefault();
+    }
   };
 
   return (
@@ -53,13 +42,19 @@ export default function Assessment() {
         ></Box>
       </Container>
       <Container paddingBottom="48">
-        <fetcher.Form onSubmit={handleSubmit(onSubmit)} method="post">
+        <Form
+          onSubmit={onSubmit}
+          onChange={() => trigger()}
+          method="post"
+          action="digitalcheck-vorpruefung.pdf"
+          reloadDocument
+        >
           <Input
             name="title"
             label={assessment.form.policyTitleLabel}
             formRegister={register}
             required={assessment.form.policyTitleRequired}
-            error={errors["title"]}
+            error={formState.errors["title"]}
           />
           <br />
           <ButtonContainer>
@@ -77,7 +72,7 @@ export default function Assessment() {
               iconLeft={<Download />}
             ></Button>
           </ButtonContainer>
-        </fetcher.Form>
+        </Form>
       </Container>
     </>
   );

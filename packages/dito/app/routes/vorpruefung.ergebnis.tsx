@@ -7,18 +7,13 @@ import Input from "@digitalcheck/shared/components/Input";
 import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
-import {
-  ActionFunctionArgs,
-  json,
-  redirect,
-  redirectDocument,
-  type LoaderFunctionArgs,
-} from "@remix-run/node";
-import { MetaFunction, useFetcher, useLoaderData } from "@remix-run/react";
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
+import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
+import { getAnswersFromCookie } from "cookies.server";
+import { FormEventHandler } from "react";
+import { useForm, type FieldValues } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
-import { getAnswersFromCookie } from "utils/cookies.server";
 import type { Answers, Option } from "./vorpruefung.$questionId/route";
 
 const { result, questions } = preCheck;
@@ -36,19 +31,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ answers });
 }
 
-export async function action({ request }: ActionFunctionArgs) {
-  const { answers } = await getAnswersFromCookie(request);
-  const body = await request.formData();
-  const values = Object.fromEntries(body) as FieldValues;
-  const pdfValues = { ...values, ...answers };
-  const queryParams = new URLSearchParams(pdfValues).toString();
-
-  // using redirectDocument to force the browser to download the PDF instead of changing the URL on the client side
-  return redirectDocument(
-    `einschaetzung/digitalcheck-vorpruefung.pdf?${queryParams}&download`,
-  );
-}
-
 const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
   Object.keys(answers).filter((key) => answers[key] === option);
 
@@ -58,12 +40,7 @@ export default function Result() {
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
   const negativeQuestions = getQuestionIDsOfOption(answers, "no");
 
-  const fetcher = useFetcher();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>();
+  const { register, formState, trigger } = useForm<FieldValues>();
 
   const heading = (
     <Heading
@@ -89,6 +66,8 @@ export default function Result() {
     return `**Folgende Fragen haben Sie mit "${answer}" beantwortet:**\n\n${result.reasonIntro}\n${reasons}`;
   };
 
+  // We have at least one positive answer
+
   if (positiveQuestions.length > 0) {
     const reasonsText = getReasoningText("Ja", positiveQuestions);
     return (
@@ -113,6 +92,8 @@ export default function Result() {
       </>
     );
   }
+
+  // Some answers are unsure
 
   if (unsureQuestions.length > 0) {
     const reasonsTextUnsure = getReasoningText("Unsicher", unsureQuestions);
@@ -154,9 +135,17 @@ export default function Result() {
     );
   }
 
-  // all answers are negative
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    fetcher.submit(data, { method: "post" });
+  // All answers are negative
+
+  // The recommended way to handle forms with react-hook-form is to use the `handleSubmit` function, however that will always hikack the form submit event and prevent the default behaviour.
+  // In our case, we only want to call `event.preventDefault()` when we have validation errors, so we implement a home-made solution that achieves this.
+  const onSubmit: FormEventHandler = (event) => {
+    void trigger();
+    const valid = formState.isValid;
+
+    if (!valid) {
+      event.preventDefault();
+    }
   };
   const reasonsText = getReasoningText("Nein", negativeQuestions);
 
@@ -165,7 +154,14 @@ export default function Result() {
       <Container>
         {heading}
         {getReasoningNotice(result.negative, reasonsText)}
-        <fetcher.Form onSubmit={handleSubmit(onSubmit)} className="mt-32">
+        <Form
+          onSubmit={onSubmit}
+          onChange={() => trigger()}
+          className="mt-32"
+          method="post"
+          action="einschaetzung/digitalcheck-vorpruefung.pdf"
+          reloadDocument
+        >
           <fieldset className="ds-stack-32">
             <legend>{assessment.form.formLegend}</legend>
             <Textarea
@@ -177,7 +173,7 @@ export default function Result() {
                   message: assessment.form.reasonTooLong,
                 },
               })}
-              error={errors["negativeReasoning"]}
+              error={formState.errors["negativeReasoning"]}
             />
             <Input
               label={assessment.form.policyTitleLabel}
@@ -188,7 +184,7 @@ export default function Result() {
                   message: assessment.form.policyTitleTooLong,
                 },
               })}
-              error={errors["title"]}
+              error={formState.errors["title"]}
             />
             <Button
               text={assessment.form.downloadPdfButton.text}
@@ -198,7 +194,7 @@ export default function Result() {
               className="self-start"
             />
           </fieldset>
-        </fetcher.Form>
+        </Form>
       </Container>
       <Container>
         <Heading
