@@ -94,6 +94,14 @@ test.describe("test assessment page and PDF", () => {
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
   });
+
+  test("title can't be too long", async ({ page }) => {
+    await page
+      .getByLabel("Arbeitstitel des Vorhabens")
+      .fill("Policy #987".repeat(500));
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).toContainText("kürzeren Titel");
+  });
 });
 
 test.describe("test PDF generation in negative case", () => {
@@ -180,5 +188,15 @@ test.describe("test PDF generation in negative case", () => {
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
+  });
+
+  test("title and reasoning can't be too long", async ({ page }) => {
+    await page.getByLabel("Begründung").fill("Begründung".repeat(5000));
+    await page
+      .getByLabel("Arbeitstitel des Vorhabens")
+      .fill("Policy #987".repeat(500));
+    await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).toContainText("kürzeren Titel");
+    await expect(page.getByRole("main")).toContainText("kürzere Begründung");
   });
 });
