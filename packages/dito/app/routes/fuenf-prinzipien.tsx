@@ -23,7 +23,7 @@ export default function Index() {
             }}
           ></Header>
           <div className="mt-64">
-            <Heading tagName="h4" text="Inhalt" className="font-bold" />
+            <Heading tagName="div" text="Inhalt" className="font-bold" />
             <ol className="ds-stack-8 mt-16">
               {fivePrincipals.principals.map((principal) => (
                 <li key={principal.label}>
@@ -54,7 +54,7 @@ export default function Index() {
                 text: principal.title,
               }}
               label={{
-                tagName: "h4",
+                tagName: "div",
                 text: principal.label,
                 className: "ds-label-section text-gray-900",
               }}
