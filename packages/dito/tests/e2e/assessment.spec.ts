@@ -47,8 +47,7 @@ test.describe("test assessment page and PDF", () => {
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     const download = await downloadPromise;
     expect(download.url()).toContain(
-      PATH_ASSESSMENT +
-        "/digitalcheck-vorpruefung.pdf?title=Policy+%23123&it-system=yes&verpflichtungen-fuer-beteiligte=yes&datenaustausch=yes&kommunikation=yes&automatisierung=yes&download",
+      PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
     );
     const filePath = path.resolve(await download.path());
     const fileData = fs.readFileSync(filePath);
@@ -119,8 +118,7 @@ test.describe("test PDF generation in negative case", () => {
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     const download = await downloadPromise;
     expect(download.url()).toContain(
-      PATH_ASSESSMENT +
-        "/digitalcheck-vorpruefung.pdf?negativeReasoning=Dieses+Vorhaben+hat+keinen+Digitalbezug.&title=Policy+%23987&it-system=no&verpflichtungen-fuer-beteiligte=no&datenaustausch=no&kommunikation=no&automatisierung=no&download",
+      PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
     );
     const filePath = path.resolve(await download.path());
     const fileData = fs.readFileSync(filePath);

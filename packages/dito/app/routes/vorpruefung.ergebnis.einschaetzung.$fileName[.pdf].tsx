@@ -106,23 +106,20 @@ export async function action({ params, request }: ActionFunctionArgs) {
     throw new Response("No answers available in cookies", { status: 409 });
   }
 
-  if (typeof title !== "string" || typeof negativeReasoning !== "string") {
-    throw new Response("Request was malformed", { status: 400 });
-  }
-
-  if (title === "") {
+  if (typeof title !== "string" || title === "") {
     throw new Response(assessment.form.policyTitleRequired, { status: 400 });
   }
 
   if (
-    [
+    (negativeReasoning && typeof negativeReasoning !== "string") ||
+    ([
       answers["it-system"],
       answers["verpflichtungen-fuer-beteiligte"],
       answers["datenaustausch"],
       answers["kommunikation"],
       answers["automatisierung"],
     ].every((answer) => answer === NEGATIVE_RESULT) &&
-    negativeReasoning === ""
+      negativeReasoning === "")
   ) {
     throw new Response(assessment.form.reasonRequired, {
       status: 400,
@@ -135,6 +132,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
       status: 413,
     });
   }
+
   if (negativeReasoning.length > 5000) {
     throw new Response(assessment.form.reasonTooLong, {
       status: 413,
