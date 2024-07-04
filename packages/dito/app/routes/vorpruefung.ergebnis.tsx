@@ -15,10 +15,10 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import { MetaFunction, useFetcher, useLoaderData } from "@remix-run/react";
-import { getAnswersFromCookie } from "cookies.server";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
+import { getAnswersFromCookie } from "utils/cookies.server";
 import type { Answers, Option } from "./vorpruefung.$questionId/route";
 
 const { result, questions } = preCheck;

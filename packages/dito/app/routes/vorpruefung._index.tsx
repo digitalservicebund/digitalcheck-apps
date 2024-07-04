@@ -8,9 +8,12 @@ import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
-import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
 import { preCheck, siteMeta } from "resources/content";
 import { PATH_LANDING } from "resources/staticRoutes";
+import {
+  getAnswersFromCookie,
+  getHeaderFromCookie,
+} from "utils/cookies.server";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];

@@ -6,10 +6,10 @@ import Input from "@digitalcheck/shared/components/Input";
 import Download from "@digitalservicebund/icons/Download";
 import { redirectDocument, type LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useFetcher } from "@remix-run/react";
-import { getAnswersFromCookie } from "cookies.server";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { assessment, siteMeta } from "resources/content";
 import { PATH_RESULT } from "resources/staticRoutes";
+import { getAnswersFromCookie } from "utils/cookies.server";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${assessment.title} — ${siteMeta.title}` }];

@@ -14,10 +14,13 @@ import {
   useFetcher,
   useLoaderData,
 } from "@remix-run/react";
-import { getAnswersFromCookie, getHeaderFromCookie } from "cookies.server";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { preCheck, siteMeta } from "resources/content";
+import {
+  getAnswersFromCookie,
+  getHeaderFromCookie,
+} from "utils/cookies.server";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
