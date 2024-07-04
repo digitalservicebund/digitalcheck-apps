@@ -42,14 +42,7 @@ export default function Container({
     );
 
     return (
-      <div
-        className="overflow-x-hidden rounded-lg"
-        // Matches padding of .container (see styles.css)
-        style={{
-          marginLeft: "clamp(1rem, 5vw, 3rem)",
-          marginRight: "clamp(1rem, 5vw, 3rem)",
-        }}
-      >
+      <div className="container-overhanging-background overflow-x-hidden rounded-lg">
         <div className={cssClasses}>
           <div className="relative">{children}</div>
         </div>

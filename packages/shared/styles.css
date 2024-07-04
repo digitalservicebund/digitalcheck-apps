@@ -47,16 +47,13 @@
     @apply mx-auto;
     max-width: 59rem;
     padding: 2.5rem 1rem 3rem 1rem;
-    padding-left: clamp(
-      1rem,
-      5vw,
-      3rem
-    ); /* ignored when clamp is not available */
-    padding-right: clamp(
-      1rem,
-      5vw,
-      3rem
-    ); /* ignored when clamp is not available */
+    padding-left: clamp(1rem, 5vw, 3rem);
+    padding-right: clamp(1rem, 5vw, 3rem);
+  }
+
+  .container-overhanging-background {
+    margin-left: clamp(1rem, 5vw, 3rem);
+    margin-right: clamp(1rem, 5vw, 3rem);
   }
 
   .ds-textarea.has-error {

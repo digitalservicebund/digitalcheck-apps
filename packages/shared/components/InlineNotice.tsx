@@ -61,7 +61,7 @@ const InlineNotice = ({
       id={identifier}
     >
       <div className="flex flex-row gap-[4px] items-center">
-        {showIcon && <IconComponent style={{ width: 24, height: 24 }} />}
+        {showIcon && <IconComponent />}
         <Heading tagName={tagName} look="ds-label-01-bold">
           {title}
         </Heading>
