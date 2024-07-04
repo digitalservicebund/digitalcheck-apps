@@ -22,6 +22,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
 import Header from "@digitalcheck/shared/components/Header";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
+import { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
 import {
@@ -97,27 +98,37 @@ const PageHeader = ({
   </header>
 );
 
-export default function App() {
+function Document({
+  children,
+  error,
+}: {
+  children: ReactNode;
+  error?: {
+    title: string;
+    message: string;
+  };
+}) {
   const nonce = useNonce();
   return (
     <html lang="de">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={siteMeta.description} />
+        <meta
+          name="description"
+          content={error ? error.message : siteMeta.description}
+        />
         <script
           defer
           data-domain="digitalcheck-dito.prod.ds4g.net"
           src="https://plausible.io/js/script.js"
         ></script>
-        <Meta />
+        {error ? <title>{error.title}</title> : <Meta />}
         <Links />
       </head>
       <body>
-        <PageHeader />
-        <main>
-          <Outlet />
-        </main>
+        <PageHeader includeBreadcrumbs={!!error} />
+        {children}
         <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
@@ -126,8 +137,17 @@ export default function App() {
   );
 }
 
+export default function App() {
+  return (
+    <Document>
+      <main>
+        <Outlet />
+      </main>
+    </Document>
+  );
+}
+
 export function ErrorBoundary() {
-  const nonce = useNonce();
   const error = useRouteError();
 
   let errorTitle = "Unbekannter Fehler";
@@ -142,44 +162,31 @@ export function ErrorBoundary() {
   }
 
   return (
-    <html lang="de">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={errorMessage} />
-        <title>{errorTitle}</title>
-        <Links />
-      </head>
-      <body>
-        <PageHeader includeBreadcrumbs={false} />
-        <main id="error">
-          <Background backgroundColor="blue">
-            <Container>
-              <Header
-                heading={{
-                  tagName: "h1",
-                  text: errorTitle,
-                }}
-                content={{
-                  markdown: errorMessage,
-                }}
-              />
-              <ButtonContainer className="mt-32">
-                <Button
-                  id="error-back-button"
-                  text="Zurück zur Startseite"
-                  href={PATH_LANDING}
-                  size="large"
-                  look="tertiary"
-                ></Button>
-              </ButtonContainer>
-            </Container>
-          </Background>
-        </main>
-        <Footer links={footerLinks} />
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
-      </body>
-    </html>
+    <Document error={{ title: errorTitle, message: errorMessage }}>
+      <main id="error">
+        <Background backgroundColor="blue">
+          <Container>
+            <Header
+              heading={{
+                tagName: "h1",
+                text: errorTitle,
+              }}
+              content={{
+                markdown: errorMessage,
+              }}
+            />
+            <ButtonContainer className="mt-32">
+              <Button
+                id="error-back-button"
+                text="Zurück zur Startseite"
+                href={PATH_LANDING}
+                size="large"
+                look="tertiary"
+              ></Button>
+            </ButtonContainer>
+          </Container>
+        </Background>
+      </main>
+    </Document>
   );
 }
