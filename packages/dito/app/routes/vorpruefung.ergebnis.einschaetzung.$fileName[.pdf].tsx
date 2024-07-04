@@ -1,4 +1,5 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import { getAnswersFromCookie } from "cookies.server";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
@@ -24,6 +25,9 @@ interface UserInput {
   negativeReasoning?: string;
 }
 
+const POSITIVE_RESULTS = ["yes", "unsure"];
+const NEGATIVE_RESULT = "no";
+
 const createPreCheckPDF = async function (
   userInput: UserInput,
 ): Promise<Uint8Array> {
@@ -37,30 +41,27 @@ const createPreCheckPDF = async function (
 
     const { title, answers, negativeReasoning } = userInput;
 
-    const positive = ["yes", "unsure"];
-    const negative = "no";
-
     const titleField = form.getTextField(FIELD_NAME_POLICY_TITLE);
     titleField.setText(title);
     titleField.setFontSize(12);
 
-    if (positive.includes(answers["it-system"])) {
+    if (POSITIVE_RESULTS.includes(answers["it-system"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
     }
 
-    if (positive.includes(answers["verpflichtungen-fuer-beteiligte"])) {
+    if (POSITIVE_RESULTS.includes(answers["verpflichtungen-fuer-beteiligte"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
     }
 
-    if (positive.includes(answers["datenaustausch"])) {
+    if (POSITIVE_RESULTS.includes(answers["datenaustausch"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
     }
 
-    if (positive.includes(answers["kommunikation"])) {
+    if (POSITIVE_RESULTS.includes(answers["kommunikation"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
     }
 
-    if (positive.includes(answers["automatisierung"])) {
+    if (POSITIVE_RESULTS.includes(answers["automatisierung"])) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
     }
 
@@ -71,7 +72,7 @@ const createPreCheckPDF = async function (
         answers["datenaustausch"],
         answers["kommunikation"],
         answers["automatisierung"],
-      ].every((answer) => answer === negative)
+      ].every((answer) => answer === NEGATIVE_RESULT)
     ) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
     }
@@ -90,17 +91,43 @@ const createPreCheckPDF = async function (
   }
 };
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export function loader({ request }: LoaderFunctionArgs) {
+  if (request.method !== "POST") {
+    throw new Response("Must be a POST request", { status: 405 });
+  }
+}
+export async function action({ params, request }: ActionFunctionArgs) {
   const { fileName } = params;
-  const url = new URL(request.url);
+  const { answers } = await getAnswersFromCookie(request);
+  const formData = await request.formData();
+  const { title, negativeReasoning } = Object.fromEntries(formData);
 
-  const searchParams = Object.fromEntries(url.searchParams.entries());
-  const {
-    title = "",
-    negativeReasoning = "",
-    download,
-    ...answers
-  } = searchParams;
+  if (Object.keys(answers).length === 0) {
+    throw new Response("No answers available in cookies", { status: 409 });
+  }
+
+  if (typeof title !== "string" || typeof negativeReasoning !== "string") {
+    throw new Response("Request was malformed", { status: 400 });
+  }
+
+  if (title === "") {
+    throw new Response(assessment.form.policyTitleRequired, { status: 400 });
+  }
+
+  if (
+    [
+      answers["it-system"],
+      answers["verpflichtungen-fuer-beteiligte"],
+      answers["datenaustausch"],
+      answers["kommunikation"],
+      answers["automatisierung"],
+    ].every((answer) => answer === NEGATIVE_RESULT) &&
+    negativeReasoning === ""
+  ) {
+    throw new Response(assessment.form.reasonRequired, {
+      status: 400,
+    });
+  }
 
   // reject requests with long titles or negativeReasonings to prevent DOS and maybe memory overflow attacks
   if (title.length > 500) {
@@ -116,18 +143,16 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
   const pdfData = await createPreCheckPDF({
     title,
-    answers,
     negativeReasoning,
+    answers,
   });
 
   return new Response(pdfData, {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      ...(download !== undefined && {
-        "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
-        "Content-Length": `${pdfData.byteLength}`,
-      }),
+      "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
+      "Content-Length": `${pdfData.byteLength}`,
     },
   });
 }
