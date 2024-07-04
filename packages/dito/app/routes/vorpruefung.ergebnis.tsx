@@ -9,11 +9,11 @@ import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
-import { getAnswersFromCookie } from "cookies.server";
 import { FormEventHandler } from "react";
 import { useForm, type FieldValues } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
+import { getAnswersFromCookie } from "utils/cookies.server";
 import type { Answers, Option } from "./vorpruefung.$questionId/route";
 
 const { result, questions } = preCheck;

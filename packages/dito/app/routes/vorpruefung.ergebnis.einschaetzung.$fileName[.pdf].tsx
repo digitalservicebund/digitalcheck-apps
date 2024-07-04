@@ -1,9 +1,9 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { getAnswersFromCookie } from "cookies.server";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { assessment } from "resources/content";
+import { getAnswersFromCookie } from "utils/cookies.server";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
