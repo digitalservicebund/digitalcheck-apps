@@ -3,6 +3,7 @@ export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_RESULT: string = PATH_PRECHECK + "/ergebnis";
 export const PATH_ASSESSMENT: string = PATH_RESULT + "/einschaetzung";
 export const PATH_METHODS = "/methoden";
+export const PATH_FIVE_PRINCIPALS: string = "/fuenf-prinzipien";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
@@ -43,6 +44,11 @@ const routes: Route[] = [
   {
     url: PATH_DOCUMENTATION_PDF,
     title: "Digitalcheck Begleitendede Dokumentation",
+  },
+  {
+    url: PATH_FIVE_PRINCIPALS,
+    title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+    parent: PATH_LANDING,
   },
   // {
   //   url: PATH_IMPRINT,
