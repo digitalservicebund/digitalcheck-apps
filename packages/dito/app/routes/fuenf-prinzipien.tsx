@@ -5,10 +5,10 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
-import { fivePrincipals, landing, siteMeta } from "resources/content";
+import { fivePrincipals, siteMeta } from "resources/content";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${landing.title} — ${siteMeta.title}` }];
+  return [{ title: `${fivePrincipals.title} — ${siteMeta.title}` }];
 };
 
 export default function Index() {
