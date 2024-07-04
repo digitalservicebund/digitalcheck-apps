@@ -36,13 +36,13 @@ The project includes a Dockerfile to create a Docker Image for the project.
 
 Because we are using a monorepo, there are a few caveats to be aware of. The application relies on components within a shared package, so the most straightforward way is to run docker commands from the root of the application.
 
-For convenience, an interactive script has been created in the root directory called `docker.sh`. From the roont of the application, run it with the following command:
+For convenience, an interactive script has been created in the root directory called `docker.sh`. From the root of the application, run it with the following command:
 
 ```sh
 npm run docker
 ```
 
-You will br prompted to select which app to build and run.
+You will be prompted to select which app to build and run.
 
 It can be annoying to constantly switch directories though, so for even more convenience the script accepts a parameter to pre-select the app to run. You can run the same command from above _from within the package directory of your app of choice_ and it will run the helper script with this parameter already set.
 
