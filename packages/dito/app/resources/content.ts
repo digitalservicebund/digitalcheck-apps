@@ -325,6 +325,12 @@ export const assessment = {
   },
 };
 
+export const methods = {
+  title: "2. Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+  subtitle:
+    "Methoden und Hilfestellungen helfen ihnen die Digitaltauglichkeit des Regelungsvorhabens zu erarbeiten oder zu verbessern. Es gibt verschiedene Optionen, die für Sie als nächstes Sinn ergeben können.",
+};
+
 export const fivePrincipals = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
   principals: [

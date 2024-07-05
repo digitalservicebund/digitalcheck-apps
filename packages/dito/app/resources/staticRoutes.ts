@@ -23,6 +23,11 @@ const routes: Route[] = [
     title: "Startseite",
   },
   {
+    url: PATH_FIVE_PRINCIPALS,
+    title: "Fünf Prinzipien",
+    parent: PATH_LANDING,
+  },
+  {
     url: PATH_PRECHECK,
     title: "Vorprüfung",
     parent: PATH_LANDING,
@@ -43,11 +48,11 @@ const routes: Route[] = [
   },
   {
     url: PATH_DOCUMENTATION_PDF,
-    title: "Digitalcheck Begleitendede Dokumentation",
+    title: "Begleitendede Dokumentation",
   },
   {
-    url: PATH_FIVE_PRINCIPALS,
-    title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+    url: PATH_METHODS,
+    title: "Regelungsvorhaben erarbeiten",
     parent: PATH_LANDING,
   },
   // {
