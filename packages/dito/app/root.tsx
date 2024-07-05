@@ -110,15 +110,16 @@ function Document({
   };
 }>) {
   const nonce = useNonce();
-  const data:
+  const resultData:
     | {
         positiveQuestions: string[];
         unsureQuestions: string[];
       }
     | undefined = useRouteLoaderData("routes/vorpruefung.ergebnis");
   let resultType: string | undefined;
-  if (data) {
-    const { positiveQuestions, unsureQuestions } = data;
+  // result will only be send to Plausible if the user has reached the result page
+  if (resultData) {
+    const { positiveQuestions, unsureQuestions } = resultData;
     if (positiveQuestions.length > 0) {
       resultType = "positive";
     } else if (unsureQuestions.length > 0) {
