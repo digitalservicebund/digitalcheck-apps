@@ -121,7 +121,7 @@ function Document({
         <script
           defer
           data-domain="digitalcheck-dito.prod.ds4g.net"
-          src="https://plausible.io/js/script.js"
+          src="https://plausible.io/js/script.tagged-events.file-downloads.js"
         ></script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
