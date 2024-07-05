@@ -329,6 +329,134 @@ export const methods = {
   title: "2. Erarbeiten eines digitaltauglichen Regelungsvorhabens",
   subtitle:
     "Methoden und Hilfestellungen helfen ihnen die Digitaltauglichkeit des Regelungsvorhabens zu erarbeiten oder zu verbessern. Es gibt verschiedene Optionen, die für Sie als nächstes Sinn ergeben können.",
+  steps: {
+    items: [
+      {
+        spacer: { text: "Der sichere Einstieg in jede Regelung" },
+        headline: { text: "Erfassen Sie den Ist-Zustand" },
+        content: `Ein solides Verständnis über den Ist-Zustand ist ein sinnvoller und sicherer Einstieg. Tauschen Sie sich mit den umsetzenden Akteurinnen und Akteuren aus. Bei dieser Gelegenheit können Sie auch nach Problemen in der aktuellen Praxis fragen.
+Wenn Sie in den Gesprächen nichts Neues mehr erfahren, haben Sie den Status Quo erfasst.
+
+**Ein Austausch über die aktuelle Praxis darf auch während des Entwurfsprozesses stattfinden.**
+
+Mit diesen Informationen sind Sie gut vorbereitet, um ... 
+- Anforderungen für die neue Regelung zu erarbeiten,  
+- Abstimmungsprozesse zwischen Bund, Ländern, umsetzenden Behörden und Dienstleistern zu navigieren, 
+- in der formellen Beteiligung eine wirkungsvolle Umsetzung zu besprechen.`,
+      },
+      {
+        background: "blue",
+        headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
+        content: `**Zeit:** ca. vier Stunden
+
+Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis.`,
+        buttons: [
+          {
+            text: "Ansprechpersonen finden",
+            href: PATH_METHODS,
+          },
+        ],
+      },
+      {
+        background: "blue",
+        headline: {
+          text: "Abläufe, Aufgaben und Zusammenhänge gemeinsam erfassen",
+        },
+        content: `**Zeit:** ca. sechs Stunden
+
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
+
+Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
+`,
+        buttons: [
+          {
+            text: "Aufgaben und Abläufe klären",
+            href: PATH_METHODS,
+          },
+        ],
+      },
+      {
+        background: "blue",
+        headline: {
+          text: "IT-Systeme gemeinsam erfassen",
+        },
+        content: `**Zeit:** ca. sechs Stunden
+
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
+
+**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
+
+Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
+`,
+        buttons: [
+          {
+            text: "IT-Landschaft verstehen",
+            href: PATH_METHODS,
+          },
+        ],
+      },
+      {
+        spacer: { text: "Praxiswissen einsetzen und auswirkungen verstehen" },
+        headline: { text: "Entwickeln Sie eine digitaltaugliche Regelung" },
+        content: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Jetzt geht es darum die Potentiale zur Digitalisierung zu finden und Hindernisse aus dem Weg zu räumen — eine gute digitale Umsetzung spart langfristig Zeit und Geld und erfüllt die heutigen Erwartungen der Betroffenen an den Staat.`,
+      },
+      {
+        background: "blue",
+        headline: {
+          text: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
+        },
+        content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
+
+**Kollaborativ:** Text
+
+**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+
+Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand aus den vorigen Schritten, um mithilfe der Prinzipien die **Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen**. 
+        `,
+        buttons: [
+          {
+            text: "Fünf Prinzipien nutzen",
+            href: PATH_METHODS,
+          },
+        ],
+      },
+      {
+        background: "blue",
+        headline: {
+          text: "Analysieren Sie die Auswirkungen auf IT-Systeme",
+        },
+        content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
+
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+
+**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+
+In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf  bestehende und neue Abläufe und IT-Systeme analysieren. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.
+        `,
+        buttons: [
+          {
+            text: "IT-Auswirkungen prüfen",
+            href: PATH_METHODS,
+          },
+        ],
+      },
+      {
+        spacer: { text: "Eine digitale, verwaltungsarme Regelung Schreiben" },
+        headline: { text: "Verfassen Sie die Regelung" },
+        content: `Nun folgt der gewohnte Schreibprozess sowie die formelle Beteiligung, Abstimmungen im Haus und zwischen den Ressorts. 
+
+Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ... 
+- Ihren **Regelungstext zu strukturieren**, insbesondere in Abschnitten, die die Umsetzung betreffen,
+- in der **Gesetzesbegründung** auf Probleme im Ist-Zustand einzugehen,
+- den **Umsetzungsprozesse einfach besprechbar** zu machen in Abstimmungen anhand von Visualisierungen.`,
+      },
+      {
+        background: "blue",
+        headline: { text: "Schreiben Sie die Regelung" },
+        content: `Nutzen Sie Ihren gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben – z. B. eNorm und das Handbuch der Rechtsförmigkeit.`,
+      },
+    ],
+  },
 };
 
 export const fivePrincipals = {
