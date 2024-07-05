@@ -11,6 +11,9 @@ export const meta: MetaFunction = () => {
   return [{ title: `${fivePrincipals.title} — ${siteMeta.title}` }];
 };
 
+const slugify = (string: string) =>
+  string.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-");
+
 export default function Index() {
   return (
     <>
@@ -28,7 +31,7 @@ export default function Index() {
               {fivePrincipals.principals.map((principal) => (
                 <li key={principal.label}>
                   <a
-                    href={`#${principal.label.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-")}`}
+                    href={`#${slugify(principal.label)}`}
                     className="underline underline-offset-4 decoration-1"
                   >
                     ↓ {principal.label}: {principal.title}
@@ -44,9 +47,7 @@ export default function Index() {
           key={principal.content}
           backgroundColor={index % 2 === 0 ? "white" : "blue"}
         >
-          <span
-            id={principal.label.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-")}
-          />
+          <span id={slugify(principal.label)} />
           <Container>
             <InfoBox
               heading={{
