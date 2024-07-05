@@ -22,23 +22,24 @@ export const meta: MetaFunction = () => {
   return [{ title: `${result.title} — ${siteMeta.title}` }];
 };
 
+const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
+  Object.keys(answers).filter((key) => answers[key] === option);
+
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   // redirect to precheck if not all answers are present
   if (Object.keys(answers).length !== questions.length) {
     return redirect(PATH_PRECHECK);
   }
-  return json({ answers });
-}
-
-const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
-  Object.keys(answers).filter((key) => answers[key] === option);
-
-export default function Result() {
-  const { answers } = useLoaderData<typeof loader>();
   const positiveQuestions = getQuestionIDsOfOption(answers, "yes");
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
   const negativeQuestions = getQuestionIDsOfOption(answers, "no");
+  return json({ positiveQuestions, unsureQuestions, negativeQuestions });
+}
+
+export default function Result() {
+  const { positiveQuestions, unsureQuestions, negativeQuestions } =
+    useLoaderData<typeof loader>();
 
   const { register, formState, trigger } = useForm<FieldValues>();
 
@@ -67,7 +68,6 @@ export default function Result() {
   };
 
   // We have at least one positive answer
-
   if (positiveQuestions.length > 0) {
     const reasonsText = getReasoningText("Ja", positiveQuestions);
     return (

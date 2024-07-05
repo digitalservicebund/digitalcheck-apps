@@ -9,6 +9,7 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
@@ -109,6 +110,23 @@ function Document({
   };
 }>) {
   const nonce = useNonce();
+  const data:
+    | {
+        positiveQuestions: string[];
+        unsureQuestions: string[];
+      }
+    | undefined = useRouteLoaderData("routes/vorpruefung.ergebnis");
+  let resultType: string | undefined;
+  if (data) {
+    const { positiveQuestions, unsureQuestions } = data;
+    if (positiveQuestions.length > 0) {
+      resultType = "positive";
+    } else if (unsureQuestions.length > 0) {
+      resultType = "unsure";
+    } else {
+      resultType = "negative";
+    }
+  }
   return (
     <html lang="de">
       <head>
@@ -120,6 +138,8 @@ function Document({
         />
         <script
           defer
+          // eslint-disable-next-line react/no-unknown-property
+          event-result={resultType}
           data-domain="digitalcheck-dito.prod.ds4g.net"
           src="https://plausible.io/js/script.tagged-events.outbound-links.file-downloads.js"
         ></script>
