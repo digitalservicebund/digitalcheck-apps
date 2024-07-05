@@ -85,7 +85,6 @@ const createPreCheckPDF = async function (
 
     return await pdfDoc.save();
   } catch (err) {
-    // TODO: Logging on failure
     console.error("Error processing PDF:", err);
     throw err;
   }
