@@ -44,11 +44,15 @@ export default function Result() {
   const { register, formState, trigger } = useForm<FieldValues>();
 
   useEffect(() => {
+    let result = "Negativ";
+    if (positiveQuestions.length > 0) {
+      result = "Positiv";
+    } else if (unsureQuestions.length > 0) {
+      result = "Unsicher";
+    }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
-    (window as any).plausible("Vorprüfung Resultat", {
-      props: { result: "Positiv" },
-    });
-  }, []);
+    (window as any).plausible("Vorprüfung Resultat", { props: { result } });
+  }, [positiveQuestions.length, unsureQuestions.length]);
 
   const heading = (
     <Heading
