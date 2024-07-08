@@ -1,4 +1,4 @@
-import { type BackgroundColor } from "components";
+import { type BackgroundColor } from ".";
 import Background from "./Background";
 import Button, { type ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
