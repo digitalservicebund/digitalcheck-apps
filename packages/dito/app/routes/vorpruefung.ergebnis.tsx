@@ -9,7 +9,7 @@ import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
-import { FormEventHandler } from "react";
+import { FormEventHandler, useEffect } from "react";
 import { useForm, type FieldValues } from "react-hook-form";
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
@@ -42,6 +42,11 @@ export default function Result() {
     useLoaderData<typeof loader>();
 
   const { register, formState, trigger } = useForm<FieldValues>();
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
+    (window as any).plausible("Vorprüfung Resultat", "Positiv");
+  }, []);
 
   const heading = (
     <Heading

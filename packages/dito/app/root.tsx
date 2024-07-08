@@ -9,7 +9,6 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useRouteError,
-  useRouteLoaderData,
 } from "@remix-run/react";
 
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
@@ -110,24 +109,6 @@ function Document({
   };
 }>) {
   const nonce = useNonce();
-  const resultData:
-    | {
-        positiveQuestions: string[];
-        unsureQuestions: string[];
-      }
-    | undefined = useRouteLoaderData("routes/vorpruefung.ergebnis");
-  let resultType: string | undefined;
-  // result will only be send to Plausible if the user has reached the result page
-  if (resultData) {
-    const { positiveQuestions, unsureQuestions } = resultData;
-    if (positiveQuestions.length > 0) {
-      resultType = "positive";
-    } else if (unsureQuestions.length > 0) {
-      resultType = "unsure";
-    } else {
-      resultType = "negative";
-    }
-  }
   return (
     <html lang="de">
       <head>
@@ -139,12 +120,15 @@ function Document({
         />
         <script
           defer
-          // eslint-disable-next-line react/no-unknown-property
-          event-result={resultType}
           data-domain="digitalcheck-dito.prod.ds4g.net"
           data-api="/proxy-pl-event"
           src="/proxy-pl-script.js"
         ></script>
+        <script nonce={nonce}>
+          {
+            "window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }"
+          }
+        </script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
       </head>
