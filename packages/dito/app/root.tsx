@@ -142,7 +142,7 @@ function Document({
           // eslint-disable-next-line react/no-unknown-property
           event-result={resultType}
           data-domain="digitalcheck-dito.prod.ds4g.net"
-          src="https://plausible.io/js/script.tagged-events.outbound-links.file-downloads.js"
+          src="https://plausible.io/js/script.tagged-events.outbound-links.file-downloads.pageview-props.js"
         ></script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
