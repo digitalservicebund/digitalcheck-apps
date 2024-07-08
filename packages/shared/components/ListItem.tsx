@@ -80,7 +80,7 @@ const ListItem = ({
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >
               <div
-                className={`flex flex-col gap-16 ${backgroundColor ? "p-64" : "mt-4"}`}
+                className={`flex flex-col gap-16 ${backgroundColor ? "py-64 px-96" : "mt-4"}`}
               >
                 <div className="flex flex-row gap-16 items-center">
                   {label && <Heading {...label} />}
