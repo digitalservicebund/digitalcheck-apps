@@ -29,6 +29,16 @@ export default function Index() {
       <Container>
         <List items={methods.steps.items} />
       </Container>
+      <Container>
+        <List
+          heading={{
+            tagName: "h2",
+            text: methods.nextSteps.title,
+          }}
+          items={methods.nextSteps.items}
+          isNumeric
+        />
+      </Container>
       <FeedbackBanner />
     </>
   );

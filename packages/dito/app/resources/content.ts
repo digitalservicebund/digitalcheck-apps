@@ -457,6 +457,43 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ..
       },
     ],
   },
+  nextSteps: {
+    title: "So machen Sie weiter",
+    items: [
+      {
+        headline: {
+          text: "Vorprüfung: der Digitalbezug wurde eingeschätzt",
+          className: "opacity-50",
+        },
+      },
+      {
+        headline: {
+          text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+          className: "opacity-50",
+        },
+      },
+      {
+        headline: {
+          text: "Dokumentieren der Digitaltauglichkeit",
+        },
+
+        content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
+
+[Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)`,
+      },
+      {
+        headline: {
+          text: "Digitalcheck durch den NKR",
+        },
+
+        content: `Der NKR prüft ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
+
+Die für Ihr Haus zuständige Ansprechperson finden Sie hier: [normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html](normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html)
+
+Damit ist der Digitalcheck für Sie beendet.`,
+      },
+    ],
+  },
 };
 
 export const fivePrincipals = {
