@@ -89,7 +89,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
       {
         spacer: true,
         headline: {
-          text: "Digitaltaugliche Regelungen sparen dem Staat Geld",
+          text: "Digitaltaugliche Regelungen sparen Ressourcen",
         },
         content: `Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
       },
