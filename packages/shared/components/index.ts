@@ -19,3 +19,9 @@ export const BACKGROUND_COLORS = Object.freeze({
 });
 
 export type BackgroundColor = "default" | keyof typeof BACKGROUND_COLORS;
+
+export function isBackgroundColor(
+  background: string,
+): background is BackgroundColor {
+  return Object.keys(BACKGROUND_COLORS).includes(background);
+}

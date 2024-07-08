@@ -1,4 +1,4 @@
-import { type BackgroundColor } from ".";
+import { type BackgroundColor, isBackgroundColor } from ".";
 import Background from "./Background";
 import Button, { type ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
@@ -14,7 +14,7 @@ export type ListItemProps = {
   image?: ImageProps;
   content?: string;
   buttons?: ButtonProps[];
-  background?: BackgroundColor;
+  background?: string;
 };
 
 const ListItem = ({
@@ -28,6 +28,9 @@ const ListItem = ({
   numeric,
   background,
 }: ListItemProps & { readonly numeric?: number }) => {
+  const backgroundColor =
+    background && isBackgroundColor(background) ? background : undefined;
+
   return (
     <div id={identifier} className="flex flex-row items-center justify-center">
       {image && (
@@ -66,13 +69,15 @@ const ListItem = ({
                 {numeric}
               </div>
             )}
-            {background && (
+            {backgroundColor && (
               <div className="min-w-[20px] w-[20px] h-[20px] flex justify-center items-center bg-blue-900 rounded-full"></div>
             )}
           </div>
-          <div className={background && "overflow-hidden rounded-lg"}>
-            <Background backgroundColor={background || "white"}>
-              <div className={background && "p-64"}>
+          <div className={backgroundColor && "overflow-hidden rounded-lg"}>
+            <Background
+              backgroundColor={(backgroundColor as BackgroundColor) || "white"}
+            >
+              <div className={backgroundColor && "p-64"}>
                 <div className="flex flex-row gap-16 items-center">
                   {label && <Heading {...label} />}
                   {headline && <Heading tagName="h3" {...headline} />}
