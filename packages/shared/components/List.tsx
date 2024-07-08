@@ -29,7 +29,11 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
               }
               className="first:pt-0 scroll-my-40"
             >
-              <ListItem {...item} numeric={isNumeric ? index + 1 : undefined} />
+              <ListItem
+                {...item}
+                numeric={isNumeric ? index + 1 : undefined}
+                parentHasHeading={heading !== undefined}
+              />
             </li>
           );
         })}

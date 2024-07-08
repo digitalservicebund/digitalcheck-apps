@@ -15,6 +15,7 @@ export type ListItemProps = {
   content?: string;
   buttons?: ButtonProps[];
   background?: string;
+  parentHasHeading?: boolean;
 };
 
 const ListItem = ({
@@ -27,6 +28,7 @@ const ListItem = ({
   buttons,
   numeric,
   background,
+  parentHasHeading,
 }: ListItemProps & { readonly numeric?: number }) => {
   const backgroundColor =
     background && isBackgroundColor(background) ? background : undefined;
@@ -54,7 +56,7 @@ const ListItem = ({
               >
                 <span className="display-block w-[40px]" />
                 <Heading
-                  tagName="h4"
+                  tagName="div"
                   className="ds-label-section text-gray-900"
                   {...spacer}
                 />
@@ -80,7 +82,12 @@ const ListItem = ({
               <div className={backgroundColor && "p-64"}>
                 <div className="flex flex-row gap-16 items-center">
                   {label && <Heading {...label} />}
-                  {headline && <Heading tagName="h3" {...headline} />}
+                  {headline && (
+                    <Heading
+                      tagName={parentHasHeading ? "h3" : "h2"}
+                      {...headline}
+                    />
+                  )}
                 </div>
                 {content && <RichText markdown={content} />}
                 {buttons && buttons.length > 0 && (
