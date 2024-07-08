@@ -160,7 +160,13 @@ function handleBrowserRequest(
       return response;
     })
     .catch((error) => {
-      logResponseStatus(500, request, startTime);
+      logResponseStatus(
+        500,
+        request,
+        startTime,
+        false,
+        (error as Error).message,
+      );
       throw error;
     });
 }
@@ -170,6 +176,7 @@ function logResponseStatus(
   request: Request,
   startTime: number,
   isBot = false,
+  error = "",
 ) {
   const timestamp = new Date().toISOString();
   const duration = Date.now() - startTime;
@@ -201,8 +208,8 @@ function logResponseStatus(
   if (statusCode >= 200 && statusCode < 300) {
     logMessage("info", "HTTP successful response");
   } else if (statusCode >= 400 && statusCode < 500) {
-    logMessage("warning", "HTTP warning response");
-  } else if (statusCode >= 500) {
-    logMessage("error", "HTTP error response");
+    logMessage("warning", error || "HTTP warning response");
+  } else if (statusCode >= 500 && error) {
+    logMessage("error", error);
   }
 }
