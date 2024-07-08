@@ -1,4 +1,5 @@
 // the filename is deliberately obscure to prevent it from being blocked
+// from https://rogerstringer.com/blog/proxying-plausible-in-remix
 
 import type { ActionFunctionArgs } from "@remix-run/node";
 
