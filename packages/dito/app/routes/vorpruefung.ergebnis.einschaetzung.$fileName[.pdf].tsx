@@ -4,6 +4,7 @@ import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { assessment } from "resources/content";
 import { getAnswersFromCookie } from "utils/cookies.server";
+import trackCustomEvent from "utils/trackCustomEvent";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
@@ -95,6 +96,7 @@ export function loader({ request }: LoaderFunctionArgs) {
     throw new Response("Must be a POST request", { status: 405 });
   }
 }
+
 export async function action({ params, request }: ActionFunctionArgs) {
   const { fileName } = params;
   const { answers } = await getAnswersFromCookie(request);
@@ -143,6 +145,14 @@ export async function action({ params, request }: ActionFunctionArgs) {
     negativeReasoning,
     answers,
   });
+
+  let result = "Negativ";
+  if (Object.values(answers).find((a) => a === "yes")) {
+    result = "Positiv";
+  } else if (Object.values(answers).find((a) => a === "unsure")) {
+    result = "Unsicher";
+  }
+  trackCustomEvent(request, { name: "Vorprüfung Download", props: { result } });
 
   return new Response(pdfData, {
     status: 200,
