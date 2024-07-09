@@ -59,7 +59,8 @@ export type TQuestion = {
   id: string;
   title: string;
   question: string;
-  result: string;
+  positiveResult: string;
+  negativeResult: string;
   text?: string;
   url: string;
   prevLink: string;

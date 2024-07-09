@@ -186,7 +186,10 @@ export const preCheck = {
       title: "IT-System",
       question:
         "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
-      result: "zur Anpassung oder Neuentwicklung eines IT-Systems führt.",
+      positiveResult:
+        "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
+      negativeResult:
+        "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
       hint: {
         title: "Was ist ein IT-System?",
@@ -201,7 +204,8 @@ export const preCheck = {
       title: "Verpflichtungen für Beteiligte",
       question:
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
-      result: "Verpflichtungen für Beteiligte zur Folge haben wird.",
+      positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
+      negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
       hint: hintInvolved,
     },
     {
@@ -209,8 +213,10 @@ export const preCheck = {
       title: "Datenaustausch",
       question:
         "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
-      result:
-        "einen Datenaustausch zur Folge hat oder durch Wiederverwendung von Daten vereinfacht würde.",
+      positiveResult:
+        "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
+      negativeResult:
+        "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
       // text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
     },
     {
@@ -218,8 +224,10 @@ export const preCheck = {
       title: "Digitale Kommunikation",
       question:
         "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
-      result:
-        "Interaktion und/oder Kommunikation zwischen Beteiligten beinhaltet.",
+      positiveResult:
+        "wird Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
+      negativeResult:
+        "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
       hint: hintInvolved,
     },
     {
@@ -227,8 +235,10 @@ export const preCheck = {
       title: "Automatisierung",
       question:
         "Kann durch (Teil-)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
-      result:
-        "durch (Teil-)Automatisierung und/oder digitale Dokumentation verbessert wird.",
+      positiveResult:
+        "kann den Aufwand für Betroffene durch (Teil-)Automatisierung reduzieren.",
+      negativeResult:
+        "kann den Aufwand für Betroffene nicht durch (Teil-)Automatisierung reduzieren.",
       // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
       hint: hintInvolved,
     },
@@ -250,15 +260,21 @@ export const preCheck = {
     title: "Ergebnis der Vorprüfung",
     positive: "Ihr Regelungsvorhaben hat Digitalbezug.",
     negative: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
-    unsure: "Es ist nicht klar, ob Ihr Regelungsvorhaben Digitalbezug hat.",
+    unsure: "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
+    unsureHint:
+      'Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.',
     receivePdfButton: {
       text: "Einschätzung als PDF bekommen",
       href: PATH_ASSESSMENT,
     },
+    repeatPreCheckButton: {
+      text: "Vorprüfung wiederholen",
+      href: PATH_PRECHECK,
+    },
     reasonIntro:
       "Digitalbezug liegt vor, wenn die Umsetzung des Regelungsvorhabens voraussichtlich ...",
     nextStepsPositive: {
-      title: "Das sind Ihre nächsten Schritte",
+      title: "So machen Sie weiter",
       steps: [
         {
           headline: {
@@ -283,10 +299,6 @@ export const preCheck = {
         stepNKR,
       ],
     },
-    noticeUnsure: {
-      title: `Sie haben mehrere Aussagen mit "Unsicher" beantwortet.`,
-      text: `Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.`,
-    },
     boxUnsure: {
       title:
         "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
@@ -297,7 +309,7 @@ export const preCheck = {
       },
     },
     nextStepsNegative: {
-      title: "Das sind Ihre nächsten Schritte",
+      title: "So machen Sie weiter",
       step: stepNKR,
     },
   },
@@ -308,7 +320,7 @@ export const assessment = {
   subtitle:
     "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
   form: {
-    formLegend: "Bitte erläutern Sie, warum kein Digitalbezug exisitiert.",
+    formLegend: "Bitte erläutern Sie Ihre Einschätzung.",
     policyTitleLabel: "Arbeitstitel des Vorhabens",
     policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
@@ -317,7 +329,7 @@ export const assessment = {
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
     downloadPdfButton: {
-      text: "Als PDF herunterladen",
+      text: "Ergebnis der Vorprüfung als PDF herunterladen",
     },
     receiveEmailButton: {
       text: "Per E-Mail erhalten",

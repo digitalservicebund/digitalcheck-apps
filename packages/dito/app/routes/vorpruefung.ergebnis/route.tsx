@@ -1,20 +1,22 @@
+import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
+import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
+import { useEffect, type FormEventHandler } from "react";
+import { useForm, type FieldValues } from "react-hook-form";
+
 import Box from "@digitalcheck/shared/components/Box";
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import Input from "@digitalcheck/shared/components/Input";
 import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download";
-import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
-import { FormEventHandler, useEffect } from "react";
-import { useForm, type FieldValues } from "react-hook-form";
+
 import { assessment, preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
+import type { Answers, Option } from "routes/vorpruefung.$questionId/route";
 import { getAnswersFromCookie } from "utils/cookies.server";
-import type { Answers, Option } from "./vorpruefung.$questionId/route";
+import ResultHeader from "./ResultHeader";
 
 const { result, questions } = preCheck;
 
@@ -37,10 +39,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ positiveQuestions, unsureQuestions, negativeQuestions });
 }
 
+const getReasoningText = (
+  questionIds: string[],
+  intro: string,
+  resultType: "positiveResult" | "negativeResult" | "question",
+) => {
+  return `${intro}\n${questionIds
+    .map((qId) => `- ${questions.find((q) => q.id === qId)?.[resultType]}`)
+    .join("\n")}`;
+};
+
 export default function Result() {
   const { positiveQuestions, unsureQuestions, negativeQuestions } =
     useLoaderData<typeof loader>();
-
   const { register, formState, trigger } = useForm<FieldValues>();
 
   useEffect(() => {
@@ -54,42 +65,22 @@ export default function Result() {
     (window as any).plausible("Vorprüfung Resultat", { props: { result } });
   }, [positiveQuestions.length, unsureQuestions.length]);
 
-  const heading = (
-    <Heading
-      tagName="h1"
-      text={result.title}
-      look="ds-heading-02-reg"
-      className="mb-32"
-    />
-  );
-  const getReasoningNotice = (title: string, content: string) => (
-    <InlineNotice
-      look="info"
-      title={title}
-      tagName="h2"
-      content={content}
-      showIcon={false}
-    />
-  );
-  const getReasoningText = (answer: string, questionIds: string[]) => {
-    const reasons = questionIds
-      .map((qId) => `- ${questions.find((q) => q.id === qId)?.result}`)
-      .join("\n");
-    return `**Folgende Fragen haben Sie mit "${answer}" beantwortet:**\n\n${result.reasonIntro}\n${reasons}`;
-  };
-
   // We have at least one positive answer
   if (positiveQuestions.length > 0) {
-    const reasonsText = getReasoningText("Ja", positiveQuestions);
+    const reasonsText = getReasoningText(
+      positiveQuestions,
+      "Das Regelungsvorhaben...",
+      "positiveResult",
+    );
     return (
       <>
-        <Container>
-          {heading}
-          {getReasoningNotice(result.positive, reasonsText)}
-          <div className="mt-32">
-            <Button {...result.receivePdfButton} look="tertiary" />
-          </div>
-        </Container>
+        <ResultHeader
+          resultType="positive"
+          resultHeading={result.positive}
+          reasonsText={reasonsText}
+          resultBackgroundColor="midBlue"
+          buttons={[{ ...result.receivePdfButton, look: "tertiary" }]}
+        />
         <Container>
           <List
             heading={{
@@ -105,25 +96,28 @@ export default function Result() {
   }
 
   // Some answers are unsure
-
   if (unsureQuestions.length > 0) {
-    const reasonsTextUnsure = getReasoningText("Unsicher", unsureQuestions);
-    const reasonsTextNegative = getReasoningText("Nein", negativeQuestions);
+    const reasonsTextUnsure = getReasoningText(
+      unsureQuestions,
+      '**Folgende Fragen haben Sie mit "Unsicher" beantwortet:**',
+      "question",
+    );
+    const reasonsTextNegative = getReasoningText(
+      negativeQuestions,
+      '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
+      "negativeResult",
+    );
     const reasonsText = `${reasonsTextUnsure}\n\n${reasonsTextNegative}`;
     return (
       <>
-        <Container>
-          {heading}
-          <div className="mb-32">
-            <InlineNotice
-              look="support"
-              title={result.noticeUnsure.title}
-              tagName="h2"
-              content={result.noticeUnsure.text}
-            />
-          </div>
-          {getReasoningNotice(result.unsure, reasonsText)}
-        </Container>
+        <ResultHeader
+          resultType="unsure"
+          resultHeading={result.unsure}
+          resultHint={result.unsureHint}
+          reasonsText={reasonsText}
+          resultBackgroundColor="lightYellow"
+          buttons={[{ ...result.repeatPreCheckButton, look: "tertiary" }]}
+        />
         <Container>
           <Box
             heading={{
@@ -137,7 +131,7 @@ export default function Result() {
                 id: "result-method-button",
                 text: result.boxUnsure.link.text,
                 href: result.boxUnsure.link.href,
-                look: "tertiary",
+                look: "ghost",
               },
             ]}
           />
@@ -158,13 +152,20 @@ export default function Result() {
       event.preventDefault();
     }
   };
-  const reasonsText = getReasoningText("Nein", negativeQuestions);
+  const reasonsText = getReasoningText(
+    negativeQuestions,
+    "Das Regelungsvorhaben...",
+    "negativeResult",
+  );
 
   return (
     <>
-      <Container>
-        {heading}
-        {getReasoningNotice(result.negative, reasonsText)}
+      <ResultHeader
+        resultType="negative"
+        resultHeading={result.negative}
+        reasonsText={reasonsText}
+        resultBackgroundColor="midBlue"
+      >
         <Form
           onSubmit={onSubmit}
           onChange={() => trigger()}
@@ -174,7 +175,9 @@ export default function Result() {
           reloadDocument
         >
           <fieldset className="ds-stack-32">
-            <legend>{assessment.form.formLegend}</legend>
+            <legend>
+              <Heading tagName="h3" text={assessment.form.formLegend} />
+            </legend>
             <Textarea
               label={assessment.form.reasonLabel}
               register={register("negativeReasoning", {
@@ -206,7 +209,7 @@ export default function Result() {
             />
           </fieldset>
         </Form>
-      </Container>
+      </ResultHeader>
       <Container>
         <Heading
           tagName="h2"
