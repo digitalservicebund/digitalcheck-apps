@@ -1,10 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
-import {
-  PATH_DOCUMENTATION_PDF,
-  PATH_PRECHECK,
-  PATH_RESULT,
-} from "resources/staticRoutes";
+import { PATH_PRECHECK, PATH_RESULT } from "resources/staticRoutes";
 
 test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
@@ -25,8 +21,11 @@ test.describe("test result page general content", () => {
   });
 
   test("result page links to documentation", async ({ page }) => {
+    const downloadPromise = page.waitForEvent("download");
     await page.getByRole("link", { name: "Dokumentation" }).click();
-    await expect(page).toHaveURL(PATH_DOCUMENTATION_PDF);
+    expect((await downloadPromise).suggestedFilename()).toBe(
+      "digitalcheck-begleitende-dokumentation.pdf",
+    );
   });
 });
 

@@ -2,7 +2,7 @@
 // from https://rogerstringer.com/blog/proxying-plausible-in-remix
 
 const plausibleUrl =
-  "https://plausible.io/js/script.tagged-events.outbound-links.file-downloads.js";
+  "https://plausible.io/js/script.tagged-events.outbound-links.js";
 
 export const loader = async () => {
   const response = await fetch(plausibleUrl);
