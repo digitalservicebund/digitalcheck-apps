@@ -32,6 +32,13 @@ export const meta: MetaFunction = () => {
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   const questionIdx = questions.findIndex((q) => q.id === params.questionId);
+  // return 404 if the question is not found
+  if (questionIdx === -1) {
+    throw new Response("Question not found", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
   // if the user accesses a question where they haven't answered the previous questions, redirect them to the first unanswered question
   const firstUnansweredQuestionIdx = Object.keys(answers).length;
   if (questionIdx > firstUnansweredQuestionIdx) {
