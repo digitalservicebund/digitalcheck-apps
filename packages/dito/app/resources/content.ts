@@ -593,3 +593,18 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
     },
   ],
 };
+
+export const imprint = {
+  title: "Impressum",
+  content: `Demnächst verfügbar`,
+};
+
+export const accessibility = {
+  title: "Barrierefreiheit",
+  content: `Demnächst verfügbar`,
+};
+
+export const privacy = {
+  title: "Datenschutzerklärung",
+  content: `Demnächst verfügbar`,
+};
