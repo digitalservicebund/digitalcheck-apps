@@ -132,7 +132,7 @@ function Document({
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col">
         <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />
@@ -146,7 +146,7 @@ function Document({
 export default function App() {
   return (
     <Document>
-      <main>
+      <main className="grow">
         <Outlet />
       </main>
     </Document>
@@ -169,7 +169,7 @@ export function ErrorBoundary() {
 
   return (
     <Document error={{ title: errorTitle, message: errorMessage }}>
-      <main id="error">
+      <main id="error" className="grow">
         <Background backgroundColor="blue">
           <Container>
             <Header
