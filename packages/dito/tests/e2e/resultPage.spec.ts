@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
-import { PATH_PRECHECK, PATH_RESULT } from "resources/staticRoutes";
+import {
+  PATH_DOCUMENTATION_PDF,
+  PATH_PRECHECK,
+  PATH_RESULT,
+} from "resources/staticRoutes";
 
 test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
@@ -21,11 +25,8 @@ test.describe("test result page general content", () => {
   });
 
   test("result page links to documentation", async ({ page }) => {
-    const downloadPromise = page.waitForEvent("download");
     await page.getByRole("link", { name: "Dokumentation" }).click();
-    expect((await downloadPromise).suggestedFilename()).toBe(
-      "digitalcheck-begleitende-dokumentation.pdf",
-    );
+    await expect(page).toHaveURL(PATH_DOCUMENTATION_PDF);
   });
 });
 
@@ -57,7 +58,12 @@ test.describe("test result page reasoning", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await expect(page.getByRole("main")).toContainText(`mit "Ja" beantwortet`);
+    await expect(page.getByRole("main")).toContainText(
+      "Ihr Regelungsvorhaben hat Digitalbezug.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben...",
+    );
     await expect(page.getByRole("main")).not.toContainText("IT-Systems");
   });
 
@@ -76,7 +82,7 @@ test.describe("test result page reasoning", () => {
       "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Nein" beantwortet`,
+      "Das Regelungsvorhaben...",
     );
   });
 
@@ -93,7 +99,7 @@ test.describe("test result page reasoning", () => {
     await expect(page).toHaveURL(PATH_RESULT);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
-      "Es ist nicht klar, ob Ihr Regelungsvorhaben Digitalbezug hat.",
+      "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
     );
     await expect(page.getByRole("main")).toContainText(
       `mit "Unsicher" beantwortet`,
