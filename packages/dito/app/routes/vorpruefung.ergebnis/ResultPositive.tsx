@@ -25,7 +25,7 @@ export default function ResultNegative({
         resultHeading={title}
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
-        buttons={[{ ...actionButton, look: "tertiary" }]}
+        buttons={[{ ...actionButton, look: "tertiary", size: "large" }]}
       />
       <Container>
         <List

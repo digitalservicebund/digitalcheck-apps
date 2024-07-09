@@ -57,7 +57,11 @@ export default function ResultNegative({
         >
           <fieldset className="ds-stack-32">
             <legend>
-              <Heading tagName="h3" text={assessment.form.formLegend} />
+              <Heading
+                tagName="h3"
+                text={assessment.form.formLegend}
+                className="mb-16"
+              />
             </legend>
             <Textarea
               label={assessment.form.reasonLabel}
@@ -84,6 +88,7 @@ export default function ResultNegative({
             <Button
               text={assessment.form.downloadPdfButton.text}
               look="primary"
+              size="large"
               iconLeft={<Download />}
               type="submit"
               className="self-start"

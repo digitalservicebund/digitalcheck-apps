@@ -145,7 +145,7 @@ const stepNKR = {
     text: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
   },
   content: `Der NKR prüft gemäß seines Auftrags die Nachvollziehbarkeit der Digitaltauglichkeit Ihres Regelungsentwurfes anhand der Fragen, die Sie in der Einschätzung beantwortet haben. Gegebenenfalls wird Ihre Ansprechperson im NKR-Sekretariat mit Fragen oder Anregungen auf Sie zukommen.
-
+<br /><br />
 Die für Ihr Haus zuständige Ansprechperson finden Sie hier: www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html
 
 Damit ist der Digitalcheck für Sie beendet.`,
@@ -287,6 +287,7 @@ export const preCheck = {
               {
                 text: "Zu den Hilfestellungen und Methoden",
                 href: PATH_METHODS,
+                size: "large" as const,
               },
             ],
           },
@@ -316,6 +317,7 @@ export const preCheck = {
         link: {
           text: "Zu den Hilfestellungen und Methoden",
           href: PATH_METHODS,
+          size: "large",
         },
       },
     },
