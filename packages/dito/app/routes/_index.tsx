@@ -26,7 +26,7 @@ export default function Index() {
             }}
             content={{
               markdown: landing.subtitle,
-              className: "rich-text-2xl",
+              className: "rich-text-2xl max-sm:rich-text",
             }}
           ></Header>
         </Container>
@@ -52,7 +52,7 @@ export default function Index() {
           title={landing.dataNotice.headline}
           tagName="h2"
           content={landing.dataNotice.content}
-        ></InlineNotice>
+        />
       </Container>
       {/* TODO: Add in case study here, if & when we have one... */}
       <Container>
