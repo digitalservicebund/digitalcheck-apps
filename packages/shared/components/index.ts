@@ -12,6 +12,7 @@ export const BACKGROUND_COLORS = Object.freeze({
   blue: "bg-blue-100", // before:bg-blue-100
   midBlue: "bg-blue-300", // before:bg-blue-300
   darkBlue: "bg-blue-800", // before:bg-blue-800
+  lightYellow: "bg-yellow-200", // before:bg-yellow-200
   yellow: "bg-yellow-300", // before:bg-yellow-300
   green: "bg-green-200", // before:bg-green-200
   red: "bg-[#f9e5ec]", // before:bg-[#f9e5ec]
