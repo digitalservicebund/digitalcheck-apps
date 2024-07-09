@@ -10,7 +10,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   }
 
   try {
-    const filePath = path.join("public", "asset", fileName);
+    const filePath = path.join("public", "assets", fileName);
     const pdfData = await fs.readFile(filePath);
 
     trackCustomEvent(request, { name: "Download Dokumentation" });
