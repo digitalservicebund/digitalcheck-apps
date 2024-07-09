@@ -21,14 +21,29 @@ export const loader = () => {
 };
 
 export default function Index() {
-  // FEATURE FLAG: Disable subpages in production, as they aren't complete yet
   const { methodSubpagesEnabled } = useLoaderData<typeof loader>();
-  const methodStepsItems = methodSubpagesEnabled
-    ? methods.steps.items
-    : methods.steps.items.map((item) => {
-        item.buttons = [];
-        return item;
-      });
+  const methodStepsItems = methods.steps.items.map((item) => {
+    // FEATURE FLAG: Disable subpages in production, as they aren't complete yet
+    if (!methodSubpagesEnabled) {
+      item.buttons = [];
+    }
+
+    // Modify HTML to be able to style icons
+    item.content = item.content.replaceAll(
+      "**Zeit:**",
+      `<strong data-icon="TimerOutlined">Zeit:</strong>`,
+    );
+    item.content = item.content.replaceAll(
+      "**Kollaborativ:**",
+      `<strong data-icon="GroupOutlined">Kollaborativ:</strong>`,
+    );
+    item.content = item.content.replaceAll(
+      "**Support:**",
+      `<strong data-icon="ContactSupportOutlined">Support:</strong>`,
+    );
+
+    return item;
+  });
 
   return (
     <>
@@ -47,8 +62,6 @@ export default function Index() {
       </Background>
       <Container>
         <List items={methodStepsItems} />
-        {/* FEATURE FLAG: Revert to this once feature flag is no longer needed */}
-        {/* <List items={methods.steps.items} /> */}
       </Container>
       <Container>
         <List
