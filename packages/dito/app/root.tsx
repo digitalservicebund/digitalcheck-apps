@@ -124,11 +124,6 @@ function Document({
           data-api="/proxy-pl-event"
           src="/proxy-pl-script.js"
         ></script>
-        <script nonce={nonce}>
-          {
-            "window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }"
-          }
-        </script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
       </head>

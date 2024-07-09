@@ -1,11 +1,11 @@
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
-import { useEffect } from "react";
 
 import { preCheck, siteMeta } from "resources/content";
 import { PATH_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "routes/vorpruefung.$questionId/route";
 import { getAnswersFromCookie } from "utils/cookies.server";
+import trackCustomEvent from "utils/trackCustomEvent";
 import ResultNegative from "./ResultNegative";
 import ResultPositive from "./ResultPositive";
 import ResultUnsure from "./ResultUnsure";
@@ -28,23 +28,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const positiveQuestions = getQuestionIDsOfOption(answers, "yes");
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");
   const negativeQuestions = getQuestionIDsOfOption(answers, "no");
+
+  // Track result
+  let result = "Negativ";
+  if (positiveQuestions.length > 0) {
+    result = "Positiv";
+  } else if (unsureQuestions.length > 0) {
+    result = "Unsicher";
+  }
+  trackCustomEvent(request, { name: "Vorprüfung Resultat", props: { result } });
+
   return json({ positiveQuestions, unsureQuestions, negativeQuestions });
 }
 
 export default function Result() {
   const { positiveQuestions, unsureQuestions, negativeQuestions } =
     useLoaderData<typeof loader>();
-
-  useEffect(() => {
-    let result = "Negativ";
-    if (positiveQuestions.length > 0) {
-      result = "Positiv";
-    } else if (unsureQuestions.length > 0) {
-      result = "Unsicher";
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
-    (window as any).plausible("Vorprüfung Resultat", { props: { result } });
-  }, [positiveQuestions.length, unsureQuestions.length]);
 
   // We have at least one positive answer
   if (positiveQuestions.length > 0) {
