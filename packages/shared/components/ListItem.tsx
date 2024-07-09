@@ -75,7 +75,7 @@ const ListItem = ({
               <div className="min-w-[20px] w-[20px] h-[20px] flex justify-center items-center bg-blue-900 rounded-full"></div>
             )}
           </div>
-          <div className={backgroundColor && "overflow-hidden rounded-lg"}>
+          <div className={`overflow-hidden ${backgroundColor && "rounded-lg"}`}>
             <Background
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >

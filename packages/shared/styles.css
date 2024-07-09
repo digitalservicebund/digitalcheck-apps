@@ -17,11 +17,11 @@
   }
 
   h1 {
-    @apply ds-heading-01-reg max-sm:text-5xl max-md:text-6xl;
+    @apply ds-heading-01-reg max-sm:text-3xl max-md:text-5xl;
   }
 
   h2 {
-    @apply ds-heading-02-reg;
+    @apply ds-heading-02-reg max-sm:text-2xl;
   }
 
   h3 {
