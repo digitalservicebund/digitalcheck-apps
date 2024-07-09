@@ -7,9 +7,10 @@ export const PATH_FIVE_PRINCIPALS: string = "/fuenf-prinzipien";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
-export const PATH_PRECHECK_PDF: string = "/assets/digitalcheck-vorpruefung.pdf";
+export const PATH_PRECHECK_PDF: string =
+  "/download/digitalcheck-vorpruefung.pdf";
 export const PATH_DOCUMENTATION_PDF: string =
-  "/assets/digitalcheck-begleitende-dokumentation.pdf";
+  "/download/digitalcheck-begleitende-dokumentation.pdf";
 
 export type Route = {
   url: string;

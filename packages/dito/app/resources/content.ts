@@ -1,6 +1,7 @@
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_ASSESSMENT,
+  PATH_DOCUMENTATION_PDF,
   PATH_METHODS,
   PATH_PRECHECK,
   PATH_RESULT,
@@ -58,7 +59,7 @@ export const landing = {
         },
         content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.
           <br />
-          [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)`,
+          [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
       },
       {
         headline: {
@@ -293,8 +294,7 @@ export const preCheck = {
           headline: {
             text: "Abschließende Dokumentation",
           },
-          content:
-            "Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)",
+          content: `Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
         },
         stepNKR,
       ],
@@ -491,7 +491,7 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ..
 
         content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
 
-[Zur Dokumentation](/assets/digitalcheck-begleitende-dokumentation.pdf)`,
+[Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
       },
       {
         headline: {

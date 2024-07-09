@@ -21,10 +21,6 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
             `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
           );
         }
-        // Force the browser to download links to PDF files
-        if (href.endsWith(".pdf")) {
-          return linkHtml.replace(/^<a /, `<a download `);
-        }
         return linkHtml;
       },
     },
