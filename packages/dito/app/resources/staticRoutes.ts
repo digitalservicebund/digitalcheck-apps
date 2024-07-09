@@ -55,21 +55,21 @@ const routes: Route[] = [
     title: "Regelungsvorhaben erarbeiten",
     parent: PATH_LANDING,
   },
-  // {
-  //   url: PATH_IMPRINT,
-  //   title: "Impressum",
-  //   parent: PATH_LANDING,
-  // },
-  // {
-  //   url: PATH_A11Y,
-  //   title: "Barrierefreiheit",
-  //   parent: PATH_LANDING,
-  // },
-  // {
-  //   url: PATH_PRIVACY,
-  //   title: "Datenschutzerklärung",
-  //   parent: PATH_LANDING,
-  // },
+  {
+    url: PATH_IMPRINT,
+    title: "Impressum",
+    parent: PATH_LANDING,
+  },
+  {
+    url: PATH_A11Y,
+    title: "Barrierefreiheit",
+    parent: PATH_LANDING,
+  },
+  {
+    url: PATH_PRIVACY,
+    title: "Datenschutzerklärung",
+    parent: PATH_LANDING,
+  },
 ];
 
 export default routes;
