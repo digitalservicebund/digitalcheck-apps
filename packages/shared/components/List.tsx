@@ -14,7 +14,12 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
       {heading && <Heading {...heading} />}
       {!isNumeric && (
         <div className="absolute left-[8px] top-32 bottom-0 bg-blue-300 w-[4px]">
-          {/* <div className="w-0 h-0 border-[20px] border-b-0 border-blue-300"></div> */}
+          <div className="text-blue-300 bg-white w-[20px] -left-[8px] absolute text-center text-xl leading-none rotate-180">
+            ▲
+          </div>
+          <div className="text-blue-300 bg-white w-[20px] -left-[8px] bottom-0 absolute text-center text-xl leading-none">
+            ▲
+          </div>
         </div>
       )}
       <ol className="list-none ds-stack-32 ps-0 relative">
