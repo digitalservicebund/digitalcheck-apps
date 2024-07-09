@@ -2,13 +2,21 @@ import { expect, test } from "@playwright/test";
 import * as allRoutes from "routes";
 
 test.describe("test general functionality", () => {
+  test("landing page to not have breadcrumbs", async ({ page }) => {
+    await page.goto(allRoutes.PATH_INFO);
+    await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
+  });
+
   test("all routes are reachable and have a breadcrumb menu + title", async ({
     page,
   }) => {
+    console.log(Object.values(allRoutes));
     for (const route of Object.values(allRoutes)) {
-      await page.goto(route);
-      await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
-      await expect(page).toHaveTitle(/- Digitalcheck Werkzeugfinder$/);
+      if (route !== "/") {
+        await page.goto(route);
+        await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
+        await expect(page).toHaveTitle(/- Digitalcheck Werkzeugfinder$/);
+      }
     }
   });
 
@@ -29,7 +37,7 @@ test.describe("test links", () => {
 
   test("examplary breadcrumbs are correct", async ({ page }) => {
     await page.goto(allRoutes.PATH_INFO);
-    await expect(page.getByTestId("breadcrumbs-menu")).toHaveText("Startseite");
+    await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
 
     await page.goto(allRoutes.PATH_QUIZ);
     await expect(page.getByTestId("breadcrumbs-menu")).toHaveText(
