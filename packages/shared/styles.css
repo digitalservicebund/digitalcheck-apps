@@ -61,6 +61,11 @@
     background-color: #f9e5ec;
   }
 
+  .ds-button-ghost {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .text-link {
     /* IE 11 and others that don't support text-decoration-line */
     text-decoration: underline;
