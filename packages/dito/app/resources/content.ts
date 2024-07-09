@@ -133,6 +133,13 @@ Beispiele für Beteiligte sind:
 - weitere Organisationen wie z.B. Vereine.`,
 };
 
+const stepPreCheckFinished = {
+  headline: {
+    text: "Vorprüfung: Der Digitalbezug wurde eingeschätzt",
+  },
+  isDisabled: true,
+};
+
 const stepNKR = {
   headline: {
     text: "Schicken Sie die Vorprüfung an das Sekretariat des NKR",
@@ -259,58 +266,66 @@ export const preCheck = {
 
   result: {
     title: "Ergebnis der Vorprüfung",
-    positive: "Ihr Regelungsvorhaben hat Digitalbezug.",
-    negative: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
-    unsure: "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
-    unsureHint:
-      'Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.',
-    receivePdfButton: {
-      text: "Einschätzung als PDF bekommen",
-      href: PATH_ASSESSMENT,
-    },
-    repeatPreCheckButton: {
-      text: "Vorprüfung wiederholen",
-      href: PATH_PRECHECK,
-    },
-    reasonIntro:
-      "Digitalbezug liegt vor, wenn die Umsetzung des Regelungsvorhabens voraussichtlich ...",
-    nextStepsPositive: {
-      title: "So machen Sie weiter",
-      steps: [
-        {
-          headline: {
-            text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
-          },
-          content:
-            "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
-          buttons: [
-            {
-              text: "Zu den Hilfestellungen und Methoden",
-              href: PATH_METHODS,
+    positive: {
+      title: "Ihr Regelungsvorhaben hat Digitalbezug.",
+      reasoningIntro: "Das Regelungsvorhaben...",
+      actionButton: {
+        text: "Einschätzung als PDF bekommen",
+        href: PATH_ASSESSMENT,
+      },
+      nextSteps: {
+        title: "So machen Sie weiter",
+        steps: [
+          stepPreCheckFinished,
+          {
+            headline: {
+              text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
             },
-          ],
-        },
-        {
-          headline: {
-            text: "Abschließende Dokumentation",
+            content:
+              "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+            buttons: [
+              {
+                text: "Zu den Hilfestellungen und Methoden",
+                href: PATH_METHODS,
+              },
+            ],
           },
-          content: `Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
-        },
-        stepNKR,
-      ],
-    },
-    boxUnsure: {
-      title:
-        "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
-      text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
-      link: {
-        text: "Zu den Hilfestellungen und Methoden",
-        href: PATH_METHODS,
+          {
+            headline: {
+              text: "Abschließende Dokumentation",
+            },
+            content: `Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+          },
+          stepNKR,
+        ],
       },
     },
-    nextStepsNegative: {
-      title: "So machen Sie weiter",
-      step: stepNKR,
+    unsure: {
+      title: "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
+      hint: 'Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.',
+      unsureIntro: '**Folgende Fragen haben Sie mit "unsicher" beantwortet:**',
+      negativeIntro: '**Folgende Fragen haben Sie mit "nein" beantwortet:**',
+      actionButton: {
+        text: "Vorprüfung wiederholen",
+        href: PATH_PRECHECK,
+      },
+      nextStep: {
+        title:
+          "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
+        text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+        link: {
+          text: "Zu den Hilfestellungen und Methoden",
+          href: PATH_METHODS,
+        },
+      },
+    },
+    negative: {
+      title: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
+      reasoningIntro: "Das Regelungsvorhaben...",
+      nextSteps: {
+        title: "So machen Sie weiter",
+        steps: [stepPreCheckFinished, stepNKR],
+      },
     },
   },
 };

@@ -1,7 +1,6 @@
 import { type FormEventHandler } from "react";
 import { type FieldValues, useForm } from "react-hook-form";
 
-import Box from "@digitalcheck/shared/components/Box";
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -9,12 +8,13 @@ import Input from "@digitalcheck/shared/components/Input";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download.js";
 
+import List from "@digitalcheck/shared/components/List";
 import { Form } from "@remix-run/react";
 import { assessment, preCheck } from "resources/content";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
-const { result } = preCheck;
+const { title, reasoningIntro, nextSteps } = preCheck.result.negative;
 
 export default function ResultNegative({
   negativeQuestions,
@@ -35,7 +35,7 @@ export default function ResultNegative({
   };
   const reasonsText = getReasoningText(
     negativeQuestions,
-    "Das Regelungsvorhaben...",
+    reasoningIntro,
     "negativeResult",
   );
 
@@ -43,7 +43,7 @@ export default function ResultNegative({
     <>
       <ResultHeader
         resultType="negative"
-        resultHeading={result.negative}
+        resultHeading={title}
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
       >
@@ -92,19 +92,13 @@ export default function ResultNegative({
         </Form>
       </ResultHeader>
       <Container>
-        <Heading
-          tagName="h2"
-          text={result.nextStepsNegative.title}
-          className="mb-32"
-        />
-        <Box
+        <List
           heading={{
-            ...result.nextStepsNegative.step.headline,
-            tagName: "h3",
+            text: nextSteps.title,
+            tagName: "h2",
           }}
-          content={{
-            markdown: result.nextStepsNegative.step.content,
-          }}
+          items={nextSteps.steps}
+          isNumeric
         />
       </Container>
     </>

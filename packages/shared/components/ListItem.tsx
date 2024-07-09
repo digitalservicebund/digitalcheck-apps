@@ -16,6 +16,7 @@ export type ListItemProps = {
   buttons?: ButtonProps[];
   background?: string;
   parentHasHeading?: boolean;
+  isDisabled?: boolean;
 };
 
 const ListItem = ({
@@ -29,9 +30,11 @@ const ListItem = ({
   numeric,
   background,
   parentHasHeading,
+  isDisabled,
 }: ListItemProps & { readonly numeric?: number }) => {
   const backgroundColor =
     background && isBackgroundColor(background) ? background : undefined;
+  const textColor = isDisabled ? "text-gray-700" : "";
 
   return (
     <div id={identifier} className="flex flex-row items-center justify-center">
@@ -64,7 +67,7 @@ const ListItem = ({
             )}
           </div>
         )}
-        <div className="flex flex-row gap-16 items-start col-">
+        <div className={`flex flex-row gap-16 items-start ${textColor}`}>
           <div className="w-[40px] max-sm:w-[20px] shrink-0">
             {numeric && (
               <div className="w-[40px] h-[40px] max-sm:min-w-[28px] max-sm:w-[28px] max-sm:h-[28px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">

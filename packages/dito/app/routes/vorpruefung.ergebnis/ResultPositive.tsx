@@ -5,7 +5,8 @@ import { preCheck } from "resources/content";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
-const { result } = preCheck;
+const { title, reasoningIntro, actionButton, nextSteps } =
+  preCheck.result.positive;
 
 export default function ResultNegative({
   positiveQuestions,
@@ -14,25 +15,25 @@ export default function ResultNegative({
 }>) {
   const reasonsText = getReasoningText(
     positiveQuestions,
-    "Das Regelungsvorhaben...",
+    reasoningIntro,
     "positiveResult",
   );
   return (
     <>
       <ResultHeader
         resultType="positive"
-        resultHeading={result.positive}
+        resultHeading={title}
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
-        buttons={[{ ...result.receivePdfButton, look: "tertiary" }]}
+        buttons={[{ ...actionButton, look: "tertiary" }]}
       />
       <Container>
         <List
           heading={{
-            text: result.nextStepsPositive.title,
+            text: nextSteps.title,
             tagName: "h2",
           }}
-          items={result.nextStepsPositive.steps}
+          items={nextSteps.steps}
           isNumeric
         />
       </Container>

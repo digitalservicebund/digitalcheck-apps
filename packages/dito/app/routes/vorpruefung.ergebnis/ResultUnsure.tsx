@@ -5,7 +5,8 @@ import { preCheck } from "resources/content";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
-const { result } = preCheck;
+const { title, hint, unsureIntro, negativeIntro, actionButton, nextStep } =
+  preCheck.result.unsure;
 
 export default function PositiveResult({
   unsureQuestions,
@@ -16,12 +17,12 @@ export default function PositiveResult({
 }>) {
   const reasonsTextUnsure = getReasoningText(
     unsureQuestions,
-    '**Folgende Fragen haben Sie mit "Unsicher" beantwortet:**',
+    unsureIntro,
     "question",
   );
   const reasonsTextNegative = getReasoningText(
     negativeQuestions,
-    '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
+    negativeIntro,
     "negativeResult",
   );
   const reasonsText = `${reasonsTextUnsure}\n\n${reasonsTextNegative}`;
@@ -29,25 +30,25 @@ export default function PositiveResult({
     <>
       <ResultHeader
         resultType="unsure"
-        resultHeading={result.unsure}
-        resultHint={result.unsureHint}
+        resultHeading={title}
+        resultHint={hint}
         reasonsText={reasonsText}
         resultBackgroundColor="lightYellow"
-        buttons={[{ ...result.repeatPreCheckButton, look: "tertiary" }]}
+        buttons={[{ ...actionButton, look: "tertiary" }]}
       />
       <Container>
         <Box
           heading={{
-            text: result.boxUnsure.title,
+            text: nextStep.title,
           }}
           content={{
-            markdown: result.boxUnsure.text,
+            markdown: nextStep.text,
           }}
           buttons={[
             {
               id: "result-method-button",
-              text: result.boxUnsure.link.text,
-              href: result.boxUnsure.link.href,
+              text: nextStep.link.text,
+              href: nextStep.link.href,
               look: "ghost",
             },
           ]}
