@@ -52,7 +52,7 @@ const ListItem = ({
         className={`break-words ds-stack-16 w-full ${image ? "min-[500px]:ml-16" : ""}`}
       >
         {spacer && (
-          <div className={`${numeric && "border-t-2 pb-16"}`}>
+          <div className={`!-mb-12 ${numeric && "border-t-2 pb-16"}`}>
             {spacer !== true && (
               <div
                 className={`flex flex-row gap-16 items-start ${numeric && "mt-32"}`}
