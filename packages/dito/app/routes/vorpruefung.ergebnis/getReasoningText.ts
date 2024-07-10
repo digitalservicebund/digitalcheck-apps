@@ -7,7 +7,9 @@ export default function getReasoningText(
   intro: string,
   resultType: "positiveResult" | "negativeResult" | "question",
 ) {
-  return `${intro}\n${questionIds
-    .map((qId) => `- ${questions.find((q) => q.id === qId)?.[resultType]}`)
-    .join("\n")}`;
+  return questionIds.length > 0
+    ? `${intro}\n${questionIds
+        .map((qId) => `- ${questions.find((q) => q.id === qId)?.[resultType]}`)
+        .join("\n")}`
+    : "";
 }
