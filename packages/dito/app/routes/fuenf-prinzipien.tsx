@@ -3,7 +3,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import { MetaFunction } from "@remix-run/react";
+import { Link, MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { fivePrincipals, siteMeta } from "resources/content";
 
@@ -30,12 +30,12 @@ export default function Index() {
             <ol className="ds-stack-8 mt-16">
               {fivePrincipals.principals.map((principal) => (
                 <li key={principal.label}>
-                  <a
-                    href={`#${slugify(principal.label)}`}
+                  <Link
+                    to={`#${slugify(principal.label)}`}
                     className="underline underline-offset-4 decoration-1"
                   >
                     ↓ {principal.label}: {principal.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ol>
@@ -47,7 +47,7 @@ export default function Index() {
           key={principal.content}
           backgroundColor={index % 2 === 0 ? "white" : "blue"}
         >
-          <span id={slugify(principal.label)} />
+          <div id={slugify(principal.label)} />
           <Container>
             <InfoBox
               heading={{
