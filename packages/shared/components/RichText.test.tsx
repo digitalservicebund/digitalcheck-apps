@@ -10,7 +10,10 @@ Mit den folgenden externen Beispielen können Sie sich ein Bild davon machen, wi
 - [Beispiel 1](https://example.com)
 - [Beispiel 2](https://example.com)
 
-Hier können sie die [Dokumentation herunterladen](/assets/digitalcheck-dokumentation.pdf).`;
+Hier können sie die [Dokumentation herunterladen](/assets/digitalcheck-dokumentation.pdf).
+
+Hier können sie die [Excel-Datei herunterladen](/assets/digitalcheck-dokumentation.xlsx).
+`;
 
 test("Richtext outermost element has richtext class", () => {
   render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
@@ -29,4 +32,5 @@ test("Richtext links to PDF files have download attribute", async () => {
   render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
   const links = await screen.findAllByRole("link");
   expect(links[3]).toHaveAttribute("download");
+  expect(links[4]).toHaveAttribute("download");
 });
