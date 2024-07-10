@@ -14,6 +14,7 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
       link(token: Tokens.Link) {
         const { href } = token;
         const linkHtml = renderer.link.call(this, token);
+
         // Force external links to open in a new window
         if (href.startsWith("http")) {
           return linkHtml.replace(
@@ -21,10 +22,12 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
             `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
           );
         }
+
         // Force the browser to download links to PDF files
         if (href.endsWith(".pdf") || href.endsWith(".xlsx")) {
           return linkHtml.replace(/^<a /, `<a download `);
         }
+
         return linkHtml;
       },
     },
