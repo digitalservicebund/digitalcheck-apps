@@ -23,7 +23,7 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
           );
         }
 
-        // Force the browser to download links to PDF files
+        // Force the browser to download links to PDF/Excel files
         if (href.endsWith(".pdf") || href.endsWith(".xlsx")) {
           return linkHtml.replace(/^<a /, `<a download `);
         }
