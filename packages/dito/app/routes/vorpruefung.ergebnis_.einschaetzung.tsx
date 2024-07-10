@@ -71,7 +71,7 @@ export default function Assessment() {
             <Button
               id="assessment-download-button"
               text={assessment.form.downloadPdfButton.text}
-              // type="submit"
+              type="submit"
               look="primary"
               iconLeft={<Download />}
             ></Button>
