@@ -561,7 +561,7 @@ Häufig sind Daten von Personen oder Organisationen in verschiedenen Prozessen r
 Recherchieren Sie für Ihr Regelungsvorhaben relevante bestehende Standards, Komponenten, Richtlinien, Verfahren zur Datenerfassung, Datenaustauschverfahren (Once-Only-Prinzip) sowie Register und weitere Quellen. Erste Anhaltspunkte finden Sie zum Beispiel auf:
 - der Verwaltungsdaten-Informationsplattform: [verwaltungsdaten-informationsplattform.de](https://verwaltungsdaten-informationsplattform.de)
 - der Registerlandkarte: [registerlandkarte.de](https://registerlandkarte.de)
-- der Open Source Plattform der Verwaltung: [opencode.de](https://opencode.de)`,
+- der Open-Source-Plattform der Verwaltung: [opencode.de](https://opencode.de)`,
     },
     {
       label: "Prinzip 3",

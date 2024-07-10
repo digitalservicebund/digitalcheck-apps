@@ -31,7 +31,9 @@
   h1,
   h2,
   h3,
-  p {
+  p,
+  ul,
+  ol {
     max-width: 80ch;
   }
 }
