@@ -13,7 +13,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     const filePath = path.join("public", "assets", fileName);
     const pdfData = await fs.readFile(filePath);
 
-    trackCustomEvent(request, { name: "Download Dokumentation" });
+    void trackCustomEvent(request, { name: "Download Dokumentation" });
     return new Response(pdfData, {
       status: 200,
       headers: {

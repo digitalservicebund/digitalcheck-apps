@@ -152,7 +152,10 @@ export async function action({ params, request }: ActionFunctionArgs) {
   } else if (Object.values(answers).find((a) => a === "unsure")) {
     result = "Unsicher";
   }
-  trackCustomEvent(request, { name: "Download Vorprüfung", props: { result } });
+  void trackCustomEvent(request, {
+    name: "Download Vorprüfung",
+    props: { result },
+  });
 
   return new Response(pdfData, {
     status: 200,
