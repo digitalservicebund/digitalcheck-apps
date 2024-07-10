@@ -26,7 +26,7 @@ interface UserInput {
   negativeReasoning?: string;
 }
 
-const POSITIVE_RESULTS = ["yes", "unsure"];
+const POSITIVE_RESULT = "yes";
 const NEGATIVE_RESULT = "no";
 
 const createPreCheckPDF = async function (
@@ -46,23 +46,23 @@ const createPreCheckPDF = async function (
     titleField.setText(title);
     titleField.setFontSize(12);
 
-    if (POSITIVE_RESULTS.includes(answers["it-system"])) {
+    if (answers["it-system"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
     }
 
-    if (POSITIVE_RESULTS.includes(answers["verpflichtungen-fuer-beteiligte"])) {
+    if (answers["verpflichtungen-fuer-beteiligte"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
     }
 
-    if (POSITIVE_RESULTS.includes(answers["datenaustausch"])) {
+    if (answers["datenaustausch"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
     }
 
-    if (POSITIVE_RESULTS.includes(answers["kommunikation"])) {
+    if (answers["kommunikation"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
     }
 
-    if (POSITIVE_RESULTS.includes(answers["automatisierung"])) {
+    if (answers["automatisierung"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
     }
 
