@@ -492,14 +492,14 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ..
       {
         headline: {
           text: "Vorprüfung: der Digitalbezug wurde eingeschätzt",
-          className: "opacity-50",
         },
+        isDisabled: true,
       },
       {
         headline: {
           text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
-          className: "opacity-50",
         },
+        isDisabled: true,
       },
       {
         headline: {
