@@ -377,6 +377,8 @@ Mit diesen Informationen sind Sie gut vorbereitet, um ...
         background: "blue",
         headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
         content: `**Zeit:** ca. vier Stunden
+<br />
+<br />
 
 Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis.`,
         buttons: [
@@ -392,8 +394,10 @@ Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigk
           text: "Abläufe, Aufgaben und Zusammenhänge gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
-
+<br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
+<br />
+<br />
 
 Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
 `,
@@ -410,10 +414,12 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
           text: "IT-Systeme gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
-
+<br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
-
+<br />
 **Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
+<br />
+<br />
 
 Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
 `,
@@ -435,10 +441,12 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-In
           text: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
         },
         content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
-
+<br />
 **Kollaborativ:** Text
-
+<br />
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+<br />
+<br />
 
 Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand aus den vorigen Schritten, um mithilfe der Prinzipien die **Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen**. 
         `,
@@ -455,10 +463,12 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
           text: "Analysieren Sie die Auswirkungen auf IT-Systeme",
         },
         content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
-
+<br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
-
+<br />
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+<br />
+<br />
 
 In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf  bestehende und neue Abläufe und IT-Systeme analysieren. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.
         `,
