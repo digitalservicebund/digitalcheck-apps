@@ -24,3 +24,9 @@ test("Richtext renders external links with target blank", async () => {
   expect(links[1]).toHaveAttribute("target", "_blank");
   expect(links[2]).toHaveAttribute("target", "_blank");
 });
+
+test("Richtext links to PDF files have download attribute", async () => {
+  render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
+  const links = await screen.findAllByRole("link");
+  expect(links[3]).toHaveAttribute("download");
+});
