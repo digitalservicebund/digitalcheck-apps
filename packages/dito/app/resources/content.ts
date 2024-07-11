@@ -248,11 +248,11 @@ export const preCheck = {
       id: "automatisierung",
       title: "Automatisierung",
       question:
-        "Kann durch (Teil-)&shy;Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
+        "Kann durch (Teil-)&#173;Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
       positiveResult:
-        "kann den Aufwand für Betroffene durch (Teil-)&shy;Automatisierung reduzieren.",
+        "kann den Aufwand für Betroffene durch (Teil-)&#173;Automatisierung reduzieren.",
       negativeResult:
-        "kann den Aufwand für Betroffene nicht durch (Teil-)&shy;Automatisierung reduzieren.",
+        "kann den Aufwand für Betroffene nicht durch (Teil-)&#173;Automatisierung reduzieren.",
       // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
       hint: hintInvolved,
     },
