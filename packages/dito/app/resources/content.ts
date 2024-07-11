@@ -497,7 +497,7 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ..
       {
         background: "blue",
         headline: { text: "Schreiben Sie die Regelung" },
-        content: `Nutzen Sie Ihren gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben – z. B. eNorm und das Handbuch der Rechtsförmigkeit.`,
+        content: `Nutzen Sie Ihren gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben — z. B. eNorm und das Handbuch der Rechtsförmigkeit.`,
       },
     ],
   },
