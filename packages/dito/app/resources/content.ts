@@ -44,6 +44,7 @@ export const landing = {
           {
             text: "Digitalbezug einschätzen",
             href: PATH_PRECHECK,
+            size: "large" as const,
           },
         ],
       },
