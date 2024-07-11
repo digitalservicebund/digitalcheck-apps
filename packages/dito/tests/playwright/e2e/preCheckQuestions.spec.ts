@@ -36,7 +36,7 @@ test.describe("test questions form", () => {
         questions[i].title,
       );
       await expect(page.getByRole("heading", { level: 1 })).toContainText(
-        questions[i].question.slice(25), // workaround for soft hyphen present in last question
+        questions[i].question.replaceAll("&#8209;", "‑"), // workaround for non-breaking hyphen present in last question
       );
       const hint = questions[i].hint;
       if (hint) {
