@@ -3,6 +3,11 @@ import {
   PATH_ASSESSMENT,
   PATH_DOCUMENTATION_PDF,
   PATH_METHODS,
+  PATH_METHODS_COLLECT_IT_SYSTEMS,
+  PATH_METHODS_FIVE_PRINCIPALS,
+  PATH_METHODS_RESPONSIBLE_ACTORS,
+  PATH_METHODS_TASKS_PROCESSES,
+  PATH_METHODS_TECHNICAL_FEASIBILITY,
   PATH_PRECHECK,
   PATH_RESULT,
 } from "./staticRoutes";
@@ -51,7 +56,7 @@ export const landing = {
         },
         content: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.
         <br />
-        [Zu den Hilfestellungen und Methoden](/methoden)`,
+        [Zu den Hilfestellungen und Methoden](${PATH_METHODS})`,
       },
       {
         headline: {
@@ -111,7 +116,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
 5. Prinzip 5: Automatisierung ermöglichen
 
-[Details und Beispiele](/fuenf-prinzipien)`,
+[Details und Beispiele](${PATH_METHODS_FIVE_PRINCIPALS})`,
   },
 };
 
@@ -384,7 +389,7 @@ Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigk
         buttons: [
           {
             text: "Ansprechpersonen finden",
-            href: PATH_METHODS,
+            href: PATH_METHODS_RESPONSIBLE_ACTORS,
           },
         ],
       },
@@ -404,7 +409,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
         buttons: [
           {
             text: "Aufgaben und Abläufe klären",
-            href: PATH_METHODS,
+            href: PATH_METHODS_TASKS_PROCESSES,
           },
         ],
       },
@@ -426,7 +431,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-In
         buttons: [
           {
             text: "IT-Landschaft verstehen",
-            href: PATH_METHODS,
+            href: PATH_METHODS_COLLECT_IT_SYSTEMS,
           },
         ],
       },
@@ -453,7 +458,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         buttons: [
           {
             text: "Fünf Prinzipien nutzen",
-            href: PATH_METHODS,
+            href: PATH_METHODS_FIVE_PRINCIPALS,
           },
         ],
       },
@@ -475,7 +480,7 @@ In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf  bes
         buttons: [
           {
             text: "IT-Auswirkungen prüfen",
-            href: PATH_METHODS,
+            href: PATH_METHODS_TECHNICAL_FEASIBILITY,
           },
         ],
       },
@@ -609,6 +614,36 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 - Versuchen Sie, Rechtsbegriffe zu harmonisieren. Verwenden Sie definierte Rechtsbegriffe aus Ihrem Rechtsbereich. Auslegungen verhindern die vollständige Automatisierung von Umsetzungsprozessen.`,
     },
   ],
+};
+
+export const responsibleActors = {
+  title: "Zuständige Akteurinnen und Akteure auflisten",
+  content: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
+
+Zeitaufwand: ca. vier Stunden`,
+};
+export const tasksProcesses = {
+  title: "Aufgaben und Abläufe gemeinsam erfassen",
+  content: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
+
+Zeitaufwand: ca. sechs Stunden 
+Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
+};
+export const collectITSystems = {
+  title: "IT-Systeme gemeinsam erfassen",
+  content: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
+
+Zeitaufwand: ca. sechs Stunden 
+Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+Support: Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support`,
+};
+export const technicalFeasibility = {
+  title: "Technische Umsetzbarkeit sicherstellen",
+  content: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
+ 
+Zeitaufwand: Richtet sich nach Komplexität des Vorhabens
+Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+Support: Sie können sich vom Digitalcheck-Support unterstützen lassen `,
 };
 
 export const imprint = {

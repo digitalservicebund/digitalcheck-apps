@@ -3,7 +3,15 @@ export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_RESULT: string = PATH_PRECHECK + "/ergebnis";
 export const PATH_ASSESSMENT: string = PATH_RESULT + "/einschaetzung";
 export const PATH_METHODS = "/methoden";
-export const PATH_FIVE_PRINCIPALS: string = "/fuenf-prinzipien";
+export const PATH_METHODS_RESPONSIBLE_ACTORS =
+  "/methoden/zustaendige-akteurinnen";
+export const PATH_METHODS_TASKS_PROCESSES =
+  "/methoden/ablaeufe-aufgaben-erfassen";
+export const PATH_METHODS_COLLECT_IT_SYSTEMS = "/methoden/it-systeme-erfassen";
+export const PATH_METHODS_TECHNICAL_FEASIBILITY =
+  "/methoden/technische-umsetzbarkeit";
+export const PATH_METHODS_FIVE_PRINCIPALS: string =
+  "/methoden/fuenf-prinzipien";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
@@ -22,11 +30,6 @@ const routes: Route[] = [
   {
     url: PATH_LANDING,
     title: "Startseite",
-  },
-  {
-    url: PATH_FIVE_PRINCIPALS,
-    title: "Fünf Prinzipien",
-    parent: PATH_LANDING,
   },
   {
     url: PATH_PRECHECK,
@@ -55,6 +58,31 @@ const routes: Route[] = [
     url: PATH_METHODS,
     title: "Regelungsvorhaben erarbeiten",
     parent: PATH_LANDING,
+  },
+  {
+    url: PATH_METHODS_RESPONSIBLE_ACTORS,
+    title: "Zuständige Akteurinnen und Akteure auflisten",
+    parent: PATH_METHODS,
+  },
+  {
+    url: PATH_METHODS_TASKS_PROCESSES,
+    title: "Aufgaben und Abläufe gemeinsam erfassen",
+    parent: PATH_METHODS,
+  },
+  {
+    url: PATH_METHODS_COLLECT_IT_SYSTEMS,
+    title: "IT-Systeme gemeinsam erfassen",
+    parent: PATH_METHODS,
+  },
+  {
+    url: PATH_METHODS_FIVE_PRINCIPALS,
+    title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+    parent: PATH_METHODS,
+  },
+  {
+    url: PATH_METHODS_TECHNICAL_FEASIBILITY,
+    title: "Technische Umsetzbarkeit sicherstellen",
+    parent: PATH_METHODS,
   },
   {
     url: PATH_IMPRINT,
