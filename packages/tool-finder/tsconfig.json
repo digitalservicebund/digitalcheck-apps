@@ -2,6 +2,7 @@
   "extends": "../../tsconfig-base",
   "compilerOptions": {
     "baseUrl": "src",
+    "types": ["vite/client", "vitest/globals"],
     "paths": {
       "@digitalservicebund/icons/*": [
         "../../../node_modules/@digitalservicebund/icons/*"

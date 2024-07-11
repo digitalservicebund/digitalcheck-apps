@@ -17,4 +17,10 @@ export default defineConfig({
     remix(),
     tsconfigPaths(),
   ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["tests/unit/vitest-setup.ts"],
+    include: ["tests/unit/**/*.spec.ts"],
+  },
 });

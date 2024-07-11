@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Background from "components/Background";
+import Background from "./Background";
 
 test("Background renders children", async () => {
   render(

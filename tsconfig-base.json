@@ -19,7 +19,6 @@
     "forceConsistentCasingInFileNames": true,
     "useUnknownInCatchVariables": false,
     "noEmit": true,
-    "skipLibCheck": true,
-    "types": ["vite/client"]
+    "skipLibCheck": true
   }
 }

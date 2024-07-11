@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import RichText from "components/RichText";
+import RichText from "./RichText";
 
 const EXAMPLE_MARKDOWN = `Jedes Regelungsvorhaben hat Auswirkungen auf die Digitalisierung.
 <br />
