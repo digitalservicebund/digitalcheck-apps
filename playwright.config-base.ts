@@ -1,11 +1,11 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-const timeout = parseInt(process.env.WAIT_ON_TIMEOUT ?? `${5 * 1000}`);
-
 const config: PlaywrightTestConfig = {
-  testDir: ".",
   timeout: 10000,
-  retries: process.env.CI === "true" ? 1 : 0,
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI, // Fail the build on CI if test.only is present
+  retries: process.env.CI ? 1 : 0, // Retry on CI only
+  workers: process.env.CI ? 1 : undefined, // Opt out of parallel tests on CI
   use: {
     viewport: { width: 1280, height: 720 },
     acceptDownloads: true,
@@ -30,12 +30,6 @@ const config: PlaywrightTestConfig = {
       use: { ...devices["Desktop Safari"] },
     },
   ],
-  webServer: {
-    command: "npm run build && npm start",
-    port: 3000,
-    timeout,
-    reuseExistingServer: true,
-  },
 };
 
 export default config;
