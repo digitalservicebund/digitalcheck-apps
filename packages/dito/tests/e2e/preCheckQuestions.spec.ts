@@ -78,10 +78,13 @@ test.describe("test questions form", () => {
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[1].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[2].url);
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[3].url);
     await expect(page).toHaveURL(questions[3].url);
     await page.getByLabel("Ja").click();
     await page.reload();
@@ -94,8 +97,10 @@ test.describe("test questions form", () => {
     await page.goto(questions[0].url);
     await expect(page.getByLabel("Ja")).toBeChecked();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[1].url);
     await expect(page.getByLabel("Nein")).toBeChecked();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[2].url);
     await expect(page.getByLabel("Ich bin unsicher")).toBeChecked();
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page.getByLabel("Nein")).toBeChecked();
@@ -103,10 +108,13 @@ test.describe("test questions form", () => {
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page.getByLabel("Ja")).toBeChecked();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[1].url);
     await expect(page.getByLabel("Nein")).toBeChecked();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[2].url);
     await expect(page.getByLabel("Ich bin unsicher")).toBeChecked();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[3].url);
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await expect(page.getByLabel("Nein")).not.toBeChecked();
     await expect(page.getByLabel("Ich bin unsicher")).not.toBeChecked();
@@ -117,8 +125,10 @@ test.describe("test questions form", () => {
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[1].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[2].url);
     await page.goto(questions[4].url);
     await expect(page).toHaveURL(questions[2].url);
     await page.getByLabel("Nein").click();
@@ -159,6 +169,7 @@ test.describe("test question navigation", () => {
     await page.goto(PATH_PRECHECK);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     for (let i = 0; i < 4; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
