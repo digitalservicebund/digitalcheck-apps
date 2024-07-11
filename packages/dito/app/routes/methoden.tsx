@@ -61,7 +61,7 @@ export default function Index() {
     }
 
     // Modify HTML to be able to style icons
-    item.content = item.content.replaceAll("**Zeit:**", timerOutlined);
+    item.content = item.content.replaceAll("**Zeitaufwand:**", timerOutlined);
     item.content = item.content.replaceAll("**Kollaborativ:**", groupOutlined);
     item.content = item.content.replaceAll(
       "**Support:**",

@@ -381,7 +381,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um ...
       {
         background: "blue",
         headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
-        content: `**Zeit:** ca. vier Stunden
+        content: `**Zeitaufwand:** ca. vier Stunden
 <br />
 <br />
 
@@ -398,7 +398,7 @@ Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigk
         headline: {
           text: "Abläufe, Aufgaben und Zusammenhänge gemeinsam erfassen",
         },
-        content: `**Zeit:** ca. sechs Stunden
+        content: `**Zeitaufwand:** ca. sechs Stunden
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
 <br />
@@ -418,7 +418,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
         headline: {
           text: "IT-Systeme gemeinsam erfassen",
         },
-        content: `**Zeit:** ca. sechs Stunden
+        content: `**Zeitaufwand:** ca. sechs Stunden
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
 <br />
@@ -445,7 +445,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-In
         headline: {
           text: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
         },
-        content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
+        content: `**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Text
 <br />
@@ -467,7 +467,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         headline: {
           text: "Analysieren Sie die Auswirkungen auf IT-Systeme",
         },
-        content: `**Zeit:** Richtet sich nach Komplexität des Vorhabens
+        content: `**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
 <br />
