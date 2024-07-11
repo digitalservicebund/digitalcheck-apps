@@ -34,7 +34,7 @@ const ListItem = ({
 }: ListItemProps & { readonly numeric?: number }) => {
   const backgroundColor =
     background && isBackgroundColor(background) ? background : undefined;
-  const textColor = isDisabled ? "text-gray-700" : "";
+  const textColor = isDisabled ? "text-gray-800" : "";
 
   return (
     <div id={identifier} className="flex flex-row items-center justify-center">

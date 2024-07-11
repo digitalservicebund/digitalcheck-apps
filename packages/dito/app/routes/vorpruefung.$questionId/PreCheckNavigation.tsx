@@ -55,7 +55,7 @@ function NavItem({
   isDone,
 }: Readonly<NavItem>) {
   const liClassNames = classNames("list-none border-l-[4px] mb-1", {
-    "text-gray-600 pointer-events-none": isDisabled,
+    "text-gray-800 pointer-events-none": isDisabled,
     "border-l-blue-800 pointer-events-none": isCurrent,
     "border-l-blue-100": !isCurrent,
   });
