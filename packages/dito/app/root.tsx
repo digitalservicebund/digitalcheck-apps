@@ -141,7 +141,7 @@ function Document({
 export default function App() {
   return (
     <Document>
-      <main className="grow">
+      <main className="grow flex flex-col">
         <Outlet />
       </main>
     </Document>
@@ -164,7 +164,7 @@ export function ErrorBoundary() {
 
   return (
     <Document error={{ title: errorTitle, message: errorMessage }}>
-      <main id="error" className="grow">
+      <main id="error" className="grow flex flex-col">
         <Background backgroundColor="blue">
           <Container>
             <Header
