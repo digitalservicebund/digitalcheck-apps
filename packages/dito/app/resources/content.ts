@@ -122,7 +122,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 
 export const feedbackBanner = {
   title: "Haben Sie Fragen oder Anmerkungen?",
-  text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de) oder <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
+  text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de) oder [0151/40 76 78 39](tel:0151/40767839). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
 };
 
 const hintInvolved = {
@@ -209,7 +209,7 @@ export const preCheck = {
         text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
       <br />
       <br />
-      Einige IT-Systeme haben eine Benutzeroberfläche, in der manuell Daten eingegeben werden – wie in diesem Formular. In anderen kommunizieren Computer im Hintergrund untereinander, wenn zum Beispiel Daten abgerufen und an anderer Stelle verwendet werden.`,
+      Einige IT-Systeme haben eine Benutzeroberfläche, in der manuell Daten eingegeben werden — wie in diesem Formular. In anderen kommunizieren Computer im Hintergrund untereinander, wenn zum Beispiel Daten abgerufen und an anderer Stelle verwendet werden.`,
       },
     },
     {
@@ -308,7 +308,7 @@ export const preCheck = {
     },
     unsure: {
       title: "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
-      hint: 'Bitte kontaktieren Sie den Digitalcheck-Support unter: <a href="tel:0151/40 76 78 39">0151/40 76 78 39</a>. Wir helfen Ihnen, die Vorprüfung auszufüllen.',
+      hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:0151/40767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro: '**Folgende Fragen haben Sie mit "Unsicher" beantwortet:**',
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
       actionButton: {
@@ -591,6 +591,77 @@ export const tasksProcesses = {
   
   Zeitaufwand: ca. sechs Stunden 
   Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
+  accordion: {
+    title:
+      "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
+    text: "I don't know!",
+  },
+  content: {
+    label: "Anleitung",
+    title: "Erfassen Sie die aktuellen Abläufe",
+    text: `Listen Sie auf, welche Schritte und Aufgaben aktuell erfüllt werden, damit das Ziel des Vorhabens erreicht wird, und wie diese im Zusammenhang stehen.
+
+Der Überblick lohnt sich auch bei scheinbar einfachen Abläufen: 
+- Fehlende Verbindungen oder unerwartete Abhängigkeiten sichtbar.
+- Sie erfahren, auf welchen bestehenden Abläufen Sie aufbauen können.
+
+Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „Wer will was wann von wem?”`,
+  },
+  boxes: [
+    {
+      image: {
+        src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png", // TODO: Image doesn't exist yet
+        alt: `Ein Flussdiagramm mit dem Titel "Beispielprozess-Ablauf 'Einkommensteuer-Erklärung durchführen'". Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als "Akteurin oder Akteur" beschriftet. Als Beispiel steht darunter "Finanzämter". Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit "Arbeitsprozess" beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als "Adressatin oder Adressat". Als Beispiel ist "Bundeszentralamt für Steuern" eingetragen.`,
+      },
+      label: "Vorlage",
+      title: "Einfache Abläufe und Aufgaben erfassen",
+      text: `1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite an. (“Wer”)
+2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“will wann was”)
+3. In die Mitte schreiben Sie die verbindenden Aufgaben. (“von wem”)
+
+Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adressatinnen und Adressaten, die einen Antrag stellen, können auf der linken Seite stehen, die entsprechende Behörde steht dann rechts.`,
+      buttons: [
+        {
+          text: "Vorlage herunterladen",
+          href: "/assets/ablaeufe-und-aufgaben.pdf", // TODO: File doesn't exist yet...
+        },
+      ],
+    },
+    {
+      image: {
+        src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png", // TODO: Image doesn't exist yet
+        alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+      },
+      label: "Vorlage",
+      title: "Visualisierungsbeispiele für komplexe Abläufe",
+      text: `Komplexe Abläufe können schwieriger zu durchdringen sein und erfordern daher eine detaillierte und strukturierte Herangehensweise. Beginnen Sie mit der groben Skizzierung der wichtigsten Abläufe und unterteilen Sie diese anschließend in spezifische Aufgaben.  Auf der [Werkzeugfinder-Seite des BMI](https://visualisieren.digitalcheck.bund.de/) finden Sie Anleitungen für verschiedene Visualisierungsmethoden. 
+
+Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetzes](https://dserver.bundestag.de/brd/2024/0232-24.pdf#page=134) inspirieren lassen, die im Rahmen des Digitalchecks entstanden sind. Der Gesetzestext wurde als Rulemap visualisiert, der Umsetzungsprozess als Flussdiagramm. `,
+    },
+  ],
+  tip: {
+    label: "Tipps",
+
+    title: "Wertschätzend und auf Ziele fokussiert vorgehen",
+    text: `- **Regelungsziel im Fokus:** Interessenkonflikte treten in den Hintergrund, wenn das Regelungsziel im Sinne der Normadressaten im Mittelpunkt steht — dahinter kann sich meistens vereint werden. 
+- **Hürden und Anforderungen wertschätzen:** Sicherlich werden Sie nicht alle Wünsche und Anforderungen umsetzen können. Bedanken Sie sich für den Input, kommunizieren Sie, was nicht eingearbeitet wird und erläutern Sie die Gründe.`,
+  },
+  support: {
+    label: "Unterstützungsangebot",
+
+    title: "Visualsierungen gemeinsam erstellen",
+    text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
+
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+  },
+  nextStep: {
+    label: "So geht es weiter:",
+    title: "IT-Systeme erfassen",
+    text: `Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-Infrastruktur für die identifizierten Abläufe zu erfassen und zu verstehen.`,
+    buttons: [
+      { text: "Zum nächsten Schritt", href: PATH_METHODS_COLLECT_IT_SYSTEMS },
+    ],
+  },
 };
 
 export const collectITSystems = {
@@ -612,7 +683,7 @@ export const fivePrincipals = {
 
 Bürgerinnen und Bürger, Mitarbeitende in Unternehmen, weiteren Organisationen und der Verwaltung sind meist an digitale Kommunikation gewöhnt. In der Verwaltung und den Behörden erlaubt eine durchgehend digitale Dokumentation, Bearbeitung und ggf. Prüfung eine effizientere Bearbeitung.
 
-Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein – in bestimmten Fällen kann z. B. ergänzend auch die Schriftform sinnvoll sein, sofern eine digitale Weiterverarbeitung sichergestellt ist.
+Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein — in bestimmten Fällen kann z. B. ergänzend auch die Schriftform sinnvoll sein, sofern eine digitale Weiterverarbeitung sichergestellt ist.
 <br />
 <br />
 <br />
@@ -645,7 +716,7 @@ Recherchieren Sie für Ihr Regelungsvorhaben relevante bestehende Standards, Kom
       title: "Datenschutz und Informationssicherheit gewährleisten",
       content: `### Darum ist das wichtig
 
-Datenschutz und Informationssicherheit sind zentrale Voraussetzungen für praxistaugliche Digitalisierung – frühzeitig mitgedacht können Bedürfnisse von Betroffenen auf einfache Weise mit Daten- und Informationssicherheit vereinbart werden. Das Regelungsvorhaben soll eine datenschutzkonforme Umsetzung ermöglichen: Vor der Erhebung von Daten muss definiert werden, welche Daten zu welchem Zweck benötigt und wie sie geschützt werden.
+Datenschutz und Informationssicherheit sind zentrale Voraussetzungen für praxistaugliche Digitalisierung — frühzeitig mitgedacht können Bedürfnisse von Betroffenen auf einfache Weise mit Daten- und Informationssicherheit vereinbart werden. Das Regelungsvorhaben soll eine datenschutzkonforme Umsetzung ermöglichen: Vor der Erhebung von Daten muss definiert werden, welche Daten zu welchem Zweck benötigt und wie sie geschützt werden.
 <br />
 <br />
 <br />
