@@ -20,7 +20,7 @@ export default function Index() {
               text: technicalFeasibility.title,
             }}
             content={{
-              markdown: technicalFeasibility.content,
+              markdown: technicalFeasibility.subtitle,
             }}
           ></Header>
         </Container>

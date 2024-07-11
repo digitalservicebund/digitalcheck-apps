@@ -20,7 +20,7 @@ export default function Index() {
               text: responsibleActors.title,
             }}
             content={{
-              markdown: responsibleActors.content,
+              markdown: responsibleActors.subtitle,
             }}
           ></Header>
         </Container>

@@ -532,14 +532,14 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ..
 
 export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
-  content: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
+  subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
   
   Zeitaufwand: ca. vier Stunden`,
 };
 
 export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
-  content: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
+  subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
   
   Zeitaufwand: ca. sechs Stunden 
   Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
@@ -547,7 +547,7 @@ export const tasksProcesses = {
 
 export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
-  content: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
+  subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
   
   Zeitaufwand: ca. sechs Stunden 
   Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
@@ -642,7 +642,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 
 export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
-  content: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
+  subtitle: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
  
 Zeitaufwand: Richtet sich nach Komplexität des Vorhabens
 Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 

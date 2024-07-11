@@ -20,7 +20,7 @@ export default function Index() {
               text: collectITSystems.title,
             }}
             content={{
-              markdown: collectITSystems.content,
+              markdown: collectITSystems.subtitle,
             }}
           ></Header>
         </Container>
