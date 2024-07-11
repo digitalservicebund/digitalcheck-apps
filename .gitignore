@@ -155,3 +155,4 @@ lefthook-local.yml
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/test-results/
