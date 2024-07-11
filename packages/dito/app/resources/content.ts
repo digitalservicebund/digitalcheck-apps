@@ -534,7 +534,7 @@ export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
   subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
   
-  Zeitaufwand: ca. vier Stunden`,
+  **Zeitaufwand:** ca. vier Stunden`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -589,8 +589,8 @@ export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
   subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
   
-  Zeitaufwand: ca. sechs Stunden 
-  Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
+  **Zeitaufwand:** ca. sechs Stunden 
+  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -668,9 +668,59 @@ export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
   subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
   
-  Zeitaufwand: ca. sechs Stunden 
-  Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
-  Support: Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support`,
+  **Zeitaufwand:** ca. sechs Stunden 
+  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+  **Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support`,
+  accordion: {
+    title:
+      "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
+    text: "I don't know!",
+  },
+  content: {
+    label: "Anleitung",
+    title: "So erfassen Sie die IT-Systeme",
+    text: `Dokumentieren Sie die verwendeten IT-Systeme mit ihren Funktionalitäten, Schnittstellen und Anforderungen. 
+
+Ein Überblick über die IT-Landschaft hilft Ihnen dabei, 
+- alle relevanten Aspekte aufzuschlüsseln und potentiell blinde Flecken zu identifizieren,
+- auf bestehende Standards und Prozesse aufzusetzen,
+- oder Potential für Vereinheitlichung zu nutzen.`,
+  },
+  boxes: [
+    {
+      image: {
+        src: "/assets/images/it-systeme-erfassen.png", // TODO: Image doesn't exist yet
+        alt: `Eine Excel-Tabelle mit dem Titel "IT-Systeme erfassen für [ARBEITSTITEL]", die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
+      },
+      label: "Vorlage",
+
+      title: "IT-Systeme erfassen",
+      text: `Nutzen Sie die Vorlage, um die IT-Systeme systematisch und detailliert zu dokumentieren. Sie müssen nicht selbst über das Wissen verfügen: Fragen Sie die zuständigen Akteurinnen und Akteure und ziehen Sie ggf. neutrale IT-Expertise hinzu.`,
+      buttons: [
+        {
+          text: "Vorlage herunterladen",
+          href: "/assets/it-systeme-erfassen.xlsx", // TODO: File doesn't exist yet...
+        },
+      ],
+    },
+  ],
+  support: {
+    label: "Unterstützungsangebot",
+
+    title: "IT-Wissen einfach erklärt",
+    text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
+
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+  },
+  nextStep: {
+    label: "So geht es weiter:",
+
+    title: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
+    text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen.`,
+    buttons: [
+      { text: "Zum nächsten Schritt", href: PATH_METHODS_FIVE_PRINCIPALS },
+    ],
+  },
 };
 
 export const fivePrincipals = {
@@ -763,9 +813,9 @@ export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
  
-Zeitaufwand: Richtet sich nach Komplexität des Vorhabens
-Kollaborativ: Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
-Support: Sie können sich vom Digitalcheck-Support unterstützen lassen `,
+**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen `,
 };
 
 export const imprint = {
