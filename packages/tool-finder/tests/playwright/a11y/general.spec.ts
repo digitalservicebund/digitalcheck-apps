@@ -8,6 +8,7 @@ test.describe("basic example a11y test", () => {
     for (const route of Object.values(allRoutes)) {
       await page.goto(route);
       await injectAxe(page);
+      console.log("Checking A11Y on route:", route);
       await checkA11y(page);
     }
   });

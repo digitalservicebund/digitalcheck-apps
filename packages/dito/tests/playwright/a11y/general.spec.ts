@@ -10,6 +10,7 @@ test.describe("basic example a11y test", () => {
     )) {
       await page.goto(route.url);
       await injectAxe(page);
+      console.log("Checking A11Y on route:", route.url);
       await checkA11y(page);
     }
   });
