@@ -10,7 +10,6 @@ test.describe("test general functionality", () => {
   test("all routes are reachable and have a breadcrumb menu + title", async ({
     page,
   }) => {
-    console.log(Object.values(allRoutes));
     for (const route of Object.values(allRoutes)) {
       if (route !== "/") {
         await page.goto(route);
