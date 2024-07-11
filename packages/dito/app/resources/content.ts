@@ -816,6 +816,63 @@ export const technicalFeasibility = {
 **Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen `,
+  accordion: {
+    title:
+      "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
+    text: "I don't know!",
+  },
+  content: {
+    label: "Anleitung",
+    title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
+    text: `Vergleichen Sie gemeinsam mit den zuständigen [Akteurinnen und Akteuren](${PATH_METHODS_RESPONSIBLE_ACTORS}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
+
+So erfahren Sie 
+- welche IT-Systeme für Ihr Vorhaben verwendet werden können,
+- und an welchen Stellen Änderungen nötig sind.
+
+**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support ([0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)) `,
+  },
+  boxes: [
+    {
+      image: {
+        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png", // TODO: Image doesn't exist yet
+        alt: ``, // TODO: Alt text
+      },
+      label: "Vorlage",
+      title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
+      text: `Besprechen Sie die Fragen im Schaubild gemeinsam mit den IT-Expertinnen und Experten in der Umsetzung. Multidisziplinäre Zusammenarbeit ist hier der Schlüssel.`,
+      buttons: [
+        {
+          text: "Vorlage herunterladen",
+          href: "/assets/aspekte-technischer-umsetzbarkeit.pdf", // TODO: File doesn't exist yet...
+        },
+      ],
+    },
+  ],
+  tip: {
+    label: "Tipps",
+    title: "Gespräche über IT-Anpassungen",
+    text: `- **Aufwand verstehen:** Fragen Sie nach dem Aufwand für IT-Anpassungen. Lassen Sie sich die Details erklären, bis Sie die Aufwände nachvollziehen können. So werden Sie selbst sprechfähig.
+- **Fokus auf das Regelungsziel:** Gehen Sie konstruktiv und mit dem Regelungsziel im Fokus in Gespräche. Veränderungen in der IT bedeuten organisatorischen und finanziellen Aufwand, was die Lösungsfindung erschweren kann.`,
+  },
+  support: {
+    label: "Unterstützungsangebot",
+    title: "Die technische Umsetzung gemeinsam durchdenken",
+    text: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei, 
+- die **technische Umsetzung** im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten,
+- als **neutrale Moderation** in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potentielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
+- **Erkenntnisse visuell** aufzubereiten – das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
+- die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
+
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+  },
+  nextStep: {
+    label: "So geht es weiter:",
+    title:
+      "Verfassen Sie den Regelungsentwurf und dokumentieren Sie Ihre Entscheidungen",
+    text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
+    buttons: [{ text: "Zu den Methoden und Werkzeugen", href: PATH_METHODS }],
+  },
 };
 
 export const imprint = {
