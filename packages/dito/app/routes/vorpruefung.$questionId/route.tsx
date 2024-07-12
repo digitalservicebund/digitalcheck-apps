@@ -9,6 +9,7 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 import {
+  Form,
   MetaFunction,
   redirect,
   useFetcher,
@@ -17,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { preCheck, siteMeta } from "resources/content";
+import { PATH_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
@@ -53,11 +55,13 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
   const cookie = await getAnswersFromCookie(request);
   const formData = await request.formData();
-  const { questionId, nextLink, answer } = Object.fromEntries(formData);
-  if (typeof questionId !== "string" || typeof nextLink !== "string") {
+  const { answer, questionId } = Object.fromEntries(formData);
+  if (typeof questionId !== "string") {
     return redirect("/vorpruefung", { status: 400 });
   }
   cookie.answers[questionId] = answer as Option["value"];
+  const nextLink =
+    questions.find((q) => q.id === questionId)?.nextLink ?? PATH_PRECHECK;
 
   return redirect(nextLink, await getHeaderFromCookie(cookie));
 }
@@ -104,20 +108,12 @@ export default function Index() {
   useEffect(() => {
     setSelectedOption(existingAnswer);
     // needed to keep data in sync with the form
-    setValue(question.id, existingAnswer);
+    setValue("answer", existingAnswer);
+    setValue("questionId", question.id);
   }, [question.id, existingAnswer, setValue]);
 
   const onSubmit = (data: Record<string, string>) => {
-    fetcher.submit(
-      {
-        questionId: question.id,
-        nextLink: question.nextLink,
-        answer: data[question.id],
-      },
-      {
-        method: "post",
-      },
-    );
+    fetcher.submit(data, { method: "post" });
   };
 
   const options: Option[] = Object.entries(answerOptions).map(
@@ -130,7 +126,9 @@ export default function Index() {
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
-        <fetcher.Form className="pt-32" onSubmit={handleSubmit(onSubmit)}>
+        <Form className="pt-32" method="post" onSubmit={handleSubmit(onSubmit)}>
+          {/* This is needed if JavaScript is disabled */}
+          <input type="hidden" name="questionId" value={question.id} />
           <Question
             paddingBottom="32"
             box={{
@@ -142,7 +140,7 @@ export default function Index() {
               content: question.text ? { markdown: question.text } : undefined,
             }}
             radio={{
-              name: question.id,
+              name: "answer",
               options: options,
               selectedValue: selectedOption,
               onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -168,7 +166,7 @@ export default function Index() {
               ></Button>
             </ButtonContainer>
           </Container>
-        </fetcher.Form>
+        </Form>
         {question.hint && (
           <Container paddingTop="0">
             <InlineNotice
