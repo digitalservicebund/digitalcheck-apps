@@ -204,7 +204,7 @@ export const preCheck = {
         "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       negativeResult:
         "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
-      // text: "Praxisbeispiel: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
+      // text: "Praxisbeispiel: Eine Datenbank erfasst potenzielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
       hint: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
@@ -362,8 +362,10 @@ export const assessment = {
 
 export const methods = {
   title: "2. Erarbeiten eines digitaltauglichen Regelungsvorhabens",
-  subtitle:
-    "Methoden und Hilfestellungen helfen ihnen die Digitaltauglichkeit des Regelungsvorhabens zu erarbeiten oder zu verbessern. Es gibt verschiedene Optionen, die für Sie als nächstes Sinn ergeben können.",
+  subtitle: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen. 
+<br />
+<br />
+Gehen Sie am besten in der vorgeschlagenen Reihenfolge vor.`,
   steps: {
     items: [
       {
@@ -374,10 +376,10 @@ Wenn Sie in den Gesprächen nichts Neues mehr erfahren, haben Sie den Status Quo
 
 **Ein Austausch über die aktuelle Praxis darf auch während des Entwurfsprozesses stattfinden.**
 
-Mit diesen Informationen sind Sie gut vorbereitet, um ... 
-- Anforderungen für die neue Regelung zu erarbeiten,  
-- Abstimmungsprozesse zwischen Bund, Ländern, umsetzenden Behörden und Dienstleistern zu navigieren, 
-- in der formellen Beteiligung eine wirkungsvolle Umsetzung zu besprechen.`,
+Mit diesen Informationen sind Sie gut vorbereitet, um  
+- **Anforderungen** für die neue Regelung zu erarbeiten,  
+- **Abstimmungsprozesse** zwischen Bund, Ländern, umsetzenden Behörden und Dienstleistern zu navigieren, 
+- in der **formellen Beteiligung** eine wirkungsvolle Umsetzung zu besprechen.`,
       },
       {
         background: "blue",
@@ -386,7 +388,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um ...
 <br />
 <br />
 
-Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis.`,
+Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.`,
         buttons: [
           {
             text: "Ansprechpersonen finden",
@@ -397,16 +399,17 @@ Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigk
       {
         background: "blue",
         headline: {
-          text: "Abläufe, Aufgaben und Zusammenhänge gemeinsam erfassen",
+          text: "Aufgaben und Abläufe gemeinsam erfassen",
         },
-        content: `**Zeitaufwand:** ca. sechs Stunden
+        content: `**Zeit:** ca. sechs Stunden
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
 <br />
+**Support:** Komplexe Abläufen können Sie mit dem Digitalcheck-Support erfassen
+<br />
 <br />
 
-Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
-`,
+Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
         buttons: [
           {
             text: "Aufgaben und Abläufe klären",
@@ -419,7 +422,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
         headline: {
           text: "IT-Systeme gemeinsam erfassen",
         },
-        content: `**Zeitaufwand:** ca. sechs Stunden
+        content: `**Zeit:** ca. sechs Stunden
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
 <br />
@@ -427,8 +430,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
 <br />
 <br />
 
-Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
-`,
+Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Systeme für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.`,
         buttons: [
           {
             text: "IT-Landschaft verstehen",
@@ -437,25 +439,20 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-In
         ],
       },
       {
-        spacer: { text: "Praxiswissen einsetzen und auswirkungen verstehen" },
+        spacer: { text: "Praxiswissen einsetzen und Auswirkungen verstehen" },
         headline: { text: "Entwickeln Sie eine digitaltaugliche Regelung" },
-        content: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Jetzt geht es darum die Potentiale zur Digitalisierung zu finden und Hindernisse aus dem Weg zu räumen — eine gute digitale Umsetzung spart langfristig Zeit und Geld und erfüllt die heutigen Erwartungen der Betroffenen an den Staat.`,
+        content: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Jetzt geht es darum, Möglichkeiten zur Digitalisierung zu finden und Hindernisse aus dem Weg zu räumen — eine gute digitale Umsetzung spart langfristig Zeit und Geld und erfüllt die heutigen Erwartungen der Betroffenen an den Staat.`,
       },
       {
         background: "blue",
         headline: {
-          text: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
+          text: "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
         },
-        content: `**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
-<br />
-**Kollaborativ:** Text
-<br />
-**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+        content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br />
 <br />
 
-Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand aus den vorigen Schritten, um mithilfe der Prinzipien die **Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen**. 
-        `,
+Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand aus den vorigen Schritten, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen**.`,
         buttons: [
           {
             text: "Fünf Prinzipien nutzen",
@@ -466,17 +463,17 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
       {
         background: "blue",
         headline: {
-          text: "Analysieren Sie die Auswirkungen auf IT-Systeme",
+          text: "Technische Umsetzbarkeit sicherstellen",
         },
-        content: `**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
+        content: `**Zeitaufwand:** Richtet sich nach der Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
 <br />
-**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen
+**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
 <br />
 <br />
 
-In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf  bestehende und neue Abläufe und IT-Systeme analysieren. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.
+In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende sowie neue Abläufe und IT-Systeme analysieren. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.
         `,
         buttons: [
           {
@@ -487,18 +484,18 @@ In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf  bes
       },
       {
         spacer: { text: "Eine digitale, verwaltungsarme Regelung Schreiben" },
-        headline: { text: "Verfassen Sie die Regelung" },
+        headline: { text: "Verfassen Sie den Regelungsentwurf" },
         content: `Nun folgt der gewohnte Schreibprozess sowie die formelle Beteiligung, Abstimmungen im Haus und zwischen den Ressorts. 
 
-Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei, ... 
+Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,  
 - Ihren **Regelungstext zu strukturieren**, insbesondere in Abschnitten, die die Umsetzung betreffen,
 - in der **Gesetzesbegründung** auf Probleme im Ist-Zustand einzugehen,
-- den **Umsetzungsprozesse einfach besprechbar** zu machen in Abstimmungen anhand von Visualisierungen.`,
+- den **Umsetzungsprozess einfach besprechbar** zu machen in Abstimmungen anhand von Visualisierungen.`,
       },
       {
         background: "blue",
         headline: { text: "Schreiben Sie die Regelung" },
-        content: `Nutzen Sie Ihren gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben — z. B. eNorm und das Handbuch der Rechtsförmigkeit.`,
+        content: `Nutzen Sie Ihre gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben — z. B. eNorm und das Handbuch der Rechtsförmigkeit.`,
       },
     ],
   },
@@ -683,9 +680,9 @@ export const collectITSystems = {
     text: `Dokumentieren Sie die verwendeten IT-Systeme mit ihren Funktionalitäten, Schnittstellen und Anforderungen. 
 
 Ein Überblick über die IT-Landschaft hilft Ihnen dabei, 
-- alle relevanten Aspekte aufzuschlüsseln und potentiell blinde Flecken zu identifizieren,
+- alle relevanten Aspekte aufzuschlüsseln und potenziell blinde Flecken zu identifizieren,
 - auf bestehende Standards und Prozesse aufzusetzen,
-- oder Potential für Vereinheitlichung zu nutzen.`,
+- oder Potenzial für Vereinheitlichung zu nutzen.`,
   },
   boxes: [
     {
@@ -716,8 +713,9 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [s
   nextStep: {
     label: "So geht es weiter:",
 
-    title: "Identifizieren Sie Digitalisierungspotential und -hindernisse",
-    text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen.`,
+    title:
+      "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
+    text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       { text: "Zum nächsten Schritt", href: PATH_METHODS_FIVE_PRINCIPALS },
     ],
@@ -861,7 +859,7 @@ So erfahren Sie
     title: "Die technische Umsetzung gemeinsam durchdenken",
     text: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei, 
 - die **technische Umsetzung** im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten,
-- als **neutrale Moderation** in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potentielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
+- als **neutrale Moderation** in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potenzielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
 - **Erkenntnisse visuell** aufzubereiten – das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
 
