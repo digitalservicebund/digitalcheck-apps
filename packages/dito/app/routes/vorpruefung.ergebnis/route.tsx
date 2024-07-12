@@ -36,10 +36,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   } else if (unsureQuestions.length > 0) {
     result = "Unsicher";
   }
-  void trackCustomEvent(request, {
-    name: "Vorprüfung Resultat",
-    props: { result },
-  });
+  trackCustomEvent(request, { name: "Vorprüfung Resultat", props: { result } });
 
   return json({ positiveQuestions, unsureQuestions, negativeQuestions });
 }
