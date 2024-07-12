@@ -362,8 +362,7 @@ export const assessment = {
 
 export const methods = {
   title: "2. Erarbeiten eines digitaltauglichen Regelungsvorhabens",
-  subtitle:
-    `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen. 
+  subtitle: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen. 
 <br />
 <br />
 Gehen Sie am besten in der vorgeschlagenen Reihenfolge vor.`,
@@ -714,7 +713,8 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [s
   nextStep: {
     label: "So geht es weiter:",
 
-    title: "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
+    title:
+      "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       { text: "Zum nächsten Schritt", href: PATH_METHODS_FIVE_PRINCIPALS },
