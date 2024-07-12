@@ -110,7 +110,7 @@ test.describe("test PDF generation in negative case", () => {
     async ({ page }) => {
       await page.goto(preCheck.questions[0].url);
       for (let i = 0; i < 5; i++) {
-        await expect(page).toHaveURL(preCheck.questions[i].url);
+        await page.waitForURL(preCheck.questions[i].url);
         await page.getByLabel("Nein").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
