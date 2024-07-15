@@ -31,7 +31,10 @@ export const header = {
 export const landing = {
   title: "Digitaltaugliche Regelungsvorhaben erarbeiten",
   subtitle:
-    "Heutzutage haben fast alle Regelungsvorhaben in der Umsetzung eine digitale Komponente. Hier erfahren Sie, welche Aspekte digitaler Umsetzung für Ihr Regelungsvorhaben wichtig sind und wie Sie eine reibungslose Umsetzung ermöglichen.",
+    `Hier erfahren Sie,
+  - was Digitaltauglichkeit für Ihr Regelungsvorhaben bedeutet,
+  - wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen,
+  - welche Unterlagen Sie benötigen.´,
   list: {
     title: "So gehen Sie vor:",
     items: [
