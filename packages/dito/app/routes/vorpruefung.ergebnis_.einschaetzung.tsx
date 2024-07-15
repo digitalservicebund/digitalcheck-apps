@@ -4,28 +4,33 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import Download from "@digitalservicebund/icons/Download";
-import { Form, MetaFunction } from "@remix-run/react";
-import { FormEventHandler } from "react";
-import { useForm, type FieldValues } from "react-hook-form";
+import { MetaFunction } from "@remix-run/react";
+import { useForm } from "@rvf/remix";
+import { withZod } from "@rvf/zod";
 import { assessment, siteMeta } from "resources/content";
-import { PATH_RESULT } from "resources/staticRoutes";
+import { PATH_ASSESSMENT_PDF, PATH_RESULT } from "resources/staticRoutes";
+import { z } from "zod";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${assessment.title} — ${siteMeta.title}` }];
 };
 
-export default function Assessment() {
-  const { register, formState, trigger } = useForm<FieldValues>();
-  // The recommended way to handle forms with react-hook-form is to use the `handleSubmit` function, however that will always hikack the form submit event and prevent the default behaviour.
-  // In our case, we only want to call `event.preventDefault()` when we have validation errors, so we implement a home-made solution that achieves this.
-  const onSubmit: FormEventHandler = (event) => {
-    void trigger();
-    const valid = formState.isValid;
+const validator = withZod(
+  z.object({
+    title: z
+      .string()
+      .min(1, { message: assessment.form.policyTitleRequired })
+      .max(500, { message: assessment.form.policyTitleTooLong }),
+  }),
+);
 
-    if (!valid) {
-      event.preventDefault();
-    }
-  };
+export default function Assessment() {
+  const form = useForm({
+    validator,
+    method: "post",
+    action: PATH_ASSESSMENT_PDF,
+    reloadDocument: true,
+  });
 
   return (
     <>
@@ -42,23 +47,11 @@ export default function Assessment() {
         ></Box>
       </Container>
       <Container paddingBottom="48">
-        <Form
-          onSubmit={onSubmit}
-          onChange={() => trigger()}
-          method="post"
-          action="digitalcheck-vorpruefung.pdf"
-          reloadDocument
-        >
+        <form {...form.getFormProps()}>
           <Input
+            name="title"
             label={assessment.form.policyTitleLabel}
-            register={register("title", {
-              required: assessment.form.policyTitleRequired,
-              maxLength: {
-                value: 500,
-                message: assessment.form.policyTitleTooLong,
-              },
-            })}
-            error={formState.errors["title"]}
+            error={form.error("title") ?? undefined}
           />
           <br />
           <ButtonContainer>
@@ -76,7 +69,7 @@ export default function Assessment() {
               iconLeft={<Download />}
             ></Button>
           </ButtonContainer>
-        </Form>
+        </form>
       </Container>
     </>
   );

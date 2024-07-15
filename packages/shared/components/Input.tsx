@@ -1,17 +1,16 @@
 import classNames from "classnames";
-import type { GlobalError, UseFormRegisterReturn } from "react-hook-form";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 
 export type InputProps = Readonly<{
+  name: string;
   label?: string;
   type?: string;
   prefix?: string;
   suffix?: string;
   helperText?: string;
   width?: "3" | "5" | "7" | "10" | "16" | "24" | "36" | "54";
-  register: UseFormRegisterReturn;
-  error?: GlobalError;
+  error?: string;
 }>;
 
 const widthClass = (width: string) => {
@@ -28,6 +27,7 @@ const widthClass = (width: string) => {
 };
 
 export default function Input({
+  name,
   label,
   type = "text",
   prefix,
@@ -35,9 +35,7 @@ export default function Input({
   helperText,
   width,
   error,
-  register,
 }: InputProps) {
-  const { name } = register;
   const errorId = `${name}-error`;
   const helperId = `${name}-helper`;
 
@@ -48,8 +46,8 @@ export default function Input({
         {prefix && <div className="ds-input-prefix">{prefix}</div>}
         <input
           id={name}
+          name={name}
           type={type}
-          {...register}
           className={classNames(
             "ds-input forced-color-adjust-none",
             { "has-error": error },
@@ -70,7 +68,7 @@ export default function Input({
       <div className="label-text mt-6" id={helperId}>
         {helperText}
       </div>
-      {error && <InputError id={errorId}>{error.message}</InputError>}
+      {error && <InputError id={errorId}>{error}</InputError>}
     </div>
   );
 }

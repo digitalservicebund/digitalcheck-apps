@@ -1,38 +1,46 @@
-import { type FormEventHandler } from "react";
-import { type FieldValues, useForm } from "react-hook-form";
+import { useForm } from "@rvf/remix";
+import { withZod } from "@rvf/zod";
+import { z } from "zod";
 
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Input from "@digitalcheck/shared/components/Input";
+import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download.js";
 
-import List from "@digitalcheck/shared/components/List";
-import { Form } from "@remix-run/react";
 import { assessment, preCheck } from "resources/content";
+import { PATH_ASSESSMENT_PDF } from "resources/staticRoutes";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
 const { title, reasoningIntro, nextSteps } = preCheck.result.negative;
+
+const validator = withZod(
+  z.object({
+    title: z
+      .string()
+      .min(1, { message: assessment.form.policyTitleRequired })
+      .max(500, { message: assessment.form.policyTitleTooLong }),
+    negativeReasoning: z
+      .string()
+      .min(1, { message: assessment.form.reasonRequired })
+      .max(5000, { message: assessment.form.reasonTooLong }),
+  }),
+);
 
 export default function ResultNegative({
   negativeQuestions,
 }: Readonly<{
   negativeQuestions: string[];
 }>) {
-  const { register, formState, trigger } = useForm<FieldValues>();
-
-  // The recommended way to handle forms with react-hook-form is to use the `handleSubmit` function, however that will always hikack the form submit event and prevent the default behaviour.
-  // In our case, we only want to call `event.preventDefault()` when we have validation errors, so we implement a home-made solution that achieves this.
-  const onSubmit: FormEventHandler = (event) => {
-    void trigger();
-    const valid = formState.isValid;
-
-    if (!valid) {
-      event.preventDefault();
-    }
-  };
+  const form = useForm({
+    validator,
+    method: "post",
+    action: PATH_ASSESSMENT_PDF,
+    reloadDocument: true,
+  });
   const reasonsText = getReasoningText(
     negativeQuestions,
     reasoningIntro,
@@ -47,14 +55,7 @@ export default function ResultNegative({
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
       >
-        <Form
-          onSubmit={onSubmit}
-          onChange={() => trigger()}
-          className="mt-32"
-          method="post"
-          action="einschaetzung/digitalcheck-vorpruefung.pdf"
-          reloadDocument
-        >
+        <form {...form.getFormProps()} className="mt-32">
           <fieldset className="ds-stack-32">
             <legend>
               <Heading
@@ -64,26 +65,14 @@ export default function ResultNegative({
               />
             </legend>
             <Textarea
+              name="negativeReasoning"
               label={assessment.form.reasonLabel}
-              register={register("negativeReasoning", {
-                required: assessment.form.reasonRequired,
-                maxLength: {
-                  value: 5000,
-                  message: assessment.form.reasonTooLong,
-                },
-              })}
-              error={formState.errors["negativeReasoning"]}
+              error={form.error("negativeReasoning") ?? undefined}
             />
             <Input
+              name="title"
               label={assessment.form.policyTitleLabel}
-              register={register("title", {
-                required: assessment.form.policyTitleRequired,
-                maxLength: {
-                  value: 500,
-                  message: assessment.form.policyTitleTooLong,
-                },
-              })}
-              error={formState.errors["title"]}
+              error={form.error("title") ?? undefined}
             />
             <Button
               text={assessment.form.downloadPdfButton.text}
@@ -94,7 +83,7 @@ export default function ResultNegative({
               className="self-start"
             />
           </fieldset>
-        </Form>
+        </form>
       </ResultHeader>
       <Container>
         <List
