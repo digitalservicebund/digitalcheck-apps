@@ -810,6 +810,18 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 - Versuchen Sie, Rechtsbegriffe zu harmonisieren. Verwenden Sie definierte Rechtsbegriffe aus Ihrem Rechtsbereich. Auslegungen verhindern die vollständige Automatisierung von Umsetzungsprozessen.`,
     },
   ],
+  nextStep: {
+    label: "So geht es weiter:",
+
+    title: "Content is coming...",
+    text: `Content is coming...`,
+    buttons: [
+      {
+        text: "Zum nächsten Schritt",
+        href: PATH_METHODS_TECHNICAL_FEASIBILITY,
+      },
+    ],
+  },
 };
 
 export const technicalFeasibility = {
