@@ -10,7 +10,7 @@ type TextareaProps = Readonly<{
   label?: ReactNode;
   placeholder?: string;
   formId?: string;
-  error?: string;
+  error?: string | null;
 }>;
 
 const Textarea = ({
@@ -45,8 +45,8 @@ const Textarea = ({
           },
         )}
         aria-invalid={error !== undefined}
-        aria-describedby={error && errorId}
-        aria-errormessage={error && errorId}
+        aria-describedby={error ? errorId : undefined}
+        aria-errormessage={error ? errorId : undefined}
         {...props}
       />
       {error && <InputError id={errorId}>{error}</InputError>}

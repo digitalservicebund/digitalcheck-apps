@@ -148,7 +148,7 @@ export default function Index() {
               selectedValue: selectedOption,
               onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
                 setSelectedOption(e.target.value as Option["value"]),
-              error: form.error("answer") ?? undefined,
+              error: form.error("answer"),
             }}
           />
           <Container paddingTop="0">

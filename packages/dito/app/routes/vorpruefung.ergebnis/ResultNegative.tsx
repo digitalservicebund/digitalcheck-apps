@@ -67,12 +67,12 @@ export default function ResultNegative({
             <Textarea
               name="negativeReasoning"
               label={assessment.form.reasonLabel}
-              error={form.error("negativeReasoning") ?? undefined}
+              error={form.error("negativeReasoning")}
             />
             <Input
               name="title"
               label={assessment.form.policyTitleLabel}
-              error={form.error("title") ?? undefined}
+              error={form.error("title")}
             />
             <Button
               text={assessment.form.downloadPdfButton.text}

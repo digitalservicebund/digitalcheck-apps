@@ -10,7 +10,7 @@ export type InputProps = Readonly<{
   suffix?: string;
   helperText?: string;
   width?: "3" | "5" | "7" | "10" | "16" | "24" | "36" | "54";
-  error?: string;
+  error?: string | null;
 }>;
 
 const widthClass = (width: string) => {
@@ -57,7 +57,7 @@ export default function Input({
           aria-describedby={[error && errorId, helperText && helperId].join(
             " ",
           )}
-          aria-errormessage={error && errorId}
+          aria-errormessage={error ? errorId : undefined}
         />
         {suffix && (
           <div className="ds-input-suffix" aria-hidden="true">

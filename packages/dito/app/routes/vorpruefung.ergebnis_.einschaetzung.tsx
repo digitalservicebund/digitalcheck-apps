@@ -51,7 +51,7 @@ export default function Assessment() {
           <Input
             name="title"
             label={assessment.form.policyTitleLabel}
-            error={form.error("title") ?? undefined}
+            error={form.error("title")}
           />
           <br />
           <ButtonContainer>

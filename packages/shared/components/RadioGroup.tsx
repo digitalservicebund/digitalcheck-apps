@@ -13,7 +13,7 @@ export type RadioGroupProps = {
   selectedValue?: string;
   radioGroupRef?: RefCallback<HTMLInputElement>;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  error?: string;
+  error?: string | null;
 };
 
 const RadioGroup = ({
