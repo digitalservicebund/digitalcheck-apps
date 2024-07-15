@@ -52,7 +52,7 @@ test.describe("test landing page", () => {
       "3Dokumentieren der Digitaltauglichkeit",
     );
     await expect(page.getByRole("main")).toContainText(
-      "4Digitalcheck durch den NKR",
+      "4Prüfung durch den NKR",
     );
   });
 });
