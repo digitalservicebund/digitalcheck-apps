@@ -65,22 +65,24 @@ export const landing = {
           text: "Dokumentieren der Digitaltauglichkeit",
         },
         content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.
+        <br />
+        Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
           <br />
           [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
       },
       {
         headline: {
-          text: "Digitalcheck durch den NKR",
+          text: "Prüfung durch den NKR",
         },
         content:
-          "Der NKR prüft ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.",
+          "Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.",
       },
     ],
   },
   dataNotice: {
-    headline: "Arbeitsstände werden nicht gespeichert.",
+    headline: "Ihre Arbeitsstände werden eine Woche lang gespeichert.",
     content:
-      "Wenn Sie eine Pause in der Erarbeitung machen möchten, kehren Sie einfach wieder an den Punkt zurück, an dem Sie aufgehört haben.",
+      "Um in dieser Zeit zu Ihrem alten Arbeitsstand zurückzukehren, nutzen Sie bitte denselben Rechner und Browser.",
   },
   summary: {
     title: "Zusammengefasst",
@@ -89,17 +91,21 @@ export const landing = {
         headline: {
           text: "Was ist Digitaltauglichkeit?",
         },
-        content: `Fast alle Regelungen werden mindestens zum Teil digital umgesetzt: Zum Beispiel eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird. Oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
+        content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind:
+<br />
+- eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder
+<br />
+- eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
 <br />
 <br />
-Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt einerseits, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Auf der anderen Seite soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
+Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt erstens, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Zweitens soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
       },
       {
         spacer: true,
         headline: {
           text: "Digitaltaugliche Regelungen sparen Ressourcen",
         },
-        content: `Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: Auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
+        content: `Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden: auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.`,
       },
       {
         spacer: true,
