@@ -135,6 +135,7 @@ test.describe("test questions form", () => {
     await expect(page).toHaveURL(questions[2].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[3].url);
     await page.goto(questions[4].url);
     await expect(page).toHaveURL(questions[3].url);
   });
