@@ -33,7 +33,7 @@
     "@digitalservicebund/icons": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "unleash-client": "^5.5.5",
+    "unleash-client": "^6.0.0",
     "vite-plugin-static-copy": "^1.0.5"
   },
   "devDependencies": {
