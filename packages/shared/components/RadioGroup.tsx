@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, RefCallback } from "react";
 import InputError from "./InputError";
 
 export type RadioOptionsProps = {
@@ -11,6 +11,7 @@ export type RadioGroupProps = {
   name: string;
   options: RadioOptionsProps;
   selectedValue?: string;
+  radioGroupRef?: RefCallback<HTMLInputElement>;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 };
@@ -19,6 +20,7 @@ const RadioGroup = ({
   name,
   options,
   selectedValue,
+  radioGroupRef,
   onChange,
   error,
 }: RadioGroupProps) => {
@@ -43,6 +45,7 @@ const RadioGroup = ({
                 name={name}
                 type="radio"
                 id={id}
+                ref={radioGroupRef}
                 value={value}
                 className="ds-radio"
                 checked={checked}

@@ -92,12 +92,16 @@ function QuizPage({
   const onChangeRessort = (e: ChangeEvent<HTMLInputElement>) => {
     onChangeHandler(e.target.value, setRessort, ressorts);
   };
-  const onChangeObject = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeHandler(e.target.value, setObject, objects);
-  };
-  const onChangeReason = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeHandler(e.target.value, setReason, reasons);
-  };
+  const { ref: objectRef, ...registerObject } = register("object", {
+    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+      onChangeHandler(e.target.value, setObject, objects),
+    required: "Bitte wählen Sie einen Grund aus.",
+  });
+  const { ref: reasonRef, ...registerReason } = register("reason", {
+    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+      onChangeHandler(e.target.value, setReason, reasons),
+    required: "Bitte wählen Sie ein Objekt aus.",
+  });
 
   const onSubmit = () => {
     trackSelection(ressort, object, reason);
@@ -161,11 +165,9 @@ function QuizPage({
             radio={{
               selectedValue: object?.id,
               options: mapToRadioOptions(objects),
-              ...register("object", {
-                onChange: onChangeReason,
-                required: "Bitte wählen Sie ein Objekt aus.",
-              }),
-              error: String(errors["object"]?.message),
+              radioGroupRef: objectRef,
+              ...registerObject,
+              error: errors["object"] ? String(errors["object"]?.message) : "",
             }}
           />
           <Question
@@ -184,11 +186,9 @@ function QuizPage({
             radio={{
               selectedValue: reason?.id,
               options: mapToRadioOptions(reasons),
-              ...register("object", {
-                onChange: onChangeObject,
-                required: "Bitte wählen Sie einen Grund aus.",
-              }),
-              error: String(errors["reason"]?.message),
+              radioGroupRef: reasonRef,
+              ...registerReason,
+              error: errors["reason"] ? String(errors["reason"]?.message) : "",
             }}
           />
           <Container paddingTop="0" paddingBottom="80">
