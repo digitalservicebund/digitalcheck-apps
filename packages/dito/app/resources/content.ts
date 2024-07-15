@@ -1,3 +1,4 @@
+import type { TMethodPage } from "routes/methoden_.$subPage/route";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_ASSESSMENT,
@@ -581,7 +582,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       { text: "Zum nächsten Schritt", href: PATH_METHODS_TASKS_PROCESSES },
     ],
   },
-};
+} as TMethodPage;
 
 export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
@@ -650,7 +651,7 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
     title: "Visualsierungen gemeinsam erstellen",
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -660,7 +661,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [s
       { text: "Zum nächsten Schritt", href: PATH_METHODS_COLLECT_IT_SYSTEMS },
     ],
   },
-};
+} as TMethodPage;
 
 export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
@@ -708,7 +709,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     title: "IT-Wissen einfach erklärt",
     text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -720,7 +721,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [s
       { text: "Zum nächsten Schritt", href: PATH_METHODS_FIVE_PRINCIPALS },
     ],
   },
-};
+} as TMethodPage;
 
 export const fivePrincipals = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
@@ -815,11 +816,6 @@ export const technicalFeasibility = {
 **Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen `,
-  accordion: {
-    title:
-      "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
-    text: "I don't know!",
-  },
   content: {
     label: "Anleitung",
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
@@ -829,7 +825,7 @@ So erfahren Sie
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können,
 - und an welchen Stellen Änderungen nötig sind.
 
-**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support ([0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)) `,
+**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support ([0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)) `,
   },
   boxes: [
     {
@@ -863,7 +859,7 @@ So erfahren Sie
 - **Erkenntnisse visuell** aufzubereiten – das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [support@digitalcheck.bund.de](mailto:support@digitalcheck.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -872,7 +868,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [s
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
     buttons: [{ text: "Zu den Methoden und Werkzeugen", href: PATH_METHODS }],
   },
-};
+} as TMethodPage;
 
 export const imprint = {
   title: "Impressum",
