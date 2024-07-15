@@ -153,9 +153,9 @@ const stepPreCheckFinished = {
 
 const stepNKR = {
   headline: {
-    text: "Digitalcheck durch den NKR",
+    text: "Prüfung durch den NKR",
   },
-  content: `Der NKR prüft ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
+  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
 <br /><br />
 Die für Ihr Haus zuständige Ansprechperson finden Sie hier: [normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html](https://www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html)
 
@@ -293,7 +293,7 @@ export const preCheck = {
       title: "Ihr Regelungsvorhaben hat Digitalbezug.",
       reasoningIntro: "Das Regelungsvorhaben...",
       actionButton: {
-        text: "Einschätzung als PDF bekommen",
+        text: "Vorprüfung runterladen",
         href: PATH_ASSESSMENT,
       },
       nextSteps: {
@@ -302,13 +302,13 @@ export const preCheck = {
           stepPreCheckFinished,
           {
             headline: {
-              text: "Digitaltaugliches Regelungsvorhaben erarbeiten",
+              text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
             },
             content:
-              "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
+              "Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.",
             buttons: [
               {
-                text: "Zu den Hilfestellungen und Methoden",
+                text: "Zu den Hilfestellungen",
                 href: PATH_METHODS,
                 size: "large" as const,
               },
@@ -316,9 +316,9 @@ export const preCheck = {
           },
           {
             headline: {
-              text: "Abschließende Dokumentation",
+              text: "Dokumentieren der Digitaltauglichkeit",
             },
-            content: `Nach dem Ihr Regelungsvorhaben abgeschlossen ist, schicken Sie die Dokumentation an das Sekretariat des Normenkontrollrats. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+            content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
           },
           stepNKR,
         ],
