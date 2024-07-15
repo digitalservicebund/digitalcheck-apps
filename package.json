@@ -10,6 +10,8 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
+    "dev:dito": "npm run dev --workspace=packages/dito",
+    "dev:tool-finder": "npm run dev --workspace=packages/tool-finder",
     "test": "npm run test --workspaces",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
     "test:a11y": "npm run test:a11y --workspaces --if-present",
