@@ -12,13 +12,12 @@ import {
   technicalFeasibility,
 } from "resources/content";
 import {
+  PATH_METHODS,
   PATH_METHODS_COLLECT_IT_SYSTEMS,
   PATH_METHODS_RESPONSIBLE_ACTORS,
   PATH_METHODS_TASKS_PROCESSES,
   PATH_METHODS_TECHNICAL_FEASIBILITY,
 } from "resources/staticRoutes";
-
-const BASE_URL = process.env.BASE_URL ?? "https://digitalcheck.bund.de";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${tasksProcesses.title} — ${siteMeta.title}` }];
@@ -61,8 +60,9 @@ export type TMethodPage = {
   };
 };
 
-export function loader({ request }: LoaderFunctionArgs) {
-  const path = request.url.replace(BASE_URL, "");
+export function loader({ params }: LoaderFunctionArgs) {
+  const { subPage } = params;
+  const path = `${PATH_METHODS}/${subPage}`;
 
   let content;
 
