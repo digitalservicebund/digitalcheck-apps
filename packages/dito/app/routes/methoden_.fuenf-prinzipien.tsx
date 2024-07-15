@@ -1,11 +1,23 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Button from "@digitalcheck/shared/components/Button";
+import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import { Link, MetaFunction } from "@remix-run/react";
+import RichText from "@digitalcheck/shared/components/RichText";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { fivePrincipals, siteMeta } from "resources/content";
+import { PATH_METHODS } from "resources/staticRoutes";
+import { BASE_URL } from "utils/constants";
+
+export function loader({ request }: LoaderFunctionArgs) {
+  return json({
+    referrer: request.headers.get("referer")?.replace(BASE_URL, "") ?? "",
+  });
+}
 
 export const meta: MetaFunction = () => {
   return [{ title: `${fivePrincipals.title} — ${siteMeta.title}` }];
@@ -15,6 +27,8 @@ const slugify = (string: string) =>
   string.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-");
 
 export default function Index() {
+  const { referrer } = useLoaderData<typeof loader>();
+
   return (
     <>
       <Background backgroundColor="blue">
@@ -64,6 +78,27 @@ export default function Index() {
           </Container>
         </Background>
       ))}
+      {referrer.startsWith(PATH_METHODS) && // Only show next steps
+        fivePrincipals.nextStep && (
+          <Container>
+            <div className="flex flex-col gap-16">
+              <Heading
+                tagName="div"
+                className="ds-label-section text-gray-900"
+                text={fivePrincipals.nextStep.label}
+              />
+              <Heading tagName="h2" text={fivePrincipals.nextStep.title} />
+              <RichText markdown={fivePrincipals.nextStep.text} />
+              {fivePrincipals.nextStep.buttons && (
+                <ButtonContainer>
+                  {fivePrincipals.nextStep.buttons.map((button) => (
+                    <Button key={button.text ?? button.href} {...button} />
+                  ))}
+                </ButtonContainer>
+              )}
+            </div>
+          </Container>
+        )}
       <FeedbackBanner />
     </>
   );
