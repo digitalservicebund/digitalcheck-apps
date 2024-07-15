@@ -24,9 +24,7 @@ test.describe("test positive assessment page and PDF", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await page.waitForURL(PATH_RESULT);
-    await page
-      .getByRole("link", { name: "Einschätzung als PDF bekommen" })
-      .click();
+    await page.getByRole("link", { name: "runterladen" }).click();
   });
 
   test("assessment page is available", async ({ page }) => {
