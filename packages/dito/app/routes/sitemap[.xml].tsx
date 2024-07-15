@@ -1,6 +1,5 @@
 import allRoutes from "resources/allRoutes";
-
-const BASE_URL = process.env.BASE_URL ?? "https://digitalcheck.bund.de";
+import { BASE_URL } from "utils/constants";
 
 export const loader = () => {
   const urls = allRoutes.map((route) => `${BASE_URL}${route.url}`);

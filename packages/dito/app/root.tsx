@@ -28,10 +28,9 @@ import {
   PATH_LANDING,
   PATH_PRIVACY,
 } from "resources/staticRoutes";
+import { BASE_URL } from "utils/constants";
 import { useNonce } from "utils/nonce";
 import styles from "./styles.css?url";
-
-const BASE_URL = process.env.BASE_URL ?? "https://digitalcheck.bund.de";
 
 export const meta: MetaFunction = () => {
   return [{ title: siteMeta.title }];
