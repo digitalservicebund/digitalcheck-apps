@@ -21,7 +21,7 @@ export const siteMeta = {
 export const header = {
   title: "Digitaltaugliche Gesetzgebung",
   contact: {
-    msg: "Kontaktieren Sie uns:",
+    msg: "Kontaktieren Sie den Support:",
     number: "0151/40 76 78 39",
   },
   underConstruction:
@@ -133,7 +133,7 @@ export const feedbackBanner = {
 
 const hintInvolved = {
   title: "Wer sind Beteiligte?",
-  text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteure als auch Betroffene sein.
+  text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteurinnen und -akteure als auch Betroffene sein.
     
 Beispiele für Beteiligte sind:
 - Bürgerinnen und Bürger,
@@ -211,13 +211,12 @@ export const preCheck = {
         "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       negativeResult:
         "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
-      // text: "Praxisbeispiel: Eine Datenbank erfasst potenzielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
+      text: "**Praxisbeispiel**: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
       hint: {
         title: "Was ist ein IT-System?",
-        text: `IT-Systeme können eigene, spezialisierte Fachverfahren sein, mit denen bestimmte Aufgaben ausgeführt werden: Zum Beispiel das Übermitteln der Einkommenssteuererklärung mit ELSTER. Es können jedoch auch standardmäßig verfügbare Programme wie Word, Excel oder Outlook gemeint sein. 
+        text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
       <br />
-      <br />
-      Einige IT-Systeme haben eine Benutzeroberfläche, in der manuell Daten eingegeben werden — wie in diesem Formular. In anderen kommunizieren Computer im Hintergrund untereinander, wenn zum Beispiel Daten abgerufen und an anderer Stelle verwendet werden.`,
+      Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der Einkommenssteuererklärung mit ELSTER.`,
       },
     },
     {
@@ -227,18 +226,19 @@ export const preCheck = {
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
       negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
+      text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach den selben Kriterien geprüft werden. Die Prüfkriterien – und damit der Prozess in der Behörde – müssen angepasst werden. Damit entstehen neue Verpflichtungen für sowohl das produzierende Gewerbe als auch für die Behörde.",
       hint: hintInvolved,
     },
     {
       id: "datenaustausch",
       title: "Datenaustausch",
       question:
-        "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
+        "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Oder kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
       positiveResult:
         "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
       negativeResult:
         "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
-      // text: "Praxisbeispiel: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
+      text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
     },
     {
       id: "kommunikation",
@@ -249,6 +249,7 @@ export const preCheck = {
         "wird Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
       negativeResult:
         "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
+      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden – dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen.",
       hint: hintInvolved,
     },
     {
@@ -260,8 +261,17 @@ export const preCheck = {
         "kann den Aufwand für Betroffene durch (Teil&#8209;)Automatisierung reduzieren.",
       negativeResult:
         "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
-      // text: "Praxisbeispiel: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
-      hint: hintInvolved,
+      text: "**Praxisbeispiel**: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
+      hint: {
+        title: "Wer sind Betroffene?",
+        text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
+      <br />
+      Beispiele für Betroffene sind:
+- Bürgerinnen und Bürger, 
+- Einwohnende,
+- Unternehmen und 
+- weitere Organisationen wie z.B. Vereine.`,
+      },
     },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
