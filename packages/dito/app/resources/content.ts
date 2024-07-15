@@ -30,8 +30,7 @@ export const header = {
 
 export const landing = {
   title: "Digitaltaugliche Regelungsvorhaben erarbeiten",
-  subtitle:
-    `Hier erfahren Sie,
+  subtitle: `Hier erfahren Sie,
   - was Digitaltauglichkeit für Ihr Regelungsvorhaben bedeutet,
   - wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen,
   - welche Unterlagen Sie benötigen.`,
@@ -188,8 +187,7 @@ export const preCheck = {
           headline: {
             text: "Was ist Digitalbezug?",
           },
-          content:
-            `Wir sprechen von Digitalbezug der Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet werden wird. Beispiele sind:
+          content: `Wir sprechen von Digitalbezug der Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet werden wird. Beispiele sind:
 - eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
 - die Abfrage von Daten aus einem Register oder
 - das Bereitstellen von Informationen auf einer Website.`,
