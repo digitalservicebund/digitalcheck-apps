@@ -91,11 +91,7 @@ export const landing = {
         headline: {
           text: "Was ist Digitaltauglichkeit?",
         },
-        content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind:
-<br />
-- eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder
-<br />
-- eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
+        content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
 <br />
 <br />
 Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt erstens, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Zweitens soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
