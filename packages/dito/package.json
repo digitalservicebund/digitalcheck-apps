@@ -27,8 +27,7 @@
     "@remix-run/react": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
     "isbot": "^5.1.4",
-    "pdf-lib": "^1.17.1",
-    "react-hook-form": "^7.52.0"
+    "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.8.1",

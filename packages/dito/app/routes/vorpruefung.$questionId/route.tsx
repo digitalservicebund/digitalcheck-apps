@@ -8,19 +8,17 @@ import {
   json,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import {
-  MetaFunction,
-  redirect,
-  useFetcher,
-  useLoaderData,
-} from "@remix-run/react";
+import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
+import { useForm, validationError } from "@rvf/remix";
+import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { preCheck, siteMeta } from "resources/content";
+import { PATH_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
+import { z } from "zod";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
@@ -50,14 +48,35 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   return json({ questionIdx, question: questions[questionIdx], answers });
 }
 
+const validator = withZod(
+  z.object({
+    answer: z
+      .string({ required_error: "Bitte wählen Sie eine Option aus." })
+      .refine(
+        (answer) => Object.keys(answerOptions).includes(answer),
+        "Bitte wählen Sie eine existierende Option aus.",
+      ),
+    questionId: z
+      .string({ required_error: "Bitte geben Sie eine Frage an." })
+      .refine(
+        (questionId) => questions.map((q) => q.id).includes(questionId),
+        "Bitte wählen Sie eine existierende Frage aus.",
+      ),
+  }),
+);
+
 export async function action({ request }: ActionFunctionArgs) {
-  const cookie = await getAnswersFromCookie(request);
-  const formData = await request.formData();
-  const { questionId, nextLink, answer } = Object.fromEntries(formData);
-  if (typeof questionId !== "string" || typeof nextLink !== "string") {
-    return redirect("/vorpruefung", { status: 400 });
+  const result = await validator.validate(await request.formData());
+
+  if (result.error) {
+    return validationError(result.error);
   }
+  const { questionId, answer } = result.data;
+
+  const cookie = await getAnswersFromCookie(request);
   cookie.answers[questionId] = answer as Option["value"];
+  const nextLink =
+    questions.find((q) => q.id === questionId)?.nextLink ?? PATH_PRECHECK;
 
   return redirect(nextLink, await getHeaderFromCookie(cookie));
 }
@@ -90,35 +109,16 @@ export type Answers = {
 export default function Index() {
   const { question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
-  const fetcher = useFetcher();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
-  const [selectedOption, setSelectedOption] = useState<
-    Option["value"] | undefined
-  >(existingAnswer);
+  const [selectedOption, setSelectedOption] =
+    useState<Option["value"]>(existingAnswer);
+  const form = useForm({
+    validator,
+    method: "post",
+  });
 
   useEffect(() => {
     setSelectedOption(existingAnswer);
-    // needed to keep data in sync with the form
-    setValue(question.id, existingAnswer);
-  }, [question.id, existingAnswer, setValue]);
-
-  const onSubmit = (data: Record<string, string>) => {
-    fetcher.submit(
-      {
-        questionId: question.id,
-        nextLink: question.nextLink,
-        answer: data[question.id],
-      },
-      {
-        method: "post",
-      },
-    );
-  };
+  }, [existingAnswer, setSelectedOption, question.id]);
 
   const options: Option[] = Object.entries(answerOptions).map(
     ([value, text]) => ({ value: value as Option["value"], text }),
@@ -130,7 +130,8 @@ export default function Index() {
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
-        <fetcher.Form className="pt-32" onSubmit={handleSubmit(onSubmit)}>
+        <form {...form.getFormProps()}>
+          <input type="hidden" name="questionId" value={question.id} />
           <Question
             paddingBottom="32"
             box={{
@@ -142,13 +143,12 @@ export default function Index() {
               content: question.text ? { markdown: question.text } : undefined,
             }}
             radio={{
-              name: question.id,
+              name: "answer",
               options: options,
               selectedValue: selectedOption,
               onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
                 setSelectedOption(e.target.value as Option["value"]),
-              formRegister: register,
-              error: errors[question.id],
+              error: form.error("answer") ?? undefined,
             }}
           />
           <Container paddingTop="0">
@@ -168,7 +168,7 @@ export default function Index() {
               ></Button>
             </ButtonContainer>
           </Container>
-        </fetcher.Form>
+        </form>
         {question.hint && (
           <Container paddingTop="0">
             <InlineNotice

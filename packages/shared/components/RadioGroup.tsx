@@ -1,9 +1,4 @@
 import { ChangeEvent } from "react";
-import type {
-  FieldValues,
-  GlobalError,
-  UseFormRegister,
-} from "react-hook-form";
 import InputError from "./InputError";
 
 export type RadioOptionsProps = {
@@ -17,8 +12,7 @@ export type RadioGroupProps = {
   options: RadioOptionsProps;
   selectedValue?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  formRegister: UseFormRegister<FieldValues>;
-  error?: GlobalError;
+  error?: string;
 };
 
 const RadioGroup = ({
@@ -26,7 +20,6 @@ const RadioGroup = ({
   options,
   selectedValue,
   onChange,
-  formRegister,
   error,
 }: RadioGroupProps) => {
   const hasError = !!error;
@@ -37,7 +30,7 @@ const RadioGroup = ({
       role="radiogroup"
       aria-required={true}
       aria-errormessage={errorId}
-      aria-invalid={!!error}
+      aria-invalid={hasError}
     >
       <ul className="ds-stack-16 border-0 p-0 m-0">
         {options.map(({ value, text, subText }) => {
@@ -47,15 +40,13 @@ const RadioGroup = ({
           return (
             <li className="flex items-center" key={value}>
               <input
+                name={name}
                 type="radio"
                 id={id}
                 value={value}
                 className="ds-radio"
                 checked={checked}
-                {...formRegister(name, {
-                  required: "Bitte wählen Sie eine Option aus.",
-                  onChange: onChange,
-                })}
+                onChange={onChange}
                 aria-describedby={errorId}
               />
               <label htmlFor={id}>
@@ -67,9 +58,7 @@ const RadioGroup = ({
         })}
       </ul>
 
-      {error && errorId && (
-        <InputError id={errorId}>{error.message}</InputError>
-      )}
+      {error && errorId && <InputError id={errorId}>{error}</InputError>}
     </div>
   );
 };

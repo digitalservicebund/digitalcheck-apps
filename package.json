@@ -33,10 +33,13 @@
     "@digitalservice4germany/angie": "^1.1.1",
     "@digitalservice4germany/style-dictionary": "^2.0.0",
     "@digitalservicebund/icons": "^2.0.0",
+    "@rvf/remix": "^0.0.8",
+    "@rvf/zod": "^0.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "unleash-client": "^5.5.5",
-    "vite-plugin-static-copy": "^1.0.5"
+    "vite-plugin-static-copy": "^1.0.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",

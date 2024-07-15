@@ -159,12 +159,13 @@ function QuizPage({
               },
             }}
             radio={{
-              name: "object",
               selectedValue: object?.id,
-              onChange: onChangeObject,
               options: mapToRadioOptions(objects),
-              formRegister: register,
-              error: errors["object"],
+              ...register("object", {
+                onChange: onChangeReason,
+                required: "Bitte wählen Sie ein Objekt aus.",
+              }),
+              error: String(errors["object"]?.message),
             }}
           />
           <Question
@@ -181,12 +182,13 @@ function QuizPage({
               },
             }}
             radio={{
-              name: "reason",
               selectedValue: reason?.id,
-              onChange: onChangeReason,
               options: mapToRadioOptions(reasons),
-              formRegister: register,
-              error: errors["reason"],
+              ...register("object", {
+                onChange: onChangeObject,
+                required: "Bitte wählen Sie einen Grund aus.",
+              }),
+              error: String(errors["reason"]?.message),
             }}
           />
           <Container paddingTop="0" paddingBottom="80">
