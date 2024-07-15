@@ -31,7 +31,10 @@ export const header = {
 export const landing = {
   title: "Digitaltaugliche Regelungsvorhaben erarbeiten",
   subtitle:
-    "Heutzutage haben fast alle Regelungsvorhaben in der Umsetzung eine digitale Komponente. Hier erfahren Sie, welche Aspekte digitaler Umsetzung für Ihr Regelungsvorhaben wichtig sind und wie Sie eine reibungslose Umsetzung ermöglichen.",
+    `Hier erfahren Sie,
+  - was Digitaltauglichkeit für Ihr Regelungsvorhaben bedeutet,
+  - wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen,
+  - welche Unterlagen Sie benötigen.`,
   list: {
     title: "So gehen Sie vor:",
     items: [
@@ -91,11 +94,7 @@ export const landing = {
         headline: {
           text: "Was ist Digitaltauglichkeit?",
         },
-        content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind:
-<br />
-- eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder
-<br />
-- eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
+        content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
 <br />
 <br />
 Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt erstens, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Zweitens soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
@@ -169,11 +168,11 @@ export const preCheck = {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     // TODO: Konsequenzen + Umsetzung mitdenken
     subtitle:
-      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
     buttonText: "Digitalbezug einschätzen",
     info: {
-      title: "Haben Sie mehr als eine Regelung in Ihrem Vorhaben?",
-      text: "Wenn Sie mehrere Regelungen ändern, bündeln Sie diese als inhaltlich zusammenhängende Vorhaben, für die Sie jeweils eine Vorprüfung ausfüllen.",
+      title: "Eine oder mehrere Vorprüfungen?",
+      text: "Füllen Sie eine Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. Ganz nach der Devise: so viel wie nötig, so wenig wie möglich.",
     },
     summary: {
       title: "Zusammenfassung",
@@ -190,7 +189,10 @@ export const preCheck = {
             text: "Was ist Digitalbezug?",
           },
           content:
-            "Wir sprechen von digitaler Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet wird. Dabei kann es sich um eine Reihe von Aufgaben mit einem bestimmten Ziel handeln, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen. Es kann sich auch um die Abfrage von Daten aus einem Register handeln. Oder um das Bereitstellen von Informationen auf einer Website.",
+            `Wir sprechen von Digitalbezug der Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet werden wird. Beispiele sind:
+- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
+- die Abfrage von Daten aus einem Register oder
+- das Bereitstellen von Informationen auf einer Website.`,
         },
       ],
     },
