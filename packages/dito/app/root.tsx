@@ -1,3 +1,12 @@
+import Background from "@digitalcheck/shared/components/Background";
+import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
+import Button from "@digitalcheck/shared/components/Button";
+import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import Container from "@digitalcheck/shared/components/Container";
+import Footer from "@digitalcheck/shared/components/Footer";
+import Header from "@digitalcheck/shared/components/Header";
+import sharedStyles from "@digitalcheck/shared/styles.css?url";
+import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import type { HeadersFunction, LinksFunction } from "@remix-run/node";
 import {
   Link,
@@ -10,18 +19,6 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
-
-import sharedStyles from "@digitalcheck/shared/styles.css?url";
-import styles from "./styles.css?url";
-
-import Background from "@digitalcheck/shared/components/Background";
-import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
-import Button from "@digitalcheck/shared/components/Button";
-import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
-import Container from "@digitalcheck/shared/components/Container";
-import Footer from "@digitalcheck/shared/components/Footer";
-import Header from "@digitalcheck/shared/components/Header";
-import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
@@ -32,6 +29,9 @@ import {
   PATH_PRIVACY,
 } from "resources/staticRoutes";
 import { useNonce } from "utils/nonce";
+import styles from "./styles.css?url";
+
+const BASE_URL = process.env.BASE_URL ?? "https://digitalcheck.bund.de";
 
 export const meta: MetaFunction = () => {
   return [{ title: siteMeta.title }];
@@ -120,7 +120,7 @@ function Document({
         />
         <script
           defer
-          data-domain="digitalcheck-dito.prod.ds4g.net"
+          data-domain={BASE_URL.replace(/https?:\/\//i, "")} // Regex replace: https://<domain-name> -> <domain-name>
           data-api="/proxy-pl-event"
           src="/proxy-pl-script.js"
         ></script>
