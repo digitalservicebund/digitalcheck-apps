@@ -28,7 +28,6 @@ import {
   PATH_LANDING,
   PATH_PRIVACY,
 } from "resources/staticRoutes";
-import { BASE_URL } from "utils/constants";
 import { useNonce } from "utils/nonce";
 import styles from "./styles.css?url";
 
@@ -119,7 +118,8 @@ function Document({
         />
         <script
           defer
-          data-domain={BASE_URL.replace(/https?:\/\//i, "")} // Regex replace: https://<domain-name> -> <domain-name>
+          // data-domain={BASE_URL.replace(/https?:\/\//i, "")} // Regex replace: https://<domain-name> -> <domain-name>
+          data-domain="digitalcheck-dito.prod.ds4g.net"
           data-api="/proxy-pl-event"
           src="/proxy-pl-script.js"
         ></script>
