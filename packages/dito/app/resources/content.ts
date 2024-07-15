@@ -537,7 +537,7 @@ export const responsibleActors = {
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
-    text: "I don't know!",
+    text: "Wenn Länder und Kommunen für die Umsetzung zuständig ist, legen die Gesetze auf Bundesebene die Grundlage für eine reibungslose Umsetzung. Sicherlich stehen Sie bereits inhaltlich mit den entsprechenden Vertreterinnen und Vertretern im Austausch, z. B. mit den Landesministerien. Für die digitale Umsetzung sollten Sie zusätzlich das Gespräch mit denen suchen, die die aktuellen Arbeitsabläufe, Prozesse und Systeme kennen. Das funktioniert am besten in bilateralen Gesprächen, die die formellen Beteiligungsformate ergänzen.",
   },
   content: {
     label: "Anleitung",
@@ -594,7 +594,7 @@ export const tasksProcesses = {
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
-    text: "I don't know!",
+    text: "Wenn Länder und Kommunen für die Umsetzung zuständig ist, legen die Gesetze auf Bundesebene die Grundlage für eine reibungslose Umsetzung. Sicherlich stehen Sie bereits inhaltlich mit den entsprechenden Vertreterinnen und Vertretern im Austausch, z. B. mit den Landesministerien. Für die digitale Umsetzung sollten Sie zusätzlich das Gespräch mit denen suchen, die die aktuellen Arbeitsabläufe, Prozesse und Systeme kennen. Das funktioniert am besten in bilateralen Gesprächen, die die formellen Beteiligungsformate ergänzen.",
   },
   content: {
     label: "Anleitung",
@@ -676,7 +676,7 @@ export const collectITSystems = {
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
-    text: "I don't know!",
+    text: "Wenn Länder und Kommunen für die Umsetzung zuständig ist, legen die Gesetze auf Bundesebene die Grundlage für eine reibungslose Umsetzung. Sicherlich stehen Sie bereits inhaltlich mit den entsprechenden Vertreterinnen und Vertretern im Austausch, z. B. mit den Landesministerien. Für die digitale Umsetzung sollten Sie zusätzlich das Gespräch mit denen suchen, die die aktuellen Arbeitsabläufe, Prozesse und Systeme kennen. Das funktioniert am besten in bilateralen Gesprächen, die die formellen Beteiligungsformate ergänzen.",
   },
   content: {
     label: "Anleitung",
