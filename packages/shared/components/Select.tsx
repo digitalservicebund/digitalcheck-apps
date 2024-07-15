@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import type { ReactNode } from "react";
 import { ChangeEvent } from "react";
-import { FieldValues, GlobalError, UseFormRegister } from "react-hook-form";
 import InputError from "./InputError";
 
 export type SelectOptionsProps = {
@@ -16,9 +15,8 @@ export type SelectProps = {
   altLabel?: string;
   placeholder?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  formRegister: UseFormRegister<FieldValues>;
-  error?: GlobalError;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  error?: string | null;
 };
 
 const Select = ({
@@ -28,7 +26,6 @@ const Select = ({
   placeholder,
   value,
   onChange,
-  formRegister,
   error,
 }: SelectProps) => {
   const hasError = !!error;
@@ -42,13 +39,11 @@ const Select = ({
       <label htmlFor={name}>{label}</label>
 
       <select
+        name={name}
         id={name}
         className={selectClassName}
         value={value}
-        {...formRegister(name, {
-          required: "Bitte wählen Sie eine Option aus.",
-          onChange: onChange,
-        })}
+        onChange={onChange}
         aria-required={true}
         aria-invalid={hasError}
         aria-describedby={errorId}
@@ -64,9 +59,7 @@ const Select = ({
         })}
       </select>
 
-      {error && errorId && (
-        <InputError id={errorId}>{error.message}</InputError>
-      )}
+      {error && errorId && <InputError id={errorId}>{error}</InputError>}
     </>
   );
 };
