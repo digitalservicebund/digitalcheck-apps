@@ -64,7 +64,7 @@ function NavItem({
   const itemClassNames = classNames(
     "bg-blue-100 w-full ds-label-02-reg p-16 flex gap-x-4 items-center hover:underline hover:bg-blue-300 active:bg-white focus-visible:shadow-[inset_0px_0px_0px_4px] focus:shadow-blue-800",
     {
-      "ds-label-02-bold bg-blue-500": isCurrent,
+      "ds-label-02-bold bg-blue-400": isCurrent,
     },
   );
   const iconId = useId();
