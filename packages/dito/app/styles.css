@@ -1,5 +1,5 @@
 main .rich-text a {
-  @apply text-black font-bold;
+  @apply font-bold;
 }
 
 .precheck-navigation span::after {
