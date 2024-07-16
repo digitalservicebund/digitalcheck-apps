@@ -13,6 +13,7 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { NonceProvider } from "utils/nonce";
+import logResponseStatus from "./utils/logging.ts";
 
 const ABORT_DELAY = 5_000;
 
@@ -87,7 +88,14 @@ function handleBotRequest(
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
-            logResponseStatus(responseStatusCode, request, startTime, true);
+            logResponseStatus(
+              responseStatusCode,
+              request,
+              startTime,
+              true,
+              "",
+              "regular",
+            );
           }
         },
       },
@@ -156,7 +164,14 @@ function handleBrowserRequest(
     setTimeout(abort, ABORT_DELAY);
   })
     .then((response) => {
-      logResponseStatus((response as Response).status, request, startTime);
+      logResponseStatus(
+        (response as Response).status,
+        request,
+        startTime,
+        false,
+        "",
+        "regular",
+      );
       return response;
     })
     .catch((error) => {
@@ -166,50 +181,8 @@ function handleBrowserRequest(
         startTime,
         false,
         (error as Error).message,
+        "regular",
       );
       throw error;
     });
-}
-
-function logResponseStatus(
-  statusCode: number,
-  request: Request,
-  startTime: number,
-  isBot = false,
-  error = "",
-) {
-  const timestamp = new Date().toISOString();
-  const duration = Date.now() - startTime;
-
-  function createLog(level: string, message: string) {
-    return {
-      level,
-      message,
-      statusCode,
-      url: request.url,
-      method: request.method,
-      timestamp,
-      isBot,
-      duration,
-    };
-  }
-
-  function logMessage(level: string, message: string) {
-    const log = createLog(level, message);
-    const logMethod =
-      level === "info"
-        ? console.log
-        : level === "warning"
-          ? console.warn
-          : console.error;
-    logMethod(JSON.stringify(log));
-  }
-
-  if (statusCode >= 200 && statusCode < 300) {
-    logMessage("info", "HTTP successful response");
-  } else if (statusCode >= 400 && statusCode < 500) {
-    logMessage("warning", error || "HTTP warning response");
-  } else if (statusCode >= 500 && error) {
-    logMessage("error", error);
-  }
 }
