@@ -125,23 +125,22 @@ export default function Index() {
   );
 
   return (
-    <div className="flex bg-blue-100">
-      <div className="hidden lg:block flex-none pt-32 pl-32">
+    <div className="flex bg-blue-100 pt-32">
+      <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
         <form {...form.getFormProps()}>
           <input type="hidden" name="questionId" value={question.id} />
           <Question
-            paddingBottom="32"
-            box={{
-              heading: {
-                text: question.question,
-                tagName: "h1",
-                look: "ds-heading-02-reg",
-              },
-              content: question.text ? { markdown: question.text } : undefined,
+            paddingBottom="40"
+            stack={40}
+            heading={{
+              text: question.question,
+              tagName: "h1",
+              look: "ds-heading-02-reg",
             }}
+            content={question.text ? { markdown: question.text } : undefined}
             radio={{
               name: "answer",
               options: options,
@@ -151,7 +150,7 @@ export default function Index() {
               error: form.error("answer"),
             }}
           />
-          <Container paddingTop="0">
+          <Container paddingTop="0" paddingBottom="40">
             <ButtonContainer>
               <Button
                 id="preCheck-next-button"
