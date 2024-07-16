@@ -134,7 +134,7 @@ export default function Index() {
           <input type="hidden" name="questionId" value={question.id} />
           <Question
             paddingBottom="40"
-            stack={40}
+            stack={32}
             heading={{
               text: question.question,
               tagName: "h1",

@@ -16,7 +16,7 @@ export type QuestionProps = {
   content?: RichTextProps;
   select?: SelectProps;
   radio?: RadioGroupProps;
-  stack?: 8 | 16 | 24 | 32 | 40 | 48 | 56 | 64 | 80;
+  stack?: 8 | 16 | 32 | 48;
   additionalClassNames?: string;
 } & PropsWithChildren<CommonWrapperProps>;
 
