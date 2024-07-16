@@ -99,7 +99,6 @@ export default function ResultNegative({
                   : assessment.form.downloadPdfButton.text
               }
               look="primary"
-              size="large"
               iconLeft={<Download />}
               type="submit"
               className="self-start"

@@ -184,7 +184,6 @@ export function ErrorBoundary() {
                 id="error-back-button"
                 text="Zurück zur Startseite"
                 href={PATH_LANDING}
-                size="large"
                 look="tertiary"
               ></Button>
             </ButtonContainer>

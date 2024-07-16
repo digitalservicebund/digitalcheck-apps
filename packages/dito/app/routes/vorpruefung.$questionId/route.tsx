@@ -155,7 +155,6 @@ export default function Index() {
               <Button
                 id="preCheck-next-button"
                 text={nextButton}
-                size="large"
                 type="submit"
                 disabled={form.formState.isSubmitting}
               ></Button>
@@ -163,7 +162,6 @@ export default function Index() {
                 id="preCheck-back-button"
                 text="Zurück"
                 href={question.prevLink}
-                size="large"
                 look="tertiary"
               ></Button>
             </ButtonContainer>

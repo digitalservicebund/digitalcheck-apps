@@ -50,7 +50,6 @@ export const steps = {
       {
         text: "Digitalbezug einschätzen",
         href: PATH_PRECHECK,
-        size: "large" as const,
       },
     ],
   },
@@ -330,7 +329,6 @@ export const preCheck = {
               {
                 text: "Zu den Hilfestellungen",
                 href: PATH_METHODS,
-                size: "large" as const,
               },
             ],
           },
@@ -356,7 +354,6 @@ export const preCheck = {
         link: {
           text: "Zu den Hilfestellungen",
           href: PATH_METHODS,
-          size: "large",
         },
       },
     },
