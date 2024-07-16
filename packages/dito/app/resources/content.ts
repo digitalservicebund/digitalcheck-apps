@@ -60,18 +60,18 @@ export const landing = {
           text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
         },
         content: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.
-        <br />
-        [Zu den Hilfestellungen und Methoden](${PATH_METHODS})`,
+
+[Zu den Hilfestellungen und Methoden](${PATH_METHODS})`,
       },
       {
         headline: {
           text: "Dokumentieren der Digitaltauglichkeit",
         },
         content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.
-        <br />
-        Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
-          <br />
-          [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+<br />
+Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
+
+[Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
       },
       {
         headline: {
