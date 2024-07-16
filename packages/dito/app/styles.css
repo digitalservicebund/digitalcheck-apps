@@ -3,6 +3,7 @@ main .rich-text a {
 }
 
 .precheck-navigation span::after {
+  /* prevent shifting on navigation */
   @apply ds-label-02-bold;
   display: block;
   content: attr(title);
