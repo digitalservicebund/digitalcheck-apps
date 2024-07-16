@@ -132,7 +132,7 @@ export default function Index() {
           />
         </Container>
       )}
-      <Container>
+      <Container additionalClassNames="ds-stack-32">
         <div className="flex flex-col gap-16">
           <Heading
             tagName="div"
@@ -142,45 +142,45 @@ export default function Index() {
           <Heading tagName="h2" text={content.content.title} />
           <RichText markdown={content.content.text} />
         </div>
-      </Container>
-      {content.boxes?.map((box) => (
-        <Container key={box.title}>
-          {box.image && (
-            <div className="rounded-t-lg overflow-hidden">
-              <Background backgroundColor="midBlue">
-                <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
-                  <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
-                    <Image
-                      url={box.image.src}
-                      alternativeText={box.image.alt}
-                    />
+        {content.boxes?.map((box) => (
+          <div key={box.title}>
+            {box.image && (
+              <div className="rounded-t-lg overflow-hidden">
+                <Background backgroundColor="midBlue">
+                  <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
+                    <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
+                      <Image
+                        url={box.image.src}
+                        alternativeText={box.image.alt}
+                      />
+                    </div>
                   </div>
+                </Background>
+              </div>
+            )}
+            <div className="rounded-b-lg overflow-hidden">
+              <Background backgroundColor="blue">
+                <div className="flex flex-col gap-16 px-96 py-64 max-sm:px-16 max-sm:py-32">
+                  <Heading
+                    tagName="div"
+                    className="ds-label-section text-gray-900"
+                    text={box.label}
+                  />
+                  <Heading tagName="h2" text={box.title} />
+                  <RichText markdown={box.text} />
+                  {box.buttons && (
+                    <ButtonContainer>
+                      {box.buttons.map((button) => (
+                        <Button key={button.text ?? button.href} {...button} />
+                      ))}
+                    </ButtonContainer>
+                  )}
                 </div>
               </Background>
             </div>
-          )}
-          <div className="rounded-b-lg overflow-hidden">
-            <Background backgroundColor="blue">
-              <div className="flex flex-col gap-16 px-96 py-64 max-sm:px-16 max-sm:py-32">
-                <Heading
-                  tagName="div"
-                  className="ds-label-section text-gray-900"
-                  text={box.label}
-                />
-                <Heading tagName="h2" text={box.title} />
-                <RichText markdown={box.text} />
-                {box.buttons && (
-                  <ButtonContainer>
-                    {box.buttons.map((button) => (
-                      <Button key={button.text ?? button.href} {...button} />
-                    ))}
-                  </ButtonContainer>
-                )}
-              </div>
-            </Background>
           </div>
-        </Container>
-      ))}
+        ))}
+      </Container>
       {content.tip && (
         <Background backgroundColor="yellow">
           <Container>
