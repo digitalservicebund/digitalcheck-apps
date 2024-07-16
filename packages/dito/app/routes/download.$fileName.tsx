@@ -7,7 +7,6 @@ import trackCustomEvent from "utils/trackCustomEvent.server";
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const { fileName } = params;
 
-  console.log(fileName);
   if (!fileName) {
     throw new Response("Please provide a file name", { status: 400 });
   }
