@@ -31,9 +31,9 @@ const InfoBoxItem = ({
     <li
       id={identifier}
       className={classNames(
-        "flex flex-row items-center justify-center max-w-none max-[499px]:flex-col first:pt-0 scroll-my-40",
+        "flex flex-row items-center justify-center max-w-none max-[499px]:flex-col scroll-my-40",
         {
-          "pt-32 border-0 border-solid border-0 border-t-2 border-gray-400 first:border-none":
+          "pb-40 border-0 border-solid border-0 border-b-2 border-gray-400 last:border-none":
             separator,
         },
       )}
