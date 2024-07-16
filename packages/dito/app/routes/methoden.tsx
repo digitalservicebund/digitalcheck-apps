@@ -26,7 +26,7 @@ export default function Index() {
   const timerOutlined = renderToString(
     <strong className={iconClassName}>
       <TimerOutlined />
-      Zeitaufwand:
+      Zeit:
     </strong>,
   );
   const groupOutlined = renderToString(
@@ -44,7 +44,7 @@ export default function Index() {
 
   const methodStepsItems = methods.steps.items.map((item) => {
     // Modify HTML to be able to style icons
-    item.content = item.content.replaceAll("**Zeitaufwand:**", timerOutlined);
+    item.content = item.content.replaceAll("**Zeit:**", timerOutlined);
     item.content = item.content.replaceAll("**Kollaborativ:**", groupOutlined);
     item.content = item.content.replaceAll(
       "**Support:**",

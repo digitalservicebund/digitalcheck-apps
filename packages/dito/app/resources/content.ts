@@ -401,7 +401,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
       {
         background: "blue",
         headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
-        content: `**Zeitaufwand:** ca. vier Stunden
+        content: `**Zeit:** ca. vier Stunden
 <br />
 <br />
 
@@ -482,7 +482,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         headline: {
           text: "Technische Umsetzbarkeit sicherstellen",
         },
-        content: `**Zeitaufwand:** Richtet sich nach der Komplexität des Vorhabens
+        content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
 <br />
@@ -549,7 +549,7 @@ export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
   subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
   
-  **Zeitaufwand:** ca. vier Stunden`,
+  **Zeit:** ca. vier Stunden`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -604,7 +604,7 @@ export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
   subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
   
-  **Zeitaufwand:** ca. sechs Stunden
+  **Zeit:** ca. sechs Stunden
   <br />
   **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
   accordion: {
@@ -684,7 +684,7 @@ export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
   subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
   
-  **Zeitaufwand:** ca. sechs Stunden
+  **Zeit:** ca. sechs Stunden
   <br />
   **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
   <br />
@@ -844,7 +844,7 @@ export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
  
-**Zeitaufwand:** Richtet sich nach Komplexität des Vorhabens
+**Zeit:** Richtet sich nach Komplexität des Vorhabens
   <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
   <br />
