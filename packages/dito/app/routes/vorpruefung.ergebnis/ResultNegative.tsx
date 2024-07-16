@@ -73,7 +73,7 @@ export default function ResultNegative({
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
       >
-        <form {...form.getFormProps()} className="mt-32">
+        <form {...form.getFormProps()} className="mt-40">
           <fieldset className="ds-stack-32">
             <legend>
               <Heading
