@@ -148,7 +148,7 @@ export default function Index() {
           {box.image && (
             <div className="rounded-t-lg overflow-hidden">
               <Background backgroundColor="midBlue">
-                <div className="p-64 pb-0">
+                <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
                   <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
                     <Image
                       url={box.image.src}
@@ -161,7 +161,7 @@ export default function Index() {
           )}
           <div className="rounded-b-lg overflow-hidden">
             <Background backgroundColor="blue">
-              <div className="flex flex-col gap-16 p-64">
+              <div className="flex flex-col gap-16 px-96 py-64 max-sm:px-16 max-sm:py-32">
                 <Heading
                   tagName="div"
                   className="ds-label-section text-gray-900"
