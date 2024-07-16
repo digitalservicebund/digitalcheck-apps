@@ -158,6 +158,7 @@ export default function Index() {
                 text={nextButton}
                 size="large"
                 type="submit"
+                disabled={form.formState.isSubmitting}
               ></Button>
               <Button
                 id="preCheck-back-button"
