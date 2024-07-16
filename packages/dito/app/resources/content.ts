@@ -220,7 +220,7 @@ export const preCheck = {
         "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       negativeResult:
         "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
-      text: "**Praxisbeispiel**: Eine Datenbank erfasst potentielle Schadstoffe in Lebensmitteln. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür wird die Datenbank (das IT-System) angepasst.",
+      text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
       hint: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
@@ -235,7 +235,7 @@ export const preCheck = {
         "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
       positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
       negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
-      text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach den selben Kriterien geprüft werden. Die Prüfkriterien — und damit der Prozess in der Behörde — müssen angepasst werden. Damit entstehen neue Verpflichtungen für sowohl das produzierende Gewerbe als auch für die Behörde.",
+      text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
       hint: hintInvolved,
     },
     {
@@ -247,7 +247,7 @@ export const preCheck = {
         "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
       negativeResult:
         "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
-      text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Andere Daten müssen erst erhoben werden.",
+      text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
     },
     {
       id: "kommunikation",
@@ -270,7 +270,7 @@ export const preCheck = {
         "kann den Aufwand für Betroffene durch (Teil&#8209;)Automatisierung reduzieren.",
       negativeResult:
         "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
-      text: "**Praxisbeispiel**: Durch die Auszahlung einer Pauschale entfällt das Errechnen eines Leistungsanspruchs.",
+      text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
       hint: {
         title: "Wer sind Betroffene?",
         text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
@@ -300,9 +300,9 @@ export const preCheck = {
     title: "Ergebnis der Vorprüfung",
     positive: {
       title: "Ihr Regelungsvorhaben hat Digitalbezug.",
-      reasoningIntro: "Das Regelungsvorhaben...",
+      reasoningIntro: "Das Regelungsvorhaben ...",
       actionButton: {
-        text: "Vorprüfung runterladen",
+        text: "Vorprüfung herunterladen",
         href: PATH_ASSESSMENT,
       },
       nextSteps: {
@@ -334,9 +334,9 @@ export const preCheck = {
       },
     },
     unsure: {
-      title: "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
+      title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:0151/40767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
-      unsureIntro: '**Folgende Fragen haben Sie mit "Unsicher" beantwortet:**',
+      unsureIntro: '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
       actionButton: {
         text: "Vorprüfung wiederholen",
@@ -344,10 +344,10 @@ export const preCheck = {
       },
       nextStep: {
         title:
-          "Sie können auch ohne Vorprüfung Digitaltauglichkeit im Regelungsvorhaben sicherstellen",
+          "Sie können auch ohne positive Vorprüfung die Digitaltauglichkeit Ihres Regelungsvorhabens sicherstellen.",
         text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
         link: {
-          text: "Zu den Hilfestellungen und Methoden",
+          text: "Zu den Hilfestellungen",
           href: PATH_METHODS,
           size: "large",
         },
@@ -355,7 +355,7 @@ export const preCheck = {
     },
     negative: {
       title: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
-      reasoningIntro: "Das Regelungsvorhaben...",
+      reasoningIntro: "Das Regelungsvorhaben ...",
       nextSteps: {
         title: "So machen Sie weiter",
         steps: [stepPreCheckFinished, stepNKR],
@@ -365,9 +365,9 @@ export const preCheck = {
 };
 
 export const assessment = {
-  title: "Erhalten Sie die Einschätzung als PDF",
+  title: "Erhalten Sie die ausgefüllte Vorprüfung als PDF",
   subtitle:
-    "Lassen Sie uns Ihre E-Mail-Adresse da und Sie bekommen eine **Kopie der Einschätzung des Digitalbezugs** per E-Mail zugestellt. Diese können Sie für ihre eigenen Unterlagen nutzen.",
+    "Fügen Sie den Arbeitstitel Ihres Regelungsvorhabens hinzu und laden Sie die ausgefüllte Vorprüfung als PDF herunter. Diese können Sie für Ihre eigenen Unterlagen nutzen.",
   form: {
     formLegend: "Bitte erläutern Sie Ihre Einschätzung.",
     policyTitleLabel: "Arbeitstitel des Vorhabens",
@@ -378,7 +378,7 @@ export const assessment = {
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
     downloadPdfButton: {
-      text: "Ergebnis der Vorprüfung als PDF herunterladen",
+      text: "Vorprüfung herunterladen",
     },
     receiveEmailButton: {
       text: "Per E-Mail erhalten",
