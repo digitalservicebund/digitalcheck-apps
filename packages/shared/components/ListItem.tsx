@@ -100,7 +100,7 @@ const ListItem = ({
                 </div>
                 {content && <RichText markdown={content} />}
                 {buttons && buttons.length > 0 && (
-                  <ButtonContainer className="mt-16">
+                  <ButtonContainer>
                     {buttons.map((button) => (
                       <Button key={button.text ?? button.href} {...button} />
                     ))}
