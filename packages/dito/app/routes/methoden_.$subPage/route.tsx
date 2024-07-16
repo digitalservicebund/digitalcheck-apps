@@ -9,7 +9,7 @@ import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, MetaFunction, useLoaderData } from "@remix-run/react";
-import FeedbackBanner from "components/FeedbackBanner";
+import InterviewBanner from "components/InterviewBanner";
 import {
   collectITSystems,
   responsibleActors,
@@ -233,7 +233,7 @@ export default function Index() {
           </div>
         </Container>
       )}
-      <FeedbackBanner />
+      <InterviewBanner />
     </>
   );
 }

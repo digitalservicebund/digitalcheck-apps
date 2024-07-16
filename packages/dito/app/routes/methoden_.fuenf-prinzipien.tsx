@@ -8,7 +8,7 @@ import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import FeedbackBanner from "components/FeedbackBanner";
+import InterviewBanner from "components/InterviewBanner";
 import { fivePrincipals, siteMeta } from "resources/content";
 import { PATH_METHODS } from "resources/staticRoutes";
 import { BASE_URL } from "utils/constants.server";
@@ -100,7 +100,7 @@ export default function Index() {
           )}
         </div>
       </Container>
-      <FeedbackBanner />
+      <InterviewBanner />
     </>
   );
 }

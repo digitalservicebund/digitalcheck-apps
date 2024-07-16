@@ -132,6 +132,11 @@ export const feedbackBanner = {
   text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de) oder [0151/40 76 78 39](tel:0151/40767839). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
 };
 
+export const interviewBanner = {
+  title: "Wir suchen Gesprächspartner!",
+  text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20digitalcheck.bund.de).`,
+};
+
 const hintInvolved = {
   title: "Wer sind Beteiligte?",
   text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteurinnen und -akteure als auch Betroffene sein.
