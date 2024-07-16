@@ -6,7 +6,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
-import WarningOutlined from "@digitalservicebund/icons/WarningOutlined";
+import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
 import { type ReactNode } from "react";
 
 export default function ResultHeaderWithReasoning({
@@ -40,7 +40,7 @@ export default function ResultHeaderWithReasoning({
             {
               {
                 positive: <CheckCircleOutlined className={iconClassName} />,
-                unsure: <WarningOutlined className={iconClassName} />,
+                unsure: <WarningAmberOutlined className={iconClassName} />,
                 negative: <CancelOutlined className={iconClassName} />,
               }[resultType]
             }
