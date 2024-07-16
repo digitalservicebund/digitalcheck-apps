@@ -29,6 +29,10 @@ const slugify = (string: string) =>
 export default function Index() {
   const { referrer } = useLoaderData<typeof loader>();
 
+  const nextStep = referrer.startsWith(PATH_METHODS)
+    ? fivePrincipals.nextStepMethods
+    : fivePrincipals.nextStep;
+
   return (
     <>
       <Background backgroundColor="blue">
@@ -38,7 +42,7 @@ export default function Index() {
               tagName: "h1",
               text: fivePrincipals.title,
             }}
-          ></Header>
+          />
           <div className="mt-64">
             <Heading tagName="div" text="Inhalt" className="font-bold" />
             <ol className="ds-stack-8 mt-16">
@@ -78,27 +82,24 @@ export default function Index() {
           </Container>
         </Background>
       ))}
-      {referrer.startsWith(PATH_METHODS) && // Only show next steps
-        fivePrincipals.nextStep && (
-          <Container>
-            <div className="flex flex-col gap-16">
-              <Heading
-                tagName="div"
-                className="ds-label-section text-gray-900"
-                text={fivePrincipals.nextStep.label}
-              />
-              <Heading tagName="h2" text={fivePrincipals.nextStep.title} />
-              <RichText markdown={fivePrincipals.nextStep.text} />
-              {fivePrincipals.nextStep.buttons && (
-                <ButtonContainer>
-                  {fivePrincipals.nextStep.buttons.map((button) => (
-                    <Button key={button.text ?? button.href} {...button} />
-                  ))}
-                </ButtonContainer>
-              )}
-            </div>
-          </Container>
-        )}
+      <Container>
+        <div className="flex flex-col gap-16">
+          <Heading
+            tagName="div"
+            className="ds-label-section text-gray-900"
+            text={nextStep.label}
+          />
+          <Heading tagName="h2" text={nextStep.title} />
+          <RichText markdown={nextStep.text} />
+          {nextStep.buttons && (
+            <ButtonContainer>
+              {nextStep.buttons.map((button) => (
+                <Button key={button.text ?? button.href} {...button} />
+              ))}
+            </ButtonContainer>
+          )}
+        </div>
+      </Container>
       <FeedbackBanner />
     </>
   );

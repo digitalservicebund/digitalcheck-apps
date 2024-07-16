@@ -3,6 +3,7 @@ import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_ASSESSMENT,
   PATH_DOCUMENTATION_PDF,
+  PATH_LANDING,
   PATH_METHODS,
   PATH_METHODS_COLLECT_IT_SYSTEMS,
   PATH_METHODS_FIVE_PRINCIPALS,
@@ -746,6 +747,17 @@ export const fivePrincipals = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
   principals: [
     {
+      label: "Anleitung",
+      title: "So nutzen Sie die fünf Prinzipien für Ihr Regelungsvorhaben",
+      content: `### Als konkrete Umsetzungstipps
+
+Nutzen Sie die Tipps als Inspiration, um in Ihrem Regelungsvorhaben die Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen.
+
+### Als Checkliste für den Gesamtprozess
+
+Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf visualisieren.digitalcheck.bund.de.`,
+    },
+    {
       label: "Prinzip 1",
       title: "Digitale Kommunikation sicherstellen",
       content: `### Darum ist das wichtig
@@ -826,15 +838,27 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 - Versuchen Sie, Rechtsbegriffe zu harmonisieren. Verwenden Sie definierte Rechtsbegriffe aus Ihrem Rechtsbereich. Auslegungen verhindern die vollständige Automatisierung von Umsetzungsprozessen.`,
     },
   ],
-  nextStep: {
+  nextStepMethods: {
     label: "So geht es weiter:",
 
-    title: "Content is coming...",
-    text: `Content is coming...`,
+    title: "Technische Umsetzbarkeit sicherstellen",
+    text: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.`,
     buttons: [
       {
         text: "Zum nächsten Schritt",
         href: PATH_METHODS_TECHNICAL_FEASIBILITY,
+      },
+    ],
+  },
+  nextStep: {
+    label: "So geht es weiter:",
+
+    title: "Vorprüfung: Digitalbezug einschätzen",
+    text: `Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.`,
+    buttons: [
+      {
+        text: "Digitalbezug einschätzen",
+        href: PATH_LANDING,
       },
     ],
   },
