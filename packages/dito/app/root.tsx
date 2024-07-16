@@ -119,7 +119,7 @@ function Document({
         <script
           defer
           // TODO: Switch to this when we can figure out how to reliably access selected (opt-in only) server env variables in client code...
-          // data-domain={BASE_URL.replace(/https?:\/\//i, "")} // Regex replace: https://<domain-name> -> <domain-name>
+          // data-domain={PLAUSIBLE_DOMAIN}
           data-domain="digitalcheck-dito.prod.ds4g.net"
           data-api="/proxy-pl-event"
           src="/proxy-pl-script.js"

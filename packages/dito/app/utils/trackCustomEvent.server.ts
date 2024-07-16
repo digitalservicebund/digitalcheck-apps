@@ -1,5 +1,4 @@
-const plausibleUrl = "https://plausible.io/api/event";
-const plausibleDomain = "digitalcheck-dito.prod.ds4g.net";
+import { PLAUSIBLE_DOMAIN, PLAUSIBLE_URL } from "./constants.server";
 
 export default async function trackCustomEvent(
   request: Request,
@@ -10,10 +9,10 @@ export default async function trackCustomEvent(
     return;
   }
   try {
-    const response = await fetch(plausibleUrl, {
+    const response = await fetch(PLAUSIBLE_URL, {
       method: "POST",
       body: JSON.stringify({
-        domain: plausibleDomain,
+        domain: PLAUSIBLE_DOMAIN,
         url: request.url,
         referrer: request.referrer,
         ...event,
