@@ -176,6 +176,7 @@ export function ErrorBoundary() {
               }}
               content={{
                 markdown: errorMessage,
+                className: "md:text-2xl",
               }}
             />
             <ButtonContainer className="mt-32">

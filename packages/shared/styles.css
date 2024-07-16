@@ -144,11 +144,11 @@
     padding-left: 1.5rem;
   }
 
-  .rich-text p {
+  .rich-text {
     @apply text-lg;
   }
 
-  .rich-text-2xl p {
+  .rich-text-2xl {
     @apply text-2xl;
   }
 }

@@ -27,6 +27,7 @@ export default function Index() {
             }}
             content={{
               markdown: documentation.subtitle,
+              className: "md:text-2xl",
             }}
           />
           <ButtonContainer className="mt-48">

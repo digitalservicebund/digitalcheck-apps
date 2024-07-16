@@ -26,7 +26,7 @@ export default function Index() {
             }}
             content={{
               markdown: landing.subtitle,
-              className: "rich-text-2xl max-sm:rich-text",
+              className: "md:text-2xl",
             }}
           ></Header>
         </Container>

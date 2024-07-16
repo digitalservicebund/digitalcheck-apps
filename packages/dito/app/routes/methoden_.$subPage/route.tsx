@@ -117,6 +117,7 @@ export default function Index() {
             }}
             content={{
               markdown: content.subtitle,
+              className: "md:text-2xl",
             }}
           ></Header>
         </Container>
