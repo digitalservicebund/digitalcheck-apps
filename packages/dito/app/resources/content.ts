@@ -129,7 +129,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 
 export const feedbackBanner = {
   title: "Haben Sie Fragen oder Anmerkungen?",
-  text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de) oder [0151/40 76 78 39](tel:0151/40767839). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
+  text: `Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt, oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Anmerkungen:%20digitalcheck.bund.de) oder [0151/40 76 78 39](tel:0151/40767839). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.`,
 };
 
 export const interviewBanner = {
