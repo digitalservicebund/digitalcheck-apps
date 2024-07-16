@@ -76,6 +76,7 @@ test.describe("test questions form", () => {
   }) => {
     // was a bit of a hassle to get the cookie and react-hook-form to work together with useEffect
     // that's why the test is a bit more extensive than it could be
+    // we've sinced moved to using rvf but we'll keep it like this for now
     await page.goto(PATH_PRECHECK);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Ja").click();
@@ -135,6 +136,7 @@ test.describe("test questions form", () => {
     await expect(page).toHaveURL(questions[2].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.waitForURL(questions[3].url);
     await page.goto(questions[4].url);
     await expect(page).toHaveURL(questions[3].url);
   });

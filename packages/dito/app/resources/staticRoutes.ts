@@ -1,7 +1,10 @@
+const PRE_CHECK_PDF = "digitalcheck-vorpruefung.pdf";
+
 export const PATH_LANDING: string = "/";
 export const PATH_PRECHECK: string = "/vorpruefung";
 export const PATH_RESULT: string = `${PATH_PRECHECK}/ergebnis`;
 export const PATH_ASSESSMENT: string = `${PATH_RESULT}/einschaetzung`;
+export const PATH_ASSESSMENT_PDF: string = `${PATH_ASSESSMENT}/${PRE_CHECK_PDF}`;
 export const PATH_METHODS = "/methoden";
 export const PATH_METHODS_RESPONSIBLE_ACTORS = `${PATH_METHODS}/zustaendige-akteurinnen`;
 export const PATH_METHODS_TASKS_PROCESSES = `${PATH_METHODS}/ablaeufe-aufgaben-erfassen`;
@@ -11,8 +14,7 @@ export const PATH_METHODS_TECHNICAL_FEASIBILITY = `${PATH_METHODS}/technische-um
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
-export const PATH_PRECHECK_PDF: string =
-  "/download/digitalcheck-vorpruefung.pdf";
+export const PATH_PRECHECK_PDF: string = `/download/${PRE_CHECK_PDF}`;
 export const PATH_DOCUMENTATION_PDF: string =
   "/download/digitalcheck-begleitende-dokumentation.pdf";
 

@@ -7,6 +7,8 @@ import Header from "@digitalcheck/shared/components/Header";
 import Question from "@digitalcheck/shared/components/Question";
 import { RadioOptionsProps } from "@digitalcheck/shared/components/RadioGroup";
 import { SelectOptionsProps } from "@digitalcheck/shared/components/Select";
+import { useForm } from "@rvf/react";
+import { withZod } from "@rvf/zod";
 import type { Entity } from "models/Entity";
 import type { Reason } from "models/Reason";
 import type { Ressort } from "models/Ressort";
@@ -16,11 +18,11 @@ import {
   getAllReasons,
   getAllRessorts,
 } from "persistance/repository";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { UseFormReturn, useForm } from "react-hook-form";
+import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router";
 import { trackSelection } from "services/tracking";
 import useTitle from "services/useTitle";
+import { z } from "zod";
 import { PATH_RESULT } from ".";
 
 export type QuizPageProps = {
@@ -68,6 +70,18 @@ function onChangeHandler<Type extends Entity>(
   setEntity(selectedEntity ?? null);
 }
 
+const validator = withZod(
+  z.object({
+    ressort: z
+      .string()
+      .min(1, { message: "Bitte wählen Sie ein Ressort aus." }),
+    object: z.string({
+      required_error: "Bitte wählen Sie eine Visualisierung aus.",
+    }),
+    reason: z.string({ required_error: "Bitte wählen Sie einen Grund aus." }),
+  }),
+);
+
 function QuizPage({
   ressort,
   setRessort,
@@ -77,32 +91,18 @@ function QuizPage({
   setReason,
 }: Readonly<QuizPageProps>) {
   useTitle("Werkzeugfinder für Visualisierungen");
-
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  }: UseFormReturn = useForm();
+  const form = useForm({
+    validator,
+    handleSubmit: () => {
+      trackSelection(ressort, object, reason);
+      navigate(PATH_RESULT);
+    },
+  });
 
   const ressorts = getAllRessorts();
   const objects = getAllObjects();
   const reasons = getAllReasons();
-
-  const onChangeRessort = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeHandler(e.target.value, setRessort, ressorts);
-  };
-  const onChangeObject = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeHandler(e.target.value, setObject, objects);
-  };
-  const onChangeReason = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeHandler(e.target.value, setReason, reasons);
-  };
-
-  const onSubmit = () => {
-    trackSelection(ressort, object, reason);
-    navigate(PATH_RESULT);
-  };
 
   return (
     <>
@@ -121,7 +121,7 @@ function QuizPage({
       </Background>
       <BetaBanner />
       <div className="pt-80 max-w-2xl m-auto">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form {...form.getFormProps()}>
           <Question
             box={{
               label: {
@@ -139,10 +139,10 @@ function QuizPage({
               name: "ressort",
               label: "Ressort",
               value: ressort?.id,
-              onChange: onChangeRessort,
+              onChange: (e: ChangeEvent<HTMLSelectElement>) =>
+                onChangeHandler(e.target.value, setRessort, ressorts),
               options: mapToSelectOptions(ressorts),
-              formRegister: register,
-              error: errors["ressort"],
+              error: form.error("ressort"),
             }}
           />
           <Question
@@ -161,10 +161,10 @@ function QuizPage({
             radio={{
               name: "object",
               selectedValue: object?.id,
-              onChange: onChangeObject,
+              onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                onChangeHandler(e.target.value, setObject, objects),
               options: mapToRadioOptions(objects),
-              formRegister: register,
-              error: errors["object"],
+              error: form.error("object"),
             }}
           />
           <Question
@@ -183,10 +183,10 @@ function QuizPage({
             radio={{
               name: "reason",
               selectedValue: reason?.id,
-              onChange: onChangeReason,
+              onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                onChangeHandler(e.target.value, setReason, reasons),
               options: mapToRadioOptions(reasons),
-              formRegister: register,
-              error: errors["reason"],
+              error: form.error("reason"),
             }}
           />
           <Container paddingTop="0" paddingBottom="80">
