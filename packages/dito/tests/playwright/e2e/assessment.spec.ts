@@ -43,6 +43,9 @@ test.describe("test positive assessment page and PDF", () => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
@@ -84,12 +87,21 @@ test.describe("test positive assessment page and PDF", () => {
       .getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE)
       .isChecked();
     expect(negative).toBe(false);
+
+    // wait 2 seconds for the download button to be reenabled
+    await page.waitForTimeout(2000);
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
   });
 
   test("title is required for PDF", async ({ page }) => {
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
+    );
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
     );
   });
 
@@ -99,6 +111,9 @@ test.describe("test positive assessment page and PDF", () => {
       .fill("Policy #987".repeat(500));
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
   });
 });
 
@@ -122,6 +137,9 @@ test.describe("test PDF generation in negative case", () => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
@@ -168,11 +186,20 @@ test.describe("test PDF generation in negative case", () => {
       .getTextField(FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING)
       .getText();
     expect(negativeReasoning).toBe("Dieses Vorhaben hat keinen Digitalbezug.");
+
+    // wait 2 seconds for the download button to be reenabled
+    await page.waitForTimeout(2000);
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
   });
 
   test("negative reasoning is required for PDF", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     );
@@ -183,6 +210,9 @@ test.describe("test PDF generation in negative case", () => {
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
@@ -196,5 +226,8 @@ test.describe("test PDF generation in negative case", () => {
     await page.getByRole("button", { name: "Als PDF herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).toContainText("kürzere Begründung");
+    await expect(page.getByRole("main")).not.toContainText(
+      "Ihr Ergebnis wird heruntergeladen",
+    );
   });
 });

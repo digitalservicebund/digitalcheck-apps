@@ -10,6 +10,7 @@ import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download.js";
 
+import { useEffect, useState } from "react";
 import { assessment, preCheck } from "resources/content";
 import { PATH_ASSESSMENT_PDF } from "resources/staticRoutes";
 import getReasoningText from "./getReasoningText";
@@ -46,6 +47,23 @@ export default function ResultNegative({
     reasoningIntro,
     "negativeResult",
   );
+  const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (form.formState.isValid && form.formState.isSubmitting) {
+      // disable download button for 2 seconds as we don't know when the PDF is ready
+      setDownloadIsDisabled(true);
+      const timeout = setTimeout(() => {
+        form.resetForm();
+        setDownloadIsDisabled(false);
+      }, 2000);
+      // reset downloadIsDisabled and clear timeout to handle submit without input
+      return () => {
+        setDownloadIsDisabled(false);
+        clearTimeout(timeout);
+      };
+    }
+  }, [form]);
 
   return (
     <>
@@ -75,12 +93,17 @@ export default function ResultNegative({
               error={form.error("title")}
             />
             <Button
-              text={assessment.form.downloadPdfButton.text}
+              text={
+                downloadIsDisabled
+                  ? assessment.form.downloadStarted
+                  : assessment.form.downloadPdfButton.text
+              }
               look="primary"
               size="large"
               iconLeft={<Download />}
               type="submit"
               className="self-start"
+              disabled={downloadIsDisabled}
             />
           </fieldset>
         </form>
