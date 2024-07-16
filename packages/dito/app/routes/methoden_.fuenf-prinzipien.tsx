@@ -1,11 +1,9 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Button from "@digitalcheck/shared/components/Button";
-import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
@@ -83,22 +81,12 @@ export default function Index() {
         </Background>
       ))}
       <Container>
-        <div className="flex flex-col gap-16">
-          <Heading
-            tagName="div"
-            className="ds-label-section text-gray-900"
-            text={nextStep.label}
-          />
-          <Heading tagName="h2" text={nextStep.title} />
-          <RichText markdown={nextStep.text} />
-          {nextStep.buttons && (
-            <ButtonContainer>
-              {nextStep.buttons.map((button) => (
-                <Button key={button.text ?? button.href} {...button} />
-              ))}
-            </ButtonContainer>
-          )}
-        </div>
+        <Box
+          heading={{ text: nextStep.title }}
+          label={{ text: nextStep.label }}
+          content={{ markdown: nextStep.text }}
+          buttons={nextStep.buttons}
+        />
       </Container>
       <InterviewBanner />
     </>

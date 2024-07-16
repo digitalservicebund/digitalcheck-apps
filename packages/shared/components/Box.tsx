@@ -31,7 +31,13 @@ const Box = ({
       id={identifier}
     >
       <div className="ds-stack-8">
-        {label && <Heading tagName="p" look="ds-label-02" {...label} />}
+        {label && (
+          <Heading
+            tagName="div"
+            look="ds-label-section text-gray-900"
+            {...label}
+          />
+        )}
         {heading && <Heading tagName="h2" {...heading} />}
         {content && <RichText {...content} />}
       </div>

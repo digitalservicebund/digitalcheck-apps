@@ -1,12 +1,9 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Button from "@digitalcheck/shared/components/Button";
-import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
+import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Header from "@digitalcheck/shared/components/Header";
-import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
-import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
@@ -133,15 +130,11 @@ export default function Index() {
         </Container>
       )}
       <Container additionalClassNames="ds-stack-32">
-        <div className="flex flex-col gap-16">
-          <Heading
-            tagName="div"
-            className="ds-label-section text-gray-900"
-            text={content.content.label}
-          />
-          <Heading tagName="h2" text={content.content.title} />
-          <RichText markdown={content.content.text} />
-        </div>
+        <Box
+          heading={{ text: content.content.title }}
+          label={{ text: content.content.label }}
+          content={{ markdown: content.content.text }}
+        />
         {content.boxes?.map((box) => (
           // TODO: This is very similar to the markup used in <ListItem /> when a background color is provided.
           // We should probably create a component for this to keep it consistent.
@@ -162,22 +155,13 @@ export default function Index() {
             )}
             <div className="rounded-b-lg overflow-hidden">
               <Background backgroundColor="blue">
-                <div className="flex flex-col gap-16 px-96 py-64 max-sm:px-16 max-sm:py-32">
-                  <Heading
-                    tagName="div"
-                    className="ds-label-section text-gray-900"
-                    text={box.label}
-                  />
-                  <Heading tagName="h2" text={box.title} />
-                  <RichText markdown={box.text} />
-                  {box.buttons && (
-                    <ButtonContainer>
-                      {box.buttons.map((button) => (
-                        <Button key={button.text ?? button.href} {...button} />
-                      ))}
-                    </ButtonContainer>
-                  )}
-                </div>
+                <Box
+                  heading={{ text: box.title }}
+                  label={{ text: box.label }}
+                  content={{ markdown: box.text }}
+                  buttons={box.buttons}
+                  additionalClassNames="px-96 py-64 max-sm:px-16 max-sm:py-32"
+                />
               </Background>
             </div>
           </div>
@@ -186,51 +170,33 @@ export default function Index() {
       {content.tip && (
         <Background backgroundColor="yellow">
           <Container>
-            <div className="flex flex-col gap-16">
-              <Heading
-                tagName="div"
-                className="ds-label-section text-gray-900"
-                text={content.tip.label}
-              />
-              <Heading tagName="h2" text={content.tip.title} />
-              <RichText markdown={content.tip.text} />
-            </div>
+            <Box
+              heading={{ text: content.tip.title }}
+              label={{ text: content.tip.label }}
+              content={{ markdown: content.tip.text }}
+            />
           </Container>
         </Background>
       )}
       {content.support && (
         <Background backgroundColor="blue">
           <Container>
-            <div className="flex flex-col gap-16">
-              <Heading
-                tagName="div"
-                className="ds-label-section text-gray-900"
-                text={content.support.label}
-              />
-              <Heading tagName="h2" text={content.support.title} />
-              <RichText markdown={content.support.text} />
-            </div>
+            <Box
+              heading={{ text: content.support.title }}
+              label={{ text: content.support.label }}
+              content={{ markdown: content.support.text }}
+            />
           </Container>
         </Background>
       )}
       {content.nextStep && (
         <Container>
-          <div className="flex flex-col gap-16">
-            <Heading
-              tagName="div"
-              className="ds-label-section text-gray-900"
-              text={content.nextStep.label}
-            />
-            <Heading tagName="h2" text={content.nextStep.title} />
-            <RichText markdown={content.nextStep.text} />
-            {content.nextStep.buttons && (
-              <ButtonContainer>
-                {content.nextStep.buttons.map((button) => (
-                  <Button key={button.text ?? button.href} {...button} />
-                ))}
-              </ButtonContainer>
-            )}
-          </div>
+          <Box
+            heading={{ text: content.nextStep.title }}
+            label={{ text: content.nextStep.label }}
+            content={{ markdown: content.nextStep.text }}
+            buttons={content.nextStep.buttons}
+          />
         </Container>
       )}
       <InterviewBanner />
