@@ -11,7 +11,7 @@ import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { fivePrincipals, siteMeta } from "resources/content";
 import { PATH_METHODS } from "resources/staticRoutes";
-import { BASE_URL } from "utils/constants";
+import { BASE_URL } from "utils/constants.server";
 
 export function loader({ request }: LoaderFunctionArgs) {
   return json({

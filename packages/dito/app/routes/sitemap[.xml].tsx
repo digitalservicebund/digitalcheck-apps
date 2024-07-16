@@ -1,5 +1,5 @@
 import allRoutes from "resources/allRoutes";
-import { BASE_URL } from "utils/constants";
+import { BASE_URL } from "utils/constants.server";
 
 export const loader = () => {
   const urls = allRoutes.map((route) => `${BASE_URL}${route.url}`);
