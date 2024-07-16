@@ -637,7 +637,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   boxes: [
     {
       image: {
-        src: "/assets/images/ebenen-auswaehlen-und-ansprechpersonen-sammeln.png", // TODO: Image doesn't exist yet
+        src: "/assets/images/ebenen-auswaehlen-und-ansprechpersonen-sammeln.png",
         alt: `Eine Excel-Tabelle mit dem Titel "Beteiligte Ebenen auswählen und Ansprechpersonen sammeln für [ARBEITSTITEL]" enthält Spalten für Name, Zuständigkeit, Akteursgruppe, Kontaktdaten und Bemerkungen. Der erste Eintrag listet als Beispiel "Maria Muster" als Referentin für das Statistische Bundesamt, zugehörig zur Akteursgruppe "Bund" mit ihren Kontaktdaten.`,
       },
       label: "Vorlage",
@@ -646,7 +646,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/download/Vorlage - Zuständige Akteurinnen und Akteure.xlsx", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - Zuständige Akteurinnen und Akteure.xlsx",
         },
       ],
     },
@@ -694,7 +694,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
   boxes: [
     {
       image: {
-        src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png", // TODO: Image doesn't exist yet
+        src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png",
         alt: `Ein Flussdiagramm mit dem Titel "Beispielprozess-Ablauf 'Einkommensteuer-Erklärung durchführen'". Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als "Akteurin oder Akteur" beschriftet. Als Beispiel steht darunter "Finanzämter". Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit "Arbeitsprozess" beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als "Adressatin oder Adressat". Als Beispiel ist "Bundeszentralamt für Steuern" eingetragen.`,
       },
       label: "Vorlage",
@@ -707,13 +707,13 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/download/Vorlage - Einfache Abläufe und Aufgaben erfassen.xlsx", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - Einfache Abläufe und Aufgaben erfassen.xlsx",
         },
       ],
     },
     {
       image: {
-        src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png", // TODO: Image doesn't exist yet
+        src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
         alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
@@ -775,7 +775,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
   boxes: [
     {
       image: {
-        src: "/assets/images/it-systeme-erfassen.png", // TODO: Image doesn't exist yet
+        src: "/assets/images/it-systeme-erfassen.png",
         alt: `Eine Excel-Tabelle mit dem Titel "IT-Systeme erfassen für [ARBEITSTITEL]", die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
       },
       label: "Vorlage",
@@ -785,7 +785,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/download/Vorlage - IT-Systeme erfassen.xlsx", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - IT-Systeme erfassen.xlsx",
         },
       ],
     },
@@ -954,7 +954,7 @@ So erfahren Sie
   boxes: [
     {
       image: {
-        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png", // TODO: Image doesn't exist yet
+        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png", // TODO: Replace image
         alt: ``, // TODO: Alt text
       },
       label: "Vorlage",
