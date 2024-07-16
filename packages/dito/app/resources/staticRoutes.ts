@@ -11,6 +11,7 @@ export const PATH_METHODS_TASKS_PROCESSES = `${PATH_METHODS}/ablaeufe-aufgaben-e
 export const PATH_METHODS_COLLECT_IT_SYSTEMS = `${PATH_METHODS}/it-systeme-erfassen`;
 export const PATH_METHODS_FIVE_PRINCIPALS: string = `${PATH_METHODS}/fuenf-prinzipien`;
 export const PATH_METHODS_TECHNICAL_FEASIBILITY = `${PATH_METHODS}/technische-umsetzbarkeit`;
+export const PATH_DOCUMENTATION: string = "/dokumentation";
 export const PATH_IMPRINT: string = "/impressum";
 export const PATH_PRIVACY: string = "/datenschutz";
 export const PATH_A11Y: string = "/barrierefreiheit";
@@ -81,6 +82,11 @@ const routes: Route[] = [
     url: PATH_METHODS_TECHNICAL_FEASIBILITY,
     title: "Technische Umsetzbarkeit sicherstellen",
     parent: PATH_METHODS,
+  },
+  {
+    url: PATH_DOCUMENTATION,
+    title: "Dokumentation",
+    parent: PATH_LANDING,
   },
   {
     url: PATH_IMPRINT,

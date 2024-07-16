@@ -2,6 +2,7 @@ import type { TMethodPage } from "routes/methoden_.$subPage/route";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_ASSESSMENT,
+  PATH_DOCUMENTATION,
   PATH_DOCUMENTATION_PDF,
   PATH_LANDING,
   PATH_METHODS,
@@ -71,7 +72,7 @@ export const landing = {
 <br />
 Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
 
-[Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+[Zur Dokumentation](${PATH_DOCUMENTATION})`,
       },
       {
         headline: {
@@ -324,7 +325,7 @@ export const preCheck = {
             headline: {
               text: "Dokumentieren der Digitaltauglichkeit",
             },
-            content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen. [Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+            content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen. [Zur Dokumentation](${PATH_DOCUMENTATION})`,
           },
           stepNKR,
         ],
@@ -544,7 +545,65 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
 
         content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.
 
-[Zur Dokumentation](${PATH_DOCUMENTATION_PDF})`,
+[Zur Dokumentation](${PATH_DOCUMENTATION})`,
+      },
+      stepNKR,
+    ],
+  },
+};
+
+export const documentation = {
+  title: "3. Dokumentieren der Digitaltauglichkeit",
+  subtitle: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.`,
+  buttons: [
+    {
+      text: "Dokumentation runterladen",
+      href: PATH_DOCUMENTATION_PDF,
+    },
+    {
+      text: "Zurück",
+      href: PATH_LANDING,
+      look: "tertiary",
+    },
+  ],
+  multipleNotice: {
+    headline: "Haben Sie mehr als eine Regelung in Ihrem Vorhaben?",
+    content:
+      "Wenn Sie mehrere Regelungen ändern, bündeln Sie diese als inhaltlich sinnvolle Vorhaben, für die Sie jeweils eine Dokumentation ausfüllen.",
+  },
+  summary: {
+    title: "Zusammengefasst",
+    items: [
+      {
+        headline: { text: "Beginnen Sie so früh wie möglich" },
+        content: `Schicken Sie die begleitende Dokumentation so früh wie möglich an Ihre Ansprechperson im NKR-Sekretariat, spätestens mit der Einleitung der Ressortabstimmung. Fügen Sie die Dokumentation des Digitalcheck und Visualisierungen des Umsetzungsprozesses gerne auch der Ressortabstimmung bei, damit Ihre Kolleginnen und Kollegen Ihre Entscheidungen nachvollziehen können.`,
+      },
+      {
+        headline: { text: "Das prüft der Nationale Normenkontrollrat" },
+        content: `Der NKR prüft das Regelungsvorhaben auf Möglichkeiten der digitalen Umsetzung auf Basis des von Ihnen durchgeführten Digitalcheck. Das wesentliche Prüfkriterium ist die methodische und inhaltliche Nachvollziehbarkeit. Sein Prüfergebnis veröffentlicht er gegebenenfalls in seinen Stel-lungnahmen. Wenn Sie eine Visualisierung angefertigt haben und Sie der Veröffentlichung zustim-men, kann diese an die Stellungnahme angehängt werden. Bei Fragen oder Anregungen kommt Ihre Ansprechperson im NKR-Sekretariat auf Sie zu.`,
+      },
+    ],
+  },
+  nextSteps: {
+    title: "So machen Sie weiter",
+    items: [
+      {
+        headline: {
+          text: "Vorprüfung: der Digitalbezug wurde eingeschätzt",
+        },
+        isDisabled: true,
+      },
+      {
+        headline: {
+          text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+        },
+        isDisabled: true,
+      },
+      {
+        headline: {
+          text: "Dokumentieren der Digitaltauglichkeit",
+        },
+        isDisabled: true,
       },
       stepNKR,
     ],
