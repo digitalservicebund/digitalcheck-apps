@@ -76,6 +76,8 @@ function Button({
   };
 
   if (href) {
+    const isDownload = href.endsWith(".pdf") || href.endsWith(".xlsx");
+
     return (
       <Link
         {...(props as ButtonLinkProps)}
@@ -84,6 +86,8 @@ function Button({
         onKeyDown={onKeyDown}
         onClick={onClick}
         id={id}
+        reloadDocument={isDownload}
+        download={isDownload}
       >
         {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
       </Link>
