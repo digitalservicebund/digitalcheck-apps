@@ -1,25 +1,29 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { promises as fs } from "fs";
+import mime from "mime-types";
 import path from "path";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const { fileName } = params;
+
+  console.log(fileName);
   if (!fileName) {
     throw new Response("Please provide a file name", { status: 400 });
   }
 
   try {
     const filePath = path.join("public", "assets", fileName);
-    const pdfData = await fs.readFile(filePath);
+    const fileData = await fs.readFile(filePath);
+    const mimeType = mime.contentType(fileName) || "";
 
-    void trackCustomEvent(request, { name: "Download Dokumentation" });
-    return new Response(pdfData, {
+    void trackCustomEvent(request, { name: `Download ${filePath}` });
+    return new Response(fileData, {
       status: 200,
       headers: {
-        "Content-Type": "application/pdf",
+        "Content-Type": mimeType,
         "Content-Disposition": `attachment; filename="${fileName}"`,
-        "Content-Length": `${pdfData.byteLength}`,
+        "Content-Length": `${fileData.byteLength}`,
       },
     });
   } catch (error) {
