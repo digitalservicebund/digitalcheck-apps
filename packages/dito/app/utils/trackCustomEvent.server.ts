@@ -19,8 +19,13 @@ export default async function trackCustomEvent(
     console.log("TRACKING", event);
     return;
   }
+
+  let response: Response | null = null;
+  let statusCode = 200;
+  let errorMessage = "";
+
   try {
-    const response = await fetch(PLAUSIBLE_URL, {
+    response = await fetch(PLAUSIBLE_URL, {
       method: "POST",
       body: JSON.stringify({
         domain: PLAUSIBLE_DOMAIN,
@@ -29,14 +34,7 @@ export default async function trackCustomEvent(
         ...event,
       }),
     });
-    logResponseStatus(
-      response.status,
-      request,
-      startTime,
-      false,
-      "",
-      "external",
-    );
+
     if (!response.ok) {
       throw new FetchError(
         `Error tracking event: ${response.statusText}`,
@@ -44,16 +42,17 @@ export default async function trackCustomEvent(
       );
     }
   } catch (error) {
-    const statusCode = error instanceof FetchError ? error.status : 500;
-    const errorMessage = error instanceof Error ? error.message : String(error);
+    statusCode = error instanceof FetchError ? error.status : 500;
+    errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Error tracking event", event, error);
+  } finally {
     logResponseStatus(
-      statusCode,
+      response ? response.status : statusCode,
       request,
       startTime,
       false,
       errorMessage,
       "external",
     );
-    console.error("Error tracking event", event, error);
   }
 }
