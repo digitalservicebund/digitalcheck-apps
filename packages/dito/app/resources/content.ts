@@ -336,7 +336,8 @@ export const preCheck = {
     unsure: {
       title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:0151/40767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
-      unsureIntro: '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
+      unsureIntro:
+        '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
       actionButton: {
         text: "Vorprüfung wiederholen",
