@@ -584,7 +584,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/assets/ansprechpersonen-sammeln.xlsx", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - Zuständige Akteurinnen und Akteure.xlsx", // TODO: File doesn't exist yet...
         },
       ],
     },
@@ -645,7 +645,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/assets/ablaeufe-und-aufgaben.pdf", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - Einfache Abläufe und Aufgaben erfassen.xlsx", // TODO: File doesn't exist yet...
         },
       ],
     },
@@ -723,7 +723,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/assets/it-systeme-erfassen.xlsx", // TODO: File doesn't exist yet...
+          href: "/download/Vorlage - IT-Systeme erfassen.xlsx", // TODO: File doesn't exist yet...
         },
       ],
     },
