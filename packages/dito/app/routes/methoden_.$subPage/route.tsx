@@ -143,6 +143,8 @@ export default function Index() {
           <RichText markdown={content.content.text} />
         </div>
         {content.boxes?.map((box) => (
+          // TODO: This is very similar to the markup used in <ListItem /> when a background color is provided.
+          // We should probably create a component for this to keep it consistent.
           <div key={box.title}>
             {box.image && (
               <div className="rounded-t-lg overflow-hidden">

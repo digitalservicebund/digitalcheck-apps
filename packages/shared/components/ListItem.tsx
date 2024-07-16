@@ -78,6 +78,10 @@ const ListItem = ({
               <div className="w-[20px] h-[20px] flex justify-center items-center bg-blue-900 rounded-full"></div>
             )}
           </div>
+          {/* 
+          // TODO: This is very similar to the markup used in dito/methoden/$subPage.
+          // We should probably create a component for this to keep it consistent.
+           */}
           <div className={`overflow-hidden ${backgroundColor && "rounded-lg"}`}>
             <Background
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
