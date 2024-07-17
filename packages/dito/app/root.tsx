@@ -73,7 +73,7 @@ const PageHeader = ({
   includeBreadcrumbs?: boolean;
 }) => (
   <header>
-    <div className="min-h-64 px-16 py-8 flex max-sm:flex-col justify-between max-sm:items-start items-center">
+    <div className="min-h-64 p-16 flex max-sm:flex-col justify-between max-sm:items-start items-center">
       <Link to={PATH_LANDING} className="ds-label-01-bold">
         {header.title}
       </Link>
