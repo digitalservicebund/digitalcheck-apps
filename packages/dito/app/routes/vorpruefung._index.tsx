@@ -62,7 +62,7 @@ export default function Index() {
           </ButtonContainer>
         </Container>
       </Background>
-      <Container additionalClassNames="max-sm:!pb-0">
+      <Container additionalClassNames="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={preCheck.start.info.title}
