@@ -57,7 +57,7 @@ const ListItem = ({
               <div
                 className={`flex flex-row gap-16 items-start ${numeric && "mt-32"}`}
               >
-                <span className="display-block w-[40px] max-sm:w-[20px] shrink-0" />
+                <span className="display-block w-[40px] shrink-0" />
                 <Heading
                   tagName="div"
                   className="ds-label-section text-gray-900"
@@ -67,10 +67,10 @@ const ListItem = ({
             )}
           </div>
         )}
-        <div className={`flex flex-row gap-16 items-start ${textColor}`}>
-          <div className="w-[40px] max-sm:w-[20px] shrink-0">
+        <div className={`flex flex-row gap-16 max items-start ${textColor}`}>
+          <div className="w-[40px] shrink-0">
             {numeric && (
-              <div className="w-[40px] h-[40px] max-sm:min-w-[28px] max-sm:w-[28px] max-sm:h-[28px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">
+              <div className="w-[40px] h-[40px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">
                 {numeric}
               </div>
             )}
@@ -87,7 +87,7 @@ const ListItem = ({
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >
               <div
-                className={`flex flex-col gap-16 ${backgroundColor ? "py-64 px-96 max-sm:px-16 max-sm:py-32" : "mt-4"}`}
+                className={`flex flex-col gap-16 ${backgroundColor ? "py-64 px-96 max-sm:px-16 max-sm:py-32" : ""}`}
               >
                 <div className="flex flex-row gap-16 items-center">
                   {label && <Heading {...label} />}
