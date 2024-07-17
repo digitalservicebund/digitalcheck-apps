@@ -2,6 +2,7 @@ import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import List from "@digitalcheck/shared/components/List";
+import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
@@ -42,14 +43,19 @@ export default function Index() {
     </strong>,
   );
 
-  const methodStepsItems = methods.steps.items.map((item) => {
+  const methodStepsItems = methods.steps.items.map((item: ListItemProps) => {
     // Modify HTML to be able to style icons
-    item.content = item.content.replaceAll("**Zeit:**", timerOutlined);
-    item.content = item.content.replaceAll("**Kollaborativ:**", groupOutlined);
-    item.content = item.content.replaceAll(
+    item.content = item.content?.replaceAll("**Zeit:**", timerOutlined);
+    item.content = item.content?.replaceAll("**Kollaborativ:**", groupOutlined);
+    item.content = item.content?.replaceAll(
       "**Support:**",
       contactSupportOutlined,
     );
+    item.headline = {
+      ...item.headline,
+      tagName: "h3",
+      look: item.background ? undefined : "ds-heading-03-bold",
+    };
 
     return item;
   });
