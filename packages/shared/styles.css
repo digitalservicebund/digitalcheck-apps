@@ -65,6 +65,7 @@
 
   .ds-button-ghost {
     padding: 0;
+    text-align: start;
   }
 
   .text-link {
