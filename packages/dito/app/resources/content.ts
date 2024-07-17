@@ -805,7 +805,9 @@ export const fivePrincipals = {
       content: `### Als konkrete Umsetzungstipps
 
 Nutzen Sie die Tipps als Inspiration, um in Ihrem Regelungsvorhaben die Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen.
-
+<br />
+<br />
+<br />
 ### Als Checkliste für den Gesamtprozess
 
 Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf visualisieren.digitalcheck.bund.de.`,
@@ -1000,7 +1002,7 @@ DE-Mail: [poststelle@bmi-bund.de-mail.de](mailto:poststelle@bmi-bund.de-mail.de)
 <br />
 <br />
 
-### weitere Kontaktmöglichkeiten
+### Weitere Kontaktmöglichkeiten
 
 **Redaktionsleitung**
 <br />
