@@ -28,9 +28,7 @@ test.describe("test landing page", () => {
   test("landing is reachable and has h1", async ({ page }) => {
     await page.goto("/");
     await expect(
-      page.locator(
-        "h1:has-text('Digitaltaugliche Regelungsvorhaben erarbeiten')",
-      ),
+      page.locator("h1:has-text('Digitaltaugliche Regelungen erarbeiten')"),
     ).toBeVisible();
   });
 
