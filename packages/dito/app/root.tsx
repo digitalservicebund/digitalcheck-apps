@@ -90,9 +90,7 @@ const PageHeader = ({
     </div>
     {includeBreadcrumbs && (
       <Background backgroundColor="blue">
-        <div className="max-sm:py-8">
-          <Breadcrumbs breadcrumbs={routes} useIconForHome />
-        </div>
+        <Breadcrumbs breadcrumbs={routes} useIconForHome />
       </Background>
     )}
   </header>
