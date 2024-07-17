@@ -77,17 +77,15 @@ const PageHeader = ({
       <Link to={PATH_LANDING} className="ds-label-01-bold">
         {header.title}
       </Link>
-      <span className="flex items-center max-sm:flex-col max-sm:items-start max-sm:mt-8">
+      <span className="flex items-center max-sm:mt-8">
         <span className="ds-label-02-reg">{header.contact.msg}</span>
-        <span className="flex">
-          <PhoneOutlined className="mr-8 w-18" />
-          <a
-            href={`tel:${header.contact.number}`}
-            className="ds-link-01-bold underline text-black"
-          >
-            {header.contact.number}
-          </a>
-        </span>
+        <PhoneOutlined className="mx-8 w-18" />
+        <a
+          href={`tel:${header.contact.number}`}
+          className="ds-link-01-bold underline"
+        >
+          {header.contact.number}
+        </a>
       </span>
     </div>
     {includeBreadcrumbs && (
