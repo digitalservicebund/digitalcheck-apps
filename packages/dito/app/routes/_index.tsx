@@ -46,7 +46,7 @@ export default function Index() {
           isNumeric
         />
       </Container>
-      <Container>
+      <Container additionalClassNames="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={landing.dataNotice.headline}
