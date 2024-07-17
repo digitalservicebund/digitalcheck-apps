@@ -1012,7 +1012,7 @@ Referat DV I 3 — Digitale Verwaltungstransformation; Digitalcheck
 <br />
 Verantwortlich: Dany Homilius (Referatsleiterin DV I 3)
 <br />
-E-Mail: [DVI3@bmi.bund.de](DVI3@bmi.bund.de) 
+E-Mail: [DVI3@bmi.bund.de](mailto:DVI3@bmi.bund.de) 
 <br />
 <br />
 
@@ -1268,7 +1268,7 @@ Telefon: [03018 681-0](+4930186810)
 <br />
 Telefax: [03018 681 - 12926](tel:+49301868112926)
 <br />
-E-Mail: [DVI3@bmi.bund.de](DVI3@bmi.bund.de)
+E-Mail: [DVI3@bmi.bund.de](mailto:DVI3@bmi.bund.de)
 
 <br />
 
