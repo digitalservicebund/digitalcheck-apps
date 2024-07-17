@@ -59,7 +59,11 @@ export type TMethodPage = {
 
     title: string;
     text: string;
-    buttons?: { text: string; href: string; look: string }[];
+    buttons?: {
+      text: string;
+      href: string;
+      look: "primary" | "secondary" | "tertiary" | "ghost";
+    }[];
   };
 };
 
