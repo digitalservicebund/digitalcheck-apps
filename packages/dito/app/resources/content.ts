@@ -87,7 +87,7 @@ export const steps = {
       `<br /><br />
   Die für Ihr Haus zuständige Ansprechperson finden Sie hier: [normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html](https://www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html)
   
-  Damit ist der Digitalcheck für Sie beendet.`,
+  Damit ist der Digitalcheck für Sie abgeschlossen.`,
   },
 };
 
