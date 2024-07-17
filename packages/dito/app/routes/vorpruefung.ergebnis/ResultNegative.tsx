@@ -76,11 +76,7 @@ export default function ResultNegative({
         <form {...form.getFormProps()} className="mt-40">
           <fieldset className="ds-stack-32">
             <legend>
-              <Heading
-                tagName="h3"
-                text={assessment.form.formLegend}
-                className="mb-16"
-              />
+              <Heading tagName="h3" text={assessment.form.formLegend} />
             </legend>
             <Textarea
               name="negativeReasoning"

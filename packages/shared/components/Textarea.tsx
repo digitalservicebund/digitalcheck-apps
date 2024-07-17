@@ -23,7 +23,7 @@ const Textarea = ({
   const errorId = `${name}-error`;
 
   return (
-    <div className="ds-stack-8">
+    <div>
       {label && (
         <InputLabel
           classname={description ? "ds-heading-03-reg" : ""}
