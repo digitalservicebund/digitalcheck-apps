@@ -4,8 +4,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check . --ignore-path ../../.gitignore",
+    "format:fix": "prettier --write --ignore-unknown . --ignore-path ../../.gitignore",
     "lint:check": "eslint --cache --ignore-path ../../.gitignore .",
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest",
