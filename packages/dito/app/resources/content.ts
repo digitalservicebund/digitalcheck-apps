@@ -1311,5 +1311,5 @@ Fax: [030 18 527-2901](tel:+4930185272901)
 <br />
 E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)
 <br />
-Internet: [www.schlichtungsstelle-bgg.de](mailto:www.schlichtungsstelle-bgg.de)`,
+Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)`,
 };
