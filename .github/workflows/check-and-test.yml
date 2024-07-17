@@ -47,8 +47,14 @@ jobs:
       - name: Audit used licences
         run: npm run audit:licences
 
+      - name: Fix format
+        run: npm run format:fix --workspace ${{ env.WORKSPACE }}
+
       - name: Check format
         run: npm run format:check --workspace ${{ env.WORKSPACE }}
+
+      - name: Fix lint
+        run: npm run lint:fix --workspace ${{ env.WORKSPACE }}
 
       - name: Lint
         run: npm run lint:check --workspace ${{ env.WORKSPACE }}
