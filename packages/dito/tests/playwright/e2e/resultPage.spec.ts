@@ -62,7 +62,7 @@ test.describe("test result page reasoning", () => {
       "Ihr Regelungsvorhaben hat Digitalbezug.",
     );
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben...",
+      "Das Regelungsvorhaben ...",
     );
     await expect(page.getByRole("main")).not.toContainText("IT-Systems");
   });
@@ -82,7 +82,7 @@ test.describe("test result page reasoning", () => {
       "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
     );
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben...",
+      "Das Regelungsvorhaben ...",
     );
   });
 
@@ -99,10 +99,10 @@ test.describe("test result page reasoning", () => {
     await expect(page).toHaveURL(PATH_RESULT);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
-      "Sie haben mehrere Aussagen mit “unsicher” beantwortet.",
+      "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Unsicher" beantwortet`,
+      `mit "Ich bin unsicher" beantwortet`,
     );
     await expect(page.getByRole("main")).toContainText(
       `mit "Nein" beantwortet`,

@@ -943,7 +943,7 @@ So erfahren Sie
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/assets/aspekte-technischer-umsetzbarkeit.pdf", // TODO: File doesn't exist yet...
+          href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf", // TODO: Replace File
         },
       ],
     },
