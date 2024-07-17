@@ -54,11 +54,14 @@ function NavItem({
   isCurrent,
   isDone,
 }: Readonly<NavItem>) {
-  const liClassNames = classNames("list-none border-l-[4px] mb-1", {
-    "text-gray-800 pointer-events-none": isDisabled,
-    "border-l-blue-800 pointer-events-none": isCurrent,
-    "border-l-blue-100": !isCurrent,
-  });
+  const liClassNames = classNames(
+    "list-none border-b-[1px] border-b-white border-l-[4px]",
+    {
+      "text-gray-800 pointer-events-none": isDisabled,
+      "border-l-blue-800 pointer-events-none": isCurrent,
+      "border-l-blue-100": !isCurrent,
+    },
+  );
 
   // Transparent left borders to avoid layout shifts
   const itemClassNames = classNames(
