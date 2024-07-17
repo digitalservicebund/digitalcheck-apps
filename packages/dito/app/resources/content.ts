@@ -197,7 +197,7 @@ export const preCheck = {
       text: "Füllen Sie eine Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. Ganz nach der Devise: so viel wie nötig, so wenig wie möglich.",
     },
     summary: {
-      title: "Zusammenfassung",
+      title: "Zusammengefasst",
       items: [
         {
           headline: {
