@@ -60,8 +60,8 @@ const InlineNotice = ({
       className={`max-w-[630px] ds-stack-8 scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
       id={identifier}
     >
-      <div className="flex flex-row gap-[4px] items-start">
-        {showIcon && <IconComponent />}
+      <div className="flex flex-row gap-[4px] items-center">
+        {showIcon && <IconComponent className="flex-none mr-4" />}
         <Heading tagName={tagName} look="ds-label-01-bold">
           {title}
         </Heading>
