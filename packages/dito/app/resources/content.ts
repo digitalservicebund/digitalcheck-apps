@@ -917,6 +917,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
     text: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.`,
     buttons: [
       {
+        look: "tertiary",
         text: "Zum nächsten Schritt",
         href: PATH_METHODS_TECHNICAL_FEASIBILITY,
       },
