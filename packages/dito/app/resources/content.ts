@@ -502,6 +502,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         headline: {
           text: "Technische Umsetzbarkeit sicherstellen",
         },
+        // TODO: Check if we use "Zeit" or "Zeitaufwand"
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
@@ -601,7 +602,7 @@ export const documentation = {
 
 export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
-  subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die Zuständigkeiten der umsetzenden Akteurinnen und Akteure zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
+  subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
   
   **Zeit:** ca. vier Stunden`,
   accordion: {
@@ -613,10 +614,11 @@ export const responsibleActors = {
     label: "Anleitung",
     title: "Finden Sie konstruktive Gesprächspartnerinnen und -partner",
     text: `Beginnen Sie mit der Kontaktaufnahme oben in der Hierarchie, lassen Sie ggf. über Ihre Referats- und (Unter-)abteilungsleitung den Kontakt herstellen. Fragen Sie nach den Fachexpertinnen und -experten auf Arbeitsebene, hier steckt in der Regel das tiefste Praxiswissen.
-
+<br><br>
 - **Kommunen:** Bitten Sie Ansprechpersonen auf Landesebene um Kontakte und nutzen Sie  das gesammelte Wissen in den Kommunalen Spitzenverbänden. 
-- **Behördenund Träger:** Nutzen Sie die offiziellen Wege der Häuser.
+- **Behörden und Träger:** Nutzen Sie die offiziellen Wege der Häuser.
 - **Unternehmen, Sozialpartner, weitere Organisationen:** Fragen Sie in Spitzenverbänden nach Ansprechpersonen für Ihren konkreten Anwendungsfall. 
+<br><br>
 
 Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigramme oder interne Datenbanken zu, z. B. das X500-Verzeichnis.`,
   },
@@ -641,26 +643,32 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
     label: "Tipps",
     title: "Gespräche über die aktuelle Umsetzungspraxis",
     text: `- **Keine Sorge vor falscher Kontaktaufnahme:** Es kann nichts passieren, außer dass man Sie an die richtige Ansprechperson verweist.
-    - **Persönliche Gespräche statt Schriftverkehr:** Bitten Sie um persönliche Gespräche bei der Kontaktaufnahme. Schriftlicher Austausch lädt zu Missverständnissen ein.  
-    - **Der Austausch über den Ist-Stand ist sicher:** Nur Mut bei der Ansprache, über die aktuelle Umsetzung dürfen Sie immer sprechen.`,
+- **Persönliche Gespräche statt Schriftverkehr:** Bitten Sie um persönliche Gespräche bei der Kontaktaufnahme. Schriftlicher Austausch lädt zu Missverständnissen ein.  
+- **Der Austausch über den Ist-Stand ist sicher:** Nur Mut bei der Ansprache, über die aktuelle Umsetzung dürfen Sie immer sprechen.`,
   },
   nextStep: {
     label: "So geht es weiter:",
     title: "Aufgaben und Abläufe gemeinsam erfassen",
     text: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie identifiziert haben. Sie müssen noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
     buttons: [
-      { text: "Zum nächsten Schritt", href: PATH_METHODS_TASKS_PROCESSES },
+      {
+        text: "Zum nächsten Schritt",
+        look: "tertiary",
+        href: PATH_METHODS_TASKS_PROCESSES,
+      },
     ],
   },
 } as TMethodPage;
 
 export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
-  subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die aktuellen Abläufe verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den Status Quo.
+  subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
   
   **Zeit:** ca. sechs Stunden
   <br />
-  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen`,
+  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
+  <br />
+  **Support:** Komplexe Abläufe können Sie mit dem Digitalcheck-Support erfassen`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -685,10 +693,11 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
       },
       label: "Vorlage",
       title: "Einfache Abläufe und Aufgaben erfassen",
-      text: `1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite an. (“Wer”)
-2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“will wann was”)
+      // TODO: This is a hacky solution to render the numbers. But that doesn't intend the paragraphs after the numbers. Normal list rendering doesn't work here atm , need to investigate
+      text: `&#8291;1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite an. (“Wer”)<br>
+2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“will wann was”)<br>
 3. In die Mitte schreiben Sie die verbindenden Aufgaben. (“von wem”)
-
+<br> <br>
 Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adressatinnen und Adressaten, die einen Antrag stellen, können auf der linken Seite stehen, die entsprechende Behörde steht dann rechts.`,
       buttons: [
         {
@@ -729,7 +738,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
     title: "IT-Systeme erfassen",
     text: `Nutzen Sie das Fachwissen der Akteurinnen und Akteuren , um die verwendete IT-Infrastruktur für die identifizierten Abläufe zu erfassen und zu verstehen.`,
     buttons: [
-      { text: "Zum nächsten Schritt", href: PATH_METHODS_COLLECT_IT_SYSTEMS },
+      {
+        text: "Zum nächsten Schritt",
+        look: "tertiary",
+        href: PATH_METHODS_COLLECT_IT_SYSTEMS,
+      },
     ],
   },
 } as TMethodPage;
@@ -746,13 +759,13 @@ export const collectITSystems = {
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
-    text: "Wenn Länder und Kommunen für die Umsetzung zuständig ist, legen die Gesetze auf Bundesebene die Grundlage für eine reibungslose Umsetzung. Sicherlich stehen Sie bereits inhaltlich mit den entsprechenden Vertreterinnen und Vertretern im Austausch, z. B. mit den Landesministerien. Für die digitale Umsetzung sollten Sie zusätzlich das Gespräch mit denen suchen, die die aktuellen Arbeitsabläufe, Prozesse und Systeme kennen. Das funktioniert am besten in bilateralen Gesprächen, die die formellen Beteiligungsformate ergänzen.",
+    text: "Wenn Länder und Kommunen für die Umsetzung zuständig ist, legen die Gesetze auf Bundesebene die Grundlage für eine reibungslose Umsetzung. Sicherlich stehen Sie bereits inhaltlich mit den entsprechenden Vertreterinnen und Vertretern im Austausch, z. B. mit den Landesministerien. Für die digitale Umsetzung sollten Sie zusätzlich das Gespräch mit denen suchen, die die **aktuellen Arbeitsabläufe, Prozesse und Systeme kennen. Das funktioniert am besten in bilateralen Gesprächen, die die formellen Beteiligungsformate ergänzen.",
   },
   content: {
     label: "Anleitung",
     title: "So erfassen Sie die IT-Systeme",
     text: `Dokumentieren Sie die verwendeten IT-Systeme mit ihren Funktionalitäten, Schnittstellen und Anforderungen. 
-
+<br><br>
 Ein Überblick über die IT-Landschaft hilft Ihnen dabei, 
 - alle relevanten Aspekte aufzuschlüsseln und potenziell blinde Flecken zu identifizieren,
 - auf bestehende Standards und Prozesse aufzusetzen,
@@ -781,7 +794,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
 
     title: "IT-Wissen einfach erklärt",
     text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
-
+<br><br>
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
@@ -791,7 +804,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
-      { text: "Zum nächsten Schritt", href: PATH_METHODS_FIVE_PRINCIPALS },
+      {
+        text: "Zum nächsten Schritt",
+        look: "tertiary",
+        href: PATH_METHODS_FIVE_PRINCIPALS,
+      },
     ],
   },
 } as TMethodPage;
@@ -810,7 +827,7 @@ Nutzen Sie die Tipps als Inspiration, um in Ihrem Regelungsvorhaben die Möglich
 <br />
 ### Als Checkliste für den Gesamtprozess
 
-Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf visualisieren.digitalcheck.bund.de.`,
+Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf [visualisieren.digitalcheck.bund.de](https://visualisieren.digitalcheck.bund.de).`,
     },
     {
       label: "Prinzip 1",
@@ -818,7 +835,7 @@ Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Ski
       content: `### Darum ist das wichtig
 
 Bürgerinnen und Bürger, Mitarbeitende in Unternehmen, weiteren Organisationen und der Verwaltung sind meist an digitale Kommunikation gewöhnt. In der Verwaltung und den Behörden erlaubt eine durchgehend digitale Dokumentation, Bearbeitung und ggf. Prüfung eine effizientere Bearbeitung.
-
+<br> <br>
 Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein — in bestimmten Fällen kann z. B. ergänzend auch die Schriftform sinnvoll sein, sofern eine digitale Weiterverarbeitung sichergestellt ist.
 <br />
 <br />
@@ -922,7 +939,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
- 
+ <br> <br>
 **Zeit:** Richtet sich nach Komplexität des Vorhabens
   <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
@@ -931,11 +948,12 @@ export const technicalFeasibility = {
   content: {
     label: "Anleitung",
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
-    text: `Vergleichen Sie gemeinsam mit den zuständigen [Akteurinnen und Akteuren](${PATH_METHODS_RESPONSIBLE_ACTORS}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
-
+    text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${PATH_METHODS_RESPONSIBLE_ACTORS}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
+<br> <br>
 So erfahren Sie 
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können,
 - und an welchen Stellen Änderungen nötig sind.
+<br> <br>
 
 **Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support ([0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)) `,
   },
@@ -978,7 +996,9 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
     title:
       "Verfassen Sie den Regelungsentwurf und dokumentieren Sie Ihre Entscheidungen",
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
-    buttons: [{ text: "Zu den Methoden und Werkzeugen", href: PATH_METHODS }],
+    buttons: [
+      { text: "Zu den Hilfestellungen", look: "tertiary", href: PATH_METHODS },
+    ],
   },
 } as TMethodPage;
 

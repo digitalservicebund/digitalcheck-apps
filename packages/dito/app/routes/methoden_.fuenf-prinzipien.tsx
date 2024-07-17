@@ -6,10 +6,10 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import InterviewBanner from "components/InterviewBanner";
 import { fivePrincipals, siteMeta } from "resources/content";
 import { PATH_METHODS } from "resources/staticRoutes";
 import { BASE_URL } from "utils/constants.server";
+import FeedbackBanner from "../components/FeedbackBanner.tsx";
 
 export function loader({ request }: LoaderFunctionArgs) {
   return json({
@@ -27,6 +27,7 @@ const slugify = (string: string) =>
 export default function Index() {
   const { referrer } = useLoaderData<typeof loader>();
 
+  // TODO: this doesn't work atm when coming from the last methoden-page
   const nextStep = referrer.startsWith(PATH_METHODS)
     ? fivePrincipals.nextStepMethods
     : fivePrincipals.nextStep;
@@ -88,7 +89,7 @@ export default function Index() {
           buttons={nextStep.buttons}
         />
       </Container>
-      <InterviewBanner />
+      <FeedbackBanner />
     </>
   );
 }
