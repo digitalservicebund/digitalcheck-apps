@@ -32,8 +32,8 @@
   h2,
   h3,
   p,
-  ul,
-  ol {
+  .rich-text ul,
+  .rich-text ol {
     max-width: 80ch;
   }
 }
