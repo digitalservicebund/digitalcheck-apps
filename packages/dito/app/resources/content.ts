@@ -502,7 +502,6 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         headline: {
           text: "Technische Umsetzbarkeit sicherstellen",
         },
-        // TODO: Check if we use "Zeit" or "Zeitaufwand"
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br />
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
