@@ -14,7 +14,7 @@ const ButtonContainer = ({
   return (
     <div
       className={classNames(
-        "flex flex-wrap gap-24",
+        "flex flex-wrap gap-16",
         {
           "flex-wrap-reverse": reverseOrder,
         },
