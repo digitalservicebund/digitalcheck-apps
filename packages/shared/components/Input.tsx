@@ -41,7 +41,11 @@ export default function Input({
 
   return (
     <div>
-      {label && <InputLabel id={name}>{label}</InputLabel>}
+      {label && (
+        <InputLabel classname="text-gray-900" id={name}>
+          {label}
+        </InputLabel>
+      )}
       <div className="ds-input-group">
         {prefix && <div className="ds-input-prefix">{prefix}</div>}
         <input

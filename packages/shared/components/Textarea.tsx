@@ -26,7 +26,7 @@ const Textarea = ({
     <div>
       {label && (
         <InputLabel
-          classname={description ? "ds-heading-03-reg" : ""}
+          classname={description ? "ds-heading-03-reg" : "text-gray-900"}
           id={name}
         >
           {label}
