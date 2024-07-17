@@ -555,7 +555,7 @@ export const documentation = {
   subtitle: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.`,
   buttons: [
     {
-      text: "Dokumentation runterladen",
+      text: "Dokumentation herunterladen",
       href: PATH_DOCUMENTATION_PDF,
     },
     {
@@ -565,9 +565,9 @@ export const documentation = {
     },
   ],
   multipleNotice: {
-    headline: "Haben Sie mehr als eine Regelung in Ihrem Vorhaben?",
+    headline: "Eine oder mehrere Dokumentationen?",
     content:
-      "Wenn Sie mehrere Regelungen ändern, bündeln Sie diese als inhaltlich sinnvolle Vorhaben, für die Sie jeweils eine Dokumentation ausfüllen.",
+      "Füllen Sie eine Dokumentation für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. Ganz nach der Devise: so viel wie nötig, so wenig wie möglich.",
   },
   summary: {
     title: "Zusammengefasst",
