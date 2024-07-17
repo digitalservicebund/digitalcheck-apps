@@ -12,8 +12,7 @@ Mit den folgenden externen Beispielen können Sie sich ein Bild davon machen, wi
 
 Hier können sie die [Dokumentation herunterladen](/assets/digitalcheck-dokumentation.pdf).
 
-Hier können sie die [Excel-Datei herunterladen](/assets/digitalcheck-dokumentation.xlsx).
-`;
+Hier können sie die [Excel-Datei herunterladen](/assets/digitalcheck-dokumentation.xlsx).`;
 
 test("Richtext outermost element has richtext class", () => {
   render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
