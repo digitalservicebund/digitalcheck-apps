@@ -53,8 +53,8 @@ export default function Index() {
     );
     item.headline = {
       ...item.headline,
-      tagName: "h3",
-      look: item.background ? undefined : "ds-heading-03-bold",
+      tagName: "h2",
+      look: item.background ? "ds-heading-03-reg" : "ds-heading-03-bold",
     };
 
     return item;
