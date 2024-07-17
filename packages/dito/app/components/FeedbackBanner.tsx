@@ -6,15 +6,25 @@ import { feedbackBanner } from "resources/content";
 export default function FeedbackBanner() {
   return (
     <Background backgroundColor="midBlue">
-      <Container>
+      <Container additionalClassNames="ds-stack-16">
         <Box
           heading={{
             tagName: "h2",
             look: "ds-label-01-bold",
-            text: feedbackBanner.title,
+            text: feedbackBanner.feedback.title,
           }}
           content={{
-            markdown: feedbackBanner.text,
+            markdown: feedbackBanner.feedback.text,
+          }}
+        ></Box>
+        <Box
+          heading={{
+            tagName: "h2",
+            look: "ds-label-01-bold",
+            text: feedbackBanner.needToTalk.title,
+          }}
+          content={{
+            markdown: feedbackBanner.needToTalk.text,
           }}
         ></Box>
       </Container>
