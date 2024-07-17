@@ -34,7 +34,7 @@ export default function PositiveResult({
         resultHint={hint}
         reasonsText={reasonsText}
         resultBackgroundColor="lightYellow"
-        buttons={[{ ...actionButton, look: "tertiary", size: "large" }]}
+        buttons={[{ ...actionButton, look: "tertiary" }]}
       />
       <Container>
         <Box
