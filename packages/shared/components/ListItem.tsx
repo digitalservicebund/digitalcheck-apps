@@ -35,6 +35,7 @@ const ListItem = ({
   const backgroundColor =
     background && isBackgroundColor(background) ? background : undefined;
   const textColor = isDisabled ? "text-gray-800" : "";
+  const responsiveWidth = numeric ? "w-[40px]" : "w-[40px] max-sm:w-[20px]";
 
   return (
     <div id={identifier} className="flex flex-row items-center justify-center">
@@ -57,7 +58,7 @@ const ListItem = ({
               <div
                 className={`flex flex-row gap-16 items-start ${numeric && "mt-32"}`}
               >
-                <span className="display-block w-[40px] shrink-0" />
+                <span className={`display-block shrink-0 ${responsiveWidth}`} />
                 <Heading
                   tagName="div"
                   className="ds-label-section text-gray-900"
@@ -68,7 +69,7 @@ const ListItem = ({
           </div>
         )}
         <div className={`flex flex-row gap-16 max items-start ${textColor}`}>
-          <div className="w-[40px] shrink-0">
+          <div className={`shrink-0 ${responsiveWidth}`}>
             {numeric && (
               <div className="w-[40px] h-[40px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">
                 {numeric}
