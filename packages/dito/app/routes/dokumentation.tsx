@@ -39,7 +39,7 @@ export default function Index() {
           </ButtonContainer>
         </Container>
       </Background>
-      <Container>
+      <Container additionalClassNames="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={documentation.multipleNotice.headline}
