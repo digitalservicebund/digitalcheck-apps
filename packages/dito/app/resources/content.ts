@@ -1046,7 +1046,7 @@ Prinzessinnenstraße 8-14
 <br />
 10969 Berlin
 <br />
-E-Mail: [hallo@digitalservice.bund.de](hallo@digitalservice.bund.de)
+E-Mail: [hallo@digitalservice.bund.de](mailto:hallo@digitalservice.bund.de)
 <br />
 <br />
 
@@ -1077,11 +1077,11 @@ Alt-Moabit 140
 <br />
 10557 Berlin
 <br />
-Tel.: [030 / 18 681-0](+4930186810)
+Tel.: [030 / 18 681-0](tel:+4930186810)
 <br />
-Fax: [030 / 18 681-12926](+49301868112926)
+Fax: [030 / 18 681-12926](tel:+49301868112926)
 <br />
-E-Mail: [poststelle@bmi.bund.de](poststelle@bmi.bund.de)
+E-Mail: [poststelle@bmi.bund.de](mailto:poststelle@bmi.bund.de)
 
 Bei Fragen zum Datenschutz und zu dieser Datenschutzerklärung erreichen Sie die bzw. den Datenschutzbeauftragte/n des BMI unter:
 
@@ -1091,9 +1091,9 @@ Alt-Moabit 140
 <br />
 10557 Berlin
 <br />
-Tel.: [030 / 18 681-0](+4930186810)
+Tel.: [030 / 18 681-0](tel:+4930186810)
 <br />
-E-Mail: [bds@bmi.bund.de](bds@bmi.bund.de)
+E-Mail: [bds@bmi.bund.de](mailto:bds@bmi.bund.de)
 
 <br />
 
@@ -1118,7 +1118,7 @@ DigitalService ist eine Bundes GmbH. Die Bundesrepublik Deutschland — vertrete
 
 Des Weiteren können Sie datenschutzrechtliche Fragen auch an den Datenschutzbeauftragten des DigitalService richten. Diesen erreichen Sie unter folgender Adresse:
 
-E-Mail: [datenschutz@digitalservice.bund.de](datenschutz@digitalservice.bund.de)
+E-Mail: [datenschutz@digitalservice.bund.de](mailto:datenschutz@digitalservice.bund.de)
 
 <br />
 
@@ -1284,7 +1284,7 @@ Alt Moabit 140
 <br />
 10557 Berlin
 <br />
-Telefon: [03018 681-0](+4930186810)
+Telefon: [03018 681-0](tel:+4930186810)
 <br />
 Telefax: [03018 681 - 12926](tel:+49301868112926)
 <br />
@@ -1305,9 +1305,9 @@ Mauerstraße 53
 <br />
 10117 Berlin
 <br />
-Telefon: [030 18 527-2805](+4930185272805)
+Telefon: [030 18 527-2805](tel:+4930185272805)
 <br />
-Fax: [030 18 527-2901](+4930185272901)
+Fax: [030 18 527-2901](tel:+4930185272901)
 <br />
 E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)
 <br />
