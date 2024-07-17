@@ -36,7 +36,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
   );
 
   const renderLinks = (links: LinkProps[]) => (
-    <ul className="list-none m-0 p-0 ds-stack-8" key={links[0]?.url}>
+    <ul className="list-none m-0 p-0 ds-stack-16" key={links[0]?.url}>
       {links.map(renderLink)}
     </ul>
   );
@@ -45,7 +45,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
     <footer className="text-base leading-snug">
       <Container paddingTop="48">
         <div className="flex flex-wrap items-start justify-between gap-y-32">
-          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-8 gap-x-16">
+          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
             <div className="py-4 pr-4">
               <Image
                 url={bmiLogo}
