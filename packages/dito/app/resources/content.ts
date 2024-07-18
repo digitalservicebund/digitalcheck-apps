@@ -604,7 +604,7 @@ export const documentation = {
 
 export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
-  subtitle: `Wenn Sie ein Regelungsvorhaben erstellen, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit die wertvollsten Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
+  subtitle: `Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, **die Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner für Digitaltauglichkeit.
   
   **Zeit:** ca. vier Stunden`,
   accordion: {
