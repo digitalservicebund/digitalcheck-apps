@@ -942,13 +942,13 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 
 export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
-  subtitle: `Analyisieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
+  subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
  <br> <br>
-**Zeit:** Richtet sich nach Komplexität des Vorhabens
+**Zeit:** Richtet sich nach der Komplexität des Vorhabens
   <br />
-**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren.
   <br />
-**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen`,
+**Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen.`,
   content: {
     label: "Anleitung",
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
