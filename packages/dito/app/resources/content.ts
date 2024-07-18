@@ -52,12 +52,12 @@ export const steps = {
         href: PATH_PRECHECK,
       },
     ],
-  },
-  preCheckFinished: {
-    headline: {
-      text: "Abgeschlossene Vorprüfung: der Digitalbezug wurde eingeschätzt.",
+    finished: {
+      headline: {
+        text: "Abgeschlossene Vorprüfung: Der Digitalbezug wurde eingeschätzt.",
+      },
+      isDisabled: true,
     },
-    isDisabled: true,
   },
   methods: {
     headline: {
@@ -65,6 +65,12 @@ export const steps = {
     },
     content:
       "Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.",
+    finished: {
+      headline: {
+        text: "Abgeschlossene Erarbeitung eines digitaltauglichen Regelungsvorhabens.",
+      },
+      isDisabled: true,
+    },
   },
   documentation: {
     headline: {
@@ -78,6 +84,12 @@ export const steps = {
         look: "ghost",
       },
     ],
+    finished: {
+      headline: {
+        text: "Abgeschlossene Dokumentation der Digitaltauglichkeit.",
+      },
+      isDisabled: true,
+    },
   },
   nkr: stepNKR,
   nkrFinal: {
@@ -328,7 +340,7 @@ export const preCheck = {
       nextSteps: {
         title: "So machen Sie weiter",
         steps: [
-          steps.preCheckFinished,
+          steps.preCheck.finished,
           {
             ...steps.methods,
             buttons: [
@@ -368,7 +380,7 @@ export const preCheck = {
       reasoningIntro: "Das Regelungsvorhaben ...",
       nextSteps: {
         title: "So machen Sie weiter",
-        steps: [steps.preCheckFinished, steps.nkrFinal],
+        steps: [steps.preCheck.finished, steps.nkrFinal],
       },
     },
   },
@@ -539,11 +551,8 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
   nextSteps: {
     title: "So machen Sie weiter",
     items: [
-      steps.preCheckFinished,
-      {
-        headline: steps.methods.headline,
-        isDisabled: true,
-      },
+      steps.preCheck.finished,
+      steps.methods.finished,
       steps.documentation,
       steps.nkr,
     ],
@@ -585,15 +594,9 @@ export const documentation = {
   nextSteps: {
     title: "So machen Sie weiter",
     items: [
-      steps.preCheckFinished,
-      {
-        headline: steps.methods.headline,
-        isDisabled: true,
-      },
-      {
-        headline: steps.documentation.headline,
-        isDisabled: true,
-      },
+      steps.preCheck.finished,
+      steps.methods.finished,
+      steps.documentation.finished,
       steps.nkrFinal,
     ],
   },
