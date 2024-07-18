@@ -73,16 +73,18 @@ const PageHeader = ({
   includeBreadcrumbs?: boolean;
 }) => (
   <header>
-    <div className="min-h-64 p-16 flex max-sm:flex-col justify-between max-sm:items-start items-center">
+    <div className="min-h-64 p-16 flex justify-between items-center">
       <Link to={PATH_LANDING} className="ds-label-01-bold">
         {header.title}
       </Link>
-      <span className="flex items-center max-sm:mt-8">
-        <span className="ds-label-02-reg">{header.contact.msg}</span>
+      <span className="flex items-center">
+        <span className="ds-label-02-reg text-lg max-sm:hidden">
+          {header.contact.msg}
+        </span>
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold underline"
+          className="ds-link-01-bold text-lg underline"
         >
           {header.contact.number}
         </a>
