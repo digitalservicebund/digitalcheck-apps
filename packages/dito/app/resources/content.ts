@@ -727,7 +727,7 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
   support: {
     label: "Unterstützungsangebot",
 
-    title: "Visualsierungen gemeinsam erstellen",
+    title: "Visualisierungen gemeinsam erstellen",
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
