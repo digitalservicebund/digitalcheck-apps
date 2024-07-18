@@ -393,7 +393,7 @@ export const assessment = {
     receiveEmailButton: {
       text: "Per E-Mail erhalten",
     },
-    downloadStarted: "Ihr Ergebnis wird heruntergeladen ...",
+    downloadStarted: "Vorprüfung wird heruntergeladen",
   },
 };
 
