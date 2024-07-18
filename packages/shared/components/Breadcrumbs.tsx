@@ -61,7 +61,7 @@ export default function Breadcrumbs({
                     to={breadcrumb.url}
                     className={
                       idx === 0
-                        ? "focus:outline ds-link-01-bold fill-blue-800"
+                        ? "ds-link-01-bold outline-blue-800 fill-blue-800"
                         : "text-link increase-tap-area"
                     }
                   >
