@@ -108,7 +108,7 @@ export const landing = {
         ...steps.methods,
         buttons: [
           {
-            text: "Zu den Hilfestellungen und Methoden",
+            text: "Zu den Hilfestellungen",
             href: PATH_METHODS,
             look: "ghost" as const,
           },
