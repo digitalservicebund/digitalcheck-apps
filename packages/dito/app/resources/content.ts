@@ -696,7 +696,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
       label: "Vorlage",
       title: "Einfache Abläufe und Aufgaben erfassen",
       // TODO: This is a hacky solution to render the numbers. But that doesn't intend the paragraphs after the numbers. Normal list rendering doesn't work here atm , need to investigate
-      text: `1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite an. (“Wer”)
+      text: `1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. (“Wer”)
 2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“will wann was”)
 3. In die Mitte schreiben Sie die verbindenden Aufgaben. (“von wem”)
 
