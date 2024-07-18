@@ -55,7 +55,7 @@ export const steps = {
   },
   preCheckFinished: {
     headline: {
-      text: "Vorprüfung: Der Digitalbezug wurde eingeschätzt",
+      text: "Abgeschlossene Vorprüfung: der Digitalbezug wurde eingeschätzt.",
     },
     isDisabled: true,
   },
