@@ -34,7 +34,7 @@
   p,
   .rich-text ul,
   .rich-text ol {
-    max-width: 80ch;
+    max-width: 70ch;
   }
 }
 
