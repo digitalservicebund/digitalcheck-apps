@@ -42,7 +42,7 @@ const routes: Route[] = [
   },
   {
     url: PATH_ASSESSMENT,
-    title: "Einschätzung als PDF",
+    title: "Vorprüfung als PDF",
     parent: PATH_RESULT,
   },
   {
@@ -51,31 +51,31 @@ const routes: Route[] = [
   },
   {
     url: PATH_DOCUMENTATION_PDF,
-    title: "Begleitendede Dokumentation",
+    title: "Begleitende Dokumentation",
   },
   {
     url: PATH_METHODS,
-    title: "Regelungsvorhaben erarbeiten",
+    title: "Regelung erarbeiten",
     parent: PATH_LANDING,
   },
   {
     url: PATH_METHODS_RESPONSIBLE_ACTORS,
-    title: "Zuständige Akteurinnen und Akteure auflisten",
+    title: "Akteure auflisten",
     parent: PATH_METHODS,
   },
   {
     url: PATH_METHODS_TASKS_PROCESSES,
-    title: "Aufgaben und Abläufe gemeinsam erfassen",
+    title: "Abläufe erfassen",
     parent: PATH_METHODS,
   },
   {
     url: PATH_METHODS_COLLECT_IT_SYSTEMS,
-    title: "IT-Systeme gemeinsam erfassen",
+    title: "IT-Systeme erfassen",
     parent: PATH_METHODS,
   },
   {
     url: PATH_METHODS_FIVE_PRINCIPALS,
-    title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+    title: "Fünf Prinzipien",
     parent: PATH_METHODS,
   },
   {
