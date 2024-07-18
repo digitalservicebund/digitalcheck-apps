@@ -92,7 +92,7 @@ export const steps = {
 };
 
 export const landing = {
-  title: "Digitaltaugliche <br /> Regelungen erarbeiten",
+  title: "Digitaltaugliche Regelungen erarbeiten",
   subtitle: `Hier erfahren Sie,
   - was Digitaltauglichkeit für Ihr Regelungsvorhaben bedeutet,
   - wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen,
