@@ -127,7 +127,7 @@ export default function Index() {
         </Container>
       </Background>
       {content.accordion && (
-        <Container>
+        <Container paddingBottom="0">
           <DetailsSummary
             title={content.accordion.title}
             content={content.accordion.text}
