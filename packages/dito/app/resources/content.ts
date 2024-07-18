@@ -110,7 +110,7 @@ export const landing = {
   - wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen,
   - welche Unterlagen Sie benötigen.`,
   list: {
-    title: "So gehen Sie vor:",
+    title: "So gehen Sie vor",
     items: [
       steps.preCheck,
       {
