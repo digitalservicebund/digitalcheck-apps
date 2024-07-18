@@ -997,7 +997,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       "Verfassen Sie den Regelungsentwurf und dokumentieren Sie Ihre Entscheidungen",
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
     buttons: [
-      { text: "Zu den Hilfestellungen", look: "tertiary", href: PATH_METHODS },
+      {
+        text: "Zu den Hilfestellungen",
+        look: "tertiary",
+        href: `${PATH_METHODS}#weiter`,
+      },
     ],
   },
 } as TMethodPage;

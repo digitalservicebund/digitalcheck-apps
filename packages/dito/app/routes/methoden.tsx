@@ -79,6 +79,7 @@ export default function Index() {
       <Container>
         <List items={methodStepsItems} />
       </Container>
+      <div id={"weiter"} />
       <Container>
         <List
           heading={{
