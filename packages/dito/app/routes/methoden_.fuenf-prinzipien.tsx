@@ -8,12 +8,18 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { fivePrincipals, siteMeta } from "resources/content";
 import { PATH_METHODS } from "resources/staticRoutes";
-import { BASE_URL } from "utils/constants.server";
 import FeedbackBanner from "../components/FeedbackBanner.tsx";
 
 export function loader({ request }: LoaderFunctionArgs) {
+  const referer = request.headers.get("referer");
+  let pathname = "/";
+
+  if (referer) {
+    pathname = new URL(referer).pathname;
+  }
+
   return json({
-    referrer: request.headers.get("referer")?.replace(BASE_URL, "") ?? "",
+    referrer: pathname,
   });
 }
 

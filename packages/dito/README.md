@@ -8,7 +8,6 @@ A digital touchpoint for the Digitalcheck.
 
 The application requires a `.env` file with the following values configured. You can copy and rename the file `.env.example`, and if running locally shouldn't need to change many of the values there.
 
-- `BASE_URL`: Used so the application knows at which URL it is running — **be sure to omit any trailing slashes!**.
 - `UNLEASH_KEY`: Authorization key used for connecting to Unleash.
 
 ## Development

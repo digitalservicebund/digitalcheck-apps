@@ -1,8 +1,9 @@
+import { LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 import allRoutes from "resources/allRoutes";
-import { BASE_URL } from "utils/constants.server";
 
-export const loader = () => {
-  const urls = allRoutes.map((route) => `${BASE_URL}${route.url}`);
+export const loader: LoaderFunction = ({ request }: LoaderFunctionArgs) => {
+  const origin = new URL(request.url).origin;
+  const urls = allRoutes.map((route) => `${origin}${route.url}`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset
