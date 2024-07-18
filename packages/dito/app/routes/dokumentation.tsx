@@ -6,9 +6,10 @@ import Header from "@digitalcheck/shared/components/Header";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
+import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
-import { documentation, siteMeta } from "resources/content";
+import { documentation, header, siteMeta } from "resources/content";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${documentation.title} — ${siteMeta.title}` }];
@@ -34,6 +35,11 @@ export default function Index() {
               <Button key={button.text} {...button} />
             ))}
           </ButtonContainer>
+        </Container>
+      </Background>
+      <Background backgroundColor="yellow">
+        <Container paddingTop="10" paddingBottom="10">
+          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container additionalClassNames="max-sm:!p-0">
