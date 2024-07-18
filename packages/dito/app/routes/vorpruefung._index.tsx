@@ -42,6 +42,7 @@ export default function Index() {
             }}
             content={{
               markdown: preCheck.start.subtitle,
+              className: "md:text-2xl",
             }}
           ></Box>
         </Container>
