@@ -751,7 +751,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
 
 export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
-  subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteuren, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
+  subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
   
   **Zeit:** ca. sechs Stunden
   <br />
