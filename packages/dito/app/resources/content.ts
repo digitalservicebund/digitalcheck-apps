@@ -557,12 +557,12 @@ export const documentation = {
     {
       text: "Dokumentation herunterladen",
       href: PATH_DOCUMENTATION_PDF,
-    },
+    } as const,
     {
       text: "Zurück",
       href: PATH_LANDING,
       look: "tertiary",
-    },
+    } as const,
   ],
   multipleNotice: {
     headline: "Eine oder mehrere Dokumentationen?",
