@@ -919,7 +919,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
         look: "tertiary",
         text: "Zum nächsten Schritt",
         href: PATH_METHODS_TECHNICAL_FEASIBILITY,
-      },
+      } as const,
     ],
   },
   nextStep: {
@@ -931,7 +931,8 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
       {
         text: "Digitalbezug einschätzen",
         href: PATH_LANDING,
-      },
+        look: "tertiary",
+      } as const,
     ],
   },
 };
