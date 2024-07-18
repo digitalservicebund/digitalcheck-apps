@@ -47,9 +47,7 @@ test.describe("test positive assessment page and PDF", () => {
     await page
       .getByRole("button", { name: "Vorprüfung herunterladen" })
       .click();
-    await expect(page.getByRole("main")).toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
-    );
+    await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
@@ -95,7 +93,7 @@ test.describe("test positive assessment page and PDF", () => {
     // wait 2 seconds for the download button to be reenabled
     await page.waitForTimeout(2000);
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
   });
 
@@ -107,7 +105,7 @@ test.describe("test positive assessment page and PDF", () => {
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
   });
 
@@ -120,7 +118,7 @@ test.describe("test positive assessment page and PDF", () => {
       .click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
   });
 });
@@ -147,9 +145,7 @@ test.describe("test PDF generation in negative case", () => {
     await page
       .getByRole("button", { name: "Vorprüfung herunterladen" })
       .click();
-    await expect(page.getByRole("main")).toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
-    );
+    await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
@@ -200,7 +196,7 @@ test.describe("test PDF generation in negative case", () => {
     // wait 2 seconds for the download button to be reenabled
     await page.waitForTimeout(2000);
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
   });
 
@@ -210,7 +206,7 @@ test.describe("test PDF generation in negative case", () => {
       .getByRole("button", { name: "Vorprüfung herunterladen" })
       .click();
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
@@ -225,7 +221,7 @@ test.describe("test PDF generation in negative case", () => {
       .getByRole("button", { name: "Vorprüfung herunterladen" })
       .click();
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
@@ -243,7 +239,7 @@ test.describe("test PDF generation in negative case", () => {
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).toContainText("kürzere Begründung");
     await expect(page.getByRole("main")).not.toContainText(
-      "Ihr Ergebnis wird heruntergeladen",
+      "wird heruntergeladen",
     );
   });
 });
