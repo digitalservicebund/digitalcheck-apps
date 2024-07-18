@@ -30,6 +30,7 @@ export default function Index() {
               className: "md:text-2xl",
             }}
           />
+          {/* TODO: ButtonContainer should accept an array of buttons! */}
           <ButtonContainer className="mt-48">
             {documentation.buttons.map((button) => (
               <Button key={button.text} {...button} />
