@@ -2,6 +2,10 @@ main .rich-text a {
   @apply font-bold;
 }
 
+main .rich-text a[href^="tel:"] {
+  white-space: nowrap;
+}
+
 main .rich-text ol {
   @apply list-decimal ml-16;
 }
