@@ -52,7 +52,8 @@ test.describe("test positive assessment page and PDF", () => {
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
     );
-    const filePath = path.resolve(await download.path());
+    await download.saveAs("/tmp/" + download.suggestedFilename());
+    const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
     const pdfDoc = await PDFDocument.load(fileData);
     const form = pdfDoc.getForm();
@@ -150,7 +151,8 @@ test.describe("test PDF generation in negative case", () => {
     expect(download.url()).toContain(
       PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
     );
-    const filePath = path.resolve(await download.path());
+    await download.saveAs("/tmp/" + download.suggestedFilename());
+    const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
     const pdfDoc = await PDFDocument.load(fileData);
     const form = pdfDoc.getForm();
