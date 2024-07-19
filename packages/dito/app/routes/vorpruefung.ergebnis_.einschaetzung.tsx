@@ -9,11 +9,15 @@ import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
 import { assessment, siteMeta } from "resources/content";
-import { ROUTE_ASSESSMENT_PDF, ROUTE_RESULT } from "resources/staticRoutes";
+import {
+  ROUTE_ASSESSMENT,
+  ROUTE_ASSESSMENT_PDF,
+  ROUTE_RESULT,
+} from "resources/staticRoutes";
 import { z } from "zod";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${assessment.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_ASSESSMENT.title} — ${siteMeta.title}` }];
 };
 
 const validator = withZod(

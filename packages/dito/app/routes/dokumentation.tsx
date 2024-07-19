@@ -10,9 +10,10 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { documentation, header, siteMeta } from "resources/content";
+import { ROUTE_DOCUMENTATION } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${documentation.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_DOCUMENTATION.title} — ${siteMeta.title}` }];
 };
 
 export default function Index() {

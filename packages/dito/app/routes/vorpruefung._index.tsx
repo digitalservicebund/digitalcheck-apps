@@ -9,14 +9,14 @@ import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { preCheck, siteMeta } from "resources/content";
-import { ROUTE_LANDING } from "resources/staticRoutes";
+import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_PRECHECK.title} — ${siteMeta.title}` }];
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {

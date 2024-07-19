@@ -4,9 +4,10 @@ import Header from "@digitalcheck/shared/components/Header";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import { privacy, siteMeta } from "resources/content";
+import { ROUTE_PRIVACY } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${privacy.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_PRIVACY.title} — ${siteMeta.title}` }];
 };
 
 export default function Index() {

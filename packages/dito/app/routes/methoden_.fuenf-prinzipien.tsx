@@ -6,8 +6,11 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import { fivePrincipals, siteMeta } from "resources/content";
-import { ROUTE_METHODS } from "resources/staticRoutes";
+import { fivePrinciples, siteMeta } from "resources/content";
+import {
+  ROUTE_METHODS,
+  ROUTE_METHODS_FIVE_PRINCIPLES,
+} from "resources/staticRoutes";
 import FeedbackBanner from "../components/FeedbackBanner.tsx";
 
 export function loader({ request }: LoaderFunctionArgs) {
@@ -24,7 +27,9 @@ export function loader({ request }: LoaderFunctionArgs) {
 }
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${fivePrincipals.title} — ${siteMeta.title}` }];
+  return [
+    { title: `${ROUTE_METHODS_FIVE_PRINCIPLES.title} — ${siteMeta.title}` },
+  ];
 };
 
 const slugify = (string: string) =>
@@ -35,8 +40,8 @@ export default function Index() {
 
   // TODO: this doesn't work atm when coming from the last methoden-page
   const nextStep = referrer.startsWith(ROUTE_METHODS.url)
-    ? fivePrincipals.nextStepMethods
-    : fivePrincipals.nextStep;
+    ? fivePrinciples.nextStepMethods
+    : fivePrinciples.nextStep;
 
   return (
     <>
@@ -45,13 +50,13 @@ export default function Index() {
           <Header
             heading={{
               tagName: "h1",
-              text: fivePrincipals.title,
+              text: fivePrinciples.title,
             }}
           />
           <div className="mt-64">
             <Heading tagName="div" text="Inhalt" className="font-bold" />
             <ol className="ds-stack-8 mt-16">
-              {fivePrincipals.principals.map((principal) => (
+              {fivePrinciples.principals.map((principal) => (
                 <li key={principal.label}>
                   <Link
                     to={`#${slugify(principal.label)}`}
@@ -65,7 +70,7 @@ export default function Index() {
           </div>
         </Container>
       </Background>
-      {fivePrincipals.principals.map((principal, index) => (
+      {fivePrinciples.principals.map((principal, index) => (
         <Background
           key={principal.content}
           backgroundColor={index % 2 === 0 ? "white" : "blue"}

@@ -24,7 +24,7 @@ import PreCheckNavigation from "./PreCheckNavigation";
 const { questions, answerOptions, nextButton } = preCheck;
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${preCheck.start.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_PRECHECK.title} — ${siteMeta.title}` }];
 };
 
 export async function loader({ request, params }: LoaderFunctionArgs) {

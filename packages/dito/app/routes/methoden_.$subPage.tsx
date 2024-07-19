@@ -24,6 +24,7 @@ import {
 
 export type TMethodPage = {
   title: string;
+  pageTitle: string;
   subtitle: string;
   accordion?: {
     title: string;
@@ -76,18 +77,22 @@ export function loader({ params }: LoaderFunctionArgs) {
   switch (route) {
     case ROUTE_METHODS_RESPONSIBLE_ACTORS.url:
       content = responsibleActors;
+      content.pageTitle = ROUTE_METHODS_RESPONSIBLE_ACTORS.title;
       break;
 
     case ROUTE_METHODS_TASKS_PROCESSES.url:
       content = tasksProcesses;
+      content.pageTitle = ROUTE_METHODS_TASKS_PROCESSES.title;
       break;
 
     case ROUTE_METHODS_COLLECT_IT_SYSTEMS.url:
       content = collectITSystems;
+      content.pageTitle = ROUTE_METHODS_COLLECT_IT_SYSTEMS.title;
       break;
 
     case ROUTE_METHODS_TECHNICAL_FEASIBILITY.url:
       content = technicalFeasibility;
+      content.pageTitle = ROUTE_METHODS_TECHNICAL_FEASIBILITY.title;
       break;
   }
 
@@ -103,7 +108,7 @@ export function loader({ params }: LoaderFunctionArgs) {
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (data) {
-    return [{ title: `${data.title} — ${siteMeta.title}` }];
+    return [{ title: `${data.pageTitle} — ${siteMeta.title}` }];
   }
 };
 

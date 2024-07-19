@@ -11,9 +11,10 @@ import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods, siteMeta } from "resources/content";
+import { ROUTE_METHODS } from "resources/staticRoutes";
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${methods.title} — ${siteMeta.title}` }];
+  return [{ title: `${ROUTE_METHODS.title} — ${siteMeta.title}` }];
 };
 
 export default function Index() {

@@ -8,7 +8,7 @@ import {
   ROUTE_LANDING,
   ROUTE_METHODS,
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
-  ROUTE_METHODS_FIVE_PRINCIPALS,
+  ROUTE_METHODS_FIVE_PRINCIPLES,
   ROUTE_METHODS_RESPONSIBLE_ACTORS,
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
@@ -171,7 +171,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
 5. Prinzip 5: Automatisierung ermöglichen
 
-[Details und Beispiele](${ROUTE_METHODS_FIVE_PRINCIPALS.url})`,
+[Details und Beispiele](${ROUTE_METHODS_FIVE_PRINCIPLES.url})`,
   },
 };
 
@@ -505,7 +505,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         buttons: [
           {
             text: "Fünf Prinzipien nutzen",
-            href: ROUTE_METHODS_FIVE_PRINCIPALS.url,
+            href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
           },
         ],
       },
@@ -809,13 +809,13 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       {
         text: "Zum nächsten Schritt",
         look: "tertiary",
-        href: ROUTE_METHODS_FIVE_PRINCIPALS.url,
+        href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
       },
     ],
   },
 } as TMethodPage;
 
-export const fivePrincipals = {
+export const fivePrinciples = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
   principals: [
     {
