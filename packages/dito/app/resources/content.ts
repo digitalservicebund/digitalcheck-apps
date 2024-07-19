@@ -182,7 +182,7 @@ export const feedbackBanner = {
   },
   needToTalk: {
     title: "Sie haben Gesprächsbedarf zu Ihrem Vorhaben?",
-    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:0151/40767839). Wir melden uns bei Ihnen.`,
+    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:0151/40767839).`,
   },
 };
 
