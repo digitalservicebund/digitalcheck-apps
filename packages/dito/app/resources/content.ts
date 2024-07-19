@@ -212,7 +212,7 @@ export const preCheck = {
     buttonText: "Digitalbezug einschätzen",
     info: {
       title: "Eine oder mehrere Vorprüfungen?",
-      text: "Füllen Sie eine Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. Ganz nach der Devise: so viel wie nötig, so wenig wie möglich.",
+      text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
     },
     summary: {
       title: "Zusammengefasst",
