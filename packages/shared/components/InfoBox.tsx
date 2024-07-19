@@ -20,7 +20,7 @@ const InfoBox = ({
   return (
     <div className="ds-stack-8 scroll-my-40" id={identifier}>
       {label && <Heading {...label} />}
-      {heading && <Heading {...heading} />}
+      {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       <ul
         className={classNames("list-none ps-0 info-box", {
           "ds-stack-48": !separator,

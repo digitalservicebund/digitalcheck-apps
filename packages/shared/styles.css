@@ -21,7 +21,7 @@
   }
 
   h2 {
-    @apply ds-heading-02-reg;
+    @apply ds-heading-02-reg max-sm:ds-heading-03-reg;
   }
 
   h3 {

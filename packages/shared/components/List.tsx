@@ -11,7 +11,7 @@ type ListProps = {
 const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
   return (
     <div className="scroll-my-40 relative ds-stack-8" id={identifier}>
-      {heading && <Heading {...heading} />}
+      {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       {!isNumeric && (
         <div className="absolute left-[8px] top-32 bottom-0 bg-blue-300 w-[4px]">
           <div className="text-blue-300 bg-white w-[20px] -left-[8px] absolute text-center text-xl leading-none rotate-180">
