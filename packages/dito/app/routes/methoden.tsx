@@ -3,13 +3,14 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import List from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
+import RichText from "@digitalcheck/shared/components/RichText";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { renderToString } from "react-dom/server";
-import { methods, siteMeta } from "resources/content";
+import { header, methods, siteMeta } from "resources/content";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${methods.title} — ${siteMeta.title}` }];
@@ -74,6 +75,11 @@ export default function Index() {
               className: "md:text-2xl",
             }}
           ></Header>
+        </Container>
+      </Background>
+      <Background backgroundColor="yellow">
+        <Container paddingTop="10" paddingBottom="10">
+          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container>
