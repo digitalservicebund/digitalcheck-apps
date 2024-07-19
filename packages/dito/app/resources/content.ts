@@ -576,7 +576,7 @@ export const documentation = {
   multipleNotice: {
     headline: "Eine oder mehrere Dokumentationen?",
     content:
-      "Füllen Sie eine Dokumentation für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. Ganz nach der Devise: so viel wie nötig, so wenig wie möglich.",
+      "Füllen Sie eine gemeinsame Dokumentation für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
   },
   summary: {
     title: "Zusammengefasst",
