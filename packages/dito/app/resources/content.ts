@@ -1,4 +1,4 @@
-import type { TMethodPage } from "routes/methoden_.$subPage/route";
+import type { TMethodPage } from "routes/methoden_.$subPage";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   PATH_A11Y,

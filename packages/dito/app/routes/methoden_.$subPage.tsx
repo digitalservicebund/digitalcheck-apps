@@ -136,7 +136,7 @@ export default function Index() {
       )}
       <Container additionalClassNames="ds-stack-32">
         <Box
-          heading={{ text: content.content.title }}
+          heading={{ text: content.content.title, tagName: "h3" }}
           label={{ text: content.content.label }}
           content={{ markdown: content.content.text }}
         />
@@ -161,7 +161,7 @@ export default function Index() {
             <div className="rounded-b-lg overflow-hidden">
               <Background backgroundColor="blue">
                 <Box
-                  heading={{ text: box.title }}
+                  heading={{ text: box.title, tagName: "h3" }}
                   label={{ text: box.label }}
                   content={{ markdown: box.text }}
                   buttons={box.buttons}
@@ -176,7 +176,7 @@ export default function Index() {
         <Background backgroundColor="yellow">
           <Container>
             <Box
-              heading={{ text: content.tip.title }}
+              heading={{ text: content.tip.title, tagName: "h3" }}
               label={{ text: content.tip.label }}
               content={{ markdown: content.tip.text }}
             />
@@ -187,7 +187,7 @@ export default function Index() {
         <Background backgroundColor="blue">
           <Container>
             <Box
-              heading={{ text: content.support.title }}
+              heading={{ text: content.support.title, tagName: "h3" }}
               label={{ text: content.support.label }}
               content={{ markdown: content.support.text }}
             />
@@ -197,7 +197,7 @@ export default function Index() {
       {content.nextStep && (
         <Container>
           <Box
-            heading={{ text: content.nextStep.title }}
+            heading={{ text: content.nextStep.title, tagName: "h3" }}
             label={{ text: content.nextStep.label }}
             content={{ markdown: content.nextStep.text }}
             buttons={content.nextStep.buttons}
