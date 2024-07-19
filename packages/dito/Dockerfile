@@ -1,5 +1,5 @@
 # Download and install the dependencies for building the app
-FROM 22.4.1-alpine3.20 AS build-dependencies
+FROM node:22.4.1-alpine3.20 AS build-dependencies
 
 WORKDIR /src
 COPY package*.json ./
@@ -8,7 +8,7 @@ COPY packages/shared/package.json packages/shared/
 RUN npm ci
 
 # Download and install the dependencies for running the app
-FROM 22.4.1-alpine3.20 AS production-dependencies
+FROM node:22.4.1-alpine3.20 AS production-dependencies
 
 ENV NODE_ENV production
 WORKDIR /src
@@ -19,7 +19,7 @@ COPY packages/shared/package.json packages/shared/
 RUN npm ci
 
 # Build the app
-FROM 22.4.1-alpine3.20 AS build
+FROM node:22.4.1-alpine3.20 AS build
 
 ARG COMMIT_SHA
 ENV APP_VERSION=$COMMIT_SHA
