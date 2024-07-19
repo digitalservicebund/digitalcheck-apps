@@ -31,7 +31,7 @@ npm start
 
 ### Docker
 
-The project includes a Dockerfile to create a Docker Image for the project.
+The project includes a Dockerfile to create a Docker image for the project.
 
 Because we are using a monorepo, there are a few caveats to be aware of. The application relies on components within a shared package, so the most straightforward way is to run docker commands from the root of the application.
 
