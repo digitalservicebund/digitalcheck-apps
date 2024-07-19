@@ -16,7 +16,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     const fileData = await fs.readFile(filePath);
     const mimeType = mime.contentType(fileName) || "";
 
-    void trackCustomEvent(request, { name: `Download ${filePath}` });
+    void trackCustomEvent(request, { name: `Download`, props: { fileName } });
     return new Response(fileData, {
       status: 200,
       headers: {
