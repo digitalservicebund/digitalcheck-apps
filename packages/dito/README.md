@@ -8,7 +8,7 @@ A digital touchpoint for the Digitalcheck.
 
 The application requires a `.env` file with the following values configured. You can copy and rename the file `.env.example`, and if running locally shouldn't need to change many of the values there.
 
-- `UNLEASH_KEY`: Authorization key used for connecting to Unleash.
+- `UNLEASH_KEY`: Authorization key used for connecting to Unleash feature flag tool.
 
 ## Development
 
