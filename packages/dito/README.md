@@ -1,6 +1,6 @@
 # Digitalcheck Digital Touchpoint
 
-A digital touchpoint for the Digitalcheck.
+A digital touchpoint for the Digitalcheck. Digitaltaugliche Regelung erarbeiten.
 
 ## Prerequisites
 
