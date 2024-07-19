@@ -12,7 +12,7 @@ export const ROUTE_LANDING: Route = {
   title: "Startseite",
 };
 export const ROUTE_PRECHECK_STATIC_PDF: Route = {
-  url: `download/${PRE_CHECK_PDF}`,
+  url: `/download/${PRE_CHECK_PDF}`,
   title: "Vorprüfung als PDF",
 };
 
@@ -74,7 +74,7 @@ export const ROUTE_DOCUMENTATION: Route = {
   parent: ROUTE_LANDING.url,
 };
 export const ROUTE_DOCUMENTATION_STATIC_PDF: Route = {
-  url: `download/${DOCUMENTATION_PDF}`,
+  url: `/download/${DOCUMENTATION_PDF}`,
   title: "Begleitende Dokumentation als PDF",
 };
 
