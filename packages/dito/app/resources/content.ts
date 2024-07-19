@@ -1004,7 +1004,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       {
         text: "Zu den Hilfestellungen",
         look: "tertiary",
-        href: `${PATH_METHODS}#weiter`,
+        href: PATH_METHODS,
       },
     ],
   },
