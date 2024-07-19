@@ -1,4 +1,4 @@
-import { marked, Tokens } from "marked";
+import { marked, Marked, Tokens } from "marked";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 
 export type RichTextProps = {
@@ -7,13 +7,13 @@ export type RichTextProps = {
 };
 
 const RichText = ({ markdown, className, ...props }: RichTextProps) => {
-  const renderer = new marked.Renderer();
   const extension = {
     useNewRenderer: true,
     renderer: {
       link(token: Tokens.Link) {
         const { href } = token;
-        const linkHtml = renderer.link.call(this, token);
+        // render the link with the default renderer or a renderer that has overridden it
+        const linkHtml = marked.parseInline(token.raw) as string;
 
         // Force external links to open in a new window
         if (href.startsWith("http")) {
@@ -33,8 +33,8 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
     },
   };
 
-  marked.use(extension);
-  const html = marked.parse(markdown);
+  const newMarked = new Marked(extension);
+  const html = newMarked.parse(markdown);
 
   return html ? (
     <div

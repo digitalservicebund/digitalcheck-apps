@@ -19,6 +19,7 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
+import { marked, type Tokens } from "marked";
 import { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
@@ -61,6 +62,35 @@ export const links: LinksFunction = () => [
   },
 ];
 
+const renderer = new marked.Renderer();
+const extension = {
+  useNewRenderer: true,
+  renderer: {
+    link(token: Tokens.Link) {
+      const { href } = token;
+      const linkHtml = renderer.link.call(this, token);
+
+      if (href.startsWith("mailto")) {
+        return linkHtml.replace(
+          /^<a /,
+          `<a class="plausible-event-name=Mail+Click" `,
+        );
+      }
+
+      if (href.startsWith("tel")) {
+        return linkHtml.replace(
+          /^<a /,
+          `<a class="plausible-event-name=Phone+Click" `,
+        );
+      }
+
+      return linkHtml;
+    },
+  },
+};
+
+marked.use(extension);
+
 const footerLinks = [
   { url: ROUTE_IMPRINT.url, text: "Impressum" },
   { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
@@ -84,7 +114,7 @@ const PageHeader = ({
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold text-lg underline"
+          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click"
         >
           {header.contact.number}
         </a>
