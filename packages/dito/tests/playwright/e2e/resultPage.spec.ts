@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import {
-  PATH_DOCUMENTATION,
-  PATH_PRECHECK,
-  PATH_RESULT,
+  ROUTE_DOCUMENTATION,
+  ROUTE_PRECHECK,
+  ROUTE_RESULT,
 } from "resources/staticRoutes";
 
 test.describe("test result page general content", () => {
@@ -14,11 +14,11 @@ test.describe("test result page general content", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await page.waitForURL(PATH_RESULT);
+    await page.waitForURL(ROUTE_RESULT.url);
   });
 
   test("happy path leads to positive result", async ({ page }) => {
-    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText(
       "Ihr Regelungsvorhaben hat Digitalbezug.",
     );
@@ -26,7 +26,7 @@ test.describe("test result page general content", () => {
 
   test("result page links to documentation", async ({ page }) => {
     await page.getByRole("link", { name: "Dokumentation" }).click();
-    await expect(page).toHaveURL(PATH_DOCUMENTATION);
+    await expect(page).toHaveURL(ROUTE_DOCUMENTATION.url);
   });
 });
 
@@ -77,7 +77,7 @@ test.describe("test result page reasoning", () => {
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText(
       "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
     );
@@ -96,7 +96,7 @@ test.describe("test result page reasoning", () => {
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
       "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
@@ -115,18 +115,18 @@ test.describe("test result page redirects", () => {
   test("result page with no answers redirects to precheck", async ({
     page,
   }) => {
-    await page.goto(PATH_RESULT);
-    await expect(page).toHaveURL(PATH_PRECHECK);
+    await page.goto(ROUTE_RESULT.url);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
   });
 
   test("result page without all answers redirects to precheck", async ({
     page,
   }) => {
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.goto(PATH_RESULT);
-    await expect(page).toHaveURL(PATH_PRECHECK);
+    await page.goto(ROUTE_RESULT.url);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
   });
 });

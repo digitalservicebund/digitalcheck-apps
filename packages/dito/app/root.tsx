@@ -23,10 +23,10 @@ import { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
 import {
-  PATH_A11Y,
-  PATH_IMPRINT,
-  PATH_LANDING,
-  PATH_PRIVACY,
+  ROUTE_A11Y,
+  ROUTE_IMPRINT,
+  ROUTE_LANDING,
+  ROUTE_PRIVACY,
 } from "resources/staticRoutes";
 import { useNonce } from "utils/nonce";
 import styles from "./styles.css?url";
@@ -62,9 +62,9 @@ export const links: LinksFunction = () => [
 ];
 
 const footerLinks = [
-  { url: PATH_IMPRINT, text: "Impressum" },
-  { url: PATH_PRIVACY, text: "Datenschutzerklärung" },
-  { url: PATH_A11Y, text: "Barrierefreiheit" },
+  { url: ROUTE_IMPRINT.url, text: "Impressum" },
+  { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
+  { url: ROUTE_A11Y.url, text: "Barrierefreiheit" },
 ];
 
 const PageHeader = ({
@@ -74,7 +74,7 @@ const PageHeader = ({
 }) => (
   <header>
     <div className="min-h-64 p-16 flex justify-between items-center">
-      <Link to={PATH_LANDING} className="ds-label-01-bold">
+      <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
         {header.title}
       </Link>
       <span className="flex items-center">
@@ -183,7 +183,7 @@ export function ErrorBoundary() {
               <Button
                 id="error-back-button"
                 text="Zurück zur Startseite"
-                href={PATH_LANDING}
+                href={ROUTE_LANDING.url}
                 look="tertiary"
               ></Button>
             </ButtonContainer>

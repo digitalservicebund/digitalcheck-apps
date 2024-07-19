@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
-import { PATH_ASSESSMENT, PATH_RESULT } from "resources/staticRoutes";
+import { ROUTE_ASSESSMENT, ROUTE_RESULT } from "resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
@@ -23,12 +23,12 @@ test.describe("test positive assessment page and PDF", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await page.waitForURL(PATH_RESULT);
+    await page.waitForURL(ROUTE_RESULT.url);
     await page.getByRole("link", { name: "runterladen" }).click();
   });
 
   test("assessment page is available", async ({ page }) => {
-    await expect(page).toHaveURL(PATH_ASSESSMENT);
+    await expect(page).toHaveURL(ROUTE_ASSESSMENT.url);
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
@@ -50,7 +50,7 @@ test.describe("test positive assessment page and PDF", () => {
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(
-      PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
+      ROUTE_ASSESSMENT.url + "/digitalcheck-vorpruefung.pdf",
     );
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());
@@ -149,7 +149,7 @@ test.describe("test PDF generation in negative case", () => {
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(
-      PATH_ASSESSMENT + "/digitalcheck-vorpruefung.pdf",
+      ROUTE_ASSESSMENT.url + "/digitalcheck-vorpruefung.pdf",
     );
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());

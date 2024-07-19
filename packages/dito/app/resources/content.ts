@@ -1,20 +1,20 @@
 import type { TMethodPage } from "routes/methoden_.$subPage";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
-  PATH_A11Y,
-  PATH_ASSESSMENT,
-  PATH_DOCUMENTATION,
-  PATH_DOCUMENTATION_PDF,
-  PATH_LANDING,
-  PATH_METHODS,
-  PATH_METHODS_COLLECT_IT_SYSTEMS,
-  PATH_METHODS_FIVE_PRINCIPALS,
-  PATH_METHODS_RESPONSIBLE_ACTORS,
-  PATH_METHODS_TASKS_PROCESSES,
-  PATH_METHODS_TECHNICAL_FEASIBILITY,
-  PATH_PRECHECK,
-  PATH_PRIVACY,
-  PATH_RESULT,
+  ROUTE_A11Y,
+  ROUTE_ASSESSMENT,
+  ROUTE_DOCUMENTATION,
+  ROUTE_DOCUMENTATION_STATIC_PDF,
+  ROUTE_LANDING,
+  ROUTE_METHODS,
+  ROUTE_METHODS_COLLECT_IT_SYSTEMS,
+  ROUTE_METHODS_FIVE_PRINCIPALS,
+  ROUTE_METHODS_RESPONSIBLE_ACTORS,
+  ROUTE_METHODS_TASKS_PROCESSES,
+  ROUTE_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_PRECHECK,
+  ROUTE_PRIVACY,
+  ROUTE_RESULT,
 } from "./staticRoutes";
 
 export const siteMeta = {
@@ -49,7 +49,7 @@ export const steps = {
     buttons: [
       {
         text: "Digitalbezug einschätzen",
-        href: PATH_PRECHECK,
+        href: ROUTE_PRECHECK.url,
       },
     ],
     finished: {
@@ -80,7 +80,7 @@ export const steps = {
     buttons: [
       {
         text: "Zur Dokumentation",
-        href: PATH_DOCUMENTATION,
+        href: ROUTE_DOCUMENTATION.url,
         look: "ghost",
       },
     ],
@@ -121,7 +121,7 @@ export const landing = {
         buttons: [
           {
             text: "Zu den Hilfestellungen",
-            href: PATH_METHODS,
+            href: ROUTE_METHODS.url,
             look: "ghost" as const,
           },
         ],
@@ -171,7 +171,7 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
 5. Prinzip 5: Automatisierung ermöglichen
 
-[Details und Beispiele](${PATH_METHODS_FIVE_PRINCIPALS})`,
+[Details und Beispiele](${ROUTE_METHODS_FIVE_PRINCIPALS.url})`,
   },
 };
 
@@ -317,15 +317,15 @@ export const preCheck = {
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
     ...question,
-    url: `${PATH_PRECHECK}/${question.id}`,
+    url: `${ROUTE_PRECHECK.url}/${question.id}`,
     prevLink:
       index === 0
-        ? PATH_PRECHECK
-        : `${PATH_PRECHECK}/${questions[index - 1].id}`,
+        ? ROUTE_PRECHECK.url
+        : `${ROUTE_PRECHECK.url}/${questions[index - 1].id}`,
     nextLink:
       index === questions.length - 1
-        ? PATH_RESULT
-        : `${PATH_PRECHECK}/${questions[index + 1].id}`,
+        ? ROUTE_RESULT.url
+        : `${ROUTE_PRECHECK.url}/${questions[index + 1].id}`,
   })) as TQuestion[],
 
   result: {
@@ -335,7 +335,7 @@ export const preCheck = {
       reasoningIntro: "Das Regelungsvorhaben ...",
       actionButton: {
         text: "Vorprüfung herunterladen",
-        href: PATH_ASSESSMENT,
+        href: ROUTE_ASSESSMENT.url,
       },
       nextSteps: {
         title: "So machen Sie weiter",
@@ -346,7 +346,7 @@ export const preCheck = {
             buttons: [
               {
                 text: "Zu den Hilfestellungen",
-                href: PATH_METHODS,
+                href: ROUTE_METHODS.url,
               },
             ],
           },
@@ -363,7 +363,7 @@ export const preCheck = {
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
       actionButton: {
         text: "Vorprüfung wiederholen",
-        href: PATH_PRECHECK,
+        href: ROUTE_PRECHECK.url,
       },
       nextStep: {
         title:
@@ -371,7 +371,7 @@ export const preCheck = {
         text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
         link: {
           text: "Zu den Hilfestellungen",
-          href: PATH_METHODS,
+          href: ROUTE_METHODS.url,
         },
       },
     },
@@ -441,7 +441,7 @@ Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständig
         buttons: [
           {
             text: "Ansprechpersonen finden",
-            href: PATH_METHODS_RESPONSIBLE_ACTORS,
+            href: ROUTE_METHODS_RESPONSIBLE_ACTORS.url,
           },
         ],
       },
@@ -462,7 +462,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
         buttons: [
           {
             text: "Aufgaben und Abläufe klären",
-            href: PATH_METHODS_TASKS_PROCESSES,
+            href: ROUTE_METHODS_TASKS_PROCESSES.url,
           },
         ],
       },
@@ -483,7 +483,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Sys
         buttons: [
           {
             text: "IT-Landschaft verstehen",
-            href: PATH_METHODS_COLLECT_IT_SYSTEMS,
+            href: ROUTE_METHODS_COLLECT_IT_SYSTEMS.url,
           },
         ],
       },
@@ -505,7 +505,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
         buttons: [
           {
             text: "Fünf Prinzipien nutzen",
-            href: PATH_METHODS_FIVE_PRINCIPALS,
+            href: ROUTE_METHODS_FIVE_PRINCIPALS.url,
           },
         ],
       },
@@ -527,7 +527,7 @@ In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf best
         buttons: [
           {
             text: "IT-Auswirkungen prüfen",
-            href: PATH_METHODS_TECHNICAL_FEASIBILITY,
+            href: ROUTE_METHODS_TECHNICAL_FEASIBILITY.url,
           },
         ],
       },
@@ -565,11 +565,11 @@ export const documentation = {
   buttons: [
     {
       text: "Dokumentation herunterladen",
-      href: PATH_DOCUMENTATION_PDF,
+      href: ROUTE_DOCUMENTATION_STATIC_PDF.url,
     } as const,
     {
       text: "Zurück",
-      href: PATH_LANDING,
+      href: ROUTE_LANDING.url,
       look: "tertiary",
     } as const,
   ],
@@ -656,7 +656,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       {
         text: "Zum nächsten Schritt",
         look: "tertiary",
-        href: PATH_METHODS_TASKS_PROCESSES,
+        href: ROUTE_METHODS_TASKS_PROCESSES.url,
       },
     ],
   },
@@ -696,7 +696,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
       label: "Vorlage",
       title: "Einfache Abläufe und Aufgaben erfassen",
       // TODO: This is a hacky solution to render the numbers. But that doesn't intend the paragraphs after the numbers. Normal list rendering doesn't work here atm , need to investigate
-      text: `1. Sammeln Sie [Akteurinnen und Akteure](${PATH_METHODS_RESPONSIBLE_ACTORS}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. (“Wer”)
+      text: `1. Sammeln Sie [Akteurinnen und Akteure](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. (“Wer”)
 2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“von wem”)
 3. In die Mitte schreiben Sie die verbindenden Aufgaben. (“will wann was”)
 
@@ -743,7 +743,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       {
         text: "Zum nächsten Schritt",
         look: "tertiary",
-        href: PATH_METHODS_COLLECT_IT_SYSTEMS,
+        href: ROUTE_METHODS_COLLECT_IT_SYSTEMS.url,
       },
     ],
   },
@@ -809,7 +809,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       {
         text: "Zum nächsten Schritt",
         look: "tertiary",
-        href: PATH_METHODS_FIVE_PRINCIPALS,
+        href: ROUTE_METHODS_FIVE_PRINCIPALS.url,
       },
     ],
   },
@@ -921,7 +921,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
       {
         look: "tertiary",
         text: "Zum nächsten Schritt",
-        href: PATH_METHODS_TECHNICAL_FEASIBILITY,
+        href: ROUTE_METHODS_TECHNICAL_FEASIBILITY.url,
       } as const,
     ],
   },
@@ -933,7 +933,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
     buttons: [
       {
         text: "Digitalbezug einschätzen",
-        href: PATH_LANDING,
+        href: ROUTE_LANDING.url,
         look: "tertiary",
       } as const,
     ],
@@ -952,7 +952,7 @@ export const technicalFeasibility = {
   content: {
     label: "Anleitung",
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
-    text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${PATH_METHODS_RESPONSIBLE_ACTORS}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
+    text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
 <br> <br>
 So erfahren Sie 
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können,
@@ -1004,7 +1004,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [d
       {
         text: "Zu den Hilfestellungen",
         look: "tertiary",
-        href: PATH_METHODS,
+        href: ROUTE_METHODS.url,
       },
     ],
   },
@@ -1061,13 +1061,13 @@ E-Mail: [hallo@digitalservice.bund.de](mailto:hallo@digitalservice.bund.de)
 
 ### Datenschutz
 
-Erfahren Sie mehr hierzu in der [Datenschutzerklärung](${PATH_PRIVACY})
+Erfahren Sie mehr hierzu in der [Datenschutzerklärung](${ROUTE_PRIVACY.url})
 <br />
 <br />
 
 ### Barrierefreiheit
 
-Erfahren Sie mehr hierzu in der [Barrierefreiheitserklärung](${PATH_A11Y})`,
+Erfahren Sie mehr hierzu in der [Barrierefreiheitserklärung](${ROUTE_A11Y.url})`,
 };
 
 export const privacy = {

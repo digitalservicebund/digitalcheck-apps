@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
-import { PATH_PRECHECK, PATH_RESULT } from "resources/staticRoutes";
+import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
 
 const { questions } = preCheck;
 
 test.describe("test questions form", () => {
   test("all answer options are submittable", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.waitForURL(preCheck.questions[0].url);
     await page.getByLabel("Ja").click();
@@ -23,11 +23,11 @@ test.describe("test questions form", () => {
     await page.waitForURL(preCheck.questions[4].url);
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
   });
 
   test("clicking through questions works", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     for (let i = 0; i < 5; i++) {
       // check that the page shows correct question
@@ -45,7 +45,7 @@ test.describe("test questions form", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
-    await expect(page).toHaveURL(PATH_RESULT);
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
   });
 
   test("cant submit form without answers", async ({ page }) => {
@@ -60,7 +60,7 @@ test.describe("test questions form", () => {
   test("back button works", async ({ page }) => {
     await page.goto(questions[0].url);
     await page.getByRole("link", { name: "Zurück" }).click();
-    await expect(page).toHaveURL(PATH_PRECHECK);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
     await page.goto(questions[0].url);
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -68,7 +68,7 @@ test.describe("test questions form", () => {
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page).toHaveURL(questions[0].url);
     await page.getByRole("link", { name: "Zurück" }).click();
-    await expect(page).toHaveURL(PATH_PRECHECK);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
   });
 
   test("answers are saved and loaded from cookie and persisted across navigations and submissions", async ({
@@ -77,7 +77,7 @@ test.describe("test questions form", () => {
     // was a bit of a hassle to get the cookie and react-hook-form to work together with useEffect
     // that's why the test is a bit more extensive than it could be
     // we've sinced moved to using rvf but we'll keep it like this for now
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -124,7 +124,7 @@ test.describe("test questions form", () => {
   });
 
   test("redirect to first unanswered question", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -156,13 +156,13 @@ test.describe("test questions form", () => {
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
     await page.getByRole("link", { name: "Vorprüfung" }).click();
-    await page.waitForURL(PATH_PRECHECK);
+    await page.waitForURL(ROUTE_PRECHECK.url);
     await page.goto(questions[0].url);
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Einschätzen" }).click();
     await expect(page.getByLabel("Ja")).not.toBeChecked();
   });
@@ -170,7 +170,7 @@ test.describe("test questions form", () => {
 
 test.describe("test question navigation", () => {
   test("navigation leads to correct pages", async ({ page }) => {
-    await page.goto(PATH_PRECHECK);
+    await page.goto(ROUTE_PRECHECK.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     for (let i = 0; i < 4; i++) {
       await page.waitForURL(preCheck.questions[i].url);

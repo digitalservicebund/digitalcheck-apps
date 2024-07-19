@@ -33,13 +33,13 @@ test.describe("test landing page", () => {
   });
 
   test("CTA on landing works", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_LANDING);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_PRECHECK.url);
   });
 
   test("list items on landing page are visible", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_LANDING);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await expect(page.getByRole("main")).toContainText(
       "1Vorprüfung: Digitalbezug einschätzen",
     );
@@ -57,31 +57,31 @@ test.describe("test landing page", () => {
 
 test.describe("test links", () => {
   test("links in footer work", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_LANDING);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await page.getByRole("link", { name: "Datenschutzerklärung" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_PRIVACY);
-    await page.goto(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_PRIVACY.url);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await page.getByRole("link", { name: "Barrierefreiheit" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_A11Y);
-    await page.goto(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_A11Y.url);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await page.getByRole("link", { name: "Impressum" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_IMPRINT);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_IMPRINT.url);
   });
 
   test("breadcrumb landing link works", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_PRECHECK);
+    await page.goto(staticRoutes.ROUTE_PRECHECK.url);
     await page
       .getByLabel("navigation")
       .getByRole("link", { name: "Startseite" })
       .click();
-    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
     await page.goto(preCheck.questions[0].url);
     // using label here as there is a sidebar with the same role
     await page
       .getByLabel("navigation")
       .getByRole("link", { name: "Startseite" })
       .click();
-    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
   });
 
   test("breadcrumb parent link works", async ({ page }) => {
@@ -91,17 +91,17 @@ test.describe("test links", () => {
       page.getByTestId("breadcrumbs-menu").getByRole("link"),
     ).toHaveCount(2);
     await page.getByTestId("breadcrumbs-menu").getByRole("link").last().click();
-    await expect(page).toHaveURL(staticRoutes.PATH_PRECHECK);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_PRECHECK.url);
   });
 
   test("links in landing page work", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_LANDING);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     await page.getByRole("link", { name: "Hilfestellungen" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_METHODS);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_METHODS.url);
   });
 
   test("links leading to external pages open in new tab", async ({ page }) => {
-    await page.goto(staticRoutes.PATH_LANDING);
+    await page.goto(staticRoutes.ROUTE_LANDING.url);
     const link = page.getByRole("link", {
       name: "DigitalService GmbH des Bundes",
     });
@@ -109,7 +109,7 @@ test.describe("test links", () => {
     await link.click();
     // wait for a second to let the new tab open
     await page.waitForTimeout(1000);
-    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
   });
 });
 
@@ -127,6 +127,6 @@ test.describe("test error pages", () => {
     const response = await page.goto("/does-not-exist");
     expect(response?.status()).toBe(404);
     await page.getByRole("link", { name: "Zurück zur Startseite" }).click();
-    await expect(page).toHaveURL(staticRoutes.PATH_LANDING);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
   });
 });

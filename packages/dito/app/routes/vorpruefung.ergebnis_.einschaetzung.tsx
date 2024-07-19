@@ -9,7 +9,7 @@ import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
 import { assessment, siteMeta } from "resources/content";
-import { PATH_ASSESSMENT_PDF, PATH_RESULT } from "resources/staticRoutes";
+import { ROUTE_ASSESSMENT_PDF, ROUTE_RESULT } from "resources/staticRoutes";
 import { z } from "zod";
 
 export const meta: MetaFunction = () => {
@@ -29,7 +29,7 @@ export default function Assessment() {
   const form = useForm({
     validator,
     method: "post",
-    action: PATH_ASSESSMENT_PDF,
+    action: ROUTE_ASSESSMENT_PDF.url,
     reloadDocument: true,
   });
   const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
@@ -76,7 +76,7 @@ export default function Assessment() {
             <Button
               id="assessment-back-button"
               text="Zurück"
-              href={PATH_RESULT}
+              href={ROUTE_RESULT.url}
               look="tertiary"
             ></Button>
             <Button

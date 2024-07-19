@@ -12,7 +12,7 @@ import Download from "@digitalservicebund/icons/Download.js";
 
 import { useEffect, useState } from "react";
 import { assessment, preCheck } from "resources/content";
-import { PATH_ASSESSMENT_PDF } from "resources/staticRoutes";
+import { ROUTE_ASSESSMENT_PDF } from "resources/staticRoutes";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
@@ -39,7 +39,7 @@ export default function ResultNegative({
   const form = useForm({
     validator,
     method: "post",
-    action: PATH_ASSESSMENT_PDF,
+    action: ROUTE_ASSESSMENT_PDF.url,
     reloadDocument: true,
   });
   const reasonsText = getReasoningText(

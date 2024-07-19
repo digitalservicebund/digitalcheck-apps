@@ -15,11 +15,11 @@ import {
   technicalFeasibility,
 } from "resources/content";
 import {
-  PATH_METHODS,
-  PATH_METHODS_COLLECT_IT_SYSTEMS,
-  PATH_METHODS_RESPONSIBLE_ACTORS,
-  PATH_METHODS_TASKS_PROCESSES,
-  PATH_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_METHODS,
+  ROUTE_METHODS_COLLECT_IT_SYSTEMS,
+  ROUTE_METHODS_RESPONSIBLE_ACTORS,
+  ROUTE_METHODS_TASKS_PROCESSES,
+  ROUTE_METHODS_TECHNICAL_FEASIBILITY,
 } from "resources/staticRoutes";
 
 export type TMethodPage = {
@@ -69,24 +69,24 @@ export type TMethodPage = {
 
 export function loader({ params }: LoaderFunctionArgs) {
   const { subPage } = params;
-  const path = `${PATH_METHODS}/${subPage}`;
+  const route = `${ROUTE_METHODS.url}/${subPage}`;
 
   let content;
 
-  switch (path) {
-    case PATH_METHODS_RESPONSIBLE_ACTORS:
+  switch (route) {
+    case ROUTE_METHODS_RESPONSIBLE_ACTORS.url:
       content = responsibleActors;
       break;
 
-    case PATH_METHODS_TASKS_PROCESSES:
+    case ROUTE_METHODS_TASKS_PROCESSES.url:
       content = tasksProcesses;
       break;
 
-    case PATH_METHODS_COLLECT_IT_SYSTEMS:
+    case ROUTE_METHODS_COLLECT_IT_SYSTEMS.url:
       content = collectITSystems;
       break;
 
-    case PATH_METHODS_TECHNICAL_FEASIBILITY:
+    case ROUTE_METHODS_TECHNICAL_FEASIBILITY.url:
       content = technicalFeasibility;
       break;
   }

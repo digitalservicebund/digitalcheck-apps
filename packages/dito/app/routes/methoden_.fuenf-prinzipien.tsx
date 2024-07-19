@@ -7,7 +7,7 @@ import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { fivePrincipals, siteMeta } from "resources/content";
-import { PATH_METHODS } from "resources/staticRoutes";
+import { ROUTE_METHODS } from "resources/staticRoutes";
 import FeedbackBanner from "../components/FeedbackBanner.tsx";
 
 export function loader({ request }: LoaderFunctionArgs) {
@@ -34,7 +34,7 @@ export default function Index() {
   const { referrer } = useLoaderData<typeof loader>();
 
   // TODO: this doesn't work atm when coming from the last methoden-page
-  const nextStep = referrer.startsWith(PATH_METHODS)
+  const nextStep = referrer.startsWith(ROUTE_METHODS.url)
     ? fivePrincipals.nextStepMethods
     : fivePrincipals.nextStep;
 

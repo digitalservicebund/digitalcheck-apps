@@ -2,7 +2,7 @@ import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 
 import { preCheck, siteMeta } from "resources/content";
-import { PATH_PRECHECK } from "resources/staticRoutes";
+import { ROUTE_PRECHECK } from "resources/staticRoutes";
 import type { Answers, Option } from "routes/vorpruefung.$questionId/route";
 import { getAnswersFromCookie } from "utils/cookies.server";
 import trackCustomEvent from "utils/trackCustomEvent.server";
@@ -23,7 +23,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
   // redirect to precheck if not all answers are present
   if (Object.keys(answers).length !== questions.length) {
-    return redirect(PATH_PRECHECK);
+    return redirect(ROUTE_PRECHECK.url);
   }
   const positiveQuestions = getQuestionIDsOfOption(answers, "yes");
   const unsureQuestions = getQuestionIDsOfOption(answers, "unsure");

@@ -9,7 +9,7 @@ import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { preCheck, siteMeta } from "resources/content";
-import { PATH_LANDING } from "resources/staticRoutes";
+import { ROUTE_LANDING } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
@@ -57,7 +57,7 @@ export default function Index() {
             <Button
               id="preCheck-back-button"
               text="Zurück"
-              href={PATH_LANDING}
+              href={ROUTE_LANDING.url}
               look="tertiary"
             ></Button>
           </ButtonContainer>

@@ -1,23 +1,5 @@
 const PRE_CHECK_PDF = "digitalcheck-vorpruefung.pdf";
-
-export const PATH_LANDING: string = "/";
-export const PATH_PRECHECK: string = "/vorpruefung";
-export const PATH_RESULT: string = `${PATH_PRECHECK}/ergebnis`;
-export const PATH_ASSESSMENT: string = `${PATH_RESULT}/einschaetzung`;
-export const PATH_ASSESSMENT_PDF: string = `${PATH_ASSESSMENT}/${PRE_CHECK_PDF}`;
-export const PATH_METHODS = "/methoden";
-export const PATH_METHODS_RESPONSIBLE_ACTORS = `${PATH_METHODS}/zustaendige-akteurinnen`;
-export const PATH_METHODS_TASKS_PROCESSES = `${PATH_METHODS}/ablaeufe-aufgaben-erfassen`;
-export const PATH_METHODS_COLLECT_IT_SYSTEMS = `${PATH_METHODS}/it-systeme-erfassen`;
-export const PATH_METHODS_FIVE_PRINCIPALS: string = `${PATH_METHODS}/fuenf-prinzipien`;
-export const PATH_METHODS_TECHNICAL_FEASIBILITY = `${PATH_METHODS}/technische-umsetzbarkeit`;
-export const PATH_DOCUMENTATION: string = "/dokumentation";
-export const PATH_IMPRINT: string = "/impressum";
-export const PATH_PRIVACY: string = "/datenschutz";
-export const PATH_A11Y: string = "/barrierefreiheit";
-export const PATH_PRECHECK_PDF: string = `/download/${PRE_CHECK_PDF}`;
-export const PATH_DOCUMENTATION_PDF: string =
-  "/download/digitalcheck-begleitende-dokumentation.pdf";
+const DOCUMENTATION_PDF = "digitalcheck-begleitende-dokumentation.pdf";
 
 export type Route = {
   url: string;
@@ -25,84 +7,108 @@ export type Route = {
   parent?: string;
 };
 
+export const ROUTE_LANDING: Route = {
+  url: "/",
+  title: "Startseite",
+};
+export const ROUTE_PRECHECK_STATIC_PDF: Route = {
+  url: `download/${PRE_CHECK_PDF}`,
+  title: "Vorprüfung als PDF",
+};
+
+export const ROUTE_PRECHECK: Route = {
+  url: "/vorpruefung",
+  title: "Vorprüfung: Digitalbezug einschätzen",
+  parent: ROUTE_LANDING.url,
+};
+export const ROUTE_RESULT: Route = {
+  url: `${ROUTE_PRECHECK.url}/ergebnis`,
+  title: "Ergebnis der Vorprüfung",
+  parent: ROUTE_PRECHECK.url,
+};
+export const ROUTE_ASSESSMENT: Route = {
+  url: `${ROUTE_RESULT.url}/einschaetzung`,
+  title: "Vorprüfung als PDF",
+  parent: ROUTE_RESULT.url,
+};
+export const ROUTE_ASSESSMENT_PDF: Route = {
+  url: `${ROUTE_ASSESSMENT.url}/${PRE_CHECK_PDF}`,
+  title: "Vorprüfung als PDF",
+  parent: ROUTE_ASSESSMENT.url,
+};
+
+export const ROUTE_METHODS: Route = {
+  url: "/methoden",
+  title: "Regelung erarbeiten",
+  parent: ROUTE_LANDING.url,
+};
+export const ROUTE_METHODS_RESPONSIBLE_ACTORS: Route = {
+  url: `${ROUTE_METHODS.url}/zustaendige-akteurinnen-auflisten`,
+  title: "Akteure auflisten",
+  parent: ROUTE_METHODS.url,
+};
+export const ROUTE_METHODS_TASKS_PROCESSES: Route = {
+  url: `${ROUTE_METHODS.url}/ablaeufe-aufgaben-erfassen`,
+  title: "Abläufe erfassen",
+  parent: ROUTE_METHODS.url,
+};
+export const ROUTE_METHODS_COLLECT_IT_SYSTEMS: Route = {
+  url: `${ROUTE_METHODS.url}/it-systeme-erfassen`,
+  title: "IT-Systeme erfassen",
+  parent: ROUTE_METHODS.url,
+};
+export const ROUTE_METHODS_FIVE_PRINCIPALS: Route = {
+  url: `${ROUTE_METHODS.url}/fuenf-prinzipien`,
+  title: "Fünf Prinzipien",
+  parent: ROUTE_METHODS.url,
+};
+export const ROUTE_METHODS_TECHNICAL_FEASIBILITY: Route = {
+  url: `${ROUTE_METHODS.url}/technische-umsetzbarkeit`,
+  title: "Technische Umsetzbarkeit sicherstellen",
+  parent: ROUTE_METHODS.url,
+};
+
+export const ROUTE_DOCUMENTATION: Route = {
+  url: "/dokumentation",
+  title: "Dokumentation",
+  parent: ROUTE_LANDING.url,
+};
+export const ROUTE_DOCUMENTATION_STATIC_PDF: Route = {
+  url: `download/${DOCUMENTATION_PDF}`,
+  title: "Begleitende Dokumentation als PDF",
+};
+
+export const ROUTE_IMPRINT: Route = {
+  url: "/impressum",
+  title: "Impressum",
+  parent: ROUTE_LANDING.url,
+};
+export const ROUTE_PRIVACY: Route = {
+  url: "/datenschutz",
+  title: "Datenschutzerklärung",
+  parent: ROUTE_LANDING.url,
+};
+export const ROUTE_A11Y: Route = {
+  url: "/barrierefreiheit",
+  title: "Barrierefreiheit",
+  parent: ROUTE_LANDING.url,
+};
+
 const routes: Route[] = [
-  {
-    url: PATH_LANDING,
-    title: "Startseite",
-  },
-  {
-    url: PATH_PRECHECK,
-    title: "Vorprüfung",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_RESULT,
-    title: "Ergebnis",
-    parent: PATH_PRECHECK,
-  },
-  {
-    url: PATH_ASSESSMENT,
-    title: "Vorprüfung als PDF",
-    parent: PATH_RESULT,
-  },
-  {
-    url: PATH_PRECHECK_PDF,
-    title: "Digitalcheck Vorprüfung",
-  },
-  {
-    url: PATH_DOCUMENTATION_PDF,
-    title: "Begleitende Dokumentation",
-  },
-  {
-    url: PATH_METHODS,
-    title: "Regelung erarbeiten",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_METHODS_RESPONSIBLE_ACTORS,
-    title: "Akteure auflisten",
-    parent: PATH_METHODS,
-  },
-  {
-    url: PATH_METHODS_TASKS_PROCESSES,
-    title: "Abläufe erfassen",
-    parent: PATH_METHODS,
-  },
-  {
-    url: PATH_METHODS_COLLECT_IT_SYSTEMS,
-    title: "IT-Systeme erfassen",
-    parent: PATH_METHODS,
-  },
-  {
-    url: PATH_METHODS_FIVE_PRINCIPALS,
-    title: "Fünf Prinzipien",
-    parent: PATH_METHODS,
-  },
-  {
-    url: PATH_METHODS_TECHNICAL_FEASIBILITY,
-    title: "Technische Umsetzbarkeit sicherstellen",
-    parent: PATH_METHODS,
-  },
-  {
-    url: PATH_DOCUMENTATION,
-    title: "Dokumentation",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_IMPRINT,
-    title: "Impressum",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_A11Y,
-    title: "Barrierefreiheit",
-    parent: PATH_LANDING,
-  },
-  {
-    url: PATH_PRIVACY,
-    title: "Datenschutzerklärung",
-    parent: PATH_LANDING,
-  },
+  ROUTE_LANDING,
+  ROUTE_PRECHECK,
+  ROUTE_RESULT,
+  ROUTE_ASSESSMENT,
+  ROUTE_METHODS,
+  ROUTE_METHODS_RESPONSIBLE_ACTORS,
+  ROUTE_METHODS_TASKS_PROCESSES,
+  ROUTE_METHODS_COLLECT_IT_SYSTEMS,
+  ROUTE_METHODS_FIVE_PRINCIPALS,
+  ROUTE_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_DOCUMENTATION,
+  ROUTE_IMPRINT,
+  ROUTE_PRIVACY,
+  ROUTE_A11Y,
 ];
 
 export default routes;

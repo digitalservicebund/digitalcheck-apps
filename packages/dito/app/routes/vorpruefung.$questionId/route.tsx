@@ -13,7 +13,7 @@ import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
 import { preCheck, siteMeta } from "resources/content";
-import { PATH_PRECHECK } from "resources/staticRoutes";
+import { ROUTE_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
@@ -76,7 +76,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const cookie = await getAnswersFromCookie(request);
   cookie.answers[questionId] = answer as Option["value"];
   const nextLink =
-    questions.find((q) => q.id === questionId)?.nextLink ?? PATH_PRECHECK;
+    questions.find((q) => q.id === questionId)?.nextLink ?? ROUTE_PRECHECK.url;
 
   return redirect(nextLink, await getHeaderFromCookie(cookie));
 }
