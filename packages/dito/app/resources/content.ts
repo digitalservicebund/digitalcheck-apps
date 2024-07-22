@@ -37,7 +37,12 @@ const stepNKR = {
     text: "Prüfung durch den NKR",
   },
   content:
-    "Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.",
+    `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
+ 
+Senden Sie die von Ihnen erstellte Dokumentation per E-Mail an folgende Adresse: 
+[nkr@bmj.bund.de](mailto:nkr@bmj.bund.de)
+
+Damit ist der Digitalcheck für Sie beendet.`,
 };
 export const steps = {
   preCheck: {
@@ -969,7 +974,9 @@ So erfahren Sie
       },
       label: "Vorlage",
       title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
-      text: `Besprechen Sie die Fragen im Schaubild gemeinsam mit den IT-Expertinnen und Experten in der Umsetzung. Multidisziplinäre Zusammenarbeit ist hier der Schlüssel.`,
+      text: `Besprechen Sie die Fragen im Schaubild gemeinsam mit den IT-Expertinnen und Experten in der Umsetzung. Multidisziplinäre Zusammenarbeit ist hier der Schlüssel.
+
+Das PDF ist barrierearm/barrierefrei.`,
       buttons: [
         {
           text: "Vorlage herunterladen",
