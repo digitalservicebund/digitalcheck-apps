@@ -4,7 +4,8 @@ import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
-import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
+import RichText from "@digitalcheck/shared/components/RichText";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import type { HeadersFunction, LinksFunction } from "@remix-run/node";
@@ -183,42 +184,52 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  let errorTitle = "Unbekannter Fehler";
-  let errorMessage = "Etwas ist schief gelaufen.";
+  console.log(error);
 
-  if (isRouteErrorResponse(error)) {
-    errorTitle = `${error.status} — ${error.statusText}`;
-    errorMessage = `${error.data}`;
-  } else if (error instanceof Error) {
-    errorTitle = "Fehler";
-    errorMessage = `${error.message}`;
+  let errorStatus = `${500}`;
+  let errorTitle = "Interner Serverfehler";
+  let errorMessage = `Es tut uns leid, aber etwas ist schief gelaufen.
+Bitte versuchen Sie es später erneut. Wenn das Problem weiterhin besteht, kontaktieren Sie uns unter [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de) oder [0151/40 76 78 39](tel:+4915140767839).
+
+Vielen Dank für Ihr Verständnis.`;
+
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    errorStatus = `${error.status}`;
+    errorTitle = "Seite konnte nicht gefunden werden";
+    errorMessage = `Es tut uns leid. Diese Seite gibt es nicht mehr oder ihr Name wurde geändert.
+
+- Wenn Sie die URL direkt eingegeben haben, überprüfen Sie die Schreibweise.
+- Versuchen Sie, die Seite von der Startseite aus erneut zu finden.`;
+  } else if (isRouteErrorResponse(error)) {
+    errorStatus = `${error.status}`;
+    errorTitle = `${error.data}`;
+    errorMessage = "";
   }
 
   return (
     <Document error={{ title: errorTitle, message: errorMessage }}>
       <main id="error" className="grow">
-        <Background backgroundColor="blue">
-          <Container>
-            <Header
-              heading={{
-                tagName: "h1",
-                text: errorTitle,
-              }}
-              content={{
-                markdown: errorMessage,
-                className: "md:text-2xl",
-              }}
+        <Container>
+          <div className="ds-stack-8">
+            <Heading
+              text={errorStatus}
+              tagName="div"
+              className="ds-label-01-bold"
             />
-            <ButtonContainer className="mt-32">
-              <Button
-                id="error-back-button"
-                text="Zurück zur Startseite"
-                href={ROUTE_LANDING.url}
-                look="tertiary"
-              ></Button>
-            </ButtonContainer>
-          </Container>
-        </Background>
+            <Heading text={errorTitle} className="ds-heading-02-reg" />
+            <div className="ds-subhead">
+              <RichText markdown={errorMessage} />
+            </div>
+          </div>
+          <ButtonContainer className="mt-32">
+            <Button
+              id="error-back-button"
+              text="Zurück zur Startseite"
+              href={ROUTE_LANDING.url}
+              look="primary"
+            ></Button>
+          </ButtonContainer>
+        </Container>
       </main>
     </Document>
   );
