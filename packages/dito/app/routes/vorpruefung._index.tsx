@@ -5,26 +5,14 @@ import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
-import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { preCheck, siteMeta } from "resources/content";
 import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
-import {
-  getAnswersFromCookie,
-  getHeaderFromCookie,
-} from "utils/cookies.server";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${ROUTE_PRECHECK.title} — ${siteMeta.title}` }];
 };
-
-export async function loader({ request }: LoaderFunctionArgs) {
-  const cookie = await getAnswersFromCookie(request);
-  // reset cookie if the user accesses the start page
-  cookie.answers = {};
-  return json({}, await getHeaderFromCookie(cookie));
-}
 
 export default function Index() {
   return (

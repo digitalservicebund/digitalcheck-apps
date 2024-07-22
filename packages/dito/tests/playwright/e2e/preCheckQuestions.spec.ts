@@ -140,32 +140,6 @@ test.describe("test questions form", () => {
     await page.goto(questions[4].url);
     await expect(page).toHaveURL(questions[3].url);
   });
-
-  // test cookie is reset
-  test("answers / cookie is reset on preCheck start", async ({ page }) => {
-    await page.goto(questions[0].url);
-    await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(questions[1].url);
-    await page.getByRole("link", { name: "Zurück" }).click();
-    await page.waitForURL(questions[0].url);
-    await page.getByRole("link", { name: "Zurück" }).click();
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
-    await expect(page.getByLabel("Ja")).not.toBeChecked();
-    await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(questions[1].url);
-    await page.getByRole("link", { name: "Vorprüfung" }).click();
-    await page.waitForURL(ROUTE_PRECHECK.url);
-    await page.goto(questions[0].url);
-    await expect(page.getByLabel("Ja")).not.toBeChecked();
-    await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(questions[1].url);
-    await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzen" }).click();
-    await expect(page.getByLabel("Ja")).not.toBeChecked();
-  });
 });
 
 test.describe("test question navigation", () => {
