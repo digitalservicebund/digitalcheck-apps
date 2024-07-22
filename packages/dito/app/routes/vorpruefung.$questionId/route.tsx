@@ -83,7 +83,9 @@ export async function action({ request }: ActionFunctionArgs) {
   ) {
     void trackCustomEvent(request, {
       name: "Vorprüfung Antwort geändert",
-      props: { questionId, prevAnswer: cookie.answers[questionId], answer },
+      props: {
+        changeDetails: `Antwort Frage ${questionId}: ${cookie.answers[questionId]} → ${answer}`,
+      },
     });
   }
 
