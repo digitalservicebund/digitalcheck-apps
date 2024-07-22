@@ -9,8 +9,9 @@ export const getAnswersFromCookie = async (request: Request) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await userAnswers.parse(cookieHeader)) as {
     answers: Answers;
+    hasViewedResult: boolean;
   } | null;
-  return cookie ?? { answers: {} };
+  return cookie ?? { answers: {}, hasViewedResult: false };
 };
 
 export const getHeaderFromCookie = async (cookie: { answers: Answers }) => {

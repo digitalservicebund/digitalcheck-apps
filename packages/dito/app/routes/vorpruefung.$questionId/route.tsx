@@ -18,6 +18,7 @@ import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
+import trackCustomEvent from "utils/trackCustomEvent.server";
 import { z } from "zod";
 import PreCheckNavigation from "./PreCheckNavigation";
 
@@ -74,6 +75,18 @@ export async function action({ request }: ActionFunctionArgs) {
   const { questionId, answer } = result.data;
 
   const cookie = await getAnswersFromCookie(request);
+
+  if (
+    cookie.hasViewedResult &&
+    cookie.answers[questionId] &&
+    answer !== cookie.answers[questionId]
+  ) {
+    void trackCustomEvent(request, {
+      name: "Vorprüfung Antwort geändert",
+      props: { questionId, prevAnswer: cookie.answers[questionId], answer },
+    });
+  }
+
   cookie.answers[questionId] = answer as Option["value"];
   const nextLink =
     questions.find((q) => q.id === questionId)?.nextLink ?? ROUTE_PRECHECK.url;

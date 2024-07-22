@@ -4,7 +4,10 @@ import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { preCheck, siteMeta } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
 import type { Answers, Option } from "routes/vorpruefung.$questionId/route";
-import { getAnswersFromCookie } from "utils/cookies.server";
+import {
+  getAnswersFromCookie,
+  getHeaderFromCookie,
+} from "utils/cookies.server";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import ResultNegative from "./ResultNegative";
 import ResultPositive from "./ResultPositive";
@@ -20,7 +23,8 @@ const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>
   Object.keys(answers).filter((key) => answers[key] === option);
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const { answers } = await getAnswersFromCookie(request);
+  const cookie = await getAnswersFromCookie(request);
+  const { answers } = cookie;
   // redirect to precheck if not all answers are present
   if (Object.keys(answers).length !== questions.length) {
     return redirect(ROUTE_PRECHECK.url);
@@ -41,7 +45,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
     props: { result },
   });
 
-  return json({ positiveQuestions, unsureQuestions, negativeQuestions });
+  // Set cookie to store user has viewed result
+  cookie.hasViewedResult = true;
+  return json(
+    { positiveQuestions, unsureQuestions, negativeQuestions },
+    await getHeaderFromCookie(cookie),
+  );
 }
 
 export default function Result() {
