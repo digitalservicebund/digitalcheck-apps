@@ -182,7 +182,7 @@ export const feedbackBanner = {
   },
   needToTalk: {
     title: "Sie haben Gesprächsbedarf zu Ihrem Vorhaben?",
-    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:0151/40767839).`,
+    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:+4915140767839).`,
   },
 };
 
@@ -357,7 +357,7 @@ export const preCheck = {
     },
     unsure: {
       title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
-      hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:0151/40767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
+      hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro:
         '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
@@ -733,7 +733,7 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
     title: "Visualisierungen gemeinsam erstellen",
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -797,7 +797,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     title: "IT-Wissen einfach erklärt",
     text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 <br><br>
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -959,7 +959,7 @@ So erfahren Sie
 - und an welchen Stellen Änderungen nötig sind.
 <br> <br>
 
-**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   boxes: [
     {
@@ -993,7 +993,7 @@ So erfahren Sie
 - **Erkenntnisse visuell** aufzubereiten — das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:0151/40767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
     label: "So geht es weiter:",
