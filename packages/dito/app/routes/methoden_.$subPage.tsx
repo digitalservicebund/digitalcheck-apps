@@ -4,6 +4,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Header from "@digitalcheck/shared/components/Header";
 import Image from "@digitalcheck/shared/components/Image";
+import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
@@ -26,6 +27,7 @@ export type TMethodPage = {
   title: string;
   pageTitle: string;
   subtitle: string;
+  guidance?: string;
   accordion?: {
     title: string;
     text: string;
@@ -129,6 +131,12 @@ export default function Index() {
               className: "md:text-2xl",
             }}
           ></Header>
+          {content.guidance && (
+            <RichText
+              markdown={content.guidance}
+              className="mt-24 ds-stack-0"
+            />
+          )}
         </Container>
       </Background>
       {content.accordion && (

@@ -597,9 +597,8 @@ export const documentation = {
 
 export const responsibleActors = {
   title: "Zuständige Akteurinnen und Akteure auflisten",
-  subtitle: `Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.
-  
-  **Zeit:** ca. vier Stunden`,
+  subtitle: `Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
+  guidance: `**Zeit:** ca. vier Stunden`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -657,9 +656,8 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
 
 export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
-  subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
-  
-**Zeit:** ca. sechs Stunden
+  subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
+  guidance: `**Zeit:** ca. sechs Stunden
 
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
 
@@ -744,9 +742,8 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
 
 export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
-  subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
-  
-**Zeit:** ca. sechs Stunden
+  subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.`,
+  guidance: `**Zeit:** ca. sechs Stunden
 
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
 
@@ -924,9 +921,8 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 
 export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
-  subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
-
-**Zeit:** Richtet sich nach der Komplexität des Vorhabens
+  subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten.`,
+  guidance: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren.
 
