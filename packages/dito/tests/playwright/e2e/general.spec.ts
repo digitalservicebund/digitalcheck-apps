@@ -117,9 +117,8 @@ test.describe("test error pages", () => {
   test("error page is displayed for 404s", async ({ page }) => {
     const response = await page.goto("/does-not-exist");
     expect(response?.status()).toBe(404);
-    await expect(page.getByRole("main")).toContainText("404 — Not Found");
     await expect(page.getByRole("main")).toContainText(
-      'No route matches URL "/does-not-exist"',
+      "404Seite konnte nicht gefunden werden",
     );
   });
 

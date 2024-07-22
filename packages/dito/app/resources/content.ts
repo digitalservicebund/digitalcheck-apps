@@ -36,8 +36,7 @@ const stepNKR = {
   headline: {
     text: "Prüfung durch den NKR",
   },
-  content:
-    `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
+  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
  
 Senden Sie die von Ihnen erstellte Dokumentation per E-Mail an folgende Adresse: 
 [nkr@bmj.bund.de](mailto:nkr@bmj.bund.de)
