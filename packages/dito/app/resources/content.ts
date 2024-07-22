@@ -673,7 +673,7 @@ export const tasksProcesses = {
     text: `Listen Sie auf, welche Schritte und Aufgaben aktuell erfüllt werden, damit das Ziel des Vorhabens erreicht wird, und wie diese im Zusammenhang stehen.
 
 Der Überblick lohnt sich auch bei scheinbar einfachen Abläufen: 
-- Fehlende Verbindungen oder unerwartete Abhängigkeiten sichtbar.
+- Fehlende Verbindungen oder unerwartete Abhängigkeiten werden sichtbar.
 - Sie erfahren, auf welchen bestehenden Abläufen Sie aufbauen können.
 
 Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „Wer will was wann von wem?”`,
