@@ -209,27 +209,29 @@ Vielen Dank für Ihr Verständnis.`;
   return (
     <Document error={{ title: errorTitle, message: errorMessage }}>
       <main id="error" className="grow">
-        <Container>
-          <div className="ds-stack-8">
-            <Heading
-              text={errorStatus}
-              tagName="div"
-              className="ds-label-01-bold"
-            />
-            <Heading text={errorTitle} className="ds-heading-02-reg" />
-            <div className="ds-subhead">
-              <RichText markdown={errorMessage} />
+        <div className="border-t-2 border-t-gray-400">
+          <Container>
+            <div className="ds-stack-8">
+              <Heading
+                text={errorStatus}
+                tagName="div"
+                className="ds-label-01-bold"
+              />
+              <Heading text={errorTitle} className="ds-heading-02-reg" />
+              <div className="ds-subhead">
+                <RichText markdown={errorMessage} />
+              </div>
             </div>
-          </div>
-          <ButtonContainer className="mt-32">
-            <Button
-              id="error-back-button"
-              text="Zurück zur Startseite"
-              href={ROUTE_LANDING.url}
-              look="primary"
-            ></Button>
-          </ButtonContainer>
-        </Container>
+            <ButtonContainer className="mt-32">
+              <Button
+                id="error-back-button"
+                text="Zurück zur Startseite"
+                href={ROUTE_LANDING.url}
+                look="primary"
+              ></Button>
+            </ButtonContainer>
+          </Container>
+        </div>
       </main>
     </Document>
   );
