@@ -1,3 +1,4 @@
+import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import bmiLogo from "public/img/bmi-logo.png";
 import { Link } from "react-router-dom";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
@@ -29,7 +30,14 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
           link.openInNewTab ? A11Y_MESSAGE_NEW_WINDOW : undefined
         }
       >
-        {link.text}
+        {link.text}{" "}
+        {link.openInNewTab && (
+          <OpenInNewIcon
+            height="1.2em"
+            width="1.2em"
+            className="!inline ml-[0.2em] mb-1"
+          />
+        )}
       </Link>{" "}
       {link?.postText}
     </li>
@@ -68,8 +76,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
               },
             ])}
           </div>
-
-          <div className="flex flex-wrap gap-x-32 gap-y-8">
+          <div className="flex flex-wrap gap-x-16 gap-y-8 ml-4">
             {renderLinks(linksFirstColumn)}
             {renderLinks(linksSecondColumn)}
           </div>

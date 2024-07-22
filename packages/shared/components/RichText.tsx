@@ -1,5 +1,6 @@
 import { marked, Marked, Tokens } from "marked";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
+import { openInNewIconString } from "./openInNewWindow";
 
 export type RichTextProps = {
   markdown: string;
@@ -17,10 +18,17 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
 
         // Force external links to open in a new window
         if (href.startsWith("http")) {
-          return linkHtml.replace(
-            /^<a /,
-            `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} `,
-          );
+          const newLinkHtml = linkHtml
+            .replace(
+              /^<a /,
+              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" class="inline-" `,
+            )
+            .replace(
+              `>${token.text}<`,
+              `>${token.text} ${openInNewIconString}<`,
+            );
+
+          return newLinkHtml;
         }
 
         const ext =
@@ -31,7 +39,7 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
         if (ext === "PDF" || ext === "XLSX") {
           return linkHtml.replace(
             /^<a /,
-            `<a download title="${`${token.text} (${ext}-Datei)`}"`,
+            `<a download title="${`${token.text} (${ext}-Datei)`}" `,
           );
         }
 
