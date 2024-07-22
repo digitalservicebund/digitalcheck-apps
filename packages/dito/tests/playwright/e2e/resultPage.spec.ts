@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import {
   ROUTE_DOCUMENTATION,
+  ROUTE_METHODS,
   ROUTE_PRECHECK,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
@@ -22,6 +23,11 @@ test.describe("test result page general content", () => {
     await expect(page.getByRole("main")).toContainText(
       "Ihr Regelungsvorhaben hat Digitalbezug.",
     );
+  });
+
+  test("result page links to methods", async ({ page }) => {
+    await page.getByRole("link", { name: "Zu den Hilfestellungen" }).click();
+    await expect(page).toHaveURL(ROUTE_METHODS.url);
   });
 
   test("result page links to documentation", async ({ page }) => {
