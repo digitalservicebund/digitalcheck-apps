@@ -41,6 +41,7 @@ const stepNKR = {
 Senden Sie die von Ihnen erstellte Dokumentation per E-Mail an folgende Adresse: 
 [nkr@bmj.bund.de](mailto:nkr@bmj.bund.de)
 
+
 Damit ist der Digitalcheck für Sie beendet.`,
 };
 export const steps = {
