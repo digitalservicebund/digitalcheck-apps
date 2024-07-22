@@ -101,7 +101,7 @@ export const steps = {
     ...stepNKR,
     content:
       stepNKR.content +
-      `<br /><br />
+      `<br class="block content-[''] mb-24" />
   Die für Ihr Haus zuständige Ansprechperson finden Sie hier: [normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html](https://www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html)
   
   Damit ist der Digitalcheck für Sie abgeschlossen.`,
@@ -148,8 +148,7 @@ export const landing = {
           text: "Was ist Digitaltauglichkeit?",
         },
         content: `Regelungen werden vermehrt digital umgesetzt. Beispiele sind eine Gesetzesänderung, mit der ein Papierantrag durch einen Online-Antrag ersetzt wird oder eine Verordnung, die Änderungen in den IT-Verfahren nachgelagerter Behörden erfordert.
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltauglich gestaltet sein. Das heißt erstens, dass der digitalen Umsetzung nichts im Wege steht, wie zum Beispiel das persönliche Einreichen von Dokumenten. Zweitens soll aktiv gefördert werden, dass möglichst viele Schritte von Computern durchgeführt oder unterstützt werden.`,
       },
       {
@@ -417,8 +416,7 @@ export const assessment = {
 export const methods = {
   title: "2. Erarbeiten eines digitaltauglichen Regelungsvorhabens",
   subtitle: `Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen. 
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 Gehen Sie am besten in der vorgeschlagenen Reihenfolge vor.`,
   steps: {
     items: [
@@ -439,9 +437,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         background: "blue",
         headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
         content: `**Zeit:** ca. vier Stunden
-<br />
-<br />
-
+<br class="block content-[''] mb-24" />
 Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
         buttons: [
           {
@@ -456,13 +452,11 @@ Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständig
           text: "Aufgaben und Abläufe gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
-<br />
-**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
-<br />
-**Support:** Komplexe Abläufen können Sie mit dem Digitalcheck-Support erfassen
-<br />
-<br />
 
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
+
+**Support:** Komplexe Abläufen können Sie mit dem Digitalcheck-Support erfassen
+<br class="block content-[''] mb-24" />
 Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
         buttons: [
           {
@@ -477,13 +471,11 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
           text: "IT-Systeme gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
-<br />
-**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
-<br />
-**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
-<br />
-<br />
 
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
+
+**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
+<br class="block content-[''] mb-24" />
 Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Systeme für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.`,
         buttons: [
           {
@@ -503,9 +495,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Sys
           text: "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
-<br />
-<br />
-
+<br class="block content-[''] mb-24" />
 Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand aus den vorigen Schritten, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen**.`,
         buttons: [
           {
@@ -520,13 +510,11 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
           text: "Technische Umsetzbarkeit sicherstellen",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
-<br />
-**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
-<br />
-**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
-<br />
-<br />
 
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren 
+
+**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support
+<br class="block content-[''] mb-24" />
 In diesem Schritt können Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende sowie neue Abläufe und IT-Systeme analysieren. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.
         `,
         buttons: [
@@ -621,11 +609,11 @@ export const responsibleActors = {
     label: "Anleitung",
     title: "Finden Sie konstruktive Gesprächspartnerinnen und -partner",
     text: `Beginnen Sie mit der Kontaktaufnahme oben in der Hierarchie, lassen Sie ggf. über Ihre Referats- und (Unter-)abteilungsleitung den Kontakt herstellen. Fragen Sie nach den Fachexpertinnen und -experten auf Arbeitsebene, hier steckt in der Regel das tiefste Praxiswissen.
-<br><br>
+<br class="block content-[''] mb-24" />
 - **Kommunen:** Bitten Sie Ansprechpersonen auf Landesebene um Kontakte und nutzen Sie  das gesammelte Wissen in den Kommunalen Spitzenverbänden. 
 - **Behörden und Träger:** Nutzen Sie die offiziellen Wege der Häuser.
 - **Unternehmen, Sozialpartner, weitere Organisationen:** Fragen Sie in Spitzenverbänden nach Ansprechpersonen für Ihren konkreten Anwendungsfall. 
-<br><br>
+<br class="block content-[''] mb-24" />
 
 Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigramme oder interne Datenbanken zu, z. B. das X500-Verzeichnis.`,
   },
@@ -671,11 +659,11 @@ export const tasksProcesses = {
   title: "Aufgaben und Abläufe gemeinsam erfassen",
   subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.
   
-  **Zeit:** ca. sechs Stunden
-  <br />
-  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
-  <br />
-  **Support:** Komplexe Abläufe können Sie mit dem Digitalcheck-Support erfassen`,
+**Zeit:** ca. sechs Stunden
+
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren zusammen
+
+**Support:** Komplexe Abläufe können Sie mit dem Digitalcheck-Support erfassen`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -758,11 +746,11 @@ export const collectITSystems = {
   title: "IT-Systeme gemeinsam erfassen",
   subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.
   
-  **Zeit:** ca. sechs Stunden
-  <br />
-  **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
-  <br />
-  **Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support`,
+**Zeit:** ca. sechs Stunden
+
+**Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren
+
+**Support:** Eine neutrale Drittmeinung erhalten Sie vom Digitalcheck-Support`,
   accordion: {
     title:
       "Was ist zu tun, wenn Länder oder Kommunen für die Umsetzung zuständig sind?",
@@ -772,7 +760,7 @@ export const collectITSystems = {
     label: "Anleitung",
     title: "So erfassen Sie die IT-Systeme",
     text: `Dokumentieren Sie die verwendeten IT-Systeme mit ihren Funktionalitäten, Schnittstellen und Anforderungen. 
-<br><br>
+<br class="block content-[''] mb-24" />
 Ein Überblick über die IT-Landschaft hilft Ihnen dabei, 
 - alle relevanten Aspekte aufzuschlüsseln und potenziell blinde Flecken zu identifizieren,
 - auf bestehende Standards und Prozesse aufzusetzen,
@@ -801,7 +789,8 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
 
     title: "IT-Wissen einfach erklärt",
     text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
-<br><br>
+
+<br class="block content-[''] mb-24" />
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
@@ -829,9 +818,7 @@ export const fivePrinciples = {
       content: `### Als konkrete Umsetzungstipps
 
 Nutzen Sie die Tipps als Inspiration, um in Ihrem Regelungsvorhaben die Möglichkeiten des Digitalen auszuschöpfen und Hindernisse zu erkennen.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Als Checkliste für den Gesamtprozess
 
 Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf [visualisieren.digitalcheck.bund.de](https://visualisieren.digitalcheck.bund.de).`,
@@ -842,11 +829,9 @@ Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Ski
       content: `### Darum ist das wichtig
 
 Bürgerinnen und Bürger, Mitarbeitende in Unternehmen, weiteren Organisationen und der Verwaltung sind meist an digitale Kommunikation gewöhnt. In der Verwaltung und den Behörden erlaubt eine durchgehend digitale Dokumentation, Bearbeitung und ggf. Prüfung eine effizientere Bearbeitung.
-<br> <br>
+<br class="block content-[''] mb-24" />
 Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein — in bestimmten Fällen kann z. B. ergänzend auch die Schriftform sinnvoll sein, sofern eine digitale Weiterverarbeitung sichergestellt ist.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
 - Wählen Sie Formulierungen, die den Einsatz von unterschiedlichen Medien, Technologien und Verfahren ermöglichen.
@@ -861,9 +846,7 @@ Digitale Kommunikation sollte immer bedarfsorientiert und inklusiv sein — in b
       content: `### Darum ist das wichtig
 
 Häufig sind Daten von Personen oder Organisationen in verschiedenen Prozessen relevant. Das heißt, dass die Daten, die für Ihr Regelungsvorhaben benötigt werden, an anderer Stelle bereits vorliegen könnten. Sie sollten wiederverwendet werden, damit Bürgerinnen und Bürger oder Unternehmen Daten kein weiteres Mal angeben müssen und Verfahren vereinfacht werden. Auch die Wiederverwendung von Open-Source-Software, Standards oder sogar einzelner Design- oder Software-Komponenten vereinfacht Verfahren und spart Ressourcen.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
 Recherchieren Sie für Ihr Regelungsvorhaben relevante bestehende Standards, Komponenten, Richtlinien, Verfahren zur Datenerfassung, Datenaustauschverfahren (Once-Only-Prinzip) sowie Register und weitere Quellen. Erste Anhaltspunkte finden Sie zum Beispiel auf:
@@ -877,9 +860,7 @@ Recherchieren Sie für Ihr Regelungsvorhaben relevante bestehende Standards, Kom
       content: `### Darum ist das wichtig
 
 Datenschutz und Informationssicherheit sind zentrale Voraussetzungen für praxistaugliche Digitalisierung — frühzeitig mitgedacht können Bedürfnisse von Betroffenen auf einfache Weise mit Daten- und Informationssicherheit vereinbart werden. Das Regelungsvorhaben soll eine datenschutzkonforme Umsetzung ermöglichen: Vor der Erhebung von Daten muss definiert werden, welche Daten zu welchem Zweck benötigt und wie sie geschützt werden.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
 - Beteiligen Sie frühzeitig Expertinnen und Experten für Datenschutz und Informationssicherheit, um datenschutzkonforme Regelungen zu schreiben. Anhaltspunkte dafür geben auch geltende Richtlinien und Ausführungsbestimmungen z.B. vom BSI.
@@ -892,9 +873,7 @@ Datenschutz und Informationssicherheit sind zentrale Voraussetzungen für praxis
       content: `### Darum ist das wichtig
 
 Durch eindeutige und klare Formulierungen können die Regelungen verständlich dargestellt und die digitale Umsetzung erleichtert werden. Komplizierte, schwer verständliche Regelungskonstrukte erschweren eine digitale Ausführung.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
 - Formulieren Sie die Texte Ihres Regelungsvorhaben so, dass es in der Umsetzung in Auf- gaben und chronologische Schritte übersetzt werden kann.
@@ -907,9 +886,7 @@ Durch eindeutige und klare Formulierungen können die Regelungen verständlich d
       content: `### Darum ist das wichtig
 
 Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation” oder Skalierung kostet jedoch (fast) nichts. Daher ist es personell und wirtschaftlich sinnvoll, sich wiederholende Schritte, Prozesse oder Vorgehen zu automatisieren. Ein Regelungsvorhaben, das Ermessensspielraum lässt, kann nicht vollständig automatisiert werden: Soweit es dem Regelungsziel dient, sollte darauf verzichtet werden. Dadurch entstehen zeitliche und finanzielle Freiräume für Fälle, die eine gesonderte Auseinandersetzung benötigen.
-<br />
-<br />
-<br />
+<br class="block content-[''] mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
 - Schaffen Sie die rechtlichen Möglichkeiten für automatisierte und/oder antragslose Verfahren. Prüfen Sie z. B. die Möglichkeit von Pauschalen.
@@ -948,21 +925,21 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 export const technicalFeasibility = {
   title: "Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten. 
- <br> <br>
+
 **Zeit:** Richtet sich nach der Komplexität des Vorhabens
-  <br />
+
 **Kollaborativ:** Arbeiten Sie mit umsetzenden Akteurinnen und Akteuren.
-  <br />
+
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen.`,
   content: {
     label: "Anleitung",
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
     text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
-<br> <br>
+<br class="block content-[''] mb-24" />
 So erfahren Sie 
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können,
 - und an welchen Stellen Änderungen nötig sind.
-<br> <br>
+<br class="block content-[''] mb-24" />
 
 **Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
@@ -1021,56 +998,37 @@ export const imprint = {
   title: "Impressum",
   content: `## Das Internetangebot wird herausgegeben vom
 
-Bundesministerium des Innern und für Heimat (BMI)
-<br />
-Alt-Moabit 140
-<br />
-10557 Berlin
-<br />
-Telefon: [+49 30 18681-0](tel:+4930186810)
-<br />
-Fax: [+49 30 18681-12926](tel:+49301868112926)
-<br />
-E-Mail: [poststelle@bmi.bund.de](mailto:poststelle@bmi.bund.de)
-<br />
+Bundesministerium des Innern und für Heimat (BMI)<br />
+Alt-Moabit 140<br />
+10557 Berlin<br />
+Telefon: [+49 30 18681-0](tel:+4930186810)<br />
+Fax: [+49 30 18681-12926](tel:+49301868112926)<br />
+E-Mail: [poststelle@bmi.bund.de](mailto:poststelle@bmi.bund.de)<br />
 DE-Mail: [poststelle@bmi-bund.de-mail.de](mailto:poststelle@bmi-bund.de-mail.de)
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 
 ### Weitere Kontaktmöglichkeiten
 
-**Redaktionsleitung**
-<br />
-Abteilung DV (Digitale Verwaltung; Steuerung OZG)
-<br />
-Referat DV I 3 — Digitale Verwaltungstransformation; Digitalcheck
-<br />
-Verantwortlich: Dany Homilius (Referatsleiterin DV I 3)
-<br />
+**Redaktionsleitung**<br />
+Abteilung DV (Digitale Verwaltung; Steuerung OZG)<br />
+Referat DV I 3 — Digitale Verwaltungstransformation; Digitalcheck<br />
+Verantwortlich: Dany Homilius (Referatsleiterin DV I 3)<br />
 E-Mail: [DVI3@bmi.bund.de](mailto:DVI3@bmi.bund.de) 
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 
 ### Realisierung, Design, Hosting
 
-DigitalService GmbH des Bundes
-<br />
-Frau Christina Lang und Frau Anja Theurer
-<br />
-Prinzessinnenstraße 8-14
-<br />
-10969 Berlin
-<br />
+DigitalService GmbH des Bundes<br />
+Frau Christina Lang und Frau Anja Theurer<br />
+Prinzessinnenstraße 8-14<br />
+10969 Berlin<br />
 E-Mail: [hallo@digitalservice.bund.de](mailto:hallo@digitalservice.bund.de)
-<br />
-<br />
-
+<br class="block content-[''] mb-24" />
 
 ### Datenschutz
 
 Erfahren Sie mehr hierzu in der [Datenschutzerklärung](${ROUTE_PRIVACY.url})
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 
 ### Barrierefreiheit
 
@@ -1080,7 +1038,6 @@ Erfahren Sie mehr hierzu in der [Barrierefreiheitserklärung](${ROUTE_A11Y.url})
 export const privacy = {
   title: "Datenschutzerklärung",
   content: `## 1. Grundlagen
-
 <br />
 
 ### 1.1 Verantwortlicher und Datenschutzbeauftragte/r
@@ -1088,44 +1045,31 @@ export const privacy = {
 Verantwortlich für die Verarbeitung von personenbezogenen Daten im Rahmen der Bereitstellung der Website [erarbeiten.digitalcheck.bund.de](https://erarbeiten.digitalcheck.bund.de) ist das Bundesministerium des Innern und für Heimat (BMI).
 Bundesministerium des Innern und für Heimat (BMI)
 
-Alt-Moabit 140
-<br />
-10557 Berlin
-<br />
-Tel.: [030 / 18 681-0](tel:+4930186810)
-<br />
-Fax: [030 / 18 681-12926](tel:+49301868112926)
-<br />
+Alt-Moabit 140<br />
+10557 Berlin<br />
+Tel.: [030 / 18 681-0](tel:+4930186810)<br />
+Fax: [030 / 18 681-12926](tel:+49301868112926)<br />
 E-Mail: [poststelle@bmi.bund.de](mailto:poststelle@bmi.bund.de)
 
 Bei Fragen zum Datenschutz und zu dieser Datenschutzerklärung erreichen Sie die bzw. den Datenschutzbeauftragte/n des BMI unter:
 
-Beauftragte/r für den Datenschutz im BMI (BDS)
-<br />
-Alt-Moabit 140
-<br />
-10557 Berlin
-<br />
-Tel.: [030 / 18 681-0](tel:+4930186810)
-<br />
-E-Mail: [bds@bmi.bund.de](mailto:bds@bmi.bund.de)
-
-<br />
+Beauftragte/r für den Datenschutz im BMI (BDS)<br />
+Alt-Moabit 140<br />
+10557 Berlin<br />
+Tel.: [030 / 18 681-0](tel:+4930186810)<br />
+E-Mail: [bds@bmi.bund.de](mailto:bds@bmi.bund.de)<br />
+<br class="block content-[''] mb-24" />
 
 ### 1.2 Personenbezogene Daten
 
 Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen. Als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt — insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten und/oder zu einer Online-Kennung — identifiziert werden kann.
-
-<br />
+<br class="block content-[''] mb-24" />
 
 ### 1.3 Auftragsverarbeiter
 
-DigitalService GmbH des Bundes
-<br />
-Prinzessinnenstraße 8-14
-<br />
-10969 Berlin
-<br />
+DigitalService GmbH des Bundes<br />
+Prinzessinnenstraße 8-14<br />
+10969 Berlin<br />
 
 DigitalService ist eine Bundes GmbH. Die Bundesrepublik Deutschland — vertreten durch das Bundesministerium des Innern und für Heimat — hält 100 Prozent der Anteile der GmbH. Mit dem Auftragsverarbeiter wurde eine Vereinbarung gemäß Art. 28 DSGVO geschlossen.
 
@@ -1134,11 +1078,9 @@ DigitalService ist eine Bundes GmbH. Die Bundesrepublik Deutschland — vertrete
 Des Weiteren können Sie datenschutzrechtliche Fragen auch an den Datenschutzbeauftragten des DigitalService richten. Diesen erreichen Sie unter folgender Adresse:
 
 E-Mail: [datenschutz@digitalservice.bund.de](mailto:datenschutz@digitalservice.bund.de)
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## 2. Verarbeitung personenbezogener Daten im Zusammenhang mit der Nutzung der Website und Rechtsgrundlagen
-
 <br />
 
 ### 2.1 Besuch dieser Seite
@@ -1163,7 +1105,6 @@ Folgende Daten werden für die Analyse verarbeitet:
 
 **Verlaufsdaten**
 - Verweisende Seite (von welcher Seite sind Sie auf diese Seite gekommen)
-
 <br />
 
 Um die Stabilität (Fehlerkorrektur) und Sicherheit des Angebotes zu gewährleisten sowie um das BSI bei der Abwehr von Gefahren für die Kommunikationstechnik des Bundes zu unterstützen, werden die Daten automatisch in sogenannte Logfiles (technische Protokolldateien) geschrieben und dort angelehnt an § 5 BSIG für eine Dauer von 90 Tagen aufbewahrt. Danach werden sie automatisch gelöscht. Der Zugriff ist durch technische und organisatorische Maßnahmen nur einem festgelegten und nachvollziehbaren Kreis von entsprechend angewiesenen Administratorinnen und Administratoren möglich. 
@@ -1171,8 +1112,7 @@ Um die Stabilität (Fehlerkorrektur) und Sicherheit des Angebotes zu gewährleis
 Der Datenverkehr zwischen Ihrem Webbrowser und den Servern des Dienstes erfolgt über eine verschlüsselte HTTPS-Verbindung. HTTPS ist eine gesicherte Variante des Verbindungsprotokolls (HTTP), mit dem Webbrowser und Server Daten (bspw.: Ihre Eingaben) über das Internet austauschen, um zu verhindern, dass unbefugte Dritte von diesen Kenntnis erhalten. 
 
 Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. e) DSGVO i.V.m. § 3 BDSG. Die Datenverarbeitung dient der zielgerichteten und ausgewogenen Öffentlichkeitsarbeit sowie dem Schutz der IT-Infrastruktur des Bundes. Die damit verbundene Verarbeitung Ihrer Daten beim Besuch der Seite geschieht zu diesem Zweck. Für die Erfüllung dieser Verarbeitungszwecke ist die Verarbeitung der genannten personenbezogenen Daten erforderlich. 
-
-<br />
+<br class="block content-[''] mb-24" />
 
 ### 2.2 Kontaktaufnahme
 
@@ -1181,8 +1121,7 @@ Die Verarbeitung personenbezogener Daten erfolgt in Abhängigkeit des Kontaktweg
 Bei Anfragen an die Kontakt-E-Mail-Adresse [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de) werden durch den Auftragsverarbeiter ausschließlich solche Daten verarbeitet, die notwendig sind, um mit Ihnen zu kommunizieren. Hierzu gehören insbesondere jene personenbezogenen Informationen (z. B. Name, Vorname, Anschrift, E-Mail-Adresse usw.), die unmittelbar von Ihnen übersandt werden. Die Löschung der personenbezogenen Daten erfolgt sechs Monate nach dem Zugang der letzten E-Mail. Weitere personenbezogene Daten werden auf dieser Webseite nicht erhoben und verarbeitet.
 
 Die Verarbeitung der Daten ist zur Wahrnehmung unserer Aufgaben erforderlich (Art. 6 Abs. 1 UAbs. 1 lit. e) DSGVO in Verbindung mit § 3 BDSG).
-
-<br />
+<br class="block content-[''] mb-24" />
 
 ### 2.3 Technischer Cookie (über die Session) zur Zwischenspeicherung der Antworten in der Vorprüfung
 
@@ -1198,22 +1137,19 @@ Bei Nutzung des Services wird ein technischer Cookie verwendet welcher in einer 
 - beinhaltet keine personenbezogenen Daten,
 - basiert nicht auf IP oder anderen auf tatsächlichen Nutzer zurückverfolgbaren Informationen,
 - Gültigkeit endet mit Ablauf der Sitzung, spätestens nach 7 Tagen.
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## 3. Datenempfänger
 
 Das BMI setzt im Rahmen einer Auftragsverarbeitung die DigitalService GmbH des Bundes als Dienstleister ein. Mit diesem Dienstleister wurde ein Vertrag gemäß Artikel 28 Abs. 3 DSGVO geschlossen; datenschutzrechtlich verantwortlich ist das BMI. 
 
 Darüber hinaus kann es im Einzelfall zur Weitergabe von Daten an Dritte kommen, soweit wir hierzu rechtlich verpflichtet sind oder dies zur Abwehr einer Gefahr für die öffentliche Sicherheit, zur Verfolgung von Straftaten oder zur Abwehr von Angriffen auf unsere IT-Infrastrukturen erforderlich ist. Eine Weitergabe in anderen Fällen erfolgt nicht. Eine Zusammenführung dieser Daten mit anderen Datenquellen zum Beispiel zum Anlegen von Nutzerprofilen erfolgt durch das BMI nicht.
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## 4. Werden personenbezogene Daten an Dritte weitergegeben?
 
 Personenbezogene Daten werden ausschließlich in Deutschland verarbeitet und nicht an Dritte weitergeleitet. 
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## 5. Maßnahmen zur Einhaltung der Datensicherheit
 
@@ -1233,8 +1169,7 @@ Im Rahmen der Verwendung des Dienstes Plausible wurden weitere Maßnahmen zur Si
 - Beschränkte Zugriffsrechte auf die Daten
 - Anonymisierung von IP-Adressen
 - Wir sammeln nur Datenpunkte, die relevant sind für die weitere Produktentwicklung im Sinne der Nutzerfreundlichkeit und Erweiterung von Funktionen
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## 6. Ihre Rechte
 
@@ -1269,16 +1204,14 @@ Ihnen steht zudem gemäß Art. 77 DSGVO ein Beschwerderecht bei der datenschutzr
 export const accessibility = {
   title: "Erklärung zur Barrierefreiheit",
   content: `*Informationen über die Zugänglichkeit dieser Webseiten gemäß § 12 Behindertengleichstellungsgesetz (BGG) sowie über diesbezügliche Kontaktmöglichkeiten.*
-<br />
-<br />
+<br class="block content-[''] mb-24" />
 
 Das Bundesministerium des Innern, für Bau und Heimat (BMI) ist bemüht, seine Webseite [erarbeiten.digitalcheck.bund.de](https://erarbeiten.digitalcheck.bund.de) so weit wie möglich barrierefrei zu gestalten. Rechtsgrundlage sind das Behindertengleichstellungsgesetz (BGG), die Barrierefreie-Informationstechnik-Verordnung (BITV 2.0) und die harmonisierte europäische Norm EN 301 549 in ihrer jeweils gültigen Fassung.
 
 Im Rahmen eines internen Tests wurde jedoch festgestellt, dass der Webauftritt noch keine vollständige Barrierefreiheit gewährleistet. Das BMI arbeitet dementsprechend mit Nachdruck daran, die barrierefreie Gestaltung seiner Webseite weiter zu verbessern.
 
 Diese Erklärung wurde am 11. Juli 2024 erstellt.
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## Welche Bereiche sind nicht barrierefrei?
 
@@ -1286,26 +1219,19 @@ Teilbereiche, die nicht barrierefrei sind:
 
 - Externe Links können nicht immer barrierefrei angeboten werden, da sie auf Inhalte oder Ressourcen außerhalb des aktuellen Angebots verweisen, auf die wir keinen direkten Einfluss haben.
 - Anderssprachige Abschnitte und Wörter sind nicht immer technisch als solche gekennzeichnet, was zu unverständlicher Aussprache in Vorlese-Software führen kann.
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## Barriere melden! Hinweise zur Barrierefreiheit
 
 Sind Ihnen weitere Mängel beim barrierefreien Zugang zu Inhalten von [erarbeiten.digitalcheck.bund.de](https://erarbeiten.digitalcheck.bund.de) aufgefallen? Dann können Sie sich gern bei uns melden:
 
-**Bundesministerium des Innern und Heimat (BMI)**
-<br />
-Alt Moabit 140
-<br />
-10557 Berlin
-<br />
-Telefon: [03018 681-0](tel:+4930186810)
-<br />
-Telefax: [03018 681 - 12926](tel:+49301868112926)
-<br />
+**Bundesministerium des Innern und Heimat (BMI)**<br />
+Alt Moabit 140<br />
+10557 Berlin<br />
+Telefon: [03018 681-0](tel:+4930186810)<br />
+Telefax: [03018 681 - 12926](tel:+49301868112926)<br />
 E-Mail: [DVI3@bmi.bund.de](mailto:DVI3@bmi.bund.de)
-
-<br />
+<br class="block content-[''] mb-48" />
 
 ## Schlichtungsverfahren
 
@@ -1314,17 +1240,11 @@ Auf der Internetseite der Schlichtungsstelle finden Sie alle Informationen zum S
 
 Sie erreichen die Schlichtungsstelle unter folgender Adresse:
 
-**Schlichtungsstelle nach dem Behindertengleichstellungsgesetz bei dem Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen**
-<br />
-Mauerstraße 53
-<br />
-10117 Berlin
-<br />
-Telefon: [030 18 527-2805](tel:+4930185272805)
-<br />
-Fax: [030 18 527-2901](tel:+4930185272901)
-<br />
-E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)
-<br />
+**Schlichtungsstelle nach dem Behindertengleichstellungsgesetz bei dem Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen**<br />
+Mauerstraße 53<br />
+10117 Berlin<br />
+Telefon: [030 18 527-2805](tel:+4930185272805)<br />
+Fax: [030 18 527-2901](tel:+4930185272901)<br />
+E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)<br />
 Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)`,
 };
