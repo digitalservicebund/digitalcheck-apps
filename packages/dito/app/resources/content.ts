@@ -947,7 +947,7 @@ So erfahren Sie
     {
       image: {
         src: "/assets/images/aspekte-technischer-umsetzbarkeit.png", // TODO: Replace image
-        alt: `Ein Dokument mit der Überschrift "Gesprächsleitfaden technische Umsetzbarkeit". Darunter ist ein Kasten zu sehen, in dem steht "Welche Verbindungen oder Daten müssen angepasst werde?". Vom Kasten führt ein Pfeil nach unten an dem steht "Fertig? Weiter zum nächsten Punkt". Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`, 
+        alt: `Ein Dokument mit der Überschrift "Gesprächsleitfaden technische Umsetzbarkeit". Darunter ist ein Kasten zu sehen, in dem steht "Welche Verbindungen oder Daten müssen angepasst werde?". Vom Kasten führt ein Pfeil nach unten an dem steht "Fertig? Weiter zum nächsten Punkt". Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
       title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
@@ -957,7 +957,7 @@ Das PDF ist barrierearm/barrierefrei.`,
       buttons: [
         {
           text: "Vorlage herunterladen",
-          href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf", 
+          href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf",
         },
       ],
     },
