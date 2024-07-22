@@ -23,9 +23,16 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
           );
         }
 
+        const ext =
+          (href.endsWith(".pdf") && "PDF") ||
+          (href.endsWith(".xlsx") && "XLSX");
+
         // Force the browser to download links to PDF/Excel files
-        if (href.endsWith(".pdf") || href.endsWith(".xlsx")) {
-          return linkHtml.replace(/^<a /, `<a download `);
+        if (ext === "PDF" || ext === "XLSX") {
+          return linkHtml.replace(
+            /^<a /,
+            `<a download title="${`${token.text} (${ext}-Datei)`}"`,
+          );
         }
 
         return linkHtml;

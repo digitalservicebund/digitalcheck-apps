@@ -76,7 +76,9 @@ function Button({
   };
 
   if (href) {
-    const isDownload = href.endsWith(".pdf") || href.endsWith(".xlsx");
+    const ext =
+      (href.endsWith(".pdf") && "PDF") || (href.endsWith(".xlsx") && "XSLX");
+    const isDownload = ext === "PDF" || ext === "XSLX";
 
     return (
       <Link
@@ -88,6 +90,7 @@ function Button({
         id={id}
         reloadDocument={isDownload}
         download={isDownload}
+        title={(isDownload && `${text} (${ext}-Datei)`) || undefined}
       >
         {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
       </Link>
