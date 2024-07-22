@@ -203,7 +203,6 @@ Vielen Dank für Ihr Verständnis.`;
   } else if (isRouteErrorResponse(error)) {
     errorStatus = `${error.status}`;
     errorTitle = `${error.data}`;
-    errorMessage = "";
   }
 
   return (
