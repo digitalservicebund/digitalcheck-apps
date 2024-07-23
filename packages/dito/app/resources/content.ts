@@ -714,9 +714,9 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
   tip: {
     label: "Tipps",
 
-    title: "Wertschätzend und auf Ziele fokussiert vorgehen",
-    text: `- **Regelungsziel im Fokus:** Interessenkonflikte treten in den Hintergrund, wenn das Regelungsziel im Sinne der Normadressaten im Mittelpunkt steht — dahinter kann sich meistens vereint werden. 
-- **Hürden und Anforderungen wertschätzen:** Sicherlich werden Sie nicht alle Wünsche und Anforderungen umsetzen können. Bedanken Sie sich für den Input, kommunizieren Sie, was nicht eingearbeitet wird und erläutern Sie die Gründe.`,
+    title: "Wertschätzende und zielorientierte Kommunikation",
+    text: `- **Hürden und Anforderungen wertschätzen:** Sicherlich werden bei den Gesprächen auch Wünsche und Anforderungen an neue Abläufe auftauchen. Wahrscheinlich werden Sie nicht alle umsetzen können. Bedanken Sie sich für den Input, kommunizieren Sie, was nicht eingearbeitet wird und erläutern Sie die Gründe.
+    - **Regelungsziel im Fokus:** Interessenkonflikte treten in den Hintergrund, wenn das Regelungsziel im Sinne der Normadressaten im Mittelpunkt steht — dahinter kann sich meistens vereint werden.`,
   },
   support: {
     label: "Unterstützungsangebot",
