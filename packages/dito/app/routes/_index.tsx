@@ -3,7 +3,6 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import List from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
@@ -47,14 +46,14 @@ export default function Index() {
           isNumeric
         />
       </Container>
-      <Container additionalClassNames="max-sm:!p-0">
+      {/* <Container additionalClassNames="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={landing.dataNotice.headline}
           tagName="h2"
           content={landing.dataNotice.content}
         />
-      </Container>
+      </Container> */}
       {/* TODO: Add in case study here, if & when we have one... */}
       <Container>
         <InfoBox
