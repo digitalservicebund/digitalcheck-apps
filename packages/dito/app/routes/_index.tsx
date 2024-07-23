@@ -73,6 +73,8 @@ export default function Index() {
               markdown={landing.principals.content}
               className="!mt-32 !ds-stack-16
               [&_ol]:mb-16
+              [&_ol]:!list-none
+              [&_ol]:!ml-0
               [&_ol_li+li]:mt-8
               [&_ol_li+li:before]:content-['']
               [&_ol_li+li:before]:block
