@@ -788,6 +788,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 
 <br class="block content-[''] mb-24" />
+
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
   },
   nextStep: {
