@@ -606,7 +606,7 @@ export const responsibleActors = {
   },
   content: {
     label: "Anleitung",
-    title: "Finden Sie konstruktive Gesprächspartnerinnen und -partner",
+    title: "Finden Sie konstruktive Gesprächspartnerinnen und -&shy;partner",
     text: `Beginnen Sie mit der Kontaktaufnahme oben in der Hierarchie, lassen Sie ggf. über Ihre Referats- und (Unter-)abteilungsleitung den Kontakt herstellen. Fragen Sie nach den Fachexpertinnen und -experten auf Arbeitsebene, hier steckt in der Regel das tiefste Praxiswissen.
 <br class="block content-[''] mb-24" />
 - **Kommunen:** Bitten Sie Ansprechpersonen auf Landesebene um Kontakte und nutzen Sie  das gesammelte Wissen in den Kommunalen Spitzenverbänden. 
