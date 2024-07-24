@@ -25,7 +25,7 @@ export const siteMeta = {
 export const header = {
   title: "Digitalcheck",
   contact: {
-    msg: "Kontaktieren Sie uns",
+    msg: "Kontaktieren Sie den Support",
     number: "0151/40 76 78 39",
   },
   underConstruction:

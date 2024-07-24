@@ -31,6 +31,7 @@ import {
   ROUTE_PRIVACY,
 } from "resources/staticRoutes";
 import { useNonce } from "utils/nonce";
+import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
 
 export const meta: MetaFunction = () => {
@@ -106,10 +107,11 @@ const PageHeader = ({
   <header>
     <div className="min-h-64 p-16 flex justify-between items-center">
       <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
-        {header.title}
+        <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
       <span className="flex items-center">
         <span className="ds-label-02-reg text-lg max-sm:hidden">
+          <span className="font-bold"> {header.title} | </span>
           {header.contact.msg}
         </span>
         <PhoneOutlined className="mx-8 w-18" />
