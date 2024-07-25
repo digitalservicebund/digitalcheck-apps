@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: validate github workflow files to have pinned versions
-        uses: digitalservicebund/github-actions-linter@dccac3ada437947aada4bc901daff08ceb87c3f1 # v0.1.11
+        uses: digitalservicebund/github-actions-linter@3b941278d52936497add0afdebbf5c6e6ee8bd5d # v0.1.11
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
