@@ -18,12 +18,12 @@ export const ROUTE_PRECHECK_STATIC_PDF: Route = {
 
 export const ROUTE_PRECHECK: Route = {
   url: "/vorpruefung",
-  title: "Vorprüfung: Digitalbezug einschätzen",
+  title: "Vorprüfung",
   parent: ROUTE_LANDING.url,
 };
 export const ROUTE_RESULT: Route = {
   url: `${ROUTE_PRECHECK.url}/ergebnis`,
-  title: "Ergebnis der Vorprüfung",
+  title: "Ergebnis",
   parent: ROUTE_PRECHECK.url,
 };
 export const ROUTE_ASSESSMENT: Route = {
