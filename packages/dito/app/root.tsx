@@ -156,8 +156,7 @@ function Document({
           // TODO: Switch to this when we can figure out how to reliably access selected (opt-in only) server env variables in client code...
           // data-domain={PLAUSIBLE_DOMAIN}
           data-domain="erarbeiten.digitalcheck.bund.de"
-          data-api="/proxy-pl-event"
-          src="/proxy-pl-script.js"
+          src="https://plausible.io/js/script.tagged-events.outbound-links.js"
         ></script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
