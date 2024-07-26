@@ -111,7 +111,7 @@ const PageHeader = ({
       </Link>
       <span className="flex items-center">
         <span className="ds-label-02-reg text-lg max-sm:hidden">
-          <span className="font-bold"> {header.title} | &nbsp; </span>
+          <span className="font-bold"> {header.title} | </span>
           {header.contact.msg}
         </span>
         <PhoneOutlined className="mx-8 w-18" />
