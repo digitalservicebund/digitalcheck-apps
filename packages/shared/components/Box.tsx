@@ -32,10 +32,11 @@ const Box = ({
     >
       <div className="ds-stack-8">
         {label && (
-          <Heading tagName="div" look="ds-label-section text-gray-900">
-            {label.text || label.children}{" "}
-            {/* Render as children if provided */}
-          </Heading>
+          <Heading
+            tagName="div"
+            look="ds-label-section text-gray-900"
+            {...label}
+          />
         )}
         {heading && <Heading tagName="h2" {...heading} />}
         {content && <RichText {...content} />}

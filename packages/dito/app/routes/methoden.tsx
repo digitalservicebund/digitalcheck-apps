@@ -12,7 +12,6 @@ import FeedbackBanner from "components/FeedbackBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods, siteMeta } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
-import { iconClassName } from "../utils/iconStyle.ts";
 
 export const meta: MetaFunction = () => {
   return [{ title: `${ROUTE_METHODS.title} — ${siteMeta.title}` }];
@@ -20,6 +19,13 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   // This messy code is a hacky solution to inject icons into the content, while preserving the ability to modify content easily via Markdown
+  const iconClassName = `
+    inline-flex flex-row items-baseline align-baseline gap-4
+    [&_svg]:h-16
+    [&_svg]:w-16
+    [&_svg]:relative
+    [&_svg]:-bottom-2
+  `;
   const timerOutlined = renderToString(
     <strong className={iconClassName}>
       <TimerOutlined />
