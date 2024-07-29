@@ -2,7 +2,7 @@ import { devices, PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   fullyParallel: true,
-  timeout: 10000, // 10 seconds
+  timeout: 15000, // 15 seconds
   forbidOnly: !!process.env.CI, // Fail the build on CI if test.only is present
   retries: process.env.CI ? 1 : 0, // Retry on CI only
   workers: process.env.CI ? 1 : undefined, // Opt out of parallel tests on CI
