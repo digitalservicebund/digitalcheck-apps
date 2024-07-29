@@ -942,7 +942,7 @@ So erfahren Sie
   boxes: [
     {
       image: {
-        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png", // TODO: Replace image
+        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png",
         alt: `Ein Dokument mit der Überschrift "Gesprächsleitfaden technische Umsetzbarkeit". Darunter ist ein Kasten zu sehen, in dem steht "Welche Verbindungen oder Daten müssen angepasst werde?". Vom Kasten führt ein Pfeil nach unten an dem steht "Fertig? Weiter zum nächsten Punkt". Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
