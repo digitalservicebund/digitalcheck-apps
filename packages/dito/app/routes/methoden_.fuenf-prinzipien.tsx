@@ -38,7 +38,6 @@ const slugify = (string: string) =>
 export default function Index() {
   const { referrer } = useLoaderData<typeof loader>();
 
-  // TODO: this doesn't work atm when coming from the last methoden-page
   const nextStep = referrer.startsWith(ROUTE_METHODS.url)
     ? fivePrinciples.nextStepMethods
     : fivePrinciples.nextStep;
