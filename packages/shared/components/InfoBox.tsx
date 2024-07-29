@@ -27,17 +27,11 @@ const InfoBox = ({
           "ds-stack-32": separator,
         })}
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <InfoBoxItem
             separator={separator}
             {...item}
-            key={
-              item.identifier ??
-              item.headline?.text ??
-              item.content ??
-              item.label?.text ??
-              ""
-            }
+            key={item.identifier ?? index}
           />
         ))}
       </ul>

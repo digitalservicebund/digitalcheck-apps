@@ -28,9 +28,15 @@ const List = ({ identifier, items, heading, isNumeric }: ListProps) => {
             <li
               key={
                 item.identifier ??
-                item.label?.text ??
-                item.headline?.text ??
-                item.content
+                (typeof item.label?.text === "string"
+                  ? item.label.text
+                  : index.toString()) ??
+                (typeof item.headline?.text === "string"
+                  ? item.headline.text
+                  : index.toString()) ??
+                (typeof item.content === "string"
+                  ? item.content
+                  : index.toString())
               }
               className="first:pt-0 scroll-my-40"
             >
