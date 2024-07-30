@@ -30,7 +30,7 @@ function Heading({
     <Tag
       className={cssClasses}
       dangerouslySetInnerHTML={{
-        __html: typeof text === "string" ? text : "",
+        __html: text ?? "",
       }}
     />
   );
