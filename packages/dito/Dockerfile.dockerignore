@@ -16,7 +16,7 @@
 !packages/dito/public/
 !packages/dito/package.json
 !packages/dito/postcss.config.js
-!packages/dito/tailwind.config.ts
+!packages/dito/tailwind.config.js
 !packages/dito/tsconfig.json
 !packages/dito/vite.config.ts
 !packages/dito/start.sh

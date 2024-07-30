@@ -1,9 +1,7 @@
-import angiePlugin from "@digitalservice4germany/angie";
-import tailwindPreset from "@digitalservice4germany/style-dictionary/tailwind";
-
-export default {
-  presets: [tailwindPreset],
-  plugins: [angiePlugin],
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  presets: [require("@digitalservice4germany/style-dictionary/tailwind")],
+  plugins: [require("@digitalservice4germany/angie")],
   theme: {
     extend: {
       fontFamily: {

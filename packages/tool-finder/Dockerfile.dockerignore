@@ -13,7 +13,7 @@
 !packages/tool-finder/index.html
 !packages/tool-finder/nginx.conf
 !packages/tool-finder/package.json
-!packages/tool-finder/postcss.config.js
-!packages/tool-finder/tailwind.config.ts
+!packages/tool-finder/postcss.config.cjs
+!packages/tool-finder/tailwind.config.js
 !packages/tool-finder/tsconfig.json
 !packages/tool-finder/vite.config.ts
