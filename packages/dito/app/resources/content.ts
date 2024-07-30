@@ -36,13 +36,7 @@ const stepNKR = {
   headline: {
     text: "Prüfung durch den NKR",
   },
-  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.
- 
-Senden Sie die von Ihnen erstellte Dokumentation per E-Mail an folgende Adresse: 
-[nkr@bmj.bund.de](mailto:nkr@bmj.bund.de)
-
-
-Damit ist der Digitalcheck für Sie beendet.`,
+  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
 };
 export const steps = {
   preCheck: {
@@ -102,9 +96,10 @@ export const steps = {
     content:
       stepNKR.content +
       `<br class="block content-[''] mb-24" />
-  Die für Ihr Haus zuständige Ansprechperson finden Sie hier: [normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html](https://www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html)
-  
-  Damit ist der Digitalcheck für Sie abgeschlossen.`,
+Senden Sie die von Ihnen erstellte Dokumentation per E-Mail an folgende Adresse: 
+[nkr@bmj.bund.de](mailto:nkr@bmj.bund.de)
+<br class="block content-[''] mb-24" />
+Damit ist der Digitalcheck für Sie beendet.`,
   },
 };
 
