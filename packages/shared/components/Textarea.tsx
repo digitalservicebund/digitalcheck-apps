@@ -1,7 +1,8 @@
 import classNames from "classnames";
-import type { ReactNode } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
+import InputWarning from "./InputWarning.tsx";
 import RichText from "./RichText";
 
 type TextareaProps = Readonly<{
@@ -11,6 +12,8 @@ type TextareaProps = Readonly<{
   placeholder?: string;
   formId?: string;
   error?: string | null;
+  warning?: string | null;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }>;
 
 const Textarea = ({
@@ -18,9 +21,12 @@ const Textarea = ({
   description,
   label,
   error,
+  warning,
+  onChange,
   ...props
 }: TextareaProps) => {
   const errorId = `${name}-error`;
+  const warningId = `${name}-warning`;
 
   return (
     <div>
@@ -47,9 +53,11 @@ const Textarea = ({
         aria-invalid={error !== undefined}
         aria-describedby={error ? errorId : undefined}
         aria-errormessage={error ? errorId : undefined}
+        onChange={onChange}
         {...props}
       />
       {error && <InputError id={errorId}>{error}</InputError>}
+      {warning && <InputWarning id={warningId}>{warning}</InputWarning>}
     </div>
   );
 };

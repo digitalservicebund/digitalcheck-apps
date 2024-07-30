@@ -1,7 +1,3 @@
-import { useForm } from "@rvf/remix";
-import { withZod } from "@rvf/zod";
-import { z } from "zod";
-
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -9,8 +5,11 @@ import Input from "@digitalcheck/shared/components/Input";
 import List from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download.js";
+import { useForm } from "@rvf/remix";
+import { withZod } from "@rvf/zod";
+import { z } from "zod";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assessment, preCheck } from "resources/content";
 import { ROUTE_ASSESSMENT_PDF } from "resources/staticRoutes";
 import getReasoningText from "./getReasoningText";
@@ -42,22 +41,17 @@ export default function ResultNegative({
     action: ROUTE_ASSESSMENT_PDF.url,
     reloadDocument: true,
   });
-  const reasonsText = getReasoningText(
-    negativeQuestions,
-    reasoningIntro,
-    "negativeResult",
-  );
+
   const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
+  const [warning, setWarning] = useState<string | null>(null);
 
   useEffect(() => {
     if (form.formState.isValid && form.formState.isSubmitting) {
-      // disable download button for 2 seconds as we don't know when the PDF is ready
       setDownloadIsDisabled(true);
       const timeout = setTimeout(() => {
         form.resetForm();
         setDownloadIsDisabled(false);
       }, 2000);
-      // reset downloadIsDisabled and clear timeout to handle submit without input
       return () => {
         setDownloadIsDisabled(false);
         clearTimeout(timeout);
@@ -65,12 +59,27 @@ export default function ResultNegative({
     }
   }, [form]);
 
+  const handleNegativeReasoningChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    const value = event.target.value;
+    if (value.length > 2000) {
+      setWarning(assessment.form.reasonLong);
+    } else {
+      setWarning(null);
+    }
+  };
+
   return (
     <>
       <ResultHeader
         resultType="negative"
         resultHeading={title}
-        reasonsText={reasonsText}
+        reasonsText={getReasoningText(
+          negativeQuestions,
+          reasoningIntro,
+          "negativeResult",
+        )}
         resultBackgroundColor="midBlue"
       >
         <form {...form.getFormProps()} className="mt-40">
@@ -82,6 +91,8 @@ export default function ResultNegative({
               name="negativeReasoning"
               label={assessment.form.reasonLabel}
               error={form.error("negativeReasoning")}
+              warning={warning}
+              onChange={handleNegativeReasoningChange}
             />
             <Input
               name="title"

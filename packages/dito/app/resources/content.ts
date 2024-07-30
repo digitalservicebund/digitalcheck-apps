@@ -402,6 +402,8 @@ export const assessment = {
     reasonLabel: "Begründung",
     reasonRequired:
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
+    reasonLong:
+      "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
     reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
     downloadPdfButton: {
       text: "Vorprüfung herunterladen",

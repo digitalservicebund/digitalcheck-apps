@@ -83,6 +83,9 @@ const createPreCheckPDF = async function (
     );
     negativeReasoningField.setText(negativeReasoning);
     negativeReasoningField.setFontSize(12);
+    if (negativeReasoning && negativeReasoning?.length > 2000) {
+      negativeReasoningField.setFontSize(10);
+    }
 
     return await pdfDoc.save();
   } catch (err) {
