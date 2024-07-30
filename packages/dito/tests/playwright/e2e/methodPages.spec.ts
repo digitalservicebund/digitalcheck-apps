@@ -11,7 +11,10 @@ import {
 } from "resources/staticRoutes";
 
 test.describe("test method page link flow", () => {
-  test("happy path method pages", async ({ page }) => {
+  test("happy path method pages", async ({ page }, testInfo) => {
+    // This test takes a bit longer to click through the method process, so we up the limit for this test only to 20 seconds.
+    testInfo.setTimeout(20000);
+
     await page.goto(ROUTE_METHODS.url);
     await expect(page.getByRole("main")).toContainText(
       "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
