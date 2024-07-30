@@ -10,7 +10,7 @@ RUN npm ci
 # Download and install the dependencies for running the app
 FROM node:22.4.1-alpine3.20 AS production-dependencies
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 WORKDIR /src
 COPY package*.json ./
 COPY packages/dito/start.sh packages/dito/
