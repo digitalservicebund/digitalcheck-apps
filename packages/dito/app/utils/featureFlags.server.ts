@@ -1,5 +1,5 @@
 import { initialize } from "unleash-client";
-import { UNLEASH_API_URL, UNLEASH_APP, UNLEASH_KEY } from "./constants";
+import { UNLEASH_API_URL, UNLEASH_APP, UNLEASH_KEY } from "./constants.server";
 
 const unleash = initialize({
   url: UNLEASH_API_URL,

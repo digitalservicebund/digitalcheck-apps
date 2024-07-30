@@ -30,7 +30,6 @@ import {
   ROUTE_LANDING,
   ROUTE_PRIVACY,
 } from "resources/staticRoutes";
-import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants";
 import { useNonce } from "utils/nonce";
 import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
@@ -154,8 +153,10 @@ function Document({
         />
         <script
           defer
-          data-domain={PLAUSIBLE_DOMAIN}
-          src={PLAUSIBLE_SCRIPT}
+          // TODO: Switch to this when we can figure out how to reliably access selected (opt-in only) server env variables in client code...
+          // data-domain={PLAUSIBLE_DOMAIN}
+          data-domain="erarbeiten.digitalcheck.bund.de"
+          src="https://plausible.io/js/script.tagged-events.outbound-links.js"
         ></script>
         {error ? <title>{error.title}</title> : <Meta />}
         <Links />
