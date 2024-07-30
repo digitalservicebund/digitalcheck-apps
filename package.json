@@ -26,7 +26,9 @@
     "style:check": "npm run format:check && npm run lint:check",
     "style:fix": "npm run format:fix && npm run lint:fix",
     "typecheck": "npm run typecheck --workspaces",
-    "docker": "sh docker.sh"
+    "docker": "sh docker.sh",
+    "docker:dito": "sh docker.sh dito",
+    "docker:tool-finder": "sh docker.sh tool-finder"
   },
   "dependencies": {
     "@digitalcheck/shared": "*",
