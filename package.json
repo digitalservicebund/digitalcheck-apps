@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.1",
+    "@commitlint/types": "^19.0.3",
     "@playwright/test": "^1.45.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@types/node": "^22.0.0",

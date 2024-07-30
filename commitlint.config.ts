@@ -1,4 +1,6 @@
-module.exports = {
+import type { UserConfig } from "@commitlint/types";
+
+const Configuration: UserConfig = {
   rules: {
     "body-case": [2, "always", "sentence-case"],
     "body-leading-blank": [2, "always"],
@@ -7,3 +9,5 @@ module.exports = {
     "header-max-length": [2, "always", 50],
   },
 };
+
+export default Configuration;
