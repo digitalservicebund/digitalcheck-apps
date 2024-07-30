@@ -1,7 +1,7 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import List from "@digitalcheck/shared/components/List";
+import { BulletList, NumberedList } from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
 import RichText from "@digitalcheck/shared/components/RichText";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
@@ -78,17 +78,16 @@ export default function Index() {
         </Container>
       </Background>
       <Container>
-        <List items={methodStepsItems} />
+        <BulletList items={methodStepsItems} />
       </Container>
       <div id={"weiter"} />
       <Container>
-        <List
+        <NumberedList
           heading={{
             tagName: "h2",
             text: methods.nextSteps.title,
           }}
           items={methods.nextSteps.items}
-          isNumeric
         />
       </Container>
       <FeedbackBanner />

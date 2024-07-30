@@ -2,7 +2,7 @@ import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Input from "@digitalcheck/shared/components/Input";
-import List from "@digitalcheck/shared/components/List";
+import { NumberedList } from "@digitalcheck/shared/components/List";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import Download from "@digitalservicebund/icons/Download.js";
 import { useForm } from "@rvf/remix";
@@ -115,13 +115,12 @@ export default function ResultNegative({
         </form>
       </ResultHeader>
       <Container>
-        <List
+        <NumberedList
           heading={{
             text: nextSteps.title,
             tagName: "h2",
           }}
           items={nextSteps.steps}
-          isNumeric
         />
       </Container>
     </>

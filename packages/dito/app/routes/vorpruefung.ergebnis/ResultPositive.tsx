@@ -1,5 +1,5 @@
 import Container from "@digitalcheck/shared/components/Container";
-import List from "@digitalcheck/shared/components/List";
+import { NumberedList } from "@digitalcheck/shared/components/List";
 
 import { preCheck } from "resources/content";
 import getReasoningText from "./getReasoningText";
@@ -28,13 +28,12 @@ export default function ResultNegative({
         buttons={[{ ...actionButton, look: "tertiary" }]}
       />
       <Container>
-        <List
+        <NumberedList
           heading={{
             text: nextSteps.title,
             tagName: "h2",
           }}
           items={nextSteps.steps}
-          isNumeric
         />
       </Container>
     </>

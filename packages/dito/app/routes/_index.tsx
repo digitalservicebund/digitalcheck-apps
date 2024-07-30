@@ -3,7 +3,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import List from "@digitalcheck/shared/components/List";
+import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
@@ -37,13 +37,12 @@ export default function Index() {
         </Container>
       </Background>
       <Container>
-        <List
+        <NumberedList
           heading={{
             tagName: "h2",
             text: landing.list.title,
           }}
           items={landing.list.items}
-          isNumeric
         />
       </Container>
       {/* <Container additionalClassNames="max-sm:!p-0">
