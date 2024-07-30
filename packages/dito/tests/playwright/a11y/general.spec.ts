@@ -1,5 +1,5 @@
-import { test } from "@playwright/test";
-import { checkA11y, injectAxe } from "axe-playwright";
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
 
 import allRoutes from "resources/allRoutes";
 
@@ -9,9 +9,9 @@ test.describe("basic example a11y test", () => {
       (allRoute) => !allRoute.url.endsWith(".pdf"),
     )) {
       await page.goto(route.url);
-      await injectAxe(page);
+      const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
       console.log("Checking A11Y on route:", route.url);
-      await checkA11y(page);
+      expect(accessibilityScanResults.violations).toEqual([]);
     }
   });
 });

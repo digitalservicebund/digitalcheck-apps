@@ -42,7 +42,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.9.0",
+    "@axe-core/playwright": "^4.9.1",
     "@playwright/test": "^1.45.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@types/node": "^22.0.0",
@@ -52,7 +52,6 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.0",
     "autoprefixer": "^10.4.16",
-    "axe-playwright": "^2.0.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
