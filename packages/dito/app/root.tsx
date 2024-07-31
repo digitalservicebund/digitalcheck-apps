@@ -117,7 +117,7 @@ const PageHeader = ({
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click"
+          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click plausible-event-position=header"
         >
           {header.contact.number}
         </a>
