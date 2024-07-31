@@ -408,6 +408,23 @@ export const assessment = {
     },
     downloadStarted: "Vorprüfung wird heruntergeladen",
   },
+  nextSteps: {
+    title: "So machen Sie weiter",
+    steps: [
+      steps.preCheck.finished,
+      {
+        ...steps.methods,
+        buttons: [
+          {
+            text: "Zu den Hilfestellungen",
+            href: ROUTE_METHODS.url,
+          },
+        ],
+      },
+      steps.documentation,
+      steps.nkr,
+    ],
+  },
 };
 
 export const methods = {

@@ -3,6 +3,7 @@ import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
+import { NumberedList } from "@digitalcheck/shared/components/List.tsx";
 import Download from "@digitalservicebund/icons/Download";
 import { MetaFunction } from "@remix-run/react";
 import { useForm } from "@rvf/remix";
@@ -97,6 +98,15 @@ export default function Assessment() {
             ></Button>
           </ButtonContainer>
         </form>
+      </Container>
+      <Container>
+        <NumberedList
+          heading={{
+            text: assessment.nextSteps.title,
+            tagName: "h2",
+          }}
+          items={assessment.nextSteps.steps}
+        />
       </Container>
     </>
   );
