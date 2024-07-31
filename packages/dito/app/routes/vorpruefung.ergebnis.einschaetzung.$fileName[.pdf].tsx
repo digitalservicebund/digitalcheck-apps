@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { PDFDocument } from "pdf-lib";
+import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { assessment } from "resources/content";
 import { getAnswersFromCookie } from "utils/cookies.server";
 import trackCustomEvent from "utils/trackCustomEvent.server";
@@ -45,7 +45,6 @@ const createPreCheckPDF = async function (
     const titleField = form.getTextField(FIELD_NAME_POLICY_TITLE);
     titleField.setText(title);
     titleField.setFontSize(12);
-
     if (answers["it-system"] === POSITIVE_RESULT) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
     }
@@ -86,7 +85,10 @@ const createPreCheckPDF = async function (
     if (negativeReasoning && negativeReasoning?.length > 2000) {
       negativeReasoningField.setFontSize(10);
     }
+    negativeReasoningField.enableScrolling();
 
+    // prevent invisible text
+    form.acroForm.dict.set(PDFName.of("NeedAppearances"), PDFBool.True);
     return await pdfDoc.save();
   } catch (err) {
     console.error("Error processing PDF:", err);
