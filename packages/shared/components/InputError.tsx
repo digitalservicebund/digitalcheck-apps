@@ -13,7 +13,9 @@ const InputError = ({ id, children }: InputErrorProps) => {
       data-testid="inputError"
       className="mt-16 text-red-800 flex items-center gap-x-4"
     >
-      <ErrorOutline className="!w-18 !h-18 fill-red-800" />
+      <div className="flex-shrink-0">
+        <ErrorOutline className="!w-18 !h-18 fill-red-800" />
+      </div>
       <span className="sr-only">Fehler:</span> {children}
     </div>
   );

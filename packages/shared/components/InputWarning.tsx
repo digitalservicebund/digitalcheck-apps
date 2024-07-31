@@ -1,4 +1,4 @@
-import ErrorOutline from "@digitalservicebund/icons/ErrorOutline";
+import WarningOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
 import type { PropsWithChildren } from "react";
 
 type InputWarningProps = PropsWithChildren<{
@@ -10,11 +10,13 @@ const InputWarning = ({ id, children }: InputWarningProps) => {
     <div
       aria-live="assertive"
       id={id}
-      data-testid="inputError"
-      className="mt-16 text-red-800 flex items-center gap-x-4"
+      data-testid="inputWarning"
+      className="mt-16 flex items-center gap-x-4"
     >
-      <ErrorOutline className="!w-18 !h-18 fill-yellow-800" />
-      <span className="sr-only">Fehler:</span> {children}
+      <div className="flex-shrink-0">
+        <WarningOutlined className="!w-18 !h-18 fill-yellow-800" />
+      </div>
+      <span className="sr-only">Warnung:</span> {children}
     </div>
   );
 };
