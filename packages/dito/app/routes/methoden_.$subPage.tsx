@@ -28,7 +28,7 @@ import {
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
 } from "resources/staticRoutes";
-import { iconClassName } from "../utils/iconStyle.ts";
+import { iconSubPagesClassName } from "../utils/iconStyle.ts";
 
 export type TMethodPage = {
   title: string;
@@ -146,7 +146,7 @@ export default function Index() {
     if (!IconComponent) return labelText;
 
     const result = (
-      <span className={iconClassName}>
+      <span className={iconSubPagesClassName}>
         {IconComponent}
         {labelText}
       </span>
