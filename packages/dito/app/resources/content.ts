@@ -18,8 +18,9 @@ import {
 } from "./staticRoutes";
 
 export const siteMeta = {
-  title: "Digitalcheck",
-  description: "Digitaltaugliche Regelungen erarbeiten",
+  title: "Digitalcheck: Digitaltaugliche Regelungen erarbeiten",
+  description:
+    "Hier erfahren Sie als Legistin oder Legist, was Digitaltauglichkeit für Ihr Regelungsvorhaben bedeutet, wie Sie eine reibungslose Umsetzung des Vorhabens ermöglichen und welche Unterlagen Sie benötigen.",
 };
 
 export const header = {
