@@ -506,7 +506,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Sys
       {
         background: "blue",
         headline: {
-          text: "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
+          text: "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br class="block content-[''] mb-24" />
@@ -808,7 +808,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
     label: "So geht es weiter:",
 
     title:
-      "Identifizieren Sie Möglichkeiten und Hindernisse der digitalen Umsetzung",
+      "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       {
