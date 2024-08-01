@@ -21,7 +21,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.26.0"
   },
   "engines": {
     "node": ">=20.0.0"
