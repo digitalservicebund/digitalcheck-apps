@@ -17,7 +17,6 @@ import { ReactNode } from "react";
 import {
   collectITSystems,
   responsibleActors,
-  siteMeta,
   tasksProcesses,
   technicalFeasibility,
 } from "resources/content";
@@ -115,10 +114,12 @@ export function loader({ params }: LoaderFunctionArgs) {
   return json(content);
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  if (data) {
-    return [{ title: `${data.pageTitle} — ${siteMeta.title}` }];
-  }
+import prependMetaTitle from "utils/metaTitle";
+
+export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
+  return [
+    prependMetaTitle(data ? data.pageTitle : ROUTE_METHODS.title, matches),
+  ];
 };
 
 export default function Index() {

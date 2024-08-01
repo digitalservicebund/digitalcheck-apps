@@ -6,12 +6,17 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import { fivePrinciples, siteMeta } from "resources/content";
+import { fivePrinciples } from "resources/content";
 import {
   ROUTE_METHODS,
   ROUTE_METHODS_FIVE_PRINCIPLES,
 } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 import FeedbackBanner from "../components/FeedbackBanner.tsx";
+
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches)];
+};
 
 export function loader({ request }: LoaderFunctionArgs) {
   const referer = request.headers.get("referer");
@@ -25,12 +30,6 @@ export function loader({ request }: LoaderFunctionArgs) {
     referrer: pathname,
   });
 }
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: `${ROUTE_METHODS_FIVE_PRINCIPLES.title} — ${siteMeta.title}` },
-  ];
-};
 
 const slugify = (string: string) =>
   string.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-");

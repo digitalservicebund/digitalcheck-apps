@@ -7,11 +7,12 @@ import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
-import { preCheck, siteMeta } from "resources/content";
+import { preCheck } from "resources/content";
 import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_PRECHECK.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_PRECHECK.title, matches)];
 };
 
 export default function Index() {

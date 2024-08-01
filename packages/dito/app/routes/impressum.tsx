@@ -3,11 +3,12 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
-import { imprint, siteMeta } from "resources/content";
+import { imprint } from "resources/content";
 import { ROUTE_IMPRINT } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_IMPRINT.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_IMPRINT.title, matches)];
 };
 
 export default function Index() {

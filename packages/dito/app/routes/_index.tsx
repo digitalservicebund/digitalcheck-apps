@@ -5,14 +5,8 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
-import { header, landing, siteMeta } from "resources/content";
-import { ROUTE_LANDING } from "resources/staticRoutes";
-
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_LANDING.title} — ${siteMeta.title}` }];
-};
+import { header, landing } from "resources/content";
 
 export default function Index() {
   return (

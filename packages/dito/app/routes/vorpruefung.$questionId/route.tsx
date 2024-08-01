@@ -12,20 +12,21 @@ import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
 import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
-import { preCheck, siteMeta } from "resources/content";
+import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
+import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import { z } from "zod";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_PRECHECK.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_PRECHECK.title, matches)];
 };
 
 export async function loader({ request, params }: LoaderFunctionArgs) {

@@ -1,13 +1,14 @@
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 
-import { preCheck, siteMeta } from "resources/content";
+import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
 import type { Answers, Option } from "routes/vorpruefung.$questionId/route";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
+import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import ResultNegative from "./ResultNegative";
 import ResultPositive from "./ResultPositive";
@@ -15,8 +16,8 @@ import ResultUnsure from "./ResultUnsure";
 
 const { questions } = preCheck;
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_RESULT.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_RESULT.title, matches)];
 };
 
 const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>

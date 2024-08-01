@@ -9,16 +9,17 @@ import { MetaFunction } from "@remix-run/react";
 import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
-import { assessment, siteMeta } from "resources/content";
+import { assessment } from "resources/content";
 import {
   ROUTE_ASSESSMENT,
   ROUTE_ASSESSMENT_PDF,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 import { z } from "zod";
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_ASSESSMENT.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_ASSESSMENT.title, matches)];
 };
 
 const validator = withZod(

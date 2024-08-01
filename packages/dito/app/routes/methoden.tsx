@@ -10,12 +10,13 @@ import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 import { MetaFunction } from "@remix-run/react";
 import FeedbackBanner from "components/FeedbackBanner";
 import { renderToString } from "react-dom/server";
-import { header, methods, siteMeta } from "resources/content";
+import { header, methods } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 import { iconClassName } from "../utils/iconStyle.ts";
 
-export const meta: MetaFunction = () => {
-  return [{ title: `${ROUTE_METHODS.title} — ${siteMeta.title}` }];
+export const meta: MetaFunction = ({ matches }) => {
+  return [prependMetaTitle(ROUTE_METHODS.title, matches)];
 };
 
 export default function Index() {
