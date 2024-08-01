@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /download/
+Disallow: /feature-flags/
+Disallow: /health-check/

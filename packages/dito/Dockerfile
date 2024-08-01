@@ -32,6 +32,8 @@ COPY --from=build-dependencies /src/node_modules /src/node_modules
 
 # Required files are whitelisted in dockerignore
 COPY . ./
+# Explicitly copy the DiTo robots.txt and override what is in the shared folder
+COPY packages/dito/public/robots.txt packages/shared/public/
 RUN npm run build --workspace packages/dito
 
 # Final image that runs the app
