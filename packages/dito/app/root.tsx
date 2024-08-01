@@ -82,7 +82,7 @@ export const meta: MetaFunction<typeof loader> = ({
 
   const { BASE_URL } = data;
   const url = `${BASE_URL}${location.pathname}`;
-  const ogImage = `${BASE_URL}/images/og-image.png`;
+  const ogImage = `${BASE_URL}/assets/images/og-image.png`;
 
   return [
     ...baseMeta,
