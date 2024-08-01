@@ -25,7 +25,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
         "Content-Length": `${fileData.byteLength}`,
       },
     });
-  } catch (error) {
+  } catch {
     throw new Response("File not found", { status: 404 });
   }
 }
