@@ -14,7 +14,7 @@ import { ROUTE_DOCUMENTATION } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return [prependMetaTitle(ROUTE_DOCUMENTATION.title, matches)];
+  return prependMetaTitle(ROUTE_DOCUMENTATION.title, matches);
 };
 
 export default function Index() {

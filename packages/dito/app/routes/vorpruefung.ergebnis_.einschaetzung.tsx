@@ -19,7 +19,7 @@ import prependMetaTitle from "utils/metaTitle";
 import { z } from "zod";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return [prependMetaTitle(ROUTE_ASSESSMENT.title, matches)];
+  return prependMetaTitle(ROUTE_ASSESSMENT.title, matches);
 };
 
 const validator = withZod(

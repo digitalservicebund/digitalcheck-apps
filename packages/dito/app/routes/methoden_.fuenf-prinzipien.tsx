@@ -15,7 +15,7 @@ import prependMetaTitle from "utils/metaTitle";
 import FeedbackBanner from "../components/FeedbackBanner.tsx";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return [prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches)];
+  return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);
 };
 
 export function loader({ request }: LoaderFunctionArgs) {

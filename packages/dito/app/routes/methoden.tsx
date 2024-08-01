@@ -16,7 +16,7 @@ import prependMetaTitle from "utils/metaTitle";
 import { iconClassName } from "../utils/iconStyle.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return [prependMetaTitle(ROUTE_METHODS.title, matches)];
+  return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
 
 export default function Index() {

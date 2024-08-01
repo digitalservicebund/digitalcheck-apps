@@ -17,7 +17,7 @@ import ResultUnsure from "./ResultUnsure";
 const { questions } = preCheck;
 
 export const meta: MetaFunction = ({ matches }) => {
-  return [prependMetaTitle(ROUTE_RESULT.title, matches)];
+  return prependMetaTitle(ROUTE_RESULT.title, matches);
 };
 
 const getQuestionIDsOfOption = (answers: Answers, option: Option["value"]) =>

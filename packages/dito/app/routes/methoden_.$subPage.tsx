@@ -117,9 +117,7 @@ export function loader({ params }: LoaderFunctionArgs) {
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
-  return [
-    prependMetaTitle(data ? data.pageTitle : ROUTE_METHODS.title, matches),
-  ];
+  return prependMetaTitle(data ? data.pageTitle : ROUTE_METHODS.title, matches);
 };
 
 export default function Index() {
