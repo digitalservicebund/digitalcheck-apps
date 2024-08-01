@@ -5,8 +5,10 @@ export default function prependMetaTitle(
   title: string,
   metaMatches: MetaMatches,
 ): MetaDescriptor[] {
-  const parentMeta = metaMatches.flatMap((match) => match.meta ?? []);
+  // Get the title of the root metadata, this should always be first in the array
   const rootMeta = metaMatches?.[0]?.meta?.[0];
+  // Get other parent metadata, with the exception of title related entries (these will be the first 4 in the array), as we are going to replace them
+  const parentMeta = metaMatches.flatMap((match) => match.meta ?? []).slice(4);
 
   if (
     rootMeta !== undefined &&
@@ -15,8 +17,8 @@ export default function prependMetaTitle(
     typeof rootMeta.title === "string"
   ) {
     const prependedTitle = `${title} — ${rootMeta.title}`;
+
     return [
-      ...parentMeta,
       { title: prependedTitle },
       {
         property: "title",
@@ -30,11 +32,11 @@ export default function prependMetaTitle(
         property: "twitter:title",
         content: prependedTitle,
       },
+      ...parentMeta,
     ];
   }
 
   return [
-    ...parentMeta,
     { title },
     {
       property: "title",
@@ -48,5 +50,6 @@ export default function prependMetaTitle(
       property: "twitter:title",
       content: title,
     },
+    ...parentMeta,
   ];
 }
