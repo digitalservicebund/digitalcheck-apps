@@ -8,7 +8,11 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import RichText from "@digitalcheck/shared/components/RichText";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
-import type { HeadersFunction, LinksFunction } from "@remix-run/node";
+import type {
+  HeadersFunction,
+  LinksFunction,
+  LoaderFunctionArgs,
+} from "@remix-run/node";
 import {
   Link,
   Links,
@@ -18,10 +22,12 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  json,
+  useLoaderData,
   useRouteError,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
-import { type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
 import {
@@ -30,12 +36,93 @@ import {
   ROUTE_LANDING,
   ROUTE_PRIVACY,
 } from "resources/staticRoutes";
+import {
+  PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
+  PLAUSIBLE_SCRIPT as CLIENT_PLAUSIBLE_SCRIPT,
+} from "utils/constants";
+import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { useNonce } from "utils/nonce";
 import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
 
-export const meta: MetaFunction = () => {
-  return [{ title: siteMeta.title }];
+export function loader({ request }: LoaderFunctionArgs) {
+  return json({
+    BASE_URL: new URL(request.url).origin,
+    PLAUSIBLE_DOMAIN,
+    PLAUSIBLE_SCRIPT,
+  });
+}
+
+export const meta: MetaFunction<typeof loader> = ({
+  data,
+  location,
+  error,
+}) => {
+  const title = error ? `Fehler — ${siteMeta.title}` : siteMeta.title;
+
+  const baseMeta = [
+    { title },
+    {
+      property: "title",
+      content: title,
+    },
+    {
+      property: "og:title",
+      content: title,
+    },
+    {
+      property: "twitter:title",
+      content: title,
+    },
+  ];
+
+  if (error || !data) {
+    return baseMeta;
+  }
+
+  const { BASE_URL } = data;
+  const url = `${BASE_URL}${location.pathname}`;
+  const ogImage = `${BASE_URL}/images/og-image.png`;
+
+  return [
+    ...baseMeta,
+    {
+      property: "description",
+      content: siteMeta.description,
+    },
+    {
+      property: "og:description",
+      content: siteMeta.description,
+    },
+    {
+      property: "twitter:description",
+      content: siteMeta.description,
+    },
+    {
+      property: "og:url",
+      content: url,
+    },
+    {
+      property: "twitter:url",
+      content: url,
+    },
+    {
+      property: "og:image",
+      content: ogImage,
+    },
+    {
+      property: "twitter:image",
+      content: ogImage,
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "twitter:card",
+      content: "summary_large_image",
+    },
+  ];
 };
 
 export const headers: HeadersFunction = () => ({
@@ -134,31 +221,21 @@ const PageHeader = ({
 function Document({
   children,
   error,
+  trackingScript,
 }: Readonly<{
   children: ReactNode;
-  error?: {
-    title: string;
-    message: string;
-  };
+  error?: boolean;
+  trackingScript: React.ReactNode;
 }>) {
   const nonce = useNonce();
+
   return (
     <html lang="de" className="scroll-smooth">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="description"
-          content={error ? error.message : siteMeta.description}
-        />
-        <script
-          defer
-          // TODO: Switch to this when we can figure out how to reliably access selected (opt-in only) server env variables in client code...
-          // data-domain={PLAUSIBLE_DOMAIN}
-          data-domain="erarbeiten.digitalcheck.bund.de"
-          src="https://plausible.io/js/script.tagged-events.outbound-links.js"
-        ></script>
-        {error ? <title>{error.title}</title> : <Meta />}
+        {trackingScript}
+        <Meta />
         <Links />
       </head>
       <body className="min-h-screen flex flex-col">
@@ -173,8 +250,19 @@ function Document({
 }
 
 export default function App() {
+  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } = useLoaderData<typeof loader>();
+
   return (
-    <Document>
+    <Document
+      trackingScript={
+        <script
+          key={"app-tracking"}
+          defer
+          data-domain={PLAUSIBLE_DOMAIN}
+          src={PLAUSIBLE_SCRIPT}
+        />
+      }
+    >
       <main className="grow">
         <Outlet />
       </main>
@@ -184,8 +272,6 @@ export default function App() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
-
-  console.log(error);
 
   let errorStatus = `${500}`;
   let errorTitle = "Interner Serverfehler";
@@ -207,7 +293,19 @@ Vielen Dank für Ihr Verständnis.`;
   }
 
   return (
-    <Document error={{ title: errorTitle, message: errorMessage }}>
+    <Document
+      error={true}
+      trackingScript={
+        <>
+          <script
+            key={"error-tracking"}
+            defer
+            data-domain={CLIENT_PLAUSIBLE_DOMAIN}
+            src={CLIENT_PLAUSIBLE_SCRIPT}
+          />
+        </>
+      }
+    >
       <main id="error" className="grow">
         <div className="border-t-2 border-t-gray-400">
           <Container>
