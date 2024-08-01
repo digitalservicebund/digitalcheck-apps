@@ -19,7 +19,9 @@ test.describe("test general availability", () => {
       }
       await page.goto(route.url);
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
-      await expect(page).toHaveTitle(/Digitalcheck$/);
+      await expect(page).toHaveTitle(
+        /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
+      );
     }
   });
 });
