@@ -186,6 +186,18 @@ export const supportBanner = {
   },
 };
 
+export const feedbackForm = {
+  heading: "Ihr Feedback hilft uns weiter!",
+  labels: ["Sehr schwierig", "Schwierig", "Moderat", "Einfach", "Sehr einfach"],
+  questionSimple:
+    "Wie einfach war es für Sie, unseren Dienst “Digitaltaugliche Regelungen erarbeiten” zu nutzen?",
+  questionUseful:
+    "Wie hilfreich fanden Sie die angebotenen Hilfestellungen und Methoden für das Erarbeiten ihres Regelungsvorhaben?",
+  questionReuse:
+    "Würden Sie unsere Hilfestellungen und Methoden für die Erarbeitung Ihres Regelungsvorhaben wieder nutzen?",
+  mail: "Schreiben Sie uns eine Email, wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+};
+
 export const interviewBanner = {
   title: "Wir suchen Gesprächspartner!",
   text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20digitalcheck.bund.de).`,

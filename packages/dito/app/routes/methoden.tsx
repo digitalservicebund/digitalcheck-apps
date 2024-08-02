@@ -8,6 +8,7 @@ import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutl
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 import { MetaFunction } from "@remix-run/react";
+import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods } from "resources/content";
@@ -91,6 +92,7 @@ export default function Index() {
           items={methods.nextSteps.items}
         />
       </Container>
+      <FeedbackForm />
       <SupportBanner withFeedbackBanner={false} />
     </>
   );
