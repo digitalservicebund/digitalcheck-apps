@@ -6,7 +6,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { MetaFunction } from "@remix-run/react";
-import FeedbackBanner from "components/FeedbackBanner";
+import SupportBanner from "components/SupportBanner";
 import { preCheck } from "resources/content";
 import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
@@ -69,7 +69,7 @@ export default function Index() {
           items={preCheck.start.summary.items}
         ></InfoBox>
       </Container>
-      <FeedbackBanner />
+      <SupportBanner />
     </>
   );
 }

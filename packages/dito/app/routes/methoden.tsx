@@ -8,7 +8,7 @@ import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutl
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 import { MetaFunction } from "@remix-run/react";
-import FeedbackBanner from "components/FeedbackBanner";
+import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
@@ -91,7 +91,7 @@ export default function Index() {
           items={methods.nextSteps.items}
         />
       </Container>
-      <FeedbackBanner />
+      <SupportBanner withFeedbackBanner={false} />
     </>
   );
 }

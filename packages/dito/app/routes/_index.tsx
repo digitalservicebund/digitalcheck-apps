@@ -5,7 +5,7 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
-import FeedbackBanner from "components/FeedbackBanner";
+import SupportBanner from "components/SupportBanner";
 import { header, landing } from "resources/content";
 
 export default function Index() {
@@ -57,7 +57,7 @@ export default function Index() {
           items={landing.summary.items}
         />
       </Container>
-      <FeedbackBanner />
+      <SupportBanner />
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
         <Container>
           <div className="ds-stack-16 scroll-my-40">

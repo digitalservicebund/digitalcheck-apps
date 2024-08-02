@@ -8,7 +8,7 @@ import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
-import FeedbackBanner from "components/FeedbackBanner";
+import SupportBanner from "components/SupportBanner";
 import { documentation, header } from "resources/content";
 import { ROUTE_DOCUMENTATION } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
@@ -71,7 +71,7 @@ export default function Index() {
           items={documentation.nextSteps.items}
         />
       </Container>
-      <FeedbackBanner />
+      <SupportBanner />
     </>
   );
 }

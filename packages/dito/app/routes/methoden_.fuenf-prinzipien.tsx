@@ -12,7 +12,7 @@ import {
   ROUTE_METHODS_FIVE_PRINCIPLES,
 } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
-import FeedbackBanner from "../components/FeedbackBanner.tsx";
+import SupportBanner from "../components/SupportBanner.tsx";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);
@@ -98,7 +98,7 @@ export default function Index() {
           buttons={nextStep.buttons}
         />
       </Container>
-      <FeedbackBanner />
+      <SupportBanner />
     </>
   );
 }
