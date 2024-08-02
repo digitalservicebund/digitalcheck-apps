@@ -7,12 +7,13 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
-import { MetaFunction } from "@remix-run/react";
+import { json, useLoaderData, type MetaFunction } from "@remix-run/react";
 import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
+import unleash from "utils/featureFlags.server.ts";
 import prependMetaTitle from "utils/metaTitle";
 import { iconClassName } from "../utils/iconStyle.ts";
 
@@ -20,7 +21,15 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
 
-export default function Index() {
+export function loader() {
+  const feedbackFormFlag = unleash.isEnabled("digitalcheck.feedback-form");
+  console.log("Feedback form flag:", feedbackFormFlag);
+  return json({ feedbackFormFlag });
+}
+
+export default function Methoden() {
+  const { feedbackFormFlag } = useLoaderData<typeof loader>();
+
   // This messy code is a hacky solution to inject icons into the content, while preserving the ability to modify content easily via Markdown
   const timerOutlined = renderToString(
     <strong className={iconClassName}>
@@ -92,7 +101,7 @@ export default function Index() {
           items={methods.nextSteps.items}
         />
       </Container>
-      <FeedbackForm />
+      {feedbackFormFlag && <FeedbackForm />}
       <SupportBanner withFeedbackBanner={false} />
     </>
   );
