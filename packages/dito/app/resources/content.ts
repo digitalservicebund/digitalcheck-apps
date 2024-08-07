@@ -15,6 +15,7 @@ import {
   ROUTE_PRECHECK,
   ROUTE_PRIVACY,
   ROUTE_RESULT,
+  ROUTE_SUPPORT,
 } from "./staticRoutes";
 
 export const siteMeta = {
@@ -751,6 +752,13 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+    buttons: [
+      {
+        text: "Termin buchen",
+        look: "tertiary",
+        href: ROUTE_SUPPORT.url,
+      },
+    ],
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -816,6 +824,13 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
 <br class="block content-[''] mb-24" />
 
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+    buttons: [
+      {
+        text: "Termin buchen",
+        look: "tertiary",
+        href: ROUTE_SUPPORT.url,
+      },
+    ],
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -965,6 +980,13 @@ So erfahren Sie
 <br class="block content-[''] mb-24" />
 
 **Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+    buttons: [
+      {
+        text: "Termin buchen",
+        look: "tertiary",
+        href: ROUTE_SUPPORT.url,
+      },
+    ],
   },
   boxes: [
     {
@@ -1001,6 +1023,13 @@ Das PDF ist barrierearm/barrierefrei.`,
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
 
 Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+    buttons: [
+      {
+        text: "Termin buchen",
+        look: "tertiary",
+        href: ROUTE_SUPPORT.url,
+      },
+    ],
   },
   nextStep: {
     label: "So geht es weiter:",
@@ -1016,6 +1045,35 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
     ],
   },
 } as TMethodPage;
+
+export const support = {
+  title: "Unterstützungsangebote",
+  subtitle:
+    "Hier finden Sie umfangreiche Unterstützung zur Erarbeitung Ihres Regelungsvorhabens.",
+  specificSupport: {
+    title: "Gezielte Unterstützung per E-Mail oder Video",
+    content: `Wir helfen Ihnen bei konkreten Methoden in einem einstündigen Videotelefonat.<br />
+Schreiben Sie uns eine E-Mail oder buchen Sie direkt einen Termin.`,
+    iframe:
+      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PltsK_eFWpzmd2M1M7O-dbe9kbe9ikfDwLcVJWtn5j_9QFNP-MhIAshExAK7_V32gAwYVEntC?gv=true",
+    buttons: [
+      {
+        text: "Termin buchen",
+        look: "primary",
+        // href: "https://calendar.app.google/ypAF25ciaPCn4aGd7",
+      },
+      {
+        text: "E-Mail senden",
+        look: "tertiary",
+        href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20digitalcheck.bund.de",
+      },
+    ],
+  },
+  quickSupport: {
+    title: "Für schnelle Hilfe sind wir telefonisch erreichbar",
+    content: `Sie können uns für kleine Fragen auch direkt anrufen unter [0151/40 76 78 39](tel:+4915140767839).`,
+  },
+};
 
 export const imprint = {
   title: "Impressum",
