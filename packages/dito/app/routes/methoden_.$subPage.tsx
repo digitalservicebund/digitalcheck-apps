@@ -42,6 +42,11 @@ export type TMethodPage = {
     label: string;
     title: string;
     text: string;
+    buttons?: {
+      text: string;
+      href: string;
+      look: "primary" | "secondary" | "tertiary" | "ghost";
+    }[];
   };
   boxes?: {
     image?: {
@@ -51,7 +56,11 @@ export type TMethodPage = {
     label: string;
     title: string;
     text: string;
-    buttons?: { text: string; href: string }[];
+    buttons?: {
+      text: string;
+      href: string;
+      look: "primary" | "secondary" | "tertiary" | "ghost";
+    }[];
   }[];
   tip?: {
     label: string;
@@ -62,6 +71,11 @@ export type TMethodPage = {
     label: string;
     title: string;
     text: string;
+    buttons?: {
+      text: string;
+      href: string;
+      look: "primary" | "secondary" | "tertiary" | "ghost";
+    }[];
   };
   nextStep?: {
     label: string;
@@ -76,7 +90,10 @@ export type TMethodPage = {
   };
 };
 
-export function loader({ params }: LoaderFunctionArgs) {
+export function loader({ params, request }: LoaderFunctionArgs) {
+  const supportOfferingFlag = unleash.isEnabled(
+    "digitalcheck.test-support-offering",
+  );
   const { subPage } = params;
   const route = `${ROUTE_METHODS.url}/${subPage}`;
 
@@ -111,13 +128,17 @@ export function loader({ params }: LoaderFunctionArgs) {
     });
   }
 
-  return json(content);
+  return json({ content, supportOfferingFlag, requestUrl: request.url });
 }
 
+import unleash from "utils/featureFlags.server.ts";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
-  return prependMetaTitle(data ? data.pageTitle : ROUTE_METHODS.title, matches);
+  return prependMetaTitle(
+    data ? data.content.pageTitle : ROUTE_METHODS.title,
+    matches,
+  );
 };
 
 export default function Index() {
@@ -151,12 +172,11 @@ export default function Index() {
       </span>
     );
 
-    console.log("Rendered label with icon:", result);
-
     return result;
   };
 
-  const content = useLoaderData<typeof loader>();
+  const { content, supportOfferingFlag, requestUrl } =
+    useLoaderData<typeof loader>();
 
   return (
     <>
@@ -192,7 +212,31 @@ export default function Index() {
         <Box
           heading={{ text: content.content.title }}
           label={{ text: renderLabelWithIcon(content.content.label) }}
-          content={{ markdown: content.content.text }}
+          content={
+            supportOfferingFlag
+              ? ((url) => {
+                  if (url.endsWith(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url)) {
+                    return {
+                      markdown: `Vergleichen Sie gemeinsam mit den zuständigen Akteurinnen und Akteuren das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
+<br class="block content-[''] mb-24" />
+So erfahren Sie, 
+- welche IT-Systeme für Ihr Vorhaben verwendet werden können,
+- und an welchen Stellen Änderungen nötig sind.
+<br class="block content-[''] mb-24" />
+### Sie müssen nicht alles allein bewältigen
+
+Bei kleinen Fragen rufen Sie den Digitalcheck-Support an unter 0151/40 76 78 39.
+Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
+                    };
+                  }
+
+                  return { markdown: content.content.text };
+                })(requestUrl)
+              : {
+                  markdown: content.content.text,
+                }
+          }
+          buttons={supportOfferingFlag ? content.content.buttons : []}
         />
         {content.boxes?.map((box) => (
           // TODO: This is very similar to the markup used in <ListItem /> when a background color is provided.
@@ -243,7 +287,47 @@ export default function Index() {
             <Box
               heading={{ text: content.support.title }}
               label={{ text: renderLabelWithIcon(content.support.label) }}
-              content={{ markdown: content.support.text }}
+              content={
+                supportOfferingFlag
+                  ? ((url) => {
+                      if (url.endsWith(ROUTE_METHODS_TASKS_PROCESSES.url)) {
+                        return {
+                          markdown: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
+
+Für ein einstündiges Videotelefonat, schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
+                        };
+                      }
+
+                      if (url.endsWith(ROUTE_METHODS_COLLECT_IT_SYSTEMS.url)) {
+                        return {
+                          markdown: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt – jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
+
+Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
+                        };
+                      }
+
+                      if (
+                        url.endsWith(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url)
+                      ) {
+                        return {
+                          markdown: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei, 
+- die technische Umsetzung im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten,
+- als neutrale Moderation in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potenzielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
+- Erkenntnisse visuell aufzubereiten – das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
+- die Aussagen externer Dienstleister zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
+<br class="block content-[''] mb-24" />
+
+Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
+                        };
+                      }
+
+                      return { markdown: content.support.text };
+                    })(requestUrl)
+                  : {
+                      markdown: content.support.text,
+                    }
+              }
+              buttons={supportOfferingFlag ? content.support.buttons : []}
             />
           </Container>
         </Background>
