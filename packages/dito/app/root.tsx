@@ -41,15 +41,20 @@ import {
   PLAUSIBLE_SCRIPT as CLIENT_PLAUSIBLE_SCRIPT,
 } from "utils/constants";
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
+import unleash from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
 import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
 
 export function loader({ request }: LoaderFunctionArgs) {
+  const supportOfferingFlag = unleash.isEnabled(
+    "digitalcheck.test-support-offering",
+  );
   return json({
     BASE_URL: new URL(request.url).origin,
     PLAUSIBLE_DOMAIN,
     PLAUSIBLE_SCRIPT,
+    supportOfferingFlag,
   });
 }
 
@@ -126,7 +131,7 @@ export const meta: MetaFunction<typeof loader> = ({
 };
 
 export const headers: HeadersFunction = () => ({
-  "X-Frame-Options": "SAMEORIGIN",
+  // "X-Frame-Options": "SAMEORIGIN",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy":
@@ -188,8 +193,10 @@ const footerLinks = [
 
 const PageHeader = ({
   includeBreadcrumbs = true,
+  supportOfferingFlag,
 }: {
   includeBreadcrumbs?: boolean;
+  supportOfferingFlag: boolean;
 }) => (
   <header>
     <div className="min-h-64 p-16 flex justify-between items-center">
@@ -199,6 +206,11 @@ const PageHeader = ({
       <span className="flex items-center">
         <span className="ds-label-02-reg text-lg max-sm:hidden">
           <span className="font-bold"> {header.title} | </span>
+          {supportOfferingFlag && (
+            <Button href="/unterstuetzung" look="ghost" className="mx-16">
+              Unterstützungsangebote
+            </Button>
+          )}
           {header.contact.msg}
         </span>
         <PhoneOutlined className="mx-8 w-18" />
@@ -222,10 +234,12 @@ function Document({
   children,
   error,
   trackingScript,
+  supportOfferingFlag,
 }: Readonly<{
   children: ReactNode;
   error?: boolean;
   trackingScript: React.ReactNode;
+  supportOfferingFlag: boolean;
 }>) {
   const nonce = useNonce();
 
@@ -239,7 +253,10 @@ function Document({
         <Links />
       </head>
       <body className="min-h-screen flex flex-col">
-        <PageHeader includeBreadcrumbs={!error} />
+        <PageHeader
+          includeBreadcrumbs={!error}
+          supportOfferingFlag={supportOfferingFlag}
+        />
         {children}
         <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
@@ -250,10 +267,12 @@ function Document({
 }
 
 export default function App() {
-  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } = useLoaderData<typeof loader>();
+  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT, supportOfferingFlag } =
+    useLoaderData<typeof loader>();
 
   return (
     <Document
+      supportOfferingFlag={supportOfferingFlag}
       trackingScript={
         <script
           key={"app-tracking"}
@@ -295,6 +314,7 @@ Vielen Dank für Ihr Verständnis.`;
   return (
     <Document
       error={true}
+      supportOfferingFlag={false}
       trackingScript={
         <>
           <script
