@@ -78,6 +78,12 @@ export const ROUTE_DOCUMENTATION_STATIC_PDF: Route = {
   title: "Begleitende Dokumentation als PDF",
 };
 
+export const ROUTE_SUPPORT: Route = {
+  url: "/unterstuetzung",
+  title: "Unterstützungsangebote",
+  parent: ROUTE_LANDING.url,
+};
+
 export const ROUTE_IMPRINT: Route = {
   url: "/impressum",
   title: "Impressum",
@@ -105,6 +111,7 @@ const routes: Route[] = [
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
   ROUTE_METHODS_FIVE_PRINCIPLES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_SUPPORT,
   ROUTE_DOCUMENTATION,
   ROUTE_IMPRINT,
   ROUTE_PRIVACY,
