@@ -52,6 +52,7 @@ export default function Index() {
         <iframe
           src={support.specificSupport.iframe}
           title={support.specificSupport.title}
+          aria-label={support.specificSupport.title}
           className={`w-full mt-32 transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "h-0"}`}
         ></iframe>
       </Container>
