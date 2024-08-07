@@ -35,6 +35,7 @@ import {
   ROUTE_IMPRINT,
   ROUTE_LANDING,
   ROUTE_PRIVACY,
+  ROUTE_SUPPORT,
 } from "resources/staticRoutes";
 import {
   PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
@@ -184,6 +185,7 @@ const footerLinks = [
   { url: ROUTE_IMPRINT.url, text: "Impressum" },
   { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
   { url: ROUTE_A11Y.url, text: "Barrierefreiheit" },
+  { url: ROUTE_SUPPORT.url, text: "Support" },
 ];
 
 const PageHeader = ({

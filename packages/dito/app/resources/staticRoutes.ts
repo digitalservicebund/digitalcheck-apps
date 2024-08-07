@@ -93,6 +93,11 @@ export const ROUTE_A11Y: Route = {
   title: "Barrierefreiheit",
   parent: ROUTE_LANDING.url,
 };
+export const ROUTE_SUPPORT: Route = {
+  url: "/support",
+  title: "Support",
+  parent: ROUTE_LANDING.url,
+};
 
 const routes: Route[] = [
   ROUTE_LANDING,
@@ -109,6 +114,7 @@ const routes: Route[] = [
   ROUTE_IMPRINT,
   ROUTE_PRIVACY,
   ROUTE_A11Y,
+  ROUTE_SUPPORT,
 ];
 
 export default routes;

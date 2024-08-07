@@ -1274,3 +1274,21 @@ Fax: [030 18 527-2901](tel:+4930185272901)<br />
 E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)<br />
 Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)`,
 };
+
+export const support = {
+  title: "Support",
+  content: `## Some Content
+
+Bundesministerium des Innern und für Heimat (BMI)<br />`,
+  buttons: [
+    {
+      text: "Dokumentation herunterladen",
+    } as const,
+    {
+      text: "E-Mail senden",
+      href: "mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de",
+      target: "_blank",
+      look: "tertiary",
+    } as const,
+  ],
+};

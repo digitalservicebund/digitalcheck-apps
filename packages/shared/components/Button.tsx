@@ -10,7 +10,9 @@ type Props = {
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
-  onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClickCallback?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => void;
 };
 
 export interface ButtonProps
@@ -69,7 +71,9 @@ function Button({
     }
   };
 
-  const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const onClick = (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => {
     if (onClickCallback) {
       onClickCallback(event);
     }
@@ -98,7 +102,11 @@ function Button({
   }
 
   return (
-    <button {...(props as ButtonProps)} className={buttonClasses}>
+    <button
+      {...(props as ButtonProps)}
+      className={buttonClasses}
+      onClick={onClick}
+    >
       {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
     </button>
   );
