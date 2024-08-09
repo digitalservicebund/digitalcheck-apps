@@ -68,14 +68,17 @@ export const meta: MetaFunction<typeof loader> = ({
   const baseMeta = [
     { title },
     {
+      name: "title",
       property: "title",
       content: title,
     },
     {
+      name: "og:title",
       property: "og:title",
       content: title,
     },
     {
+      name: "twitter:title",
       property: "twitter:title",
       content: title,
     },
@@ -92,38 +95,47 @@ export const meta: MetaFunction<typeof loader> = ({
   return [
     ...baseMeta,
     {
+      name: "description",
       property: "description",
       content: siteMeta.description,
     },
     {
+      name: "og:description",
       property: "og:description",
       content: siteMeta.description,
     },
     {
+      name: "twitter:description",
       property: "twitter:description",
       content: siteMeta.description,
     },
     {
+      name: "og:url",
       property: "og:url",
       content: url,
     },
     {
+      name: "twitter:url",
       property: "twitter:url",
       content: url,
     },
     {
+      name: "og:image",
       property: "og:image",
       content: ogImage,
     },
     {
+      name: "twitter:image",
       property: "twitter:image",
       content: ogImage,
     },
     {
+      name: "og:type",
       property: "og:type",
       content: "website",
     },
     {
+      name: "twitter:card",
       property: "twitter:card",
       content: "summary_large_image",
     },
