@@ -36,7 +36,7 @@
     "@digitalservice4germany/style-dictionary": "^2.0.0",
     "@digitalservicebund/icons": "^2.0.0",
     "@rvf/react": "^0.1.0",
-    "@rvf/remix": "^0.1.0",
+    "@rvf/remix": "^6.0.1",
     "@rvf/zod": "^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
