@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { assessment } from "resources/content";
-import { getAnswersFromCookie } from "utils/cookies.server";
+import { deleteCookie, getAnswersFromCookie } from "utils/cookies.server";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
@@ -28,6 +28,7 @@ interface UserInput {
 
 const POSITIVE_RESULT = "yes";
 const NEGATIVE_RESULT = "no";
+let savedAnswers = {};
 
 const createPreCheckPDF = async function (
   userInput: UserInput,
@@ -104,12 +105,17 @@ export function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ params, request }: ActionFunctionArgs) {
   const { fileName } = params;
-  const { answers } = await getAnswersFromCookie(request);
+  let { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
   const { title, negativeReasoning } = Object.fromEntries(formData);
-
-  if (Object.keys(answers).length === 0) {
+  if (
+    Object.keys(answers).length === 0 &&
+    Object.keys(savedAnswers).length === 0
+  ) {
     throw new Response("No answers available in cookies", { status: 409 });
+  }
+  if (Object.keys(answers).length === 0) {
+    answers = savedAnswers;
   }
 
   if (typeof title !== "string" || title === "") {
@@ -161,13 +167,15 @@ export async function action({ params, request }: ActionFunctionArgs) {
     name: "Download Vorprüfung",
     props: { result },
   });
-
+  savedAnswers = answers;
+  const cookieDeletionHeader = await deleteCookie();
   return new Response(pdfData, {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
       "Content-Length": `${pdfData.byteLength}`,
+      ...cookieDeletionHeader.headers,
     },
   });
 }

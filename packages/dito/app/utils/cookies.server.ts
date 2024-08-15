@@ -17,3 +17,9 @@ export const getAnswersFromCookie = async (request: Request) => {
 export const getHeaderFromCookie = async (cookie: { answers: Answers }) => {
   return { headers: { "Set-Cookie": await userAnswers.serialize(cookie) } };
 };
+
+export const deleteCookie = async () => {
+  return {
+    headers: { "Set-Cookie": await userAnswers.serialize("", { maxAge: 0 }) },
+  };
+};
