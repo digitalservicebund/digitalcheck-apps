@@ -397,7 +397,7 @@ export default {
       description:
         "Als einfaches, digitales Werkzeug hilft Draw.io Ihnen dabei, Ihr Schaubild gut zu strukturieren und zu formatieren. Die große Arbeitsfläche ermöglicht die Darstellung einfacher und komplexer Inhalte und Abhängigkeiten. Das Programm verhält sich wie eine Magnetwand, so können schnell Elemente ersetzt oder verschoben werden.",
       access:
-        "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
+        "Draw.io finden Sie in der Werkzeugkiste des Social Intranet des Bundes (SIB-Box), diese Version ist für die Verwendung in der Verwaltung vorgesehen. Falls Sie Probleme beim Zugang haben, wenden Sie sich gern an die Ansprechperson in Ihrem Ressort - meist finden Sie diese in der Z Abteilung.",
       link: "",
       img: {
         src: "tools/bundescloud_drawio_flussdiagramm.png",
@@ -410,7 +410,7 @@ export default {
       description:
         "Als einfaches, digitales Werkzeug hilft Draw.io Ihnen dabei, Ihren Entscheidungsbaum gut zu strukturieren und zu formatieren. Die große Arbeitsfläche ermöglicht die Darstellung komplexer Inhalte und Abhängigkeiten. Das Programm verhält sich wie eine Magnetwand, so können schnell Elemente ersetzt oder verschoben werden.",
       access:
-        "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
+        "Draw.io finden Sie in der Werkzeugkiste des Social Intranet des Bundes (SIB-Box), diese Version ist für die Verwendung in der Verwaltung vorgesehen. Falls Sie Probleme beim Zugang haben, wenden Sie sich gern an die Ansprechperson in Ihrem Ressort - meist finden Sie diese in der Z Abteilung.",
       link: "",
       img: {
         src: "tools/bundescloud_drawio_entscheidungsbaum.png",
@@ -423,7 +423,7 @@ export default {
       description:
         "Als einfaches, digitales Werkzeug hilft Draw.io Ihnen dabei, Ihr Flussdiagramm gut zu strukturieren und zu formatieren. Die große Arbeitsfläche ermöglicht die Darstellung komplexer Inhalte und Abhängigkeiten. Das Programm verhält sich wie eine Magnetwand, so können schnell Elemente ersetzt oder verschoben werden.",
       access:
-        "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
+        "Draw.io finden Sie in der Werkzeugkiste des Social Intranet des Bundes (SIB-Box), diese Version ist für die Verwendung in der Verwaltung vorgesehen. Falls Sie Probleme beim Zugang haben, wenden Sie sich gern an die Ansprechperson in Ihrem Ressort - meist finden Sie diese in der Z Abteilung.",
       link: "",
       img: {
         src: "tools/bundescloud_drawio_flussdiagramm.png",
@@ -436,7 +436,7 @@ export default {
       description:
         "Mit Logos können Sie eine Rulemap erstellen, eine Art Entscheidungsbaum, der spezifisch für den juristischen Kontext entwickelt wurde. Sie können Ihr gesamtes Regelungsvorhaben abbilden und so verschiedene Tatbestände simulieren. Des Weiteren ermöglicht das Format der Rulemap eine Logikprüfung.",
       access:
-        "Für einen Zugang schreiben Sie einfach eine formlose E-Mail an die Ansprechperson in Ihrem Ressort. In der Regel ist das Referat für die Informations- und Kommunikationstechnik im Ressort in Abteilung Z zuständig.",
+        "Falls es in Ihrem Ressort eine Lizenz gibt, reicht meist eine formlose E-Mail an die Ansprechperson für einen Zugang. Außerdem können Sie zum Testen von Logos, sich direkt bei Knowledgetools einen kostenfreien Account anlegen.",
       link: "Mehr Informationen: https://www.knowledgetools.de\n\nLogin: https://rulemapping.knowledgetools.de/rulemapping",
       img: {
         src: "tools/logos_rulemap.png",
