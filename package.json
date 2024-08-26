@@ -37,7 +37,7 @@
     "@digitalservicebund/icons": "^2.0.0",
     "@rvf/react": "^0.1.0",
     "@rvf/remix": "^0.1.0",
-    "@rvf/zod": "^0.1.0",
+    "@rvf/zod": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "unleash-client": "^6.1.0",
