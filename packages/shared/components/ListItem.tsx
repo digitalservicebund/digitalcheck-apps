@@ -58,7 +58,10 @@ const ListItem = ({
               <div
                 className={`flex flex-row gap-16 items-start ${numeric && "mt-32"}`}
               >
-                <span className={`display-block shrink-0 ${responsiveWidth}`} />
+                <span
+                  className={`display-block shrink-0 ${responsiveWidth}`}
+                  role="none"
+                />
                 <Heading
                   tagName="div"
                   className="ds-label-section text-gray-900"
@@ -76,7 +79,10 @@ const ListItem = ({
               </div>
             )}
             {backgroundColor && (
-              <div className="w-[20px] h-[20px] flex justify-center items-center bg-blue-900 rounded-full"></div>
+              <div
+                className="w-[20px] h-[20px] flex justify-center items-center bg-blue-900 rounded-full"
+                role="none"
+              ></div>
             )}
           </div>
           {/* 
