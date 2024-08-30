@@ -110,12 +110,7 @@ export default function Assessment() {
             label={assessment.form.policyTitleLabel}
             error={form.error("title")}
           />
-          {quicksendNkrFlag && (
-            <p>
-              <br />
-              {uniqueUrl}
-            </p>
-          )}
+          {quicksendNkrFlag && <p>{uniqueUrl}</p>}
           <br />
           <ButtonContainer
             buttons={[
