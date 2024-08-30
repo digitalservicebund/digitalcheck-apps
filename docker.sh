@@ -26,7 +26,7 @@ if [ "$app" == "dito" ]; then
    export $(grep -v '^#' packages/dito/.env | xargs)
 
    # Build the application 
-   docker build -t digitalcheck-dito:latest . -f packages/dito/Dockerfile --build-arg UNLEASH_KEY=$UNLEASH_KEY
+   docker build -t digitalcheck-dito:latest . -f packages/dito/Dockerfile --build-arg ENCRYPTION_KEY=$ENCRYPTION_KEY --build-arg UNLEASH_KEY=$UNLEASH_KEY
 
    # Stop & remove any existing containers
    docker stop digitalcheck-dito || true

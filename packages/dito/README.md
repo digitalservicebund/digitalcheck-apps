@@ -8,6 +8,7 @@ A digital touchpoint for the Digitalcheck. Digitaltaugliche Regelung erarbeiten.
 
 The application requires a `.env` file with the following values configured. You can copy and rename the file `.env.example`, and if running locally shouldn't need to change many of the values there.
 
+- `ENCRYPTION_KEY`: Key used to encrypt & decrypt sensitive content on the server.
 - `UNLEASH_KEY`: Authorization key used for connecting to Unleash feature flag tool.
 
 ## Development

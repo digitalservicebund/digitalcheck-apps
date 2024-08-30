@@ -4,7 +4,12 @@ import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import { NumberedList } from "@digitalcheck/shared/components/List.tsx";
 import Download from "@digitalservicebund/icons/Download";
-import { MetaFunction } from "@remix-run/react";
+import {
+  json,
+  MetaFunction,
+  useFetcher,
+  useLoaderData,
+} from "@remix-run/react";
 import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
@@ -14,8 +19,10 @@ import {
   ROUTE_ASSESSMENT_PDF,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
+import unleash from "utils/featureFlags.server";
 import prependMetaTitle from "utils/metaTitle";
 import { z } from "zod";
+import { type action as TUniqAction } from "./uniq.($encrypted).($iv)";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_ASSESSMENT.title, matches);
@@ -30,6 +37,14 @@ const validator = withZod(
   }),
 );
 
+export function loader() {
+  const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
+
+  console.log({ quicksendNkrFlag });
+
+  return json({ quicksendNkrFlag });
+}
+
 export default function Assessment() {
   const form = useForm({
     validator,
@@ -38,6 +53,9 @@ export default function Assessment() {
     reloadDocument: true,
   });
   const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
+  const { quicksendNkrFlag } = useLoaderData<typeof loader>();
+  const [uniqueUrl, setUniqueUrl] = useState("");
+  const fetcher = useFetcher<typeof TUniqAction>();
 
   useEffect(() => {
     if (form.formState.isValid && form.formState.isSubmitting) {
@@ -70,12 +88,29 @@ export default function Assessment() {
         ></Box>
       </Container>
       <Container paddingBottom="48">
-        <form {...form.getFormProps()}>
+        <form
+          {...form.getFormProps()}
+          onChange={
+            quicksendNkrFlag
+              ? (event) => {
+                  fetcher.submit(event.currentTarget, {
+                    action: "/uniq",
+                    method: "POST",
+                  });
+                  if (fetcher.data) {
+                    const { url } = fetcher.data;
+                    setUniqueUrl(url);
+                  }
+                }
+              : undefined
+          }
+        >
           <Input
             name="title"
             label={assessment.form.policyTitleLabel}
             error={form.error("title")}
           />
+          {quicksendNkrFlag && <p>{uniqueUrl}</p>}
           <br />
           <ButtonContainer
             buttons={[
