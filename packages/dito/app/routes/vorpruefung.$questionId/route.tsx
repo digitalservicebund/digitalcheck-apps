@@ -1,4 +1,3 @@
-import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
@@ -167,20 +166,22 @@ export default function Index() {
             }}
           />
           <Container paddingTop="0" paddingBottom="40">
-            <ButtonContainer>
-              <Button
-                id="preCheck-next-button"
-                text={nextButton}
-                type="submit"
-                disabled={form.formState.isSubmitting}
-              ></Button>
-              <Button
-                id="preCheck-back-button"
-                text="Zurück"
-                href={question.prevLink}
-                look="tertiary"
-              ></Button>
-            </ButtonContainer>
+            <ButtonContainer
+              buttons={[
+                {
+                  id: "preCheck-next-button",
+                  text: nextButton,
+                  type: "submit",
+                  disabled: form.formState.isSubmitting,
+                },
+                {
+                  id: "preCheck-back-button",
+                  text: "Zurück",
+                  href: question.prevLink,
+                  look: "tertiary",
+                },
+              ]}
+            />
           </Container>
         </form>
         {question.hint && (

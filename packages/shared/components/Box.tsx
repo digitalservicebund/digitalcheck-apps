@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Button, { ButtonLinkProps, ButtonProps } from "./Button";
+import { ButtonLinkProps, ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";
 import RichText, { type RichTextProps } from "./RichText";
@@ -40,13 +40,7 @@ const Box = ({
         {heading && <Heading tagName="h2" {...heading} />}
         {content && <RichText {...content} />}
       </div>
-      {buttons && buttons.length > 0 && (
-        <ButtonContainer>
-          {buttons.map((button) => (
-            <Button key={button.text ?? button.href} {...button} />
-          ))}
-        </ButtonContainer>
-      )}
+      {buttons && buttons.length > 0 && <ButtonContainer buttons={buttons} />}
     </div>
   );
 };

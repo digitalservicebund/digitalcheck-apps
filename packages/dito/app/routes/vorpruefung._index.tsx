@@ -1,6 +1,5 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
-import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
@@ -36,20 +35,22 @@ export default function Index() {
           ></Box>
         </Container>
         <Container paddingTop="0">
-          <ButtonContainer>
-            <Button
-              id="preCheck-start-button"
-              text={preCheck.start.buttonText}
-              href={preCheck.questions[0].url}
-              type="submit"
-            ></Button>
-            <Button
-              id="preCheck-back-button"
-              text="Zurück"
-              href={ROUTE_LANDING.url}
-              look="tertiary"
-            ></Button>
-          </ButtonContainer>
+          <ButtonContainer
+            buttons={[
+              {
+                id: "preCheck-start-button",
+                text: preCheck.start.buttonText,
+                href: preCheck.questions[0].url,
+                type: "submit",
+              },
+              {
+                id: "preCheck-back-button",
+                text: "Zurück",
+                href: ROUTE_LANDING.url,
+                look: "tertiary",
+              },
+            ]}
+          />
         </Container>
       </Background>
       <Container additionalClassNames="max-sm:!p-0">

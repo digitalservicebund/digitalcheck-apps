@@ -1,6 +1,6 @@
 import { type BackgroundColor, isBackgroundColor } from ".";
 import Background from "./Background";
-import Button, { type ButtonProps } from "./Button";
+import { type ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";
 import Image, { type ImageProps } from "./Image";
@@ -107,11 +107,7 @@ const ListItem = ({
                 </div>
                 {content && <RichText markdown={content} />}
                 {buttons && buttons.length > 0 && (
-                  <ButtonContainer>
-                    {buttons.map((button) => (
-                      <Button key={button.text ?? button.href} {...button} />
-                    ))}
-                  </ButtonContainer>
+                  <ButtonContainer buttons={buttons} />
                 )}
               </div>
             </Background>

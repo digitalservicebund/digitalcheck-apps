@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
@@ -32,12 +31,7 @@ export default function Index() {
               className: "md:text-2xl",
             }}
           />
-          {/* TODO: ButtonContainer should accept an array of buttons! */}
-          <ButtonContainer className="mt-48">
-            {documentation.buttons.map((button) => (
-              <Button key={button.text} {...button} />
-            ))}
-          </ButtonContainer>
+          <ButtonContainer className="mt-48" buttons={documentation.buttons} />
         </Container>
       </Background>
       <Background backgroundColor="yellow">

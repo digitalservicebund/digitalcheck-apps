@@ -1,13 +1,14 @@
 import classNames from "classnames";
-import type { PropsWithChildren } from "react";
+import Button, { type ButtonLinkProps, type ButtonProps } from "./Button";
 
-type ButtonContainerProps = PropsWithChildren & {
-  readonly reverseOrder?: boolean;
-  readonly className?: string;
+type ButtonContainerProps = {
+  reverseOrder?: boolean;
+  className?: string;
+  buttons: (ButtonLinkProps | ButtonProps)[];
 };
 
 const ButtonContainer = ({
-  children,
+  buttons,
   reverseOrder,
   className,
 }: ButtonContainerProps) => {
@@ -21,7 +22,9 @@ const ButtonContainer = ({
         className,
       )}
     >
-      {children}
+      {buttons.map((button) => (
+        <Button key={button.text ?? button.href} {...button} />
+      ))}
     </div>
   );
 };

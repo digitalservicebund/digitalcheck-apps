@@ -1,5 +1,4 @@
 import Box from "@digitalcheck/shared/components/Box";
-import Button from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
@@ -78,26 +77,26 @@ export default function Assessment() {
             error={form.error("title")}
           />
           <br />
-          <ButtonContainer>
-            <Button
-              id="assessment-back-button"
-              text="Zurück"
-              href={ROUTE_RESULT.url}
-              look="tertiary"
-            ></Button>
-            <Button
-              id="assessment-download-button"
-              text={
-                downloadIsDisabled
+          <ButtonContainer
+            buttons={[
+              {
+                id: "assessment-back-button",
+                text: "Zurück",
+                href: ROUTE_RESULT.url,
+                look: "tertiary",
+              },
+              {
+                id: "assessment-download-button",
+                text: downloadIsDisabled
                   ? assessment.form.downloadStarted
-                  : assessment.form.downloadPdfButton.text
-              }
-              type="submit"
-              look="primary"
-              iconLeft={<Download />}
-              disabled={downloadIsDisabled}
-            ></Button>
-          </ButtonContainer>
+                  : assessment.form.downloadPdfButton.text,
+                type: "submit",
+                look: "primary",
+                iconLeft: <Download />,
+                disabled: downloadIsDisabled,
+              },
+            ]}
+          />
         </form>
       </Container>
       <Container>

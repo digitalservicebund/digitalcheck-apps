@@ -1,6 +1,6 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
-import Button, { ButtonProps } from "@digitalcheck/shared/components/Button";
+import { ButtonProps } from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
@@ -28,6 +28,14 @@ export default function Index() {
   const { supportOfferingFlag } = useLoaderData<typeof loader>();
   const [isAppointmentsVisible, setIsAppointmentsVisible] = useState(false);
 
+  const buttons = [
+    supportOfferingFlag && {
+      ...support.specificSupport.buttons[0],
+      onClick: () => setIsAppointmentsVisible(true),
+    },
+    support.specificSupport.buttons[1],
+  ].filter(Boolean) as ButtonProps[];
+
   return (
     <>
       <Background backgroundColor="blue">
@@ -49,18 +57,7 @@ export default function Index() {
           heading={{ text: support.specificSupport.title }}
           content={{ markdown: support.specificSupport.content }}
         />
-        <ButtonContainer className="mt-32">
-          {supportOfferingFlag && (
-            <Button
-              {...(support.specificSupport.buttons[0] as ButtonProps)}
-              onClick={() => {
-                setIsAppointmentsVisible(true);
-                return false;
-              }}
-            />
-          )}
-          <Button {...(support.specificSupport.buttons[1] as ButtonProps)} />
-        </ButtonContainer>
+        <ButtonContainer className="mt-32" buttons={buttons} />
         {supportOfferingFlag && (
           <iframe
             src={support.specificSupport.iframe}

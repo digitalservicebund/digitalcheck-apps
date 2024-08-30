@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Button, { type ButtonProps } from "./Button";
+import { type ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import DetailsSummary, { type DetailsSummaryProps } from "./DetailsSummary";
 import Heading, { type HeadingProps } from "./Heading";
@@ -63,13 +63,7 @@ const InfoBoxItem = ({
           detailsSummary.map((details) => (
             <DetailsSummary key={details.title} {...details} />
           ))}
-        {buttons && buttons.length > 0 && (
-          <ButtonContainer>
-            {buttons.map((button) => (
-              <Button key={button.text ?? button.href} {...button} />
-            ))}
-          </ButtonContainer>
-        )}
+        {buttons && buttons.length > 0 && <ButtonContainer buttons={buttons} />}
       </div>
     </li>
   );
