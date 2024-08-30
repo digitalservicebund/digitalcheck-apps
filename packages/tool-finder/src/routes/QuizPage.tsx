@@ -1,7 +1,6 @@
 import Background from "@digitalcheck/shared/components/Background";
 import BetaBanner from "@digitalcheck/shared/components/BetaBanner";
 import Button from "@digitalcheck/shared/components/Button";
-import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Question from "@digitalcheck/shared/components/Question";
@@ -190,14 +189,12 @@ function QuizPage({
             }}
           />
           <Container paddingTop="0" paddingBottom="80">
-            <ButtonContainer>
-              <Button
-                id="quiz-find-tool"
-                text="Werkzeug suchen"
-                size="large"
-                type="submit"
-              />
-            </ButtonContainer>
+            <Button
+              id="quiz-find-tool"
+              text="Werkzeug suchen"
+              size="large"
+              type="submit"
+            />
           </Container>
         </form>
       </div>

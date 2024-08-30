@@ -1,7 +1,6 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Button from "@digitalcheck/shared/components/Button";
-import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -341,7 +340,7 @@ Vielen Dank für Ihr Verständnis.`;
       <main id="error" className="grow">
         <div className="border-t-2 border-t-gray-400">
           <Container>
-            <div className="ds-stack-8">
+            <div className="ds-stack-8 mb-32">
               <Heading
                 text={errorStatus}
                 tagName="div"
@@ -352,14 +351,12 @@ Vielen Dank für Ihr Verständnis.`;
                 <RichText markdown={errorMessage} />
               </div>
             </div>
-            <ButtonContainer className="mt-32">
-              <Button
-                id="error-back-button"
-                text="Zurück zur Startseite"
-                href={ROUTE_LANDING.url}
-                look="primary"
-              ></Button>
-            </ButtonContainer>
+            <Button
+              id="error-back-button"
+              text="Zurück zur Startseite"
+              href={ROUTE_LANDING.url}
+              look="primary"
+            ></Button>
           </Container>
         </div>
       </main>
