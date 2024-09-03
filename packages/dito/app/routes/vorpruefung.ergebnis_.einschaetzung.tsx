@@ -4,26 +4,32 @@ import Container from "@digitalcheck/shared/components/Container";
 import Input from "@digitalcheck/shared/components/Input";
 import { NumberedList } from "@digitalcheck/shared/components/List.tsx";
 import Download from "@digitalservicebund/icons/Download";
+import Email from "@digitalservicebund/icons/Email";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   json,
   MetaFunction,
+  redirect,
   useFetcher,
   useLoaderData,
 } from "@remix-run/react";
 import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
-import { assessment } from "resources/content";
+import { assessment, preCheck } from "resources/content";
 import {
   ROUTE_ASSESSMENT,
   ROUTE_ASSESSMENT_PDF,
+  ROUTE_PRECHECK,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
+import { getAnswersFromCookie } from "utils/cookies.server";
 import unleash from "utils/featureFlags.server";
 import prependMetaTitle from "utils/metaTitle";
 import { z } from "zod";
 import { type action as TUniqAction } from "./uniq.($encrypted).($iv)";
 
+const { questions } = preCheck;
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_ASSESSMENT.title, matches);
 };
@@ -37,12 +43,16 @@ const validator = withZod(
   }),
 );
 
-export function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
   const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
+  const { answers } = await getAnswersFromCookie(request);
 
-  console.log({ quicksendNkrFlag });
+  // redirect to precheck if not all answers are present
+  if (Object.keys(answers).length !== questions.length) {
+    return redirect(ROUTE_PRECHECK.url);
+  }
 
-  return json({ quicksendNkrFlag });
+  return json({ answers, quicksendNkrFlag });
 }
 
 export default function Assessment() {
@@ -53,7 +63,7 @@ export default function Assessment() {
     reloadDocument: true,
   });
   const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
-  const { quicksendNkrFlag } = useLoaderData<typeof loader>();
+  const { answers, quicksendNkrFlag } = useLoaderData<typeof loader>();
   const [uniqueUrl, setUniqueUrl] = useState("");
   const fetcher = useFetcher<typeof TUniqAction>();
 
@@ -72,6 +82,15 @@ export default function Assessment() {
       };
     }
   }, [form]);
+
+  const to = "nkr@bmj.bund.de";
+  const subject = `Digitalcheck Vorprüfung: "${form.value("title")}"`;
+  const body = `Guten Tag,
+anbei finden Sie unsere ausgefüllte Vorprüfung im Zuge des Digitalcheck.
+
+Der automatisch generierte Link sorgt für einen sicheren Download des Dokuments: ${uniqueUrl}`;
+
+  const mailTo = encodeURI(`mailto:${to}?subject=${subject}&body=${body}`);
 
   return (
     <>
@@ -105,32 +124,62 @@ export default function Assessment() {
               : undefined
           }
         >
+          {Object.keys(answers).map((answer) => (
+            <input
+              key={answer}
+              name={answer}
+              value={answers[answer]}
+              type="hidden"
+            />
+          ))}
           <Input
             name="title"
             label={assessment.form.policyTitleLabel}
             error={form.error("title")}
           />
-          {quicksendNkrFlag && <p>{uniqueUrl}</p>}
           <br />
           <ButtonContainer
-            buttons={[
-              {
-                id: "assessment-back-button",
-                text: "Zurück",
-                href: ROUTE_RESULT.url,
-                look: "tertiary",
-              },
-              {
-                id: "assessment-download-button",
-                text: downloadIsDisabled
-                  ? assessment.form.downloadStarted
-                  : assessment.form.downloadPdfButton.text,
-                type: "submit",
-                look: "primary",
-                iconLeft: <Download />,
-                disabled: downloadIsDisabled,
-              },
-            ]}
+            buttons={
+              quicksendNkrFlag
+                ? [
+                    {
+                      id: "assessment-email-button",
+                      text: assessment.form.sendEmailButton.text,
+                      href: mailTo,
+                      type: "submit",
+                      look: "primary",
+                      iconLeft: <Email />,
+                    },
+                    {
+                      id: "assessment-download-button",
+                      text: downloadIsDisabled
+                        ? assessment.form.downloadStarted
+                        : assessment.form.downloadPdfButton.text,
+                      type: "submit",
+                      look: "tertiary",
+                      iconLeft: <Download />,
+                      disabled: downloadIsDisabled,
+                    },
+                  ]
+                : [
+                    {
+                      id: "assessment-back-button",
+                      text: "Zurück",
+                      href: ROUTE_RESULT.url,
+                      look: "tertiary",
+                    },
+                    {
+                      id: "assessment-download-button",
+                      text: downloadIsDisabled
+                        ? assessment.form.downloadStarted
+                        : assessment.form.downloadPdfButton.text,
+                      type: "submit",
+                      look: "primary",
+                      iconLeft: <Download />,
+                      disabled: downloadIsDisabled,
+                    },
+                  ]
+            }
           />
         </form>
       </Container>

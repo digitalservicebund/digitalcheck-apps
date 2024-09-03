@@ -12,6 +12,7 @@ import { z } from "zod";
 import React, { useEffect, useState } from "react";
 import { assessment, preCheck } from "resources/content";
 import { ROUTE_ASSESSMENT_PDF } from "resources/staticRoutes";
+import { Answers } from "routes/vorpruefung.$questionId/route";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
@@ -32,8 +33,10 @@ const validator = withZod(
 
 export default function ResultNegative({
   negativeQuestions,
+  answers,
 }: Readonly<{
   negativeQuestions: string[];
+  answers: Answers;
 }>) {
   const form = useForm({
     validator,
@@ -87,6 +90,15 @@ export default function ResultNegative({
             <legend>
               <Heading tagName="h3" text={assessment.form.formLegend} />
             </legend>
+
+            {Object.keys(answers).map((answer) => (
+              <input
+                key={answer}
+                name={answer}
+                value={answers[answer]}
+                type="hidden"
+              />
+            ))}
             <Textarea
               name="negativeReasoning"
               label={assessment.form.reasonLabel}

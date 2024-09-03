@@ -49,13 +49,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
   // Set cookie to store user has viewed result
   cookie.hasViewedResult = true;
   return json(
-    { positiveQuestions, unsureQuestions, negativeQuestions },
+    { positiveQuestions, unsureQuestions, negativeQuestions, answers },
     await getHeaderFromCookie(cookie),
   );
 }
 
 export default function Result() {
-  const { positiveQuestions, unsureQuestions, negativeQuestions } =
+  const { positiveQuestions, unsureQuestions, negativeQuestions, answers } =
     useLoaderData<typeof loader>();
 
   // We have at least one positive answer
@@ -74,5 +74,7 @@ export default function Result() {
   }
 
   // All answers are negative
-  return <ResultNegative negativeQuestions={negativeQuestions} />;
+  return (
+    <ResultNegative negativeQuestions={negativeQuestions} answers={answers} />
+  );
 }
