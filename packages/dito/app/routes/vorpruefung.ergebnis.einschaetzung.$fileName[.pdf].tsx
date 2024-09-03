@@ -3,8 +3,8 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { assessment } from "resources/content";
-import { getAnswersFromCookie } from "utils/cookies.server";
 import trackCustomEvent from "utils/trackCustomEvent.server";
+import { Answers } from "./vorpruefung.$questionId/route";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
@@ -16,14 +16,29 @@ export const FIELD_NAME_PRE_CHECK_NEGATIVE = "Vorprüfung negativ";
 export const FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING =
   "Vorprüfung negativ - Erläuterung";
 
-interface PreCheckAnswer {
-  [k: string]: string;
+function isPreCheckAnswer(
+  obj: Record<string, FormDataEntryValue>,
+): obj is Answers {
+  return (
+    (typeof obj["it-system"] === "string" &&
+      obj["it-system"] &&
+      typeof obj["verpflichtungen-fuer-beteiligte"] === "string" &&
+      obj["verpflichtungen-fuer-beteiligte"] &&
+      typeof obj["datenaustausch"] === "string" &&
+      obj["datenaustausch"] &&
+      typeof obj["kommunikation"] === "string" &&
+      obj["kommunikation"] &&
+      typeof obj["automatisierung"] === "string" &&
+      obj["automatisierung"] &&
+      true) ||
+    false
+  );
 }
 
 interface UserInput {
   title: string;
-  answers: PreCheckAnswer;
   negativeReasoning?: string;
+  answers: Answers;
 }
 
 const POSITIVE_RESULT = "yes";
@@ -104,12 +119,13 @@ export function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ params, request }: ActionFunctionArgs) {
   const { fileName } = params;
-  const { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
-  const { title, negativeReasoning } = Object.fromEntries(formData);
+  const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
-  if (Object.keys(answers).length === 0) {
-    throw new Response("No answers available in cookies", { status: 409 });
+  if (!isPreCheckAnswer(answers)) {
+    throw new Response(assessment.form.precheckAnswersRequired, {
+      status: 400,
+    });
   }
 
   if (typeof title !== "string" || title === "") {
