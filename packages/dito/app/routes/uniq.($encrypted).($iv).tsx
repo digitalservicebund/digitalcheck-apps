@@ -97,13 +97,14 @@ const unzip = (zipped: string) => {
   return unzippedText;
 };
 
-export function loader({ params }: LoaderFunctionArgs) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
 
   if (!quicksendNkrFlag) {
     return json({ quicksendNkrFlag });
   }
 
+  const BASE_URL = new URL(request.url).origin;
   const { encrypted, iv } = params;
 
   if (encrypted && iv) {
@@ -111,9 +112,36 @@ export function loader({ params }: LoaderFunctionArgs) {
     const unzipped = unzip(decrypted);
     const parsed = JSON.parse(unzipped);
     const unabbreviated = unabbreviate(parsed);
+    const dataEntries = Object.entries(unabbreviated);
 
-    // POST to download file
-    return json({ encrypted, iv, decrypted, unzipped, parsed, unabbreviated });
+    const formData = new FormData();
+    dataEntries.forEach((dataEntry) =>
+      formData.append(dataEntry[0], dataEntry[1]),
+    );
+
+    try {
+      const response = await fetch(
+        `${BASE_URL}/vorpruefung/ergebnis/einschaetzung/digitalcheck-vorpruefung.pdf`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const pdfData = await response.blob();
+
+      return new Response(pdfData, {
+        status: 200,
+        headers: response.headers,
+      });
+    } catch (error) {
+      console.error("Error processing PDF:", error);
+      throw error;
+    }
   }
 
   return null;
