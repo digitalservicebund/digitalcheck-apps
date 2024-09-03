@@ -408,6 +408,7 @@ export const assessment = {
     policyTitleLabel: "Arbeitstitel des Vorhabens",
     policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
+    precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
     reasonLabel: "Begründung",
     reasonRequired:
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
@@ -417,8 +418,8 @@ export const assessment = {
     downloadPdfButton: {
       text: "Vorprüfung herunterladen",
     },
-    receiveEmailButton: {
-      text: "Per E-Mail erhalten",
+    sendEmailButton: {
+      text: "Per E-Mail schicken",
     },
     downloadStarted: "Vorprüfung wird heruntergeladen",
   },
