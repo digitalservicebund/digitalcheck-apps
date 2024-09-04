@@ -1198,13 +1198,16 @@ Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. e) DSGVO i.V.m. §
 <br class="block content-[''] mb-24" />
 
 ### 2.2 Kontaktaufnahme
+Die Verarbeitung personenbezogener Daten erfolgt in Abhängigkeit des Kontaktweges. Hierbei kann zwischen Kontaktaufnahme per E-Mail, per Kontaktformular oder Telefon unterschieden werden.  Die Verarbeitung der Daten ist zur Wahrnehmung unserer Aufgaben erforderlich (Art. 6 Abs. 1 UAbs. 1 lit. e) DSGVO in Verbindung mit § 3 BDSG). Nähere Details zur Verarbeitung Ihrer Daten im Falle der Kontaktaufnahme mit dem BMI entnehmen Sie bitte der allgemeinen [Datenschutzerklärung](https://www.bmi.bund.de/DE/service/datenschutz/datenschutz_node.htm) des BMI.
 
-Die Verarbeitung personenbezogener Daten erfolgt in Abhängigkeit des Kontaktweges. Hierbei kann zwischen Kontaktaufnahme per E-Mail, per Kontaktformular oder Telefon unterschieden werden. Nähere Details zur Verarbeitung Ihrer Daten im Falle der Kontaktaufnahme mit dem BMI entnehmen Sie bitte der allgemeinen [Datenschutzerklärung](https://www.bmi.bund.de/DE/service/datenschutz/datenschutz_node.htm) des BMI.
+#### 2.2.1 Kontaktaufnahme - E-Mail
+Bei Anfragen an die Kontakt-E-Mail-Adresse [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de) werden durch den Auftragsverarbeiter ausschließlich solche Daten verarbeitet, die notwendig sind, um mit Ihnen zu kommunizieren. Hierzu gehören insbesondere jene personenbezogenen Informationen (z. B. Name, Vorname, Anschrift, E-Mail-Adresse usw.), die unmittelbar von Ihnen übersandt werden. Die Löschung der personenbezogenen Daten erfolgt sechs Monate nach dem Zugang der letzten E-Mail. 
 
-Bei Anfragen an die Kontakt-E-Mail-Adresse [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de) werden durch den Auftragsverarbeiter ausschließlich solche Daten verarbeitet, die notwendig sind, um mit Ihnen zu kommunizieren. Hierzu gehören insbesondere jene personenbezogenen Informationen (z. B. Name, Vorname, Anschrift, E-Mail-Adresse usw.), die unmittelbar von Ihnen übersandt werden. Die Löschung der personenbezogenen Daten erfolgt sechs Monate nach dem Zugang der letzten E-Mail. Weitere personenbezogene Daten werden auf dieser Webseite nicht erhoben und verarbeitet.
+#### 2.2.2 Kontaktaufnahme - Kontaktformular / Terminbuchungsformular
+Bei Anfragen über ein Kontaktformular oder Terminbuchungsformular werden durch den Auftragsverarbeiter ausschließlich solche Daten verarbeitet, die notwendig sind, um mit Ihnen zu kommunizieren oder einen Termin zu vereinbaren. Hierzu gehören insbesondere jene personenbezogenen Informationen (z.B. Name, Vorname, E-Mail-Adresse usw.), die unmittelbar von Ihnen eingegeben und übersandt werden. Die Löschung der personenbezogenen Daten erfolgt sechs Monate nach dem Zugang der letzten E-Mail.
 
-Die Verarbeitung der Daten ist zur Wahrnehmung unserer Aufgaben erforderlich (Art. 6 Abs. 1 UAbs. 1 lit. e) DSGVO in Verbindung mit § 3 BDSG).
-<br class="block content-[''] mb-24" />
+#### 2.2.3 Kontaktaufnahme - Telefon
+Bei Anrufen an die Telefonnummer des Digitalcheck Teams werden durch den Auftragsverarbeiter ausschließlich solche Daten verarbeitet, die notwendig sind, um mit Ihnen zu kommunizieren. Hierzu gehören insbesondere jene personenbezogenen Informationen (z. B. Name, Vorname, Anschrift, E-Mail-Adresse usw.), die unmittelbar von Ihnen genannt oder übersandt werden. 
 
 ### 2.3 Technischer Cookie (über die Session) zur Zwischenspeicherung der Antworten in der Vorprüfung
 
