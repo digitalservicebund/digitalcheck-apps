@@ -2,7 +2,6 @@ import type { TMethodPage } from "routes/methoden_.$subPage";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   ROUTE_A11Y,
-  ROUTE_ASSESSMENT,
   ROUTE_DOCUMENTATION,
   ROUTE_DOCUMENTATION_STATIC_PDF,
   ROUTE_LANDING,
@@ -348,7 +347,6 @@ export const preCheck = {
       reasoningIntro: "Das Regelungsvorhaben ...",
       actionButton: {
         text: "Vorprüfung herunterladen",
-        href: ROUTE_ASSESSMENT.url,
       },
       nextSteps: {
         title: "So machen Sie weiter",
@@ -396,49 +394,53 @@ export const preCheck = {
         steps: [steps.preCheck.finished, steps.nkrFinal],
       },
     },
-  },
-};
-
-export const assessment = {
-  title: "Erhalten Sie die ausgefüllte Vorprüfung als PDF",
-  subtitle:
-    "Fügen Sie den Arbeitstitel Ihres Regelungsvorhabens hinzu und laden Sie die ausgefüllte Vorprüfung als PDF herunter. Diese können Sie für Ihre eigenen Unterlagen nutzen.",
-  form: {
-    formLegend: "Bitte erläutern Sie Ihre Einschätzung.",
-    policyTitleLabel: "Arbeitstitel des Vorhabens",
-    policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
-    policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
-    precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
-    reasonLabel: "Begründung",
-    reasonRequired:
-      "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
-    reasonLong:
-      "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
-    reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
-    downloadPdfButton: {
-      text: "Vorprüfung herunterladen",
-    },
-    sendEmailButton: {
-      text: "Per E-Mail schicken",
-    },
-    downloadStarted: "Vorprüfung wird heruntergeladen",
-  },
-  nextSteps: {
-    title: "So machen Sie weiter",
-    steps: [
-      steps.preCheck.finished,
-      {
-        ...steps.methods,
-        buttons: [
+    form: {
+      formLegend: "Senden Sie die ausgefüllte Vorprüfung zum NKR",
+      instructionsPositive: `- Geben Sie einfach den vorläufigen Arbeitstitel Ihres Vorhabens ein.
+- Wir erstellen eine E-Mail an den NKR mit Text und Link zum Herunterladen der Vorprüfung.
+- Sie brauchen sie nur noch abzusenden.`,
+      instructionsNegative: `- Geben Sie einfach den vorläufigen Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung ein.
+- Wir erstellen eine E-Mail an den NKR mit Text und Link zum Herunterladen der Vorprüfung.
+- Sie brauchen sie nur noch abzusenden.`,
+      policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
+      policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
+      policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
+      precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
+      reasonLabel: "Begründung",
+      reasonRequired:
+        "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
+      reasonLong:
+        "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
+      reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
+      faqs: {
+        title: "Häufige Fragen",
+        details: [
           {
-            text: "Zu den Hilfestellungen",
-            href: ROUTE_METHODS.url,
+            label: "Was steht in der E-Mail?",
+            text: "Was steht in der E-Mail?",
+          },
+          {
+            label: "Warum die Vorprüfung an den NKR schicken?",
+            text: "Warum die Vorprüfung an den NKR schicken?",
           },
         ],
       },
-      steps.documentation,
-      steps.nkr,
-    ],
+      downloadPdfButton: {
+        text: "Nur herunterladen",
+      },
+      sendEmailButton: {
+        text: "E-Mail erstellen",
+      },
+      emailTemplate: {
+        to: "nkr@bmj.bund.de",
+        subject: "Digitalcheck Vorprüfung",
+        body: `Guten Tag,
+anbei finden Sie unsere ausgefüllte Vorprüfung im Zuge des Digitalcheck.
+
+Der automatisch generierte Link sorgt für einen sicheren Download des Dokuments`,
+      },
+      downloadStarted: "Vorprüfung wird heruntergeladen",
+    },
   },
 };
 
