@@ -2,11 +2,14 @@ import Check from "@digitalservicebund/icons/Check";
 import classNames from "classnames";
 import { useId } from "react";
 import { preCheck } from "resources/content";
-import type { Answers, TQuestion } from "routes/vorpruefung.$questionId/route";
+import type {
+  PreCheckAnswers,
+  TQuestion,
+} from "routes/vorpruefung.$questionId/route";
 
 type PreCheckNavigationProps = Readonly<{
   question?: TQuestion;
-  answers: Answers;
+  answers: PreCheckAnswers;
 }>;
 
 export default function PreCheckNavigation({
