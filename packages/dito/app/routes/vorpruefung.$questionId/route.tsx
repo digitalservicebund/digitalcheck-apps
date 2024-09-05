@@ -89,7 +89,7 @@ export async function action({ request }: ActionFunctionArgs) {
     });
   }
 
-  cookie.answers[questionId] = answer as Option["value"];
+  cookie.answers[questionId] = answer as PreCheckAnswerOption["value"];
   const nextLink =
     questions.find((q) => q.id === questionId)?.nextLink ?? ROUTE_PRECHECK.url;
 
@@ -112,20 +112,20 @@ export type TQuestion = {
   };
 };
 
-export type Option = {
+export type PreCheckAnswerOption = {
   value: "yes" | "no" | "unsure";
   text: string;
 };
 
-export type Answers = {
-  [x: string]: Option["value"];
+export type PreCheckAnswers = {
+  [x: string]: PreCheckAnswerOption["value"];
 };
 
 export default function Index() {
   const { question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const [selectedOption, setSelectedOption] =
-    useState<Option["value"]>(existingAnswer);
+    useState<PreCheckAnswerOption["value"]>(existingAnswer);
   const form = useForm({
     validator,
     method: "post",
@@ -135,8 +135,11 @@ export default function Index() {
     setSelectedOption(existingAnswer);
   }, [existingAnswer, setSelectedOption, question.id]);
 
-  const options: Option[] = Object.entries(answerOptions).map(
-    ([value, text]) => ({ value: value as Option["value"], text }),
+  const options: PreCheckAnswerOption[] = Object.entries(answerOptions).map(
+    ([value, text]) => ({
+      value: value as PreCheckAnswerOption["value"],
+      text,
+    }),
   );
 
   return (
@@ -161,7 +164,9 @@ export default function Index() {
               options: options,
               selectedValue: selectedOption,
               onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setSelectedOption(e.target.value as Option["value"]),
+                setSelectedOption(
+                  e.target.value as PreCheckAnswerOption["value"],
+                ),
               error: form.error("answer"),
             }}
           />
