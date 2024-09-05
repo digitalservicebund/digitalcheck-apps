@@ -40,7 +40,7 @@ import {
   PLAUSIBLE_SCRIPT as CLIENT_PLAUSIBLE_SCRIPT,
 } from "utils/constants";
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
-import unleash from "utils/featureFlags.server";
+import unleash, { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
 import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
@@ -49,11 +49,15 @@ export function loader({ request }: LoaderFunctionArgs) {
   const supportOfferingFlag = unleash.isEnabled(
     "digitalcheck.test-support-offering",
   );
+
+  const featureFlags = getFeatureFlags();
+
   return json({
     BASE_URL: new URL(request.url).origin,
     PLAUSIBLE_DOMAIN,
     PLAUSIBLE_SCRIPT,
     supportOfferingFlag,
+    featureFlags,
   });
 }
 
@@ -278,8 +282,12 @@ function Document({
 }
 
 export default function App() {
-  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT, supportOfferingFlag } =
-    useLoaderData<typeof loader>();
+  const {
+    PLAUSIBLE_DOMAIN,
+    PLAUSIBLE_SCRIPT,
+    supportOfferingFlag,
+    featureFlags,
+  } = useLoaderData<typeof loader>();
 
   return (
     <Document
@@ -294,7 +302,7 @@ export default function App() {
       }
     >
       <main className="grow">
-        <Outlet />
+        <Outlet context={{ featureFlags }} />
       </main>
     </Document>
   );
