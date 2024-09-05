@@ -28,7 +28,7 @@ export default function ResultHeaderWithReasoning({
 }>) {
   const iconClassName = "w-full h-full";
   return (
-    <Background backgroundColor="blue" paddingTop="40">
+    <Background backgroundColor="blue" paddingTop="40" paddingBottom="40">
       <Container
         overhangingBackground
         backgroundColor={resultBackgroundColor}
@@ -58,8 +58,8 @@ export default function ResultHeaderWithReasoning({
       </Container>
       <Container>
         <Box content={{ markdown: reasonsText }} buttons={buttons} />
-        {children}
       </Container>
+      {children}
     </Background>
   );
 }

@@ -2,6 +2,7 @@ import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 
 import { preCheck } from "resources/content";
+import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getReasoningText from "./getReasoningText";
 import ResultHeader from "./ResultHeader";
 
@@ -9,23 +10,31 @@ const { title, hint, unsureIntro, negativeIntro, actionButton, nextStep } =
   preCheck.result.unsure;
 
 export default function PositiveResult({
-  unsureQuestions,
-  negativeQuestions,
+  answers,
 }: Readonly<{
-  unsureQuestions: string[];
-  negativeQuestions: string[];
+  answers: PreCheckAnswers;
 }>) {
+  const unsureQuestions = Object.keys(answers).filter(
+    (key) => answers[key] === "unsure",
+  );
+  const negativeQuestions = Object.keys(answers).filter(
+    (key) => answers[key] === "no",
+  );
+
   const reasonsTextUnsure = getReasoningText(
     unsureQuestions,
     unsureIntro,
     "question",
   );
+
   const reasonsTextNegative = getReasoningText(
     negativeQuestions,
     negativeIntro,
     "negativeResult",
   );
+
   const reasonsText = `${reasonsTextUnsure}\n\n${reasonsTextNegative}`;
+
   return (
     <>
       <ResultHeader

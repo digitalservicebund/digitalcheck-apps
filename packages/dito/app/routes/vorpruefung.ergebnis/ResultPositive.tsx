@@ -1,23 +1,28 @@
 import Container from "@digitalcheck/shared/components/Container";
 import { NumberedList } from "@digitalcheck/shared/components/List";
-
 import { preCheck } from "resources/content";
+import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getReasoningText from "./getReasoningText";
+import ResultForm from "./ResultForm";
 import ResultHeader from "./ResultHeader";
 
-const { title, reasoningIntro, actionButton, nextSteps } =
-  preCheck.result.positive;
+const { title, reasoningIntro, nextSteps } = preCheck.result.positive;
 
-export default function ResultNegative({
-  positiveQuestions,
+export default function ResultPositive({
+  answers,
 }: Readonly<{
-  positiveQuestions: string[];
+  answers: PreCheckAnswers;
 }>) {
+  const positiveQuestions = Object.keys(answers).filter(
+    (key) => answers[key] === "yes",
+  );
+
   const reasonsText = getReasoningText(
     positiveQuestions,
     reasoningIntro,
     "positiveResult",
   );
+
   return (
     <>
       <ResultHeader
@@ -25,8 +30,9 @@ export default function ResultNegative({
         resultHeading={title}
         reasonsText={reasonsText}
         resultBackgroundColor="midBlue"
-        buttons={[{ ...actionButton, look: "tertiary" }]}
-      />
+      >
+        <ResultForm answers={answers} />
+      </ResultHeader>
       <Container>
         <NumberedList
           heading={{
