@@ -23,7 +23,6 @@ export const meta: MetaFunction = ({ matches }) => {
 
 export function loader() {
   const feedbackFormFlag = unleash.isEnabled("digitalcheck.feedback-form");
-  console.log("Feedback form flag:", feedbackFormFlag);
   return json({ feedbackFormFlag });
 }
 
