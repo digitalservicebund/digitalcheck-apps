@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
+import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "utils/constants.server";
 import { getAnswersFromCookie } from "utils/cookies.server";
 import unleash from "utils/featureFlags.server";
@@ -120,13 +121,10 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     );
 
     try {
-      const response = await fetch(
-        `${BASE_URL}/vorpruefung/ergebnis/einschaetzung/digitalcheck-vorpruefung.pdf`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const response = await fetch(`${BASE_URL}${ROUTE_RESULT_PDF.url}`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
