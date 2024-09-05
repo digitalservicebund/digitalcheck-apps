@@ -2,9 +2,9 @@ import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
-import { assessment } from "resources/content";
+import { preCheck } from "resources/content";
 import trackCustomEvent from "utils/trackCustomEvent.server";
-import { Answers } from "./vorpruefung.$questionId/route";
+import { PreCheckAnswers } from "./vorpruefung.$questionId/route";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
 export const FIELD_NAME_PRE_CHECK_POSITIVE_1 = "Vorprüfung positiv - 1";
@@ -16,29 +16,27 @@ export const FIELD_NAME_PRE_CHECK_NEGATIVE = "Vorprüfung negativ";
 export const FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING =
   "Vorprüfung negativ - Erläuterung";
 
-function isPreCheckAnswer(
+function isPreCheckAnswers(
   obj: Record<string, FormDataEntryValue>,
-): obj is Answers {
+): obj is PreCheckAnswers {
   return (
-    (typeof obj["it-system"] === "string" &&
-      obj["it-system"] &&
-      typeof obj["verpflichtungen-fuer-beteiligte"] === "string" &&
-      obj["verpflichtungen-fuer-beteiligte"] &&
-      typeof obj["datenaustausch"] === "string" &&
-      obj["datenaustausch"] &&
-      typeof obj["kommunikation"] === "string" &&
-      obj["kommunikation"] &&
-      typeof obj["automatisierung"] === "string" &&
-      obj["automatisierung"] &&
-      true) ||
-    false
+    typeof obj["it-system"] === "string" &&
+    !!obj["it-system"] &&
+    typeof obj["verpflichtungen-fuer-beteiligte"] === "string" &&
+    !!obj["verpflichtungen-fuer-beteiligte"] &&
+    typeof obj["datenaustausch"] === "string" &&
+    !!obj["datenaustausch"] &&
+    typeof obj["kommunikation"] === "string" &&
+    !!obj["kommunikation"] &&
+    typeof obj["automatisierung"] === "string" &&
+    !!obj["automatisierung"]
   );
 }
 
 interface UserInput {
   title: string;
   negativeReasoning?: string;
-  answers: Answers;
+  answers: PreCheckAnswers;
 }
 
 const POSITIVE_RESULT = "yes";
@@ -104,6 +102,7 @@ const createPreCheckPDF = async function (
 
     // prevent invisible text
     form.acroForm.dict.set(PDFName.of("NeedAppearances"), PDFBool.True);
+
     return await pdfDoc.save();
   } catch (err) {
     console.error("Error processing PDF:", err);
@@ -122,14 +121,16 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
-  if (!isPreCheckAnswer(answers)) {
-    throw new Response(assessment.form.precheckAnswersRequired, {
+  if (!isPreCheckAnswers(answers)) {
+    throw new Response(preCheck.result.form.precheckAnswersRequired, {
       status: 400,
     });
   }
 
   if (typeof title !== "string" || title === "") {
-    throw new Response(assessment.form.policyTitleRequired, { status: 400 });
+    throw new Response(preCheck.result.form.policyTitleRequired, {
+      status: 400,
+    });
   }
 
   if (
@@ -143,20 +144,20 @@ export async function action({ params, request }: ActionFunctionArgs) {
     ].every((answer) => answer === NEGATIVE_RESULT) &&
       negativeReasoning === "")
   ) {
-    throw new Response(assessment.form.reasonRequired, {
+    throw new Response(preCheck.result.form.reasonRequired, {
       status: 400,
     });
   }
 
   // reject requests with long titles or negativeReasonings to prevent DOS and maybe memory overflow attacks
   if (title && title.length > 500) {
-    throw new Response(assessment.form.policyTitleTooLong, {
+    throw new Response(preCheck.result.form.policyTitleTooLong, {
       status: 413,
     });
   }
 
   if (negativeReasoning && negativeReasoning.length > 5000) {
-    throw new Response(assessment.form.reasonTooLong, {
+    throw new Response(preCheck.result.form.reasonTooLong, {
       status: 413,
     });
   }
@@ -173,6 +174,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
   } else if (Object.values(answers).find((a) => a === "unsure")) {
     result = "Unsicher";
   }
+
   void trackCustomEvent(request, {
     name: "Download Vorprüfung",
     props: { result },

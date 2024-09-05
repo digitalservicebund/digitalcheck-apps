@@ -26,17 +26,11 @@ export const ROUTE_RESULT: Route = {
   title: "Ergebnis",
   parent: ROUTE_PRECHECK.url,
 };
-export const ROUTE_ASSESSMENT: Route = {
-  url: `${ROUTE_RESULT.url}/einschaetzung`,
+export const ROUTE_RESULT_PDF: Route = {
+  url: `${ROUTE_RESULT.url}/${PRE_CHECK_PDF}`,
   title: "Vorprüfung als PDF",
   parent: ROUTE_RESULT.url,
 };
-export const ROUTE_ASSESSMENT_PDF: Route = {
-  url: `${ROUTE_ASSESSMENT.url}/${PRE_CHECK_PDF}`,
-  title: "Vorprüfung als PDF",
-  parent: ROUTE_ASSESSMENT.url,
-};
-
 export const ROUTE_METHODS: Route = {
   url: "/methoden",
   title: "Regelung erarbeiten",
@@ -104,7 +98,6 @@ const routes: Route[] = [
   ROUTE_LANDING,
   ROUTE_PRECHECK,
   ROUTE_RESULT,
-  ROUTE_ASSESSMENT,
   ROUTE_METHODS,
   ROUTE_METHODS_RESPONSIBLE_ACTORS,
   ROUTE_METHODS_TASKS_PROCESSES,
