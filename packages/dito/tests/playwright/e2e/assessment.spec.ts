@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
-import { ROUTE_ASSESSMENT, ROUTE_RESULT } from "resources/staticRoutes";
+import { ROUTE_RESULT, ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
@@ -13,7 +13,7 @@ import {
   FIELD_NAME_PRE_CHECK_POSITIVE_3,
   FIELD_NAME_PRE_CHECK_POSITIVE_4,
   FIELD_NAME_PRE_CHECK_POSITIVE_5,
-} from "routes/vorpruefung.ergebnis.einschaetzung.$fileName[.pdf]";
+} from "routes/vorpruefung.ergebnis.$fileName[.pdf]";
 
 test.describe("test positive assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
@@ -24,11 +24,6 @@ test.describe("test positive assessment page and PDF", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await page.waitForURL(ROUTE_RESULT.url);
-    await page.getByRole("link", { name: "runterladen" }).click();
-  });
-
-  test("assessment page is available", async ({ page }) => {
-    await expect(page).toHaveURL(ROUTE_ASSESSMENT.url);
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
@@ -49,9 +44,7 @@ test.describe("test positive assessment page and PDF", () => {
       .click();
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
-    expect(download.url()).toContain(
-      ROUTE_ASSESSMENT.url + "/digitalcheck-vorpruefung.pdf",
-    );
+    expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
@@ -148,9 +141,7 @@ test.describe("test PDF generation in negative case", () => {
       .click();
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
-    expect(download.url()).toContain(
-      ROUTE_ASSESSMENT.url + "/digitalcheck-vorpruefung.pdf",
-    );
+    expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
