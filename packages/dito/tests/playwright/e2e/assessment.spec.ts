@@ -27,8 +27,6 @@ test.describe("test positive assessment page and PDF", () => {
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
-    console.log(process.env.ENCRYPTION_KEY);
-
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy #123",
