@@ -279,6 +279,10 @@ test.describe("test quicksend email", () => {
     const bodyUrl =
       mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] || "";
 
+    expect(mailTo.searchParams.get("subject")).toBe(
+      "Digitalcheck Vorprüfung: „Policy XYZ“",
+    );
+
     const newPage = await page.context().newPage();
     await newPage.setContent(`
       <html>
@@ -331,9 +335,5 @@ test.describe("test quicksend email", () => {
       .getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE)
       .isChecked();
     expect(negative).toBe(false);
-
-    expect(mailTo.searchParams.get("subject")).toBe(
-      "Digitalcheck Vorprüfung: „Policy XYZ“",
-    );
   });
 });
