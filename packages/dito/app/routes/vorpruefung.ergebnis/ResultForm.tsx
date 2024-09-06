@@ -64,16 +64,25 @@ export default function ResultForm({
   useEffect(() => {
     if (form.formState.isValid && form.formState.isSubmitting) {
       setDownloadIsDisabled(true);
+
       const timeout = setTimeout(() => {
         form.resetForm();
         setDownloadIsDisabled(false);
       }, 2000);
+
       return () => {
         setDownloadIsDisabled(false);
         clearTimeout(timeout);
       };
     }
   }, [form]);
+
+  useEffect(() => {
+    if (fetcher.data) {
+      const { url } = fetcher.data;
+      setUniqueUrl(url);
+    }
+  }, [fetcher.data]);
 
   const handleNegativeReasoningChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -99,11 +108,6 @@ export default function ResultForm({
             action: "/uniq",
             method: "POST",
           });
-
-          if (fetcher.data) {
-            const { url } = fetcher.data;
-            setUniqueUrl(url);
-          }
         }}
       >
         <fieldset className="ds-stack-32">
@@ -155,7 +159,7 @@ export default function ResultForm({
                     {
                       id: "result-email-button",
                       text: preCheck.result.form.sendEmailButton.text,
-                      href: form.formState.isValid && !!uniqueUrl ? mailTo : "",
+                      href: uniqueUrl ? mailTo : "",
                       type: "submit",
                       look: "primary",
                       disabled: !form.formState.isValid,
