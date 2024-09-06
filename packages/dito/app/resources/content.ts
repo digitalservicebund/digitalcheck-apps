@@ -395,13 +395,13 @@ export const preCheck = {
       },
     },
     form: {
-      formLegend: "Senden Sie die ausgefüllte Vorprüfung zum NKR",
-      instructionsPositive: `- Geben Sie einfach den vorläufigen Arbeitstitel Ihres Vorhabens ein.
-- Wir erstellen eine E-Mail an den NKR mit Text und Link zum Herunterladen der Vorprüfung.
-- Sie brauchen sie nur noch abzusenden.`,
-      instructionsNegative: `- Geben Sie einfach den vorläufigen Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung ein.
-- Wir erstellen eine E-Mail an den NKR mit Text und Link zum Herunterladen der Vorprüfung.
-- Sie brauchen sie nur noch abzusenden.`,
+      formLegend: "Senden Sie die Vorprüfung zum NKR",
+      instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
+- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
+      instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
+- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
       policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
@@ -416,12 +416,12 @@ export const preCheck = {
         title: "Häufige Fragen",
         details: [
           {
-            label: "Was steht in der E-Mail?",
-            text: "Was steht in der E-Mail?",
+            label: "Was steht in der automatisch erstellten E-Mail an den NKR?",
+            text: "Es öffnet sich eine vorformulierte E-Mail in ihrem E-Mail Programm, mit einem Link welcher die Informationen ihrer Vorprüfung enthält. Sie entscheiden über den Zeitpunkt des Versands. Sie können natürlich auch weitere Dokumente anhängen.",
           },
           {
             label: "Warum die Vorprüfung an den NKR schicken?",
-            text: "Warum die Vorprüfung an den NKR schicken?",
+            text: "Je früher Sie die Vorprüfung an den NKR schicken, desto besser vorbereitet ist dieser auf Ihre Fragen. Sollte der NKR Fragen zu Ihrer Vorprüfung haben, wird er sich bei Ihnen melden.",
           },
         ],
       },
