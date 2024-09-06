@@ -163,6 +163,7 @@ export default function ResultForm({
                       type: "submit",
                       look: "primary",
                       disabled: !form.formState.isValid,
+                      className: "plausible-event-name=Quicksend+Click",
                     },
                     {
                       id: "result-download-button",
