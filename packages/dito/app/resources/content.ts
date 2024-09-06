@@ -435,9 +435,14 @@ export const preCheck = {
         to: "nkr@bmj.bund.de",
         subject: "Digitalcheck Vorprüfung",
         body: `Guten Tag,
-anbei finden Sie unsere ausgefüllte Vorprüfung im Zuge des Digitalcheck.
 
-Der automatisch generierte Link sorgt für einen sicheren Download des Dokuments`,
+nachfolgend der E-Mail finden Sie einen Link zu unserer ausgefüllten Vorprüfung im Rahmen des Digitalcheck.
+
+Der automatisch generierte Link ermöglicht Ihnen den sicheren Download des Dokuments.
+
+Mit freundlichen Grüßen
+
+*Diese E-Mail wurde automatisch erstellt.*`,
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",
     },
