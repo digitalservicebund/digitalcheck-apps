@@ -1,4 +1,4 @@
-# 7. Use of encryption
+# 8. Use of encryption
 
 Date: 2024-09-06
 
