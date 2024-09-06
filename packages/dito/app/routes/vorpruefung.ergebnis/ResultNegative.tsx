@@ -20,7 +20,7 @@ export default function ResultNegative({
   const reasonsText = getReasoningText(
     negativeQuestions,
     reasoningIntro,
-    "positiveResult",
+    "negativeResult",
   );
 
   return (
