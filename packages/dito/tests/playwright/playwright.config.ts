@@ -9,6 +9,7 @@ const config: PlaywrightTestConfig = {
     timeout: parseInt(process.env.WAIT_ON_TIMEOUT ?? `${5 * 1000}`),
     reuseExistingServer: true,
   },
+  globalSetup: "./global-setup",
 };
 
 export default config;
