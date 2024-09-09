@@ -127,7 +127,9 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       });
 
       if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+        throw new Error(
+          `Response status: ${response.status} + ${response.statusText}`,
+        );
       }
 
       const pdfData = await response.blob();
