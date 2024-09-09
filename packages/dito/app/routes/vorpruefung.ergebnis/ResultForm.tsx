@@ -56,7 +56,7 @@ export default function ResultForm({
   });
 
   const subject = `${preCheck.result.form.emailTemplate.subject}: „${form.value("title")}“`;
-  const body = `${preCheck.result.form.emailTemplate.body}: ${uniqueUrl}`;
+  const body = `${preCheck.result.form.emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${preCheck.result.form.emailTemplate.bodyAfter}`;
   const mailTo = encodeURI(
     `mailto:${preCheck.result.form.emailTemplate.to}?subject=${subject}&body=${body}`,
   );

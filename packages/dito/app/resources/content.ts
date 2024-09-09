@@ -434,13 +434,12 @@ export const preCheck = {
       emailTemplate: {
         to: "nkr@bmj.bund.de",
         subject: "Digitalcheck Vorprüfung",
-        body: `Guten Tag,
+        bodyBefore: `Guten Tag,
 
 nachfolgend der E-Mail finden Sie einen Link zu unserer ausgefüllten Vorprüfung im Rahmen des Digitalcheck.
 
-Der automatisch generierte Link ermöglicht Ihnen den sicheren Download des Dokuments.
-
-Mit freundlichen Grüßen
+Der automatisch generierte Link ermöglicht Ihnen den sicheren Download des Dokuments.`,
+        bodyAfter: `Mit freundlichen Grüßen
 
 *Diese E-Mail wurde automatisch erstellt.*`,
       },
