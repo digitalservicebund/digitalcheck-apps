@@ -399,7 +399,7 @@ export const preCheck = {
       instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
 - Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
-      instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
+      instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung in die entsprechenden Felder ein.
 - Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
