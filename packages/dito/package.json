@@ -22,10 +22,10 @@
     "docker": "sh ../../docker.sh dito"
   },
   "dependencies": {
-    "@remix-run/css-bundle": "^2.11.1",
-    "@remix-run/node": "^2.11.1",
-    "@remix-run/react": "^2.11.1",
-    "@remix-run/serve": "^2.11.1",
+    "@remix-run/css-bundle": "^2.12.0",
+    "@remix-run/node": "^2.12.0",
+    "@remix-run/react": "^2.12.0",
+    "@remix-run/serve": "^2.12.0",
     "@rvf/remix": "^6.0.0",
     "@rvf/zod": "^6.0.0",
     "isbot": "^5.1.4",
@@ -34,8 +34,8 @@
     "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.11.1",
-    "@remix-run/eslint-config": "^2.11.1",
+    "@remix-run/dev": "^2.12.0",
+    "@remix-run/eslint-config": "^2.12.0",
     "@types/mime-types": "^2.1.4",
     "jsdom": "^25.0.0"
   },
