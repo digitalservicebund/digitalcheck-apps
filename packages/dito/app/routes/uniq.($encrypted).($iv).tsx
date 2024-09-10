@@ -127,6 +127,8 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       });
 
       if (!response.ok) {
+        console.log({ response, formData });
+
         throw new Error(
           `Response status: ${response.status} + ${response.statusText}`,
         );
