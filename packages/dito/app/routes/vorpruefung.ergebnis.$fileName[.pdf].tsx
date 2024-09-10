@@ -4,6 +4,7 @@ import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { preCheck } from "resources/content";
 import trackCustomEvent from "utils/trackCustomEvent.server";
+import { userAnswers } from "../utils/cookies.server.ts";
 import { PreCheckAnswers } from "./vorpruefung.$questionId/route";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
@@ -180,12 +181,22 @@ export async function action({ params, request }: ActionFunctionArgs) {
     props: { result },
   });
 
+  // Update the cookie expiration to 60 minutes
+  const updatedCookie = await userAnswers.serialize(
+    {
+      answers,
+      hasViewedResult: false,
+    },
+    { maxAge: 3600 },
+  ); // 3600 seconds = 60 minutes
+
   return new Response(pdfData, {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${fileName}.pdf"`,
       "Content-Length": `${pdfData.byteLength}`,
+      "Set-Cookie": updatedCookie,
     },
   });
 }
