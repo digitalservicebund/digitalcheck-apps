@@ -8,13 +8,15 @@ Accepted
 
 ## Context
 
-To release a new feature we encountered a scenario where we wanted to embed potentially sensitive data into a unique URL to transport it between different parties, without revealing the information in clear text or behind a simple encoding such as base64. For this reason, a solution to do so was required.
+We need to communicate potentially sensitive data between two parties using only an URL, without revealing the information in clear text or behind a simple encoding such as base64.
 
-Another common pattern to solve this would to be generate a unique identifier that was stored in a databse along with a reference to the full URL (known as URL shortening). Shortening the URL itself was not deemed important in this case, however. Additionally, since the application does not have a database at this time, and the size of this feature did not appear to justify adding one, another solution was required.
+One option is to encrypt the data using a key that is only accessible on the server.
+
+Another common pattern to solve this would to be generate a unique identifier that was stored in a database along with a reference to the full URL (known as URL shortening). Shortening the URL itself was not deemed important in this case, however. Additionally, the application does not have a database at this time, and the size of this feature does not appear to justify adding one.
 
 ## Decision
 
-We introduce basic encryption mechanisms to be able to encode plain text content into a unique and encrypted string, that can also be decrypted using a combination of an encryption key and uniquely generated initialization vector that is created at the time of the content being encrypted.
+We introduce basic encryption mechanisms to encode plain text content into a unique and encrypted string, that can then be decrypted using a combination of an encryption key and uniquely generated initialization vector that is created at the time of the content being encrypted.
 
 ## Consequences
 
