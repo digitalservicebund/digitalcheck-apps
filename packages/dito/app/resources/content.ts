@@ -1062,7 +1062,7 @@ export const support = {
     text: `Wir, die Digital-Expert:innen des DigitalService,<br />haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
 
     image: {
-      src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
+      src: "/assets/images/support.jpeg",
       alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
     },
     testimonials: [
