@@ -3,7 +3,6 @@ import { ButtonProps } from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
@@ -12,6 +11,7 @@ import { support } from "resources/content";
 import { ROUTE_SUPPORT } from "resources/staticRoutes";
 import useFeatureFlag from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
+import SupportTabs from "./supportTabs";
 
 const {
   socialProof,
@@ -187,62 +187,7 @@ export default function Index() {
               markdown: supportOfferings.text,
             }}
           />
-          <div>
-            {supportOfferings.tabs.length > 0 &&
-              supportOfferings.tabs.map((tab) => (
-                <div key={`tab-${tab.title}`}>{tab.title}</div>
-              ))}
-          </div>
-          <div>
-            {supportOfferings.tabs.length > 0 &&
-              supportOfferings.tabs.map((tab) => (
-                <div key={tab.title}>
-                  {tab.offerings.length > 0 &&
-                    tab.offerings.map((offering) => (
-                      <Background backgroundColor="blue" key={offering.title}>
-                        <Container additionalClassNames="flex gap-16">
-                          <div>
-                            <Header
-                              heading={{
-                                tagName: "h3",
-                                text: offering.title,
-                              }}
-                              content={{
-                                markdown: offering.text,
-                              }}
-                            />
-                          </div>
-                          <div className="w-[360px]">
-                            <Background backgroundColor="white">
-                              <div className="ds-stack-16 p-32">
-                                <Header
-                                  heading={{
-                                    tagName: "h4",
-                                    text: offering.sellingPoints,
-                                  }}
-                                />
-                                {offering.details.length > 0 && (
-                                  <div className="ds-stack-16">
-                                    {offering.details.map((detail) => (
-                                      <div key={detail.title}>
-                                        <Heading
-                                          tagName="p"
-                                          text={detail.title}
-                                        />
-                                        <RichText markdown={detail.text} />
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </Background>
-                          </div>
-                        </Container>
-                      </Background>
-                    ))}
-                </div>
-              ))}
-          </div>
+          <SupportTabs />
         </Container>
       </Background>
     </>
