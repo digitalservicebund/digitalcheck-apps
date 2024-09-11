@@ -149,7 +149,7 @@ export default function Index() {
           />
           {supportHow.supportTypes.length > 0 &&
             supportHow.supportTypes.map((supportType) => (
-              <div key={supportType.title}>
+              <div key={supportType.title} className="ds-stack-16 pt-32 pb-40">
                 <Header
                   heading={{
                     tagName: "h3",
