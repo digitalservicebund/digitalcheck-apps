@@ -13,9 +13,43 @@ import { ROUTE_SUPPORT } from "resources/staticRoutes";
 import useFeatureFlag from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 
+const {
+  socialProof,
+  supportHow,
+  supportWhat,
+  supportOfferings,
+  title,
+  subtitle,
+} = support;
+
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_SUPPORT.title, matches);
 };
+
+function Testimonial() {
+  return (
+    <>
+      <p className="text-6xl -mb-20 text-blue-600">&ldquo;</p>
+      <RichText
+        markdown={socialProof.testimonials[0].quote}
+        className="text-base"
+      />
+      <RichText
+        markdown={socialProof.testimonials[0].position}
+        className="text-base font-bold mt-8"
+      />
+      <RichText
+        markdown={socialProof.testimonials[0].ministry}
+        className="text-base font-bold text-gray-800"
+      />
+    </>
+  );
+}
+
+function SocialProofImage() {
+  const { image } = socialProof;
+  return <Image url={image.src} alternativeText={image.alt} />;
+}
 
 export default function Index() {
   const supportOfferingFlag = useFeatureFlag(
@@ -25,7 +59,7 @@ export default function Index() {
 
   const iframeButtons = [
     supportOfferingFlag && {
-      ...support.supportHow.supportTypes[1].buttons[0],
+      ...supportHow.supportTypes[1].buttons[0],
       onClick: () => setIsAppointmentsVisible(true),
     },
   ].filter(Boolean) as ButtonProps[];
@@ -37,54 +71,57 @@ export default function Index() {
           <Header
             heading={{
               tagName: "h1",
-              text: support.title,
+              text: title,
             }}
             content={{
-              markdown: support.subtitle,
+              markdown: subtitle,
               className: "md:text-2xl",
             }}
           />
         </Container>
       </Background>
       <Background backgroundColor="midBlue">
-        <Container additionalClassNames="flex gap-16">
-          <RichText
-            markdown={support.socialProof.text}
-            className="text-3xl w-[360px]"
-          />
-          <div className="relative">
-            <div className="absolute">
-              <Image
-                url={support.socialProof.image.src}
-                alternativeText={support.socialProof.image.alt}
-              />
-            </div>
-            <div>
-              <RichText markdown={support.socialProof.testimonials[0].quote} />
-              <RichText
-                markdown={support.socialProof.testimonials[0].position}
-              />
-              <RichText
-                markdown={support.socialProof.testimonials[0].ministry}
-              />
+        <Container
+          paddingTop="0"
+          paddingBottom="0"
+          additionalClassNames="flex flex-col xl:flex-row xl:h-[420px]"
+        >
+          <div className="py-48 xl:w-1/2 xl:self-center">
+            <RichText
+              markdown={socialProof.text}
+              className="text-3xl leading-10 w-[370px]"
+            />
+          </div>
+          <div className="max-sm:hidden relative max-xl:mb-48 xl:w-1/2">
+            <div className="xl:absolute xl:top-0 xl:left-0 xl:bottom-0 xl:w-[50vw] xl:overflow-y-hidden">
+              <SocialProofImage />
+              <div className="absolute w-[400px] right-40 bottom-40 p-16 bg-white/70 backdrop-blur rounded-lg">
+                <Testimonial />
+              </div>
             </div>
           </div>
         </Container>
       </Background>
+      <div className="sm:hidden">
+        <SocialProofImage />
+        <Container>
+          <Testimonial />
+        </Container>
+      </div>
       <Background backgroundColor="white">
         <Container>
           <Header
             heading={{
               tagName: "h2",
-              text: support.supportWhat.title,
+              text: supportWhat.title,
             }}
             content={{
-              markdown: support.supportWhat.subtitle,
+              markdown: supportWhat.subtitle,
             }}
           />
           <div className="flex">
-            {support.supportWhat.supportTypes.length > 0 &&
-              support.supportWhat.supportTypes.map((supportType) => (
+            {supportWhat.supportTypes.length > 0 &&
+              supportWhat.supportTypes.map((supportType) => (
                 <div key={supportType.title}>
                   {supportType.icon}
                   <Header
@@ -106,11 +143,11 @@ export default function Index() {
           <Header
             heading={{
               tagName: "h2",
-              text: support.supportHow.title,
+              text: supportHow.title,
             }}
           />
-          {support.supportHow.supportTypes.length > 0 &&
-            support.supportHow.supportTypes.map((supportType) => (
+          {supportHow.supportTypes.length > 0 &&
+            supportHow.supportTypes.map((supportType) => (
               <div key={supportType.title}>
                 <Header
                   heading={{
@@ -143,21 +180,21 @@ export default function Index() {
           <Header
             heading={{
               tagName: "h2",
-              text: support.supportOfferings.title,
+              text: supportOfferings.title,
             }}
             content={{
-              markdown: support.supportOfferings.text,
+              markdown: supportOfferings.text,
             }}
           />
           <div>
-            {support.supportOfferings.tabs.length > 0 &&
-              support.supportOfferings.tabs.map((tab) => (
+            {supportOfferings.tabs.length > 0 &&
+              supportOfferings.tabs.map((tab) => (
                 <div key={`tab-${tab.title}`}>{tab.title}</div>
               ))}
           </div>
           <div>
-            {support.supportOfferings.tabs.length > 0 &&
-              support.supportOfferings.tabs.map((tab) => (
+            {supportOfferings.tabs.length > 0 &&
+              supportOfferings.tabs.map((tab) => (
                 <div key={tab.title}>
                   {tab.offerings.length > 0 &&
                     tab.offerings.map((offering) => (
