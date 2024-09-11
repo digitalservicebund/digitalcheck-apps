@@ -121,12 +121,6 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       formData.append(key, value);
     });
 
-    console.log({
-      dataEntries,
-      formData,
-      nodeVersion: process.version,
-    });
-
     try {
       const response = await fetch(`${BASE_URL}${ROUTE_RESULT_PDF.url}`, {
         method: "POST",
@@ -134,12 +128,6 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       });
 
       if (!response.ok) {
-        console.log({
-          dataEntries,
-          formData,
-          response,
-        });
-
         throw new Error(
           `Response status: ${response.status} + ${response.statusText}`,
         );
