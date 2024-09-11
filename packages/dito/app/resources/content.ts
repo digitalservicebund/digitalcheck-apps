@@ -1055,31 +1055,215 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
 } as TMethodPage;
 
 export const support = {
-  title: "Unterstützungsangebote",
+  title: "Hilfe für digitaltaugliche Regelungsvorhaben",
   subtitle:
-    "Hier finden Sie umfangreiche Unterstützung zur Erarbeitung Ihres Regelungsvorhabens.",
-  specificSupport: {
-    title: "Gezielte Unterstützung per E-Mail oder Video",
-    content: `Wir helfen Ihnen bei konkreten Methoden in einem einstündigen Videotelefonat.<br />
-Schreiben Sie uns eine E-Mail oder buchen Sie direkt einen Termin.`,
-    iframe:
-      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PltsK_eFWpzmd2M1M7O-dbe9kbe9ikfDwLcVJWtn5j_9QFNP-MhIAshExAK7_V32gAwYVEntC?gv=true",
-    buttons: [
+    "Nutzen Sie unsere digitale Expertise, um Ihr Regelungsvorhaben digitaltauglich zu gestalten und den Digitalcheck erfolgreich zu erfüllen.",
+  socialProof: {
+    text: `Wir, die Digital-Expert:innen des DigitalService,<br />haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
+
+    image: {
+      src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
+      alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+    },
+    testimonials: [
       {
-        text: "Termin buchen",
-        look: "primary",
-        // href: "https://calendar.app.google/ypAF25ciaPCn4aGd7",
-      },
-      {
-        text: "E-Mail senden",
-        look: "tertiary",
-        href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20digitalcheck.bund.de",
+        quote:
+          "Die gründliche Analyse von Vollzugsprozessen hat uns geholfen, das Zusammenspiel zwischen den Regelungen und der Administration besser zu verstehen und so den digitalen Vollzug zu gestalten. Die gemeinsame Arbeit mit dem Team des DigitalService war intensiv, hat uns im Ergebnis jedoch viel Zeit für weitere Absprachen gespart.",
+        position: "Projektpartnerin",
+        ministry: "im Bundesministerium der Finanzen",
       },
     ],
   },
-  quickSupport: {
-    title: "Für schnelle Hilfe sind wir telefonisch erreichbar",
-    content: `Sie können uns für kleine Fragen auch direkt anrufen unter [0151/40 76 78 39](tel:+4915140767839).`,
+  supportWhat: {
+    title: "So unterstützen wir Sie",
+    subtitle:
+      "Legist:innen stehen oft vor der Herausforderung, Regelungen unter erheblichem Zeitdruck erarbeiten zu müssen. Genau hier kommen wir ins Spiel: Wir unterstützen Sie in jeder Phase des Vorhabens und sorgen dafür, dass Ihr Vorhaben eine einfache und wirkungsorientierte Umsetzung, unter Ausschöpfung der digitalen Möglichkeiten zum Nutzen aller Beteiligten ermöglicht.",
+    supportTypes: [
+      {
+        icon: "visualisations",
+        title: "Visualisierungen erstellen",
+        text: "Wir erstellen in wenigen Tagen eine Visualisierung für Sie — hilfreich bei Abstimmungen im Haus, zwischen Ressorts oder mit dem NKR.",
+      },
+      {
+        icon: "quick",
+        title: "Schnelle Hilfe für den Digitalcheck",
+        text: "Wir erklären, welche Schritte es gibt, welche Dokumente Sie wann benötigen und schätzen den Digitalbezug mit Ihnen ein (Vorprüfung ausfüllen).",
+      },
+      {
+        icon: "potential",
+        title: "Digitales Potential ausschöpfen",
+        text: "Wir unterstützen Sie dabei die digitalen Potentiale Ihres Vorhabens auszuschöpfen, zu verbessern oder neu zu gestalten.",
+      },
+    ],
+  },
+  supportHow: {
+    title: "So erhalten Sie Hilfe",
+    supportTypes: [
+      {
+        title: "Schnelle Hilfe erhalten Sie per Telefon oder E-Mail",
+        text: "Sie können uns für dringende Anliegen unter 0151/40 76 78 39 anrufen oder uns eine E-Mail senden. Wir beantworten Ihnen alle wichtige Fragen zum Vorgehen und Anwenden des Digitalchecks sowie allgemeine Fragen rund um das Erarbeiten digitaltauglicher Regelungen.",
+        buttons: [
+          {
+            text: "E-Mail senden",
+            look: "tertiary",
+            href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20digitalcheck.bund.de",
+          } as const,
+        ],
+      },
+      {
+        title: "Beratung erhalten Sie in einem 45-minütigem Gespräch",
+        text: "In einem (Video)-Telefonat können wir gemeinsam herausfinden, welche Unterstützungsangebote für Sie hilfreich sind.",
+        iframe:
+          "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PltsK_eFWpzmd2M1M7O-dbe9kbe9ikfDwLcVJWtn5j_9QFNP-MhIAshExAK7_V32gAwYVEntC?gv=true",
+        buttons: [
+          {
+            text: "Termin buchen",
+            look: "tertiary",
+          } as const,
+        ],
+      },
+    ],
+  },
+  supportOfferings: {
+    title: "Unser Unterstützungsangebot",
+    text: "Nach einem erstem Austausch finden wir gemeinsam die richtige Unterstützung für Ihre Herausforderung und Ihren Zeitplan.",
+    tabs: [
+      {
+        title: "Schnelle Hilfe",
+        offerings: [
+          {
+            title: "Digitalbezug einschätzen lassen",
+            text: `Wir unterstützen Sie, den Digitalbezug Ihres Verfahrens einzuschätzen, indem wir Vorprüfung gemeinsam durchgehen. 
+
+Je nach Ziel ihres Vorhabens und Grad des Digitalbezugs, variiert der Zeitaufwand, den Sie für die Erarbeitung digitaler Aspekte einplanen sollten. 
+
+**Beispiele für einen starken Digitalbezug: Prozess/Dienstleistung/Interaktion neu aufsetzen**
+z.B. bei folgenden Zielen einer Regelung:
+
+- Voraussetzungen für eine Digitalisierung schaffen
+- bestehenden Umsetzungsprozesse verbessern oder neu aufsetzen
+
+**Beispiele für einen leichten bis mittleren Digitalbezug: bestehenden Prozess anpassen**
+z.B. bei folgenden Zielen einer Regelung:
+
+- Anpassungen von Nachweispflichten
+- Anpassungen von Pauschalen`,
+            sellingPoints: "Ihr Vorteil auf einen Blick",
+            details: [
+              {
+                title: "Zeitaufwand",
+                text: `- **Fachreferat:** 1-2 Stunden
+- **DigitalService-Team:** 1-2 Stunden`,
+              },
+              {
+                title: "Was sie bekommen",
+                text: `- Expert:innen-Einschätzung zum Digitalbezug des Regelungsverfahrens: Grundlage für Planung des Regelungsvorhabens
+- richtige Ansprechperson im NKR-Sekretariat`,
+              },
+            ],
+          },
+          {
+            title: "IT-Wissen einfach erklärt",
+            text: `Im geschützten Rahmen eines Gesprächs beantworten unsere Expert:innen Ihnen alle **Fragen zur IT**. 
+
+Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen.  
+
+Beispiele für Fragen:
+
+- Was ist eine Schnittstelle?
+- Wie unterscheiden sich Vertrauensniveaus?
+- Welchen Datenstandard sollte das Antragsformular berücksichtigen?`,
+            sellingPoints: "Ihr Vorteil auf einen Blick",
+            details: [
+              {
+                title: "Zeitaufwand",
+                text: `- **Fachreferat:** 1-2 Stunden
+- **DigitalService-Team:** 1-2 Stunden`,
+              },
+              {
+                title: "Was sie bekommen",
+                text: `- besseres Verständnis der digitalen Aspekte der Regelung
+- Sicherheit in Abstimmungen mit umsetzenden Akteuren`,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Umfangreiche Beratung",
+        offerings: [
+          {
+            title: "Visualisierungen erstellen",
+            text: `Wir erstellen Visualisierungen für Sie oder digitalisieren Ihre Papier-und-Stift-Skizzen.
+
+Ein Bild sagt mehr als tausend Worte — genauso helfen Visualisierungen bei Abstimmungen im Haus, zwischen Ressorts oder mit dem NKR.
+
+Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
+
+- **Antragsstrecke oder ein Datenfluss im Detail verstehen**, visualisiert als Flussdiagramm
+- **beteiligte Akteure** identifizieren, visualisiert als Flussdiagramm
+- **Logik und Struktur des Regelungstextes** prüfen, visualisiert als Entscheidungsbaum
+- Überblick über das Verfahren geben zur **Kommunikation im Haus, mit dem NKR oder zwischen Ressorts**, visualisiert als Schaubild`,
+            sellingPoints: "Ihr Vorteil auf einen Blick",
+            details: [
+              {
+                title: "Zeitaufwand",
+                text: `- **Fachreferat:** einige Stunden für gemeinsame Arbeitssitzungen
+- **DigitalService-Team:** 1-5 Tage`,
+              },
+              {
+                title: "Was sie bekommen",
+                text: `- tieferes Verständnis der digitaler Aspekte der Regelung
+- eine Visualisierung, die die Prüfung durch den NKR informiert`,
+              },
+            ],
+            examples: [
+              {
+                image: {
+                  src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
+                  alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+                },
+                text: "**Beispiel-Visualisierung:** [Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht](https://dserver.bundestag.de/btd/20/123/2012351.pdf) (Seite 110 ff.)",
+              },
+            ],
+          },
+          {
+            title: "Digitale Umsetzung erarbeiten",
+            text: `Wenn die technischen Anforderungen komplex werden, helfen wir als neutraler Akteur dabei, die **technische Umsetzung** im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten. 
+
+Maßnahmen, die wir z. B. für Sie erledigen:
+
+- Durchführung von **Beteiligungsformaten mit umsetzenden Akteuren und Normadressaten**, z. B. moderierte Gespräche mit nachgelagerten Behörden
+- Erstellung von **Visualisierungen** und Stakeholder Maps
+- Klärung von **Fragen zur technischen Umsetzung**
+- **Analyse von Rahmenbedingungen** für eine reibungslose Umsetzung, z. B. durch die Evaluation bestehender IT-Verfahren`,
+            sellingPoints: "Ihr Vorteil auf einen Blick",
+            details: [
+              {
+                title: "Zeitaufwand",
+                text: `- **Fachreferat:** 5+ Tage für gemeinsame Arbeitssitzungen
+- **DigitalService-Team:** 4+ Wochen`,
+              },
+              {
+                title: "Was sie bekommen",
+                text: `- Antworten auf Fragen zur digitalen Umsetzung der Regelung
+- Material, Wissen und Argumente für Abstimmungen und Beteiligungen`,
+              },
+              {
+                title: "Voraussetzungen",
+                text: `- Regelungsverfahren befindet sich in frühem Stadium: Vorbereitung des Regelungstextes
+- inhaltliche Zusammenarbeit mit umsetzenden Akteur:innen ist möglich`,
+              },
+            ],
+            examples: [
+              {
+                text: "Lesen Sie sich das Beispiel durch: [“Begleitung des Stromsteuergesetz”](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
 };
 
