@@ -31,17 +31,13 @@ test.describe("test positive assessment page and PDF", () => {
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy #123",
     );
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
   });
 
   test("generates and downloads PDF with user input", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     const downloadPromise = page.waitForEvent("download");
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
@@ -92,9 +88,7 @@ test.describe("test positive assessment page and PDF", () => {
   });
 
   test("title is required for PDF", async ({ page }) => {
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
@@ -107,9 +101,7 @@ test.describe("test positive assessment page and PDF", () => {
     await page
       .getByLabel("Arbeitstitel des Vorhabens")
       .fill("Policy #987".repeat(500));
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).not.toContainText(
       "wird heruntergeladen",
@@ -136,9 +128,7 @@ test.describe("test PDF generation in negative case", () => {
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
     expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
@@ -195,9 +185,7 @@ test.describe("test PDF generation in negative case", () => {
 
   test("negative reasoning is required for PDF", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).not.toContainText(
       "wird heruntergeladen",
     );
@@ -210,9 +198,7 @@ test.describe("test PDF generation in negative case", () => {
     await page
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).not.toContainText(
       "wird heruntergeladen",
     );
@@ -226,9 +212,7 @@ test.describe("test PDF generation in negative case", () => {
     await page
       .getByLabel("Arbeitstitel des Vorhabens")
       .fill("Policy #987".repeat(500));
-    await page
-      .getByRole("button", { name: "Vorprüfung herunterladen" })
-      .click();
+    await page.getByRole("button", { name: "herunterladen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).toContainText("kürzere Begründung");
     await expect(page.getByRole("main")).not.toContainText(
