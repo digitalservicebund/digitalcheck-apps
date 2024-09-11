@@ -115,7 +115,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     const unabbreviated = unabbreviate(parsed);
     const dataEntries = Object.entries(unabbreviated);
 
-    const formData = new FormData();
+    const formData = new URLSearchParams();
 
     dataEntries.forEach(([key, value]) => {
       formData.append(key, value);
@@ -124,6 +124,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     console.log({
       dataEntries,
       formData,
+      nodeVersion: process.version,
     });
 
     try {
