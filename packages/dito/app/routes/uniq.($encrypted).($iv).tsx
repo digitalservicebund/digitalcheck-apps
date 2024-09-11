@@ -116,9 +116,15 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     const dataEntries = Object.entries(unabbreviated);
 
     const formData = new FormData();
-    dataEntries.forEach((dataEntry) =>
-      formData.append(dataEntry[0], dataEntry[1]),
-    );
+
+    dataEntries.forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    console.log({
+      dataEntries,
+      formData,
+    });
 
     try {
       const response = await fetch(`${BASE_URL}${ROUTE_RESULT_PDF.url}`, {
@@ -128,10 +134,6 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
       if (!response.ok) {
         console.log({
-          decrypted,
-          unzipped,
-          parsed,
-          unabbreviated,
           dataEntries,
           formData,
           response,
