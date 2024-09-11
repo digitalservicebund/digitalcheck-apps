@@ -17,6 +17,10 @@ import {
   ROUTE_SUPPORT,
 } from "./staticRoutes";
 
+import AdsClickOutlined from "@digitalservicebund/icons/AdsClickOutlined";
+import DrawOutlined from "@digitalservicebund/icons/DrawOutlined";
+import PlaylistAddCheckOutlined from "@digitalservicebund/icons/PlaylistAddCheckOutlined";
+
 export const siteMeta = {
   title: "Digitalcheck: Digitaltaugliche Regelungen erarbeiten",
   description:
@@ -1080,17 +1084,17 @@ export const support = {
       "Legist:innen stehen oft vor der Herausforderung, Regelungen unter erheblichem Zeitdruck erarbeiten zu müssen. Genau hier kommen wir ins Spiel: Wir unterstützen Sie in jeder Phase des Vorhabens und sorgen dafür, dass Ihr Vorhaben eine einfache und wirkungsorientierte Umsetzung, unter Ausschöpfung der digitalen Möglichkeiten zum Nutzen aller Beteiligten ermöglicht.",
     supportTypes: [
       {
-        icon: "visualisations",
+        icon: DrawOutlined,
         title: "Visualisierungen erstellen",
         text: "Wir erstellen in wenigen Tagen eine Visualisierung für Sie — hilfreich bei Abstimmungen im Haus, zwischen Ressorts oder mit dem NKR.",
       },
       {
-        icon: "quick",
+        icon: PlaylistAddCheckOutlined,
         title: "Schnelle Hilfe für den Digitalcheck",
         text: "Wir erklären, welche Schritte es gibt, welche Dokumente Sie wann benötigen und schätzen den Digitalbezug mit Ihnen ein (Vorprüfung ausfüllen).",
       },
       {
-        icon: "potential",
+        icon: AdsClickOutlined,
         title: "Digitales Potential ausschöpfen",
         text: "Wir unterstützen Sie dabei die digitalen Potentiale Ihres Vorhabens auszuschöpfen, zu verbessern oder neu zu gestalten.",
       },

@@ -108,36 +108,37 @@ export default function Index() {
           <Testimonial />
         </Container>
       </div>
-      <Background backgroundColor="white">
-        <Container>
-          <Header
-            heading={{
-              tagName: "h2",
-              text: supportWhat.title,
-            }}
-            content={{
-              markdown: supportWhat.subtitle,
-            }}
-          />
-          <div className="flex">
-            {supportWhat.supportTypes.length > 0 &&
-              supportWhat.supportTypes.map((supportType) => (
-                <div key={supportType.title}>
-                  {supportType.icon}
-                  <Header
-                    heading={{
-                      tagName: "h3",
-                      text: supportType.title,
-                    }}
-                    content={{
-                      markdown: supportType.text,
-                    }}
-                  />
-                </div>
-              ))}
-          </div>
-        </Container>
-      </Background>
+      <Container paddingTop="48">
+        <Header
+          heading={{
+            tagName: "h2",
+            text: supportWhat.title,
+          }}
+          content={{
+            markdown: supportWhat.subtitle,
+          }}
+        />
+        <div className="flex max-sm:flex-col mt-40 gap-16">
+          {supportWhat.supportTypes.length > 0 &&
+            supportWhat.supportTypes.map((supportType) => (
+              <div
+                key={supportType.title}
+                className="flex max-lg:flex-col gap-16"
+              >
+                <supportType.icon className="w-48 h-48 flex-none fill-blue-800" />
+                <Header
+                  heading={{
+                    tagName: "h3",
+                    text: supportType.title,
+                  }}
+                  content={{
+                    markdown: supportType.text,
+                  }}
+                />
+              </div>
+            ))}
+        </div>
+      </Container>
       <Background backgroundColor="blue">
         <Container>
           <Header
