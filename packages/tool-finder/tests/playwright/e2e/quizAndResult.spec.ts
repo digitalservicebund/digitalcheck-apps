@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { getAllObjects } from "persistance/repository";
-import * as allRoutes from "routes";
+import * as allRoutes from "routes/index";
 
 async function fillOutForm(page: Page) {
   await page.getByLabel("Ressort").selectOption("bmi");
