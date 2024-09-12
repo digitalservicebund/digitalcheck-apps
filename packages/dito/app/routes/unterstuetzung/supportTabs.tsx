@@ -11,11 +11,11 @@ const { tabs } = supportOfferings;
 
 export default function SupportTabs() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabRef: React.MutableRefObject<Map<number, HTMLButtonElement> | null> =
-    useRef(null);
+  const tabRef = useRef<Map<number, HTMLButtonElement> | null>(null);
 
   function getMap() {
     if (!tabRef.current) {
+      // Initialize the Map on first usage
       tabRef.current = new Map();
     }
     return tabRef.current;
@@ -46,11 +46,8 @@ export default function SupportTabs() {
             role="tab"
             ref={(node) => {
               const map = getMap();
-              if (node) {
-                map.set(index, node);
-              } else {
-                map.delete(index);
-              }
+              if (node) map.set(index, node);
+              else map.delete(index);
             }}
             aria-selected={activeTab === index}
             aria-controls={`panel-${index + 1}`}
