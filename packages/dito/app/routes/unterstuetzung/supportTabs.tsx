@@ -25,14 +25,11 @@ export default function SupportTabs() {
     e: React.KeyboardEvent<HTMLButtonElement>,
     index: number,
   ) => {
-    if (e.key === "Enter" || e.key === " ") {
-      setActiveTab(index);
-    } else if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
       e.preventDefault();
       const map = getMap();
       const direction = e.key === "ArrowRight" ? 1 : -1;
       const newIndex = (index + direction + tabs.length) % tabs.length;
-      setActiveTab(newIndex);
       map.get(newIndex)?.focus();
     }
   };
