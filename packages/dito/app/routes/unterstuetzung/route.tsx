@@ -11,7 +11,7 @@ import { support } from "resources/content";
 import { ROUTE_SUPPORT } from "resources/staticRoutes";
 import useFeatureFlag from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
-import SupportTabs from "./supportTabs";
+import SupportTabs from "./SupportTabList";
 
 const {
   socialProof,
