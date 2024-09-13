@@ -161,12 +161,15 @@ export default function Index() {
                 />
                 {supportType.iframe ? (
                   <>
-                    <ButtonContainer buttons={iframeButtons} />
+                    <ButtonContainer
+                      buttons={iframeButtons}
+                      className={isAppointmentsVisible ? "hidden" : ""}
+                    />
                     <iframe
                       src={supportType.iframe}
                       title={supportType.title}
                       aria-label={supportType.title}
-                      className={`w-full mt-32 transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "h-0"}`}
+                      className={`w-full mt-32 transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "hidden h-0"}`}
                     ></iframe>
                   </>
                 ) : (
