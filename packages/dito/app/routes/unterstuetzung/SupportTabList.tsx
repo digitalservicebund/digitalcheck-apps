@@ -94,7 +94,7 @@ export default function SupportTabs() {
             <Container
               key={offering.title}
               backgroundColor="blue"
-              additionalClassNames="flex gap-32 rounded-xl mb-32 px-40"
+              additionalClassNames="flex max-md:flex-col gap-32 rounded-xl mb-32 px-40"
             >
               <Header
                 heading={{
@@ -105,7 +105,7 @@ export default function SupportTabs() {
                   markdown: offering.text,
                 }}
               />
-              <div className="flex-none w-[310px] space-y-20">
+              <div className="flex-none md:w-[310px] space-y-20">
                 <Background backgroundColor="white">
                   <div className="p-28">
                     <Header
