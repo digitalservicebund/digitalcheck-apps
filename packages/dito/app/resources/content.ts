@@ -742,7 +742,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
     },
     {
       image: {
-        src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
+        src: "/assets/images/rulemap.jpg",
         alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
@@ -1236,7 +1236,7 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
             examples: [
               {
                 image: {
-                  src: "/assets/images/visualisierungsbeispiele-fuer-komplexe-ablaeufe.png",
+                  src: "/assets/images/rulemap.jpg",
                   alt: `Eine Rulemap mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
                 },
                 text: "**Beispiel-Visualisierung:** [Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht](https://dserver.bundestag.de/btd/20/123/2012351.pdf) (Seite 110 ff.)",
