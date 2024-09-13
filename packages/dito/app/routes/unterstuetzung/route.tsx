@@ -118,7 +118,7 @@ export default function Index() {
             markdown: supportWhat.subtitle,
           }}
         />
-        <div className="flex max-sm:flex-col mt-40 gap-16">
+        <div className="flex max-sm:flex-col mt-40 gap-32">
           {supportWhat.supportTypes.length > 0 &&
             supportWhat.supportTypes.map((supportType) => (
               <div
