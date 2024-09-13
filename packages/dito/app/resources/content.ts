@@ -1141,16 +1141,19 @@ export const support = {
           {
             title: "Digitalbezug einschätzen lassen",
             text: `Wir unterstützen Sie, den Digitalbezug Ihres Verfahrens einzuschätzen, indem wir Vorprüfung gemeinsam durchgehen. 
-
+<br class="block content-[''] !mb-32" />
 Je nach Ziel ihres Vorhabens und Grad des Digitalbezugs, variiert der Zeitaufwand, den Sie für die Erarbeitung digitaler Aspekte einplanen sollten. 
-
+<br class="block content-[''] !mb-32" />
 **Beispiele für einen starken Digitalbezug: Prozess/Dienstleistung/Interaktion neu aufsetzen**
+
 z.B. bei folgenden Zielen einer Regelung:
 
 - Voraussetzungen für eine Digitalisierung schaffen
 - bestehenden Umsetzungsprozesse verbessern oder neu aufsetzen
+<br class="block content-[''] !mb-24" />
 
 **Beispiele für einen leichten bis mittleren Digitalbezug: bestehenden Prozess anpassen**
+
 z.B. bei folgenden Zielen einer Regelung:
 
 - Anpassungen von Nachweispflichten
@@ -1174,9 +1177,9 @@ z.B. bei folgenden Zielen einer Regelung:
           {
             title: "IT-Wissen einfach erklärt",
             text: `Im geschützten Rahmen eines Gesprächs beantworten unsere Expert:innen Ihnen alle **Fragen zur IT**. 
-
+<br class="block content-[''] !mb-32" />
 Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen.  
-
+<br class="block content-[''] !mb-32" />
 Beispiele für Fragen:
 
 - Was ist eine Schnittstelle?
@@ -1206,9 +1209,9 @@ Beispiele für Fragen:
           {
             title: "Visualisierungen erstellen",
             text: `Wir erstellen Visualisierungen für Sie oder digitalisieren Ihre Papier-und-Stift-Skizzen.
-
+<br class="block content-[''] !mb-32" />
 Ein Bild sagt mehr als tausend Worte — genauso helfen Visualisierungen bei Abstimmungen im Haus, zwischen Ressorts oder mit dem NKR.
-
+<br class="block content-[''] !mb-32" />
 Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
 
 - **Antragsstrecke oder ein Datenfluss im Detail verstehen**, visualisiert als Flussdiagramm
@@ -1243,7 +1246,7 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
           {
             title: "Digitale Umsetzung erarbeiten",
             text: `Wenn die technischen Anforderungen komplex werden, helfen wir als neutraler Akteur dabei, die **technische Umsetzung** im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten. 
-
+<br class="block content-[''] !mb-32" />
 Maßnahmen, die wir z. B. für Sie erledigen:
 
 - Durchführung von **Beteiligungsformaten mit umsetzenden Akteuren und Normadressaten**, z. B. moderierte Gespräche mit nachgelagerten Behörden
