@@ -28,9 +28,11 @@ export default function SupportTabs() {
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
       e.preventDefault();
       const map = getMap();
+      map.get(index)?.setAttribute("tabindex", "-1");
       const direction = e.key === "ArrowRight" ? 1 : -1;
       const newIndex = (index + direction + tabs.length) % tabs.length;
       map.get(newIndex)?.focus();
+      map.get(newIndex)?.setAttribute("tabindex", "0");
     }
   };
 
