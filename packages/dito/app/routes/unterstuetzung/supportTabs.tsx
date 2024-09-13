@@ -94,7 +94,7 @@ export default function SupportTabs() {
                       }}
                     />
                     {offering.details.length > 0 && (
-                      <div className="divide-y divide-gray-400">
+                      <div className="divide-y divide-gray-700">
                         {offering.details.map((detail) => (
                           <div key={detail.title} className="py-16">
                             <div className="flex items-center gap-8 pb-8">
