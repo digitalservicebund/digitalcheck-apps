@@ -75,20 +75,18 @@ export default function SupportTabs() {
               backgroundColor="blue"
               additionalClassNames="flex gap-16 rounded-xl mb-32"
             >
-              <div>
-                <Header
-                  heading={{
-                    tagName: "h3",
-                    text: offering.title,
-                  }}
-                  content={{
-                    markdown: offering.text,
-                  }}
-                />
-              </div>
+              <Header
+                heading={{
+                  tagName: "h3",
+                  text: offering.title,
+                }}
+                content={{
+                  markdown: offering.text,
+                }}
+              />
               <div className="w-[360px]">
                 <Background backgroundColor="white">
-                  <div className="ds-stack-16 p-32">
+                  <div className="p-28">
                     <Header
                       heading={{
                         tagName: "h4",
@@ -96,16 +94,23 @@ export default function SupportTabs() {
                       }}
                     />
                     {offering.details.length > 0 && (
-                      <div className="ds-stack-16">
+                      <div className="divide-y divide-gray-400">
                         {offering.details.map((detail) => (
-                          <div key={detail.title}>
-                            <div className="flex items-center gap-8">
+                          <div key={detail.title} className="py-16">
+                            <div className="flex items-center gap-8 pb-8">
                               {detail.icon && (
                                 <detail.icon className="w-24 h-24 fill-gray-800" />
                               )}
-                              <Heading tagName="p" text={detail.title} />
+                              <Heading
+                                tagName="p"
+                                look="ds-label-01-bold"
+                                text={detail.title}
+                              />
                             </div>
-                            <RichText markdown={detail.text} />
+                            <RichText
+                              markdown={detail.text}
+                              className="text-base"
+                            />
                           </div>
                         ))}
                       </div>
