@@ -18,8 +18,11 @@ import {
 } from "./staticRoutes";
 
 import AdsClickOutlined from "@digitalservicebund/icons/AdsClickOutlined";
+import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import DrawOutlined from "@digitalservicebund/icons/DrawOutlined";
+import FormatListBulletedOutlined from "@digitalservicebund/icons/FormatListBulletedOutlined";
 import PlaylistAddCheckOutlined from "@digitalservicebund/icons/PlaylistAddCheckOutlined";
+import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 
 export const siteMeta = {
   title: "Digitalcheck: Digitaltaugliche Regelungen erarbeiten",
@@ -1155,11 +1158,13 @@ z.B. bei folgenden Zielen einer Regelung:
             sellingPoints: "Ihr Vorteil auf einen Blick",
             details: [
               {
+                icon: TimerOutlined,
                 title: "Zeitaufwand",
                 text: `- **Fachreferat:** 1-2 Stunden
 - **DigitalService-Team:** 1-2 Stunden`,
               },
               {
+                icon: CheckCircleOutlined,
                 title: "Was sie bekommen",
                 text: `- Expert:innen-Einschätzung zum Digitalbezug des Regelungsverfahrens: Grundlage für Planung des Regelungsvorhabens
 - richtige Ansprechperson im NKR-Sekretariat`,
@@ -1180,11 +1185,13 @@ Beispiele für Fragen:
             sellingPoints: "Ihr Vorteil auf einen Blick",
             details: [
               {
+                icon: TimerOutlined,
                 title: "Zeitaufwand",
                 text: `- **Fachreferat:** 1-2 Stunden
 - **DigitalService-Team:** 1-2 Stunden`,
               },
               {
+                icon: CheckCircleOutlined,
                 title: "Was sie bekommen",
                 text: `- besseres Verständnis der digitalen Aspekte der Regelung
 - Sicherheit in Abstimmungen mit umsetzenden Akteuren`,
@@ -1211,11 +1218,13 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
             sellingPoints: "Ihr Vorteil auf einen Blick",
             details: [
               {
+                icon: TimerOutlined,
                 title: "Zeitaufwand",
                 text: `- **Fachreferat:** einige Stunden für gemeinsame Arbeitssitzungen
 - **DigitalService-Team:** 1-5 Tage`,
               },
               {
+                icon: CheckCircleOutlined,
                 title: "Was sie bekommen",
                 text: `- tieferes Verständnis der digitaler Aspekte der Regelung
 - eine Visualisierung, die die Prüfung durch den NKR informiert`,
@@ -1244,16 +1253,19 @@ Maßnahmen, die wir z. B. für Sie erledigen:
             sellingPoints: "Ihr Vorteil auf einen Blick",
             details: [
               {
+                icon: TimerOutlined,
                 title: "Zeitaufwand",
                 text: `- **Fachreferat:** 5+ Tage für gemeinsame Arbeitssitzungen
 - **DigitalService-Team:** 4+ Wochen`,
               },
               {
+                icon: CheckCircleOutlined,
                 title: "Was sie bekommen",
                 text: `- Antworten auf Fragen zur digitalen Umsetzung der Regelung
 - Material, Wissen und Argumente für Abstimmungen und Beteiligungen`,
               },
               {
+                icon: FormatListBulletedOutlined,
                 title: "Voraussetzungen",
                 text: `- Regelungsverfahren befindet sich in frühem Stadium: Vorbereitung des Regelungstextes
 - inhaltliche Zusammenarbeit mit umsetzenden Akteur:innen ist möglich`,

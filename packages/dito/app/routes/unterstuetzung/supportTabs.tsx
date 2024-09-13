@@ -99,7 +99,12 @@ export default function SupportTabs() {
                       <div className="ds-stack-16">
                         {offering.details.map((detail) => (
                           <div key={detail.title}>
-                            <Heading tagName="p" text={detail.title} />
+                            <div className="flex items-center gap-8">
+                              {detail.icon && (
+                                <detail.icon className="w-24 h-24 fill-gray-800" />
+                              )}
+                              <Heading tagName="p" text={detail.title} />
+                            </div>
                             <RichText markdown={detail.text} />
                           </div>
                         ))}
