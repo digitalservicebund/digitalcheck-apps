@@ -2,12 +2,31 @@ import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
+import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import React, { useRef, useState } from "react";
 import { support } from "resources/content";
 
 const { supportOfferings } = support;
 const { tabs } = supportOfferings;
+
+type Offering = {
+  title: string;
+  text: string;
+  sellingPoints: string;
+  details: {
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    title: string;
+    text: string;
+  }[];
+  examples?: {
+    image?: {
+      src: string;
+      alt: string;
+    };
+    text: string;
+  }[];
+};
 
 export default function SupportTabs() {
   const [activeTab, setActiveTab] = useState(0);
@@ -71,11 +90,11 @@ export default function SupportTabs() {
           aria-labelledby={`tab-${index + 1}`}
           hidden={activeTab !== index}
         >
-          {tab.offerings.map((offering) => (
+          {tab.offerings.map((offering: Offering) => (
             <Container
               key={offering.title}
               backgroundColor="blue"
-              additionalClassNames="flex gap-16 rounded-xl mb-32"
+              additionalClassNames="flex gap-32 rounded-xl mb-32 px-40"
             >
               <Header
                 heading={{
@@ -86,7 +105,7 @@ export default function SupportTabs() {
                   markdown: offering.text,
                 }}
               />
-              <div className="w-[360px]">
+              <div className="flex-none w-[310px] space-y-20">
                 <Background backgroundColor="white">
                   <div className="p-28">
                     <Header
@@ -95,30 +114,48 @@ export default function SupportTabs() {
                         text: offering.sellingPoints,
                       }}
                     />
-                    {offering.details.length > 0 && (
-                      <div className="divide-y divide-gray-700">
-                        {offering.details.map((detail) => (
-                          <div key={detail.title} className="py-16">
-                            <div className="flex items-center gap-8 pb-8">
-                              {detail.icon && (
-                                <detail.icon className="w-24 h-24 fill-gray-800" />
-                              )}
-                              <Heading
-                                tagName="p"
-                                look="ds-label-01-bold"
-                                text={detail.title}
-                              />
-                            </div>
-                            <RichText
-                              markdown={detail.text}
-                              className="text-base"
+                    <div className="divide-y divide-gray-700">
+                      {offering.details.map((detail) => (
+                        <div key={detail.title} className="py-16">
+                          <div className="flex items-center gap-8 pb-8">
+                            {detail.icon && (
+                              <detail.icon className="w-24 h-24 fill-gray-800" />
+                            )}
+                            <Heading
+                              tagName="p"
+                              look="ds-label-01-bold"
+                              text={detail.title}
                             />
                           </div>
-                        ))}
-                      </div>
-                    )}
+                          <RichText
+                            markdown={detail.text}
+                            className="text-base"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </Background>
+                {offering.examples && (
+                  <Background backgroundColor="white">
+                    <div className="divide-y divide-gray-700">
+                      {offering.examples.map((example) => (
+                        <div key={example.text}>
+                          {example.image && (
+                            <Image
+                              url={example.image.src}
+                              alternativeText={example.image.alt}
+                            />
+                          )}
+                          <RichText
+                            markdown={example.text}
+                            className="p-20 text-base"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </Background>
+                )}
               </div>
             </Container>
           ))}
