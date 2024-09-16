@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import * as staticRoutes from "resources/staticRoutes";
 
-test.describe("test general availability", () => {
+test.describe("test support page", () => {
   test.beforeEach("Go to support page", async ({ page }) => {
     await page.goto(staticRoutes.ROUTE_SUPPORT.url);
   });
@@ -9,10 +9,8 @@ test.describe("test general availability", () => {
   test("clicking on appointment button shows google and hides button", async ({
     page,
   }) => {
-    await page.getByRole("button", { name: "Termin buchen" }).click();
-    await expect(
-      page.getByRole("button", { name: "Termin buchen" }),
-    ).toBeHidden();
+    await page.getByRole("button", { name: "Termin" }).click();
+    await expect(page.getByRole("button", { name: "Termin" })).toBeHidden();
     await expect(
       page
         .frameLocator(
