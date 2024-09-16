@@ -156,6 +156,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   if (request.method !== "POST") {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
   }
 

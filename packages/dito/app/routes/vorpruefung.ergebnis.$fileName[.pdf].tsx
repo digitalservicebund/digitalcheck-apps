@@ -112,6 +112,7 @@ const createPreCheckPDF = async function (
 
 export function loader({ request }: LoaderFunctionArgs) {
   if (request.method !== "POST") {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
   }
 }
@@ -122,12 +123,14 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
   if (!isPreCheckAnswers(answers)) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.precheckAnswersRequired, {
       status: 400,
     });
   }
 
   if (typeof title !== "string" || title === "") {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.policyTitleRequired, {
       status: 400,
     });
@@ -144,6 +147,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
     ].every((answer) => answer === NEGATIVE_RESULT) &&
       negativeReasoning === "")
   ) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.reasonRequired, {
       status: 400,
     });
@@ -151,12 +155,14 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
   // reject requests with long titles or negativeReasonings to prevent DOS and maybe memory overflow attacks
   if (title && title.length > 500) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.policyTitleTooLong, {
       status: 413,
     });
   }
 
   if (negativeReasoning && negativeReasoning.length > 5000) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.reasonTooLong, {
       status: 413,
     });

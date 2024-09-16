@@ -8,6 +8,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const { fileName } = params;
 
   if (!fileName) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Please provide a file name", { status: 400 });
   }
 
@@ -26,6 +27,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       },
     });
   } catch {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("File not found", { status: 404 });
   }
 }

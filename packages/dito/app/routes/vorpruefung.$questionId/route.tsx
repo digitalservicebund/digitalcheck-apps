@@ -33,6 +33,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const questionIdx = questions.findIndex((q) => q.id === params.questionId);
   // return 404 if the question is not found
   if (questionIdx === -1) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Question not found", {
       status: 404,
       statusText: "Not Found",

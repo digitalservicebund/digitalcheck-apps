@@ -122,6 +122,7 @@ export function loader({ params, request }: LoaderFunctionArgs) {
   }
 
   if (!content) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Method page not found", {
       status: 404,
       statusText: "Not Found",
