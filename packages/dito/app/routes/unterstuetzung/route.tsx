@@ -9,7 +9,7 @@ import { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
 import { support } from "resources/content";
 import { ROUTE_SUPPORT } from "resources/staticRoutes";
-import useFeatureFlag from "utils/featureFlags";
+import { useFeatureFlag } from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 import SupportTabs from "./SupportTabList";
 
