@@ -223,11 +223,13 @@ const PageHeader = ({
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
           {supportOfferingFlag && (
-            <Button href="/unterstuetzung" look="ghost">
-              Unterstützungsangebote
-            </Button>
+            <>
+              <Button href="/unterstuetzung" look="ghost">
+                Unterstützungsangebote
+              </Button>
+              <span className="mx-8">|</span>
+            </>
           )}
-          <span className="mx-8">|</span>
           {header.contact.msg}
         </span>
         <PhoneOutlined className="mx-8 w-18" />
