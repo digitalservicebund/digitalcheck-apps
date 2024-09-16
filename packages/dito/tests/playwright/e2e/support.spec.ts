@@ -7,7 +7,7 @@ test.describe("test support page", () => {
   });
 
   // TODO: this test fails in CI, but works locally
-  test.skip("clicking on appointment button shows google and hides button", async ({
+  test("clicking on appointment button shows google and hides button", async ({
     page,
   }) => {
     await page.getByRole("button", { name: "Termin" }).click();

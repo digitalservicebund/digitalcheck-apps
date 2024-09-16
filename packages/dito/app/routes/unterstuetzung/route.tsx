@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background";
-import { ButtonProps } from "@digitalcheck/shared/components/Button";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
@@ -9,7 +8,6 @@ import { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
 import { support } from "resources/content";
 import { ROUTE_SUPPORT } from "resources/staticRoutes";
-import { useFeatureFlag } from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 import SupportTabs from "./SupportTabList";
 
@@ -52,17 +50,14 @@ function SocialProofImage() {
 }
 
 export default function Index() {
-  const supportOfferingFlag = useFeatureFlag(
-    "digitalcheck.test-support-offering",
-  );
   const [isAppointmentsVisible, setIsAppointmentsVisible] = useState(false);
 
   const iframeButtons = [
-    supportOfferingFlag && {
+    {
       ...supportHow.supportTypes[1].buttons[0],
       onClick: () => setIsAppointmentsVisible(true),
     },
-  ].filter(Boolean) as ButtonProps[];
+  ];
 
   return (
     <>
