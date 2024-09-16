@@ -79,7 +79,7 @@ jobs:
         if: ${{ failure() && steps.e2e.outcome == 'failure' }}
         with:
           name: playwright-e2e-test-results
-          path: packages/${{ inputs.package }}/tests/playwright-report
+          path: packages/${{ inputs.package }}/tests/playwright/playwright-report
 
       - name: Run A11y tests
         if: ${{ inputs.shouldRunIntegrationTests == true }}
