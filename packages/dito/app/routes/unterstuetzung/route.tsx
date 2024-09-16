@@ -95,9 +95,9 @@ export default function Index() {
           <div className="max-sm:hidden relative max-xl:mb-48 xl:w-1/2">
             <div className="xl:absolute xl:top-0 xl:left-0 xl:bottom-0 xl:w-[50vw] xl:overflow-y-hidden">
               <SocialProofImage />
-              <div className="absolute w-[400px] right-40 bottom-40 p-16 bg-white/70 backdrop-blur rounded-lg">
-                <Testimonial />
-              </div>
+            </div>
+            <div className="absolute left-40 bottom-40 max-w-[400px] p-16 bg-white/70 backdrop-blur rounded-lg">
+              <Testimonial />
             </div>
           </div>
         </Container>
