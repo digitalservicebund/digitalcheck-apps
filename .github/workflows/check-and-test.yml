@@ -79,7 +79,7 @@ jobs:
         if: ${{ failure() && steps.e2e.outcome == 'failure' }}
         with:
           name: playwright-e2e-test-results
-          path: packages/*/test/e2e/playwright-report
+          path: packages/*/tests/e2e/playwright-report
 
       - name: Run A11y tests
         if: ${{ inputs.shouldRunIntegrationTests == true }}
@@ -96,7 +96,7 @@ jobs:
         if: ${{ failure() && steps.a11y.outcome == 'failure' }}
         with:
           name: playwright-a11y-test-results
-          path: packages/*/test/a11y/playwright-report
+          path: packages/*/tests/a11y/playwright-report
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
