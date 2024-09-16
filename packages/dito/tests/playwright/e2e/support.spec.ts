@@ -9,6 +9,7 @@ test.describe("test support page", () => {
   test("clicking on appointment button shows google and hides button", async ({
     page,
   }) => {
+    await page.reload();
     await page.getByRole("button", { name: "Termin" }).click();
     await expect(page.getByRole("button", { name: "Termin" })).toBeHidden();
     await expect(
