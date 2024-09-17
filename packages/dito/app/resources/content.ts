@@ -1140,7 +1140,7 @@ export const support = {
         offerings: [
           {
             title: "Digitalbezug einschätzen lassen",
-            text: `Wir unterstützen Sie, den Digitalbezug Ihres Verfahrens einzuschätzen, indem wir Vorprüfung gemeinsam durchgehen. 
+            text: `Wir unterstützen Sie, den Digitalbezug Ihres Verfahrens einzuschätzen, indem wir die Vorprüfung gemeinsam durchgehen. 
 <br class="block content-[''] !mb-32" />
 Je nach Ziel ihres Vorhabens und Grad des Digitalbezugs, variiert der Zeitaufwand, den Sie für die Erarbeitung digitaler Aspekte einplanen sollten. 
 <br class="block content-[''] !mb-32" />
