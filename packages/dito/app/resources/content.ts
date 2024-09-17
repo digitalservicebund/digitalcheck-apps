@@ -185,11 +185,11 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
 export const supportBanner = {
   feedback: {
     title: "Haben Sie Fragen oder Anmerkungen?",
-    text: "Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Anmerkungen:%20digitalcheck.bund.de). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.",
+    text: "Dieser Dienst ist im Aufbau. Wenn Ihnen etwas fehlt oder etwas nicht funktioniert, kontaktieren Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Anmerkungen:%20erarbeiten.digitalcheck.bund.de). Ihr Feedback trägt dazu bei, Informationen und Gestaltung der Webseite für alle Nutzenden zu verbessern.",
   },
   support: {
     title: "Sie haben Gesprächsbedarf zu Ihrem Vorhaben?",
-    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:+4915140767839).`,
+    text: `Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächsbedarf:%20erarbeiten.digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:+4915140767839).`,
   },
 };
 
@@ -205,7 +205,7 @@ export const feedbackForm = {
 
 export const interviewBanner = {
   title: "Wir suchen Gesprächspartner!",
-  text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20digitalcheck.bund.de).`,
+  text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20erarbeiten.digitalcheck.bund.de).`,
 };
 
 const hintInvolved = {
@@ -764,7 +764,7 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
     title: "Visualisierungen gemeinsam erstellen",
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
     buttons: [
       {
         text: "Termin buchen",
@@ -836,7 +836,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
 
 <br class="block content-[''] !mb-24" />
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
     buttons: [
       {
         text: "Termin buchen",
@@ -992,7 +992,7 @@ So erfahren Sie
 - und an welchen Stellen Änderungen nötig sind.
 <br class="block content-[''] !mb-24" />
 
-**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
     buttons: [
       {
         text: "Termin buchen",
@@ -1035,7 +1035,7 @@ Das PDF ist barrierearm/barrierefrei.`,
 - **Erkenntnisse visuell** aufzubereiten — das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20digitalcheck.bund.de)`,
+Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
     buttons: [
       {
         text: "Termin buchen",
@@ -1111,7 +1111,7 @@ export const support = {
           {
             text: "E-Mail senden",
             look: "tertiary",
-            href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20digitalcheck.bund.de",
+            href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20erarbeiten.digitalcheck.bund.de",
           } as const,
         ],
       },
