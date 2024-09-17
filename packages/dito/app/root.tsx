@@ -204,6 +204,10 @@ const footerLinks = [
   { url: ROUTE_IMPRINT.url, text: "Impressum" },
   { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
   { url: ROUTE_A11Y.url, text: "Barrierefreiheit" },
+  {
+    url: "https://github.com/digitalservicebund/digitalcheck-apps",
+    text: "Open Source Code",
+  },
 ];
 
 const PageHeader = ({
