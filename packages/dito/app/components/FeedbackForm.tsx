@@ -51,7 +51,9 @@ function FeedbackQuestion({
   return (
     <fieldset className="flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-b-2 border-blue-300 last:border-0">
       <div className="lg:w-1/2">
-        <legend>{legend}</legend>
+        <legend>
+          <p>{legend}</p>
+        </legend>
       </div>
       <div className="lg:w-1/2">
         {isBinary ? (
