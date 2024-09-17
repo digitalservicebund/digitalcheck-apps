@@ -53,8 +53,8 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
     <footer className="text-base leading-snug">
       <Container paddingTop="48">
         <div className="flex flex-wrap items-start justify-between gap-y-32">
-          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-8">
-            <div className="py-4 pr-2">
+          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
+            <div className="py-4 pr-4">
               <Image
                 url={bmiLogo}
                 width={120}
@@ -76,7 +76,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
               },
             ])}
           </div>
-          <div className="flex flex-wrap gap-x-12 gap-y-8">
+          <div className="flex flex-wrap gap-x-16 gap-y-8">
             {renderLinks(linksFirstColumn)}
             {renderLinks(linksSecondColumn)}
           </div>

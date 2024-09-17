@@ -207,6 +207,7 @@ const footerLinks = [
   {
     url: "https://github.com/digitalservicebund/digitalcheck-apps",
     text: "Open Source Code",
+    openInNewTab: true,
   },
 ];
 
