@@ -118,11 +118,6 @@ export default function FeedbackForm() {
             legend={feedbackForm.questionUseful}
             trackingClass={`${TRACKING_CLASS}Useful=`}
           />
-          <FeedbackQuestion
-            legend={feedbackForm.questionReuse}
-            isBinary
-            trackingClass={`${TRACKING_CLASS}Reuse=`}
-          />
         </div>
         <p className="ds-label-01-bold">{feedbackForm.mail}</p>
       </Container>
