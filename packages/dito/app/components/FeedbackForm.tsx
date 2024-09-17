@@ -1,5 +1,6 @@
 import Background from "@digitalcheck/shared/components/Background";
 import Container from "@digitalcheck/shared/components/Container";
+import RichText from "@digitalcheck/shared/components/RichText";
 import ThumbDownOutlined from "@digitalservicebund/icons/ThumbDownOutlined";
 import ThumbUpOutlined from "@digitalservicebund/icons/ThumbUpOutlined";
 import classNames from "classnames";
@@ -121,7 +122,7 @@ export default function FeedbackForm() {
             trackingClass={`${TRACKING_CLASS}Useful=`}
           />
         </div>
-        <p className="ds-label-01-bold">{feedbackForm.mail}</p>
+        <RichText markdown={feedbackForm.mail} className="ds-label-01-bold" />
       </Container>
     </Background>
   );

@@ -200,7 +200,7 @@ export const feedbackForm = {
     "Wie einfach war es für Sie, unseren Dienst “Digitaltaugliche Regelungen erarbeiten” zu nutzen?",
   questionUseful:
     "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
-  mail: "Schreiben Sie uns eine Email, wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+  mail: "Schreiben Sie uns eine Email an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
 };
 
 export const interviewBanner = {
