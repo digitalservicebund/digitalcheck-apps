@@ -199,7 +199,7 @@ export const feedbackForm = {
   questionSimple:
     "Wie einfach war es für Sie, unseren Dienst “Digitaltaugliche Regelungen erarbeiten” zu nutzen?",
   questionUseful:
-    "Wie hilfreich fanden Sie die angebotenen Hilfestellungen und Methoden für das Erarbeiten ihres Regelungsvorhaben?",
+    "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
   mail: "Schreiben Sie uns eine Email, wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
 };
 
