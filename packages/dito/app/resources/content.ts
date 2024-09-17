@@ -1108,7 +1108,7 @@ export const support = {
     supportTypes: [
       {
         title: "Schnelle Hilfe erhalten Sie per Telefon oder E-Mail",
-        text: "Sie können uns für dringende Anliegen unter 0151/40 76 78 39 anrufen oder uns eine E-Mail senden. Wir beantworten Ihnen alle wichtige Fragen zum Vorgehen und Anwenden des Digitalchecks sowie allgemeine Fragen rund um das Erarbeiten digitaltauglicher Regelungen.",
+        text: "Sie können uns für dringende Anliegen unter 0151/40 76 78 39 anrufen oder uns eine E-Mail senden. Wir beantworten Ihnen alle wichtigen Fragen zum Vorgehen und Anwenden des Digitalchecks sowie allgemeine Fragen rund um das Erarbeiten digitaltauglicher Regelungen.",
         buttons: [
           {
             text: "E-Mail senden",
