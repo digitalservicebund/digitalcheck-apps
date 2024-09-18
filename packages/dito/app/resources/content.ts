@@ -421,12 +421,12 @@ export const preCheck = {
         title: "Häufige Fragen",
         details: [
           {
-            label: "Was steht in der automatisch erstellten E-Mail an den NKR?",
-            text: "Es öffnet sich eine vorformulierte E-Mail in ihrem E-Mail Programm, mit einem Link welcher die Informationen ihrer Vorprüfung enthält. Sie entscheiden über den Zeitpunkt des Versands. Sie können natürlich auch weitere Dokumente anhängen.",
+            label: "Was passiert, wenn ich auf „E-Mail erstellen" klicke?",
+            text: "In Ihrem E-Mail Programm öffnet sich eine neue E-Mail. Diese enthält ein kurzes Anschreiben mit einem eindeutigen Link, über den die Vorprüfung aufgerufen und heruntergeladen werden kann. Sie haben die Möglichkeit, den Text individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
           },
           {
-            label: "Warum die Vorprüfung an den NKR schicken?",
-            text: "Je früher Sie die Vorprüfung an den NKR schicken, desto besser vorbereitet ist dieser auf Ihre Fragen. Sollte der NKR Fragen zu Ihrer Vorprüfung haben, wird er sich bei Ihnen melden.",
+            label: "Warum sollte ich die Vorprüfung bereits jetzt an den NKR schicken?",
+            text: "Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.",
           },
         ],
       },
