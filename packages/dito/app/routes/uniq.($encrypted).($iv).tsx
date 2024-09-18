@@ -164,7 +164,6 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const requestUrl = new URL(request.url);
-  console.log(requestUrl);
   const BASE_URL = requestUrl.origin.replace(
     "http://",
     process.env.NODE_ENV === "production" ? "https://" : "http://",
