@@ -230,7 +230,7 @@ const PageHeader = ({
         <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
       <span className="flex items-center">
-        <span className="ds-label-02-reg text-lg max-sm:hidden">
+        <span className="ds-label-02-reg text-lg max-md:hidden">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
           {supportOfferingFlag && (
