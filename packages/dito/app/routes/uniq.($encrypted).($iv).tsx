@@ -104,8 +104,12 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   if (!quicksendNkrFlag) {
     return json({ quicksendNkrFlag });
   }
-
-  const BASE_URL = new URL(request.url).origin;
+  const requestUrl = new URL(request.url);
+  console.log(requestUrl);
+  const BASE_URL = requestUrl.origin.replace(
+    "http://",
+    requestUrl.protocol === "https:" ? "https://" : "http://",
+  );
   const { encrypted, iv } = params;
 
   if (encrypted && iv) {
