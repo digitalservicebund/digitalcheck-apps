@@ -113,10 +113,10 @@ export default function ResultForm({
         <fieldset className="ds-stack-32">
           <legend>
             {quickSendNkrFlag ? (
-              <Heading tagName="h3" text={preCheck.result.form.formLegend} />
+              <Heading tagName="h2" text={preCheck.result.form.formLegend} />
             ) : (
               <Heading
-                tagName="h3"
+                tagName="h2"
                 text="Vorprüfung ergänzen und herunterladen"
               />
             )}
@@ -193,7 +193,7 @@ export default function ResultForm({
       {quickSendNkrFlag && (
         <div className="ds-stack-16 mt-40">
           <Heading
-            tagName="h4"
+            tagName="h3"
             className="ds-label-section"
             text={preCheck.result.form.faqs.title}
           />
