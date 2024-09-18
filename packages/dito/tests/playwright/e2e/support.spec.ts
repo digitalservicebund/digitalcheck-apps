@@ -17,7 +17,7 @@ test.describe("test support page", () => {
         .frameLocator(
           'iframe[title="Beratung erhalten Sie in einem 45-minütigem Gespräch"]',
         )
-        .getByRole("heading", { name: "Unterstützungsangebot" }),
+        .getByRole("heading", { name: "Digitalcheck Suport" }),
     ).toBeVisible();
   });
 
