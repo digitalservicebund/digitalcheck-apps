@@ -55,7 +55,7 @@ export function loader({ request }: LoaderFunctionArgs) {
   const requestUrl = new URL(request.url);
   const BASE_URL = requestUrl.origin.replace(
     "http://",
-    requestUrl.protocol === "https:" ? "https://" : "http://",
+    process.env.NODE_ENV === "production" ? "https://" : "http://",
   );
 
   return json({

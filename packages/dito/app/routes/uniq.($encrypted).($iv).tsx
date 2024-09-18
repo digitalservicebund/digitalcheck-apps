@@ -105,10 +105,9 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     return json({ quicksendNkrFlag });
   }
   const requestUrl = new URL(request.url);
-  console.log(requestUrl);
   const BASE_URL = requestUrl.origin.replace(
     "http://",
-    requestUrl.protocol === "https:" ? "https://" : "http://",
+    process.env.NODE_ENV === "production" ? "https://" : "http://",
   );
   const { encrypted, iv } = params;
 
@@ -168,7 +167,7 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log(requestUrl);
   const BASE_URL = requestUrl.origin.replace(
     "http://",
-    requestUrl.protocol === "https:" ? "https://" : "http://",
+    process.env.NODE_ENV === "production" ? "https://" : "http://",
   );
   const { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
