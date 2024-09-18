@@ -52,8 +52,14 @@ export function loader({ request }: LoaderFunctionArgs) {
 
   const featureFlags = getFeatureFlags();
 
+  const requestUrl = new URL(request.url);
+  const BASE_URL = requestUrl.origin.replace(
+    "http://",
+    requestUrl.protocol === "https:" ? "https://" : "http://",
+  );
+
   return json({
-    BASE_URL: new URL(request.url).origin,
+    BASE_URL,
     PLAUSIBLE_DOMAIN,
     PLAUSIBLE_SCRIPT,
     supportOfferingFlag,

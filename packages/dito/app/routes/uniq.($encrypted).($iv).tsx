@@ -160,7 +160,11 @@ export async function action({ request }: ActionFunctionArgs) {
     throw new Response("Must be a POST request", { status: 405 });
   }
 
-  const BASE_URL = new URL(request.url).origin;
+  const requestUrl = new URL(request.url);
+  const BASE_URL = requestUrl.origin.replace(
+    "http://",
+    requestUrl.protocol === "https:" ? "https://" : "http://",
+  );
   const { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
   const { title, negativeReasoning } = Object.fromEntries(formData);
