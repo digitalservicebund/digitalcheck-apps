@@ -421,11 +421,12 @@ export const preCheck = {
         title: "Häufige Fragen",
         details: [
           {
-            label: "Was passiert, wenn ich auf „E-Mail erstellen" klicke?",
+            label: "Was passiert, wenn ich auf „E-Mail erstellen” klicke?",
             text: "In Ihrem E-Mail Programm öffnet sich eine neue E-Mail. Diese enthält ein kurzes Anschreiben mit einem eindeutigen Link, über den die Vorprüfung aufgerufen und heruntergeladen werden kann. Sie haben die Möglichkeit, den Text individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
           },
           {
-            label: "Warum sollte ich die Vorprüfung bereits jetzt an den NKR schicken?",
+            label:
+              "Warum sollte ich die Vorprüfung bereits jetzt an den NKR schicken?",
             text: "Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.",
           },
         ],
