@@ -1130,7 +1130,7 @@ export const support = {
     ],
   },
   supportOfferings: {
-    title: "Unser Unterstützungsangebot",
+    title: "Unsere Unterstützungsangebote",
     text: "Nach einem erstem Austausch finden wir gemeinsam die richtige Unterstützung für Ihre Herausforderung und Ihren Zeitplan.",
     tabs: [
       {
@@ -1140,11 +1140,11 @@ export const support = {
             title: "Digitalbezug einschätzen lassen",
             text: `Wir unterstützen Sie, den Digitalbezug Ihres Verfahrens einzuschätzen, indem wir die Vorprüfung gemeinsam durchgehen. 
 <br class="block content-[''] !mb-32" />
-Je nach Ziel ihres Vorhabens und Grad des Digitalbezugs, variiert der Zeitaufwand, den Sie für die Erarbeitung digitaler Aspekte einplanen sollten. 
+Je nach Ziel Ihres Vorhabens und Grad des Digitalbezugs, variiert der Zeitaufwand, den Sie für die Erarbeitung digitaler Aspekte einplanen sollten. 
 <br class="block content-[''] !mb-32" />
 **Beispiele für einen starken Digitalbezug: Prozess/Dienstleistung/Interaktion neu aufsetzen**
 
-z.B. bei folgenden Zielen einer Regelung:
+z. B. bei folgenden Zielen einer Regelung:
 
 - Voraussetzungen für eine Digitalisierung schaffen
 - bestehenden Umsetzungsprozesse verbessern oder neu aufsetzen
@@ -1152,7 +1152,7 @@ z.B. bei folgenden Zielen einer Regelung:
 
 **Beispiele für einen leichten bis mittleren Digitalbezug: bestehenden Prozess anpassen**
 
-z.B. bei folgenden Zielen einer Regelung:
+z. B. bei folgenden Zielen einer Regelung:
 
 - Anpassungen von Nachweispflichten
 - Anpassungen von Pauschalen`,
@@ -1213,8 +1213,8 @@ Ein Bild sagt mehr als tausend Worte — genauso helfen Visualisierungen bei Abs
 Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
 
 - **Antragsstrecke oder ein Datenfluss im Detail verstehen**, visualisiert als Flussdiagramm
-- **beteiligte Akteure** identifizieren, visualisiert als Flussdiagramm
-- **Logik und Struktur des Regelungstextes** prüfen, visualisiert als Entscheidungsbaum
+- **beteiligte Akteure identifizieren**, visualisiert als Flussdiagramm
+- **Logik und Struktur des Regelungstextes prüfen**, visualisiert als Entscheidungsbaum
 - Überblick über das Verfahren geben zur **Kommunikation im Haus, mit dem NKR oder zwischen Ressorts**, visualisiert als Schaubild`,
             sellingPoints: "Ihr Vorteil auf einen Blick",
             details: [
