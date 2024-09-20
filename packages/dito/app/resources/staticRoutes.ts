@@ -1,4 +1,4 @@
-const PRE_CHECK_PDF = "digitalcheck-vorpruefung.pdf";
+export const PRE_CHECK_PDF = "digitalcheck-vorpruefung.pdf";
 const DOCUMENTATION_PDF = "digitalcheck-begleitende-dokumentation.pdf";
 
 export type Route = {
