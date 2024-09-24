@@ -23,14 +23,6 @@ enum QuestionAbbreviations {
   "n" = "negativeReasoning",
 }
 
-type TAbbreviations = {
-  [key in keyof typeof QuestionAbbreviations]: FormDataEntryValue;
-};
-
-type TUnabbreviations = {
-  [key in QuestionAbbreviations]: AnswerAbbreviations;
-};
-
 enum AnswerAbbreviations {
   "yes" = "y",
   "no" = "n",
@@ -39,6 +31,14 @@ enum AnswerAbbreviations {
   "n" = "no",
   "u" = "unsure",
 }
+
+type TAbbreviations = {
+  [key in keyof typeof QuestionAbbreviations]: FormDataEntryValue;
+};
+
+type TUnabbreviations = {
+  [key in QuestionAbbreviations]: AnswerAbbreviations;
+};
 
 const abbreviate = (response: TAbbreviations) => {
   const responseEntries = Object.entries(response);
