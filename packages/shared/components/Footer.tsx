@@ -50,7 +50,7 @@ export default function Footer({ links }: Readonly<{ links: LinkProps[] }>) {
   );
 
   return (
-    <footer className="text-base leading-snug">
+    <footer className="text-base leading-snug" aria-label="Seitenfußbereich">
       <Container paddingTop="48">
         <div className="flex flex-wrap items-start justify-between gap-y-32">
           <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
