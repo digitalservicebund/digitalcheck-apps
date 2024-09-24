@@ -1065,7 +1065,7 @@ export const support = {
   subtitle:
     "Nutzen Sie unsere digitale Expertise, um Ihr Regelungsvorhaben digitaltauglich zu gestalten und den Digitalcheck erfolgreich zu erfüllen.",
   socialProof: {
-    text: `Wir, die Digital-Expert:innen des DigitalService,<br />haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
+    text: `Wir, die Digital-Expert:innen des DigitalService,<br class="sm:max-lg:hidden" /> haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
 
     image: {
       src: "/assets/images/support.jpeg",
