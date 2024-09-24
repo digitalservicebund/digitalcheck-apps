@@ -229,8 +229,8 @@ const PageHeader = ({
       <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
         <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
-      <span className="flex items-center">
-        <span className="ds-label-02-reg text-lg max-md:hidden">
+      <div className="flex items-center max-lg:hidden">
+        <div className="ds-label-02-reg text-lg">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
           {supportOfferingFlag && (
@@ -242,7 +242,7 @@ const PageHeader = ({
             </>
           )}
           {header.contact.msg}
-        </span>
+        </div>
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
@@ -250,7 +250,12 @@ const PageHeader = ({
         >
           {header.contact.number}
         </a>
-      </span>
+      </div>
+      <div className="lg:hidden">
+        <a href="/unterstuetzung" className="ds-link-01-bold text-lg underline">
+          Kontakt & Unterstützung
+        </a>
+      </div>
     </div>
     {includeBreadcrumbs && (
       <Background backgroundColor="blue">
