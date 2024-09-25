@@ -173,7 +173,10 @@ export default function Index() {
                 setSelectedOption(
                   e.target.value as PreCheckAnswerOption["value"],
                 ),
-              error: form.error("answer"),
+              error:
+                form.formState.submitStatus == "error"
+                  ? form.error("answer")
+                  : undefined,
             }}
           />
           <Container paddingTop="0" paddingBottom="40">
