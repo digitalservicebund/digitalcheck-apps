@@ -270,7 +270,7 @@ export const preCheck = {
       negativeResult:
         "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
-      hint: {
+      accordion: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
       <br />
@@ -285,7 +285,7 @@ export const preCheck = {
       positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
       negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
       text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
-      hint: hintInvolved,
+      accordion: hintInvolved,
     },
     {
       id: "datenaustausch",
@@ -308,7 +308,7 @@ export const preCheck = {
       negativeResult:
         "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
       text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen.",
-      hint: hintInvolved,
+      accordion: hintInvolved,
     },
     {
       id: "automatisierung",
@@ -320,7 +320,7 @@ export const preCheck = {
       negativeResult:
         "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
       text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
-      hint: {
+      accordion: {
         title: "Wer sind Betroffene?",
         text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
       <br />

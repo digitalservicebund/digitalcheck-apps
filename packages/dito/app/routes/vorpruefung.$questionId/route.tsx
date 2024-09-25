@@ -1,5 +1,6 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import Question from "@digitalcheck/shared/components/Question";
 import {
@@ -111,6 +112,10 @@ export type TQuestion = {
     title: string;
     text: string;
   };
+  accordion?: {
+    title: string;
+    text: string;
+  };
 };
 
 export type PreCheckAnswerOption = {
@@ -198,6 +203,14 @@ export default function Index() {
               tagName="h2"
               content={question.hint.text}
             ></InlineNotice>
+          </Container>
+        )}
+        {question.accordion && (
+          <Container paddingTop="0">
+            <DetailsSummary
+              title={question.accordion.title}
+              content={question.accordion.text}
+            />
           </Container>
         )}
         <Container paddingTop="0" additionalClassNames="lg:hidden">
