@@ -50,7 +50,13 @@ function FeedbackQuestion({
   legend,
   isBinary = false,
   name,
-}: Readonly<{ legend: string; isBinary?: boolean; name: string }>) {
+  isLast = false,
+}: Readonly<{
+  legend: string;
+  isBinary?: boolean;
+  name: string;
+  isLast?: boolean;
+}>) {
   const [selected, setSelected] = useState<number | null>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +64,12 @@ function FeedbackQuestion({
   };
 
   return (
-    <fieldset className="flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-b-2 border-blue-300 last:border-0">
+    <fieldset
+      className={classNames(
+        "flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-blue-300",
+        { "border-b-2": !isLast }, // conditional rendering because last:border-b-0 doesn't work here
+      )}
+    >
       <div className="lg:w-1/2">
         <legend>
           <p>{legend}</p>
@@ -174,15 +185,11 @@ export default function FeedbackForm() {
 
   if (submitted) {
     return (
-      <div
-        ref={thankYouMessageRef}
-        tabIndex={-1}
-        className="ds-label-01-bold mt-16"
-        aria-live="polite"
-      >
+      <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
         <Background backgroundColor="blue" paddingTop="40" paddingBottom="48">
           <Container backgroundColor="white" overhangingBackground>
             <h2>Vielen Dank für Ihr Feedback!</h2>
+            <br />
             <p>
               Wir schätzen Ihre Rückmeldung sehr und werden sie in unsere
               Verbesserungen einfließen lassen.
@@ -205,6 +212,7 @@ export default function FeedbackForm() {
           <FeedbackQuestion
             legend={feedbackForm.questionUseful}
             name="useful-feedback"
+            isLast={true}
           />
           <button
             type="submit"
