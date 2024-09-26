@@ -476,7 +476,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
       },
       {
         background: "blue",
-        headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
+        headline: { text: "2.1. Zuständige Akteurinnen und Akteure auflisten" },
         content: `**Zeit:** ca. vier Stunden
 <br class="block content-[''] !mb-24" />
 Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
@@ -637,7 +637,7 @@ export const documentation = {
 };
 
 export const responsibleActors = {
-  title: "Zuständige Akteurinnen und Akteure auflisten",
+  title: "2.1. Zuständige Akteurinnen und Akteure auflisten",
   subtitle: `Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
   guidance: `**Zeit:** ca. vier Stunden`,
   accordion: {
