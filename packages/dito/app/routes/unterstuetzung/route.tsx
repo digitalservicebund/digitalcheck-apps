@@ -83,10 +83,10 @@ export default function Index() {
           paddingBottom="0"
           additionalClassNames={`flex flex-col lg:flex-row lg:h-[${socialProofHeight}px]`}
         >
-          <div className="py-48 lg:w-1/2 lg:self-center">
+          <div className="py-32 md:py-48 lg:w-1/2 lg:self-center">
             <RichText
               markdown={socialProof.text}
-              className="text-3xl leading-10 w-[370px] sm:max-lg:w-[480px]"
+              className="text-2xl sm:text-3xl leading-10 w-[370px] sm:max-lg:w-[480px]"
             />
           </div>
           <div className="max-sm:hidden relative max-lg:mb-48 lg:w-1/2">
