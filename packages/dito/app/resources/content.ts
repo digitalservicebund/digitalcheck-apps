@@ -225,7 +225,7 @@ export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
+      "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
     buttonText: "Digitalbezug einschätzen",
     info: {
       title: "Eine oder mehrere Vorprüfungen?",
