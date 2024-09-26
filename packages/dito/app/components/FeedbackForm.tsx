@@ -165,7 +165,7 @@ export default function FeedbackForm() {
 
     // Plausible event trigger with feedback values
     if (window.plausible) {
-      window.plausible("Feedback", {
+      window.plausible("Feedback Methoden", {
         props: {
           questionSimple: simpleFeedback?.toString() || "No Feedback",
           questionUseful: usefulFeedback?.toString() || "No Feedback",
