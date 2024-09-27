@@ -7,7 +7,7 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import { PRE_CHECK_PDF, ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
@@ -42,30 +42,38 @@ export default function ResultForm({
     isPositive ? positiveValidation : negativeValidation,
   );
 
-  const form = useForm({
-    validator,
-    validationBehaviorConfig: {
-      initial: "onChange",
-      whenTouched: "onChange",
-      whenSubmitted: "onChange",
-    },
-  });
+  const form = useForm({ validator });
 
-  const [downloadDisabled, setDownloadDisabled] = useState(false);
-  const downloadDocument = async () => {
-    setDownloadDisabled(true);
+  const validateFormAndGetData = async () => {
+    await form.validate();
+    if (!form.transient.formState.isValid) {
+      return null;
+    }
     const formData = new FormData();
-    formData.append("title", form.value("title"));
-    formData.append("negativeReasoning", form.value("negativeReasoning"));
+    // we need to use transient.value here because the form state is not yet updated
+    formData.append("title", form.transient.value("title") as string);
+    formData.append(
+      "negativeReasoning",
+      form.transient.value("negativeReasoning") as string,
+    );
     Object.entries(answers).forEach(([key, value]) => {
       formData.append(key, value);
     });
+    return formData;
+  };
 
+  const [downloadDisabled, setDownloadDisabled] = useState(false);
+  const downloadDocument = async () => {
+    const formData = await validateFormAndGetData();
+    if (!formData) {
+      return;
+    }
+
+    setDownloadDisabled(true);
     const response = await fetch(ROUTE_RESULT_PDF.url, {
       method: "POST",
       body: formData,
     });
-
     if (!response.ok) {
       alert(`Error processing PDF: ${response.statusText}`);
       setDownloadDisabled(false);
@@ -74,10 +82,9 @@ export default function ResultForm({
 
     const blob = await response.blob();
     const downloadUrl = window.URL.createObjectURL(blob);
-
     const a = document.createElement("a");
     a.href = downloadUrl;
-    a.download = PRE_CHECK_PDF;
+    a.download = PRE_CHECK_PDF; // set filename
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(downloadUrl);
@@ -86,18 +93,20 @@ export default function ResultForm({
   };
 
   const openMailTo = async () => {
-    const formData = new FormData();
-    formData.append("title", form.value("title"));
-    formData.append("negativeReasoning", form.value("negativeReasoning"));
+    const formData = await validateFormAndGetData();
+    if (!formData) {
+      return;
+    }
     const uniqueResponse = await fetch("/uniq", {
       method: "POST",
       body: formData,
     });
+    const emailTemplate = preCheck.result.form.emailTemplate;
     const uniqueUrl = (await uniqueResponse.json()).url;
-    const subject = `${preCheck.result.form.emailTemplate.subject}: „${form.value("title")}“`;
-    const body = `${preCheck.result.form.emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${preCheck.result.form.emailTemplate.bodyAfter}`;
+    const subject = `${emailTemplate.subject}: „${form.value("title")}“`;
+    const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
     const mailToLink = encodeURI(
-      `mailto:${preCheck.result.form.emailTemplate.to}?subject=${subject}&body=${body}`,
+      `mailto:${emailTemplate.to}?subject=${subject}&body=${body}`,
     );
     window.location.href = mailToLink;
   };
@@ -113,15 +122,6 @@ export default function ResultForm({
       setWarning(null);
     }
   };
-
-  const [buttonsDisabled, setButtonsDisabled] = useState(false);
-  useEffect(() => {
-    // Workaround to call async validation in useEffect
-    void (async function () {
-      const result = await validator.validate(form.value());
-      setButtonsDisabled(!!result.error);
-    })();
-  }, [form, validator]);
 
   return (
     <Container
@@ -172,9 +172,7 @@ export default function ResultForm({
                       id: "result-email-button",
                       text: preCheck.result.form.sendEmailButton.text,
                       look: "primary",
-                      disabled: buttonsDisabled,
                       className: "plausible-event-name=Quicksend+Click",
-                      type: "button",
                       onClick: () => void openMailTo(),
                     },
                     {
@@ -183,8 +181,7 @@ export default function ResultForm({
                         ? preCheck.result.form.downloadStarted
                         : preCheck.result.form.downloadPdfButton.text,
                       look: "ghost",
-                      disabled: buttonsDisabled || downloadDisabled,
-                      type: "button",
+                      disabled: downloadDisabled,
                       onClick: () => void downloadDocument(),
                     },
                   ]
@@ -195,8 +192,6 @@ export default function ResultForm({
                         ? preCheck.result.form.downloadStarted
                         : preCheck.result.form.downloadPdfButton.text,
                       look: "primary",
-                      disabled: buttonsDisabled || downloadDisabled,
-                      type: "button",
                       onClick: () => void downloadDocument(),
                     },
                   ]

@@ -3,7 +3,6 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "utils/constants.server";
-import { getAnswersFromCookie } from "utils/cookies.server";
 import unleash from "utils/featureFlags.server";
 
 enum QuestionAbbreviations {
@@ -168,9 +167,8 @@ export async function action({ request }: ActionFunctionArgs) {
     "http://",
     process.env.NODE_ENV === "production" ? "https://" : "http://",
   );
-  const { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
-  const { title, negativeReasoning } = Object.fromEntries(formData);
+  const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
   const combinedResponse = {
     title,
