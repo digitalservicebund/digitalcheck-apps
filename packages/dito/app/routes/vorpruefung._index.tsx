@@ -55,7 +55,7 @@ export default function Index() {
       </Background>
       <Container additionalClassNames="max-sm:!p-0">
         <InlineNotice
-          look="warning"
+          look="tips"
           title={preCheck.start.info.title}
           tagName="h2"
           content={preCheck.start.info.text}

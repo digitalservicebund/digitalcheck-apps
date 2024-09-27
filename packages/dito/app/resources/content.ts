@@ -42,9 +42,9 @@ export const header = {
 
 const stepNKR = {
   headline: {
-    text: "Prüfung durch den NKR",
+    text: "Prüfung durch den NKR (Nationaler Normenkontrollrat)",
   },
-  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
+  content: `Der NKR prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
 };
 export const steps = {
   preCheck: {
@@ -143,6 +143,17 @@ export const landing = {
     content:
       "Um in dieser Zeit zu Ihrem alten Arbeitsstand zurückzukehren, nutzen Sie bitte denselben Rechner und Browser.",
   },
+  trainings: {
+    title: "Schulungsangebote im Herbst",
+    text: `In den kommenden Monaten bieten wir 90-minütige Online-Schulungen an zu folgenden Themen:
+- **Regelungen digitaltauglich gestalten** – praktische Tipps für den Digitalcheck
+- **Visualisieren lernen** – Komplexes einfach darstellen`,
+    link: {
+      text: "Zu Schulungen anmelden",
+      href: ROUTE_SUPPORT.url + "#angebote",
+      look: "ghost" as const,
+    },
+  },
   summary: {
     title: "Zusammengefasst",
     items: [
@@ -225,7 +236,7 @@ export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
+      "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
     buttonText: "Digitalbezug einschätzen",
     info: {
       title: "Eine oder mehrere Vorprüfungen?",
@@ -270,7 +281,7 @@ export const preCheck = {
       negativeResult:
         "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
-      hint: {
+      accordion: {
         title: "Was ist ein IT-System?",
         text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
       <br />
@@ -285,7 +296,7 @@ export const preCheck = {
       positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
       negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
       text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
-      hint: hintInvolved,
+      accordion: hintInvolved,
     },
     {
       id: "datenaustausch",
@@ -308,7 +319,7 @@ export const preCheck = {
       negativeResult:
         "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
       text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen.",
-      hint: hintInvolved,
+      accordion: hintInvolved,
     },
     {
       id: "automatisierung",
@@ -320,7 +331,7 @@ export const preCheck = {
       negativeResult:
         "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
       text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
-      hint: {
+      accordion: {
         title: "Wer sind Betroffene?",
         text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
       <br />
@@ -373,7 +384,7 @@ export const preCheck = {
     },
     unsure: {
       title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
-      hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839). Wir helfen Ihnen, die Vorprüfung auszufüllen.",
+      hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro:
         '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
       negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
@@ -476,7 +487,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
       },
       {
         background: "blue",
-        headline: { text: "Zuständige Akteurinnen und Akteure auflisten" },
+        headline: { text: "2.1. Zuständige Akteurinnen und Akteure auflisten" },
         content: `**Zeit:** ca. vier Stunden
 <br class="block content-[''] !mb-24" />
 Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
@@ -490,7 +501,7 @@ Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständig
       {
         background: "blue",
         headline: {
-          text: "Aufgaben und Abläufe gemeinsam erfassen",
+          text: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
 
@@ -509,7 +520,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
       {
         background: "blue",
         headline: {
-          text: "IT-Systeme gemeinsam erfassen",
+          text: "2.3. IT-Systeme gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
 
@@ -533,7 +544,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Sys
       {
         background: "blue",
         headline: {
-          text: "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
+          text: "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br class="block content-[''] !mb-24" />
@@ -548,7 +559,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
       {
         background: "blue",
         headline: {
-          text: "Technische Umsetzbarkeit sicherstellen",
+          text: "2.5. Technische Umsetzbarkeit sicherstellen",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 
@@ -637,7 +648,7 @@ export const documentation = {
 };
 
 export const responsibleActors = {
-  title: "Zuständige Akteurinnen und Akteure auflisten",
+  title: "2.1. Zuständige Akteurinnen und Akteure auflisten",
   subtitle: `Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständigkeiten der umsetzenden Akteurinnen und Akteure** zu kennen: Sie sind die Expertinnen und Experten für die digitale, praktische Umsetzung in der Praxis und damit wertvolle Gesprächspartnerinnen und -partner.`,
   guidance: `**Zeit:** ca. vier Stunden`,
   accordion: {
@@ -696,7 +707,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
 } as TMethodPage;
 
 export const tasksProcesses = {
-  title: "Aufgaben und Abläufe gemeinsam erfassen",
+  title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
   subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
   guidance: `**Zeit:** ca. sechs Stunden
 
@@ -789,7 +800,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
 } as TMethodPage;
 
 export const collectITSystems = {
-  title: "IT-Systeme gemeinsam erfassen",
+  title: "2.3. IT-Systeme gemeinsam erfassen",
   subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.`,
   guidance: `**Zeit:** ca. sechs Stunden
 
@@ -976,7 +987,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 };
 
 export const technicalFeasibility = {
-  title: "Technische Umsetzbarkeit sicherstellen",
+  title: "2.5. Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten.`,
   guidance: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 
@@ -1065,10 +1076,10 @@ export const support = {
   subtitle:
     "Nutzen Sie unsere digitale Expertise, um Ihr Regelungsvorhaben digitaltauglich zu gestalten und den Digitalcheck erfolgreich zu erfüllen.",
   socialProof: {
-    text: `Wir, die Digital-Expert:innen des DigitalService,<br />haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
+    text: `Wir, die Digital-Expert:innen des DigitalService,<br class="sm:max-lg:hidden" /> haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
 
     image: {
-      src: "/assets/images/support.jpeg",
+      src: "/assets/images/support.png",
       alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
     },
     testimonials: [
@@ -1276,6 +1287,104 @@ Maßnahmen, die wir z. B. für Sie erledigen:
             examples: [
               {
                 text: "Lesen Sie sich das Beispiel durch: [“Begleitung des Stromsteuergesetz”](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Online-Schulungen",
+        offerings: [
+          {
+            title:
+              "Regelungen digitaltauglich gestalten – praktische Tipps für den Digitalcheck",
+            text: `Fast alles, was wir heutzutage in der Verwaltung tun, hat einen Daten- oder Digitalbezug. Regelungsvorhaben sind daher die zentrale Voraussetzung für digitale Leistungen und Prozesse und schaffen die Grundlage für einen digitalen Staat.
+<br class="block content-[''] !mb-32" />
+In dieser Online-Schulung erfahren Sie, wie Sie Regelungen so formulieren, dass Sie den **Digitalcheck erfolgreich bestehen**. Wir zeigen an **Beispielen**, wie Sie Ihre Regelungen digitaltauglich schreiben können. Anhand der fünf bewährten **Prinzipien für Digitaltauglichkeit** erläutern wir, wie Sie Begriffe und Konzepte wie Automatisierung und Standardisierung optimal nutzen, um Ihre Vorhaben fit für die digitale Zukunft zu machen.
+<br class="block content-[''] !mb-32" />
+Das Angebot richtet sich an alle, die in den Bundesministerien Regelungen erarbeiten. Vorkenntnisse sind nicht erforderlich.`,
+            button: {
+              text: "Per E-Mail anmelden",
+              href: encodeURI(
+                `mailto:digitalcheck@digitalservice.bund.de?subject=[Digitalcheck Schulung] Anmeldung digitaltaugliche Regelungen&body=Guten Tag,
+
+ich möchte mich gerne für die Online-Schulung anmelden:
+
+Regelungen digitaltauglich gestalten – praktische Tipps für den Digitalcheck
+
+am
+
+[Wunsch-Datum einfügen]
+
+Mit freundlichen Grüßen`,
+              ),
+              look: "tertiary" as const,
+            },
+            sellingPoints: "Alle Informationen auf einen Blick",
+            details: [
+              {
+                icon: TimerOutlined,
+                title: "Nächste Termine",
+                text: `
+- **Dienstag, 15. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
+- **Freitag, 18. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 23. Oktober,**<br class="max-md:hidden"> 14:30–16:00 Uhr
+- **Freitag, 25. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr
+- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr`,
+              },
+              {
+                icon: CheckCircleOutlined,
+                title: "Was Sie bekommen",
+                text: `
+- Tipps für einen erfolgreichen Digitalcheck
+- Beispiele für digitaltaugliche Formulierungen
+- Einführung zum Anwenden der Prinzipien für Digitaltauglichkeit`,
+              },
+            ],
+          },
+          {
+            title: "Visualisierungen – Komplexes einfach darstellen",
+            text: `Digitaltaugliche Regelungen müssen von Beginn an aus der Umsetzungsperspektive gedacht werden. Visualisierungsmethoden bieten dafür wertvolle Unterstützung: Mit ihrer Hilfe lassen sich einzelne **Prozessschritte, Zielgruppen und beteiligte Akteure** darstellen. **Mögliche Hindernisse** für eine digitale Umsetzung werden sicht- und bearbeitbar.
+<br class="block content-[''] !mb-32" />
+In unserer interaktiven Online-Schulung erfahren Sie, wie Sie Visualisierungen gezielt für Ihr Regelungsvorhaben nutzen können. Anhand konkreter Beispiele lernen Sie, **eigene Visualisierungen zu erstellen** und so komplexe Vorhaben klar und verständlich zu präsentieren.
+<br class="block content-[''] !mb-32" />
+Das Angebot richtet sich an alle, die in den Bundesministerien Regelungen erarbeiten. Vorkenntnisse sind nicht erforderlich.`,
+            button: {
+              text: "Per E-Mail anmelden",
+              href: encodeURI(
+                `mailto:digitalcheck@digitalservice.bund.de?subject=[Digitalcheck Schulung] Anmeldung Visualisierungen&body=Guten Tag,
+
+ich möchte mich gerne für die Online-Schulung anmelden:
+
+Visualisierungen – Komplexes einfach darstellen
+
+am
+
+[Wunsch-Datum einfügen]
+
+Mit freundlichen Grüßen`,
+              ),
+              look: "tertiary" as const,
+            },
+            sellingPoints: "Alle Informationen auf einen Blick",
+            details: [
+              {
+                icon: TimerOutlined,
+                title: "Nächste Termine",
+                text: `
+- **Dienstag, 1. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 9. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
+- **Freitag, 11. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 16. Oktober,**<br class="max-md:hidden"> 08:30–10:00 Uhr
+- **Donnerstag, 24. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr`,
+              },
+              {
+                icon: CheckCircleOutlined,
+                title: "Was Sie bekommen",
+                text: `
+- verschiedene Arten von Visualisierungen kennenlernen
+- Übung selbst Visualisierungen zu erstellen`,
               },
             ],
           },

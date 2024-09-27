@@ -1,5 +1,6 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import Question from "@digitalcheck/shared/components/Question";
 import {
@@ -111,6 +112,10 @@ export type TQuestion = {
     title: string;
     text: string;
   };
+  accordion?: {
+    title: string;
+    text: string;
+  };
 };
 
 export type PreCheckAnswerOption = {
@@ -123,7 +128,7 @@ export type PreCheckAnswers = {
 };
 
 export default function Index() {
-  const { question, answers } = useLoaderData<typeof loader>();
+  const { questionIdx, question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const [selectedOption, setSelectedOption] =
     useState<PreCheckAnswerOption["value"]>(existingAnswer);
@@ -168,8 +173,12 @@ export default function Index() {
                 setSelectedOption(
                   e.target.value as PreCheckAnswerOption["value"],
                 ),
-              error: form.error("answer"),
+              error:
+                form.formState.submitStatus == "error"
+                  ? form.error("answer")
+                  : undefined,
             }}
+            ariaLabel={`Frage ${questionIdx + 1} von ${questions.length}`}
           />
           <Container paddingTop="0" paddingBottom="40">
             <ButtonContainer
@@ -198,6 +207,14 @@ export default function Index() {
               tagName="h2"
               content={question.hint.text}
             ></InlineNotice>
+          </Container>
+        )}
+        {question.accordion && (
+          <Container paddingTop="0">
+            <DetailsSummary
+              title={question.accordion.title}
+              content={question.accordion.text}
+            />
           </Container>
         )}
         <Container paddingTop="0" additionalClassNames="lg:hidden">

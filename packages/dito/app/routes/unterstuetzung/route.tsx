@@ -59,6 +59,8 @@ export default function Index() {
     },
   ];
 
+  const socialProofHeight = 420;
+
   return (
     <>
       <Background backgroundColor="blue">
@@ -79,19 +81,21 @@ export default function Index() {
         <Container
           paddingTop="0"
           paddingBottom="0"
-          additionalClassNames="flex flex-col lg:flex-row lg:h-[420px]"
+          additionalClassNames={`flex flex-col lg:flex-row lg:h-[${socialProofHeight}px]`}
         >
-          <div className="py-48 lg:w-1/2 lg:self-center">
+          <div className="py-32 sm:py-48 lg:w-1/2 lg:self-center">
             <RichText
               markdown={socialProof.text}
-              className="text-3xl leading-10 w-[370px]"
+              className="text-2xl sm:text-3xl leading-10 w-[370px] sm:max-lg:w-[480px]"
             />
           </div>
           <div className="max-sm:hidden relative max-lg:mb-48 lg:w-1/2">
-            <div className="lg:absolute lg:top-0 lg:left-0 lg:bottom-0 lg:w-[60vw] xl:w-[50vw] lg:overflow-y-hidden">
+            <div
+              className={`w-[630px] lg:w-[50vw] [&>img]:lg:w-full [&>img]:lg:h-[${socialProofHeight}px] [&>img]:lg:object-[10%_75%] [&>img]:lg:object-none`}
+            >
               <SocialProofImage />
             </div>
-            <div className="absolute left-40 bottom-40 max-w-[400px] p-16 bg-white/70 backdrop-blur rounded-lg">
+            <div className="absolute left-40 bottom-40 max-w-[400px] p-16 bg-white/70 backdrop-blur rounded-lg max-lg:hidden">
               <Testimonial />
             </div>
           </div>
@@ -99,10 +103,10 @@ export default function Index() {
       </Background>
       <div className="sm:hidden">
         <SocialProofImage />
-        <Container>
-          <Testimonial />
-        </Container>
       </div>
+      <Container additionalClassNames="lg:hidden">
+        <Testimonial />
+      </Container>
       <Container paddingTop="48">
         <Header
           heading={{
@@ -174,20 +178,22 @@ export default function Index() {
             ))}
         </Container>
       </Background>
-      <Background backgroundColor="white">
-        <Container>
-          <Header
-            heading={{
-              tagName: "h2",
-              text: supportOfferings.title,
-            }}
-            content={{
-              markdown: supportOfferings.text,
-            }}
-          />
-          <SupportTabs />
-        </Container>
-      </Background>
+      <div id="angebote">
+        <Background backgroundColor="white">
+          <Container>
+            <Header
+              heading={{
+                tagName: "h2",
+                text: supportOfferings.title,
+              }}
+              content={{
+                markdown: supportOfferings.text,
+              }}
+            />
+            <SupportTabs />
+          </Container>
+        </Background>
+      </div>
     </>
   );
 }

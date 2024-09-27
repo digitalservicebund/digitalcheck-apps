@@ -1,9 +1,12 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import { type ButtonProps } from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
+import { useLocation } from "@remix-run/react";
 import React, { useRef, useState } from "react";
 import { support } from "resources/content";
 
@@ -14,6 +17,7 @@ type Offering = {
   title: string;
   text: string;
   sellingPoints: string;
+  button?: ButtonProps;
   details: {
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
@@ -29,7 +33,10 @@ type Offering = {
 };
 
 export default function SupportTabs() {
-  const [activeTab, setActiveTab] = useState(0);
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(
+    location.hash === "#angebote" ? 2 : 0,
+  );
   const tabRef = useRef<Map<number, HTMLButtonElement> | null>(null);
 
   function getMap() {
@@ -57,7 +64,11 @@ export default function SupportTabs() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Support Tabs" className="flex my-40">
+      <div
+        role="tablist"
+        aria-label="Support Tabs"
+        className="flex max-sm:flex-col items-start my-32"
+      >
         {tabs.map((tab, index) => (
           <button
             key={tab.title}
@@ -73,9 +84,7 @@ export default function SupportTabs() {
             tabIndex={activeTab === index ? 0 : -1}
             onClick={() => setActiveTab(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`text-blue-800 pb-8 mr-48 ${
-              activeTab === index ? "font-bold border-b-2 border-blue-800" : ""
-            }`}
+            className={`text-blue-800 p-8 my-8 mr-48 ${activeTab === index ? "font-bold border-b-2 border-blue-800" : ""}`}
           >
             {tab.title}
           </button>
@@ -96,14 +105,15 @@ export default function SupportTabs() {
               backgroundColor="blue"
               additionalClassNames="flex max-md:flex-col gap-32 rounded-xl mb-32 px-40"
             >
-              <Header
+              <Box
                 heading={{
-                  tagName: "h3",
+                  tagName: "h2",
                   text: offering.title,
                 }}
                 content={{
                   markdown: offering.text,
                 }}
+                buttons={offering.button ? [offering.button] : []}
               />
               <div className="flex-none md:w-[310px] space-y-20">
                 <Background backgroundColor="white">
