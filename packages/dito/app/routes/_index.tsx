@@ -48,7 +48,7 @@ export default function Index() {
           content={landing.dataNotice.content}
         />
       </Container> */}
-      <Background backgroundImage="trainings.jpeg">
+      <div className="bg-[url('/assets/images/trainings.jpeg')] bg-[0%_35%] bg-cover">
         <Container>
           <div className="max-w-[630px] bg-white px-16 py-28 md:px-80 md:py-40 rounded-lg">
             <Box
@@ -58,7 +58,7 @@ export default function Index() {
             />
           </div>
         </Container>
-      </Background>
+      </div>
       <Container>
         <InfoBox
           heading={{

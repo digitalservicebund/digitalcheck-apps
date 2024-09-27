@@ -6,20 +6,16 @@ import type { CommonWrapperProps } from "./CommonWrapperProps";
 const DEFAULT_PADDING_TOP = "0";
 const DEFAULT_PADDING_BOTTOM = "0";
 
-type BackgroundProps = PropsWithChildren<CommonWrapperProps> & {
-  backgroundImage?: string;
-};
+type BackgroundProps = PropsWithChildren<CommonWrapperProps>;
 
 export default function Background({
   backgroundColor = "default",
-  backgroundImage,
   paddingTop = "default",
   paddingBottom = "default",
   children,
 }: BackgroundProps) {
   const cssClasses = classNames(
     backgroundColor !== "default" && BACKGROUND_COLORS[backgroundColor],
-    backgroundImage && `bg-[url('/assets/images/${backgroundImage}')] bg-cover`,
     `!pt-${paddingTop === "default" ? DEFAULT_PADDING_TOP : paddingTop}`,
     `!pb-${
       paddingBottom === "default" ? DEFAULT_PADDING_BOTTOM : paddingBottom
