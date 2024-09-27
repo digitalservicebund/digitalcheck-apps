@@ -1,4 +1,5 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -47,7 +48,17 @@ export default function Index() {
           content={landing.dataNotice.content}
         />
       </Container> */}
-      {/* TODO: Add in case study here, if & when we have one... */}
+      <Background backgroundImage="trainings.jpeg">
+        <Container>
+          <div className="max-w-[630px] bg-white px-16 py-28 md:px-80 md:py-40 rounded-lg">
+            <Box
+              heading={{ text: landing.trainings.title }}
+              content={{ markdown: landing.trainings.text }}
+              buttons={[landing.trainings.link]}
+            />
+          </div>
+        </Container>
+      </Background>
       <Container>
         <InfoBox
           heading={{

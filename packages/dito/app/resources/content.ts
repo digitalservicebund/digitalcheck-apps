@@ -143,6 +143,17 @@ export const landing = {
     content:
       "Um in dieser Zeit zu Ihrem alten Arbeitsstand zurückzukehren, nutzen Sie bitte denselben Rechner und Browser.",
   },
+  trainings: {
+    title: "Schulungsangebote im Herbst",
+    text: `In den kommenden Monaten bieten wir 90-minütige Online-Schulungen an zu folgenden Themen:
+- **Regelungen digitaltauglich gestalten** – praktische Tipps für den Digitalcheck
+- **Visualisieren lernen** – Komplexes einfach darstellen`,
+    link: {
+      text: "Zu Schulungen anmelden",
+      href: ROUTE_SUPPORT.url + "#angebote",
+      look: "ghost" as const,
+    },
+  },
   summary: {
     title: "Zusammengefasst",
     items: [
@@ -1276,6 +1287,104 @@ Maßnahmen, die wir z. B. für Sie erledigen:
             examples: [
               {
                 text: "Lesen Sie sich das Beispiel durch: [“Begleitung des Stromsteuergesetz”](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Online-Schulungen",
+        offerings: [
+          {
+            title:
+              "Regelungen digitaltauglich gestalten – praktische Tipps für den Digitalcheck",
+            text: `Fast alles, was wir heutzutage in der Verwaltung tun, hat einen Daten- oder Digitalbezug. Regelungsvorhaben sind daher die zentrale Voraussetzung für digitale Leistungen und Prozesse und schaffen die Grundlage für einen digitalen Staat.
+<br class="block content-[''] !mb-32" />
+In dieser Online-Schulung erfahren Sie, wie Sie Regelungen so formulieren, dass Sie den **Digitalcheck erfolgreich bestehen**. Wir zeigen an **Beispielen**, wie Sie Ihre Regelungen digitaltauglich schreiben können. Anhand der fünf bewährten **Prinzipien für Digitaltauglichkeit** erläutern wir, wie Sie Begriffe und Konzepte wie Automatisierung und Standardisierung optimal nutzen, um Ihre Vorhaben fit für die digitale Zukunft zu machen.
+<br class="block content-[''] !mb-32" />
+Das Angebot richtet sich an alle, die in den Bundesministerien Regelungen erarbeiten. Vorkenntnisse sind nicht erforderlich.`,
+            button: {
+              text: "Per E-Mail anmelden",
+              href: encodeURI(
+                `mailto:digitalcheck@digitalservice.bund.de?subject=[Digitalcheck Schulung] Anmeldung digitaltaugliche Regelungen&body=Guten Tag,
+
+ich möchte mich gerne für die Online-Schulung anmelden:
+
+Regelungen digitaltauglich gestalten – praktische Tipps für den Digitalcheck
+
+am
+
+[Wunsch-Datum einfügen]
+
+Mit freundlichen Grüßen`,
+              ),
+              look: "tertiary" as const,
+            },
+            sellingPoints: "Alle Informationen auf einen Blick",
+            details: [
+              {
+                icon: TimerOutlined,
+                title: "Nächste Termine",
+                text: `
+- **Dienstag, 15. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
+- **Freitag, 18. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 23. Oktober,**<br class="max-md:hidden"> 14:30–16:00 Uhr
+- **Freitag, 25. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr
+- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr`,
+              },
+              {
+                icon: CheckCircleOutlined,
+                title: "Was Sie bekommen",
+                text: `
+- Tipps für einen erfolgreichen Digitalcheck
+- Beispiele für digitaltaugliche Formulierungen
+- Einführung zum Anwenden der Prinzipien für Digitaltauglichkeit`,
+              },
+            ],
+          },
+          {
+            title: "Visualisierungen – Komplexes einfach darstellen",
+            text: `Digitaltaugliche Regelungen müssen von Beginn an aus der Umsetzungsperspektive gedacht werden. Visualisierungsmethoden bieten dafür wertvolle Unterstützung: Mit ihrer Hilfe lassen sich einzelne **Prozessschritte, Zielgruppen und beteiligte Akteure** darstellen. **Mögliche Hindernisse** für eine digitale Umsetzung werden sicht- und bearbeitbar.
+<br class="block content-[''] !mb-32" />
+In unserer interaktiven Online-Schulung erfahren Sie, wie Sie Visualisierungen gezielt für Ihr Regelungsvorhaben nutzen können. Anhand konkreter Beispiele lernen Sie, **eigene Visualisierungen zu erstellen** und so komplexe Vorhaben klar und verständlich zu präsentieren.
+<br class="block content-[''] !mb-32" />
+Das Angebot richtet sich an alle, die in den Bundesministerien Regelungen erarbeiten. Vorkenntnisse sind nicht erforderlich.`,
+            button: {
+              text: "Per E-Mail anmelden",
+              href: encodeURI(
+                `mailto:digitalcheck@digitalservice.bund.de?subject=[Digitalcheck Schulung] Anmeldung Visualisierungen&body=Guten Tag,
+
+ich möchte mich gerne für die Online-Schulung anmelden:
+
+Visualisierungen – Komplexes einfach darstellen
+
+am
+
+[Wunsch-Datum einfügen]
+
+Mit freundlichen Grüßen`,
+              ),
+              look: "tertiary" as const,
+            },
+            sellingPoints: "Alle Informationen auf einen Blick",
+            details: [
+              {
+                icon: TimerOutlined,
+                title: "Nächste Termine",
+                text: `
+- **Dienstag, 1. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 9. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
+- **Freitag, 11. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Mittwoch, 16. Oktober,**<br class="max-md:hidden"> 08:30–10:00 Uhr
+- **Donnerstag, 24. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
+- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr`,
+              },
+              {
+                icon: CheckCircleOutlined,
+                title: "Was Sie bekommen",
+                text: `
+- verschiedene Arten von Visualisierungen kennenlernen
+- Übung selbst Visualisierungen zu erstellen`,
               },
             ],
           },

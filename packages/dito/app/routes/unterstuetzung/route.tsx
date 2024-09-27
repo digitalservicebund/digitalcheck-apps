@@ -178,20 +178,22 @@ export default function Index() {
             ))}
         </Container>
       </Background>
-      <Background backgroundColor="white">
-        <Container>
-          <Header
-            heading={{
-              tagName: "h2",
-              text: supportOfferings.title,
-            }}
-            content={{
-              markdown: supportOfferings.text,
-            }}
-          />
-          <SupportTabs />
-        </Container>
-      </Background>
+      <div id="angebote">
+        <Background backgroundColor="white">
+          <Container>
+            <Header
+              heading={{
+                tagName: "h2",
+                text: supportOfferings.title,
+              }}
+              content={{
+                markdown: supportOfferings.text,
+              }}
+            />
+            <SupportTabs />
+          </Container>
+        </Background>
+      </div>
     </>
   );
 }
