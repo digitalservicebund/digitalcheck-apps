@@ -36,7 +36,7 @@ const Box = ({
             {/* Visually styled label */}
             <span aria-hidden="true">{label.text || label.children}</span>
             {/* Accessible label for screen readers */}
-            <span role="heading" aria-level={3} className="sr-only">
+            <span role="heading" aria-level={1} className="sr-only">
               {label.text || label.children}
             </span>
             {/* Render as children if provided */}
