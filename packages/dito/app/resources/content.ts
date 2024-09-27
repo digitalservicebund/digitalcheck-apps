@@ -490,7 +490,7 @@ Wenn Sie ein Regelungsvorhaben erarbeiten, ist es entscheidend, die **Zuständig
       {
         background: "blue",
         headline: {
-          text: "Aufgaben und Abläufe gemeinsam erfassen",
+          text: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
 
@@ -509,7 +509,7 @@ Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuelle
       {
         background: "blue",
         headline: {
-          text: "IT-Systeme gemeinsam erfassen",
+          text: "2.3. IT-Systeme gemeinsam erfassen",
         },
         content: `**Zeit:** ca. sechs Stunden
 
@@ -533,7 +533,7 @@ Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendeten IT-Sys
       {
         background: "blue",
         headline: {
-          text: "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
+          text: "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 <br class="block content-[''] !mb-24" />
@@ -548,7 +548,7 @@ Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche 
       {
         background: "blue",
         headline: {
-          text: "Technische Umsetzbarkeit sicherstellen",
+          text: "2.5. Technische Umsetzbarkeit sicherstellen",
         },
         content: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 
@@ -696,7 +696,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
 } as TMethodPage;
 
 export const tasksProcesses = {
-  title: "Aufgaben und Abläufe gemeinsam erfassen",
+  title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
   subtitle: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Abläufe** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie im vorigen Schritt identifiziert haben. In diesem Schritt müssen Sie noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
   guidance: `**Zeit:** ca. sechs Stunden
 
@@ -789,7 +789,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
 } as TMethodPage;
 
 export const collectITSystems = {
-  title: "IT-Systeme gemeinsam erfassen",
+  title: "2.3. IT-Systeme gemeinsam erfassen",
   subtitle: `Nutzen Sie das Fachwissen der zuständigen Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die im vorigen Schritt identifizierten Abläufe zu erfassen und zu verstehen.`,
   guidance: `**Zeit:** ca. sechs Stunden
 
@@ -976,7 +976,7 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
 };
 
 export const technicalFeasibility = {
-  title: "Technische Umsetzbarkeit sicherstellen",
+  title: "2.5. Technische Umsetzbarkeit sicherstellen",
   subtitle: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der zuständigen Akteurinnen und Akteure zurück und holen Sie sich Hilfe von neutralen IT-Expertinnen und -Experten.`,
   guidance: `**Zeit:** Richtet sich nach der Komplexität des Vorhabens
 

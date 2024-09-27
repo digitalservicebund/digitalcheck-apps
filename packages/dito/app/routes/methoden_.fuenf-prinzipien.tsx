@@ -48,7 +48,9 @@ export default function Index() {
           <Header
             heading={{
               tagName: "h1",
-              text: fivePrinciples.title,
+              text: referrer.startsWith(ROUTE_METHODS.url)
+                ? `2.4. ${fivePrinciples.title}`
+                : fivePrinciples.title,
             }}
           />
           <div className="mt-64">

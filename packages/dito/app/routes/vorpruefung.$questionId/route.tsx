@@ -128,7 +128,7 @@ export type PreCheckAnswers = {
 };
 
 export default function Index() {
-  const { question, answers } = useLoaderData<typeof loader>();
+  const { questionIdx, question, answers } = useLoaderData<typeof loader>();
   const existingAnswer = answers?.[question.id];
   const [selectedOption, setSelectedOption] =
     useState<PreCheckAnswerOption["value"]>(existingAnswer);
@@ -178,6 +178,7 @@ export default function Index() {
                   ? form.error("answer")
                   : undefined,
             }}
+            ariaLabel={`Frage ${questionIdx + 1} von ${questions.length}`}
           />
           <Container paddingTop="0" paddingBottom="40">
             <ButtonContainer

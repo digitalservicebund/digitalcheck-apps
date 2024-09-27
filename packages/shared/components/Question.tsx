@@ -18,6 +18,7 @@ export type QuestionProps = {
   radio?: RadioGroupProps;
   stack?: 8 | 16 | 32 | 48;
   additionalClassNames?: string;
+  ariaLabel?: string;
 } & PropsWithChildren<CommonWrapperProps>;
 
 export default function Question({
@@ -31,6 +32,7 @@ export default function Question({
   radio,
   stack,
   additionalClassNames,
+  ariaLabel = "",
 }: QuestionProps) {
   let cssClasses = additionalClassNames ?? "";
   cssClasses = classNames(
@@ -46,6 +48,7 @@ export default function Question({
 
   return (
     <fieldset className={cssClasses}>
+      <span className="sr-only">{ariaLabel}</span>
       <legend className="ds-stack-16">
         {box && <Box {...box} />}
         {heading && <Heading {...heading} />}
