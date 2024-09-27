@@ -33,7 +33,12 @@ const Box = ({
       <div className="ds-stack-8">
         {label && (
           <Heading tagName="div" look="ds-label-section text-gray-900">
-            {label.text || label.children}
+            {/* Visually styled label */}
+            <span aria-hidden="true">{label.text || label.children}</span>
+            {/* Accessible label for screen readers */}
+            <span role="heading" aria-level={3} className="sr-only">
+              {label.text || label.children}
+            </span>
             {/* Render as children if provided */}
           </Heading>
         )}
