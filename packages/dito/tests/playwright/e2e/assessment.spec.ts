@@ -239,7 +239,7 @@ test.describe("test quicksend email", () => {
       .getByRole("link", { name: "E-Mail erstellen" })
       .getAttribute("href");
 
-    const mailTo = new URL(emailHref || "");
+    const mailTo = new URL(emailHref ?? "");
 
     expect(mailTo.searchParams.get("subject")).toBe(
       "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
@@ -255,9 +255,9 @@ test.describe("test quicksend email", () => {
       .getByRole("link", { name: "E-Mail erstellen" })
       .getAttribute("href");
 
-    const mailTo = new URL(emailHref || "");
+    const mailTo = new URL(emailHref ?? "");
     const bodyUrl =
-      mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] || "";
+      mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] ?? "";
 
     expect(mailTo.searchParams.get("subject")).toBe(
       "Digitalcheck Vorprüfung: „Policy XYZ“",

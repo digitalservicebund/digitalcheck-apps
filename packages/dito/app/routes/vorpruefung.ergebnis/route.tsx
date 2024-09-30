@@ -71,7 +71,7 @@ export async function action({ request }: ActionFunctionArgs) {
     method: "POST",
     body: formData,
   });
-  const uniqueUrl = (await uniqueResponse.json()).url;
+  const uniqueUrl = (await uniqueResponse.json()).url as string;
   if (action === "email") {
     const emailTemplate = preCheck.result.form.emailTemplate;
     const subject = `${emailTemplate.subject}: „${formData.get("title")}“`;
