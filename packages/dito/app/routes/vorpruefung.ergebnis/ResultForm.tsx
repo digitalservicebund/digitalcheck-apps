@@ -36,6 +36,8 @@ export default function ResultForm({
     }
   };
 
+  const isPositive = !!Object.values(answers).find((a) => a === "yes");
+
   return (
     <Container
       backgroundColor="white"
