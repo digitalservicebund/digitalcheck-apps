@@ -7,7 +7,7 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { useLocation } from "@remix-run/react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { support } from "resources/content";
 
 const { supportOfferings } = support;
@@ -34,9 +34,7 @@ type Offering = {
 
 export default function SupportTabs() {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(
-    location.hash === "#angebote" ? 2 : 0,
-  );
+  const [activeTab, setActiveTab] = useState(0);
   const tabRef = useRef<Map<number, HTMLButtonElement> | null>(null);
 
   function getMap() {
@@ -46,6 +44,11 @@ export default function SupportTabs() {
     }
     return tabRef.current;
   }
+
+  // The hash is not send to the server, so we need to useEffect to avoid hydration mismatch
+  useEffect(() => {
+    setActiveTab(location.hash === "#angebote" ? 2 : 0);
+  }, [location.hash]);
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLButtonElement>,
