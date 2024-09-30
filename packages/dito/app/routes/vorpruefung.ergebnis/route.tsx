@@ -1,5 +1,14 @@
-import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import {
+  json,
+  redirect,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
+import {
+  MetaFunction,
+  redirectDocument,
+  useLoaderData,
+} from "@remix-run/react";
 
 import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
@@ -7,6 +16,7 @@ import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
+import getBaseURL from "utils/getBaseURL";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import ResultNegative from "./ResultNegative";
@@ -51,6 +61,31 @@ export async function loader({ request }: LoaderFunctionArgs) {
     },
     await getHeaderFromCookie(cookie),
   );
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const action = formData.get("action");
+  formData.delete("action"); // making sure action does not end up in the cookie
+  const uniqueResponse = await fetch(`${getBaseURL(request)}/uniq`, {
+    method: "POST",
+    body: formData,
+  });
+  const uniqueUrl = (await uniqueResponse.json()).url;
+  if (action === "email") {
+    const emailTemplate = preCheck.result.form.emailTemplate;
+    const subject = `${emailTemplate.subject}: „${formData.get("title")}“`;
+    const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
+    const mailToLink = encodeURI(
+      `mailto:${emailTemplate.to}?subject=${subject}&body=${body}`,
+    );
+    return redirect(mailToLink);
+  } else if (action === "download") {
+    // we need to force a native navigation to trigger the download here
+    return redirectDocument(uniqueUrl);
+  }
+  // eslint-disable-next-line @typescript-eslint/only-throw-error
+  throw new Response("Unknown action", { status: 400 });
 }
 
 export default function Result() {
