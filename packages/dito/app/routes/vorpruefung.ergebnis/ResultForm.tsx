@@ -6,26 +6,11 @@ import Input from "@digitalcheck/shared/components/Input";
 import RichText from "@digitalcheck/shared/components/RichText";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import { useForm } from "@rvf/remix";
-import { withZod } from "@rvf/zod";
 import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
 import { useFeatureFlag } from "utils/featureFlags";
-import { z } from "zod";
-
-const positiveValidation = z.object({
-  title: z
-    .string()
-    .min(1, { message: preCheck.result.form.policyTitleRequired })
-    .max(500, { message: preCheck.result.form.policyTitleTooLong }),
-});
-
-const negativeValidation = positiveValidation.extend({
-  negativeReasoning: z
-    .string()
-    .min(1, { message: preCheck.result.form.reasonRequired })
-    .max(5000, { message: preCheck.result.form.reasonTooLong }),
-});
 
 export default function ResultForm({
   answers,
@@ -34,10 +19,8 @@ export default function ResultForm({
 }>) {
   const quickSendNkrFlag = useFeatureFlag("digitalcheck.quicksend-nkr");
 
-  const isPositive = !!Object.values(answers).find((a) => a === "yes");
-
   const form = useForm({
-    validator: withZod(isPositive ? positiveValidation : negativeValidation),
+    validator: getResultValidatorForAnswers(answers),
     method: "post",
   });
 
@@ -108,7 +91,7 @@ export default function ResultForm({
                 ? [
                     {
                       id: "result-email-button",
-                      name: "action",
+                      name: "_action",
                       value: "email",
                       text: preCheck.result.form.sendEmailButton.text,
                       look: "primary",
@@ -116,7 +99,7 @@ export default function ResultForm({
                     },
                     {
                       id: "result-download-button",
-                      name: "action",
+                      name: "_action",
                       value: "download",
                       text: preCheck.result.form.downloadPdfButton.text,
                       look: "ghost",
@@ -125,7 +108,7 @@ export default function ResultForm({
                 : [
                     {
                       id: "result-download-button",
-                      name: "action",
+                      name: "_action",
                       value: "download",
                       text: preCheck.result.form.downloadPdfButton.text,
                       look: "primary",

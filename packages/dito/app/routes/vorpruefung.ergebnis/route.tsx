@@ -10,8 +10,10 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
+import { validationError } from "@rvf/remix";
 import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
+import type { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
@@ -22,6 +24,7 @@ import trackCustomEvent from "utils/trackCustomEvent.server";
 import ResultNegative from "./ResultNegative";
 import ResultPositive from "./ResultPositive";
 import ResultUnsure from "./ResultUnsure";
+import getResultValidatorForAnswers from "./resultValidation";
 
 const { questions } = preCheck;
 
@@ -65,14 +68,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const action = formData.get("action");
-  formData.delete("action"); // making sure action does not end up in the cookie
+  const { _action, title, negativeReasoning, ...answers } =
+    Object.fromEntries(formData);
+
+  // server side form validation in case the user has JavaScript disabled
+  const validator = getResultValidatorForAnswers(answers as PreCheckAnswers);
+  const result = await validator.validate({ title, negativeReasoning });
+  if (result.error) {
+    return validationError(result.error, result.submittedData);
+  }
+
   const uniqueResponse = await fetch(`${getBaseURL(request)}/uniq`, {
     method: "POST",
     body: formData,
   });
   const uniqueUrl = (await uniqueResponse.json()).url as string;
-  if (action === "email") {
+  if (_action === "email") {
     const emailTemplate = preCheck.result.form.emailTemplate;
     const subject = `${emailTemplate.subject}: „${formData.get("title")}“`;
     const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
@@ -80,7 +91,7 @@ export async function action({ request }: ActionFunctionArgs) {
       `mailto:${emailTemplate.to}?subject=${subject}&body=${body}`,
     );
     return redirect(mailToLink);
-  } else if (action === "download") {
+  } else if (_action === "download") {
     // we need to force a native navigation to trigger the download here
     return redirectDocument(uniqueUrl);
   }
