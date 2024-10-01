@@ -7,7 +7,7 @@ const { questions } = preCheck;
 test.describe("test questions form", () => {
   test("all answer options are submittable", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     await page.waitForURL(preCheck.questions[0].url);
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -28,7 +28,7 @@ test.describe("test questions form", () => {
 
   test("clicking through questions works", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     for (let i = 0; i < 5; i++) {
       // check that the page shows correct question
       await expect(page).toHaveURL(questions[i].url);
@@ -78,7 +78,7 @@ test.describe("test questions form", () => {
     // that's why the test is a bit more extensive than it could be
     // we've sinced moved to using rvf but we'll keep it like this for now
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
@@ -125,7 +125,7 @@ test.describe("test questions form", () => {
 
   test("redirect to first unanswered question", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
@@ -145,7 +145,7 @@ test.describe("test questions form", () => {
 test.describe("test question navigation", () => {
   test("navigation leads to correct pages", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     for (let i = 0; i < 4; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();

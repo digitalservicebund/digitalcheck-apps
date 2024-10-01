@@ -129,7 +129,7 @@ test.describe("test result page redirects", () => {
     page,
   }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.goto(ROUTE_RESULT.url);

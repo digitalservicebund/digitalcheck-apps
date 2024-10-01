@@ -237,7 +237,7 @@ export const preCheck = {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
       "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
-    buttonText: "Digitalbezug einschätzen",
+    buttonText: "Einschätzung starten",
     info: {
       title: "Eine oder mehrere Vorprüfungen?",
       text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
@@ -844,7 +844,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     label: "Unterstützungsangebot",
 
     title: "IT-Wissen einfach erklärt",
-    text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
+    text: `Der Digitalcheck-Support unterstützt Sie mit kostenloser IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 
 <br class="block content-[''] !mb-24" />
 
