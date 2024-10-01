@@ -694,11 +694,11 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   },
   nextStep: {
     label: "So geht es weiter:",
-    title: "Aufgaben und Abläufe gemeinsam erfassen",
+    title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
     text: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie identifiziert haben. Sie müssen noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "Aufgaben und Abläufe klären",
         look: "tertiary",
         href: ROUTE_METHODS_TASKS_PROCESSES.url,
       },
@@ -787,11 +787,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
   },
   nextStep: {
     label: "So geht es weiter:",
-    title: "IT-Systeme erfassen",
+    title: "2.3. IT-Systeme erfassen",
     text: `Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die identifizierten Abläufe zu erfassen und zu verstehen.`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "IT-Landschaft verstehen",
         look: "tertiary",
         href: ROUTE_METHODS_COLLECT_IT_SYSTEMS.url,
       },
@@ -861,11 +861,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
     label: "So geht es weiter:",
 
     title:
-      "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
+      "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "Fünf Prinzipien nutzen",
         look: "tertiary",
         href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
       },
@@ -961,12 +961,12 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
   nextStepMethods: {
     label: "So geht es weiter:",
 
-    title: "Technische Umsetzbarkeit sicherstellen",
+    title: "2.5. Technische Umsetzbarkeit sicherstellen",
     text: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.`,
     buttons: [
       {
         look: "tertiary",
-        text: "Zum nächsten Schritt",
+        text: "IT-Auswirkungen prüfen",
         href: ROUTE_METHODS_TECHNICAL_FEASIBILITY.url,
       } as const,
     ],
