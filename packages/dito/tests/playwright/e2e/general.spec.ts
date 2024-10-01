@@ -13,7 +13,7 @@ test.describe("test general availability", () => {
     page,
   }) => {
     // Remove first page from allRoutes array
-    for await (const route of allRoutes.slice(1)) {
+    for (const route of allRoutes.slice(1)) {
       if (route.url.endsWith(".pdf")) {
         continue;
       }
