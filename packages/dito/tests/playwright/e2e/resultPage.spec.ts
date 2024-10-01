@@ -105,13 +105,13 @@ test.describe("test result page reasoning", () => {
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
-      "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Ich bin unsicher" beantwortet`,
+      `mit „Ich bin unsicher“ beantwortet`,
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Nein" beantwortet`,
+      `mit „Nein“ beantwortet`,
     );
     await expect(page.getByRole("main")).not.toContainText("nächsten Schritte");
   });

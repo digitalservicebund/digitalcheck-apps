@@ -386,8 +386,8 @@ export const preCheck = {
       title: "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro:
-        '**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**',
-      negativeIntro: '**Folgende Fragen haben Sie mit „Nein“ beantwortet:**',
+        "**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**",
+      negativeIntro: "**Folgende Fragen haben Sie mit „Nein“ beantwortet:**",
       actionButton: {
         text: "Vorprüfung wiederholen",
         href: ROUTE_PRECHECK.url,
