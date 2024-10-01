@@ -383,11 +383,11 @@ export const preCheck = {
       },
     },
     unsure: {
-      title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
+      title: "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro:
-        '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
-      negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
+        '**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**',
+      negativeIntro: '**Folgende Fragen haben Sie mit „Nein“ beantwortet:**',
       actionButton: {
         text: "Vorprüfung wiederholen",
         href: ROUTE_PRECHECK.url,
@@ -413,10 +413,10 @@ export const preCheck = {
     form: {
       formLegend: "Senden Sie die Vorprüfung zum NKR",
       instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
-- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung in die entsprechenden Felder ein.
-- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
@@ -734,7 +734,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
     {
       image: {
         src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png",
-        alt: `Ein Flussdiagramm mit dem Titel "Beispielprozess-Ablauf 'Einkommensteuer-Erklärung durchführen'". Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als "Akteurin oder Akteur" beschriftet. Als Beispiel steht darunter "Finanzämter". Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit "Arbeitsprozess" beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als "Adressatin oder Adressat". Als Beispiel ist "Bundeszentralamt für Steuern" eingetragen.`,
+        alt: `Ein Flussdiagramm mit dem Titel „Beispielprozess-Ablauf ‚Einkommensteuer-Erklärung durchführen‘“. Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als „Akteurin oder Akteur“ beschriftet. Als Beispiel steht darunter „Finanzämter“. Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit „Arbeitsprozess“ beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als „Adressatin oder Adressat“. Als Beispiel ist „Bundeszentralamt für Steuern“ eingetragen.`,
       },
       label: "Vorlage",
       title: "Einfache Abläufe und Aufgaben erfassen",
@@ -753,7 +753,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
     {
       image: {
         src: "/assets/images/rulemap.jpg",
-        alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+        alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
       title: "Visualisierungsbeispiele für komplexe Abläufe",
@@ -826,7 +826,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     {
       image: {
         src: "/assets/images/it-systeme-erfassen.png",
-        alt: `Eine Excel-Tabelle mit dem Titel "IT-Systeme erfassen für [ARBEITSTITEL]", die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
+        alt: `Eine Excel-Tabelle mit dem Titel „IT-Systeme erfassen für [ARBEITSTITEL]“, die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
       },
       label: "Vorlage",
 
@@ -1017,7 +1017,7 @@ So erfahren Sie
     {
       image: {
         src: "/assets/images/aspekte-technischer-umsetzbarkeit.png",
-        alt: `Ein Dokument mit der Überschrift "Gesprächsleitfaden technische Umsetzbarkeit". Darunter ist ein Kasten zu sehen, in dem steht "Welche Verbindungen oder Daten müssen angepasst werde?". Vom Kasten führt ein Pfeil nach unten an dem steht "Fertig? Weiter zum nächsten Punkt". Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
+        alt: `Ein Dokument mit der Überschrift „Gesprächsleitfaden technische Umsetzbarkeit“. Darunter ist ein Kasten zu sehen, in dem steht „Welche Verbindungen oder Daten müssen angepasst werde?“. Vom Kasten führt ein Pfeil nach unten an dem steht „Fertig? Weiter zum nächsten Punkt“. Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
       title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
@@ -1080,7 +1080,7 @@ export const support = {
 
     image: {
       src: "/assets/images/support.png",
-      alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+      alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
     },
     testimonials: [
       {
@@ -1247,7 +1247,7 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
               {
                 image: {
                   src: "/assets/images/rulemap.jpg",
-                  alt: `Eine Rulemap mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+                  alt: `Eine Rulemap mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
                 },
                 text: "**Beispiel-Visualisierung:** [Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht](https://dserver.bundestag.de/btd/20/123/2012351.pdf) (Seite 110 ff.)",
               },
@@ -1286,7 +1286,7 @@ Maßnahmen, die wir z. B. für Sie erledigen:
             ],
             examples: [
               {
-                text: "Lesen Sie sich das Beispiel durch: [“Begleitung des Stromsteuergesetz”](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
+                text: "Lesen Sie sich das Beispiel durch: [„Begleitung des Stromsteuergesetz“](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
               },
             ],
           },
