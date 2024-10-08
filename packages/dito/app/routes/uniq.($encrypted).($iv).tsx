@@ -3,7 +3,6 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "utils/constants.server";
-import unleash from "utils/featureFlags.server";
 import getBaseURL from "utils/getBaseURL";
 
 enum QuestionAbbreviations {
@@ -99,11 +98,6 @@ const unzip = (zipped: string) => {
 };
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
-
-  if (!quicksendNkrFlag) {
-    return json({ quicksendNkrFlag });
-  }
   const { encrypted, iv } = params;
 
   if (encrypted && iv) {
@@ -150,12 +144,6 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
-
-  if (!quicksendNkrFlag) {
-    return json({ quicksendNkrFlag, url: "" });
-  }
-
   if (request.method !== "POST") {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
