@@ -52,7 +52,7 @@ export default function Footer({
   );
 
   const renderLinks = (links: LinkProps[]) => (
-    <ul className="list-none m-0 p-0 ds-stack-16" key={links[0]?.url}>
+    <ul className="list-none m-0 p-0 ds-stack-16 text-left" key={links[0]?.url}>
       {links.map(renderLink)}
     </ul>
   );
