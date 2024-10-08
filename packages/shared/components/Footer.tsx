@@ -57,7 +57,7 @@ export default function Footer({
     </ul>
   );
 
-  const footerContent = (
+  const footerContent = useContainer ? (
     <div className="flex flex-wrap items-start justify-between gap-y-32">
       <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
         <div className="py-4 pr-4">
@@ -83,6 +83,36 @@ export default function Footer({
         ])}
       </div>
       <div className="flex flex-wrap gap-x-16 gap-y-8">
+        {renderLinks(linksFirstColumn)}
+        {renderLinks(linksSecondColumn)}
+      </div>
+    </div>
+  ) : (
+    <div className="flex flex-wrap items-center justify-center gap-y-32 gap-x-32 text-center">
+      <div className="py-4 pr-4">
+        <Image
+          url={bmiLogo}
+          width={120}
+          alternativeText="Logo des Bundesministerium des Innern und für Heimat"
+        />
+      </div>
+      <div>
+        {renderLinks([
+          {
+            preText: "Ein Onlinedienst der",
+            text: "DigitalService GmbH des Bundes",
+            url: "https://digitalservice.bund.de/",
+            openInNewTab: true,
+          },
+          {
+            preText: "Im Auftrag des",
+            text: "Bundesministerium des Innern und für Heimat",
+            url: "https://www.bmi.bund.de/",
+            openInNewTab: true,
+          },
+        ])}
+      </div>
+      <div className="flex gap-x-32">
         {renderLinks(linksFirstColumn)}
         {renderLinks(linksSecondColumn)}
       </div>
