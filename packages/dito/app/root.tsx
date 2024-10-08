@@ -26,8 +26,7 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
-import React, { useEffect, useState, type ReactNode } from "react";
-import { useLocation } from "react-router-dom";
+import React, { type ReactNode } from "react";
 import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
 import {
@@ -35,6 +34,7 @@ import {
   ROUTE_IMPRINT,
   ROUTE_LANDING,
   ROUTE_PRIVACY,
+  ROUTE_SITEMAP,
 } from "resources/staticRoutes";
 import {
   PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
@@ -216,6 +216,7 @@ const footerLinks = [
     text: "Open Source Code",
     openInNewTab: true,
   },
+  { url: ROUTE_SITEMAP.url, text: "Sitemap" },
 ];
 
 const PageHeader = ({
@@ -294,21 +295,13 @@ function Document({
           supportOfferingFlag={supportOfferingFlag}
         />
         {children}
-        <Footer links={footerLinks} />
+        <Footer links={footerLinks} useContainer={false} />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
     </html>
   );
 }
-
-const ScreenReaderAnnouncer = ({
-  announcement,
-}: Readonly<{ announcement: string }>) => (
-  <div aria-live="polite" aria-atomic="true" className="sr-only">
-    {announcement}
-  </div>
-);
 
 export default function App() {
   const {
@@ -317,14 +310,6 @@ export default function App() {
     supportOfferingFlag,
     featureFlags,
   } = useLoaderData<typeof loader>();
-  const location = useLocation();
-  const [announcement, setAnnouncement] = useState("");
-
-  useEffect(() => {
-    // Update announcement when route changes
-    const pageTitle = document.title || "Neue Seite geladen";
-    setAnnouncement(`Seite geladen: ${pageTitle}`);
-  }, [location.pathname]);
 
   return (
     <Document
@@ -341,7 +326,6 @@ export default function App() {
       <main className="grow">
         <Outlet context={{ featureFlags }} />
       </main>
-      <ScreenReaderAnnouncer announcement={announcement} />
     </Document>
   );
 }

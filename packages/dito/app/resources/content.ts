@@ -443,7 +443,7 @@ export const preCheck = {
         ],
       },
       downloadPdfButton: {
-        text: "Nur herunterladen",
+        text: "Nur herunterladen (PDF-Datei)",
       },
       sendEmailButton: {
         text: "E-Mail erstellen",
@@ -609,7 +609,7 @@ export const documentation = {
   subtitle: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.`,
   buttons: [
     {
-      text: "Dokumentation herunterladen",
+      text: "Dokumentation herunterladen (PDF-Datei)",
       href: ROUTE_DOCUMENTATION_STATIC_PDF.url,
     } as const,
     {
@@ -679,7 +679,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       text: `Die Excelvorlage hilft Ihnen, die beteiligten Ebenen auszuwählen, Zuständigkeiten zu klären und hilfreiche Ansprechpersonen zu sammeln.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - Zuständige Akteurinnen und Akteure.xlsx",
         },
       ],
@@ -745,7 +745,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
 Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adressatinnen und Adressaten, die einen Antrag stellen, können auf der linken Seite stehen, die entsprechende Behörde steht dann rechts.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - Einfache Abläufe und Aufgaben erfassen.xlsx",
         },
       ],
@@ -834,7 +834,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
       text: `Nutzen Sie die Vorlage, um die IT-Systeme systematisch und detailliert zu dokumentieren. Sie müssen nicht selbst über das Wissen verfügen: Fragen Sie die zuständigen Akteurinnen und Akteure und ziehen Sie ggf. neutrale IT-Expertise hinzu.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - IT-Systeme erfassen.xlsx",
         },
       ],
@@ -1026,7 +1026,7 @@ So erfahren Sie
 Das PDF ist barrierearm/barrierefrei.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (PDF-Datei)",
           href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf",
         },
       ],
@@ -1623,8 +1623,6 @@ Teilbereiche, die nicht barrierefrei sind:
 - Externe Links können nicht immer barrierefrei angeboten werden, da sie auf Inhalte oder Ressourcen außerhalb des aktuellen Angebots verweisen, auf die wir keinen direkten Einfluss haben.
 - Anderssprachige Abschnitte und Wörter sind nicht immer technisch als solche gekennzeichnet, was zu unverständlicher Aussprache in Vorlese-Software führen kann.
 - An einzelnen Stellen wird ein \`<br/>\` benutzt diese werden noch entfernt.
-- In einzelnen Links fehlen noch aussagekräftige Linktexte, diese werden ergänzt.
-- Eine Sitemap ist noch nicht vorhanden, somit ist die Informationstiefe nicht erkennbar.
 <br class="block content-[''] !mb-48" />
 
 ## Barriere melden! Hinweise zur Barrierefreiheit
