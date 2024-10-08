@@ -237,7 +237,7 @@ export const preCheck = {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
       "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
-    buttonText: "Digitalbezug einschätzen",
+    buttonText: "Einschätzung starten",
     info: {
       title: "Eine oder mehrere Vorprüfungen?",
       text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
@@ -383,11 +383,11 @@ export const preCheck = {
       },
     },
     unsure: {
-      title: "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
+      title: "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
       unsureIntro:
-        '**Folgende Fragen haben Sie mit "Ich bin unsicher" beantwortet:**',
-      negativeIntro: '**Folgende Fragen haben Sie mit "Nein" beantwortet:**',
+        "**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**",
+      negativeIntro: "**Folgende Fragen haben Sie mit „Nein“ beantwortet:**",
       actionButton: {
         text: "Vorprüfung wiederholen",
         href: ROUTE_PRECHECK.url,
@@ -413,10 +413,10 @@ export const preCheck = {
     form: {
       formLegend: "Senden Sie die Vorprüfung zum NKR",
       instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
-- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung in die entsprechenden Felder ein.
-- Klicken Sie auf „E-Mail erstellen". Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
+- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
 - Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
@@ -443,7 +443,7 @@ export const preCheck = {
         ],
       },
       downloadPdfButton: {
-        text: "Nur herunterladen",
+        text: "Nur herunterladen (PDF-Datei)",
       },
       sendEmailButton: {
         text: "E-Mail erstellen",
@@ -609,7 +609,7 @@ export const documentation = {
   subtitle: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen.`,
   buttons: [
     {
-      text: "Dokumentation herunterladen",
+      text: "Dokumentation herunterladen (PDF-Datei)",
       href: ROUTE_DOCUMENTATION_STATIC_PDF.url,
     } as const,
     {
@@ -679,7 +679,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
       text: `Die Excelvorlage hilft Ihnen, die beteiligten Ebenen auszuwählen, Zuständigkeiten zu klären und hilfreiche Ansprechpersonen zu sammeln.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - Zuständige Akteurinnen und Akteure.xlsx",
         },
       ],
@@ -694,11 +694,11 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   },
   nextStep: {
     label: "So geht es weiter:",
-    title: "Aufgaben und Abläufe gemeinsam erfassen",
+    title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
     text: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie identifiziert haben. Sie müssen noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "Aufgaben und Abläufe klären",
         look: "tertiary",
         href: ROUTE_METHODS_TASKS_PROCESSES.url,
       },
@@ -734,7 +734,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
     {
       image: {
         src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png",
-        alt: `Ein Flussdiagramm mit dem Titel "Beispielprozess-Ablauf 'Einkommensteuer-Erklärung durchführen'". Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als "Akteurin oder Akteur" beschriftet. Als Beispiel steht darunter "Finanzämter". Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit "Arbeitsprozess" beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als "Adressatin oder Adressat". Als Beispiel ist "Bundeszentralamt für Steuern" eingetragen.`,
+        alt: `Ein Flussdiagramm mit dem Titel „Beispielprozess-Ablauf ‚Einkommensteuer-Erklärung durchführen‘“. Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als „Akteurin oder Akteur“ beschriftet. Als Beispiel steht darunter „Finanzämter“. Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit „Arbeitsprozess“ beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als „Adressatin oder Adressat“. Als Beispiel ist „Bundeszentralamt für Steuern“ eingetragen.`,
       },
       label: "Vorlage",
       title: "Einfache Abläufe und Aufgaben erfassen",
@@ -745,7 +745,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
 Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adressatinnen und Adressaten, die einen Antrag stellen, können auf der linken Seite stehen, die entsprechende Behörde steht dann rechts.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - Einfache Abläufe und Aufgaben erfassen.xlsx",
         },
       ],
@@ -753,7 +753,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
     {
       image: {
         src: "/assets/images/rulemap.jpg",
-        alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+        alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
       title: "Visualisierungsbeispiele für komplexe Abläufe",
@@ -787,11 +787,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
   },
   nextStep: {
     label: "So geht es weiter:",
-    title: "IT-Systeme erfassen",
+    title: "2.3. IT-Systeme erfassen",
     text: `Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die identifizierten Abläufe zu erfassen und zu verstehen.`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "IT-Landschaft verstehen",
         look: "tertiary",
         href: ROUTE_METHODS_COLLECT_IT_SYSTEMS.url,
       },
@@ -826,7 +826,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     {
       image: {
         src: "/assets/images/it-systeme-erfassen.png",
-        alt: `Eine Excel-Tabelle mit dem Titel "IT-Systeme erfassen für [ARBEITSTITEL]", die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
+        alt: `Eine Excel-Tabelle mit dem Titel „IT-Systeme erfassen für [ARBEITSTITEL]“, die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
       },
       label: "Vorlage",
 
@@ -834,7 +834,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
       text: `Nutzen Sie die Vorlage, um die IT-Systeme systematisch und detailliert zu dokumentieren. Sie müssen nicht selbst über das Wissen verfügen: Fragen Sie die zuständigen Akteurinnen und Akteure und ziehen Sie ggf. neutrale IT-Expertise hinzu.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (xlsx-Datei)",
           href: "/download/Vorlage - IT-Systeme erfassen.xlsx",
         },
       ],
@@ -844,7 +844,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
     label: "Unterstützungsangebot",
 
     title: "IT-Wissen einfach erklärt",
-    text: `Der Digitalcheck-Support unterstützt Sie mit IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
+    text: `Der Digitalcheck-Support unterstützt Sie mit kostenloser IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 
 <br class="block content-[''] !mb-24" />
 
@@ -861,11 +861,11 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
     label: "So geht es weiter:",
 
     title:
-      "Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
+      "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       {
-        text: "Zum nächsten Schritt",
+        text: "Fünf Prinzipien nutzen",
         look: "tertiary",
         href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
       },
@@ -961,12 +961,12 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
   nextStepMethods: {
     label: "So geht es weiter:",
 
-    title: "Technische Umsetzbarkeit sicherstellen",
+    title: "2.5. Technische Umsetzbarkeit sicherstellen",
     text: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.`,
     buttons: [
       {
         look: "tertiary",
-        text: "Zum nächsten Schritt",
+        text: "IT-Auswirkungen prüfen",
         href: ROUTE_METHODS_TECHNICAL_FEASIBILITY.url,
       } as const,
     ],
@@ -1017,7 +1017,7 @@ So erfahren Sie
     {
       image: {
         src: "/assets/images/aspekte-technischer-umsetzbarkeit.png",
-        alt: `Ein Dokument mit der Überschrift "Gesprächsleitfaden technische Umsetzbarkeit". Darunter ist ein Kasten zu sehen, in dem steht "Welche Verbindungen oder Daten müssen angepasst werde?". Vom Kasten führt ein Pfeil nach unten an dem steht "Fertig? Weiter zum nächsten Punkt". Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
+        alt: `Ein Dokument mit der Überschrift „Gesprächsleitfaden technische Umsetzbarkeit“. Darunter ist ein Kasten zu sehen, in dem steht „Welche Verbindungen oder Daten müssen angepasst werde?“. Vom Kasten führt ein Pfeil nach unten an dem steht „Fertig? Weiter zum nächsten Punkt“. Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
       title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
@@ -1026,7 +1026,7 @@ So erfahren Sie
 Das PDF ist barrierearm/barrierefrei.`,
       buttons: [
         {
-          text: "Vorlage herunterladen",
+          text: "Vorlage herunterladen (PDF-Datei)",
           href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf",
         },
       ],
@@ -1080,7 +1080,7 @@ export const support = {
 
     image: {
       src: "/assets/images/support.png",
-      alt: `Ein Flussdiagramm mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+      alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
     },
     testimonials: [
       {
@@ -1247,7 +1247,7 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
               {
                 image: {
                   src: "/assets/images/rulemap.jpg",
-                  alt: `Eine Rulemap mit der Überschrift "Rulemap § 9b 2023". Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
+                  alt: `Eine Rulemap mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
                 },
                 text: "**Beispiel-Visualisierung:** [Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht](https://dserver.bundestag.de/btd/20/123/2012351.pdf) (Seite 110 ff.)",
               },
@@ -1286,7 +1286,7 @@ Maßnahmen, die wir z. B. für Sie erledigen:
             ],
             examples: [
               {
-                text: "Lesen Sie sich das Beispiel durch: [“Begleitung des Stromsteuergesetz”](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
+                text: "Lesen Sie sich das Beispiel durch: [„Begleitung des Stromsteuergesetz“](https://digitalservice.bund.de/blog/aktuelles-beispiel-fuer-digitaltaugliche-regelungen-das-stromsteuerrecht)",
               },
             ],
           },
@@ -1623,8 +1623,6 @@ Teilbereiche, die nicht barrierefrei sind:
 - Externe Links können nicht immer barrierefrei angeboten werden, da sie auf Inhalte oder Ressourcen außerhalb des aktuellen Angebots verweisen, auf die wir keinen direkten Einfluss haben.
 - Anderssprachige Abschnitte und Wörter sind nicht immer technisch als solche gekennzeichnet, was zu unverständlicher Aussprache in Vorlese-Software führen kann.
 - An einzelnen Stellen wird ein \`<br/>\` benutzt diese werden noch entfernt.
-- In einzelnen Links fehlen noch aussagekräftige Linktexte, diese werden ergänzt.
-- Eine Sitemap ist noch nicht vorhanden, somit ist die Informationstiefe nicht erkennbar.
 <br class="block content-[''] !mb-48" />
 
 ## Barriere melden! Hinweise zur Barrierefreiheit

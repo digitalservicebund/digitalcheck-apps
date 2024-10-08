@@ -34,6 +34,7 @@ import {
   ROUTE_IMPRINT,
   ROUTE_LANDING,
   ROUTE_PRIVACY,
+  ROUTE_SITEMAP,
 } from "resources/staticRoutes";
 import {
   PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
@@ -215,6 +216,7 @@ const footerLinks = [
     text: "Open Source Code",
     openInNewTab: true,
   },
+  { url: ROUTE_SITEMAP.url, text: "Sitemap" },
 ];
 
 const PageHeader = ({
@@ -293,7 +295,7 @@ function Document({
           supportOfferingFlag={supportOfferingFlag}
         />
         {children}
-        <Footer links={footerLinks} />
+        <Footer links={footerLinks} useContainer={false} />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>

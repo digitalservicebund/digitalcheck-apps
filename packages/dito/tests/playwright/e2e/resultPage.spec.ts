@@ -105,13 +105,13 @@ test.describe("test result page reasoning", () => {
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
-      "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Ich bin unsicher" beantwortet`,
+      `mit „Ich bin unsicher“ beantwortet`,
     );
     await expect(page.getByRole("main")).toContainText(
-      `mit "Nein" beantwortet`,
+      `mit „Nein“ beantwortet`,
     );
     await expect(page.getByRole("main")).not.toContainText("nächsten Schritte");
   });
@@ -129,7 +129,7 @@ test.describe("test result page redirects", () => {
     page,
   }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
+    await page.getByRole("link", { name: "Einschätzung starten" }).click();
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.goto(ROUTE_RESULT.url);

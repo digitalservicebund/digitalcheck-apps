@@ -12,7 +12,11 @@ const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
   return (
     <div className="scroll-my-40 relative ds-stack-8" id={identifier}>
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
-      <ol className="list-none ds-stack-32 ps-0 relative">
+      <ol
+        className="list-none ds-stack-32 ps-0 relative"
+        aria-live="polite"
+        aria-labelledby={identifier ? `${identifier}-heading` : undefined}
+      >
         {items.map((item, index) => (
           <li
             key={
@@ -28,6 +32,11 @@ const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
                 : index.toString())
             }
             className="first:pt-0 scroll-my-40"
+            aria-describedby={
+              item.identifier ? `${item.identifier}-desc` : undefined
+            }
+            aria-posinset={index + 1}
+            aria-setsize={items.length}
           >
             <ListItem
               {...item}
@@ -53,7 +62,11 @@ const BulletList = ({ identifier, items, heading }: BaseListProps) => {
           ▲
         </div>
       </div>
-      <ol className="list-none ds-stack-32 ps-0 relative">
+      <ol
+        className="list-none ds-stack-32 ps-0 relative"
+        aria-live="polite"
+        aria-labelledby={identifier ? `${identifier}-heading` : undefined}
+      >
         {items.map((item, index) => (
           <li
             key={
@@ -69,6 +82,9 @@ const BulletList = ({ identifier, items, heading }: BaseListProps) => {
                 : index.toString())
             }
             className="first:pt-0 scroll-my-40"
+            aria-describedby={
+              item.identifier ? `${item.identifier}-desc` : undefined
+            }
           >
             <ListItem
               {...item}

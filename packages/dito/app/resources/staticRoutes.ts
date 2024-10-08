@@ -93,6 +93,11 @@ export const ROUTE_A11Y: Route = {
   title: "Barrierefreiheit",
   parent: ROUTE_LANDING.url,
 };
+export const ROUTE_SITEMAP: Route = {
+  url: "/sitemap",
+  title: "Sitemap",
+  parent: ROUTE_LANDING.url,
+};
 
 const routes: Route[] = [
   ROUTE_LANDING,
@@ -109,6 +114,7 @@ const routes: Route[] = [
   ROUTE_IMPRINT,
   ROUTE_PRIVACY,
   ROUTE_A11Y,
+  ROUTE_SITEMAP,
 ];
 
 export default routes;

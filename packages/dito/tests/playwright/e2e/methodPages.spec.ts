@@ -23,16 +23,18 @@ test.describe("test method page link flow", () => {
     await page.getByRole("link", { name: "Ansprechpersonen finden" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_RESPONSIBLE_ACTORS.url);
 
-    await page.getByRole("link", { name: "Zum nächsten Schritt" }).click();
+    await page
+      .getByRole("link", { name: "Aufgaben und Abläufe klären" })
+      .click();
     await expect(page).toHaveURL(ROUTE_METHODS_TASKS_PROCESSES.url);
 
-    await page.getByRole("link", { name: "Zum nächsten Schritt" }).click();
+    await page.getByRole("link", { name: "IT-Landschaft verstehen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_COLLECT_IT_SYSTEMS.url);
 
-    await page.getByRole("link", { name: "Zum nächsten Schritt" }).click();
+    await page.getByRole("link", { name: "Fünf Prinzipien nutzen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_FIVE_PRINCIPLES.url);
 
-    await page.getByRole("link", { name: "Zum nächsten Schritt" }).click();
+    await page.getByRole("link", { name: "IT-Auswirkungen prüfen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
 
     await page.getByRole("link", { name: "Zu den Hilfestellungen" }).click();
@@ -125,7 +127,7 @@ test.describe("five principals page", () => {
     await expect(page.getByRole("main")).toContainText(
       "Technische Umsetzbarkeit sicherstellen",
     );
-    await page.getByRole("link", { name: "Zum nächsten Schritt" }).click();
+    await page.getByRole("link", { name: "IT-Auswirkungen prüfen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
   });
 });
