@@ -63,6 +63,7 @@ const unabbreviate = (response: TUnabbreviations) => {
 
 const encrypt = (text: string) => {
   const iv = randomBytes(16);
+  console.error(ENCRYPTION_KEY);
   const cipher = createCipheriv(ENCRYPTION_ALGORITHM, ENCRYPTION_KEY, iv);
 
   const encrypted =

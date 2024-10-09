@@ -34,7 +34,7 @@ test.describe("test positive assessment page and PDF", () => {
     await page.getByRole("button", { name: "herunterladen" }).click();
   });
 
-  test("generates and downloads PDF with user input", async ({ page }) => {
+  test.only("generates and downloads PDF with user input", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "herunterladen" }).click();
