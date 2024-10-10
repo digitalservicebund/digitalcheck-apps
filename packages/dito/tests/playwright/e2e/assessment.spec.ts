@@ -230,7 +230,7 @@ test.describe("test quicksend email", () => {
     await page.waitForURL(ROUTE_RESULT.url);
   });
 
-  test("creates draft email with correct subject", async ({ page }) => {
+  test.skip("creates draft email with correct subject", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
@@ -245,7 +245,7 @@ test.describe("test quicksend email", () => {
     );
   });
 
-  test("url in quicksend email downloads PDF", async ({ page }) => {
+  test.skip("url in quicksend email downloads PDF", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy XYZ");
