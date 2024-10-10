@@ -3,8 +3,7 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "utils/constants.server";
-import { getAnswersFromCookie } from "utils/cookies.server";
-import unleash from "utils/featureFlags.server";
+import getBaseURL from "utils/getBaseURL";
 
 enum QuestionAbbreviations {
   "it-system" = "a",
@@ -99,22 +98,12 @@ const unzip = (zipped: string) => {
 };
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
-
-  if (!quicksendNkrFlag) {
-    return json({ quicksendNkrFlag });
-  }
-  const requestUrl = new URL(request.url);
-  const BASE_URL = requestUrl.origin.replace(
-    "http://",
-    process.env.NODE_ENV === "production" ? "https://" : "http://",
-  );
   const { encrypted, iv } = params;
 
   if (encrypted && iv) {
     const decrypted = decrypt(encrypted, iv);
     const unzipped = unzip(decrypted);
-    const parsed = JSON.parse(unzipped);
+    const parsed = JSON.parse(unzipped) as TUnabbreviations;
     const unabbreviated = unabbreviate(parsed);
     const dataEntries = Object.entries(unabbreviated);
 
@@ -125,10 +114,13 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     });
 
     try {
-      const response = await fetch(`${BASE_URL}${ROUTE_RESULT_PDF.url}`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `${getBaseURL(request)}${ROUTE_RESULT_PDF.url}`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
 
       if (!response.ok) {
         throw new Error(
@@ -152,38 +144,19 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  const quicksendNkrFlag = unleash.isEnabled("digitalcheck.quicksend-nkr");
-
-  if (!quicksendNkrFlag) {
-    return json({ quicksendNkrFlag, url: "" });
-  }
-
   if (request.method !== "POST") {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
   }
 
-  const requestUrl = new URL(request.url);
-  const BASE_URL = requestUrl.origin.replace(
-    "http://",
-    process.env.NODE_ENV === "production" ? "https://" : "http://",
-  );
-  const { answers } = await getAnswersFromCookie(request);
   const formData = await request.formData();
-  const { title, negativeReasoning } = Object.fromEntries(formData);
-
-  const combinedResponse = {
-    title,
-    negativeReasoning,
-    ...answers,
-  } as TAbbreviations;
-
+  const combinedResponse = Object.fromEntries(formData) as TAbbreviations;
   const abbreviated = abbreviate(combinedResponse);
   const stringified = JSON.stringify(abbreviated);
   const zipped = zip(stringified);
   const [encrypted, iv] = encrypt(zipped);
 
   return json({
-    url: `${BASE_URL}/uniq/${encrypted}/${iv}`,
+    url: `${getBaseURL(request)}/uniq/${encrypted}/${iv}`,
   });
 }

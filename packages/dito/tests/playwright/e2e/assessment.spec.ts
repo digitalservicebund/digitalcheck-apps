@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { preCheck } from "resources/content";
-import { ROUTE_RESULT, ROUTE_RESULT_PDF } from "resources/staticRoutes";
+import { ROUTE_RESULT } from "resources/staticRoutes";
 import {
   FIELD_NAME_POLICY_TITLE,
   FIELD_NAME_PRE_CHECK_NEGATIVE,
@@ -38,9 +38,8 @@ test.describe("test positive assessment page and PDF", () => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "herunterladen" }).click();
-    await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
-    expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
+    expect(download.url()).toContain("/uniq");
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
@@ -129,9 +128,8 @@ test.describe("test PDF generation in negative case", () => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     const downloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: "herunterladen" }).click();
-    await expect(page.getByRole("main")).toContainText("wird heruntergeladen");
     const download = await downloadPromise;
-    expect(download.url()).toContain(ROUTE_RESULT_PDF.url);
+    expect(download.url()).toContain("/uniq");
     await download.saveAs("/tmp/" + download.suggestedFilename());
     const filePath = path.resolve("/tmp/" + download.suggestedFilename());
     const fileData = fs.readFileSync(filePath);
@@ -237,11 +235,10 @@ test.describe("test quicksend email", () => {
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
 
-    const emailHref = await page
-      .getByRole("link", { name: "E-Mail erstellen" })
-      .getAttribute("href");
-
-    const mailTo = new URL(emailHref || "");
+    const requestPromise = page.waitForRequest(/mailto:.*/);
+    await page.getByRole("button", { name: "E-Mail" }).click();
+    const request = await requestPromise;
+    const mailTo = new URL(request.url());
 
     expect(mailTo.searchParams.get("subject")).toBe(
       "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
@@ -253,13 +250,12 @@ test.describe("test quicksend email", () => {
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy XYZ");
 
-    const emailHref = await page
-      .getByRole("link", { name: "E-Mail erstellen" })
-      .getAttribute("href");
-
-    const mailTo = new URL(emailHref || "");
+    const requestPromise = page.waitForRequest(/mailto:.*/);
+    await page.getByRole("button", { name: "E-Mail" }).click();
+    const request = await requestPromise;
+    const mailTo = new URL(request.url());
     const bodyUrl =
-      mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] || "";
+      mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] ?? "";
 
     expect(mailTo.searchParams.get("subject")).toBe(
       "Digitalcheck Vorprüfung: „Policy XYZ“",

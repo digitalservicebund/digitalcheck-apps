@@ -17,20 +17,27 @@ export const FIELD_NAME_PRE_CHECK_NEGATIVE = "Vorprüfung negativ";
 export const FIELD_NAME_PRE_CHECK_NEGATIVE_REASONING =
   "Vorprüfung negativ - Erläuterung";
 
+const ALL_QUESTIONS = [
+  "it-system",
+  "verpflichtungen-fuer-beteiligte",
+  "datenaustausch",
+  "kommunikation",
+  "automatisierung",
+];
+
+const QUESTION_FIELD_MAP: Record<(typeof ALL_QUESTIONS)[number], string> = {
+  "it-system": FIELD_NAME_PRE_CHECK_POSITIVE_1,
+  "verpflichtungen-fuer-beteiligte": FIELD_NAME_PRE_CHECK_POSITIVE_2,
+  datenaustausch: FIELD_NAME_PRE_CHECK_POSITIVE_3,
+  kommunikation: FIELD_NAME_PRE_CHECK_POSITIVE_4,
+  automatisierung: FIELD_NAME_PRE_CHECK_POSITIVE_5,
+};
+
 function isPreCheckAnswers(
   obj: Record<string, FormDataEntryValue>,
 ): obj is PreCheckAnswers {
-  return (
-    typeof obj["it-system"] === "string" &&
-    !!obj["it-system"] &&
-    typeof obj["verpflichtungen-fuer-beteiligte"] === "string" &&
-    !!obj["verpflichtungen-fuer-beteiligte"] &&
-    typeof obj["datenaustausch"] === "string" &&
-    !!obj["datenaustausch"] &&
-    typeof obj["kommunikation"] === "string" &&
-    !!obj["kommunikation"] &&
-    typeof obj["automatisierung"] === "string" &&
-    !!obj["automatisierung"]
+  return ALL_QUESTIONS.every(
+    (question) => typeof obj[question] === "string" && !!obj[question],
   );
 }
 
@@ -59,34 +66,15 @@ const createPreCheckPDF = async function (
     const titleField = form.getTextField(FIELD_NAME_POLICY_TITLE);
     titleField.setText(title);
     titleField.setFontSize(12);
-    if (answers["it-system"] === POSITIVE_RESULT) {
-      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_1).check();
-    }
 
-    if (answers["verpflichtungen-fuer-beteiligte"] === POSITIVE_RESULT) {
-      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_2).check();
-    }
-
-    if (answers["datenaustausch"] === POSITIVE_RESULT) {
-      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_3).check();
-    }
-
-    if (answers["kommunikation"] === POSITIVE_RESULT) {
-      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_4).check();
-    }
-
-    if (answers["automatisierung"] === POSITIVE_RESULT) {
-      form.getCheckBox(FIELD_NAME_PRE_CHECK_POSITIVE_5).check();
-    }
+    ALL_QUESTIONS.forEach((question) => {
+      if (answers[question] === POSITIVE_RESULT) {
+        form.getCheckBox(QUESTION_FIELD_MAP[question]).check();
+      }
+    });
 
     if (
-      [
-        answers["it-system"],
-        answers["verpflichtungen-fuer-beteiligte"],
-        answers["datenaustausch"],
-        answers["kommunikation"],
-        answers["automatisierung"],
-      ].every((answer) => answer === NEGATIVE_RESULT)
+      ALL_QUESTIONS.every((question) => answers[question] === NEGATIVE_RESULT)
     ) {
       form.getCheckBox(FIELD_NAME_PRE_CHECK_NEGATIVE).check();
     }
@@ -122,8 +110,11 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const { fileName } = params;
   const formData = await request.formData();
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
+  const filteredAnswers = Object.fromEntries(
+    Object.entries(answers).filter(([key]) => ALL_QUESTIONS.includes(key)),
+  );
 
-  if (!isPreCheckAnswers(answers)) {
+  if (!isPreCheckAnswers(filteredAnswers)) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(preCheck.result.form.precheckAnswersRequired, {
       status: 400,
@@ -139,13 +130,9 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
   if (
     (negativeReasoning && typeof negativeReasoning !== "string") ||
-    ([
-      answers["it-system"],
-      answers["verpflichtungen-fuer-beteiligte"],
-      answers["datenaustausch"],
-      answers["kommunikation"],
-      answers["automatisierung"],
-    ].every((answer) => answer === NEGATIVE_RESULT) &&
+    (ALL_QUESTIONS.every(
+      (question) => filteredAnswers[question] === NEGATIVE_RESULT,
+    ) &&
       negativeReasoning === "")
   ) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
@@ -172,13 +159,13 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const pdfData = await createPreCheckPDF({
     title,
     negativeReasoning,
-    answers,
+    answers: filteredAnswers,
   });
 
   let result = "Negativ";
-  if (Object.values(answers).find((a) => a === "yes")) {
+  if (Object.values(filteredAnswers).find((a) => a === "yes")) {
     result = "Positiv";
-  } else if (Object.values(answers).find((a) => a === "unsure")) {
+  } else if (Object.values(filteredAnswers).find((a) => a === "unsure")) {
     result = "Unsicher";
   }
 
@@ -190,11 +177,11 @@ export async function action({ params, request }: ActionFunctionArgs) {
   // Update the cookie expiration to 60 minutes
   const updatedCookie = await userAnswers.serialize(
     {
-      answers,
+      answers: filteredAnswers,
       hasViewedResult: false,
     },
     { maxAge: 3600 },
-  ); // 3600 seconds = 60 minutes
+  );
 
   return new Response(pdfData, {
     status: 200,

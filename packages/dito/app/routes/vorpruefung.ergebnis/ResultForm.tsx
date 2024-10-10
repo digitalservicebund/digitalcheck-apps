@@ -5,85 +5,26 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import Input from "@digitalcheck/shared/components/Input";
 import RichText from "@digitalcheck/shared/components/RichText";
 import Textarea from "@digitalcheck/shared/components/Textarea";
-import { useFetcher } from "@remix-run/react";
 import { useForm } from "@rvf/remix";
-import { withZod } from "@rvf/zod";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { preCheck } from "resources/content";
-import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
 import { useFeatureFlag } from "utils/featureFlags";
-import { z } from "zod";
-import { type action as TUniqAction } from "../uniq.($encrypted).($iv)";
 
 export default function ResultForm({
   answers,
 }: Readonly<{
   answers: PreCheckAnswers;
 }>) {
-  const [downloadIsDisabled, setDownloadIsDisabled] = useState(false);
-  const [warning, setWarning] = useState<string | null>(null);
-  const fetcher = useFetcher<typeof TUniqAction>();
-  const [uniqueUrl, setUniqueUrl] = useState("");
   const quickSendNkrFlag = useFeatureFlag("digitalcheck.quicksend-nkr");
 
-  const isPositive = !!Object.values(answers).find((a) => a === "yes");
-
-  const negativeValidation = z.object({
-    title: z
-      .string()
-      .min(1, { message: preCheck.result.form.policyTitleRequired })
-      .max(500, { message: preCheck.result.form.policyTitleTooLong }),
-    negativeReasoning: z
-      .string()
-      .min(1, { message: preCheck.result.form.reasonRequired })
-      .max(5000, { message: preCheck.result.form.reasonTooLong }),
-  });
-
-  const positiveValidation = negativeValidation.omit({
-    negativeReasoning: true,
-  });
-
-  const validator = withZod(
-    isPositive ? positiveValidation : negativeValidation,
-  );
-
   const form = useForm({
-    validator,
+    validator: getResultValidatorForAnswers(answers),
     method: "post",
-    action: ROUTE_RESULT_PDF.url,
-    reloadDocument: true,
   });
 
-  const subject = `${preCheck.result.form.emailTemplate.subject}: „${form.value("title")}“`;
-  const body = `${preCheck.result.form.emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${preCheck.result.form.emailTemplate.bodyAfter}`;
-  const mailTo = encodeURI(
-    `mailto:${preCheck.result.form.emailTemplate.to}?subject=${subject}&body=${body}`,
-  );
-
-  useEffect(() => {
-    if (form.formState.isValid && form.formState.isSubmitting) {
-      setDownloadIsDisabled(true);
-
-      const timeout = setTimeout(() => {
-        form.resetForm();
-        setDownloadIsDisabled(false);
-      }, 2000);
-
-      return () => {
-        setDownloadIsDisabled(false);
-        clearTimeout(timeout);
-      };
-    }
-  }, [form]);
-
-  useEffect(() => {
-    if (fetcher.data) {
-      const { url } = fetcher.data;
-      setUniqueUrl(url);
-    }
-  }, [fetcher.data]);
-
+  const [warning, setWarning] = useState<string | null>(null);
   const handleNegativeReasoningChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
@@ -95,21 +36,15 @@ export default function ResultForm({
     }
   };
 
+  const isPositive = !!Object.values(answers).find((a) => a === "yes");
+
   return (
     <Container
       backgroundColor="white"
       additionalClassNames="rounded-lg"
       overhangingBackground
     >
-      <form
-        {...form.getFormProps()}
-        onChange={(event) => {
-          fetcher.submit(event.currentTarget, {
-            action: "/uniq",
-            method: "POST",
-          });
-        }}
-      >
+      <form {...form.getFormProps()}>
         <fieldset className="ds-stack-32">
           <legend>
             {quickSendNkrFlag ? (
@@ -158,32 +93,27 @@ export default function ResultForm({
                 ? [
                     {
                       id: "result-email-button",
+                      name: "_action",
+                      value: "email",
                       text: preCheck.result.form.sendEmailButton.text,
-                      href: uniqueUrl ? mailTo : "",
-                      type: "submit",
                       look: "primary",
-                      disabled: !form.formState.isValid,
                       className: "plausible-event-name=Quicksend+Click",
                     },
                     {
                       id: "result-download-button",
-                      text: downloadIsDisabled
-                        ? preCheck.result.form.downloadStarted
-                        : preCheck.result.form.downloadPdfButton.text,
-                      type: "submit",
+                      name: "_action",
+                      value: "download",
+                      text: preCheck.result.form.downloadPdfButton.text,
                       look: "ghost",
-                      disabled: downloadIsDisabled,
                     },
                   ]
                 : [
                     {
                       id: "result-download-button",
-                      text: downloadIsDisabled
-                        ? preCheck.result.form.downloadStarted
-                        : "Vorprüfung herunterladen",
-                      type: "submit",
+                      name: "_action",
+                      value: "download",
+                      text: preCheck.result.form.downloadPdfButton.text,
                       look: "primary",
-                      disabled: downloadIsDisabled,
                     },
                   ]
             }
