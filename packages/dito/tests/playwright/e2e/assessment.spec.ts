@@ -230,32 +230,30 @@ test.describe("test quicksend email", () => {
     await page.waitForURL(ROUTE_RESULT.url);
   });
 
-  test.skip("creates draft email with correct subject", async ({ page }) => {
+  test("creates draft email with correct subject", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
 
-    const emailHref = await page
-      .getByRole("link", { name: "E-Mail erstellen" })
-      .getAttribute("href");
-
-    const mailTo = new URL(emailHref ?? "");
+    const requestPromise = page.waitForRequest(/mailto:.*/);
+    await page.getByRole("button", { name: "E-Mail" }).click();
+    const request = await requestPromise;
+    const mailTo = new URL(request.url());
 
     expect(mailTo.searchParams.get("subject")).toBe(
       "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
     );
   });
 
-  test.skip("url in quicksend email downloads PDF", async ({ page }) => {
+  test("url in quicksend email downloads PDF", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy XYZ");
 
-    const emailHref = await page
-      .getByRole("link", { name: "E-Mail erstellen" })
-      .getAttribute("href");
-
-    const mailTo = new URL(emailHref ?? "");
+    const requestPromise = page.waitForRequest(/mailto:.*/);
+    await page.getByRole("button", { name: "E-Mail" }).click();
+    const request = await requestPromise;
+    const mailTo = new URL(request.url());
     const bodyUrl =
       mailTo.searchParams.get("body")?.match(/(https?:\/\/[^\s]+)/g)?.[0] ?? "";
 
