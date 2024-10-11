@@ -4,7 +4,7 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *" # Every day at 6am
+    - cron: "0 6 * * *" # Every day at 8am
 
 jobs:
   vulnerability-scan:
@@ -29,7 +29,7 @@ jobs:
           format: "sarif"
           output: "trivy-results.sarif"
           severity: "CRITICAL,HIGH"
-          exit-code: "2" # Fail the build!
+          exit-code: 2 # Fail the build!
 
       # Upload SARIF results to GitHub Security tab
       - name: Upload Trivy scan results to GitHub Security tab
