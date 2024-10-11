@@ -29,6 +29,7 @@ jobs:
           format: "sarif"
           output: "trivy-results.sarif"
           severity: "CRITICAL,HIGH"
+          limit-severities-for-sarif: true
           exit-code: 2 # Fail the build!
 
       # Upload SARIF results to GitHub Security tab
