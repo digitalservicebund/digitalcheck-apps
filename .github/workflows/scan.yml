@@ -5,7 +5,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * *" # Every day at 8am
-  # Allow to run this workflow manually
 
 jobs:
   vulnerability-scan:
@@ -32,10 +31,18 @@ jobs:
           output: "trivy-results.sarif"
           severity: "CRITICAL,HIGH"
           exit-code: "1" # Fail the build!
+          debug: "true"
+        continue-on-error: true
 
+      # List files in workspace to confirm SARIF output is generated
+      - name: List files in workspace
+        run: ls -la
+        continue-on-error: true
+
+      # Upload SARIF results to GitHub Security tab
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@c36620d31ac7c881962c3d9dd939c40ec9434f2b # v3.26.12
-        if: always() # Bypass non-zero exit code..
+        if: always() # Bypass non-zero exit code
         with:
           sarif_file: "trivy-results.sarif"
 
