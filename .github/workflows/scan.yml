@@ -30,6 +30,7 @@ jobs:
           output: "trivy-results.sarif"
           severity: "CRITICAL,HIGH"
           exit-code: "2" # Fail the build!
+          scanners: "vuln"
 
       # Upload SARIF results to GitHub Security tab
       - name: Upload Trivy scan results to GitHub Security tab
