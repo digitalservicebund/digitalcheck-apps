@@ -1,18 +1,18 @@
-import Background from "@digitalcheck/shared/components/Background";
+import Background from "@digitalcheck/shared/components/Background.tsx";
 import Box from "@digitalcheck/shared/components/Box.tsx";
-import Container from "@digitalcheck/shared/components/Container";
-import Header from "@digitalcheck/shared/components/Header";
-import RichText from "@digitalcheck/shared/components/RichText";
+import Container from "@digitalcheck/shared/components/Container.tsx";
+import Header from "@digitalcheck/shared/components/Header.tsx";
+import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { json, redirect } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import React from "react";
-import { digitalSuitability, header } from "resources/content";
+import { digitalSuitability, header } from "../resources/content.ts";
 import {
   ROUTE_DIGITAL_SUITABILITY,
   ROUTE_LANDING,
-} from "resources/staticRoutes";
-import unleash from "utils/featureFlags.server";
-import prependMetaTitle from "utils/metaTitle";
+} from "../resources/staticRoutes.ts";
+import unleash from "../utils/featureFlags.server.ts";
+import prependMetaTitle from "../utils/metaTitle.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_DIGITAL_SUITABILITY.title, matches);
@@ -22,17 +22,15 @@ export function loader() {
   const digitalSuitabilityFlag = unleash.isEnabled(
     "digitalcheck.digital-suitability",
   );
-  console.log(digitalSuitabilityFlag);
 
   if (!digitalSuitabilityFlag) {
-    // Redirect to the homepage flag is off
     return redirect(ROUTE_LANDING.url);
   }
 
-  return json({}); // proceed normally if the flag is on
+  return json({});
 }
 
-export default function Digitaltauglichkeit() {
+export default function Digitaltauglichkeit_index() {
   useLoaderData();
   return (
     <>
