@@ -20,7 +20,6 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINZIPLES.title, matches);
 };
 
-// Loader to fetch Prinzip data
 export async function loader() {
   const digitalSuitabilityFlag = unleash.isEnabled(
     "digitalcheck.digital-suitability",
@@ -31,11 +30,9 @@ export async function loader() {
   }
 
   const prinzipData = await getPrinzips();
-
-  const test = json({
+  return json({
     prinzips: prinzipData?.data.prinzips,
   });
-  return test;
 }
 
 export default function Prinzipien() {
@@ -44,11 +41,7 @@ export default function Prinzipien() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container>
-          {/*
-          <h1>{selectedPrinciple}</h1>
-*/}
-        </Container>
+        <Container>Alle Prinzipien</Container>
       </Background>
       <div>
         <h1>Prinzipien</h1>
