@@ -45,23 +45,21 @@ export default function Prinzipien() {
       </Background>
       <div>
         <h1>Prinzipien</h1>
-        <nav>
-          {prinzips.length ? (
-            <ul>
-              {prinzips.map((prinzip) => (
-                <li key={prinzip.documentId}>
-                  <Link to={`${prinzip.slug}`} state={{ prinzip }}>
-                    {prinzip.Name ? <>{prinzip.Name}</> : <i>No Name</i>}{" "}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No prinzips</i>
-            </p>
-          )}
-        </nav>
+        {prinzips.length ? (
+          <ul>
+            {prinzips.map((prinzip) => (
+              <li key={prinzip.documentId}>
+                <Link to={`${prinzip.slug}`} state={{ prinzip }}>
+                  {prinzip.Name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>
+            <i>Keine Prinzipien gefunden...</i>
+          </p>
+        )}
       </div>
       <Outlet context={prinzips} />
     </>
