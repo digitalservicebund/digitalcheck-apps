@@ -1,7 +1,13 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import { redirect } from "@remix-run/node";
-import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import {
+  json,
+  Link,
+  MetaFunction,
+  Outlet,
+  useLoaderData,
+} from "@remix-run/react";
 import {
   ROUTE_LANDING,
   ROUTE_PRINZIPLES,
@@ -44,13 +50,6 @@ export default function Prinzipien() {
 */}
         </Container>
       </Background>
-      {/*      <Container>
-        <DetailInfo
-          isSelectable={true}
-          selectOptions={prinzips.map((prinzip: Prinzip) => prinzip.Name)}
-          onChange={(e) => handleSelectChange(e.target.value)}
-        />
-      </Container>*/}
       <div>
         <h1>Prinzipien</h1>
         <nav>
@@ -71,7 +70,7 @@ export default function Prinzipien() {
           )}
         </nav>
       </div>
-      {/*<Outlet />*/}
+      <Outlet context={prinzips} />
     </>
   );
 }
