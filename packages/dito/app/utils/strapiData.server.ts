@@ -103,6 +103,20 @@ export type RegelungsvorhabenResponse = {
   };
 };
 
+const SCHEMA_PRINZIPIENTERFUELLUNG = `{
+          EinschaetzungReferat
+          Paragraphen {
+            ErlaeuterungDS
+            Norm
+            Tags {
+              Tag
+            }
+            Text
+            id
+          }
+          id
+        }`;
+
 const GET_PRINZIPS_QUERY = `query GetPrinzips {
   prinzips {
     Beschreibung
@@ -112,72 +126,11 @@ const GET_PRINZIPS_QUERY = `query GetPrinzips {
     regelungsvorhaben {
       Gesetz
       Prinzipienerfuellung {
-        Automatisierung {
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id
-        }
-        Datenschutz {
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id
-        }
-        DigitaleKommunikation {
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id
-        }
-        KlareRegelungen {
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id          
-        }
-        Wiederverwendung {
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id          
-        }
-        id
+        Automatisierung ${SCHEMA_PRINZIPIENTERFUELLUNG}
+        Datenschutz ${SCHEMA_PRINZIPIENTERFUELLUNG}
+        DigitaleKommunikation ${SCHEMA_PRINZIPIENTERFUELLUNG}
+        KlareRegelungen ${SCHEMA_PRINZIPIENTERFUELLUNG}
+        Wiederverwendung ${SCHEMA_PRINZIPIENTERFUELLUNG}
       }
       Rechtsgebiet
       Ressort
@@ -187,21 +140,28 @@ const GET_PRINZIPS_QUERY = `query GetPrinzips {
     }
     slug
   }
-}
-`;
+}`;
 
-export async function getPrinzipBySlug(slug: string): Promise<PrinzipResponse> {
-  const endpoint = `${url}/api/prinzips?filters[slug][$eqi]=${slug}&populate=regelungsvorhaben`;
-  const response = await fetch(endpoint);
-
-  if (!response.ok) {
-    console.error("Failed to fetch Prinzip by slug:", response.statusText);
-    throw new Error("Failed to fetch Prinzip by slug");
+const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
+  regelungsvorhabens {
+    DIPVorgang
+    Gesetz
+    NKRNummer
+    NKRStellungnahme
+    Rechtsgebiet
+    Ressort
+    Prinzipienerfuellung {
+      Automatisierung ${SCHEMA_PRINZIPIENTERFUELLUNG}
+      Datenschutz ${SCHEMA_PRINZIPIENTERFUELLUNG}
+      DigitaleKommunikation ${SCHEMA_PRINZIPIENTERFUELLUNG}
+      KlareRegelungen ${SCHEMA_PRINZIPIENTERFUELLUNG}
+      Wiederverwendung ${SCHEMA_PRINZIPIENTERFUELLUNG}
+    }
+    Titel
+    documentId
+    slug
   }
-
-  const data: PrinzipResponse = await response.json();
-  return data;
-}
+}`;
 
 export async function getPrinzips(): Promise<PrinzipResponse | null> {
   try {
@@ -214,6 +174,7 @@ export async function getPrinzips(): Promise<PrinzipResponse | null> {
         query: GET_PRINZIPS_QUERY,
       }),
     });
+    // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
       console.error("Failed to fetch Prinzips:", response.statusText);
       return null;
@@ -227,13 +188,20 @@ export async function getPrinzips(): Promise<PrinzipResponse | null> {
   }
 }
 
-export async function getRegelungsvorhabens(): Promise<RegelungsvorhabenResponse | null> {
+export async function getRegelungsvorhabensBySlug(): Promise<RegelungsvorhabenResponse | null> {
   try {
-    const endpoint = `${url}/api/regelungsvorhabens?populate[Prinzipienerfuellung]=*`;
-    const response = await fetch(endpoint);
-
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: GET_REGELUNGSVORHABENS_QUERY,
+      }),
+    });
+    // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
-      console.error("Failed to fetch Regelungsvorhabens:", response.statusText);
+      console.error("Failed to fetch Prinzips:", response.statusText);
       return null;
     }
 
@@ -241,29 +209,6 @@ export async function getRegelungsvorhabens(): Promise<RegelungsvorhabenResponse
     return data;
   } catch (error) {
     console.error("Error fetching Regelungsvorhabens:", error);
-    return null;
-  }
-}
-
-export async function getRegelungsvorhabensForPrinzip(
-  prinzipId: number,
-): Promise<RegelungsvorhabenResponse | null> {
-  try {
-    const endpoint = `${url}/api/regelungsvorhabens?filters[prinzip][id][$eq]=${prinzipId}&populate[Prinzipienerfuellung]=*`;
-    const response = await fetch(endpoint);
-
-    if (!response.ok) {
-      console.error(
-        "Failed to fetch Regelungsvorhabens for Prinzip:",
-        response.statusText,
-      );
-      return null;
-    }
-
-    const data: RegelungsvorhabenResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching Regelungsvorhabens for Prinzip:", error);
     return null;
   }
 }
