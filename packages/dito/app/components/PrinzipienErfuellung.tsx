@@ -32,6 +32,11 @@ export default function PrinzipienErfuellung({
           <>
             <b>Norm: {paragraph.Norm}</b> <br />
             <br />
+            Tags:{" "}
+            {paragraph.Tags &&
+              paragraph.Tags.length > 0 &&
+              paragraph.Tags.map((tag) => <>{tag.Tag} </>)}
+            <br /> <br />
             Regelungstext: {paragraph.Regelungstext} <br />
             <br />
             WarumWichtig:{" "}
