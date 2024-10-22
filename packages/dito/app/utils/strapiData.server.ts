@@ -97,12 +97,12 @@ export type RegelungsvorhabenResponse = {
 const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
   Paragraphen {
-    ErlaeuterungDS
+    WarumWichtig
     Norm
     Tags {
       Tag
     }
-    Text
+    Regelungstext
     id
   }
   id
