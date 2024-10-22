@@ -3,6 +3,7 @@ import { json, Link, useLoaderData, useOutletContext } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 import { type LoaderFunctionArgs } from "@remix-run/node";
+import PrinzipienErfuellung from "../components/PrinzipienErfuellung.tsx";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
 export const loader = ({ params }: LoaderFunctionArgs) => {
@@ -19,12 +20,17 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
     throw new Response("Prinzip not found", { status: 404 });
   }
   const { Beschreibung, Name, Nummer, Tipps, GuteUmsetzung } = prinzip;
+  const prinzipToStrapi = {
+    DigitaleKommunikation: "Digitale Kommunikation sicherstellen",
+    Wiederverwendung: "Wiederverwendung von Daten und Standards ermöglichen",
+    Datenschutz: "Datenschutz und Informationssicherheit gewährleisten",
+    KlareRegelungen: "Klare Regelungen für eine digitale Ausführung finden",
+    Automatisierung: "Automatisierung ermöglichen",
+  };
 
-  // TODO: filter prinzipienerfuellung for relevant prinzip
   return (
     <>
       <Container additionalClassNames="rich-text">
-        <h2>All Properties:</h2>
         Beschreibung <BlocksRenderer content={Beschreibung}></BlocksRenderer>
         <br />
         Name: {Name}
@@ -32,11 +38,12 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
         Nummer: {Nummer}
         <br />
         {Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}
-        regelungsvorhaben:{" "}
+        <br />
+        <b>Regelungen in der Umsetzung:</b> <br />
+        <br />
         {GuteUmsetzung.map((rv) => {
           const {
             Gesetz,
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             Prinzipienerfuellung,
             Rechtsgebiet,
             Ressort,
@@ -44,12 +51,26 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
             URLBezeichnung,
           } = rv;
           return (
-            <Link to={URLBezeichnung} key={URLBezeichnung}>
-              {Titel}
-              {Gesetz ? "Gesetz" : "Kein Gesetz"}
-              {Rechtsgebiet}
-              {Ressort}
-            </Link>
+            <Container key={Titel}>
+              {Titel} {Gesetz ? "Gesetz" : "Kein Gesetz"} {Rechtsgebiet}{" "}
+              {Ressort} {URLBezeichnung}{" "}
+              <Link to={URLBezeichnung} key={URLBezeichnung}>
+                {URLBezeichnung}
+              </Link>
+              <br />
+              {(
+                Object.keys(
+                  Prinzipienerfuellung,
+                ) as (keyof typeof Prinzipienerfuellung)[]
+              )
+                .filter((pe) => prinzip.Name === prinzipToStrapi[pe])
+                .map((pe) => (
+                  <PrinzipienErfuellung
+                    key={pe}
+                    prinzipienErfuellung={Prinzipienerfuellung[pe]}
+                  ></PrinzipienErfuellung>
+                ))}
+            </Container>
           );
         })}
       </Container>

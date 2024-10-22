@@ -2,7 +2,7 @@ const url = process.env.STRAPI_URL || "http://localhost:1337/graphql";
 
 export type Paragraph = {
   Norm: string;
-  WarumWichtig: string;
+  WarumWichtig: [];
   Tags: Tag[];
   Regelungstext: string;
 };
@@ -16,7 +16,7 @@ export enum EinschaetzungReferat {
 
 export type Prinziperfuellung = {
   EinschaetzungReferat: EinschaetzungReferat;
-  NKRStellungnahme?: string;
+  NKRStellungnahme?: [];
   Paragraphen: Paragraph[];
 };
 
@@ -64,7 +64,7 @@ export type Regelungsvorhaben = {
   Titel: string;
   Gesetz: boolean;
   Ressort: Ressort;
-  NKRStellungnahme?: string;
+  NKRStellungnahme?: [];
   DIPVorgang: number;
   NKRNummer: number;
   Prinzipienerfuellung: Prinzipienerfuellung;
@@ -96,6 +96,7 @@ export type RegelungsvorhabenResponse = {
 
 const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
+  NKRStellungnahme
   Paragraphen {
     WarumWichtig
     Norm
