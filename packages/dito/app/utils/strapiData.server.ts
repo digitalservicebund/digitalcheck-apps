@@ -103,6 +103,7 @@ export type RegelungsvorhabenResponse = {
   };
 };
 
+// TODO: how to use fragment here?
 const SCHEMA_PRINZIPIENTERFUELLUNG = `{
           EinschaetzungReferat
           Paragraphen {
