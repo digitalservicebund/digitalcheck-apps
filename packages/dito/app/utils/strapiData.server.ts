@@ -92,19 +92,13 @@ export type PrinzipResponse = {
 };
 
 export type RegelungsvorhabenResponse = {
-  data: Regelungsvorhaben[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
+  data: {
+    regelungsvorhabens: Regelungsvorhaben[];
   };
 };
 
 // TODO: how to use fragment here?
-const SCHEMA_PRINZIPIENTERFUELLUNG = `{
+const SCHEMA_PRINZIPIENERFUELLUNG = `{
           EinschaetzungReferat
           Paragraphen {
             ErlaeuterungDS
@@ -127,11 +121,11 @@ const GET_PRINZIPS_QUERY = `query GetPrinzips {
     regelungsvorhaben {
       Gesetz
       Prinzipienerfuellung {
-        Automatisierung ${SCHEMA_PRINZIPIENTERFUELLUNG}
-        Datenschutz ${SCHEMA_PRINZIPIENTERFUELLUNG}
-        DigitaleKommunikation ${SCHEMA_PRINZIPIENTERFUELLUNG}
-        KlareRegelungen ${SCHEMA_PRINZIPIENTERFUELLUNG}
-        Wiederverwendung ${SCHEMA_PRINZIPIENTERFUELLUNG}
+        Automatisierung ${SCHEMA_PRINZIPIENERFUELLUNG}
+        Datenschutz ${SCHEMA_PRINZIPIENERFUELLUNG}
+        DigitaleKommunikation ${SCHEMA_PRINZIPIENERFUELLUNG}
+        KlareRegelungen ${SCHEMA_PRINZIPIENERFUELLUNG}
+        Wiederverwendung ${SCHEMA_PRINZIPIENERFUELLUNG}
       }
       Rechtsgebiet
       Ressort
@@ -152,11 +146,11 @@ const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
     Rechtsgebiet
     Ressort
     Prinzipienerfuellung {
-      Automatisierung ${SCHEMA_PRINZIPIENTERFUELLUNG}
-      Datenschutz ${SCHEMA_PRINZIPIENTERFUELLUNG}
-      DigitaleKommunikation ${SCHEMA_PRINZIPIENTERFUELLUNG}
-      KlareRegelungen ${SCHEMA_PRINZIPIENTERFUELLUNG}
-      Wiederverwendung ${SCHEMA_PRINZIPIENTERFUELLUNG}
+      Automatisierung ${SCHEMA_PRINZIPIENERFUELLUNG}
+      Datenschutz ${SCHEMA_PRINZIPIENERFUELLUNG}
+      DigitaleKommunikation ${SCHEMA_PRINZIPIENERFUELLUNG}
+      KlareRegelungen ${SCHEMA_PRINZIPIENERFUELLUNG}
+      Wiederverwendung ${SCHEMA_PRINZIPIENERFUELLUNG}
     }
     Titel
     documentId
