@@ -97,22 +97,32 @@ export type RegelungsvorhabenResponse = {
   };
 };
 
-// TODO: how to use fragment here?
-const SCHEMA_PRINZIPIENERFUELLUNG = `{
-          EinschaetzungReferat
-          Paragraphen {
-            ErlaeuterungDS
-            Norm
-            Tags {
-              Tag
-            }
-            Text
-            id
-          }
-          id
-        }`;
+const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
+  EinschaetzungReferat
+  Paragraphen {
+    ErlaeuterungDS
+    Norm
+    Tags {
+      Tag
+    }
+    Text
+    id
+  }
+  id
+}`;
 
-const GET_PRINZIPS_QUERY = `query GetPrinzips {
+const prinzipienErfuellung = `fragment prinzipienErfuellung on ComponentSharedPrinzipienerfuellung {
+  Automatisierung { ...prinzipErfuellung }
+  Datenschutz { ...prinzipErfuellung }
+  DigitaleKommunikation { ...prinzipErfuellung }
+  KlareRegelungen { ...prinzipErfuellung }
+  Wiederverwendung { ...prinzipErfuellung }
+}`;
+
+const GET_PRINZIPS_QUERY = `
+${prinzipErfuellung}
+${prinzipienErfuellung}
+query GetPrinzips {
   prinzips {
     Beschreibung
     Name
@@ -121,11 +131,7 @@ const GET_PRINZIPS_QUERY = `query GetPrinzips {
     regelungsvorhaben {
       Gesetz
       Prinzipienerfuellung {
-        Automatisierung ${SCHEMA_PRINZIPIENERFUELLUNG}
-        Datenschutz ${SCHEMA_PRINZIPIENERFUELLUNG}
-        DigitaleKommunikation ${SCHEMA_PRINZIPIENERFUELLUNG}
-        KlareRegelungen ${SCHEMA_PRINZIPIENERFUELLUNG}
-        Wiederverwendung ${SCHEMA_PRINZIPIENERFUELLUNG}
+        ...prinzipienErfuellung
       }
       Rechtsgebiet
       Ressort
@@ -138,6 +144,8 @@ const GET_PRINZIPS_QUERY = `query GetPrinzips {
 }`;
 
 const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
+  ${prinzipErfuellung}
+  ${prinzipienErfuellung}
   regelungsvorhabens {
     DIPVorgang
     Gesetz
@@ -146,11 +154,7 @@ const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
     Rechtsgebiet
     Ressort
     Prinzipienerfuellung {
-      Automatisierung ${SCHEMA_PRINZIPIENERFUELLUNG}
-      Datenschutz ${SCHEMA_PRINZIPIENERFUELLUNG}
-      DigitaleKommunikation ${SCHEMA_PRINZIPIENERFUELLUNG}
-      KlareRegelungen ${SCHEMA_PRINZIPIENERFUELLUNG}
-      Wiederverwendung ${SCHEMA_PRINZIPIENERFUELLUNG}
+      ...prinzipienErfuellung
     }
     Titel
     documentId
