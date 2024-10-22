@@ -49,7 +49,7 @@ export default function Prinzipien() {
           <ul>
             {prinzips.map((prinzip) => (
               <li key={prinzip.documentId}>
-                <Link to={`${prinzip.slug}`} state={{ prinzip }}>
+                <Link to={`${prinzip.URLBezeichnung}`} state={{ prinzip }}>
                   {prinzip.Name}
                 </Link>
               </li>

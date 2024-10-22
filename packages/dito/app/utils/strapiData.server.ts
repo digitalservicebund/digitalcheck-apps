@@ -2,9 +2,9 @@ const url = process.env.STRAPI_URL || "http://localhost:1337/graphql";
 
 export type Paragraph = {
   Norm: string;
-  ErlaeuterungDS?: string;
+  WarumWichtig: string;
   Tags: Tag[];
-  Text: string;
+  Regelungstext: string;
 };
 
 export enum EinschaetzungReferat {
@@ -52,37 +52,34 @@ export enum Rechtsgebiet {
 }
 
 export type Prinzipienerfuellung = {
-  DigitaleKommunikation?: Prinziperfuellung;
-  Wiederverwendung?: Prinziperfuellung;
-  Datenschutz?: Prinziperfuellung;
-  KlareRegelungen?: Prinziperfuellung;
-  Automatisierung?: Prinziperfuellung;
+  DigitaleKommunikation: Prinziperfuellung;
+  Wiederverwendung: Prinziperfuellung;
+  Datenschutz: Prinziperfuellung;
+  KlareRegelungen: Prinziperfuellung;
+  Automatisierung: Prinziperfuellung;
 };
 
 export type Regelungsvorhaben = {
   documentId: string;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt?: Date;
   Titel: string;
   Gesetz: boolean;
   Ressort: Ressort;
   NKRStellungnahme?: string;
   DIPVorgang: number;
   NKRNummer: number;
-  Prinzipienerfuellung?: Prinzipienerfuellung;
-  slug?: string;
+  Prinzipienerfuellung: Prinzipienerfuellung;
+  URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
 };
 
 export type Prinzip = {
   documentId: string;
   Name: string;
-  Beschreibung: string;
+  Beschreibung: [];
   Nummer: number;
   Tipps?: [];
-  regelungsvorhaben: { data: Regelungsvorhaben[] };
-  slug?: string;
+  GuteUmsetzung: Regelungsvorhaben[];
+  URLBezeichnung: string;
 };
 
 export type PrinzipResponse = {
@@ -128,7 +125,7 @@ query GetPrinzips {
     Name
     Nummer
     Tipps
-    regelungsvorhaben {
+    GuteUmsetzung {
       Gesetz
       Prinzipienerfuellung {
         ...prinzipienErfuellung
@@ -137,9 +134,9 @@ query GetPrinzips {
       Ressort
       Titel
       documentId
-      slug
+      URLBezeichnung
     }
-    slug
+    URLBezeichnung
   }
 }`;
 
@@ -158,7 +155,7 @@ const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
     }
     Titel
     documentId
-    slug
+    URLBezeichnung
   }
 }`;
 
