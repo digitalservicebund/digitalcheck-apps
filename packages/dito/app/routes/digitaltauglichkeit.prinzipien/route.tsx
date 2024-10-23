@@ -14,10 +14,45 @@ import {
 } from "../../resources/staticRoutes.ts";
 import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
-import { getPrinzips, Prinzip } from "../../utils/strapiData.server.ts";
+import {
+  fetchStrapiData,
+  Prinzip,
+  prinzipErfuellung,
+  prinzipienErfuellung,
+} from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINZIPLES.title, matches);
+};
+
+const GET_PRINZIPS_QUERY = `
+${prinzipErfuellung}
+${prinzipienErfuellung}
+query GetPrinzips {
+  prinzips {
+    Beschreibung
+    Name
+    Nummer
+    Tipps
+    GuteUmsetzung {
+      Gesetz
+      Prinzipienerfuellung {
+        ...prinzipienErfuellung
+      }
+      Rechtsgebiet
+      Ressort
+      Titel
+      documentId
+      URLBezeichnung
+    }
+    URLBezeichnung
+  }
+}`;
+
+export type PrinzipResponse = {
+  data: {
+    prinzips: Prinzip[];
+  };
 };
 
 export async function loader() {
@@ -29,7 +64,8 @@ export async function loader() {
     return redirect(ROUTE_LANDING.url);
   }
 
-  const prinzipData = await getPrinzips();
+  const prinzipData =
+    await fetchStrapiData<PrinzipResponse>(GET_PRINZIPS_QUERY);
   return json({
     prinzips: prinzipData?.data.prinzips,
   });

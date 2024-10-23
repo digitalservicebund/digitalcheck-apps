@@ -81,19 +81,13 @@ export type Prinzip = {
   URLBezeichnung: string;
 };
 
-export type PrinzipResponse = {
-  data: {
-    prinzips: Prinzip[];
-  };
-};
-
 export type RegelungsvorhabenResponse = {
   data: {
     regelungsvorhabens: Regelungsvorhaben[];
   };
 };
 
-const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
+export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
   NKRStellungnahme
   Paragraphen {
@@ -108,36 +102,12 @@ const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinzipe
   id
 }`;
 
-const prinzipienErfuellung = `fragment prinzipienErfuellung on ComponentSharedPrinzipienerfuellung {
+export const prinzipienErfuellung = `fragment prinzipienErfuellung on ComponentSharedPrinzipienerfuellung {
   Automatisierung { ...prinzipErfuellung }
   Datenschutz { ...prinzipErfuellung }
   DigitaleKommunikation { ...prinzipErfuellung }
   KlareRegelungen { ...prinzipErfuellung }
   Wiederverwendung { ...prinzipErfuellung }
-}`;
-
-const GET_PRINZIPS_QUERY = `
-${prinzipErfuellung}
-${prinzipienErfuellung}
-query GetPrinzips {
-  prinzips {
-    Beschreibung
-    Name
-    Nummer
-    Tipps
-    GuteUmsetzung {
-      Gesetz
-      Prinzipienerfuellung {
-        ...prinzipienErfuellung
-      }
-      Rechtsgebiet
-      Ressort
-      Titel
-      documentId
-      URLBezeichnung
-    }
-    URLBezeichnung
-  }
 }`;
 
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `query GetRegelungsvorhabens($slug: String!) {
@@ -157,27 +127,25 @@ const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `query GetRegelungsvorhabens($slug:
   }
 }`;
 
-export async function getPrinzips(): Promise<PrinzipResponse | null> {
+export async function fetchStrapiData<ResponseType>(
+  query: string,
+): Promise<ResponseType | null> {
   try {
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        query: GET_PRINZIPS_QUERY,
-      }),
+      body: JSON.stringify({ query }),
     });
     // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
-      console.error("Failed to fetch Prinzips:", response.statusText);
+      console.error("Failed to fetch:", response.statusText);
       return null;
     }
-
-    const data: PrinzipResponse = await response.json();
-    return data;
+    return (await response.json()) as ResponseType;
   } catch (error) {
-    console.error("Error fetching Prinzips:", error);
+    console.error("Error fetching:", error);
     return null;
   }
 }
