@@ -41,7 +41,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const slug = params.regelung as string;
   const regelungData = await fetchStrapiData<RegelungsvorhabenResponse>(
     GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
-    { slug: slug },
+    { slug },
   );
   // TODO: can gesetze consist of more than one regelungsvorhaben?
   return json({

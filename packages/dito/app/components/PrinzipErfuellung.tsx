@@ -9,9 +9,9 @@ export default function PrinzipErfuellung({
   showParagraphs?: boolean;
 }) {
   return (
-    <div className="mt-40 mb-24">
+    <div className="mt-24">
       <h1>Start Paragraphs</h1>
-      <p className="mb-20 bg-gray-100">
+      <p className="my-24 bg-gray-100 pl-16">
         Einschätzung des Referats:{" "}
         <b>{prinzipErfuellung.EinschaetzungReferat}</b>
       </p>
@@ -24,10 +24,10 @@ export default function PrinzipErfuellung({
                   {tag.Tag}
                 </div>
               ))}
-            </div>{" "}
+            </div>
             <p>
-              <b>Norm: {paragraph.Norm}</b>
-            </p>
+              <b>{paragraph.Norm}</b>
+            </p>{" "}
             <p>Regelungstext: {paragraph.Regelungstext}</p>
             <p>WarumWichtig:</p>
             <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
