@@ -1,4 +1,5 @@
 import Container from "@digitalcheck/shared/components/Container.tsx";
+import DetailInfo from "@digitalcheck/shared/components/DetailInfo.tsx";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Prinziperfuellung } from "../utils/strapiData.server.ts";
 
@@ -9,14 +10,13 @@ export default function PrinzipErfuellung({
   prinzipErfuellung: Prinziperfuellung;
   showParagraphs?: boolean;
 }) {
+  const detailItems = {
+    "Einschätzung des Referats": prinzipErfuellung.EinschaetzungReferat,
+    Test: "test",
+  };
   return (
-    <Container
-      backgroundColor="blue"
-      overhangingBackground
-      additionalClassNames="mt-40 mb-48"
-    >
-      <p>Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} </p>
-
+    <Container additionalClassNames="mt-40 mb-48">
+      <DetailInfo items={detailItems} />
       {showParagraphs &&
         prinzipErfuellung.Paragraphen.map((paragraph, index) => (
           <div key={index}>
