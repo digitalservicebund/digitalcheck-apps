@@ -110,25 +110,9 @@ export const prinzipienErfuellung = `fragment prinzipienErfuellung on ComponentS
   Wiederverwendung { ...prinzipErfuellung }
 }`;
 
-const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `query GetRegelungsvorhabens($slug: String!) {
-  regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
-    DIPVorgang
-    Gesetz
-    NKRNummer
-    NKRStellungnahme
-    Rechtsgebiet
-    Ressort
-    Prinzipienerfuellung {
-      ...prinzipienErfuellung
-    }
-    Titel
-    documentId
-    URLBezeichnung
-  }
-}`;
-
 export async function fetchStrapiData<ResponseType>(
   query: string,
+  variables?: object,
 ): Promise<ResponseType | null> {
   try {
     const response = await fetch(url, {
@@ -136,7 +120,7 @@ export async function fetchStrapiData<ResponseType>(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, variables }),
     });
     // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
@@ -146,34 +130,6 @@ export async function fetchStrapiData<ResponseType>(
     return (await response.json()) as ResponseType;
   } catch (error) {
     console.error("Error fetching:", error);
-    return null;
-  }
-}
-
-export async function getRegelungsvorhabensBySlug(
-  slug: string,
-): Promise<RegelungsvorhabenResponse | null> {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
-        variables: { slug },
-      }),
-    });
-    // TODO check if this is correct error handling in GraphQL
-    if (!response.ok) {
-      console.error("Failed to fetch Regelungen:", response.statusText);
-      return null;
-    }
-
-    const data: RegelungsvorhabenResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching Regelungsvorhabens:", error);
     return null;
   }
 }

@@ -51,7 +51,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
             {rv.URLBezeichnung}
           </Link>
           <PrinzipErfuellung
-            key={prinzip.Nummer}
+            key={`${rv.Titel}-${prinzip.Nummer}`}
             prinzipErfuellung={
               rv.Prinzipienerfuellung[prinzipToStrapi[prinzip.Nummer]]
             }

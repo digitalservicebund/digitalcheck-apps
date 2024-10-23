@@ -4,8 +4,10 @@ import { Prinziperfuellung } from "../utils/strapiData.server.ts";
 
 export default function PrinzipErfuellung({
   prinzipErfuellung,
+  showParagraphs = true,
 }: {
   prinzipErfuellung: Prinziperfuellung;
+  showParagraphs?: boolean;
 }) {
   return (
     <Container
@@ -13,24 +15,23 @@ export default function PrinzipErfuellung({
       overhangingBackground
       additionalClassNames="mt-40 mb-48"
     >
-      Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} <br />
-      <br />
-      <br />
-      Paragraphen: <br />
-      {prinzipErfuellung.Paragraphen.map((paragraph) => (
-        <>
-          <p>
-            <b>Norm: {paragraph.Norm}</b> <br />
-          </p>
-          <br />
-          Tags: {paragraph.Tags?.map((tag) => tag.Tag)}
-          <br /> <br />
-          Regelungstext: {paragraph.Regelungstext} <br />
-          <br />
-          WarumWichtig:
-          <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
-        </>
-      ))}
+      <p>Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} </p>
+
+      {showParagraphs &&
+        prinzipErfuellung.Paragraphen.map((paragraph) => (
+          <>
+            <p>Paragraphen:</p>
+            <p>
+              <b>Norm: {paragraph.Norm}</b> <br />
+            </p>
+            <br />
+            Tags: {paragraph.Tags?.map((tag) => tag.Tag)}
+            <br /> <br />
+            <p>Regelungstext: {paragraph.Regelungstext}</p>
+            <p>WarumWichtig:</p>
+            <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
+          </>
+        ))}
     </Container>
   );
 }
