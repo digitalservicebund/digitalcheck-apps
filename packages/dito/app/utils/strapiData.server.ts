@@ -14,7 +14,6 @@ export enum EinschaetzungReferat {
   NichtRelevant = "Nicht relevant",
 }
 
-/** w/o NKRStellungnahme as long as we don't show it */
 export type Prinziperfuellung = {
   EinschaetzungReferat: EinschaetzungReferat;
   Paragraphen: Paragraph[];
@@ -59,12 +58,12 @@ export type Prinzipienerfuellung = {
   Automatisierung: Prinziperfuellung;
 };
 
-/** w/o NKRStellungnahme as long as we don't show it */
 export type Regelungsvorhaben = {
   documentId: string;
   Titel: string;
   Gesetz: boolean;
   Ressort: Ressort;
+  NKRStellungnahme?: [];
   DIPVorgang: number;
   NKRNummer: number;
   Prinzipienerfuellung: Prinzipienerfuellung;
@@ -96,6 +95,7 @@ export type RegelungsvorhabenResponse = {
 
 const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
+  NKRStellungnahme
   Paragraphen {
     WarumWichtig
     Norm
@@ -147,6 +147,7 @@ const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
     DIPVorgang
     Gesetz
     NKRNummer
+    NKRStellungnahme
     Rechtsgebiet
     Ressort
     Prinzipienerfuellung {
