@@ -84,7 +84,7 @@ export default function Prinzipien() {
         {prinzips.length ? (
           <ul>
             {prinzips.map((prinzip) => (
-              <li key={prinzip.documentId}>
+              <li key={prinzip.URLBezeichnung}>
                 <Link to={`${prinzip.URLBezeichnung}`} state={{ prinzip }}>
                   {prinzip.Name}
                 </Link>

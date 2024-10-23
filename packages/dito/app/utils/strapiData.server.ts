@@ -16,7 +16,9 @@ export enum EinschaetzungReferat {
 
 export type Prinziperfuellung = {
   EinschaetzungReferat: EinschaetzungReferat;
+  NKRStellungnahme?: [];
   Paragraphen: Paragraph[];
+  id: number;
 };
 
 export enum TagEnum {

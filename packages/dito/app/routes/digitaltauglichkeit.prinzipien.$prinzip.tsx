@@ -32,15 +32,13 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
 
   return (
     <Container additionalClassNames="rich-text">
-      <p>
-        Beschreibung <BlocksRenderer content={Beschreibung}></BlocksRenderer>
-      </p>
+      Beschreibung <BlocksRenderer content={Beschreibung}></BlocksRenderer>
       <p>Name: {Name}</p>
       <p>Nummer: {Nummer}</p>
-      <p>{Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}</p>
-      <h3>Regelungen in der Umsetzung:</h3>
+      {Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}
+      <h2>Regelungen in der Umsetzung:</h2>
       {GuteUmsetzung.map((rv) => (
-        <Container key={rv.Titel}>
+        <Container key={`${rv.Titel}-${rv.URLBezeichnung}`}>
           <b>{rv.Titel}</b> {rv.Gesetz ? "Gesetz" : "Kein Gesetz"}{" "}
           {rv.Rechtsgebiet}
           {rv.Ressort} {rv.URLBezeichnung}

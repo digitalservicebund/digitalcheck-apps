@@ -18,19 +18,17 @@ export default function PrinzipErfuellung({
       <p>Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} </p>
 
       {showParagraphs &&
-        prinzipErfuellung.Paragraphen.map((paragraph) => (
-          <>
+        prinzipErfuellung.Paragraphen.map((paragraph, index) => (
+          <div key={index}>
             <p>Paragraphen:</p>
             <p>
               <b>Norm: {paragraph.Norm}</b> <br />
             </p>
-            <br />
-            Tags: {paragraph.Tags?.map((tag) => tag.Tag)}
-            <br /> <br />
+            Tags: {paragraph.Tags?.map((tag) => <p key={tag.Tag}>{tag.Tag}</p>)}
             <p>Regelungstext: {paragraph.Regelungstext}</p>
             <p>WarumWichtig:</p>
             <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
-          </>
+          </div>
         ))}
     </Container>
   );
