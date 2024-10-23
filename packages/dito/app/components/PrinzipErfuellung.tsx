@@ -13,7 +13,7 @@ export default function PrinzipErfuellung({
       overhangingBackground
       additionalClassNames="mt-40 mb-48"
     >
-      Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} <br />{" "}
+      Einschätzung Referat: {prinzipErfuellung.EinschaetzungReferat} <br />
       <br />
       <br />
       Paragraphen: <br />
@@ -27,7 +27,7 @@ export default function PrinzipErfuellung({
           <br /> <br />
           Regelungstext: {paragraph.Regelungstext} <br />
           <br />
-          WarumWichtig:{" "}
+          WarumWichtig:
           <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
         </>
       ))}

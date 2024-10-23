@@ -12,6 +12,14 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
   return json({ slug });
 };
 
+const prinzipToStrapi = {
+  1: "DigitaleKommunikation",
+  2: "Wiederverwendung",
+  3: "Datenschutz",
+  4: "KlareRegelungen",
+  5: "Automatisierung",
+} as const;
+
 export default function Digitaltauglichkeit_Prinzipien_Detail() {
   const { slug } = useLoaderData<typeof loader>();
   const prinzips: Prinzip[] = useOutletContext();
@@ -21,59 +29,35 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
     throw new Response("Prinzip not found", { status: 404 });
   }
   const { Beschreibung, Name, Nummer, Tipps, GuteUmsetzung } = prinzip;
-/*  const prinzipToStrapi = {
-    1: "DigitaleKommunikation",
-    2: "Wiederverwendung",
-    3: "Datenschutz",
-    4: "KlareRegelungen",
-    5: "Automatisierung",
-  } as const;*/
 
   return (
-    <>
-      <Container additionalClassNames="rich-text">
+    <Container additionalClassNames="rich-text">
+      <p>
         Beschreibung <BlocksRenderer content={Beschreibung}></BlocksRenderer>
-        <br />
-        Name: {Name}
-        <br />
-        Nummer: {Nummer}
-        <br />
-        {Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}
-        <br />
-        <b>Regelungen in der Umsetzung:</b> <br />
-        <br />
-        {GuteUmsetzung.map((rv) => {
-          const {
-            Gesetz,
-            Prinzipienerfuellung,
-            Rechtsgebiet,
-            Ressort,
-            Titel,
-            URLBezeichnung,
-          } = rv;
-          return (
-            <Container key={Titel}>
-              <b>{Titel}</b> {Gesetz ? "Gesetz" : "Kein Gesetz"} {Rechtsgebiet}{" "}
-              {Ressort} {URLBezeichnung}{" "}
-              <Link
-                to={`${ROUTE_LAWS.url}/${URLBezeichnung}`}
-                key={URLBezeichnung}
-              >
-                {URLBezeichnung}
-              </Link>
-              <br />
-              <PrinzipErfuellung
-                key={prinzip.Nummer}
-                prinzipErfuellung={
-                  Prinzipienerfuellung[
-                    "Automatisierung"
-                  ]
-                }
-              ></PrinzipErfuellung>
-            </Container>
-          );
-        })}
-      </Container>
-    </>
+      </p>
+      <p>Name: {Name}</p>
+      <p>Nummer: {Nummer}</p>
+      <p>{Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}</p>
+      <h3>Regelungen in der Umsetzung:</h3>
+      {GuteUmsetzung.map((rv) => (
+        <Container key={rv.Titel}>
+          <b>{rv.Titel}</b> {rv.Gesetz ? "Gesetz" : "Kein Gesetz"}{" "}
+          {rv.Rechtsgebiet}
+          {rv.Ressort} {rv.URLBezeichnung}
+          <Link
+            to={`${ROUTE_LAWS.url}/${rv.URLBezeichnung}`}
+            key={rv.URLBezeichnung}
+          >
+            {rv.URLBezeichnung}
+          </Link>
+          <PrinzipErfuellung
+            key={prinzip.Nummer}
+            prinzipErfuellung={
+              rv.Prinzipienerfuellung[prinzipToStrapi[prinzip.Nummer]]
+            }
+          ></PrinzipErfuellung>
+        </Container>
+      ))}
+    </Container>
   );
 }

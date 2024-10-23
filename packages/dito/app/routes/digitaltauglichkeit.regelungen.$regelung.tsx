@@ -1,13 +1,7 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
-import {
-  json,
-  Link,
-  MetaFunction,
-  Outlet,
-  useLoaderData,
-} from "@remix-run/react";
+import { json, MetaFunction, useLoaderData } from "@remix-run/react";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
@@ -40,10 +34,7 @@ export default function Gesetz() {
         {regelungen.length && (
           <ul>
             {regelungen.map((regelung) => (
-              <li key={regelung.documentId}>
-                {regelung.Name}
-
-              </li>
+              <li key={regelung.documentId}>{regelung.Name}</li>
             ))}
           </ul>
         )}

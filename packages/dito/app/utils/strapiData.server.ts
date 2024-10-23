@@ -75,7 +75,7 @@ export type Prinzip = {
   documentId: string;
   Name: string;
   Beschreibung: [];
-  Nummer: number;
+  Nummer: 1 | 2 | 3 | 4 | 5;
   Tipps?: [];
   GuteUmsetzung: Regelungsvorhaben[];
   URLBezeichnung: string;
@@ -185,7 +185,6 @@ export async function getPrinzips(): Promise<PrinzipResponse | null> {
 export async function getRegelungsvorhabensBySlug(
   slug: string,
 ): Promise<RegelungsvorhabenResponse | null> {
-  console.log(GET_REGELUNGSVORHABENS_BY_SLUG_QUERY)
   try {
     const response = await fetch(url, {
       method: "POST",
