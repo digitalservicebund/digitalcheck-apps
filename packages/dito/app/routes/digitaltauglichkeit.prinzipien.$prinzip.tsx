@@ -3,7 +3,8 @@ import { json, Link, useLoaderData, useOutletContext } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 import { type LoaderFunctionArgs } from "@remix-run/node";
-import PrinzipienErfuellung from "../components/PrinzipienErfuellung.tsx";
+import PrinzipErfuellung from "../components/PrinzipErfuellung.tsx";
+import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
 export const loader = ({ params }: LoaderFunctionArgs) => {
@@ -20,13 +21,13 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
     throw new Response("Prinzip not found", { status: 404 });
   }
   const { Beschreibung, Name, Nummer, Tipps, GuteUmsetzung } = prinzip;
-  const prinzipToStrapi = {
-    DigitaleKommunikation: "Digitale Kommunikation sicherstellen",
-    Wiederverwendung: "Wiederverwendung von Daten und Standards ermöglichen",
-    Datenschutz: "Datenschutz und Informationssicherheit gewährleisten",
-    KlareRegelungen: "Klare Regelungen für eine digitale Ausführung finden",
-    Automatisierung: "Automatisierung ermöglichen",
-  };
+/*  const prinzipToStrapi = {
+    1: "DigitaleKommunikation",
+    2: "Wiederverwendung",
+    3: "Datenschutz",
+    4: "KlareRegelungen",
+    5: "Automatisierung",
+  } as const;*/
 
   return (
     <>
@@ -54,22 +55,21 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
             <Container key={Titel}>
               <b>{Titel}</b> {Gesetz ? "Gesetz" : "Kein Gesetz"} {Rechtsgebiet}{" "}
               {Ressort} {URLBezeichnung}{" "}
-              <Link to={URLBezeichnung} key={URLBezeichnung}>
+              <Link
+                to={`${ROUTE_LAWS.url}/${URLBezeichnung}`}
+                key={URLBezeichnung}
+              >
                 {URLBezeichnung}
               </Link>
               <br />
-              {(
-                Object.keys(
-                  Prinzipienerfuellung,
-                ) as (keyof typeof Prinzipienerfuellung)[]
-              )
-                .filter((pe) => prinzip.Name === prinzipToStrapi[pe])
-                .map((pe) => (
-                  <PrinzipienErfuellung
-                    key={pe}
-                    prinzipienErfuellung={Prinzipienerfuellung[pe]}
-                  ></PrinzipienErfuellung>
-                ))}
+              <PrinzipErfuellung
+                key={prinzip.Nummer}
+                prinzipErfuellung={
+                  Prinzipienerfuellung[
+                    "Automatisierung"
+                  ]
+                }
+              ></PrinzipErfuellung>
             </Container>
           );
         })}

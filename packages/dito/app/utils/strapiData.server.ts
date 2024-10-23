@@ -140,10 +140,8 @@ query GetPrinzips {
   }
 }`;
 
-const GET_REGELUNGSVORHABENS_QUERY = `query GetRegelungsvorhabens {
-  ${prinzipErfuellung}
-  ${prinzipienErfuellung}
-  regelungsvorhabens {
+const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `query GetRegelungsvorhabens($slug: String!) {
+  regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     DIPVorgang
     Gesetz
     NKRNummer
@@ -184,7 +182,10 @@ export async function getPrinzips(): Promise<PrinzipResponse | null> {
   }
 }
 
-export async function getRegelungsvorhabensBySlug(): Promise<RegelungsvorhabenResponse | null> {
+export async function getRegelungsvorhabensBySlug(
+  slug: string,
+): Promise<RegelungsvorhabenResponse | null> {
+  console.log(GET_REGELUNGSVORHABENS_BY_SLUG_QUERY)
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -192,12 +193,13 @@ export async function getRegelungsvorhabensBySlug(): Promise<RegelungsvorhabenRe
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: GET_REGELUNGSVORHABENS_QUERY,
+        query: GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
+        variables: { slug },
       }),
     });
     // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
-      console.error("Failed to fetch Prinzips:", response.statusText);
+      console.error("Failed to fetch Regelungen:", response.statusText);
       return null;
     }
 
