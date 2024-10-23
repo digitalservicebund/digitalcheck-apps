@@ -52,7 +52,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           } = rv;
           return (
             <Container key={Titel}>
-              {Titel} {Gesetz ? "Gesetz" : "Kein Gesetz"} {Rechtsgebiet}{" "}
+              <b>{Titel}</b> {Gesetz ? "Gesetz" : "Kein Gesetz"} {Rechtsgebiet}{" "}
               {Ressort} {URLBezeichnung}{" "}
               <Link to={URLBezeichnung} key={URLBezeichnung}>
                 {URLBezeichnung}

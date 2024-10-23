@@ -16,15 +16,6 @@ export default function PrinzipienErfuellung({
     >
       Einschätzung Referat: {prinzipienErfuellung.EinschaetzungReferat} <br />{" "}
       <br />
-      NKRStellungnahme:{" "}
-      {/*
-      // TODO: Do we show NKR Stellungnahme?
-*/}
-      {prinzipienErfuellung.NKRStellungnahme && (
-        <BlocksRenderer
-          content={prinzipienErfuellung.NKRStellungnahme}
-        ></BlocksRenderer>
-      )}
       <br />
       Paragraphen: <br />
       {prinzipienErfuellung.Paragraphen.map((paragraph) => {
