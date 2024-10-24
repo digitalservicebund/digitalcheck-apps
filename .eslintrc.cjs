@@ -124,7 +124,7 @@ module.exports = {
         "**/a11y/*.test.{js,ts,jsx,tsx}",
         "**/e2e/*.test.{js,ts,jsx,tsx}",
       ],
-      extends: ["plugin:playwright/jest-playwright"],
+      extends: "plugin:playwright/recommended",
     },
 
     // Node
