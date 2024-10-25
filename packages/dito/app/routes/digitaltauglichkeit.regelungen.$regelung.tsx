@@ -6,9 +6,9 @@ import PrinzipErfuellung from "../components/PrinzipErfuellung.tsx";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
+  digitalcheck,
   fetchStrapiData,
   prinzipErfuellung,
-  prinzipienErfuellung,
   Regelungsvorhaben,
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
@@ -19,21 +19,27 @@ export const meta: MetaFunction = ({ matches }) => {
 
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
 ${prinzipErfuellung}
-${prinzipienErfuellung}
+${digitalcheck}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     DIPVorgang
     Gesetz
     NKRNummer
-    Prinzipienerfuellung {
-      ...prinzipienErfuellung
+    Digitalcheck {
+      ...digitalcheck
     }
-    NKRStellungnahme
+    NKRStellungnahmeText
     Rechtsgebiet
     Ressort
     Titel
     documentId
     URLBezeichnung
+    VeroeffentlichungsDatum
+    VorpruefungITSystem
+    VorpruefungVerpflichtungen
+    VorpruefungDatenaustausch
+    VorpruefungKommunikation
+    VorpruefungAutomatisierung
   }
 }`;
 
@@ -60,7 +66,7 @@ export default function Gesetz() {
         </Container>
       </Background>
       <div>
-        {Object.entries(regelung.Prinzipienerfuellung).map(([key, value]) => (
+        {Object.entries(regelung.Digitalcheck).map(([key, value]) => (
           <PrinzipErfuellung
             key={key}
             prinzipErfuellung={value}

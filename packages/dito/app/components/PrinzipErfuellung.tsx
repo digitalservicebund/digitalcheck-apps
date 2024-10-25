@@ -20,7 +20,7 @@ export default function PrinzipErfuellung({
           <div key={index}>
             <div className="flex space-x-8">
               {paragraph.Tags?.map((tag) => (
-                <div className="bg-blue-300" key={tag.Tag}>
+                <div className="bg-blue-300 rounded-md text-base" key={tag.Tag}>
                   {tag.Tag}
                 </div>
               ))}

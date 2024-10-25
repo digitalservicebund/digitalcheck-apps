@@ -1,4 +1,6 @@
-const url = process.env.STRAPI_URL || "http://localhost:1337/graphql";
+const url =
+  process.env.STRAPI_URL ||
+  "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";
 
 export type Paragraph = {
   Norm: string;
@@ -16,7 +18,7 @@ export enum EinschaetzungReferat {
 
 export type Prinziperfuellung = {
   EinschaetzungReferat: EinschaetzungReferat;
-  NKRStellungnahme?: [];
+  NKRStellungnahmePrinzip?: [];
   Paragraphen: Paragraph[];
   id: number;
 };
@@ -52,7 +54,7 @@ export enum Rechtsgebiet {
   Tbd = "TBD",
 }
 
-export type Prinzipienerfuellung = {
+export type Digitalcheck = {
   DigitaleKommunikation: Prinziperfuellung;
   Wiederverwendung: Prinziperfuellung;
   Datenschutz: Prinziperfuellung;
@@ -65,12 +67,19 @@ export type Regelungsvorhaben = {
   Titel: string;
   Gesetz: boolean;
   Ressort: Ressort;
-  NKRStellungnahme?: [];
+  NKRStellungnahmeText?: [];
+  NKRStellungnahmeLink?: string;
   DIPVorgang: number;
   NKRNummer: number;
-  Prinzipienerfuellung: Prinzipienerfuellung;
+  Digitalcheck: Digitalcheck;
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
+  VeroeffentlichungsDatum?: Date;
+  VorpruefungITSystem: boolean;
+  VorpruefungVerpflichtungen: boolean;
+  VorpruefungDatenaustausch: boolean;
+  VorpruefungKommunikation: boolean;
+  VorpruefungAutomatisierung: boolean;
 };
 
 export type Prinzip = {
@@ -91,7 +100,7 @@ export type RegelungsvorhabenResponse = {
 
 export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
-  NKRStellungnahme
+  NKRStellungnahmePrinzip
   Paragraphen {
     WarumWichtig
     Norm
@@ -104,7 +113,7 @@ export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedP
   id
 }`;
 
-export const prinzipienErfuellung = `fragment prinzipienErfuellung on ComponentSharedPrinzipienerfuellung {
+export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipienerfuellung {
   Automatisierung { ...prinzipErfuellung }
   Datenschutz { ...prinzipErfuellung }
   DigitaleKommunikation { ...prinzipErfuellung }
@@ -126,7 +135,13 @@ export async function fetchStrapiData<ResponseType>(
     });
     // TODO check if this is correct error handling in GraphQL
     if (!response.ok) {
-      console.error("Failed to fetch:", response.statusText);
+      const errorDetails = await response.text();
+      console.error(
+        "Failed to fetch:",
+        response.status,
+        response.statusText,
+        errorDetails,
+      );
       return null;
     }
     return (await response.json()) as ResponseType;

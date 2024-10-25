@@ -50,9 +50,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           </Link>
           <PrinzipErfuellung
             key={`${rv.Titel}-${prinzip.Nummer}`}
-            prinzipErfuellung={
-              rv.Prinzipienerfuellung[prinzipToStrapi[prinzip.Nummer]]
-            }
+            prinzipErfuellung={rv.Digitalcheck[prinzipToStrapi[prinzip.Nummer]]}
           ></PrinzipErfuellung>
         </Container>
       ))}

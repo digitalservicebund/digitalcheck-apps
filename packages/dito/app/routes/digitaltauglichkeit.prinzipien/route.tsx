@@ -15,10 +15,10 @@ import {
 import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
 import {
+  digitalcheck,
   fetchStrapiData,
   Prinzip,
   prinzipErfuellung,
-  prinzipienErfuellung,
 } from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
@@ -27,7 +27,7 @@ export const meta: MetaFunction = ({ matches }) => {
 
 const GET_PRINZIPS_QUERY = `
 ${prinzipErfuellung}
-${prinzipienErfuellung}
+${digitalcheck}
 query GetPrinzips {
   prinzips {
     Beschreibung
@@ -36,8 +36,8 @@ query GetPrinzips {
     Tipps
     GuteUmsetzung {
       Gesetz
-      Prinzipienerfuellung {
-        ...prinzipienErfuellung
+      Digitalcheck {
+        ...digitalcheck
       }
       Rechtsgebiet
       Ressort
