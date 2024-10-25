@@ -23,16 +23,17 @@ const prinzipToStrapi = {
 export default function Digitaltauglichkeit_Prinzipien_Detail() {
   const { slug } = useLoaderData<typeof loader>();
   const prinzips: Prinzip[] = useOutletContext();
+
   const prinzip = prinzips.find((prinzip) => prinzip.URLBezeichnung === slug);
   if (!prinzip) {
-    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Prinzip not found", { status: 404 });
   }
+
   const { Beschreibung, Name, Nummer, Tipps, GuteUmsetzung } = prinzip;
 
   return (
     <Container additionalClassNames="rich-text">
-      Beschreibung <BlocksRenderer content={Beschreibung}></BlocksRenderer>
+      Beschreibung: <BlocksRenderer content={Beschreibung}></BlocksRenderer>
       <p>Name: {Name}</p>
       <p>Nummer: {Nummer}</p>
       {Tipps && <BlocksRenderer content={Tipps}></BlocksRenderer>}
@@ -40,18 +41,19 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
       {GuteUmsetzung.map((rv) => (
         <Container key={`${rv.Titel}-${rv.URLBezeichnung}`}>
           <b>{rv.Titel}</b> {rv.Gesetz ? "Gesetz" : "Kein Gesetz"}{" "}
-          {rv.Rechtsgebiet}
-          {rv.Ressort} {rv.URLBezeichnung}
+          {rv.Rechtsgebiet} {rv.Ressort} {rv.URLBezeichnung}
           <Link
             to={`${ROUTE_LAWS.url}/${rv.URLBezeichnung}`}
             key={rv.URLBezeichnung}
           >
             {rv.URLBezeichnung}
           </Link>
-          <PrinzipErfuellung
-            key={`${rv.Titel}-${prinzip.Nummer}`}
-            prinzipErfuellung={rv.Digitalcheck[prinzipToStrapi[prinzip.Nummer]]}
-          ></PrinzipErfuellung>
+          {rv.Digitalcheck?.map((digitalcheck, index) => (
+            <PrinzipErfuellung
+              key={`${rv.Titel}-${prinzip.Nummer}-${index}`}
+              prinzipErfuellung={digitalcheck[prinzipToStrapi[prinzip.Nummer]]}
+            ></PrinzipErfuellung>
+          ))}
         </Container>
       ))}
     </Container>

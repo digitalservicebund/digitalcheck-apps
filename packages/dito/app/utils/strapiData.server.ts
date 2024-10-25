@@ -71,7 +71,7 @@ export type Regelungsvorhaben = {
   NKRStellungnahmeLink?: string;
   DIPVorgang: number;
   NKRNummer: number;
-  Digitalcheck: Digitalcheck;
+  Digitalcheck: Digitalcheck[];
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
   VeroeffentlichungsDatum?: Date;
