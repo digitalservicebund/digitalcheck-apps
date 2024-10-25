@@ -1,3 +1,4 @@
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Prinziperfuellung } from "../utils/strapiData.server.ts";
 
@@ -9,28 +10,35 @@ export default function PrinzipErfuellung({
   showParagraphs?: boolean;
 }) {
   return (
-    <div className="mt-24">
-      <h1>Start Paragraphs</h1>
-      <p className="my-24 bg-gray-100 pl-16">
-        Einschätzung des Referats:{" "}
-        <b>{prinzipErfuellung.EinschaetzungReferat}</b>
-      </p>
+    <div className="space-y-40 mt-40">
       {showParagraphs &&
         prinzipErfuellung.Paragraphen.map((paragraph, index) => (
           <div key={index}>
-            <div className="flex space-x-8">
+            <div className="flex space-x-8 my-8">
               {paragraph.Tags?.map((tag) => (
                 <div className="bg-blue-300 rounded-md text-base" key={tag.Tag}>
                   {tag.Tag}
                 </div>
               ))}
             </div>
-            <p>
+            <div className="my-8">
               <b>{paragraph.Norm}</b>
-            </p>{" "}
-            <p>Regelungstext: {paragraph.Regelungstext}</p>
-            <p>WarumWichtig:</p>
-            <BlocksRenderer content={paragraph.WarumWichtig}></BlocksRenderer>
+            </div>{" "}
+            <div className="border-l-4 border-gray-300 pl-4">
+              <p className="list-none ds-stack-32 ps-0 relative">
+                {paragraph.Regelungstext}
+              </p>
+            </div>
+            <div className="mt-8">
+              <DetailsSummary
+                title="Warum ist das gut?"
+                content={
+                  <BlocksRenderer
+                    content={paragraph.WarumWichtig}
+                  ></BlocksRenderer>
+                }
+              ></DetailsSummary>
+            </div>
           </div>
         ))}
     </div>

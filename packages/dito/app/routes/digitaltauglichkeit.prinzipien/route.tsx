@@ -1,4 +1,3 @@
-import Background from "@digitalcheck/shared/components/Background.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import { redirect } from "@remix-run/node";
 import {
@@ -44,6 +43,7 @@ query GetPrinzips {
       Titel
       documentId
       URLBezeichnung
+      VeroeffentlichungsDatum
     }
     URLBezeichnung
   }
@@ -67,7 +67,7 @@ export async function loader() {
   const prinzipData =
     await fetchStrapiData<PrinzipResponse>(GET_PRINZIPS_QUERY);
   return json({
-    prinzips: prinzipData?.data.prinzips,
+    prinzips: prinzipData?.data.prinzips.sort((a, b) => a.Nummer - b.Nummer),
   });
 }
 
@@ -76,27 +76,18 @@ export default function Prinzipien() {
 
   return (
     <>
-      <Background backgroundColor="blue">
-        <Container>Alle Prinzipien</Container>
-      </Background>
-      <div>
-        <h1>Prinzipien</h1>
-        {prinzips.length ? (
-          <ul>
-            {prinzips.map((prinzip) => (
-              <li key={prinzip.URLBezeichnung}>
+      <Container>
+        <div className="flex space-x-20">
+          {prinzips.length &&
+            prinzips.map((prinzip) => (
+              <p key={prinzip.URLBezeichnung}>
                 <Link to={`${prinzip.URLBezeichnung}`} state={{ prinzip }}>
-                  {prinzip.Name}
+                  Prinzip {prinzip.Nummer}
                 </Link>
-              </li>
+              </p>
             ))}
-          </ul>
-        ) : (
-          <p>
-            <i>Keine Prinzipien gefunden...</i>
-          </p>
-        )}
-      </div>
+        </div>
+      </Container>
       <Outlet context={prinzips} />
     </>
   );
