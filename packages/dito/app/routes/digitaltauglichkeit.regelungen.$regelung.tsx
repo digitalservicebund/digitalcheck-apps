@@ -66,12 +66,17 @@ export default function Gesetz() {
         </Container>
       </Background>
       <div>
-        {Object.entries(regelung.Digitalcheck).map(([key, value]) => (
-          <PrinzipErfuellung
-            key={key}
-            prinzipErfuellung={value}
-            showParagraphs={false}
-          ></PrinzipErfuellung>
+        {regelung.Digitalcheck?.map((digitalcheck, index) => (
+          <div key={index}>
+            <h2>Digitalcheck {index + 1}</h2>
+            {Object.entries(digitalcheck).map(([key, value]) => (
+              <PrinzipErfuellung
+                key={`${key}-${index}`}
+                prinzipErfuellung={value}
+                showParagraphs={false}
+              ></PrinzipErfuellung>
+            ))}
+          </div>
         ))}
       </div>
     </>
