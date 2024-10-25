@@ -26,7 +26,16 @@ export default function PrinzipErfuellung({
             </div>{" "}
             <div className="border-l-4 border-gray-300 pl-4">
               <p className="list-none ds-stack-32 ps-0 relative">
-                {paragraph.Regelungstext}
+                {paragraph.Regelungstext && (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: paragraph.Regelungstext.replace(
+                        /~~(.*?)~~/g,
+                        '<span class="bg-yellow-300">$1</span>',
+                      ),
+                    }}
+                  />
+                )}
               </p>
             </div>
             <div className="mt-8">
