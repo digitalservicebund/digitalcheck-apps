@@ -10,7 +10,7 @@ export default function PrinzipErfuellung({
   showParagraphs?: boolean;
 }) {
   return (
-    <div className="space-y-40 mt-40">
+    <div className="space-y-40 my-40">
       {showParagraphs &&
         prinzipErfuellung.Paragraphen.map((paragraph, index) => (
           <div key={index}>

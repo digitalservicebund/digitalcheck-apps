@@ -89,17 +89,17 @@ export default function Prinzipien() {
 
   return (
     <>
-      <Container>
-        <div className="flex space-x-20">
-          {prinzips?.length &&
-            prinzips.map((prinzip) => (
-              <p key={prinzip.URLBezeichnung}>
-                <Link to={`${prinzip.URLBezeichnung}`} state={{ prinzip }}>
-                  Prinzip {prinzip.Nummer}
-                </Link>
-              </p>
-            ))}
-        </div>
+      <Container additionalClassNames="flex space-x-20">
+        {prinzips?.length &&
+          prinzips.map((prinzip) => (
+            <Link
+              to={`${prinzip.URLBezeichnung}`}
+              key={prinzip.URLBezeichnung}
+              state={{ prinzip }}
+            >
+              Prinzip {prinzip.Nummer}
+            </Link>
+          ))}
       </Container>
       <Outlet context={prinzips} />
     </>
