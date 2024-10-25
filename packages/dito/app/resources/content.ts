@@ -12,7 +12,7 @@ import {
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
   ROUTE_PRECHECK,
-  ROUTE_PRINZIPLES,
+  ROUTE_PRINCIPLES,
   ROUTE_PRIVACY,
   ROUTE_RESULT,
   ROUTE_SUPPORT,
@@ -630,7 +630,7 @@ export const digitalSuitability = {
       buttons: [
         {
           text: "Zu den Prinzipien",
-          href: ROUTE_PRINZIPLES.url,
+          href: ROUTE_PRINCIPLES.url,
         },
       ],
     },

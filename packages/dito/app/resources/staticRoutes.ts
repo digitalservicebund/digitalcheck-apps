@@ -104,7 +104,7 @@ export const ROUTE_DIGITAL_SUITABILITY: Route = {
   parent: ROUTE_LANDING.url,
 };
 
-export const ROUTE_PRINZIPLES: Route = {
+export const ROUTE_PRINCIPLES: Route = {
   url: `${ROUTE_DIGITAL_SUITABILITY.url}/prinzipien`,
   title: "Prinzipien",
   parent: ROUTE_DIGITAL_SUITABILITY.url,

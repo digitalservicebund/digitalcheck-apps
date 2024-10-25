@@ -7,9 +7,11 @@ import {
   Outlet,
   useLoaderData,
 } from "@remix-run/react";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   ROUTE_LANDING,
-  ROUTE_PRINZIPLES,
+  ROUTE_PRINCIPLES,
 } from "../../resources/staticRoutes.ts";
 import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
@@ -21,7 +23,7 @@ import {
 } from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return prependMetaTitle(ROUTE_PRINZIPLES.title, matches);
+  return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 
 const GET_PRINZIPS_QUERY = `
@@ -72,13 +74,24 @@ export async function loader() {
 }
 
 export default function Prinzipien() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { prinzips } = useLoaderData<{ prinzips: Prinzip[] }>();
+
+  useEffect(() => {
+    if (location.pathname === ROUTE_PRINCIPLES.url && prinzips?.length) {
+      const firstPrinzipUrl = `/digitaltauglichkeit/prinzipien/${
+        prinzips.find((prinzip) => prinzip.Nummer === 1)?.URLBezeichnung ?? ""
+      }`;
+      navigate(firstPrinzipUrl, { replace: true });
+    }
+  }, [location.pathname, prinzips, navigate]);
 
   return (
     <>
       <Container>
         <div className="flex space-x-20">
-          {prinzips.length &&
+          {prinzips?.length &&
             prinzips.map((prinzip) => (
               <p key={prinzip.URLBezeichnung}>
                 <Link to={`${prinzip.URLBezeichnung}`} state={{ prinzip }}>
