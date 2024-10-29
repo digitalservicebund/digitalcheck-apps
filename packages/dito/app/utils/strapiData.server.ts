@@ -54,12 +54,18 @@ export enum Rechtsgebiet {
   Tbd = "TBD",
 }
 
+export type Visualisierung = {
+  documentId: string;
+  url: string;
+};
+
 export type Digitalcheck = {
   DigitaleKommunikation: Prinziperfuellung;
   Wiederverwendung: Prinziperfuellung;
   Datenschutz: Prinziperfuellung;
   KlareRegelungen: Prinziperfuellung;
   Automatisierung: Prinziperfuellung;
+  Visualisierungen: Visualisierung[];
 };
 
 export type Regelungsvorhaben = {
@@ -119,6 +125,10 @@ export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipiene
   DigitaleKommunikation { ...prinzipErfuellung }
   KlareRegelungen { ...prinzipErfuellung }
   Wiederverwendung { ...prinzipErfuellung }
+  Visualisierungen {
+    documentId
+    url
+    }
 }`;
 
 export async function fetchStrapiData<ResponseType>(
