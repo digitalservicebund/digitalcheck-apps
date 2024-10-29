@@ -1,13 +1,19 @@
-import { marked, Marked, Tokens } from "marked";
+import { marked, Marked, type Renderer, type Tokens } from "marked";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import { openInNewIconString } from "./openInNewWindow";
 
 export type RichTextProps = {
   markdown: string;
   className?: string;
+  rendererOptions?: Partial<Renderer>;
 };
 
-const RichText = ({ markdown, className, ...props }: RichTextProps) => {
+const RichText = ({
+  markdown,
+  className,
+  rendererOptions,
+  ...props
+}: RichTextProps) => {
   const extension = {
     useNewRenderer: true,
     renderer: {
@@ -45,6 +51,7 @@ const RichText = ({ markdown, className, ...props }: RichTextProps) => {
 
         return linkHtml;
       },
+      ...rendererOptions,
     },
   };
 
