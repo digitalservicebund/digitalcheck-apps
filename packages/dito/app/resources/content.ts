@@ -1381,11 +1381,9 @@ Mit freundlichen Grüßen`,
                 icon: TimerOutlined,
                 title: "Nächste Termine",
                 text: `
-- **Dienstag, 15. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
-- **Freitag, 18. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
-- **Mittwoch, 23. Oktober,**<br class="max-md:hidden"> 14:30–16:00 Uhr
-- **Freitag, 25. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr
-- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr`,
+- **Donnerstag, 14. November,**<br class="max-md:hidden"> 10:30–12:00 Uhr
+- **Dienstag, 19. November,**<br class="max-md:hidden"> 13:00–14:30 Uhr
+- **Donnerstag, 28. November,**<br class="max-md:hidden"> 11:00–12:30 Uhr`,
               },
               {
                 icon: CheckCircleOutlined,
@@ -1427,12 +1425,9 @@ Mit freundlichen Grüßen`,
                 icon: TimerOutlined,
                 title: "Nächste Termine",
                 text: `
-- **Dienstag, 1. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
-- **Mittwoch, 9. Oktober,**<br class="max-md:hidden"> 10:30–12:00 Uhr
-- **Freitag, 11. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
-- **Mittwoch, 16. Oktober,**<br class="max-md:hidden"> 08:30–10:00 Uhr
-- **Donnerstag, 24. Oktober,**<br class="max-md:hidden"> 09:00–10:30 Uhr
-- **Dienstag, 29. Oktober,**<br class="max-md:hidden"> 13:00–14:30 Uhr`,
+- **Mittwoch, 13. November,**<br class="max-md:hidden"> 13:00–14:30 Uhr
+- **Freitag, 15. November,**<br class="max-md:hidden"> 10:00–11:30 Uhr
+- **Donnerstag, 21. November,**<br class="max-md:hidden"> 09:00–10:30 Uhr`,
               },
               {
                 icon: CheckCircleOutlined,
