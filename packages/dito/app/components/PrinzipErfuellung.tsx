@@ -19,7 +19,9 @@ export default function PrinzipErfuellung({
             <RichText
               markdown={paragraph.Regelungstext}
               className="border-l-4 border-gray-300 pl-8"
-              rendererOptions={{ del: ({ text }) => `<mark>${text}</mark>` }}
+              rendererOptions={{
+                del: ({ text }) => `<mark class="bg-yellow-300">${text}</mark>`,
+              }}
             />
             <DetailsSummary
               title="Warum ist das gut?"
