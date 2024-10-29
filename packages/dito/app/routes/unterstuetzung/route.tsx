@@ -59,8 +59,6 @@ export default function Index() {
     },
   ];
 
-  const socialProofHeight = 420;
-
   return (
     <>
       <Background backgroundColor="blue">
@@ -81,7 +79,7 @@ export default function Index() {
         <Container
           paddingTop="0"
           paddingBottom="0"
-          additionalClassNames={`flex flex-col lg:flex-row lg:h-[${socialProofHeight}px]`}
+          additionalClassNames={`flex flex-col lg:flex-row lg:h-[420px]`}
         >
           <div className="py-32 sm:py-48 lg:w-1/2 lg:self-center">
             <RichText
@@ -91,7 +89,7 @@ export default function Index() {
           </div>
           <div className="max-sm:hidden relative max-lg:mb-48 lg:w-1/2">
             <div
-              className={`w-[630px] lg:w-[50vw] [&>img]:lg:w-full [&>img]:lg:h-[${socialProofHeight}px] [&>img]:lg:object-[10%_75%] [&>img]:lg:object-none`}
+              className={`w-[630px] lg:w-[50vw] [&>img]:lg:w-full [&>img]:lg:h-[420px] [&>img]:lg:object-[10%_75%] [&>img]:lg:object-none`}
             >
               <SocialProofImage />
             </div>
