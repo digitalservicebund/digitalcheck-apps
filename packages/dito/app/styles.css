@@ -24,3 +24,7 @@ main .ds-button:not(.ds-button-ghost) {
   overflow: hidden;
   visibility: hidden;
 }
+
+mark {
+  @apply bg-yellow-300;
+}

@@ -1,5 +1,7 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
+import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { type Tokens } from "marked";
 import { Prinziperfuellung } from "../utils/strapiData.server.ts";
 
 export default function PrinzipErfuellung({
@@ -15,13 +17,14 @@ export default function PrinzipErfuellung({
         prinzipErfuellung.Paragraphen.map((paragraph) => (
           <div key={paragraph.Norm} className="ds-stack-8">
             <span className="ds-label-01-bold">{paragraph.Norm}</span>
-            <p
+            <RichText
+              markdown={paragraph.Regelungstext}
               className="border-l-4 border-gray-300 pl-8"
-              dangerouslySetInnerHTML={{
-                __html: paragraph.Regelungstext.replace(
-                  /~~(.*?)~~/g,
-                  '<span class="bg-yellow-300">$1</span>',
-                ),
+              rendererOptions={{
+                del(token: Tokens.Del) {
+                  console.log(token.text);
+                  return `<mark>${token.text}</mark>`;
+                },
               }}
             />
             <DetailsSummary
