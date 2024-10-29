@@ -1,7 +1,6 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { type Tokens } from "marked";
 import { Prinziperfuellung } from "../utils/strapiData.server.ts";
 
 export default function PrinzipErfuellung({
@@ -20,12 +19,7 @@ export default function PrinzipErfuellung({
             <RichText
               markdown={paragraph.Regelungstext}
               className="border-l-4 border-gray-300 pl-8"
-              rendererOptions={{
-                del(token: Tokens.Del) {
-                  console.log(token.text);
-                  return `<mark>${token.text}</mark>`;
-                },
-              }}
+              rendererOptions={{ del: ({ text }) => `<mark>${text}</mark>` }}
             />
             <DetailsSummary
               title="Warum ist das gut?"
