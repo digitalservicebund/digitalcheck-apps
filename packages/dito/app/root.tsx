@@ -178,9 +178,9 @@ export const links: LinksFunction = () => [
   },
 ];
 
+// Override the link renderer for the whole application (works because this renderer is used in <RichText />)
 const renderer = new marked.Renderer();
-const extension = {
-  useNewRenderer: true,
+marked.use({
   renderer: {
     link(token: Tokens.Link) {
       const { href } = token;
@@ -203,9 +203,7 @@ const extension = {
       return linkHtml;
     },
   },
-};
-
-marked.use(extension);
+});
 
 const footerLinks = [
   { url: ROUTE_IMPRINT.url, text: "Impressum" },
