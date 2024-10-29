@@ -1702,3 +1702,11 @@ Fax: [030 18 527-2901](tel:+4930185272901)<br />
 E-Mail: [info@schlichtungsstelle-bgg.de](mailto:info@schlichtungsstelle-bgg.de)<br />
 Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)`,
 };
+
+export const regulations = {
+  subtitle: [
+    "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
+    "Inhalt",
+  ],
+  menu: ["Visualisierungen", "Auszüge aus der Regelung", "NKR Stellungnahme"],
+};

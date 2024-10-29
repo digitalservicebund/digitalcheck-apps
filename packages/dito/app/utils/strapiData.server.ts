@@ -55,8 +55,12 @@ export enum Rechtsgebiet {
 }
 
 export type Visualisierung = {
-  documentId: string;
-  url: string;
+  Bild: {
+    documentId: string;
+    url: string;
+  };
+  Beschreibung: [];
+  VisualisierungsArt: string;
 };
 
 export type Digitalcheck = {
@@ -65,7 +69,7 @@ export type Digitalcheck = {
   Datenschutz: Prinziperfuellung;
   KlareRegelungen: Prinziperfuellung;
   Automatisierung: Prinziperfuellung;
-  Visualisierungen: Visualisierung[];
+  Visualisierung: Visualisierung[];
 };
 
 export type Regelungsvorhaben = {
@@ -125,10 +129,14 @@ export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipiene
   DigitaleKommunikation { ...prinzipErfuellung }
   KlareRegelungen { ...prinzipErfuellung }
   Wiederverwendung { ...prinzipErfuellung }
-  Visualisierungen {
-    documentId
-    url
+  Visualisierung {
+    Beschreibung
+    Bild {
+      url
+      documentId
     }
+    VisualisierungsArt
+  }
 }`;
 
 export async function fetchStrapiData<ResponseType>(

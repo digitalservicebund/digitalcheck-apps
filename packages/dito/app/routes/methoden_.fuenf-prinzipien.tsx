@@ -13,6 +13,7 @@ import {
 } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
 import SupportBanner from "../components/SupportBanner.tsx";
+import { slugify } from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);
@@ -30,9 +31,6 @@ export function loader({ request }: LoaderFunctionArgs) {
     referrer: pathname,
   });
 }
-
-const slugify = (string: string) =>
-  string.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-");
 
 export default function Index() {
   const { referrer } = useLoaderData<typeof loader>();
