@@ -70,6 +70,7 @@ export type Digitalcheck = {
   KlareRegelungen: Prinziperfuellung;
   Automatisierung: Prinziperfuellung;
   Visualisierung: Visualisierung[];
+  id: number;
 };
 
 export type Regelungsvorhaben = {
@@ -137,6 +138,7 @@ export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipiene
     }
     VisualisierungsArt
   }
+  id
 }`;
 
 export async function fetchStrapiData<ResponseType>(
