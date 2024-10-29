@@ -12,42 +12,22 @@ export default function PrinzipErfuellung({
   return (
     <div className="space-y-40 my-40">
       {showParagraphs &&
-        prinzipErfuellung.Paragraphen.map((paragraph, index) => (
-          <div key={index}>
-            <div className="flex space-x-8 my-8">
-              {paragraph.Tags?.map((tag) => (
-                <div className="bg-blue-300 rounded-md text-base" key={tag.Tag}>
-                  {tag.Tag}
-                </div>
-              ))}
-            </div>
-            <div className="my-8">
-              <b>{paragraph.Norm}</b>
-            </div>{" "}
-            <div className="border-l-4 border-gray-300 pl-4">
-              <p className="list-none ds-stack-32 ps-0 relative">
-                {paragraph.Regelungstext && (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: paragraph.Regelungstext.replace(
-                        /~~(.*?)~~/g,
-                        '<span class="bg-yellow-300">$1</span>',
-                      ),
-                    }}
-                  />
-                )}
-              </p>
-            </div>
-            <div className="mt-8">
-              <DetailsSummary
-                title="Warum ist das gut?"
-                content={
-                  <BlocksRenderer
-                    content={paragraph.WarumWichtig}
-                  ></BlocksRenderer>
-                }
-              ></DetailsSummary>
-            </div>
+        prinzipErfuellung.Paragraphen.map((paragraph) => (
+          <div key={paragraph.Norm} className="ds-stack-8">
+            <span className="ds-label-01-bold">{paragraph.Norm}</span>
+            <p
+              className="border-l-4 border-gray-300 pl-8"
+              dangerouslySetInnerHTML={{
+                __html: paragraph.Regelungstext.replace(
+                  /~~(.*?)~~/g,
+                  '<span class="bg-yellow-300">$1</span>',
+                ),
+              }}
+            />
+            <DetailsSummary
+              title="Warum ist das gut?"
+              content={<BlocksRenderer content={paragraph.WarumWichtig} />}
+            ></DetailsSummary>
           </div>
         ))}
     </div>
