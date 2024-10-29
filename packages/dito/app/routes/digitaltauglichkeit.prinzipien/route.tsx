@@ -7,8 +7,7 @@ import {
   Outlet,
   useLoaderData,
 } from "@remix-run/react";
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { LoaderFunctionArgs } from "react-router-dom";
 import {
   ROUTE_LANDING,
   ROUTE_PRINCIPLES,
@@ -57,7 +56,7 @@ export type PrinzipResponse = {
   };
 };
 
-export async function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
   const digitalSuitabilityFlag = unleash.isEnabled(
     "digitalcheck.digital-suitability",
   );
@@ -68,38 +67,34 @@ export async function loader() {
 
   const prinzipData =
     await fetchStrapiData<PrinzipResponse>(GET_PRINZIPS_QUERY);
+
+  // redirect to first prinzip if no prinzip is specified in the URL
+  const prinzipUrl = new URL(request.url);
+  if (prinzipUrl.pathname === ROUTE_PRINCIPLES.url) {
+    const firstPrinzip = prinzipData?.data.prinzips.find((p) => p.Nummer === 1);
+    return redirect(`${ROUTE_PRINCIPLES.url}/${firstPrinzip?.URLBezeichnung}`);
+  }
+
   return json({
     prinzips: prinzipData?.data.prinzips.sort((a, b) => a.Nummer - b.Nummer),
   });
 }
 
 export default function Prinzipien() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const { prinzips } = useLoaderData<{ prinzips: Prinzip[] }>();
-
-  useEffect(() => {
-    if (location.pathname === ROUTE_PRINCIPLES.url && prinzips?.length) {
-      const firstPrinzipUrl = `/digitaltauglichkeit/prinzipien/${
-        prinzips.find((prinzip) => prinzip.Nummer === 1)?.URLBezeichnung ?? ""
-      }`;
-      navigate(firstPrinzipUrl, { replace: true });
-    }
-  }, [location.pathname, prinzips, navigate]);
 
   return (
     <>
       <Container additionalClassNames="flex space-x-20">
-        {prinzips?.length &&
-          prinzips.map((prinzip) => (
-            <Link
-              to={`${prinzip.URLBezeichnung}`}
-              key={prinzip.URLBezeichnung}
-              state={{ prinzip }}
-            >
-              Prinzip {prinzip.Nummer}
-            </Link>
-          ))}
+        {prinzips.map((prinzip) => (
+          <Link
+            to={prinzip.URLBezeichnung}
+            key={prinzip.URLBezeichnung}
+            state={{ prinzip }}
+          >
+            Prinzip {prinzip.Nummer}
+          </Link>
+        ))}
       </Container>
       <Outlet context={prinzips} />
     </>
