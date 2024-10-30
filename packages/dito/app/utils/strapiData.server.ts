@@ -58,6 +58,7 @@ export type Visualisierung = {
   Bild: {
     documentId: string;
     url: string;
+    alternativeText: string;
   };
   Beschreibung: [];
   VisualisierungsArt: string;
@@ -135,6 +136,7 @@ export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipiene
     Bild {
       url
       documentId
+      alternativeText
     }
     VisualisierungsArt
   }

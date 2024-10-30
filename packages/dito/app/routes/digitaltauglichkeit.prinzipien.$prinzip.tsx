@@ -3,6 +3,7 @@ import { json, Link, useLoaderData, useOutletContext } from "@remix-run/react";
 
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import TextRow from "@digitalcheck/shared/components/TextRow.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import PrinzipErfuellung from "../components/PrinzipErfuellung.tsx";
@@ -54,14 +55,16 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
             >
               {rv.Titel}
             </Link>
-            <p className="bg-gray-100 pl-16 space-x-8">
-              <span>Rechtsbereich:</span>
-              <span className="ds-label-01-bold">{rv.Rechtsgebiet}</span>
-              <span>Veröffentlicht am:</span>
-              <span className="ds-label-01-bold">
-                {rv.VeroeffentlichungsDatum?.toString()}
-              </span>
-            </p>
+            <TextRow
+              className="bg-blue-200"
+              items={[
+                { label: "Rechtsbereich", value: rv.Rechtsgebiet },
+                {
+                  label: "Veröffentlicht am",
+                  value: rv.VeroeffentlichungsDatum?.toString(),
+                },
+              ]}
+            />
             {rv.Digitalcheck?.map(
               (digitalcheck) =>
                 digitalcheck[prinzipToStrapi[prinzip.Nummer]].Paragraphen
@@ -71,7 +74,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                     prinzipErfuellung={
                       digitalcheck[prinzipToStrapi[prinzip.Nummer]]
                     }
-                  ></PrinzipErfuellung>
+                  />
                 ),
             )}
           </div>

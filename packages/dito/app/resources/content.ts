@@ -1709,4 +1709,12 @@ export const regulations = {
     "Inhalt",
   ],
   menu: ["Visualisierungen", "Auszüge aus der Regelung", "NKR Stellungnahme"],
+  infoLabels: ["Rechtsbereich", "Veröffentlicht am", "Art"],
+  visualisations: {
+    title: "Visualisierungen",
+    subTitle:
+      "Diese Visualisierungen haben dem Referat geholfen Digitaltauglichkeit zu erstellen und den Sachverhalt zu kommunizieren.",
+    type: "Art der Visualisierung:",
+    button: "Vergrößern",
+  },
 };

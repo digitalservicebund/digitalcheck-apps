@@ -3,9 +3,17 @@ export type ImageProps = {
   width?: number;
   height?: number;
   alternativeText?: string;
+  className?: string;
 };
 
-function Image({ url, width, height, alternativeText, ...props }: ImageProps) {
+function Image({
+  url,
+  width,
+  height,
+  alternativeText,
+  className,
+  ...props
+}: ImageProps) {
   if (!url) return null;
 
   // when no alternative text is given, the image is treated
@@ -19,6 +27,7 @@ function Image({ url, width, height, alternativeText, ...props }: ImageProps) {
       alt={alternativeText || decorativeImage}
       width={width}
       height={height}
+      className={className}
     />
   );
 }
