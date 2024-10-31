@@ -1,9 +1,11 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
+import Box from "@digitalcheck/shared/components/Box.tsx";
 import Button from "@digitalcheck/shared/components/Button.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
+import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import TextRow from "@digitalcheck/shared/components/TextRow.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
@@ -59,21 +61,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   });
 };
 
-const LabelValuePair = ({
-  label,
-  value,
-}: {
-  label: string;
-  value?: string;
-}) => {
-  if (!value) return null;
-  return (
+const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
+  value ? (
     <div className="space-x-8">
       <span>{label}</span>
       <span className="ds-label-01-bold">{value}</span>
     </div>
-  );
-};
+  ) : null;
 
 export default function Gesetz() {
   const { regelung } = useLoaderData<{ regelung: Regelungsvorhaben }>();
@@ -87,9 +81,9 @@ export default function Gesetz() {
               text: regelung.Titel,
             }}
           />
-          <p className="mt-10">{regulations.subtitle[0]}</p>
+          <p className="mt-10">{regulations.subTitle[0]}</p>
           <p className="mt-24 ds-label-01-bold">
-            <b>{regulations.subtitle[1]}</b>
+            <b>{regulations.subTitle[1]}</b>
           </p>
           <ol className="mt-16">
             {regulations.menu.map((menuItem, index) => (
@@ -122,14 +116,15 @@ export default function Gesetz() {
         </Container>
       </Background>
       {regelung.Digitalcheck?.map((digitalcheck, index) => (
-        <Container key={index} additionalClassNames="ds-stack-8">
+        <Container
+          key={digitalcheck.documentId}
+          additionalClassNames="ds-stack-8"
+        >
           <Heading tagName="h2">Debug: Digitalcheck {index + 1}</Heading>
-          {/*
-            ----- VISUALISIERUNGEN -----
-*/}
+          {/* ----- VISUALISIERUNGEN ----- */}
           {digitalcheck.Visualisierung && (
             <div>
-              <Heading tagName="h2">Visualisierungen</Heading>
+              <Heading tagName="h2">{regulations.visualisations.title}</Heading>
               <p>{regulations.visualisations.subTitle}</p>
               {digitalcheck.Visualisierung.map((visualisierung, index) => (
                 <div
@@ -161,9 +156,7 @@ export default function Gesetz() {
                         label={regulations.visualisations.imageInfo.legalArea}
                         value={regelung.Rechtsgebiet}
                       />
-                      {/*
-                        // TODO: Prinzipien here?
-*/}
+                      {/*TODO: Prinzipien here?*/}
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.publishedOn}
                         value={regelung.VeroeffentlichungsDatum}
@@ -176,9 +169,7 @@ export default function Gesetz() {
                         label={regulations.visualisations.imageInfo.law}
                         value={regelung.Titel}
                       />
-                      {/*
-                        // TODO: Digitalcheck Name?
-*/}
+                      {/*TODO: Digitalcheck Name?*/}
                     </div>
                   </div>
                   <div className="flex-1">
@@ -203,20 +194,50 @@ export default function Gesetz() {
             </div>
           )}
 
-          {/*
-            ----- Prinziperfüllung -----
-*/}
+          {/* ----- Prinziperfüllung ----- */}
+          <Heading tagName="h2" className="pt-40">
+            {regulations.principles.title}
+          </Heading>
+          <p>{regulations.principles.subtitle}</p>
           {Object.values(prinzipToStrapi).map(
-            (prinzipKey, index) =>
+            (prinzipKey) =>
               digitalcheck[prinzipKey]?.Paragraphen?.length > 0 && (
                 <PrinzipErfuellung
-                  key={`${prinzipKey}-${index}`}
+                  key={`${prinzipKey}`}
                   prinzipErfuellung={digitalcheck[prinzipKey]}
                 />
               ),
           )}
         </Container>
       ))}
+
+      {/* ----- NKR Stellungnahme ----- */}
+      <Container additionalClassNames="ds-stack-8">
+        <Heading tagName="h2">{regulations.nkr.title}</Heading>
+        <p>{regulations.nkr.subTitle}</p>
+        {regelung.NKRStellungnahmeRegelungText && (
+          <RichText
+            className="border-l-4 border-gray-300 pl-8"
+            markdown={regelung.NKRStellungnahmeRegelungText}
+          />
+        )}
+      </Container>
+
+      {/* ----- Feedback Banner ----- */}
+      <Background backgroundColor="midBlue">
+        <Container additionalClassNames="ds-stack-16">
+          <Box
+            heading={{
+              tagName: "h2",
+              look: "ds-label-01-bold",
+              text: regulations.feedback.title,
+            }}
+            content={{
+              markdown: regulations.feedback.text,
+            }}
+          ></Box>
+        </Container>
+      </Background>
     </>
   );
 }

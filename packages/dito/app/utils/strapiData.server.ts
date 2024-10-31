@@ -91,7 +91,7 @@ export type Regelungsvorhaben = {
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
   VeroeffentlichungsDatum?: Date;
-  NKRStellungnahmeRegelungText: [];
+  NKRStellungnahmeRegelungText: string;
 };
 
 export type Prinzip = {

@@ -1704,7 +1704,7 @@ Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)
 };
 
 export const regulations = {
-  subtitle: [
+  subTitle: [
     "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
     "Inhalt",
   ],
@@ -1722,5 +1722,18 @@ export const regulations = {
       law: "Regelung:",
       digitalCheck: "Digitalcheck",
     },
+  },
+  principles: {
+    title: "Auszüge aus der Regelung",
+    subtitle:
+      "So hat das Referat n der Dokumentation die Digitaltauglichkeit in die Regelung geschrieben",
+  },
+  nkr: {
+    title: "NKR Stellungnahme",
+    subTitle: "Diese Ausführungen sind der Stellungnahme des NKR entnommen.",
+  },
+  feedback: {
+    title: "Was fehlt Ihnen hier noch?",
+    text: "Wir möchten Ihnen alle Beispiele zur Verfügung stellen, die Ihnen bei der Erarbeitung von digitaltauglichen Regelungen helfen. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Anmerkungen:%20digitaltauglichkeit).",
   },
 };
