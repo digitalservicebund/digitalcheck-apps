@@ -1,5 +1,6 @@
-const url = process.env.STRAPI_URL || "http://localhost:1337/graphql";
-/*"https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";*/
+const url =
+  process.env.STRAPI_URL ||
+  "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";
 
 export type Paragraph = {
   Norm: string;
