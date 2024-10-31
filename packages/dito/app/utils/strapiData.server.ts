@@ -82,7 +82,6 @@ export type Digitalcheck = {
 export type Regelungsvorhaben = {
   documentId: string;
   Titel: string;
-  Gesetz: boolean;
   Ressort: Ressort;
   NKRStellungnahmeLink?: string;
   DIPVorgang: number;

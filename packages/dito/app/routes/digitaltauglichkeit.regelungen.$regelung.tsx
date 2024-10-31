@@ -9,6 +9,7 @@ import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import PrinzipErfuellung from "../components/PrinzipErfuellung.tsx";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
@@ -20,6 +21,7 @@ import {
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
+import { prinzipToStrapi } from "./digitaltauglichkeit.prinzipien.$prinzip.tsx";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
@@ -57,6 +59,22 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   });
 };
 
+const LabelValuePair = ({
+  label,
+  value,
+}: {
+  label: string;
+  value?: string;
+}) => {
+  if (!value) return null;
+  return (
+    <div className="space-x-8">
+      <span>{label}</span>
+      <span className="ds-label-01-bold">{value}</span>
+    </div>
+  );
+};
+
 export default function Gesetz() {
   const { regelung } = useLoaderData<{ regelung: Regelungsvorhaben }>();
   return (
@@ -73,9 +91,6 @@ export default function Gesetz() {
           <p className="mt-24 ds-label-01-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
-          {/*
-            //TODO: how do we handle multiple digitalchecks? Adapt menu accordingly
-*/}
           <ol className="mt-16">
             {regulations.menu.map((menuItem, index) => (
               <li key={index}>
@@ -141,11 +156,29 @@ export default function Gesetz() {
                         </div>
                       </a>
                     </div>
-                    <div className="p-12 bg-gray-100 space-x-8">
-                      <span>{regulations.visualisations.type}</span>
-                      <span className="ds-label-01-bold">
-                        {visualisierung.VisualisierungsArt}
-                      </span>
+                    <div className="p-12 bg-gray-100">
+                      <LabelValuePair
+                        label={regulations.visualisations.imageInfo.legalArea}
+                        value={regelung.Rechtsgebiet}
+                      />
+                      {/*
+                        // TODO: Prinzipien here?
+*/}
+                      <LabelValuePair
+                        label={regulations.visualisations.imageInfo.publishedOn}
+                        value={regelung.VeroeffentlichungsDatum}
+                      />
+                      <LabelValuePair
+                        label={regulations.visualisations.imageInfo.type}
+                        value={visualisierung.VisualisierungsArt}
+                      />
+                      <LabelValuePair
+                        label={regulations.visualisations.imageInfo.law}
+                        value={regelung.Titel}
+                      />
+                      {/*
+                        // TODO: Digitalcheck Name?
+*/}
                     </div>
                   </div>
                   <div className="flex-1">
@@ -173,13 +206,15 @@ export default function Gesetz() {
           {/*
             ----- Prinziperfüllung -----
 */}
-          {/*          {Object.entries(digitalcheck).map(([key, value]) => (
-            <PrinzipErfuellung
-              key={`${key}-${index}`}
-              prinzipErfuellung={value}
-              showParagraphs={false}
-            ></PrinzipErfuellung>
-          ))}*/}
+          {Object.values(prinzipToStrapi).map(
+            (prinzipKey, index) =>
+              digitalcheck[prinzipKey]?.Paragraphen?.length > 0 && (
+                <PrinzipErfuellung
+                  key={`${prinzipKey}-${index}`}
+                  prinzipErfuellung={digitalcheck[prinzipKey]}
+                />
+              ),
+          )}
         </Container>
       ))}
     </>

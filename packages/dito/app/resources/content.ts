@@ -1714,7 +1714,13 @@ export const regulations = {
     title: "Visualisierungen",
     subTitle:
       "Diese Visualisierungen haben dem Referat geholfen Digitaltauglichkeit zu erstellen und den Sachverhalt zu kommunizieren.",
-    type: "Art der Visualisierung:",
     button: "Vergrößern",
+    imageInfo: {
+      type: "Art der Visualisierung:",
+      legalArea: "Rechtsbereich:",
+      publishedOn: "Veröffentlicht am:",
+      law: "Regelung:",
+      digitalCheck: "Digitalcheck",
+    },
   },
 };

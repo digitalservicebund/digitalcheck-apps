@@ -15,7 +15,7 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
   return json({ slug });
 };
 
-const prinzipToStrapi = {
+export const prinzipToStrapi = {
   1: "DigitaleKommunikation",
   2: "Wiederverwendung",
   3: "Datenschutz",
