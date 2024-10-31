@@ -33,18 +33,19 @@ query GetPrinzips {
     Beschreibung
     Name
     Nummer
-    Tipps
     GuteUmsetzung {
-      Gesetz
-      Digitalcheck {
-        ...digitalcheck
-      }
-      Rechtsgebiet
-      Ressort
-      Titel
+      ...digitalcheck
       documentId
-      URLBezeichnung
-      VeroeffentlichungsDatum
+      Regelungsvorhaben {
+        NKRNummer
+        NKRStellungnahmeLink
+        NKRStellungnahmeRegelungText
+        Ressort
+        Rechtsgebiet
+        Titel
+        URLBezeichnung
+        VeroeffentlichungsDatum
+      }
     }
     URLBezeichnung
   }

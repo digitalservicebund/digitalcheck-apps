@@ -1,6 +1,5 @@
-const url =
-  process.env.STRAPI_URL ||
-  "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";
+const url = process.env.STRAPI_URL || "http://localhost:1337/graphql";
+/*"https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";*/
 
 export type Paragraph = {
   Norm: string;
@@ -18,7 +17,6 @@ export enum EinschaetzungReferat {
 
 export type Prinziperfuellung = {
   EinschaetzungReferat: EinschaetzungReferat;
-  NKRStellungnahmePrinzip?: [];
   Paragraphen: Paragraph[];
   id: number;
 };
@@ -71,22 +69,9 @@ export type Digitalcheck = {
   KlareRegelungen: Prinziperfuellung;
   Automatisierung: Prinziperfuellung;
   Visualisierung: Visualisierung[];
-  id: number;
-};
-
-export type Regelungsvorhaben = {
   documentId: string;
-  Titel: string;
-  Gesetz: boolean;
-  Ressort: Ressort;
-  NKRStellungnahmeText?: [];
-  NKRStellungnahmeLink?: string;
-  DIPVorgang: number;
-  NKRNummer: number;
-  Digitalcheck: Digitalcheck[];
-  URLBezeichnung: string;
-  Rechtsgebiet?: Rechtsgebiet;
-  VeroeffentlichungsDatum?: Date;
+  NKRStellungnahmeDCText?: string;
+  Regelungsvorhaben: Regelungsvorhaben;
   VorpruefungITSystem: boolean;
   VorpruefungVerpflichtungen: boolean;
   VorpruefungDatenaustausch: boolean;
@@ -94,13 +79,27 @@ export type Regelungsvorhaben = {
   VorpruefungAutomatisierung: boolean;
 };
 
+export type Regelungsvorhaben = {
+  documentId: string;
+  Titel: string;
+  Gesetz: boolean;
+  Ressort: Ressort;
+  NKRStellungnahmeLink?: string;
+  DIPVorgang: number;
+  NKRNummer: number;
+  Digitalcheck: Digitalcheck[];
+  URLBezeichnung: string;
+  Rechtsgebiet?: Rechtsgebiet;
+  VeroeffentlichungsDatum?: Date;
+  NKRStellungnahmeRegelungText: [];
+};
+
 export type Prinzip = {
   documentId: string;
   Name: string;
   Beschreibung: [];
   Nummer: 1 | 2 | 3 | 4 | 5;
-  Tipps?: [];
-  GuteUmsetzung: Regelungsvorhaben[];
+  GuteUmsetzung: Digitalcheck[];
   URLBezeichnung: string;
 };
 
@@ -112,7 +111,6 @@ export type RegelungsvorhabenResponse = {
 
 export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
   EinschaetzungReferat
-  NKRStellungnahmePrinzip
   Paragraphen {
     WarumWichtig
     Norm
@@ -125,7 +123,7 @@ export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedP
   id
 }`;
 
-export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipienerfuellung {
+export const digitalcheck = `fragment digitalcheck on Digitalcheck {
   Automatisierung { ...prinzipErfuellung }
   Datenschutz { ...prinzipErfuellung }
   DigitaleKommunikation { ...prinzipErfuellung }
@@ -140,7 +138,7 @@ export const digitalcheck = `fragment digitalcheck on ComponentSharedPrinzipiene
     }
     VisualisierungsArt
   }
-  id
+  documentId
 }`;
 
 export async function fetchStrapiData<ResponseType>(
@@ -148,6 +146,7 @@ export async function fetchStrapiData<ResponseType>(
   variables?: object,
 ): Promise<ResponseType | null> {
   try {
+    console.log(query);
     const response = await fetch(url, {
       method: "POST",
       headers: {

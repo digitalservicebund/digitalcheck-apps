@@ -47,35 +47,39 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
         </Container>
       </Background>
       <Container additionalClassNames="rich-text">
-        {GuteUmsetzung.map((rv) => (
-          <div key={`${rv.Titel}-${rv.URLBezeichnung}`} className="ds-stack-24">
+        {GuteUmsetzung.map((digitalcheck) => (
+          <div
+            key={`${digitalcheck.Regelungsvorhaben.Titel}-${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
+            className="ds-stack-24"
+          >
             <Link
-              to={`${ROUTE_LAWS.url}/${rv.URLBezeichnung}`}
-              key={rv.URLBezeichnung}
+              to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
+              key={digitalcheck.Regelungsvorhaben.URLBezeichnung}
             >
-              {rv.Titel}
+              {digitalcheck.Regelungsvorhaben.Titel}
             </Link>
             <TextRow
               className="bg-blue-200"
               items={[
-                { label: "Rechtsbereich", value: rv.Rechtsgebiet },
+                {
+                  label: "Rechtsbereich",
+                  value: digitalcheck.Regelungsvorhaben.Rechtsgebiet,
+                },
                 {
                   label: "Veröffentlicht am",
-                  value: rv.VeroeffentlichungsDatum?.toString(),
+                  value:
+                    digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum?.toString(),
                 },
               ]}
             />
-            {rv.Digitalcheck?.map(
-              (digitalcheck) =>
-                digitalcheck[prinzipToStrapi[prinzip.Nummer]].Paragraphen
-                  .length > 0 && (
-                  <PrinzipErfuellung
-                    key={digitalcheck.id}
-                    prinzipErfuellung={
-                      digitalcheck[prinzipToStrapi[prinzip.Nummer]]
-                    }
-                  />
-                ),
+            {digitalcheck[prinzipToStrapi[prinzip.Nummer]].Paragraphen.length >
+              0 && (
+              <PrinzipErfuellung
+                key={digitalcheck.documentId}
+                prinzipErfuellung={
+                  digitalcheck[prinzipToStrapi[prinzip.Nummer]]
+                }
+              />
             )}
           </div>
         ))}

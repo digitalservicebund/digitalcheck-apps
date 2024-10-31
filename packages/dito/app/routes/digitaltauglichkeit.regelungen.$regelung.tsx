@@ -31,23 +31,17 @@ ${digitalcheck}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     DIPVorgang
-    Gesetz
     NKRNummer
     Digitalcheck {
       ...digitalcheck
     }
-    NKRStellungnahmeText
+    NKRStellungnahmeRegelungText
     Rechtsgebiet
     Ressort
     Titel
     documentId
     URLBezeichnung
     VeroeffentlichungsDatum
-    VorpruefungITSystem
-    VorpruefungVerpflichtungen
-    VorpruefungDatenaustausch
-    VorpruefungKommunikation
-    VorpruefungAutomatisierung
   }
 }`;
 
@@ -57,7 +51,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
     { slug },
   );
-  // TODO: can gesetze consist of more than one regelungsvorhaben?
 
   return json({
     regelung: regelungData?.data.regelungsvorhabens[0],
@@ -109,7 +102,6 @@ export default function Gesetz() {
                 label: regulations.infoLabels[1],
                 value: regelung.VeroeffentlichungsDatum?.toString(),
               },
-              // TODO: Art des Gesetzes
             ]}
           />
         </Container>
@@ -181,13 +173,13 @@ export default function Gesetz() {
           {/*
             ----- Prinziperfüllung -----
 */}
-          {/*            {Object.entries(digitalcheck).map(([key, value]) => (
-              <PrinzipErfuellung
-                key={`${key}-${index}`}
-                prinzipErfuellung={value}
-                showParagraphs={false}
-              ></PrinzipErfuellung>
-            ))}*/}
+          {/*          {Object.entries(digitalcheck).map(([key, value]) => (
+            <PrinzipErfuellung
+              key={`${key}-${index}`}
+              prinzipErfuellung={value}
+              showParagraphs={false}
+            ></PrinzipErfuellung>
+          ))}*/}
         </Container>
       ))}
     </>
