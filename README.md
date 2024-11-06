@@ -109,12 +109,9 @@ npm run start --workspace="packages/<app-name>"
 Build and run an app locally to simulate the production environment.
 
 ```sh
-npm run docker
+npm run docker # to build and run all apps
+npm run docker:<app-name>
 ```
-
-You will br prompted to select which app to build and run.
-
-After running this command, the website is then available under http://localhost:3000
 
 ## Add a new application
 
@@ -133,6 +130,7 @@ Do the following steps to add a new application to this Monorepo.
      - `test:a11y`: run a11y tests
      - `tests`: run all tests
    - a `Dockerfile` which builds a Docker container from your application (and if needed a `Dockerfile.dockerignore`)
+     - also add your service to the [docker-compose.yml](./docker-compose.yml) file
 4. Add the application code. It should now be able to import shared components.
 5. Before proceeding with the next step, make sure the infrastructure of the application is in place.
    Follow the steps in the [digitalcheck-apps-infra README.md](https://github.com/digitalservicebund/digitalcheck-apps-infra).
