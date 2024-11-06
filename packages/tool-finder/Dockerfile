@@ -1,8 +1,5 @@
 FROM node:22.1.0 AS build
 
-ARG COMMIT_SHA
-ENV APP_VERSION=$COMMIT_SHA
-
 # Create app directory
 WORKDIR /src
 # Copy root level files and shared
@@ -12,7 +9,9 @@ COPY packages/shared/ packages/shared/
 # Copy tool-finder files
 COPY packages/tool-finder/src/ packages/tool-finder/src/
 COPY packages/tool-finder/index.html packages/tool-finder/nginx.conf packages/tool-finder/package.json packages/tool-finder/postcss.config.js packages/tool-finder/tailwind.config.ts packages/tool-finder/tsconfig.json packages/tool-finder/vite.config.ts packages/tool-finder/
-RUN npm ci --ignore-scripts && npm run build --workspace packages/tool-finder && npm prune --production --workspace packages/tool-finder
+RUN npm ci --ignore-scripts \
+    && npm run build --workspace packages/tool-finder \
+    && npm prune --production --workspace packages/tool-finder
 
 FROM nginxinc/nginx-unprivileged:1.25.5-alpine3.19
 

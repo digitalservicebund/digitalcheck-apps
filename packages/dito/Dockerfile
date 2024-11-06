@@ -21,9 +21,6 @@ RUN npm ci
 # Build the app
 FROM node:22.4.1-alpine3.20 AS build
 
-ARG COMMIT_SHA
-ENV APP_VERSION=$COMMIT_SHA
-
 # Create app directory
 WORKDIR /src
 
@@ -49,9 +46,6 @@ FROM node:22.4.1-alpine3.20
 USER node
 ENV NODE_ENV=production
 ENV npm_config_cache=/tmp/.npm
-
-ARG COMMIT_SHA
-ENV APP_VERSION=$COMMIT_SHA
 
 WORKDIR /home/node/src
 # Move only the files to the final image that are really needed
