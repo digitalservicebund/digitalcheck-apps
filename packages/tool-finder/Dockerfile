@@ -1,8 +1,5 @@
 FROM node:22.1.0 AS build
 
-ARG COMMIT_SHA
-ENV APP_VERSION=$COMMIT_SHA
-
 # Create app directory
 WORKDIR /src
 # Copy root level files and shared
