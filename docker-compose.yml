@@ -6,7 +6,7 @@ services:
       dockerfile: packages/dito/Dockerfile
     env_file:
       - packages/dito/.env
-    # For local development with docker-compose (not working yet)
+    # For improved local development where you don't need to rebuild the image when you change the code (not working yet)
     # volumes:
     #   - ./packages/dito:/home/node/src/packages/dito
     #   - /home/node/src/node_modules
