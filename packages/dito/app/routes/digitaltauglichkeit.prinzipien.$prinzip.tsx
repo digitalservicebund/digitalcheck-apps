@@ -33,7 +33,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
     throw new Response("Prinzip not found", { status: 404 });
   }
 
-  const { GuteUmsetzung } = prinzip;
+  const { GuteUmsetzungen } = prinzip;
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
         </Container>
       </Background>
       <Container additionalClassNames="rich-text">
-        {GuteUmsetzung.map((digitalcheck) => (
+        {GuteUmsetzungen.map((digitalcheck) => (
           <div
             key={`${digitalcheck.Regelungsvorhaben.Titel}-${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
             className="ds-stack-24"
@@ -72,14 +72,23 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                 },
               ]}
             />
-            {digitalcheck[prinzipToStrapi[prinzip.Nummer]].Paragraphen.length >
-              0 && (
-              <PrinzipErfuellung
-                key={digitalcheck.documentId}
-                prinzipErfuellung={
-                  digitalcheck[prinzipToStrapi[prinzip.Nummer]]
-                }
-              />
+            {digitalcheck.Paragraphen.map((paragraph) =>
+              paragraph.Absaetze.map((absatz) => {
+                const relevantErfuellung = absatz.PrinzipErfuellungen.find(
+                  (erfuellung) =>
+                    erfuellung.Prinzip === prinzipToStrapi[prinzip.Nummer],
+                );
+
+                return (
+                  relevantErfuellung && (
+                    <PrinzipErfuellung
+                      key={relevantErfuellung.id}
+                      prinzipErfuellung={relevantErfuellung}
+                      absatz={absatz} // Pass the entire absatz object here
+                    />
+                  )
+                );
+              }),
             )}
           </div>
         ))}

@@ -11,27 +11,21 @@ import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import PrinzipErfuellung from "../components/PrinzipErfuellung.tsx";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
-  digitalcheck,
   fetchStrapiData,
-  prinzipErfuellung,
   Regelungsvorhaben,
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
-import { prinzipToStrapi } from "./digitaltauglichkeit.prinzipien.$prinzip.tsx";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
 
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
-${prinzipErfuellung}
-${digitalcheck}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     DIPVorgang
@@ -122,11 +116,11 @@ export default function Gesetz() {
         >
           <Heading tagName="h2">Debug: Digitalcheck {index + 1}</Heading>
           {/* ----- VISUALISIERUNGEN ----- */}
-          {digitalcheck.Visualisierung && (
+          {digitalcheck.Visualisierungen && (
             <div>
               <Heading tagName="h2">{regulations.visualisations.title}</Heading>
               <p>{regulations.visualisations.subTitle}</p>
-              {digitalcheck.Visualisierung.map((visualisierung, index) => (
+              {digitalcheck.Visualisierungen.map((visualisierung, index) => (
                 <div
                   className="flex max-sm:flex-col mt-40 gap-32"
                   key={visualisierung.Bild.documentId}
@@ -156,20 +150,18 @@ export default function Gesetz() {
                         label={regulations.visualisations.imageInfo.legalArea}
                         value={regelung.Rechtsgebiet}
                       />
-                      {/*TODO: Prinzipien here?*/}
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.publishedOn}
                         value={regelung.VeroeffentlichungsDatum}
                       />
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.type}
-                        value={visualisierung.VisualisierungsArt}
+                        value={visualisierung.Visualisierungsart}
                       />
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.law}
                         value={regelung.Titel}
                       />
-                      {/*TODO: Digitalcheck Name?*/}
                     </div>
                   </div>
                   <div className="flex-1">
@@ -199,7 +191,7 @@ export default function Gesetz() {
             {regulations.principles.title}
           </Heading>
           <p>{regulations.principles.subtitle}</p>
-          {Object.values(prinzipToStrapi).map(
+          {/*          {Object.values(prinzipToStrapi).map(
             (prinzipKey) =>
               digitalcheck[prinzipKey]?.Paragraphen?.length > 0 && (
                 <PrinzipErfuellung
@@ -207,7 +199,7 @@ export default function Gesetz() {
                   prinzipErfuellung={digitalcheck[prinzipKey]}
                 />
               ),
-          )}
+          )}*/}
         </Container>
       ))}
 

@@ -14,20 +14,13 @@ import {
 } from "../../resources/staticRoutes.ts";
 import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
-import {
-  digitalcheck,
-  fetchStrapiData,
-  Prinzip,
-  prinzipErfuellung,
-} from "../../utils/strapiData.server.ts";
+import { fetchStrapiData, Prinzip } from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 
 const GET_PRINZIPS_QUERY = `
-${prinzipErfuellung}
-${digitalcheck}
 query GetPrinzips {
   prinzips {
     Beschreibung

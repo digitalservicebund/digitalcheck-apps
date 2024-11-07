@@ -1,16 +1,20 @@
-import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { Prinziperfuellung } from "../utils/strapiData.server.ts";
+import { Absatz, Prinziperfuellung } from "../utils/strapiData.server.ts";
 
 export default function PrinzipErfuellung({
   prinzipErfuellung,
+  absatz,
 }: {
   prinzipErfuellung: Prinziperfuellung;
+  absatz: Absatz;
 }) {
+  console.log(absatz);
+  console.log(prinzipErfuellung);
   return (
     <div className="space-y-40 my-40">
-      {prinzipErfuellung.Paragraphen.map((paragraph) => (
+      {/*
+      // TODO
+*/}
+      {/*      {absatz.Text.map((paragraph) => (
         <div key={paragraph.Norm} className="ds-stack-8">
           <span className="ds-label-01-bold">{paragraph.Norm}</span>
           <RichText
@@ -25,7 +29,7 @@ export default function PrinzipErfuellung({
             content={<BlocksRenderer content={paragraph.WarumWichtig} />}
           ></DetailsSummary>
         </div>
-      ))}
+      ))}*/}
     </div>
   );
 }
