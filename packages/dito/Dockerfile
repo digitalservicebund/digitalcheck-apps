@@ -47,12 +47,6 @@ USER node
 ENV NODE_ENV=production
 ENV npm_config_cache=/tmp/.npm
 
-ARG ENCRYPTION_KEY
-ENV ENCRYPTION_KEY=$ENCRYPTION_KEY
-
-ARG UNLEASH_KEY
-ENV UNLEASH_KEY=$UNLEASH_KEY
-
 WORKDIR /home/node/src
 # Move only the files to the final image that are really needed
 COPY --chown=node:node package*.json LICENSE SECURITY.md ./
@@ -64,5 +58,6 @@ COPY --chown=node:node --from=build /src/packages/dito/build/ ./packages/dito/bu
 COPY --chown=node:node --from=build /src/packages/dito/public/ ./packages/dito/public/
 
 EXPOSE 3000
-CMD ["sh", "packages/dito/start.sh"]
 
+ENTRYPOINT ["packages/dito/start.sh"]
+CMD ["npm", "run", "start", "--workspace", "packages/dito"]

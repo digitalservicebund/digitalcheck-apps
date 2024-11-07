@@ -18,8 +18,7 @@
     "test:a11y": "playwright test tests/playwright/a11y --config=tests/playwright/playwright.config.ts",
     "tests": "vitest run && npm run test:e2e && npm run test:a11y",
     "test:generate-coverage": "jest --coverage",
-    "typecheck": "tsc",
-    "docker": "sh ../../docker.sh dito"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.13.0",
