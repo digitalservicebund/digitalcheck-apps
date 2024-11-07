@@ -1,35 +1,14 @@
+import { BlocksContent } from "@strapi/blocks-react-renderer";
+
 const url =
   process.env.STRAPI_URL ||
   "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";
 
-export type Paragraph = {
-  Norm: string;
-  WarumWichtig: [];
-  Tags: Tag[];
-  Regelungstext: string;
-};
-
-export enum EinschaetzungReferat {
-  Ja = "Ja",
-  Nein = "Nein",
-  Teilweise = "Teilweise",
-  NichtRelevant = "Nicht relevant",
-}
-
-export type Prinziperfuellung = {
-  EinschaetzungReferat: EinschaetzungReferat;
-  Paragraphen: Paragraph[];
-  id: number;
-};
-
-export enum TagEnum {
-  Tag1 = "Tag1",
-  Tag2 = "Tag2",
-}
-
-export type Tag = {
-  Tag?: TagEnum;
-};
+export type EinschaetzungReferat =
+  | "Ja"
+  | "Nein"
+  | "Teilweise"
+  | "Nicht relevant";
 
 export enum Ressort {
   Aa = "AA",
@@ -53,31 +32,68 @@ export enum Rechtsgebiet {
   Tbd = "TBD",
 }
 
+export type PrinzipName =
+  | "DigitaleKommunikation"
+  | "Wiederverwendung"
+  | "Datenschutz"
+  | "KlareRegelungen"
+  | "Automatisierung";
+
+export type Paragraph = {
+  documentId: string;
+  Nummer: string;
+  Gesetz: string;
+  Namen?: string;
+  Artikel?: string;
+  Digitalcheck: Digitalcheck;
+  Absaetze: Absatz[];
+};
+
+export type Absatz = {
+  id: number;
+  Text: string;
+  PrinzipErfuellungen: Prinziperfuellung[];
+};
+
+export type Prinziperfuellung = {
+  id: number;
+  Prinzip: PrinzipName;
+  WarumGut: BlocksContent;
+  KontextStart: number;
+  KontextEnde: number;
+};
+
 export type Visualisierung = {
+  documentId: string;
+  Titel: string;
+  Visualisierungsart?: string;
+  Visualisierungstool?: string;
+  Beschreibung: BlocksContent;
   Bild: {
     documentId: string;
     url: string;
     alternativeText: string;
   };
-  Beschreibung: [];
-  VisualisierungsArt: string;
+  Digitalcheck: Digitalcheck;
 };
 
 export type Digitalcheck = {
-  DigitaleKommunikation: Prinziperfuellung;
-  Wiederverwendung: Prinziperfuellung;
-  Datenschutz: Prinziperfuellung;
-  KlareRegelungen: Prinziperfuellung;
-  Automatisierung: Prinziperfuellung;
-  Visualisierung: Visualisierung[];
   documentId: string;
   NKRStellungnahmeDCText?: string;
-  Regelungsvorhaben: Regelungsvorhaben;
   VorpruefungITSystem: boolean;
   VorpruefungVerpflichtungen: boolean;
   VorpruefungDatenaustausch: boolean;
   VorpruefungKommunikation: boolean;
   VorpruefungAutomatisierung: boolean;
+  EinschaetzungKommunikation: EinschaetzungReferat;
+  EinschaetzungWiederverwendung: EinschaetzungReferat;
+  EinschaetzungDatenschutz: EinschaetzungReferat;
+  EinschaetzungKlareRegelungen: EinschaetzungReferat;
+  EinschaetzungAutomatisierung: EinschaetzungReferat;
+  Regelungsvorhaben: Regelungsvorhaben;
+  Titel: string;
+  Paragraphen: Paragraph[];
+  Visualisierungen: Visualisierung[];
 };
 
 export type Regelungsvorhaben = {
@@ -92,14 +108,16 @@ export type Regelungsvorhaben = {
   Rechtsgebiet?: Rechtsgebiet;
   VeroeffentlichungsDatum?: Date;
   NKRStellungnahmeRegelungText: string;
+  Digitalchecks: Digitalcheck[];
+  LinkRegelungstext: string;
 };
 
 export type Prinzip = {
   documentId: string;
   Name: string;
-  Beschreibung: [];
+  Beschreibung: BlocksContent;
   Nummer: 1 | 2 | 3 | 4 | 5;
-  GuteUmsetzung: Digitalcheck[];
+  GuteUmsetzungen: Digitalcheck[];
   URLBezeichnung: string;
 };
 
@@ -108,38 +126,6 @@ export type RegelungsvorhabenResponse = {
     regelungsvorhabens: Regelungsvorhaben[];
   };
 };
-
-export const prinzipErfuellung = `fragment prinzipErfuellung on ComponentSharedPrinziperfuellung {
-  EinschaetzungReferat
-  Paragraphen {
-    WarumWichtig
-    Norm
-    Tags {
-      Tag
-    }
-    Regelungstext
-    id
-  }
-  id
-}`;
-
-export const digitalcheck = `fragment digitalcheck on Digitalcheck {
-  Automatisierung { ...prinzipErfuellung }
-  Datenschutz { ...prinzipErfuellung }
-  DigitaleKommunikation { ...prinzipErfuellung }
-  KlareRegelungen { ...prinzipErfuellung }
-  Wiederverwendung { ...prinzipErfuellung }
-  Visualisierung {
-    Beschreibung
-    Bild {
-      url
-      documentId
-      alternativeText
-    }
-    VisualisierungsArt
-  }
-  documentId
-}`;
 
 export async function fetchStrapiData<ResponseType>(
   query: string,

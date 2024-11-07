@@ -33,13 +33,30 @@ query GetPrinzips {
     Beschreibung
     Name
     Nummer
-    GuteUmsetzung {
-      ...digitalcheck
+    documentId
+    URLBezeichnung
+    GuteUmsetzungen {
       documentId
+      Paragraphen {
+        documentId
+        Artikel
+        Gesetz
+        Namen
+        Nummer
+        Absaetze {
+          Text
+          id
+          PrinzipErfuellungen {
+            KontextEnde
+            KontextStart
+            Prinzip
+            WarumGut
+            id
+          }
+        }
+      }  
       Regelungsvorhaben {
-        NKRNummer
-        NKRStellungnahmeLink
-        NKRStellungnahmeRegelungText
+        documentId
         Ressort
         Rechtsgebiet
         Titel
@@ -47,7 +64,6 @@ query GetPrinzips {
         VeroeffentlichungsDatum
       }
     }
-    URLBezeichnung
   }
 }`;
 
