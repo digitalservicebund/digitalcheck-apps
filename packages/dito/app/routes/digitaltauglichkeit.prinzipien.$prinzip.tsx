@@ -70,12 +70,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
               ]}
             />
             {digitalcheck.Paragraphen.map((paragraph) =>
-              paragraph.Absaetze.filter((absatz) =>
-                absatz.PrinzipErfuellungen.find(
-                  (erfuellung) =>
-                    erfuellung.Prinzip === prinzipToStrapi[prinzip.Nummer],
-                ),
-              ).map((absatz) => {
+              paragraph.Absaetze.map((absatz) => {
                 const relevantErfuellung = absatz.PrinzipErfuellungen.find(
                   (erfuellung) =>
                     erfuellung.Prinzip === prinzipToStrapi[prinzip.Nummer],
