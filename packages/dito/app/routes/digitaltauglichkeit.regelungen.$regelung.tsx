@@ -5,8 +5,8 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
+import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
-import TextRow from "@digitalcheck/shared/components/TextRow.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
@@ -95,7 +95,7 @@ export default function Gesetz() {
       </Background>
       <Background backgroundColor="midLightBlue">
         <Container paddingTop="0" paddingBottom="0">
-          <TextRow
+          <InlineInfoList
             items={[
               {
                 label: regulations.infoLabels[0],

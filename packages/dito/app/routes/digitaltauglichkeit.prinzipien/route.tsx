@@ -28,6 +28,9 @@ query GetPrinzips {
     Nummer
     documentId
     URLBezeichnung
+    Kurzbezeichnung {
+      Name
+    }
     GuteUmsetzungen {
       documentId
       Paragraphen {
@@ -42,9 +45,11 @@ query GetPrinzips {
           PrinzipErfuellungen {
             KontextEnde
             KontextStart
-            Prinzip
+            Prinzip {
+              Name
+            }
             WarumGut
-            id
+            id     
           }
         }
       }  

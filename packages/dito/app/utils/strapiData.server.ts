@@ -49,6 +49,10 @@ export type Paragraph = {
   Absaetze: Absatz[];
 };
 
+export type PrinzipKurzbezeichnung = {
+  Name: PrinzipName;
+};
+
 export type Absatz = {
   id: number;
   Text: BlocksContent;
@@ -57,7 +61,7 @@ export type Absatz = {
 
 export type Prinziperfuellung = {
   id: number;
-  Prinzip: PrinzipName;
+  Prinzip: PrinzipKurzbezeichnung;
   WarumGut: BlocksContent;
   KontextStart: number;
   KontextEnde: number;
@@ -119,6 +123,7 @@ export type Prinzip = {
   Nummer: 1 | 2 | 3 | 4 | 5;
   GuteUmsetzungen: Digitalcheck[];
   URLBezeichnung: string;
+  Kurzbezeichnung: PrinzipKurzbezeichnung;
 };
 
 export type RegelungsvorhabenResponse = {
