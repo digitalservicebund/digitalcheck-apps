@@ -6,7 +6,7 @@ import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Paragraph from "../components/Paragraph.tsx";
+import ParagraphView from "../components/ParagraphView.tsx";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
@@ -58,7 +58,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
               ]}
             />
             {digitalcheck.Paragraphen.map((paragraph) => (
-              <Paragraph
+              <ParagraphView
                 key={paragraph.documentId}
                 paragraph={paragraph}
                 prinzip={prinzip.Kurzbezeichnung.Name}

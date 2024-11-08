@@ -2,7 +2,7 @@ import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Paragraph, PrinzipName } from "../utils/strapiData.server.ts";
 
-export default function Paragraph({
+export default function ParagraphView({
   paragraph,
   prinzip,
 }: {
@@ -19,12 +19,11 @@ export default function Paragraph({
         erfuellungForPrinzip,
       }
     );
-  }).filter(Boolean);
+  }).filter((absatz) => !!absatz);
   return (
     <div className="space-y-40 my-40">
       <div key={paragraph.Nummer} className="ds-stack-8">
         <span className="ds-label-01-bold">{paragraph.Nummer}</span>
-
         {paragraph.Absaetze.map((absatz) => {
           const match = matchingItems.find(
             (item) => item.absatz.id === absatz.id,
