@@ -19,7 +19,9 @@ export default function PrinzipErfuellung({
     <div className="space-y-40 my-40">
       <div key={paragraph.Nummer} className="ds-stack-8">
         <span className="ds-label-01-bold">{paragraph.Nummer}</span>
-        <BlocksRenderer content={absatz.Text} />
+        <div className="border-l-4 border-gray-300 pl-8">
+          <BlocksRenderer content={absatz.Text} />
+        </div>
         <DetailsSummary
           title="Warum ist das gut?"
           content={<BlocksRenderer content={prinzipErfuellung.WarumGut} />}
