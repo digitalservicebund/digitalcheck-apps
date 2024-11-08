@@ -28,18 +28,56 @@ export const meta: MetaFunction = ({ matches }) => {
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
-    DIPVorgang
+    documentId
     NKRNummer
-    Digitalcheck {
-      ...digitalcheck
-    }
-    NKRStellungnahmeRegelungText
     Rechtsgebiet
     Ressort
     Titel
     documentId
     URLBezeichnung
     VeroeffentlichungsDatum
+    LinkRegelungstext
+    NKRStellungnahmeLink
+    Digitalchecks {
+      EinschaetzungAutomatisierung
+      EinschaetzungDatenschutz
+      EinschaetzungKlareRegelungen
+      EinschaetzungKommunikation
+      EinschaetzungWiederverwendung
+      NKRStellungnahmeDCText
+      Paragraphen {
+        Absaetze {
+          PrinzipErfuellungen {
+            KontextEnde
+            KontextStart
+            Prinzip {
+              Name
+            }
+            WarumGut
+            id
+          }
+          Text
+          id
+        }
+        Artikel
+        Gesetz
+        Titel
+        Nummer
+        documentId
+      }
+      Visualisierungen {
+        Beschreibung
+        Bild {
+          alternativeText
+          url
+          previewUrl
+        }
+        Titel
+        Visualisierungsart
+        Visualisierungstool
+        documentId
+      }
+    }
   }
 }`;
 

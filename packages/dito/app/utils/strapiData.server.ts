@@ -43,7 +43,7 @@ export type Paragraph = {
   documentId: string;
   Nummer: string;
   Gesetz: string;
-  Namen?: string;
+  Titel?: string;
   Artikel?: string;
   Digitalcheck: Digitalcheck;
   Absaetze: Absatz[];

@@ -15,7 +15,7 @@ export default function InlineInfoList({
       {items.map(
         (item) =>
           item.value && (
-            <p key={item.label} className="space-x-8">
+            <p key={item.label} className="inline-flex items-center space-x-8">
               <span>{item.label}:</span>
               <span className="ds-label-01-bold">{item.value}</span>
             </p>

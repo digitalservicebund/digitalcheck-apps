@@ -37,7 +37,7 @@ query GetPrinzips {
         documentId
         Artikel
         Gesetz
-        Namen
+        Titel
         Nummer
         Absaetze {
           Text
