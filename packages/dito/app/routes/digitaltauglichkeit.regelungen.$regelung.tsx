@@ -242,16 +242,17 @@ export default function Gesetz() {
       ))}
 
       {/* ----- NKR Stellungnahme ----- */}
-      <Container additionalClassNames="ds-stack-8">
-        <Heading tagName="h2">{regulations.nkr.title}</Heading>
-        <p>{regulations.nkr.subTitle}</p>
-        {regelung.NKRStellungnahmeRegelungText && (
+      {regelung.NKRStellungnahmeRegelungText && (
+        <Container additionalClassNames="ds-stack-8">
+          <Heading tagName="h2">{regulations.nkr.title}</Heading>
+          <p>{regulations.nkr.subTitle}</p>
+
           <RichText
             className="border-l-4 border-gray-300 pl-8"
             markdown={regelung.NKRStellungnahmeRegelungText}
           />
-        )}
-      </Container>
+        </Container>
+      )}
 
       {/* ----- Feedback Banner ----- */}
       <Background backgroundColor="midBlue">
