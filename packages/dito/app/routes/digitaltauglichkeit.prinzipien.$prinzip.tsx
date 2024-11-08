@@ -40,9 +40,6 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
       <Background backgroundColor="blue">
         <Container>
           <Heading className="mb-8">{prinzip.Name}</Heading>
-          {/*
-          TODO: save and show the right Beschreibung
-*/}
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
         </Container>
       </Background>
@@ -73,18 +70,22 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
               ]}
             />
             {digitalcheck.Paragraphen.map((paragraph) =>
-              paragraph.Absaetze.map((absatz) => {
+              paragraph.Absaetze.filter((absatz) =>
+                absatz.PrinzipErfuellungen.find(
+                  (erfuellung) =>
+                    erfuellung.Prinzip === prinzipToStrapi[prinzip.Nummer],
+                ),
+              ).map((absatz) => {
                 const relevantErfuellung = absatz.PrinzipErfuellungen.find(
                   (erfuellung) =>
                     erfuellung.Prinzip === prinzipToStrapi[prinzip.Nummer],
                 );
-
                 return (
                   relevantErfuellung && (
                     <PrinzipErfuellung
                       key={relevantErfuellung.id}
                       prinzipErfuellung={relevantErfuellung}
-                      absatz={absatz} // Pass the entire absatz object here
+                      absatz={absatz}
                     />
                   )
                 );
