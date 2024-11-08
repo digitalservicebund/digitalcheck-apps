@@ -1,35 +1,30 @@
-import { Absatz, Prinziperfuellung } from "../utils/strapiData.server.ts";
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import {
+  Absatz,
+  Paragraph,
+  Prinziperfuellung,
+} from "../utils/strapiData.server.ts";
 
 export default function PrinzipErfuellung({
   prinzipErfuellung,
   absatz,
+  paragraph,
 }: {
   prinzipErfuellung: Prinziperfuellung;
   absatz: Absatz;
+  paragraph: Paragraph;
 }) {
-  console.log(absatz);
-  console.log(prinzipErfuellung);
   return (
     <div className="space-y-40 my-40">
-      {/*
-      // TODO
-*/}
-      {/*      {absatz.Text.map((paragraph) => (
-        <div key={paragraph.Norm} className="ds-stack-8">
-          <span className="ds-label-01-bold">{paragraph.Norm}</span>
-          <RichText
-            markdown={paragraph.Regelungstext}
-            className="border-l-4 border-gray-300 pl-8"
-            rendererOptions={{
-              del: ({ text }) => `<mark class="bg-yellow-300">${text}</mark>`,
-            }}
-          />
-          <DetailsSummary
-            title="Warum ist das gut?"
-            content={<BlocksRenderer content={paragraph.WarumWichtig} />}
-          ></DetailsSummary>
-        </div>
-      ))}*/}
+      <div key={paragraph.Nummer} className="ds-stack-8">
+        <span className="ds-label-01-bold">{paragraph.Nummer}</span>
+        <BlocksRenderer content={absatz.Text} />
+        <DetailsSummary
+          title="Warum ist das gut?"
+          content={<BlocksRenderer content={prinzipErfuellung.WarumGut} />}
+        ></DetailsSummary>
+      </div>
     </div>
   );
 }

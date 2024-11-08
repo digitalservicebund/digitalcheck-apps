@@ -51,7 +51,7 @@ export type Paragraph = {
 
 export type Absatz = {
   id: number;
-  Text: string;
+  Text: BlocksContent;
   PrinzipErfuellungen: Prinziperfuellung[];
 };
 

@@ -79,6 +79,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                   relevantErfuellung && (
                     <PrinzipErfuellung
                       key={relevantErfuellung.id}
+                      paragraph={paragraph}
                       prinzipErfuellung={relevantErfuellung}
                       absatz={absatz}
                     />
