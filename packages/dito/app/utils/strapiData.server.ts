@@ -39,6 +39,24 @@ export type PrinzipName =
   | "KlareRegelungen"
   | "Automatisierung";
 
+export type PrinzipKurzbezeichnung = {
+  Name: PrinzipName;
+};
+
+export type Prinziperfuellung = {
+  id: number;
+  Prinzip: PrinzipKurzbezeichnung;
+  WarumGut: BlocksContent;
+  KontextStart: number;
+  KontextEnde: number;
+};
+
+export type Absatz = {
+  id: number;
+  Text: BlocksContent;
+  PrinzipErfuellungen: Prinziperfuellung[];
+};
+
 export type Paragraph = {
   documentId: string;
   Nummer: string;
@@ -49,22 +67,14 @@ export type Paragraph = {
   Absaetze: Absatz[];
 };
 
-export type PrinzipKurzbezeichnung = {
-  Name: PrinzipName;
-};
-
-export type Absatz = {
-  id: number;
-  Text: BlocksContent;
-  PrinzipErfuellungen: Prinziperfuellung[];
-};
-
-export type Prinziperfuellung = {
-  id: number;
-  Prinzip: PrinzipKurzbezeichnung;
-  WarumGut: BlocksContent;
-  KontextStart: number;
-  KontextEnde: number;
+export type Prinzip = {
+  documentId: string;
+  Name: string;
+  Beschreibung: BlocksContent;
+  Nummer: 1 | 2 | 3 | 4 | 5;
+  GuteUmsetzungen: Digitalcheck[];
+  URLBezeichnung: string;
+  Kurzbezeichnung: PrinzipKurzbezeichnung;
 };
 
 export type Visualisierung = {
@@ -114,16 +124,6 @@ export type Regelungsvorhaben = {
   NKRStellungnahmeRegelungText: string;
   Digitalchecks: Digitalcheck[];
   LinkRegelungstext: string;
-};
-
-export type Prinzip = {
-  documentId: string;
-  Name: string;
-  Beschreibung: BlocksContent;
-  Nummer: 1 | 2 | 3 | 4 | 5;
-  GuteUmsetzungen: Digitalcheck[];
-  URLBezeichnung: string;
-  Kurzbezeichnung: PrinzipKurzbezeichnung;
 };
 
 export type RegelungsvorhabenResponse = {
