@@ -137,7 +137,6 @@ export async function fetchStrapiData<ResponseType>(
   variables?: object,
 ): Promise<ResponseType | null> {
   try {
-    console.log(query);
     const response = await fetch(url, {
       method: "POST",
       headers: {
