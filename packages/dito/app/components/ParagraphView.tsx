@@ -43,7 +43,7 @@ export default function ParagraphView({
               />
             </div>
           ) : (
-            <p>Anderer Absatz</p>
+            <p key={absatz.id}>Anderer Absatz</p>
           );
         })}
       </div>
