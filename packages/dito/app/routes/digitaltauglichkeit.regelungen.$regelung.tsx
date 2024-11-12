@@ -6,17 +6,16 @@ import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import ParagraphView from "components/ParagraphView.tsx";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
-  Regelungsvorhaben,
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
@@ -25,6 +24,7 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
 
+// TODO: there seems to be an error with Visualisierungen, has to be added again
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
@@ -39,6 +39,8 @@ query GetRegelungsvorhabens($slug: String!) {
     LinkRegelungstext
     NKRStellungnahmeLink
     Digitalchecks {
+      documentId
+      Titel
       EinschaetzungAutomatisierung
       EinschaetzungDatenschutz
       EinschaetzungKlareRegelungen
@@ -65,18 +67,6 @@ query GetRegelungsvorhabens($slug: String!) {
         Nummer
         documentId
       }
-      Visualisierungen {
-        Beschreibung
-        Bild {
-          alternativeText
-          url
-          previewUrl
-        }
-        Titel
-        Visualisierungsart
-        Visualisierungstool
-        documentId
-      }
     }
   }
 }`;
@@ -88,8 +78,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     { slug },
   );
 
+  if (!regelungData) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw new Response("Error fetching Regelung", { status: 404 });
+  }
+
   return json({
-    regelung: regelungData?.data.regelungsvorhabens[0],
+    regelung: regelungData.data.regelungsvorhabens[0],
   });
 };
 
@@ -102,7 +97,8 @@ const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
   ) : null;
 
 export default function Gesetz() {
-  const { regelung } = useLoaderData<{ regelung: Regelungsvorhaben }>();
+  const { regelung } = useLoaderData<typeof loader>();
+  console.log("regelung", regelung);
   return (
     <>
       <Background backgroundColor="blue">
@@ -113,18 +109,18 @@ export default function Gesetz() {
               text: regelung.Titel,
             }}
           />
-          <p className="mt-10">{regulations.subTitle[0]}</p>
+          <p className="mt-10">{regulations.subtitle[0]}</p>
           <p className="mt-24 ds-label-01-bold">
-            <b>{regulations.subTitle[1]}</b>
+            <b>{regulations.subtitle[1]}</b>
           </p>
           <ol className="mt-16">
-            {regulations.menu.map((menuItem, index) => (
-              <li key={index}>
+            {regelung.Digitalchecks.map((digitalcheck) => (
+              <li key={digitalcheck.documentId}>
                 <Link
-                  to={`#${slugify(menuItem)}`}
+                  to={`#${slugify(digitalcheck.documentId)}`}
                   className="underline underline-offset-4 decoration-1"
                 >
-                  ↓ {menuItem}
+                  ↓ {digitalcheck.Titel}
                 </Link>
               </li>
             ))}
@@ -147,17 +143,37 @@ export default function Gesetz() {
           />
         </Container>
       </Background>
-      {regelung.Digitalcheck?.map((digitalcheck, index) => (
+      {regelung.Digitalchecks.map((digitalcheck) => (
         <Container
           key={digitalcheck.documentId}
-          additionalClassNames="ds-stack-8"
+          additionalClassNames="ds-stack-32"
         >
-          <Heading tagName="h2">Debug: Digitalcheck {index + 1}</Heading>
+          {/* target for same page jump navigation */}
+          <span id={slugify(digitalcheck.documentId)} />
+          <Header
+            heading={{
+              text: digitalcheck.Titel,
+              tagName: "h2",
+              look: "ds-heading-02-bold",
+            }}
+            content={{
+              markdown: regulations.digitalcheck.subtitle,
+            }}
+          />
+
+          {/* ----- Prinziperfüllung ----- */}
+          <Heading tagName="h3" className="pt-40">
+            {regulations.principles.title}
+          </Heading>
+          {digitalcheck.Paragraphen.map((paragraph) => (
+            <ParagraphView key={paragraph.documentId} paragraph={paragraph} />
+          ))}
+
           {/* ----- VISUALISIERUNGEN ----- */}
           {digitalcheck.Visualisierungen && (
             <div>
-              <Heading tagName="h2">{regulations.visualisations.title}</Heading>
-              <p>{regulations.visualisations.subTitle}</p>
+              <Heading tagName="h3">{regulations.visualisations.title}</Heading>
+              <p>{regulations.visualisations.subtitle}</p>
               {digitalcheck.Visualisierungen.map((visualisierung, index) => (
                 <div
                   className="flex max-sm:flex-col mt-40 gap-32"
@@ -224,35 +240,19 @@ export default function Gesetz() {
             </div>
           )}
 
-          {/* ----- Prinziperfüllung ----- */}
-          <Heading tagName="h2" className="pt-40">
-            {regulations.principles.title}
-          </Heading>
-          <p>{regulations.principles.subtitle}</p>
-          {/*          {Object.values(prinzipToStrapi).map(
-            (prinzipKey) =>
-              digitalcheck[prinzipKey]?.Paragraphen?.length > 0 && (
-                <PrinzipErfuellung
-                  key={`${prinzipKey}`}
-                  prinzipErfuellung={digitalcheck[prinzipKey]}
-                />
-              ),
-          )}*/}
+          {/* ----- NKR Stellungnahme ----- */}
+          {digitalcheck.NKRStellungnahmeDCText && (
+            <>
+              <Heading tagName="h3">{regulations.nkr.title}</Heading>
+              <p>{regulations.nkr.subtitle}</p>
+
+              <div className="border-l-4 border-gray-300 pl-8">
+                <BlocksRenderer content={digitalcheck.NKRStellungnahmeDCText} />
+              </div>
+            </>
+          )}
         </Container>
       ))}
-
-      {/* ----- NKR Stellungnahme ----- */}
-      {regelung.NKRStellungnahmeRegelungText && (
-        <Container additionalClassNames="ds-stack-8">
-          <Heading tagName="h2">{regulations.nkr.title}</Heading>
-          <p>{regulations.nkr.subTitle}</p>
-
-          <RichText
-            className="border-l-4 border-gray-300 pl-8"
-            markdown={regelung.NKRStellungnahmeRegelungText}
-          />
-        </Container>
-      )}
 
       {/* ----- Feedback Banner ----- */}
       <Background backgroundColor="midBlue">

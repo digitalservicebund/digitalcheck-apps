@@ -93,7 +93,7 @@ export type Visualisierung = {
 
 export type Digitalcheck = {
   documentId: string;
-  NKRStellungnahmeDCText?: string;
+  NKRStellungnahmeDCText?: BlocksContent;
   VorpruefungITSystem: boolean;
   VorpruefungVerpflichtungen: boolean;
   VorpruefungDatenaustausch: boolean;
@@ -121,7 +121,6 @@ export type Regelungsvorhaben = {
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
   VeroeffentlichungsDatum?: string;
-  NKRStellungnahmeRegelungText: string;
   Digitalchecks: Digitalcheck[];
   LinkRegelungstext: string;
 };

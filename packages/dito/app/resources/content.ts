@@ -1704,15 +1704,17 @@ Internet: [www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)
 };
 
 export const regulations = {
-  subTitle: [
+  subtitle: [
     "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
     "Inhalt",
   ],
-  menu: ["Visualisierungen", "Auszüge aus der Regelung", "NKR Stellungnahme"],
+  digitalcheck: {
+    subtitle: "Hier finden Sie alle Beispiele zu dem Digitalcheck.",
+  },
   infoLabels: ["Rechtsbereich", "Veröffentlicht am", "Art"],
   visualisations: {
     title: "Visualisierungen",
-    subTitle:
+    subtitle:
       "Diese Visualisierungen haben dem Referat geholfen Digitaltauglichkeit zu erstellen und den Sachverhalt zu kommunizieren.",
     button: "Vergrößern",
     imageInfo: {
@@ -1724,13 +1726,13 @@ export const regulations = {
     },
   },
   principles: {
-    title: "Auszüge aus der Regelung",
+    title: "Formulierungen aus dem Regelungsentwurf",
     subtitle:
       "So hat das Referat n der Dokumentation die Digitaltauglichkeit in die Regelung geschrieben",
   },
   nkr: {
     title: "NKR Stellungnahme",
-    subTitle: "Diese Ausführungen sind der Stellungnahme des NKR entnommen.",
+    subtitle: "Diese Ausführungen sind der Stellungnahme des NKR entnommen.",
   },
   feedback: {
     title: "Was fehlt Ihnen hier noch?",
