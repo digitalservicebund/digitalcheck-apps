@@ -120,7 +120,7 @@ export type Regelungsvorhaben = {
   Digitalcheck: Digitalcheck[];
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
-  VeroeffentlichungsDatum?: Date;
+  VeroeffentlichungsDatum?: string;
   NKRStellungnahmeRegelungText: string;
   Digitalchecks: Digitalcheck[];
   LinkRegelungstext: string;
