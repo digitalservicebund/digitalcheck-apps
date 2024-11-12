@@ -45,6 +45,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                 tagName="h2"
                 text={digitalcheck.Regelungsvorhaben.Titel}
                 look="ds-heading-03-bold"
+                className="max-w-full"
               />
             </Link>
             <InlineInfoList

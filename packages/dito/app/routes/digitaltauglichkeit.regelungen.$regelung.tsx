@@ -105,8 +105,9 @@ export default function Gesetz() {
         <Container>
           <Header
             heading={{
-              tagName: "h1",
               text: regelung.Titel,
+              tagName: "h1",
+              className: "max-w-full",
             }}
           />
           <p className="mt-10">{regulations.subtitle[0]}</p>
