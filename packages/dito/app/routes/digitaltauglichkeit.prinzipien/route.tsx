@@ -14,13 +14,18 @@ import {
 } from "../../resources/staticRoutes.ts";
 import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
-import { fetchStrapiData, Prinzip } from "../../utils/strapiData.server.ts";
+import {
+  fetchStrapiData,
+  paragraphFragment,
+  Prinzip,
+} from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 
 const GET_PRINZIPS_QUERY = `
+${paragraphFragment}
 query GetPrinzips {
   prinzips {
     Beschreibung
@@ -34,25 +39,8 @@ query GetPrinzips {
     GuteUmsetzungen {
       documentId
       Paragraphen {
-        documentId
-        Artikel
-        Gesetz
-        Titel
-        Nummer
-        Absaetze {
-          Text
-          id
-          PrinzipErfuellungen {
-            KontextEnde
-            KontextStart
-            Prinzip {
-              Name
-            }
-            WarumGut
-            id     
-          }
-        }
-      }  
+        ...ParagraphFields
+      }
       Regelungsvorhaben {
         documentId
         Ressort

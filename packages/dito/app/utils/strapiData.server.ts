@@ -90,19 +90,14 @@ export type Visualisierung = {
 
 export type Digitalcheck = {
   documentId: string;
+  Titel: string;
   NKRStellungnahmeDCText?: BlocksContent;
-  VorpruefungITSystem: boolean;
-  VorpruefungVerpflichtungen: boolean;
-  VorpruefungDatenaustausch: boolean;
-  VorpruefungKommunikation: boolean;
-  VorpruefungAutomatisierung: boolean;
   EinschaetzungKommunikation: EinschaetzungReferat;
   EinschaetzungWiederverwendung: EinschaetzungReferat;
   EinschaetzungDatenschutz: EinschaetzungReferat;
   EinschaetzungKlareRegelungen: EinschaetzungReferat;
   EinschaetzungAutomatisierung: EinschaetzungReferat;
   Regelungsvorhaben: Regelungsvorhaben;
-  Titel: string;
   Paragraphen: Paragraph[];
   Visualisierungen: Visualisierung[];
 };
@@ -114,7 +109,6 @@ export type Regelungsvorhaben = {
   NKRStellungnahmeLink?: string;
   DIPVorgang: number;
   NKRNummer: number;
-  Digitalcheck: Digitalcheck[];
   URLBezeichnung: string;
   Rechtsgebiet?: Rechtsgebiet;
   VeroeffentlichungsDatum?: string;
@@ -127,6 +121,28 @@ export type RegelungsvorhabenResponse = {
     regelungsvorhabens: Regelungsvorhaben[];
   };
 };
+
+export const paragraphFragment = `
+ fragment ParagraphFields on Paragraph {
+  documentId
+  Nummer
+  Titel
+  Gesetz
+  Artikel
+  Absaetze {
+    id
+    Text
+    PrinzipErfuellungen {
+      id
+      WarumGut
+      KontextEnde
+      KontextStart
+      Prinzip {
+        Name
+      }
+    }
+  }
+}`;
 
 export async function fetchStrapiData<ResponseType>(
   query: string,

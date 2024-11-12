@@ -16,6 +16,7 @@ import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
+  paragraphFragment,
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
@@ -26,14 +27,14 @@ export const meta: MetaFunction = ({ matches }) => {
 
 // TODO: there seems to be an error with Visualisierungen, has to be added again
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
+${paragraphFragment}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     documentId
+    Titel
     NKRNummer
     Rechtsgebiet
     Ressort
-    Titel
-    documentId
     URLBezeichnung
     VeroeffentlichungsDatum
     LinkRegelungstext
@@ -48,24 +49,7 @@ query GetRegelungsvorhabens($slug: String!) {
       EinschaetzungWiederverwendung
       NKRStellungnahmeDCText
       Paragraphen {
-        Absaetze {
-          PrinzipErfuellungen {
-            KontextEnde
-            KontextStart
-            Prinzip {
-              Name
-            }
-            WarumGut
-            id
-          }
-          Text
-          id
-        }
-        Artikel
-        Gesetz
-        Titel
-        Nummer
-        documentId
+        ...ParagraphFields
       }
     }
   }
