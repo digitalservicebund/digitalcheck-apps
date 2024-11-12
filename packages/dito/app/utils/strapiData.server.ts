@@ -10,27 +10,24 @@ export type EinschaetzungReferat =
   | "Teilweise"
   | "Nicht relevant";
 
-export enum Ressort {
-  Aa = "AA",
-  Bmas = "BMAS",
-  Bmbf = "BMBF",
-  Bmdv = "BMDV",
-  Bmel = "BMEL",
-  Bmf = "BMF",
-  Bmfsfj = "BMFSFJ",
-  Bmg = "BMG",
-  Bmi = "BMI",
-  Bmj = "BMJ",
-  Bmuv = "BMUV",
-  BmVg = "BMVg",
-  Bmwk = "BMWK",
-  Bmwsb = "BMWSB",
-  Bmz = "BMZ",
-}
+export type Ressort =
+  | "AA"
+  | "BMAS"
+  | "BMBF"
+  | "BMDV"
+  | "BMEL"
+  | "BMF"
+  | "BMFSFJ"
+  | "BMG"
+  | "BMI"
+  | "BMJ"
+  | "BMUV"
+  | "BMVg"
+  | "BMWK"
+  | "BMWSB"
+  | "BMZ";
 
-export enum Rechtsgebiet {
-  Tbd = "TBD",
-}
+export type Rechtsgebiet = "TBD";
 
 export type PrinzipName =
   | "DigitaleKommunikation"
