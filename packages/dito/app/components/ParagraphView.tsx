@@ -17,7 +17,7 @@ export default function ParagraphView({
   });
 
   return (
-    <div className="space-y-40 my-40">
+    <div className="space-y-40">
       <div key={paragraph.Nummer} className="ds-stack-8">
         <span className="ds-label-01-bold">{paragraph.Nummer}</span>
         {paragraph.Absaetze.map((absatz, index) =>

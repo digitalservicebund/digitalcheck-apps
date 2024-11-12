@@ -17,7 +17,7 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
 
 export default function Digitaltauglichkeit_Prinzipien_Detail() {
   const { slug } = useLoaderData<typeof loader>();
-  const prinzips: Prinzip[] = useOutletContext();
+  const prinzips = useOutletContext<Prinzip[]>();
 
   const prinzip = prinzips.find((prinzip) => prinzip.URLBezeichnung === slug);
   if (!prinzip) {
@@ -35,16 +35,20 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
         </Container>
       </Background>
-      <Container additionalClassNames="rich-text">
+      <Container additionalClassNames="rich-text ds-stack-64">
         {GuteUmsetzungen.map((digitalcheck) => (
-          <div key={digitalcheck.documentId} className="ds-stack-24">
+          <div key={digitalcheck.documentId}>
             <Link
               to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
             >
-              {digitalcheck.Regelungsvorhaben.Titel}
+              <Heading
+                tagName="h2"
+                text={digitalcheck.Regelungsvorhaben.Titel}
+                look="ds-heading-03-bold"
+              />
             </Link>
             <InlineInfoList
-              className="bg-blue-200"
+              className="bg-blue-200 my-32"
               items={[
                 {
                   label: "Rechtsbereich",
@@ -57,13 +61,15 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                 },
               ]}
             />
-            {digitalcheck.Paragraphen.map((paragraph) => (
-              <ParagraphView
-                key={paragraph.documentId}
-                paragraph={paragraph}
-                prinzip={prinzip.Kurzbezeichnung.Name}
-              />
-            ))}
+            <div className="ds-stack-32">
+              {digitalcheck.Paragraphen.map((paragraph) => (
+                <ParagraphView
+                  key={paragraph.documentId}
+                  paragraph={paragraph}
+                  prinzip={prinzip.Kurzbezeichnung.Name}
+                />
+              ))}
+            </div>
           </div>
         ))}
       </Container>
