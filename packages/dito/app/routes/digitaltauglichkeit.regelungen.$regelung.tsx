@@ -10,7 +10,7 @@ import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import ParagraphView from "components/ParagraphView.tsx";
+import ParagraphList from "components/ParagraphList.tsx";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
@@ -166,9 +166,7 @@ export default function Gesetz() {
           <Heading tagName="h3" className="pt-40">
             {regulations.principles.title}
           </Heading>
-          {digitalcheck.Paragraphen.map((paragraph) => (
-            <ParagraphView key={paragraph.documentId} paragraph={paragraph} />
-          ))}
+          <ParagraphList paragraphs={digitalcheck.Paragraphen} />
 
           {/* ----- VISUALISIERUNGEN ----- */}
           {digitalcheck.Visualisierungen && (

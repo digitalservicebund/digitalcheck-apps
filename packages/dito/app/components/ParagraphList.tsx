@@ -1,8 +1,14 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { Paragraph, PrinzipName } from "../utils/strapiData.server.ts";
+import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
+import type { Paragraph, PrinzipName } from "../utils/strapiData.server.ts";
 
-export default function ParagraphView({
+const AbsatzRenderer = ({ text }: { text: BlocksContent }) => {
+  const blockOutput = BlocksRenderer({ content: text });
+  console.log("AbsatzRenderer", blockOutput);
+  return blockOutput;
+};
+
+function Paragraph({
   paragraph,
   prinzip,
 }: {
@@ -22,10 +28,11 @@ export default function ParagraphView({
         <span className="ds-label-01-bold">{paragraph.Nummer}</span>
         {paragraph.Absaetze.map((absatz, index) =>
           // only show Absaetze with relevant PrinzipErfuellungen by default
-          absatz.PrinzipErfuellungen.length > 0 ? (
+          // show all on Regelungsvorhaben page (no prinzip)
+          absatz.PrinzipErfuellungen.length > 0 || !prinzip ? (
             <div key={absatz.id} className="mt-8">
               <div className="border-l-4 border-gray-300 pl-8">
-                <BlocksRenderer content={absatz.Text} />
+                <AbsatzRenderer text={absatz.Text} />
               </div>
               <DetailsSummary
                 title="Warum ist das gut?"
@@ -47,6 +54,28 @@ export default function ParagraphView({
           ),
         )}
       </div>
+    </div>
+  );
+}
+
+export default function ParagraphList({
+  paragraphs,
+  prinzip,
+}: {
+  paragraphs: Paragraph[];
+  prinzip?: PrinzipName;
+}) {
+  return (
+    <div className="ds-stack-32">
+      {paragraphs
+        .sort((a, b) => a.Nummer.localeCompare(b.Nummer))
+        .map((paragraph) => (
+          <Paragraph
+            key={paragraph.documentId}
+            paragraph={paragraph}
+            prinzip={prinzip}
+          />
+        ))}
     </div>
   );
 }
