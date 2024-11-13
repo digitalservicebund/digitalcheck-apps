@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { PropsWithChildren } from "react";
 import Box, { BoxProps } from "./Box";
 import { CommonWrapperProps } from "./CommonWrapperProps";
+import DetailsSummary from "./DetailsSummary";
 import Heading, { HeadingProps } from "./Heading";
 import RadioGroup, { type RadioGroupProps } from "./RadioGroup";
 import RichText, { RichTextProps } from "./RichText";
@@ -14,6 +15,10 @@ export type QuestionProps = {
   box?: BoxProps;
   heading?: HeadingProps;
   content?: RichTextProps;
+  hint?: {
+    title: string;
+    text: string;
+  };
   select?: SelectProps;
   radio?: RadioGroupProps;
   stack?: 8 | 16 | 32 | 48;
@@ -28,6 +33,7 @@ export default function Question({
   box,
   heading,
   content,
+  hint,
   select,
   radio,
   stack,
@@ -57,6 +63,7 @@ export default function Question({
             <RichText {...content} />
           </div>
         )}
+        {hint && <DetailsSummary title={hint.title} content={hint.text} />}
       </legend>
       {select && <Select placeholder="Bitte auswählen" {...select} />}
       {radio && <RadioGroup {...radio} />}

@@ -1,7 +1,5 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
-import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import ProgressBar from "@digitalcheck/shared/components/ProgressBar.tsx";
 import Question from "@digitalcheck/shared/components/Question";
 import {
@@ -188,6 +186,7 @@ export default function Index() {
               look: "ds-heading-02-reg",
             }}
             content={question.text ? { markdown: question.text } : undefined}
+            hint={question.hint}
             radio={{
               name: "answer",
               options: options,
@@ -222,24 +221,6 @@ export default function Index() {
             />
           </Container>
         </form>
-        {question.hint && (
-          <Container paddingTop="0">
-            <InlineNotice
-              look="tips"
-              title={question.hint.title}
-              tagName="h2"
-              content={question.hint.text}
-            ></InlineNotice>
-          </Container>
-        )}
-        {question.accordion && (
-          <Container paddingTop="0">
-            <DetailsSummary
-              title={question.accordion.title}
-              content={question.accordion.text}
-            />
-          </Container>
-        )}
       </section>
     </div>
   );
