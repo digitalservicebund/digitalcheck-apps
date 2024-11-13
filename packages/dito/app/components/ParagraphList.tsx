@@ -1,16 +1,8 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import {
-  type BlocksContent,
-  BlocksRenderer,
-} from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import type { Paragraph, Prinzip } from "../utils/strapiData.server.ts";
-
-const AbsatzRenderer = ({ text }: { text: BlocksContent }) => {
-  const blockOutput = BlocksRenderer({ content: text });
-  console.log("AbsatzRenderer", blockOutput);
-  return blockOutput;
-};
+import AbsatzRenderer from "./AbsatzRenderer.tsx";
 
 function Paragraph({
   paragraph,
@@ -46,7 +38,12 @@ function Paragraph({
             <DetailsSummary
               title={`Absatz ${index + 1}`}
               open={absatz.PrinzipErfuellungen.length > 0}
-              content={<AbsatzRenderer text={absatz.Text} />}
+              content={
+                <AbsatzRenderer
+                  text={absatz.Text}
+                  principlesToFilter={principleNumbers}
+                />
+              }
             />
           </div>
         ))}
