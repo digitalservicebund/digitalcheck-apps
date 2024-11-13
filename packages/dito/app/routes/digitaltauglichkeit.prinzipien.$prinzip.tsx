@@ -64,7 +64,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
             />
             <ParagraphList
               paragraphs={digitalcheck.Paragraphen}
-              prinzip={prinzip.Kurzbezeichnung.Name}
+              principlesToFilter={[prinzip]}
             />
           </div>
         ))}

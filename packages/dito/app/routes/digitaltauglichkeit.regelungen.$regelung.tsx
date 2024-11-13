@@ -16,7 +16,8 @@ import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
-  paragraphFragment,
+  paragraphFields,
+  prinzipCoreFields,
   RegelungsvorhabenResponse,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
@@ -27,7 +28,8 @@ export const meta: MetaFunction = ({ matches }) => {
 
 // TODO: there seems to be an error with Visualisierungen, has to be added again
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
-${paragraphFragment}
+${paragraphFields}
+${prinzipCoreFields}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     documentId
@@ -53,6 +55,9 @@ query GetRegelungsvorhabens($slug: String!) {
       }
     }
   }
+  prinzips {
+    ...PrinzipCoreFields
+  }
 }`;
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -69,6 +74,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   return json({
     regelung: regelungData.data.regelungsvorhabens[0],
+    prinzips: regelungData.data.prinzips,
   });
 };
 
@@ -81,8 +87,7 @@ const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
   ) : null;
 
 export default function Gesetz() {
-  const { regelung } = useLoaderData<typeof loader>();
-  console.log("regelung", regelung);
+  const { regelung, prinzips } = useLoaderData<typeof loader>();
   return (
     <>
       <Background backgroundColor="blue">
@@ -150,7 +155,10 @@ export default function Gesetz() {
           <Heading tagName="h3" className="pt-40">
             {regulations.principles.title}
           </Heading>
-          <ParagraphList paragraphs={digitalcheck.Paragraphen} />
+          <ParagraphList
+            paragraphs={digitalcheck.Paragraphen}
+            principlesToFilter={prinzips}
+          />
 
           {/* ----- VISUALISIERUNGEN ----- */}
           {digitalcheck.Visualisierungen && (

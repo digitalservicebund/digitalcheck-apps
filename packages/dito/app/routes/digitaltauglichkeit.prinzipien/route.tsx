@@ -16,8 +16,9 @@ import unleash from "../../utils/featureFlags.server.ts";
 import prependMetaTitle from "../../utils/metaTitle.ts";
 import {
   fetchStrapiData,
-  paragraphFragment,
+  paragraphFields,
   Prinzip,
+  prinzipCoreFields,
 } from "../../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
@@ -25,17 +26,11 @@ export const meta: MetaFunction = ({ matches }) => {
 };
 
 const GET_PRINZIPS_QUERY = `
-${paragraphFragment}
+${paragraphFields}
+${prinzipCoreFields}
 query GetPrinzips {
   prinzips {
-    Beschreibung
-    Name
-    Nummer
-    documentId
-    URLBezeichnung
-    Kurzbezeichnung {
-      Name
-    }
+    ...PrinzipCoreFields
     GuteUmsetzungen {
       documentId
       Paragraphen {

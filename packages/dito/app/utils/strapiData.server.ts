@@ -29,20 +29,9 @@ export type Ressort =
 
 export type Rechtsgebiet = "TBD";
 
-export type PrinzipName =
-  | "DigitaleKommunikation"
-  | "Wiederverwendung"
-  | "Datenschutz"
-  | "KlareRegelungen"
-  | "Automatisierung";
-
-export type PrinzipKurzbezeichnung = {
-  Name: PrinzipName;
-};
-
-export type Prinziperfuellung = {
+export type PrinzipErfuellung = {
   id: number;
-  Prinzip: PrinzipKurzbezeichnung;
+  Prinzip: Prinzip;
   WarumGut: BlocksContent;
   KontextStart: number;
   KontextEnde: number;
@@ -51,7 +40,7 @@ export type Prinziperfuellung = {
 export type Absatz = {
   id: number;
   Text: BlocksContent;
-  PrinzipErfuellungen: Prinziperfuellung[];
+  PrinzipErfuellungen: PrinzipErfuellung[];
 };
 
 export type Paragraph = {
@@ -71,7 +60,6 @@ export type Prinzip = {
   Nummer: 1 | 2 | 3 | 4 | 5;
   GuteUmsetzungen: Digitalcheck[];
   URLBezeichnung: string;
-  Kurzbezeichnung: PrinzipKurzbezeichnung;
 };
 
 export type Visualisierung = {
@@ -119,11 +107,21 @@ export type Regelungsvorhaben = {
 export type RegelungsvorhabenResponse = {
   data: {
     regelungsvorhabens: Regelungsvorhaben[];
+    prinzips: Prinzip[];
   };
 };
 
-export const paragraphFragment = `
- fragment ParagraphFields on Paragraph {
+export const prinzipCoreFields = `
+ fragment PrinzipCoreFields on Prinzip {
+  documentId
+  Nummer
+  Name
+  Beschreibung
+  URLBezeichnung
+}`;
+
+export const paragraphFields = `
+fragment ParagraphFields on Paragraph {
   documentId
   Nummer
   Titel
@@ -138,7 +136,7 @@ export const paragraphFragment = `
       KontextEnde
       KontextStart
       Prinzip {
-        Name
+        ...PrinzipCoreFields
       }
     }
   }
