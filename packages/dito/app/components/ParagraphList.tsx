@@ -2,7 +2,7 @@ import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode } from "react";
-import { regulations } from "../resources/content.ts";
+import { digitalSuitability } from "../resources/content.ts";
 import type {
   Absatz,
   Paragraph,
@@ -112,7 +112,7 @@ const AbsatzContent = ({
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
           <div className="ds-stack-8 mt-8">
             <span className="ds-label-01-bold italic">
-              {regulations.paragraphs.explanation}
+              {digitalSuitability.paragraphs.explanation}
             </span>
             {absatzGroup.PrinzipErfuellungen.toSorted(
               (a, b) => a.Prinzip.Nummer - b.Prinzip.Nummer,
