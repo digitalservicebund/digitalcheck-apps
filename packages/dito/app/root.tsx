@@ -354,14 +354,12 @@ Vielen Dank für Ihr Verständnis.`;
       error={true}
       supportOfferingFlag={false}
       trackingScript={
-        <>
-          <script
-            key={"error-tracking"}
-            defer
-            data-domain={CLIENT_PLAUSIBLE_DOMAIN}
-            src={CLIENT_PLAUSIBLE_SCRIPT}
-          />
-        </>
+        <script
+          key={"error-tracking"}
+          defer
+          data-domain={CLIENT_PLAUSIBLE_DOMAIN}
+          src={CLIENT_PLAUSIBLE_SCRIPT}
+        />
       }
     >
       <main id="error" className="grow">
