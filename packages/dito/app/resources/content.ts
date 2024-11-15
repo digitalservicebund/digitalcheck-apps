@@ -1725,6 +1725,9 @@ export const regulations = {
       digitalCheck: "Digitalcheck",
     },
   },
+  paragraphs: {
+    explanation: "Warum ist das gut?",
+  },
   principles: {
     title: "Formulierungen aus dem Regelungsentwurf",
     subtitle:
