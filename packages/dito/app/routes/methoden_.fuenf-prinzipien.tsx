@@ -54,7 +54,7 @@ export default function Index() {
           <div className="mt-64">
             <Heading tagName="div" text="Inhalt" className="font-bold" />
             <ol className="ds-stack-8 mt-16">
-              {fivePrinciples.principals.map((principal) => (
+              {fivePrinciples.principles.map((principal) => (
                 <li key={principal.label}>
                   <Link
                     to={`#${slugify(principal.label)}`}
@@ -68,7 +68,7 @@ export default function Index() {
           </div>
         </Container>
       </Background>
-      {fivePrinciples.principals.map((principal, index) => (
+      {fivePrinciples.principles.map((principal, index) => (
         <Background
           key={principal.content}
           backgroundColor={index % 2 === 0 ? "white" : "blue"}

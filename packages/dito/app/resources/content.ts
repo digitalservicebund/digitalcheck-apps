@@ -930,7 +930,7 @@ Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [
 
 export const fivePrinciples = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
-  principals: [
+  principles: [
     {
       label: "Anleitung",
       title: "So nutzen Sie die fünf Prinzipien für Ihr Regelungsvorhaben",
