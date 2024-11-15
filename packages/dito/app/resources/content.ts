@@ -646,7 +646,7 @@ export const digitalSuitability = {
       ].map((href, index) => ({
         text: `Prinzip ${index + 1}`,
         href: ROUTE_PRINCIPLES.url + "/" + href,
-        look: "ghost",
+        look: "ghost" as const,
       })),
     },
     // {
