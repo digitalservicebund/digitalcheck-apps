@@ -1,7 +1,7 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer";
 
 const url =
-  process.env.STRAPI_URL ||
+  process.env.STRAPI_URL ??
   "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql";
 
 export type EinschaetzungReferat =
