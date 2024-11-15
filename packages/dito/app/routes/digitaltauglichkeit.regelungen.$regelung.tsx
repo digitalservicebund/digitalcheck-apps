@@ -157,7 +157,7 @@ export default function Gesetz() {
           </Heading>
           <ParagraphList
             paragraphs={digitalcheck.Paragraphen}
-            principlesToFilter={prinzips}
+            principlesToShow={prinzips}
           />
 
           {/* ----- VISUALISIERUNGEN ----- */}

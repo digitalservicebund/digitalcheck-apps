@@ -18,11 +18,9 @@ const HIGHLIGHT_COLORS = {
   5: { background: "bg-green-300", border: "border-green-500" },
 } as const;
 
-type AbsatzWithNumber = Absatz & { number: number };
-
 function PrincipleHighlight(
   { children }: { children: ReactNode },
-  remove: boolean = false,
+  principlesToShow: number[],
 ) {
   if (!children || typeof children !== "object" || !("props" in children)) {
     return null;
@@ -31,13 +29,13 @@ function PrincipleHighlight(
   const parts = (children.props.children as string).split(/(\[\d\])/g);
   const number = Number(parts[1][1]) as keyof typeof HIGHLIGHT_COLORS;
 
-  return remove ? (
-    <span>{parts[0]}</span>
-  ) : (
+  return principlesToShow.includes(number) ? (
     <mark className={HIGHLIGHT_COLORS[number].background}>
       {parts[0]}
       <sup>{`P${number}`}</sup>
     </mark>
+  ) : (
+    <span>{parts[0]}</span>
   );
 }
 
@@ -58,13 +56,15 @@ const PrincipleExplanation = ({
   </div>
 );
 
+type AbsatzWithNumber = Absatz & { number: number };
 type Node = { type: string; text?: string; children?: Node[] };
 
-// TODO: clean up types
 const AbsatzContent = ({
   absatzGroup,
+  principlesToShow,
 }: {
   absatzGroup: AbsatzWithNumber | AbsatzWithNumber[];
+  principlesToShow: number[];
 }) => {
   // Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
   const prependNumberRecursive = (node: Node, number: number): Node => {
@@ -105,14 +105,14 @@ const AbsatzContent = ({
           content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{
             underline: ({ children }) =>
-              PrincipleHighlight({ children }, false),
+              PrincipleHighlight({ children }, principlesToShow),
           }}
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
           <div className="ds-stack-8 mt-8">
             {/* TODO: move to content file */}
             <span className="ds-label-01-bold italic">Warum ist das gut?</span>
-            {absatzGroup.PrinzipErfuellungen.sort(
+            {absatzGroup.PrinzipErfuellungen.toSorted(
               (a, b) => a.Prinzip.Nummer - b.Prinzip.Nummer,
             ).map((erfuellung) => (
               <PrincipleExplanation
@@ -142,7 +142,7 @@ const AbsatzContent = ({
               content={prependNumberToAbsatz(absatz)}
               modifiers={{
                 underline: ({ children }) =>
-                  PrincipleHighlight({ children }, true),
+                  PrincipleHighlight({ children }, []),
               }}
             />
           ))}
@@ -154,13 +154,13 @@ const AbsatzContent = ({
 
 function Paragraph({
   paragraph,
-  principlesToFilter,
-}: {
+  principlesToShow,
+}: Readonly<{
   paragraph: Paragraph;
-  principlesToFilter: Prinzip[];
-}) {
+  principlesToShow: Prinzip[];
+}>) {
   // Filter relevant principles
-  const principleNumbers = principlesToFilter.map(
+  const principleNumbers = principlesToShow.map(
     (principle) => principle.Nummer,
   );
   const filteredAbsaetzeWithNumber = paragraph.Absaetze.map(
@@ -208,6 +208,7 @@ function Paragraph({
             <AbsatzContent
               key={"id" in absatzGroup ? absatzGroup.id : absatzGroup[0].number}
               absatzGroup={absatzGroup}
+              principlesToShow={principleNumbers}
             />
           ))}
         </div>
@@ -218,20 +219,20 @@ function Paragraph({
 
 export default function ParagraphList({
   paragraphs,
-  principlesToFilter,
-}: {
+  principlesToShow,
+}: Readonly<{
   paragraphs: Paragraph[];
-  principlesToFilter: Prinzip[];
-}) {
+  principlesToShow: Prinzip[];
+}>) {
   return (
     <div className="ds-stack-32">
       {paragraphs
-        .sort((a, b) => a.Nummer.localeCompare(b.Nummer))
+        .toSorted((a, b) => a.Nummer.localeCompare(b.Nummer))
         .map((paragraph) => (
           <Paragraph
             key={paragraph.documentId}
             paragraph={paragraph}
-            principlesToFilter={principlesToFilter}
+            principlesToShow={principlesToShow}
           />
         ))}
     </div>
