@@ -630,12 +630,24 @@ export const digitalSuitability = {
       content: `Die 5 Prinzipien für Digitaltaugliche Gesetzgebung dienen Ihnen als Inspiration und gemeinsame Sprache für die Erarbeitung und Begleitung der Regelungsarbeit. Sie geben Anhaltspunkte wie Ihnen Digitalisierung beim Design der Wirklogik Ihrer Regelung helfen kann.
       <br class="block content-[''] !mb-24" />
       Hier finden Sie Formulierungen, wie Ihre Kolleginnen und Kollegen die Prinzipien für Digitaltaugliche Gesetzgebung genutzt haben um den Regelungstext digitaltauglich zu formulieren.`,
+      // buttons: [
+      //   {
+      //     text: "Zu den Prinzipien",
+      //     href: ROUTE_PRINCIPLES.url,
+      //   },
+      // ],
+      // TODO: this is just a hacky solution for the MVP, replace at some point
       buttons: [
-        {
-          text: "Zu den Prinzipien",
-          href: ROUTE_PRINCIPLES.url,
-        },
-      ],
+        "digitale-kommunikation-sicherstellen",
+        "wiederverwendung-von-daten-und-standards-ermoeglichen",
+        "datenschutz-und-informationssicherheit-gewaehrleisten",
+        "klare-regelungen-fuer-eine-digitale-ausfuehrung-finden",
+        "automatisierung-ermoeglichen",
+      ].map((href, index) => ({
+        text: `Prinzip ${index + 1}`,
+        href: ROUTE_PRINCIPLES.url + "/" + href,
+        look: "ghost",
+      })),
     },
     // {
     //   title: "NKR-Stellungnahmen",
