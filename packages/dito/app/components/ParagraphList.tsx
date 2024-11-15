@@ -1,6 +1,6 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode } from "react";
 import type {
   Absatz,
@@ -18,13 +18,12 @@ const HIGHLIGHT_COLORS = {
   5: { background: "bg-green-300", border: "border-green-500" },
 } as const;
 
-type AbsatzGroup = {
-  start: number;
-  end?: number;
-  absaetze: Absatz[];
-};
+type AbsatzWithNumber = Absatz & { number: number };
 
-function PrincipleHighlight({ children }: { children: ReactNode }) {
+function PrincipleHighlight(
+  { children }: { children: ReactNode },
+  remove: boolean = false,
+) {
   if (!children || typeof children !== "object" || !("props" in children)) {
     return null;
   }
@@ -32,7 +31,9 @@ function PrincipleHighlight({ children }: { children: ReactNode }) {
   const parts = (children.props.children as string).split(/(\[\d\])/g);
   const number = Number(parts[1][1]) as keyof typeof HIGHLIGHT_COLORS;
 
-  return (
+  return remove ? (
+    <span>{parts[0]}</span>
+  ) : (
     <mark className={HIGHLIGHT_COLORS[number].background}>
       {parts[0]}
       <sup>{`P${number}`}</sup>
@@ -57,18 +58,54 @@ const PrincipleExplanation = ({
   </div>
 );
 
+type Node = { type: string; text?: string; children?: Node[] };
+
+// TODO: clean up types
 const AbsatzContent = ({
   absatzGroup,
 }: {
-  absatzGroup: Absatz | AbsatzGroup;
+  absatzGroup: AbsatzWithNumber | AbsatzWithNumber[];
 }) => {
+  // Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
+  const prependNumberRecursive = (node: Node, number: number): Node => {
+    if (node.type === "text" && node.text) {
+      return {
+        ...node,
+        text: `(${number}) ${node.text}`,
+      };
+    }
+
+    if (node.children && node.children.length > 0) {
+      return {
+        ...node,
+        children: [
+          prependNumberRecursive(node.children[0], number),
+          ...node.children.slice(1),
+        ],
+      };
+    }
+
+    return node;
+  };
+
+  const prependNumberToAbsatz = (absatz: AbsatzWithNumber) => {
+    return [
+      prependNumberRecursive(
+        absatz.Text[0],
+        absatz.number,
+      ) as BlocksContent[number],
+      ...absatz.Text.slice(1),
+    ];
+  };
+
   if ("id" in absatzGroup) {
     return (
       <div>
         <BlocksRenderer
-          content={absatzGroup.Text}
+          content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{
-            underline: PrincipleHighlight,
+            underline: ({ children }) =>
+              PrincipleHighlight({ children }, false),
           }}
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
@@ -89,17 +126,25 @@ const AbsatzContent = ({
     );
   }
 
-  const title = absatzGroup.end
-    ? `(${absatzGroup.start + 1}) – (${absatzGroup.end})`
-    : `(${absatzGroup.start + 1})`;
+  const title =
+    absatzGroup.length > 1
+      ? `(${absatzGroup[0].number}) – (${absatzGroup[absatzGroup.length - 1].number})`
+      : `(${absatzGroup[0].number})`;
 
   return (
     <DetailsSummary
       title={title}
       content={
         <div className="ds-stack-8">
-          {absatzGroup.absaetze.map((absatz) => (
-            <BlocksRenderer key={absatz.id} content={absatz.Text} />
+          {absatzGroup.map((absatz) => (
+            <BlocksRenderer
+              key={absatz.id}
+              content={prependNumberToAbsatz(absatz)}
+              modifiers={{
+                underline: ({ children }) =>
+                  PrincipleHighlight({ children }, true),
+              }}
+            />
           ))}
         </div>
       }
@@ -118,17 +163,20 @@ function Paragraph({
   const principleNumbers = principlesToFilter.map(
     (principle) => principle.Nummer,
   );
-  const filteredAbsaetze = paragraph.Absaetze.map((absatz) => ({
-    ...absatz,
-    PrinzipErfuellungen: absatz.PrinzipErfuellungen.filter((erfuellung) =>
-      principleNumbers.includes(erfuellung.Prinzip.Nummer),
-    ),
-  }));
+  const filteredAbsaetzeWithNumber = paragraph.Absaetze.map(
+    (absatz, index) => ({
+      ...absatz,
+      number: index + 1,
+      PrinzipErfuellungen: absatz.PrinzipErfuellungen.filter((erfuellung) =>
+        principleNumbers.includes(erfuellung.Prinzip.Nummer),
+      ),
+    }),
+  );
 
   // Group consecutive Absaetze without a relevant PrinzipErfuellungen together
-  const groupedAbsaetze = filteredAbsaetze.reduce(
-    (groups, absatz, index) => {
-      // If the Absatz has Erfuellungen, add it as a standalone item
+  const groupedAbsaetze = filteredAbsaetzeWithNumber.reduce(
+    (groups, absatz) => {
+      // If the current Absatz has Erfuellungen, add it as a standalone item
       if (absatz.PrinzipErfuellungen.length) {
         groups.push(absatz);
         return groups;
@@ -136,20 +184,16 @@ function Paragraph({
       const lastGroup = groups[groups.length - 1];
       // Start a new group if:
       // 1. There are no previous groups, or
-      // 2. The last item is a single paragraph (has an 'id')
+      // 2. The last item had relevant PrinzipErfuellungen (thus is a standalone Absatz with an 'id')
       if (!lastGroup || "id" in lastGroup) {
-        groups.push({
-          start: index,
-          absaetze: [absatz],
-        });
+        groups.push([absatz]);
         return groups;
       }
       // Add to existing group
-      lastGroup.end = index;
-      lastGroup.absaetze.push(absatz);
+      lastGroup.push(absatz);
       return groups;
     },
-    [] as (Absatz | AbsatzGroup)[],
+    [] as (AbsatzWithNumber | AbsatzWithNumber[])[],
   );
 
   return (
@@ -162,7 +206,7 @@ function Paragraph({
         <div className="border-l-4 border-gray-300 pl-8 ds-stack-16">
           {groupedAbsaetze.map((absatzGroup) => (
             <AbsatzContent
-              key={"id" in absatzGroup ? absatzGroup.id : absatzGroup.start}
+              key={"id" in absatzGroup ? absatzGroup.id : absatzGroup[0].number}
               absatzGroup={absatzGroup}
             />
           ))}
