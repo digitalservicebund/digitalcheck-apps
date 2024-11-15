@@ -5,7 +5,6 @@ import Header from "@digitalcheck/shared/components/Header.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { redirect } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
-import React from "react";
 import { digitalSuitability, header } from "../resources/content.ts";
 import {
   ROUTE_DIGITAL_SUITABILITY,
@@ -52,19 +51,17 @@ export default function Digitaltauglichkeit_index() {
         </Container>
       </Background>
       <Container>
-        {digitalSuitability.boxItems.map((item, index) => (
-          <React.Fragment key={index}>
-            <Box
-              key={index}
-              heading={{
-                tagName: "h2",
-                text: item.title,
-              }}
-              content={{ markdown: item.content }}
-              buttons={item.buttons}
-            />
-            <div className="mt-56" />
-          </React.Fragment>
+        {digitalSuitability.boxItems.map((item) => (
+          <Box
+            key={item.title}
+            heading={{
+              tagName: "h2",
+              text: item.title,
+            }}
+            content={{ markdown: item.content }}
+            buttons={item.buttons}
+            additionalClassNames="mb-56"
+          />
         ))}
       </Container>
     </>

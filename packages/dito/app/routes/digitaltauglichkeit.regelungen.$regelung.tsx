@@ -165,7 +165,7 @@ export default function Gesetz() {
             <div>
               <Heading tagName="h3">{regulations.visualisations.title}</Heading>
               <p>{regulations.visualisations.subtitle}</p>
-              {digitalcheck.Visualisierungen.map((visualisierung, index) => (
+              {digitalcheck.Visualisierungen.map((visualisierung) => (
                 <div
                   className="flex max-sm:flex-col mt-40 gap-32"
                   key={visualisierung.Bild.documentId}
@@ -214,7 +214,6 @@ export default function Gesetz() {
                       additionalClassNames="rich-text p-0 mb-12"
                       paddingTop="0"
                       paddingBottom="0"
-                      key={index}
                     >
                       <BlocksRenderer
                         content={visualisierung.Beschreibung}
