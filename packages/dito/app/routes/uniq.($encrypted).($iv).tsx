@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { ROUTE_RESULT_PDF } from "resources/staticRoutes";
@@ -156,7 +156,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const zipped = zip(stringified);
   const [encrypted, iv] = encrypt(zipped);
 
-  return json({
+  return {
     url: `${getBaseURL(request)}/uniq/${encrypted}/${iv}`,
-  });
+  };
 }

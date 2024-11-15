@@ -11,7 +11,7 @@ import LightbulbOutlined from "@digitalservicebund/icons/LightbulbOutlined";
 import StickyNote2Outlined from "@digitalservicebund/icons/StickyNote2Outlined";
 import SupportOutlined from "@digitalservicebund/icons/SupportOutlined";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { json, MetaFunction, useLoaderData } from "@remix-run/react";
+import { MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
 import { ReactNode } from "react";
 import {
@@ -129,7 +129,7 @@ export function loader({ params, request }: LoaderFunctionArgs) {
     });
   }
 
-  return json({ content, supportOfferingFlag, requestUrl: request.url });
+  return { content, supportOfferingFlag, requestUrl: request.url };
 }
 
 import unleash from "utils/featureFlags.server.ts";

@@ -5,7 +5,7 @@ import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { fivePrinciples } from "resources/content";
 import {
   ROUTE_METHODS,
@@ -27,9 +27,9 @@ export function loader({ request }: LoaderFunctionArgs) {
     pathname = new URL(referer).pathname;
   }
 
-  return json({
+  return {
     referrer: pathname,
-  });
+  };
 }
 
 export default function Index() {

@@ -3,7 +3,7 @@ import Box from "@digitalcheck/shared/components/Box.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
-import { json, redirect } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/react";
 import React from "react";
 import { digitalSuitability, header } from "../resources/content.ts";
@@ -26,8 +26,7 @@ export function loader() {
   if (!digitalSuitabilityFlag) {
     return redirect(ROUTE_LANDING.url);
   }
-
-  return json({});
+  return {};
 }
 
 export default function Digitaltauglichkeit_index() {

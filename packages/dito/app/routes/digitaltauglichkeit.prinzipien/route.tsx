@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/node";
-import { json, MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
+import { MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
 import { LoaderFunctionArgs } from "react-router-dom";
 import {
   ROUTE_LANDING,
@@ -66,9 +66,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(`${ROUTE_PRINCIPLES.url}/${firstPrinzip?.URLBezeichnung}`);
   }
 
-  return json({
+  return {
     prinzips: prinzipData?.data.prinzips.sort((a, b) => a.Nummer - b.Nummer),
-  });
+  };
 }
 
 export default function Prinzipien() {

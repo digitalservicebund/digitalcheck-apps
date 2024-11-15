@@ -21,7 +21,6 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
-  json,
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";
@@ -59,13 +58,13 @@ export function loader({ request }: LoaderFunctionArgs) {
     process.env.NODE_ENV === "production" ? "https://" : "http://",
   );
 
-  return json({
+  return {
     BASE_URL,
     PLAUSIBLE_DOMAIN,
     PLAUSIBLE_SCRIPT,
     supportOfferingFlag,
     featureFlags,
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({

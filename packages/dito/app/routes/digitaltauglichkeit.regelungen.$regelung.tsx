@@ -8,7 +8,7 @@ import Image from "@digitalcheck/shared/components/Image.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
-import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import ParagraphList from "components/ParagraphList.tsx";
 import { regulations } from "../resources/content.ts";
@@ -72,10 +72,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response("Error fetching Regelung", { status: 404 });
   }
 
-  return json({
+  return {
     regelung: regelungData.data.regelungsvorhabens[0],
     prinzips: regelungData.data.prinzips,
-  });
+  };
 };
 
 const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>

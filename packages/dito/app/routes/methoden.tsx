@@ -7,7 +7,7 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
-import { json, useLoaderData, type MetaFunction } from "@remix-run/react";
+import { useLoaderData, type MetaFunction } from "@remix-run/react";
 import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
@@ -23,7 +23,7 @@ export const meta: MetaFunction = ({ matches }) => {
 
 export function loader() {
   const feedbackFormFlag = unleash.isEnabled("digitalcheck.feedback-form");
-  return json({ feedbackFormFlag });
+  return { feedbackFormFlag };
 }
 
 export default function Methoden() {
