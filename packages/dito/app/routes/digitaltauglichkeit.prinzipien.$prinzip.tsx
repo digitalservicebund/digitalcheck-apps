@@ -2,6 +2,7 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import { json, Link, useLoaderData, useOutletContext } from "@remix-run/react";
 
 import Background from "@digitalcheck/shared/components/Background.tsx";
+import Box from "@digitalcheck/shared/components/Box.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
@@ -30,9 +31,35 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container>
-          <Heading className="mb-8">{prinzip.Name}</Heading>
+        <Container paddingBottom="0">
+          <Box
+            label={{
+              text: `Prinzip ${prinzip.Nummer} – ${prinzip.Name}`,
+            }}
+            heading={{
+              text: `Prinzip ${prinzip.Nummer} in Regelungstexten`,
+              tagName: "h1",
+            }}
+            additionalClassNames="mb-16"
+          />
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
+        </Container>
+        <Container additionalClassNames="flex space-x-20">
+          {prinzips.map((p) =>
+            prinzip.Nummer === p.Nummer ? (
+              <div key={p.Nummer} className="ds-label-01-bold">
+                Prinzip {p.Nummer}
+              </div>
+            ) : (
+              <Link
+                to={`../${p.URLBezeichnung}`}
+                key={p.Nummer}
+                className="ds-link-01-bold"
+              >
+                Prinzip {p.Nummer}
+              </Link>
+            ),
+          )}
         </Container>
       </Background>
       <Container additionalClassNames="rich-text ds-stack-64">

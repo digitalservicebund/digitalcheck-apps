@@ -1,12 +1,5 @@
-import Container from "@digitalcheck/shared/components/Container.tsx";
 import { redirect } from "@remix-run/node";
-import {
-  json,
-  Link,
-  MetaFunction,
-  Outlet,
-  useLoaderData,
-} from "@remix-run/react";
+import { json, MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
 import { LoaderFunctionArgs } from "react-router-dom";
 import {
   ROUTE_LANDING,
@@ -81,20 +74,5 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Prinzipien() {
   const { prinzips } = useLoaderData<{ prinzips: Prinzip[] }>();
 
-  return (
-    <>
-      <Container additionalClassNames="flex space-x-20">
-        {prinzips.map((prinzip) => (
-          <Link
-            to={prinzip.URLBezeichnung}
-            key={prinzip.URLBezeichnung}
-            state={{ prinzip }}
-          >
-            Prinzip {prinzip.Nummer}
-          </Link>
-        ))}
-      </Container>
-      <Outlet context={prinzips} />
-    </>
-  );
+  return <Outlet context={prinzips} />;
 }
