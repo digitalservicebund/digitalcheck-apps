@@ -53,7 +53,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           />
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
         </Container>
-        <Container additionalClassNames="flex space-x-20">
+        <Container additionalClassNames="flex space-x-20 items-center">
           {prinzips.map((p) =>
             prinzip.Nummer === p.Nummer ? (
               <div key={p.Nummer} className="ds-label-01-bold">
@@ -61,7 +61,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
               </div>
             ) : (
               <Link
-                to={`../${p.URLBezeichnung}`}
+                to={`${ROUTE_PRINCIPLES.url}/${p.URLBezeichnung}`}
                 key={p.Nummer}
                 className="ds-link-01-bold"
               >
