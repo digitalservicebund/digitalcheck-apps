@@ -17,8 +17,9 @@ import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
   paragraphFields,
+  Prinzip,
   prinzipCoreFields,
-  RegelungsvorhabenResponse,
+  Regelungsvorhaben,
 } from "../utils/strapiData.server.ts";
 import { slugify } from "../utils/utilFunctions.ts";
 
@@ -60,21 +61,25 @@ query GetRegelungsvorhabens($slug: String!) {
   }
 }`;
 
+export type RegelungsvorhabenData = {
+  regelungsvorhabens: Regelungsvorhaben[];
+  prinzips: Prinzip[];
+};
+
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const slug = params.regelung as string;
-  const regelungData = await fetchStrapiData<RegelungsvorhabenResponse>(
+  const regelungData = await fetchStrapiData<RegelungsvorhabenData>(
     GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
-    { slug },
+    { slug: params.regelung as string },
   );
 
-  if (!regelungData) {
+  if ("error" in regelungData) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
-    throw new Response("Error fetching Regelung", { status: 404 });
+    throw new Response(regelungData.error, { status: 400 });
   }
 
   return {
-    regelung: regelungData.data.regelungsvorhabens[0],
-    prinzips: regelungData.data.prinzips,
+    regelung: regelungData.regelungsvorhabens[0],
+    prinzips: regelungData.prinzips,
   };
 };
 

@@ -41,38 +41,32 @@ query GetPrinzips {
   }
 }`;
 
-export type PrinzipResponse = {
-  data: {
-    prinzips: Prinzip[];
-  };
-};
-
 export async function loader({ request }: LoaderFunctionArgs) {
   const digitalSuitabilityFlag = unleash.isEnabled(
     "digitalcheck.digital-suitability",
   );
-
   if (!digitalSuitabilityFlag) {
     return redirect(ROUTE_LANDING.url);
   }
 
-  const prinzipData =
-    await fetchStrapiData<PrinzipResponse>(GET_PRINZIPS_QUERY);
+  const prinzipData = await fetchStrapiData<{ prinzips: Prinzip[] }>(
+    GET_PRINZIPS_QUERY,
+  );
+
+  if ("error" in prinzipData) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw new Response(prinzipData.error, { status: 400 });
+  }
 
   // redirect to first prinzip if no prinzip is specified in the URL
   const prinzipUrl = new URL(request.url);
   if (prinzipUrl.pathname === ROUTE_PRINCIPLES.url) {
-    const firstPrinzip = prinzipData?.data.prinzips.find((p) => p.Nummer === 1);
+    const firstPrinzip = prinzipData.prinzips.find((p) => p.Nummer === 1);
     return redirect(`${ROUTE_PRINCIPLES.url}/${firstPrinzip?.URLBezeichnung}`);
   }
-
-  return {
-    prinzips: prinzipData?.data.prinzips.sort((a, b) => a.Nummer - b.Nummer),
-  };
+  return prinzipData.prinzips.toSorted((a, b) => a.Nummer - b.Nummer);
 }
 
 export default function Prinzipien() {
-  const { prinzips } = useLoaderData<{ prinzips: Prinzip[] }>();
-
-  return <Outlet context={prinzips} />;
+  return <Outlet context={useLoaderData<typeof loader>()} />;
 }

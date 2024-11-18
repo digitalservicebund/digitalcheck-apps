@@ -102,13 +102,6 @@ export type Regelungsvorhaben = {
   LinkRegelungstext: string;
 };
 
-export type RegelungsvorhabenResponse = {
-  data: {
-    regelungsvorhabens: Regelungsvorhaben[];
-    prinzips: Prinzip[];
-  };
-};
-
 export const prinzipCoreFields = `
  fragment PrinzipCoreFields on Prinzip {
   documentId
@@ -138,32 +131,59 @@ fragment ParagraphFields on Paragraph {
   }
 }`;
 
-export async function fetchStrapiData<ResponseType>(
+type GraphQLResponse<DataType> = {
+  data: DataType;
+  errors?: {
+    message: string;
+    path: string[];
+    extensions: {
+      code: string;
+      error: {
+        name: string;
+        message: string;
+        details: Record<string, unknown>;
+      };
+    }[];
+  }[];
+};
+
+type errorResponse = {
+  error: string;
+};
+
+export async function fetchStrapiData<DataType>(
   query: string,
   variables?: object,
-): Promise<ResponseType | null> {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query, variables }),
-    });
-    // TODO check if this is correct error handling in GraphQL
-    if (!response.ok) {
-      const errorDetails = await response.text();
-      console.error(
-        "Failed to fetch:",
-        response.status,
-        response.statusText,
-        errorDetails,
-      );
-      return null;
-    }
-    return (await response.json()) as ResponseType;
-  } catch (error) {
-    console.error("Error fetching:", error);
-    return null;
+): Promise<DataType | errorResponse> {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  // handle fetch errors
+  if (!response.ok) {
+    const errorDetails = await response.text();
+    console.error(
+      "Failed to fetch:",
+      response.status,
+      response.statusText,
+      errorDetails,
+    );
+    return {
+      error: `Failed to fetch: ${response.status} ${response.statusText}`,
+    };
   }
+  const responseData = (await response.json()) as GraphQLResponse<DataType>;
+  // handle GraphQL errors
+  if (responseData.errors) {
+    console.error("GraphQL errors:", responseData.errors[0]);
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    return {
+      error: responseData.errors[0].message,
+    };
+  }
+
+  return responseData.data;
 }
