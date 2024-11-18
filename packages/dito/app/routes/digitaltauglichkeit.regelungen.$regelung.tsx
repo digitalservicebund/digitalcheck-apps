@@ -172,7 +172,7 @@ export default function Gesetz() {
           />
 
           {/* ----- Visualisierungen ----- */}
-          {digitalcheck.Visualisierungen && (
+          {digitalcheck.Visualisierungen.length > 0 && (
             <div>
               <Header
                 heading={{
