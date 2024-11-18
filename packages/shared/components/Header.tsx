@@ -6,7 +6,7 @@ type HeaderProps = {
   content?: RichTextProps;
 };
 
-export default function Header({ heading, content }: HeaderProps) {
+export default function Header({ heading, content }: Readonly<HeaderProps>) {
   return (
     <div className="ds-stack-16">
       <Heading {...heading} />
