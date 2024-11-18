@@ -6,9 +6,19 @@ export default function prependMetaTitle(
   metaMatches: MetaMatches,
 ): MetaDescriptor[] {
   // Get the title of the root metadata, this should always be first in the array
-  const rootMeta = metaMatches?.[0]?.meta?.[0];
-  // Get other parent metadata, with the exception of title related entries (these will be the first 4 in the array), as we are going to replace them
-  const parentMeta = metaMatches.flatMap((match) => match.meta ?? []).slice(4);
+  const rootMeta = metaMatches[0].meta?.[0];
+  // Only get direct parent metadata, as it includes all meta tags
+  // Only reuse tags that are not title-related meta tags, as we are going to replace those
+  const parentMeta = metaMatches[metaMatches.length - 2].meta?.filter(
+    (meta) =>
+      !(
+        "title" in meta ||
+        ("property" in meta &&
+          (meta.property === "title" ||
+            meta.property === "og:title" ||
+            meta.property === "twitter:title"))
+      ),
+  );
 
   if (
     rootMeta !== undefined &&
