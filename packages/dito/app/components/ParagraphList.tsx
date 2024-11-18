@@ -166,7 +166,6 @@ function Paragraph({
   const principleNumbers = principlesToShow.map(
     (principle) => principle.Nummer,
   );
-  console.log(paragraph.Absaetze);
   const filteredAbsaetzeWithNumber = paragraph.Absaetze.map(
     (absatz, index) => ({
       ...absatz,
