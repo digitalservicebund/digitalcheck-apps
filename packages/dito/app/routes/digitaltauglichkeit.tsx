@@ -1,25 +1,16 @@
-import { MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 
 import { redirect } from "@remix-run/node";
 import { LoaderFunctionArgs } from "react-router-dom";
-import {
-  ROUTE_DIGITAL_SUITABILITY,
-  ROUTE_LANDING,
-  ROUTE_PRINCIPLES,
-} from "../resources/staticRoutes.ts";
+import { ROUTE_LANDING, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
-import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
   paragraphFields,
   Prinzip,
   prinzipCoreFields,
 } from "../utils/strapiData.server.ts";
-
-export const meta: MetaFunction = ({ matches }) => {
-  return prependMetaTitle(ROUTE_DIGITAL_SUITABILITY.title, matches);
-};
 
 const GET_PRINZIPS_QUERY = `
 ${paragraphFields}
