@@ -1734,6 +1734,7 @@ export const regulations = {
     button: "Vergrößern",
     imageInfo: {
       type: "Art der Visualisierung:",
+      tool: "Software zur Erstellung:",
       legalArea: "Rechtsbereich:",
       publishedOn: "Veröffentlicht am:",
       law: "Regelung:",

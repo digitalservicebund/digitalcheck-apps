@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
-import Button from "@digitalcheck/shared/components/Button.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
@@ -52,6 +51,19 @@ query GetRegelungsvorhabens($slug: String!) {
       NKRStellungnahmeDCText
       Paragraphen {
         ...ParagraphFields
+      }
+      Visualisierungen {
+        documentId
+        Titel
+        Beschreibung
+        Visualisierungsart
+        Visualisierungstool
+        Bild {
+          documentId
+          url
+          previewUrl
+          alternativeText
+        }
       }
     }
   }
@@ -140,9 +152,10 @@ export default function Gesetz() {
       {regelung.Digitalchecks.map((digitalcheck) => (
         <Container
           key={digitalcheck.documentId}
-          additionalClassNames="ds-stack-32"
+          paddingBottom="80"
+          additionalClassNames="ds-stack-64 rich-text"
         >
-          {/* target for same page jump navigation */}
+          {/* Target for same page jump navigation */}
           <span id={slugify(digitalcheck.documentId)} />
           <Header
             heading={{
@@ -155,8 +168,8 @@ export default function Gesetz() {
             }}
           />
 
-          {/* ----- Prinziperfüllung ----- */}
-          <Heading tagName="h3" className="pt-40">
+          {/* ----- Formulierungen / Prinziperfüllungen ----- */}
+          <Heading tagName="h3" look="ds-heading-03-bold">
             {regulations.principles.title}
           </Heading>
           <ParagraphList
@@ -164,36 +177,42 @@ export default function Gesetz() {
             principlesToShow={prinzips}
           />
 
-          {/* ----- VISUALISIERUNGEN ----- */}
+          {/* ----- Visualisierungen ----- */}
           {digitalcheck.Visualisierungen && (
             <div>
-              <Heading tagName="h3">{regulations.visualisations.title}</Heading>
-              <p>{regulations.visualisations.subtitle}</p>
+              <Header
+                heading={{
+                  text: regulations.visualisations.title,
+                  tagName: "h3",
+                  look: "ds-heading-03-bold",
+                }}
+                content={{
+                  markdown: regulations.visualisations.subtitle,
+                }}
+              />
               {digitalcheck.Visualisierungen.map((visualisierung) => (
                 <div
-                  className="flex max-sm:flex-col mt-40 gap-32"
+                  className="flex max-sm:flex-col mt-32 gap-32"
                   key={visualisierung.Bild.documentId}
                 >
-                  <div className="flex-1 max-sm:px-16 max-sm:pt-32">
-                    <div className="relative border border-blue-500 aspect-square overflow-hidden">
+                  <div className="w-1/2 max-sm:px-16 max-sm:pt-32">
+                    <a
+                      href={visualisierung.Bild.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block relative border border-blue-500 aspect-square overflow-hidden"
+                    >
                       <Image
                         url={visualisierung.Bild.url}
                         alternativeText={visualisierung.Bild.alternativeText}
                         className="w-full h-full object-cover"
                       />
-                      <a
-                        href={visualisierung.Bild.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <div className="absolute bottom-16 left-16 bg-blue-800 p-2 shadow">
-                          <ZoomInOutlined
-                            className="text-white"
-                            fill="currentColor"
-                          />
-                        </div>
-                      </a>
-                    </div>
+                      <ZoomInOutlined
+                        className="absolute bottom-16 left-16 bg-blue-800 p-1 shadow"
+                        fill="white"
+                      />
+                    </a>
+
                     <div className="p-12 bg-gray-100">
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.legalArea}
@@ -203,32 +222,36 @@ export default function Gesetz() {
                         label={regulations.visualisations.imageInfo.publishedOn}
                         value={regelung.VeroeffentlichungsDatum}
                       />
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.type}
-                        value={visualisierung.Visualisierungsart}
-                      />
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.law}
-                        value={regelung.Titel}
-                      />
+                      {visualisierung.Visualisierungsart && (
+                        <LabelValuePair
+                          label={regulations.visualisations.imageInfo.type}
+                          value={visualisierung.Visualisierungsart}
+                        />
+                      )}
+                      {visualisierung.Visualisierungstool && (
+                        <LabelValuePair
+                          label={regulations.visualisations.imageInfo.tool}
+                          value={visualisierung.Visualisierungstool}
+                        />
+                      )}
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <Container
-                      additionalClassNames="rich-text p-0 mb-12"
-                      paddingTop="0"
-                      paddingBottom="0"
+                  <Container
+                    additionalClassNames="w-1/2 p-0 mb-12"
+                    paddingTop="0"
+                    paddingBottom="0"
+                  >
+                    <Heading
+                      tagName="h4"
+                      look="ds-heading-03-reg"
+                      className="mb-16"
                     >
-                      <BlocksRenderer
-                        content={visualisierung.Beschreibung}
-                      ></BlocksRenderer>
-                    </Container>
-                    <Button
-                      href={visualisierung.Bild.url}
-                      target="_blank"
-                      text={regulations.visualisations.button}
-                    ></Button>
-                  </div>
+                      {visualisierung.Titel}
+                    </Heading>
+                    <BlocksRenderer
+                      content={visualisierung.Beschreibung}
+                    ></BlocksRenderer>
+                  </Container>
                 </div>
               ))}
             </div>
@@ -236,14 +259,21 @@ export default function Gesetz() {
 
           {/* ----- NKR Stellungnahme ----- */}
           {digitalcheck.NKRStellungnahmeDCText && (
-            <>
-              <Heading tagName="h3">{regulations.nkr.title}</Heading>
-              <p>{regulations.nkr.subtitle}</p>
-
-              <div className="border-l-4 border-gray-300 pl-8">
+            <div>
+              <Header
+                heading={{
+                  text: regulations.nkr.title,
+                  tagName: "h3",
+                  look: "ds-heading-03-bold",
+                }}
+                content={{
+                  markdown: regulations.nkr.subtitle,
+                }}
+              />
+              <div className="mt-32 border-l-4 border-gray-300 pl-8">
                 <BlocksRenderer content={digitalcheck.NKRStellungnahmeDCText} />
               </div>
-            </>
+            </div>
           )}
         </Container>
       ))}
