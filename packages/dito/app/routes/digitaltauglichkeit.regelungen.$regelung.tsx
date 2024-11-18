@@ -6,7 +6,12 @@ import Image from "@digitalcheck/shared/components/Image.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
-import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import {
+  Link,
+  MetaFunction,
+  useLoaderData,
+  useOutletContext,
+} from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import ParagraphList from "components/ParagraphList.tsx";
 import { regulations } from "../resources/content.ts";
@@ -25,10 +30,10 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
 
-// TODO: there seems to be an error with Visualisierungen, has to be added again
+// prinzipCoreFields are being used in paragraphFields and so need to be included
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
-${paragraphFields}
 ${prinzipCoreFields}
+${paragraphFields}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     documentId
@@ -67,31 +72,19 @@ query GetRegelungsvorhabens($slug: String!) {
       }
     }
   }
-  prinzips {
-    ...PrinzipCoreFields
-  }
 }`;
 
-export type RegelungsvorhabenData = {
-  regelungsvorhabens: Regelungsvorhaben[];
-  prinzips: Prinzip[];
-};
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const regelungData = await fetchStrapiData<RegelungsvorhabenData>(
-    GET_REGELUNGSVORHABENS_BY_SLUG_QUERY,
-    { slug: params.regelung as string },
-  );
+  const regelungData = await fetchStrapiData<{
+    regelungsvorhabens: Regelungsvorhaben[];
+  }>(GET_REGELUNGSVORHABENS_BY_SLUG_QUERY, { slug: params.regelung as string });
 
   if ("error" in regelungData) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response(regelungData.error, { status: 400 });
   }
 
-  return {
-    regelung: regelungData.regelungsvorhabens[0],
-    prinzips: regelungData.prinzips,
-  };
+  return regelungData.regelungsvorhabens[0];
 };
 
 const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
@@ -103,7 +96,8 @@ const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
   ) : null;
 
 export default function Gesetz() {
-  const { regelung, prinzips } = useLoaderData<typeof loader>();
+  const regelung = useLoaderData<typeof loader>();
+  const principles = useOutletContext<Prinzip[]>();
   return (
     <>
       <Background backgroundColor="blue">
@@ -174,7 +168,7 @@ export default function Gesetz() {
           </Heading>
           <ParagraphList
             paragraphs={digitalcheck.Paragraphen}
-            principlesToShow={prinzips}
+            principlesToShow={principles}
           />
 
           {/* ----- Visualisierungen ----- */}

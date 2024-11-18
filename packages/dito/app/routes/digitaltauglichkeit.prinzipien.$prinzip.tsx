@@ -1,5 +1,10 @@
 import Container from "@digitalcheck/shared/components/Container.tsx";
-import { Link, useLoaderData, useOutletContext } from "@remix-run/react";
+import {
+  Link,
+  MetaFunction,
+  useLoaderData,
+  useOutletContext,
+} from "@remix-run/react";
 
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Box from "@digitalcheck/shared/components/Box.tsx";
@@ -7,13 +12,17 @@ import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import prependMetaTitle from "utils/metaTitle.ts";
 import ParagraphList from "../components/ParagraphList.tsx";
-import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
+import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
+export const meta: MetaFunction = ({ matches }) => {
+  return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
+};
+
 export const loader = ({ params }: LoaderFunctionArgs) => {
-  const slug = params.prinzip as string;
-  return { slug };
+  return { slug: params.prinzip as string };
 };
 
 export default function Digitaltauglichkeit_Prinzipien_Detail() {
