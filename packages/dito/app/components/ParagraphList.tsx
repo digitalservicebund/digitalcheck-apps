@@ -44,18 +44,19 @@ const PrincipleExplanation = ({
   erfuellung,
 }: {
   erfuellung: PrinzipErfuellung;
-}) => (
-  <div
-    className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
-  >
-    <Heading
-      tagName="h4"
-      text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
-      look="ds-label-01-bold"
-    />
-    <BlocksRenderer content={erfuellung.WarumGut} />
-  </div>
-);
+}) =>
+  erfuellung.Prinzip && (
+    <div
+      className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
+    >
+      <Heading
+        tagName="h4"
+        text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
+        look="ds-label-01-bold"
+      />
+      <BlocksRenderer content={erfuellung.WarumGut} />
+    </div>
+  );
 
 type AbsatzWithNumber = Absatz & { number: number };
 type Node = { type: string; text?: string; children?: Node[] };
@@ -115,7 +116,7 @@ const AbsatzContent = ({
               {digitalSuitability.paragraphs.explanation}
             </span>
             {absatzGroup.PrinzipErfuellungen.toSorted(
-              (a, b) => a.Prinzip.Nummer - b.Prinzip.Nummer,
+              (a, b) => (a.Prinzip?.Nummer ?? 0) - (b.Prinzip?.Nummer ?? 0),
             ).map((erfuellung) => (
               <PrincipleExplanation
                 key={erfuellung.id}
@@ -165,12 +166,15 @@ function Paragraph({
   const principleNumbers = principlesToShow.map(
     (principle) => principle.Nummer,
   );
+  console.log(paragraph.Absaetze);
   const filteredAbsaetzeWithNumber = paragraph.Absaetze.map(
     (absatz, index) => ({
       ...absatz,
       number: index + 1,
-      PrinzipErfuellungen: absatz.PrinzipErfuellungen.filter((erfuellung) =>
-        principleNumbers.includes(erfuellung.Prinzip.Nummer),
+      PrinzipErfuellungen: absatz.PrinzipErfuellungen.filter(
+        (erfuellung) =>
+          erfuellung.Prinzip &&
+          principleNumbers.includes(erfuellung.Prinzip.Nummer),
       ),
     }),
   );

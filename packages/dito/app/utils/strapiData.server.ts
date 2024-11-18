@@ -31,7 +31,7 @@ export type Rechtsgebiet = "TBD";
 
 export type PrinzipErfuellung = {
   id: number;
-  Prinzip: Prinzip;
+  Prinzip?: Prinzip;
   WarumGut: BlocksContent;
 };
 
