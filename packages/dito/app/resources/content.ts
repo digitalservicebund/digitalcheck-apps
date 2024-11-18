@@ -12,7 +12,6 @@ import {
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
   ROUTE_PRECHECK,
-  ROUTE_PRINCIPLES,
   ROUTE_PRIVACY,
   ROUTE_RESULT,
   ROUTE_SUPPORT,
@@ -636,18 +635,6 @@ export const digitalSuitability = {
       //     href: ROUTE_PRINCIPLES.url,
       //   },
       // ],
-      // TODO: this is just a hacky solution for the MVP, replace at some point
-      buttons: [
-        "digitale-kommunikation-sicherstellen",
-        "wiederverwendung-von-daten-und-standards-ermoeglichen",
-        "datenschutz-und-informationssicherheit-gewaehrleisten",
-        "klare-regelungen-fuer-eine-digitale-ausfuehrung-finden",
-        "automatisierung-ermoeglichen",
-      ].map((href, index) => ({
-        text: `Prinzip ${index + 1}`,
-        href: ROUTE_PRINCIPLES.url + "/" + href,
-        look: "ghost" as const,
-      })),
     },
     // {
     //   title: "NKR-Stellungnahmen",

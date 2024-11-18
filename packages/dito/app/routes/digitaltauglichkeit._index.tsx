@@ -4,11 +4,13 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { redirect } from "@remix-run/node";
-import { MetaFunction } from "@remix-run/react";
+import { MetaFunction, useOutletContext } from "@remix-run/react";
+import { Prinzip } from "utils/strapiData.server.ts";
 import { digitalSuitability, header } from "../resources/content.ts";
 import {
   ROUTE_DIGITAL_SUITABILITY,
   ROUTE_LANDING,
+  ROUTE_PRINCIPLES,
 } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
@@ -29,6 +31,7 @@ export function loader() {
 }
 
 export default function Digitaltauglichkeit_index() {
+  const principles = useOutletContext<Prinzip[]>();
   return (
     <>
       <Background backgroundColor="darkBlue">
@@ -59,7 +62,14 @@ export default function Digitaltauglichkeit_index() {
               text: item.title,
             }}
             content={{ markdown: item.content }}
-            buttons={item.buttons}
+            buttons={principles
+              .toSorted((a, b) => a.Nummer - b.Nummer)
+              .map((principle) => ({
+                text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
+                href: ROUTE_PRINCIPLES.url + "/" + principle.URLBezeichnung,
+                look: "ghost" as const,
+                className: "w-full ds-link-01-bold",
+              }))}
             additionalClassNames="mb-56"
           />
         ))}
