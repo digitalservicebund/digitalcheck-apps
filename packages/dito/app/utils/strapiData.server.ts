@@ -33,8 +33,6 @@ export type PrinzipErfuellung = {
   id: number;
   Prinzip: Prinzip;
   WarumGut: BlocksContent;
-  KontextStart: number;
-  KontextEnde: number;
 };
 
 export type Absatz = {
@@ -133,8 +131,6 @@ fragment ParagraphFields on Paragraph {
     PrinzipErfuellungen {
       id
       WarumGut
-      KontextEnde
-      KontextStart
       Prinzip {
         ...PrinzipCoreFields
       }
