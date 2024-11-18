@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
-import Box from "@digitalcheck/shared/components/Box.tsx";
 import Button from "@digitalcheck/shared/components/Button.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
@@ -248,22 +247,6 @@ export default function Gesetz() {
           )}
         </Container>
       ))}
-
-      {/* ----- Feedback Banner ----- */}
-      <Background backgroundColor="midBlue">
-        <Container additionalClassNames="ds-stack-16">
-          <Box
-            heading={{
-              tagName: "h2",
-              look: "ds-label-01-bold",
-              text: regulations.feedback.title,
-            }}
-            content={{
-              markdown: regulations.feedback.text,
-            }}
-          ></Box>
-        </Container>
-      </Background>
     </>
   );
 }
