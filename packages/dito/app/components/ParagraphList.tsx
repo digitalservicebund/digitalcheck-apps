@@ -36,7 +36,7 @@ function PrincipleHighlight(
       <sup>{`P${number}`}</sup>
     </mark>
   ) : (
-    <span>{parts[0]}</span>
+    parts[0]
   );
 }
 
@@ -60,6 +60,10 @@ const PrincipleExplanation = ({
 
 type AbsatzWithNumber = Absatz & { number: number };
 type Node = { type: string; text?: string; children?: Node[] };
+
+const isStandaloneAbsatz = (
+  absatz: AbsatzWithNumber | AbsatzWithNumber[],
+): absatz is AbsatzWithNumber => "id" in absatz;
 
 const AbsatzContent = ({
   absatzGroup,
@@ -100,7 +104,8 @@ const AbsatzContent = ({
     ];
   };
 
-  if ("id" in absatzGroup) {
+  // Render standalone Absatz
+  if (isStandaloneAbsatz(absatzGroup)) {
     return (
       <div>
         <BlocksRenderer
@@ -145,7 +150,7 @@ const AbsatzContent = ({
               content={prependNumberToAbsatz(absatz)}
               modifiers={{
                 underline: ({ children }) =>
-                  PrincipleHighlight({ children }, []),
+                  PrincipleHighlight({ children }, []), // Do not highlight principles in grouped Absaetze
               }}
             />
           ))}
@@ -190,7 +195,7 @@ function Paragraph({
       // Start a new group if:
       // 1. There are no previous groups, or
       // 2. The last item had relevant PrinzipErfuellungen (thus is a standalone Absatz with an 'id')
-      if (!lastGroup || "id" in lastGroup) {
+      if (!lastGroup || isStandaloneAbsatz(lastGroup)) {
         groups.push([absatz]);
         return groups;
       }
