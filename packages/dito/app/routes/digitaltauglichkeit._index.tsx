@@ -34,7 +34,7 @@ export default function Digitaltauglichkeit_index() {
   const principles = useOutletContext<Prinzip[]>();
   return (
     <>
-      <Background backgroundColor="darkBlue">
+      <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
         <Container>
           <Header
             heading={{
