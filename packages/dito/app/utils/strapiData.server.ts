@@ -178,8 +178,7 @@ export async function fetchStrapiData<DataType>(
   const responseData = (await response.json()) as GraphQLResponse<DataType>;
   // handle GraphQL errors
   if (responseData.errors) {
-    console.error("GraphQL errors:", responseData.errors[0]);
-    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    console.error("GraphQL errors:", responseData.errors);
     return {
       error: responseData.errors[0].message,
     };
