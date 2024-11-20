@@ -1,5 +1,6 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import { Link } from "@remix-run/react";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode } from "react";
 import { digitalSuitability } from "../resources/content.ts";
@@ -22,6 +23,7 @@ const HIGHLIGHT_COLORS = {
 function PrincipleHighlight(
   { children }: { children: ReactNode },
   principlesToShow: number[],
+  baseLabelID?: string,
 ) {
   if (!children || typeof children !== "object" || !("props" in children)) {
     return null;
@@ -34,10 +36,16 @@ function PrincipleHighlight(
   const number = Number(parts[1][1]) as keyof typeof HIGHLIGHT_COLORS;
 
   return principlesToShow.includes(number) ? (
-    <mark className={HIGHLIGHT_COLORS[number].background}>
-      {parts[0]}
-      <sup>{`P${number}`}</sup>
-    </mark>
+    <Link
+      to={`#${baseLabelID}-${number}`}
+      aria-labelledby={baseLabelID}
+      className="!no-underline"
+    >
+      <mark className={`ds-body-01-reg ${HIGHLIGHT_COLORS[number].background}`}>
+        {parts[0]}
+        <sup>{`P${number}`}</sup>
+      </mark>
+    </Link>
   ) : (
     parts[0]
   );
@@ -45,12 +53,15 @@ function PrincipleHighlight(
 
 const PrincipleExplanation = ({
   erfuellung,
+  labelID,
 }: {
   erfuellung: PrinzipErfuellung;
+  labelID: string;
 }) =>
   erfuellung.Prinzip && (
     <div
       className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
+      id={labelID}
     >
       <Heading
         tagName="h4"
@@ -107,20 +118,23 @@ const AbsatzContent = ({
     ];
   };
 
-  // Render standalone Absatz
+  // Render standalone Absatz with PrinzipErfuellungen
   if (isStandaloneAbsatz(absatzGroup)) {
+    // This ID is used to label the reference in the highlight with the footnotes header
+    // and also serves as a basis for the link between the highlight and the specific explanation
+    const baseLabelID = `explanation-${absatzGroup.id}`;
     return (
       <div>
         <BlocksRenderer
           content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{
             underline: ({ children }) =>
-              PrincipleHighlight({ children }, principlesToShow),
+              PrincipleHighlight({ children }, principlesToShow, baseLabelID),
           }}
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
           <div className="ds-stack-8 mt-8">
-            <span className="ds-label-01-bold italic">
+            <span className="ds-label-01-bold italic" id={baseLabelID}>
               {digitalSuitability.paragraphs.explanation}
             </span>
             {absatzGroup.PrinzipErfuellungen.toSorted(
@@ -129,6 +143,7 @@ const AbsatzContent = ({
               <PrincipleExplanation
                 key={erfuellung.id}
                 erfuellung={erfuellung}
+                labelID={`${baseLabelID}-${erfuellung.Prinzip?.Nummer}`}
               />
             ))}
           </div>
