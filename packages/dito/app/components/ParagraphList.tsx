@@ -1,8 +1,9 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
 import { Link } from "@remix-run/react";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { digitalSuitability } from "../resources/content.ts";
 import type {
   Absatz,
@@ -24,6 +25,8 @@ function PrincipleHighlight(
   { children }: { children: ReactNode },
   principlesToShow: number[],
   baseLabelID?: string,
+  highlightIndex?: number,
+  onCLick?: (index: number) => void,
 ) {
   if (!children || typeof children !== "object" || !("props" in children)) {
     return null;
@@ -37,6 +40,8 @@ function PrincipleHighlight(
 
   return principlesToShow.includes(number) ? (
     <Link
+      id={`markierung-${baseLabelID}-${highlightIndex}`}
+      onClick={() => onCLick?.(highlightIndex ?? 0)}
       to={`#${baseLabelID}-${number}`}
       aria-labelledby={baseLabelID}
       className="!no-underline"
@@ -53,21 +58,37 @@ function PrincipleHighlight(
 
 const PrincipleExplanation = ({
   erfuellung,
-  labelID,
+  baseLabelID,
+  highlightIndex,
+  onClickBackLink,
 }: {
   erfuellung: PrinzipErfuellung;
-  labelID: string;
+  baseLabelID: string;
+  highlightIndex: number | null;
+  onClickBackLink: () => void;
 }) =>
   erfuellung.Prinzip && (
     <div
       className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
-      id={labelID}
+      id={`${baseLabelID}-${erfuellung.Prinzip?.Nummer}`}
     >
-      <Heading
-        tagName="h4"
-        text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
-        look="ds-label-01-bold"
-      />
+      <div className="flex gap-4 content-center">
+        <Heading
+          tagName="h4"
+          text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
+          look="ds-label-01-bold"
+        />
+        {highlightIndex && (
+          <Link
+            to={`#markierung-${baseLabelID}-${highlightIndex}`}
+            className="ds-link-01-bold"
+            aria-label="Zurück zum Text"
+            onClick={onClickBackLink}
+          >
+            <ArrowUpwardOutlined className="fill-blue-800" />
+          </Link>
+        )}
+      </div>
       <BlocksRenderer content={erfuellung.WarumGut} />
     </div>
   );
@@ -79,6 +100,38 @@ const isStandaloneAbsatz = (
   absatz: AbsatzWithNumber | AbsatzWithNumber[],
 ): absatz is AbsatzWithNumber => "id" in absatz;
 
+// Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
+const prependNumberRecursive = (node: Node, number: number): Node => {
+  if (node.type === "text" && node.text) {
+    return {
+      ...node,
+      text: `(${number}) ${node.text}`,
+    };
+  }
+
+  if (node.children && node.children.length > 0) {
+    return {
+      ...node,
+      children: [
+        prependNumberRecursive(node.children[0], number),
+        ...node.children.slice(1),
+      ],
+    };
+  }
+
+  return node;
+};
+
+const prependNumberToAbsatz = (absatz: AbsatzWithNumber) => {
+  return [
+    prependNumberRecursive(
+      absatz.Text[0],
+      absatz.number,
+    ) as BlocksContent[number],
+    ...absatz.Text.slice(1),
+  ];
+};
+
 const AbsatzContent = ({
   absatzGroup,
   principlesToShow,
@@ -86,50 +139,33 @@ const AbsatzContent = ({
   absatzGroup: AbsatzWithNumber | AbsatzWithNumber[];
   principlesToShow: number[];
 }) => {
-  // Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
-  const prependNumberRecursive = (node: Node, number: number): Node => {
-    if (node.type === "text" && node.text) {
-      return {
-        ...node,
-        text: `(${number}) ${node.text}`,
-      };
-    }
-
-    if (node.children && node.children.length > 0) {
-      return {
-        ...node,
-        children: [
-          prependNumberRecursive(node.children[0], number),
-          ...node.children.slice(1),
-        ],
-      };
-    }
-
-    return node;
-  };
-
-  const prependNumberToAbsatz = (absatz: AbsatzWithNumber) => {
-    return [
-      prependNumberRecursive(
-        absatz.Text[0],
-        absatz.number,
-      ) as BlocksContent[number],
-      ...absatz.Text.slice(1),
-    ];
-  };
+  // This ID is used to track which highlight was clicked on to provide a back link
+  const [clickedHighlightIndex, setClickedHighlightIndex] = useState<
+    number | null
+  >(null);
 
   // Render standalone Absatz with PrinzipErfuellungen
   if (isStandaloneAbsatz(absatzGroup)) {
     // This ID is used to label the reference in the highlight with the footnotes header
     // and also serves as a basis for the link between the highlight and the specific explanation
     const baseLabelID = `warumGut-${absatzGroup.id}`;
+
+    let highlightIndex = 0;
     return (
       <div>
         <BlocksRenderer
           content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{
-            underline: ({ children }) =>
-              PrincipleHighlight({ children }, principlesToShow, baseLabelID),
+            underline: ({ children }) => {
+              highlightIndex++;
+              return PrincipleHighlight(
+                { children },
+                principlesToShow,
+                baseLabelID,
+                highlightIndex,
+                setClickedHighlightIndex,
+              );
+            },
           }}
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
@@ -143,7 +179,9 @@ const AbsatzContent = ({
               <PrincipleExplanation
                 key={erfuellung.id}
                 erfuellung={erfuellung}
-                labelID={`${baseLabelID}-${erfuellung.Prinzip?.Nummer}`}
+                baseLabelID={baseLabelID}
+                highlightIndex={clickedHighlightIndex}
+                onClickBackLink={() => setClickedHighlightIndex(null)}
               />
             ))}
           </div>
