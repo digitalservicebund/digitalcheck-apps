@@ -28,6 +28,9 @@ function PrincipleHighlight(
   }
 
   const parts = (children.props.children as string).split(/(\[\d\])/g);
+  if (!parts[1]) {
+    return parts[0]; // No matching principle tag, return unmodified content
+  }
   const number = Number(parts[1][1]) as keyof typeof HIGHLIGHT_COLORS;
 
   return principlesToShow.includes(number) ? (
