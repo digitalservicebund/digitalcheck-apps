@@ -122,7 +122,7 @@ const AbsatzContent = ({
   if (isStandaloneAbsatz(absatzGroup)) {
     // This ID is used to label the reference in the highlight with the footnotes header
     // and also serves as a basis for the link between the highlight and the specific explanation
-    const baseLabelID = `explanation-${absatzGroup.id}`;
+    const baseLabelID = `warumGut-${absatzGroup.id}`;
     return (
       <div>
         <BlocksRenderer
