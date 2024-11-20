@@ -6,8 +6,7 @@ test.describe("test support page", () => {
     await page.goto(staticRoutes.ROUTE_SUPPORT.url);
   });
 
-  // TODO: test needs correct google calendar link
-  test.skip("clicking on appointment button shows google and hides button", async ({
+  test("clicking on appointment button shows google and hides button", async ({
     page,
   }) => {
     await page.getByRole("button", { name: "Termin" }).click();
@@ -17,7 +16,7 @@ test.describe("test support page", () => {
         .frameLocator(
           'iframe[title="Beratung erhalten Sie in einem 45-minütigem Gespräch"]',
         )
-        .getByRole("heading", { name: "Digitalcheck Suport" }),
+        .getByText("Appointments"),
     ).toBeVisible();
   });
 
