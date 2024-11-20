@@ -116,11 +116,12 @@ export default function Gesetz() {
           <ol className="mt-16">
             {regelung.Digitalchecks.map((digitalcheck) => (
               <li key={digitalcheck.documentId}>
+                ↓{" "}
                 <Link
                   to={`#${slugify(digitalcheck.documentId)}`}
                   className="underline underline-offset-4 decoration-1"
                 >
-                  ↓ {digitalcheck.Titel}
+                  {digitalcheck.Titel}
                 </Link>
               </li>
             ))}
