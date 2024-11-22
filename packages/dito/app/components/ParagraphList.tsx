@@ -251,6 +251,14 @@ function Paragraph({
       ),
     }),
   );
+  // Filter whole paragraphs without relevant PrinzipErfuellungen
+  if (
+    filteredAbsaetzeWithNumber.every(
+      (absatz) => absatz.PrinzipErfuellungen.length === 0,
+    )
+  ) {
+    return null;
+  }
 
   // Group consecutive Absaetze without a relevant PrinzipErfuellungen together
   const groupedAbsaetze = filteredAbsaetzeWithNumber.reduce(
