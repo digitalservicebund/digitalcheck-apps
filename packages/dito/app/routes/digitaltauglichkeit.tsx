@@ -29,6 +29,7 @@ query GetPrinzips {
         Rechtsgebiet
         Titel
         URLBezeichnung
+        LinkRegelungstext
         VeroeffentlichungsDatum
       }
     }

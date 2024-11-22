@@ -108,7 +108,7 @@ const PrincipleExplanation = ({
       <div className="flex gap-4 content-center">
         <Heading
           tagName="h4"
-          text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
+          text={`Prinzip ${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
           look="ds-label-01-bold"
         />
         {highlightID && (

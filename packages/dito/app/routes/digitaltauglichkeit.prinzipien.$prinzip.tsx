@@ -8,6 +8,7 @@ import {
 
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Box from "@digitalcheck/shared/components/Box.tsx";
+import CustomLink from "@digitalcheck/shared/components/CustomLink.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
@@ -15,6 +16,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { regulations } from "resources/content.ts";
 import prependMetaTitle from "utils/metaTitle.ts";
 import ParagraphList from "../components/ParagraphList.tsx";
+
 import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
@@ -77,26 +79,51 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           {GuteUmsetzungen.map((digitalcheck) => (
             <div key={digitalcheck.documentId}>
               <Link
+                target="_blank"
                 to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
+                rel="noreferrer"
               >
                 <Heading
                   tagName="h2"
                   text={digitalcheck.Regelungsvorhaben.Titel}
                   look="ds-heading-03-bold"
-                  className="max-w-full"
+                  className="inline max-w-full"
                 />
               </Link>
               <InlineInfoList
                 className="bg-blue-200 my-32"
                 items={[
                   {
-                    label: "Rechtsbereich",
-                    value: digitalcheck.Regelungsvorhaben.Rechtsgebiet,
+                    label: regulations.infoLabels[0],
+                    value: digitalcheck.Regelungsvorhaben
+                      .VeroeffentlichungsDatum
+                      ? new Intl.DateTimeFormat("de-DE", {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        }).format(
+                          new Date(
+                            digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum,
+                          ),
+                        )
+                      : "",
                   },
                   {
-                    label: "Veröffentlicht am",
-                    value:
-                      digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum?.toString(),
+                    label: regulations.infoLabels[1],
+                    value: digitalcheck.Regelungsvorhaben.LinkRegelungstext ? (
+                      <CustomLink
+                        to={digitalcheck.Regelungsvorhaben.LinkRegelungstext}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-800 underline"
+                      >
+                        Gesetzestext
+                      </CustomLink>
+                    ) : null,
+                  },
+                  {
+                    label: regulations.infoLabels[2],
+                    value: digitalcheck.Regelungsvorhaben.Ressort,
                   },
                 ]}
               />

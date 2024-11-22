@@ -1,5 +1,6 @@
 import Background from "@digitalcheck/shared/components/Background.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
+import CustomLink from "@digitalcheck/shared/components/CustomLink.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
@@ -159,11 +160,30 @@ export default function Gesetz() {
             items={[
               {
                 label: regulations.infoLabels[0],
-                value: regelung.Rechtsgebiet,
+                value: regelung.VeroeffentlichungsDatum
+                  ? new Intl.DateTimeFormat("de-DE", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    }).format(new Date(regelung.VeroeffentlichungsDatum))
+                  : "",
               },
               {
                 label: regulations.infoLabels[1],
-                value: regelung.VeroeffentlichungsDatum?.toString(),
+                value: regelung.LinkRegelungstext ? (
+                  <CustomLink
+                    to={regelung.LinkRegelungstext}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-800 underline"
+                  >
+                    Gesetzestext
+                  </CustomLink>
+                ) : null,
+              },
+              {
+                label: regulations.infoLabels[2],
+                value: regelung.Ressort,
               },
             ]}
           />
@@ -283,9 +303,21 @@ export default function Gesetz() {
                   markdown: regulations.nkr.subtitle,
                 }}
               />
-              <div className="mt-32 border-l-4 border-gray-300 pl-8">
+              <div className="my-32 border-l-4 border-gray-300 pl-8">
                 <BlocksRenderer content={digitalcheck.NKRStellungnahmeDCText} />
               </div>
+              {regelung.NKRStellungnahmeLink && (
+                <div>
+                  {regulations.nkr.linkText}
+                  <CustomLink
+                    target="_blank"
+                    to={regelung.NKRStellungnahmeLink}
+                    rel="noreferrer"
+                  >
+                    NKR Stellungnahme
+                  </CustomLink>
+                </div>
+              )}
             </div>
           )}
         </Container>

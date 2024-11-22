@@ -11,7 +11,7 @@ export default function InlineInfoList({
   className,
 }: InlineInfoListProps) {
   return (
-    <div className={classNames("bg-blue-200 pl-16 space-x-8", className)}>
+    <div className={classNames("bg-blue-200 pl-16 space-x-16", className)}>
       {items.map(
         (item) =>
           item.value && (

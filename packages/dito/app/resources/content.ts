@@ -1710,7 +1710,7 @@ export const regulations = {
     "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
     "Inhalt",
   ],
-  infoLabels: ["Rechtsbereich", "Veröffentlicht am", "Art"],
+  infoLabels: ["Veröffentlicht am", "Veröffentlicht auf", "Ressort"],
   visualisations: {
     title: "Visualisierungen",
     subtitle:
@@ -1733,6 +1733,7 @@ export const regulations = {
   nkr: {
     title: "NKR Stellungnahme",
     subtitle: "Diese Ausführungen sind der Stellungnahme des NKR entnommen.",
+    linkText: "Die ganze Stellungnahme können Sie hier finden: ",
   },
   yourRegulation: {
     title: "Sie möchten Ihr Beispiel hier sehen?",
