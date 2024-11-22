@@ -244,6 +244,7 @@ const AbsatzContent = ({
   return (
     <DetailsSummary
       title={title}
+      bold={false}
       content={
         <div className="ds-stack-8">
           {absatzGroup.map((absatz) => (
