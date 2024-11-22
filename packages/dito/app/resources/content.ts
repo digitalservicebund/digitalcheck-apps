@@ -1737,8 +1737,8 @@ export const regulations = {
     title: "NKR Stellungnahme",
     subtitle: "Diese Ausführungen sind der Stellungnahme des NKR entnommen.",
   },
-  feedback: {
-    title: "Was fehlt Ihnen hier noch?",
-    text: "Wir möchten Ihnen alle Beispiele zur Verfügung stellen, die Ihnen bei der Erarbeitung von digitaltauglichen Regelungen helfen. Schreiben Sie uns über [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Anmerkungen:%20digitaltauglichkeit).",
+  yourRegulation: {
+    title: "Sie möchten Ihr Beispiel hier sehen?",
+    text: "Wir nehmen gerne Vorschläge für Beispiele entgegen. Wenn Sie einen digitaltauglichen Regelungstext oder eine Visualisierung haben, schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Beispiel:%20Digitaltauglichkeit). Wir melden uns zeitnah bei Ihnen.",
   },
 };

@@ -12,6 +12,7 @@ import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { regulations } from "resources/content.ts";
 import prependMetaTitle from "utils/metaTitle.ts";
 import ParagraphList from "../components/ParagraphList.tsx";
 import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
@@ -71,40 +72,53 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           )}
         </Container>
       </Background>
-      <Container additionalClassNames="rich-text ds-stack-64">
-        {GuteUmsetzungen.map((digitalcheck) => (
-          <div key={digitalcheck.documentId}>
-            <Link
-              to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
-            >
-              <Heading
-                tagName="h2"
-                text={digitalcheck.Regelungsvorhaben.Titel}
-                look="ds-heading-03-bold"
-                className="max-w-full"
+      {GuteUmsetzungen.length > 0 && (
+        <Container additionalClassNames="rich-text ds-stack-64">
+          {GuteUmsetzungen.map((digitalcheck) => (
+            <div key={digitalcheck.documentId}>
+              <Link
+                to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
+              >
+                <Heading
+                  tagName="h2"
+                  text={digitalcheck.Regelungsvorhaben.Titel}
+                  look="ds-heading-03-bold"
+                  className="max-w-full"
+                />
+              </Link>
+              <InlineInfoList
+                className="bg-blue-200 my-32"
+                items={[
+                  {
+                    label: "Rechtsbereich",
+                    value: digitalcheck.Regelungsvorhaben.Rechtsgebiet,
+                  },
+                  {
+                    label: "Veröffentlicht am",
+                    value:
+                      digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum?.toString(),
+                  },
+                ]}
               />
-            </Link>
-            <InlineInfoList
-              className="bg-blue-200 my-32"
-              items={[
-                {
-                  label: "Rechtsbereich",
-                  value: digitalcheck.Regelungsvorhaben.Rechtsgebiet,
-                },
-                {
-                  label: "Veröffentlicht am",
-                  value:
-                    digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum?.toString(),
-                },
-              ]}
-            />
-            <ParagraphList
-              paragraphs={digitalcheck.Paragraphen}
-              principlesToShow={[prinzip]}
-            />
-          </div>
-        ))}
-      </Container>
+              <ParagraphList
+                paragraphs={digitalcheck.Paragraphen}
+                principlesToShow={[prinzip]}
+              />
+            </div>
+          ))}
+        </Container>
+      )}
+      <div className="my-40">
+        <Container backgroundColor="blue" overhangingBackground>
+          <Box
+            heading={{
+              text: regulations.yourRegulation.title,
+              tagName: "h2",
+            }}
+            content={{ markdown: regulations.yourRegulation.text }}
+          />
+        </Container>
+      </div>
     </>
   );
 }
