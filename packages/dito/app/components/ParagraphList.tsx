@@ -43,7 +43,7 @@ function PrincipleHighlight(
   { children }: { children: ReactNode },
   principlesToShow: number[],
   baseLabelID: string,
-  onCLick: (id: string) => void,
+  onClick: (id: string, number: number) => void,
 ) {
   const parts = extractTextParts(children);
   if (!parts) return null;
@@ -56,7 +56,7 @@ function PrincipleHighlight(
   return principlesToShow.includes(number) ? (
     <Link
       id={highlightID}
-      onClick={() => onCLick(highlightID)}
+      onClick={() => onClick(highlightID, number)}
       to={`#${explanationID(baseLabelID, number)}`}
       aria-labelledby={baseLabelID}
       className="!no-underline"
@@ -158,6 +158,17 @@ const AbsatzContent = ({
   const [clickedHighlightID, setClickedHighlightID] = useState<string | null>(
     null,
   );
+  const [clickedHighlightPrinciple, setClickedHighlightPrinciple] = useState<
+    number | null
+  >(null);
+  const onClickHighlight = (id: string, principleNumber: number) => {
+    setClickedHighlightID(id);
+    setClickedHighlightPrinciple(principleNumber);
+  };
+  const onClickBackLink = () => {
+    setClickedHighlightID(null);
+    setClickedHighlightPrinciple(null);
+  };
 
   // Render standalone Absatz with PrinzipErfuellungen
   if (isStandaloneAbsatz(absatzGroup)) {
@@ -175,7 +186,7 @@ const AbsatzContent = ({
                 { children },
                 principlesToShow,
                 baseLabelID,
-                setClickedHighlightID,
+                onClickHighlight,
               ),
           }}
         />
@@ -193,8 +204,12 @@ const AbsatzContent = ({
                     key={erfuellung.id}
                     erfuellung={erfuellung}
                     id={explanationID(baseLabelID, erfuellung.Prinzip.Nummer)}
-                    highlightID={clickedHighlightID}
-                    onClickBackLink={() => setClickedHighlightID(null)}
+                    highlightID={
+                      clickedHighlightPrinciple === erfuellung.Prinzip.Nummer
+                        ? clickedHighlightID
+                        : null
+                    }
+                    onClickBackLink={onClickBackLink}
                   />
                 ),
             )}
