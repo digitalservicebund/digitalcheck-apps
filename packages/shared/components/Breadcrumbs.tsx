@@ -17,7 +17,18 @@ function filterBreadcrumbs(
 
   while (currentElement) {
     filteredList.unshift(currentElement);
-    currentElement = list.find((item) => item.url === currentElement?.parent);
+
+    // Loop through parents and find next existing parent
+    let parentUrl = currentElement?.parent;
+    while (parentUrl && !list.find((item) => item.url === parentUrl)) {
+      const segments = parentUrl.split("/").filter(Boolean);
+      segments.pop();
+      parentUrl = segments.length > 0 ? `/${segments.join("/")}` : undefined;
+    }
+
+    currentElement = parentUrl
+      ? list.find((item) => item.url === parentUrl)
+      : undefined;
   }
 
   return filteredList;
@@ -31,6 +42,7 @@ export default function Breadcrumbs({
   useIconForHome?: boolean;
 }) {
   const location = useLocation();
+
   const filteredBreadcrumbs = filterBreadcrumbs(breadcrumbs, location.pathname);
 
   return (

@@ -100,7 +100,7 @@ export const ROUTE_SITEMAP: Route = {
 };
 export const ROUTE_DIGITAL_SUITABILITY: Route = {
   url: "/digitaltauglichkeit",
-  title: "Digitaltauglichkeit",
+  title: "Beispiele für Digitaltauglichkeit",
   parent: ROUTE_LANDING.url,
 };
 
@@ -132,9 +132,7 @@ const routes: Route[] = [
   ROUTE_PRIVACY,
   ROUTE_A11Y,
   ROUTE_SITEMAP,
-  //ROUTE_DIGITAL_SUITABILITY,
-  //ROUTE_PRINZIPLES,,
-  //ROUTE_LAWS,
+  ROUTE_DIGITAL_SUITABILITY,
 ];
 
 export default routes;
