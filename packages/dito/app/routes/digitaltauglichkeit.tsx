@@ -2,8 +2,7 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 
 import { redirect } from "@remix-run/node";
-import { LoaderFunctionArgs } from "react-router-dom";
-import { ROUTE_LANDING, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
+import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
 import {
   fetchStrapiData,
@@ -36,7 +35,7 @@ query GetPrinzips {
   }
 }`;
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader() {
   const digitalSuitabilityFlag = unleash.isEnabled(
     "digitalcheck.digital-suitability",
   );
@@ -53,12 +52,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
     throw new Response(prinzipData.error, { status: 400 });
   }
 
-  // redirect to first prinzip if no prinzip is specified in the URL
-  const prinzipUrl = new URL(request.url);
-  if (prinzipUrl.pathname === ROUTE_PRINCIPLES.url) {
-    const firstPrinzip = prinzipData.prinzips.find((p) => p.Nummer === 1);
-    return redirect(`${ROUTE_PRINCIPLES.url}/${firstPrinzip?.URLBezeichnung}`);
-  }
   return prinzipData.prinzips.toSorted((a, b) => a.Nummer - b.Nummer);
 }
 
