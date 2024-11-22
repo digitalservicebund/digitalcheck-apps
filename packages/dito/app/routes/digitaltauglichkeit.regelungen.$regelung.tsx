@@ -14,6 +14,7 @@ import {
 } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import ParagraphList from "components/ParagraphList.tsx";
+import React from "react";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
@@ -114,16 +115,40 @@ export default function Gesetz() {
             <b>{regulations.subtitle[1]}</b>
           </p>
           <ol className="mt-16">
-            {regelung.Digitalchecks.map((digitalcheck) => (
-              <li key={digitalcheck.documentId}>
-                ↓{" "}
-                <Link
-                  to={`#${slugify(digitalcheck.documentId)}`}
-                  className="underline underline-offset-4 decoration-1"
-                >
-                  {digitalcheck.Titel}
-                </Link>
-              </li>
+            {regelung.Digitalchecks.map((digitalcheck, index) => (
+              <React.Fragment key={digitalcheck.documentId}>
+                <li>
+                  ↓{" "}
+                  <Link
+                    to={`#${slugify(regulations.principles.title)}-${index}`}
+                    className="underline underline-offset-4 decoration-1"
+                  >
+                    {regulations.principles.title}
+                  </Link>
+                </li>
+                {digitalcheck.Visualisierungen.length > 0 && (
+                  <li>
+                    ↓{" "}
+                    <Link
+                      to={`#${slugify(regulations.visualisations.title)}-${index}`}
+                      className="underline underline-offset-4 decoration-1"
+                    >
+                      {regulations.visualisations.title}
+                    </Link>
+                  </li>
+                )}
+                {digitalcheck.NKRStellungnahmeDCText && (
+                  <li>
+                    ↓{" "}
+                    <Link
+                      to={`#${slugify(regulations.nkr.title)}-${index}`}
+                      className="underline underline-offset-4 decoration-1"
+                    >
+                      {regulations.nkr.title}
+                    </Link>
+                  </li>
+                )}
+              </React.Fragment>
             ))}
           </ol>
         </Container>
@@ -144,27 +169,18 @@ export default function Gesetz() {
           />
         </Container>
       </Background>
-      {regelung.Digitalchecks.map((digitalcheck) => (
+      {regelung.Digitalchecks.map((digitalcheck, index) => (
         <Container
           key={digitalcheck.documentId}
           paddingBottom="80"
           additionalClassNames="ds-stack-64 rich-text"
         >
-          {/* Target for same page jump navigation */}
-          <span id={slugify(digitalcheck.documentId)} />
-          <Header
-            heading={{
-              text: digitalcheck.Titel,
-              tagName: "h2",
-              look: "ds-heading-02-bold",
-            }}
-            content={{
-              markdown: regulations.digitalcheck.subtitle,
-            }}
-          />
-
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
-          <Heading tagName="h3" look="ds-heading-03-bold">
+          <Heading
+            id={`${slugify(regulations.principles.title)}-${index}`}
+            tagName="h2"
+            look="ds-heading-02-bold"
+          >
             {regulations.principles.title}
           </Heading>
           <ParagraphList
@@ -177,9 +193,10 @@ export default function Gesetz() {
             <div>
               <Header
                 heading={{
+                  id: `${slugify(regulations.visualisations.title)}-${index}`,
                   text: regulations.visualisations.title,
-                  tagName: "h3",
-                  look: "ds-heading-03-bold",
+                  tagName: "h2",
+                  look: "ds-heading-02-bold",
                 }}
                 content={{
                   markdown: regulations.visualisations.subtitle,
@@ -257,9 +274,10 @@ export default function Gesetz() {
             <div>
               <Header
                 heading={{
+                  id: `${slugify(regulations.nkr.title)}-${index}`,
                   text: regulations.nkr.title,
-                  tagName: "h3",
-                  look: "ds-heading-03-bold",
+                  tagName: "h2",
+                  look: "ds-heading-02-bold",
                 }}
                 content={{
                   markdown: regulations.nkr.subtitle,

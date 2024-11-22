@@ -6,6 +6,7 @@ export type HeadingProps = {
   text?: string | ReactNode;
   className?: string;
   look?: string;
+  id?: string; // Add the id prop
   children?: ReactNode;
 };
 
@@ -14,6 +15,7 @@ function Heading({
   text,
   className,
   look,
+  id,
   children,
 }: HeadingProps) {
   const Tag = tagName as keyof React.JSX.IntrinsicElements;
@@ -24,10 +26,15 @@ function Heading({
   );
 
   if (children) {
-    return <Tag className={cssClasses}>{children || text}</Tag>;
+    return (
+      <Tag id={id} className={cssClasses}>
+        {children || text}
+      </Tag>
+    );
   }
   return (
     <Tag
+      id={id}
       className={cssClasses}
       dangerouslySetInnerHTML={{
         __html: text ?? "",

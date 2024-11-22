@@ -1710,9 +1710,6 @@ export const regulations = {
     "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
     "Inhalt",
   ],
-  digitalcheck: {
-    subtitle: "Hier finden Sie alle Beispiele zu dem Digitalcheck.",
-  },
   infoLabels: ["Rechtsbereich", "Veröffentlicht am", "Art"],
   visualisations: {
     title: "Visualisierungen",
