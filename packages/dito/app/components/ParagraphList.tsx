@@ -57,8 +57,9 @@ function PrincipleHighlight(
   return principlesToShow.includes(number) ? (
     <Link
       id={highlightID}
-      onClick={() => onClick(highlightID, number)}
+      replace
       to={`#${explanationID(baseLabelID, number)}`}
+      onClick={() => onClick(highlightID, number)}
       aria-labelledby={baseLabelID}
       className="!no-underline"
     >
@@ -112,6 +113,7 @@ const PrincipleExplanation = ({
         />
         {highlightID && (
           <Link
+            replace
             to={`#${highlightID}`}
             className="ds-link-01-bold"
             aria-label="Zurück zum Text"
