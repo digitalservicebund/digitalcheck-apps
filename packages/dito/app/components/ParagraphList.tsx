@@ -1,8 +1,9 @@
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
-import { Link } from "@remix-run/react";
+import { Link, useLocation } from "@remix-run/react";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
+import classNames from "classnames";
 import { ReactNode, useState } from "react";
 import { digitalSuitability } from "../resources/content.ts";
 import { cyrb53 } from "../utils/cyrb53.tsx";
@@ -81,12 +82,28 @@ const PrincipleExplanation = ({
   id: string;
   highlightID: string | null;
   onClickBackLink: () => void;
-}) =>
-  erfuellung.Prinzip && (
-    <div
-      className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
-      id={id}
-    >
+}) => {
+  const location = useLocation();
+
+  if (!erfuellung.Prinzip) {
+    return null;
+  }
+
+  // Unfortunately, the straightforward target modifier doesn't work here due to the client side navigation: https://github.com/remix-run/remix/issues/6432
+  // Using the hash leads to a hydration mismatch due to the location hash only being available on the client
+  const shouldHighlight = location.hash === `#${id}`;
+  const color = HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer];
+  const explanationClasses = classNames(
+    "p-4 w-fit min-w-[642px]",
+    color.border,
+    {
+      "border-4": shouldHighlight,
+      "border-l-4 py-8": !shouldHighlight,
+    },
+  );
+
+  return (
+    <div className={explanationClasses} id={id}>
       <div className="flex gap-4 content-center">
         <Heading
           tagName="h4"
@@ -107,7 +124,7 @@ const PrincipleExplanation = ({
       <BlocksRenderer content={erfuellung.WarumGut} />
     </div>
   );
-
+};
 type AbsatzWithNumber = Absatz & { number: number };
 type Node = { type: string; text?: string; children?: Node[] };
 
