@@ -5,6 +5,7 @@ import { Link } from "@remix-run/react";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode, useState } from "react";
 import { digitalSuitability } from "../resources/content.ts";
+import { cyrb53 } from "../utils/cyrb53.tsx";
 import type {
   Absatz,
   Paragraph,
@@ -21,28 +22,42 @@ const HIGHLIGHT_COLORS = {
   5: { background: "bg-green-300", border: "border-green-500" },
 } as const;
 
-function PrincipleHighlight(
-  { children }: { children: ReactNode },
-  principlesToShow: number[],
-  baseLabelID?: string,
-  highlightIndex?: number,
-  onCLick?: (index: number) => void,
-) {
+const explanationID = (baseLabelID: string, number: number) =>
+  `${baseLabelID}-${number}`;
+
+const extractTextParts = (children: ReactNode) => {
   if (!children || typeof children !== "object" || !("props" in children)) {
     return null;
   }
+  const text = children.props.children as string;
+  return text.split(/(\[\d\])/g);
+};
 
-  const parts = (children.props.children as string).split(/(\[\d\])/g);
-  if (!parts[1]) {
-    return parts[0]; // No matching principle tag, return unmodified content
-  }
+const RemoveHighlight = ({ children }: { children: ReactNode }) => {
+  const parts = extractTextParts(children);
+  if (!parts) return null;
+  return parts[1] ? parts[0] : parts.join("");
+};
+
+function PrincipleHighlight(
+  { children }: { children: ReactNode },
+  principlesToShow: number[],
+  baseLabelID: string,
+  onCLick: (id: string) => void,
+) {
+  const parts = extractTextParts(children);
+  if (!parts) return null;
+  if (!parts[1]) return parts[0];
+
   const number = Number(parts[1][1]) as keyof typeof HIGHLIGHT_COLORS;
+  // Create a unique ID for the highlight based on the text content
+  const highlightID = `markierung-${cyrb53(parts[0])}`;
 
   return principlesToShow.includes(number) ? (
     <Link
-      id={`markierung-${baseLabelID}-${highlightIndex}`}
-      onClick={() => onCLick?.(highlightIndex ?? 0)}
-      to={`#${baseLabelID}-${number}`}
+      id={highlightID}
+      onClick={() => onCLick(highlightID)}
+      to={`#${explanationID(baseLabelID, number)}`}
       aria-labelledby={baseLabelID}
       className="!no-underline"
     >
@@ -58,19 +73,19 @@ function PrincipleHighlight(
 
 const PrincipleExplanation = ({
   erfuellung,
-  baseLabelID,
-  highlightIndex,
+  id,
+  highlightID,
   onClickBackLink,
 }: {
   erfuellung: PrinzipErfuellung;
-  baseLabelID: string;
-  highlightIndex: number | null;
+  id: string;
+  highlightID: string | null;
   onClickBackLink: () => void;
 }) =>
   erfuellung.Prinzip && (
     <div
       className={`border-l-4 ${HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer].border} pl-4`}
-      id={`${baseLabelID}-${erfuellung.Prinzip?.Nummer}`}
+      id={id}
     >
       <div className="flex gap-4 content-center">
         <Heading
@@ -78,9 +93,9 @@ const PrincipleExplanation = ({
           text={`P${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
           look="ds-label-01-bold"
         />
-        {highlightIndex && (
+        {highlightID && (
           <Link
-            to={`#markierung-${baseLabelID}-${highlightIndex}`}
+            to={`#${highlightID}`}
             className="ds-link-01-bold"
             aria-label="Zurück zum Text"
             onClick={onClickBackLink}
@@ -140,32 +155,28 @@ const AbsatzContent = ({
   principlesToShow: number[];
 }) => {
   // This ID is used to track which highlight was clicked on to provide a back link
-  const [clickedHighlightIndex, setClickedHighlightIndex] = useState<
-    number | null
-  >(null);
+  const [clickedHighlightID, setClickedHighlightID] = useState<string | null>(
+    null,
+  );
 
   // Render standalone Absatz with PrinzipErfuellungen
   if (isStandaloneAbsatz(absatzGroup)) {
-    // This ID is used to label the reference in the highlight with the footnotes header
+    // This ID is used to label the reference in the highlight with the general explanation header
     // and also serves as a basis for the link between the highlight and the specific explanation
     const baseLabelID = `warumGut-${absatzGroup.id}`;
 
-    let highlightIndex = 0;
     return (
       <div>
         <BlocksRenderer
           content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{
-            underline: ({ children }) => {
-              highlightIndex++;
-              return PrincipleHighlight(
+            underline: ({ children }) =>
+              PrincipleHighlight(
                 { children },
                 principlesToShow,
                 baseLabelID,
-                highlightIndex,
-                setClickedHighlightIndex,
-              );
-            },
+                setClickedHighlightID,
+              ),
           }}
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
@@ -175,15 +186,18 @@ const AbsatzContent = ({
             </span>
             {absatzGroup.PrinzipErfuellungen.toSorted(
               (a, b) => (a.Prinzip?.Nummer ?? 0) - (b.Prinzip?.Nummer ?? 0),
-            ).map((erfuellung) => (
-              <PrincipleExplanation
-                key={erfuellung.id}
-                erfuellung={erfuellung}
-                baseLabelID={baseLabelID}
-                highlightIndex={clickedHighlightIndex}
-                onClickBackLink={() => setClickedHighlightIndex(null)}
-              />
-            ))}
+            ).map(
+              (erfuellung) =>
+                erfuellung.Prinzip && (
+                  <PrincipleExplanation
+                    key={erfuellung.id}
+                    erfuellung={erfuellung}
+                    id={explanationID(baseLabelID, erfuellung.Prinzip.Nummer)}
+                    highlightID={clickedHighlightID}
+                    onClickBackLink={() => setClickedHighlightID(null)}
+                  />
+                ),
+            )}
           </div>
         )}
       </div>
@@ -205,8 +219,7 @@ const AbsatzContent = ({
               key={absatz.id}
               content={prependNumberToAbsatz(absatz)}
               modifiers={{
-                underline: ({ children }) =>
-                  PrincipleHighlight({ children }, []), // Do not highlight principles in grouped Absaetze
+                underline: RemoveHighlight,
               }}
             />
           ))}
