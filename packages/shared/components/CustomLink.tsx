@@ -24,7 +24,7 @@ export default function CustomLink({
       to={to}
       target={target || (isExternal ? "_blank" : undefined)}
       rel={target === "_blank" || isExternal ? "noreferrer" : rel}
-      className={`inline-flex items-center ${className || ""}`}
+      className={`inline-flex ${className || ""}`}
     >
       {children}
       {(target === "_blank" || isExternal) && (

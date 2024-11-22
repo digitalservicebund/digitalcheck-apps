@@ -17,6 +17,7 @@ import { regulations } from "resources/content.ts";
 import prependMetaTitle from "utils/metaTitle.ts";
 import ParagraphList from "../components/ParagraphList.tsx";
 
+import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import { type Prinzip } from "../utils/strapiData.server.ts";
 
@@ -88,6 +89,11 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                   text={digitalcheck.Regelungsvorhaben.Titel}
                   look="ds-heading-03-bold"
                   className="inline max-w-full"
+                />
+                <OpenInNewIcon
+                  height="1.2em"
+                  width="1.2em"
+                  className="!inline ml-[0.2em] mb-1"
                 />
               </Link>
               <InlineInfoList
