@@ -1728,7 +1728,7 @@ export const regulations = {
   principles: {
     title: "Formulierungen aus dem Regelungsentwurf",
     subtitle:
-      "So hat das Referat n der Dokumentation die Digitaltauglichkeit in die Regelung geschrieben",
+      "So hat das Referat in der Dokumentation die Digitaltauglichkeit in die Regelung geschrieben",
   },
   nkr: {
     title: "NKR Stellungnahme",
