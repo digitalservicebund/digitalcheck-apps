@@ -68,7 +68,7 @@ export default function Digitaltauglichkeit_index() {
                 text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
                 href: ROUTE_PRINCIPLES.url + "/" + principle.URLBezeichnung,
                 look: "ghost" as const,
-                className: "w-full ds-link-01-bold",
+                className: "mr-16 ds-link-01-bold", // The margin is used as a hack to force all links on a new line without using w-full
               }))}
             additionalClassNames="mb-56"
           />
