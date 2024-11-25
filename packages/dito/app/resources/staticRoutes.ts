@@ -98,22 +98,22 @@ export const ROUTE_SITEMAP: Route = {
   title: "Sitemap",
   parent: ROUTE_LANDING.url,
 };
-export const ROUTE_DIGITAL_SUITABILITY: Route = {
-  url: "/digitaltauglichkeit",
+export const ROUTE_EXAMPLES: Route = {
+  url: "/beispiele",
   title: "Beispiele für Digitaltauglichkeit",
   parent: ROUTE_LANDING.url,
 };
 
 export const ROUTE_PRINCIPLES: Route = {
-  url: `${ROUTE_DIGITAL_SUITABILITY.url}/prinzipien`,
+  url: `${ROUTE_EXAMPLES.url}/prinzipien`,
   title: "Prinzipien",
-  parent: ROUTE_DIGITAL_SUITABILITY.url,
+  parent: ROUTE_EXAMPLES.url,
 };
 
 export const ROUTE_LAWS: Route = {
-  url: `${ROUTE_DIGITAL_SUITABILITY.url}/regelungen`,
+  url: `${ROUTE_EXAMPLES.url}/regelungen`,
   title: "Gesetze",
-  parent: ROUTE_DIGITAL_SUITABILITY.url,
+  parent: ROUTE_EXAMPLES.url,
 };
 
 const routes: Route[] = [
@@ -132,7 +132,7 @@ const routes: Route[] = [
   ROUTE_PRIVACY,
   ROUTE_A11Y,
   ROUTE_SITEMAP,
-  ROUTE_DIGITAL_SUITABILITY,
+  ROUTE_EXAMPLES,
 ];
 
 export default routes;

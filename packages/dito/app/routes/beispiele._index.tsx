@@ -8,7 +8,7 @@ import { MetaFunction, useOutletContext } from "@remix-run/react";
 import { Prinzip } from "utils/strapiData.server.ts";
 import { digitalSuitability, header } from "../resources/content.ts";
 import {
-  ROUTE_DIGITAL_SUITABILITY,
+  ROUTE_EXAMPLES,
   ROUTE_LANDING,
   ROUTE_PRINCIPLES,
 } from "../resources/staticRoutes.ts";
@@ -16,7 +16,7 @@ import unleash from "../utils/featureFlags.server.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return prependMetaTitle(ROUTE_DIGITAL_SUITABILITY.title, matches);
+  return prependMetaTitle(ROUTE_EXAMPLES.title, matches);
 };
 
 export function loader() {
