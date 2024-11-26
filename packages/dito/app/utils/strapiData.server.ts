@@ -118,7 +118,7 @@ fragment ParagraphFields on Paragraph {
   Titel
   Gesetz
   Artikel
-  Absaetze(pagination: { start: 0, limit: 100 }) {
+  Absaetze(pagination: { start: 0, limit: 20 }) {
     id
     Text
     PrinzipErfuellungen {
