@@ -16,10 +16,10 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
 
-type InfoItem = {
-  icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+interface InfoItem {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
   text: string;
-};
+}
 
 export default function Methoden() {
   const renderInfoItem = (info: InfoItem) => (
