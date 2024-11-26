@@ -1477,6 +1477,8 @@ Mit freundlichen Grüßen`,
             sellingPoints: "Alle Informationen auf einen Blick",
             details: [
               {
+                icon: TimerOutlined,
+                title: "Nächste Termine",
                 text:
                   "Wir planen bald neue Termine für Schulungen in 2025. Schreiben Sie uns eine E-Mail und wir setzen Sie auf die Warteliste.\n" +
                   "Sie können sich bis dahin das [Schulungsmaterial ansehen](https://github.com/digitalservicebund/digitalcheck-content/tree/main/src/online-schulungen).",
