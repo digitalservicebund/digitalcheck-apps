@@ -4,23 +4,17 @@ import Header from "@digitalcheck/shared/components/Header";
 import { BulletList, NumberedList } from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { useLoaderData, type MetaFunction } from "@remix-run/react";
+import { type MetaFunction } from "@remix-run/react";
 import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
 import { header, methods } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
-import unleash from "utils/featureFlags.server.ts";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
-
-export function loader() {
-  const feedbackFormFlag = unleash.isEnabled("digitalcheck.feedback-form");
-  return { feedbackFormFlag };
-}
 
 type InfoItem = {
   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
@@ -28,7 +22,6 @@ type InfoItem = {
 };
 
 export default function Methoden() {
-  const { feedbackFormFlag } = useLoaderData<typeof loader>();
   const renderInfoItem = (info: InfoItem) => (
     <span key={info.text} className="flex gap-4 items-top mb-8 last:mb-24">
       <info.icon className="h-16 w-16 mt-6" />
@@ -85,7 +78,7 @@ export default function Methoden() {
           items={methods.nextSteps.items}
         />
       </Container>
-      {feedbackFormFlag && <FeedbackForm />}
+      <FeedbackForm />
       <SupportBanner withFeedbackBanner={false} />
     </>
   );
