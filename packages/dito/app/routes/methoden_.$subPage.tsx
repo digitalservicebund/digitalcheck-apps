@@ -5,15 +5,11 @@ import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Header from "@digitalcheck/shared/components/Header";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
-import ArrowCircleRightOutlined from "@digitalservicebund/icons/ArrowCircleRightOutlined";
-import DrawOutlined from "@digitalservicebund/icons/DrawOutlined";
-import LightbulbOutlined from "@digitalservicebund/icons/LightbulbOutlined";
-import StickyNote2Outlined from "@digitalservicebund/icons/StickyNote2Outlined";
-import SupportOutlined from "@digitalservicebund/icons/SupportOutlined";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
 import { ReactNode } from "react";
+import allRoutes from "resources/allRoutes.ts";
 import {
   collectITSystems,
   responsibleActors,
@@ -27,157 +23,57 @@ import {
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
 } from "resources/staticRoutes";
-import { iconSubPagesClassName } from "../utils/iconStyle.ts";
+import prependMetaTitle from "utils/metaTitle";
 
-export type TMethodPage = {
-  title: string;
-  pageTitle: string;
-  subtitle: string;
-  guidance?: string;
-  accordion?: {
-    title: string;
-    text: string;
-  };
-  content: {
-    label: string;
-    title: string;
-    text: string;
-    buttons?: {
-      text: string;
-      href: string;
-      look: "primary" | "secondary" | "tertiary" | "ghost";
-    }[];
-  };
-  boxes?: {
-    image?: {
-      src: string;
-      alt: string;
-    };
-    label: string;
-    title: string;
-    text: string;
-    buttons?: {
-      text: string;
-      href: string;
-      look: "primary" | "secondary" | "tertiary" | "ghost";
-    }[];
-  }[];
-  tip?: {
-    label: string;
-    title: string;
-    text: string;
-  };
-  support?: {
-    label: string;
-    title: string;
-    text: string;
-    buttons?: {
-      text: string;
-      href: string;
-      look: "primary" | "secondary" | "tertiary" | "ghost";
-    }[];
-  };
-  nextStep?: {
-    label: string;
-
-    title: string;
-    text: string;
-    buttons?: {
-      text: string;
-      href: string;
-      look: "primary" | "secondary" | "tertiary" | "ghost";
-    }[];
-  };
+const contentMap = {
+  [ROUTE_METHODS_RESPONSIBLE_ACTORS.title]: responsibleActors,
+  [ROUTE_METHODS_TASKS_PROCESSES.title]: tasksProcesses,
+  [ROUTE_METHODS_COLLECT_IT_SYSTEMS.title]: collectITSystems,
+  [ROUTE_METHODS_TECHNICAL_FEASIBILITY.title]: technicalFeasibility,
 };
 
-export function loader({ params, request }: LoaderFunctionArgs) {
-  const supportOfferingFlag = unleash.isEnabled(
-    "digitalcheck.test-support-offering",
-  );
+const notFound = new Response("Method page not found", {
+  status: 404,
+  statusText: "Not Found",
+});
+
+export function loader({ params }: LoaderFunctionArgs) {
   const { subPage } = params;
-  const route = `${ROUTE_METHODS.url}/${subPage}`;
-
-  let content;
-
-  switch (route) {
-    case ROUTE_METHODS_RESPONSIBLE_ACTORS.url:
-      content = responsibleActors;
-      content.pageTitle = ROUTE_METHODS_RESPONSIBLE_ACTORS.title;
-      break;
-
-    case ROUTE_METHODS_TASKS_PROCESSES.url:
-      content = tasksProcesses;
-      content.pageTitle = ROUTE_METHODS_TASKS_PROCESSES.title;
-      break;
-
-    case ROUTE_METHODS_COLLECT_IT_SYSTEMS.url:
-      content = collectITSystems;
-      content.pageTitle = ROUTE_METHODS_COLLECT_IT_SYSTEMS.title;
-      break;
-
-    case ROUTE_METHODS_TECHNICAL_FEASIBILITY.url:
-      content = technicalFeasibility;
-      content.pageTitle = ROUTE_METHODS_TECHNICAL_FEASIBILITY.title;
-      break;
-  }
-
-  if (!content) {
+  if (!subPage) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
-    throw new Response("Method page not found", {
-      status: 404,
-      statusText: "Not Found",
-    });
+    throw notFound;
   }
 
-  return { content, supportOfferingFlag, requestUrl: request.url };
-}
+  const route = allRoutes.find((route) => route.url.endsWith(subPage));
+  if (!route || !contentMap[route.title]) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw notFound;
+  }
 
-import unleash from "utils/featureFlags.server.ts";
-import prependMetaTitle from "utils/metaTitle";
+  return { route };
+}
 
 export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
   return prependMetaTitle(
-    data ? data.content.pageTitle : ROUTE_METHODS.title,
+    data ? data.route.title : ROUTE_METHODS.title,
     matches,
   );
 };
 
+const LabelWithIcon = (content: {
+  label: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+}): ReactNode => (
+  <span className="flex gap-4 items-center">
+    <content.icon className="h-12 w-12 mb-2" />
+    {content.label}
+  </span>
+);
+
 export default function Index() {
-  // This messy code is a hacky solution to inject icons into the content, while preserving the ability to modify content easily via Markdown
-  const getIconForLabel = (label: string): ReactNode => {
-    switch (label) {
-      case "Anleitung":
-        return <DrawOutlined />;
-      case "Unterstützungsangebot":
-        return <SupportOutlined />;
-      case "Vorlage":
-        return <StickyNote2Outlined />;
-      case "So geht es weiter:":
-        return <ArrowCircleRightOutlined />;
-      case "Tipps":
-        return <LightbulbOutlined />;
-      default:
-        return null;
-    }
-  };
-
-  const renderLabelWithIcon = (labelText: string): ReactNode => {
-    const IconComponent = getIconForLabel(labelText);
-
-    if (!IconComponent) return labelText;
-
-    const result = (
-      <span className={iconSubPagesClassName}>
-        {IconComponent}
-        {labelText}
-      </span>
-    );
-
-    return result;
-  };
-
-  const { content, supportOfferingFlag, requestUrl } =
-    useLoaderData<typeof loader>();
+  const { route } = useLoaderData<typeof loader>();
+  // We have to get the content here to use the icons from the content file
+  const content = contentMap[route.title];
 
   return (
     <>
@@ -201,7 +97,7 @@ export default function Index() {
           )}
         </Container>
       </Background>
-      {content.accordion && (
+      {"accordion" in content && (
         <Container paddingBottom="0">
           <DetailsSummary
             title={content.accordion.title}
@@ -212,123 +108,54 @@ export default function Index() {
       <Container additionalClassNames="ds-stack-32">
         <Box
           heading={{ text: content.content.title }}
-          label={{ text: renderLabelWithIcon(content.content.label) }}
-          content={
-            supportOfferingFlag
-              ? ((url) => {
-                  if (url.endsWith(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url)) {
-                    return {
-                      markdown: `Vergleichen Sie gemeinsam mit den zuständigen Akteurinnen und Akteuren das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
-<br class="block content-[''] mb-24" />
-So erfahren Sie, 
-- welche IT-Systeme für Ihr Vorhaben verwendet werden können,
-- und an welchen Stellen Änderungen nötig sind.
-<br class="block content-[''] mb-24" />
-### Sie müssen nicht alles allein bewältigen
-
-Bei kleinen Fragen rufen Sie den Digitalcheck-Support an unter 0151/40 76 78 39.
-Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
-                    };
-                  }
-
-                  return { markdown: content.content.text };
-                })(requestUrl)
-              : {
-                  markdown: content.content.text,
-                }
-          }
-          buttons={supportOfferingFlag ? content.content.buttons : []}
+          label={{
+            text: LabelWithIcon(content.content),
+          }}
+          content={{ markdown: content.content.text }}
+          buttons={"buttons" in content.content ? content.content.buttons : []}
         />
-        {content.boxes?.map((box) => (
+        {content.boxes.map((box) => (
           // TODO: This is very similar to the markup used in <ListItem /> when a background color is provided.
           // We should probably create a component for this to keep it consistent.
-          <div key={box.title}>
-            {box.image && (
-              <div className="rounded-t-lg overflow-hidden">
-                <Background backgroundColor="midBlue">
-                  <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
-                    <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
-                      <Image
-                        url={box.image.src}
-                        alternativeText={box.image.alt}
-                      />
-                    </div>
-                  </div>
-                </Background>
+          <div key={box.title} className="rounded-lg overflow-hidden">
+            <Background backgroundColor="midBlue">
+              <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
+                <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
+                  <Image url={box.image.src} alternativeText={box.image.alt} />
+                </div>
               </div>
-            )}
-            <div className="rounded-b-lg overflow-hidden">
-              <Background backgroundColor="blue">
-                <Box
-                  heading={{ text: box.title }}
-                  label={{ text: renderLabelWithIcon(box.label) }}
-                  content={{ markdown: box.text }}
-                  buttons={box.buttons}
-                  additionalClassNames="px-96 py-64 max-sm:px-16 max-sm:py-32"
-                />
-              </Background>
-            </div>
+            </Background>
+            <Background backgroundColor="blue">
+              <Box
+                heading={{ text: box.title }}
+                label={{ text: LabelWithIcon(box) }}
+                content={{ markdown: box.text }}
+                buttons={"buttons" in box ? box.buttons : []}
+                additionalClassNames="px-96 py-64 max-sm:px-16 max-sm:py-32"
+              />
+            </Background>
           </div>
         ))}
       </Container>
-      {content.tip && (
+      {"tip" in content && (
         <Background backgroundColor="yellow">
           <Container>
             <Box
               heading={{ text: content.tip.title }}
-              label={{ text: renderLabelWithIcon(content.tip.label) }}
+              label={{ text: LabelWithIcon(content.tip) }}
               content={{ markdown: content.tip.text }}
             />
           </Container>
         </Background>
       )}
-      {content.support && (
+      {"support" in content && (
         <Background backgroundColor="blue">
           <Container>
             <Box
               heading={{ text: content.support.title }}
-              label={{ text: renderLabelWithIcon(content.support.label) }}
-              content={
-                supportOfferingFlag
-                  ? ((url) => {
-                      if (url.endsWith(ROUTE_METHODS_TASKS_PROCESSES.url)) {
-                        return {
-                          markdown: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
-
-Für ein einstündiges Videotelefonat, schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
-                        };
-                      }
-
-                      if (url.endsWith(ROUTE_METHODS_COLLECT_IT_SYSTEMS.url)) {
-                        return {
-                          markdown: `Der Digitalcheck-Support unterstützt Sie mit kostenloser IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt – jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
-
-Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
-                        };
-                      }
-
-                      if (
-                        url.endsWith(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url)
-                      ) {
-                        return {
-                          markdown: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei, 
-- die technische Umsetzung im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten,
-- als neutrale Moderation in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potenzielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
-- Erkenntnisse visuell aufzubereiten – das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
-- die Aussagen externer Dienstleister zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
-<br class="block content-[''] mb-24" />
-
-Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
-                        };
-                      }
-
-                      return { markdown: content.support.text };
-                    })(requestUrl)
-                  : {
-                      markdown: content.support.text,
-                    }
-              }
-              buttons={supportOfferingFlag ? content.support.buttons : []}
+              label={{ text: LabelWithIcon(content.support) }}
+              content={{ markdown: content.support.text }}
+              buttons={content.support.buttons}
             />
           </Container>
         </Background>
@@ -337,7 +164,7 @@ Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@
         <Container>
           <Box
             heading={{ text: content.nextStep.title }}
-            label={{ text: renderLabelWithIcon(content.nextStep.label) }}
+            label={{ text: LabelWithIcon(content.nextStep) }}
             content={{ markdown: content.nextStep.text }}
             buttons={content.nextStep.buttons}
           />

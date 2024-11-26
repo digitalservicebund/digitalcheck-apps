@@ -1,4 +1,3 @@
-import type { TMethodPage } from "routes/methoden_.$subPage";
 import type { TQuestion } from "routes/vorpruefung.$questionId/route";
 import {
   ROUTE_A11Y,
@@ -18,12 +17,16 @@ import {
 } from "./staticRoutes";
 
 import AdsClickOutlined from "@digitalservicebund/icons/AdsClickOutlined";
+import ArrowCircleRightOutlined from "@digitalservicebund/icons/ArrowCircleRightOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import ContactSupportOutlined from "@digitalservicebund/icons/ContactSupportOutlined";
 import DrawOutlined from "@digitalservicebund/icons/DrawOutlined";
 import FormatListBulletedOutlined from "@digitalservicebund/icons/FormatListBulletedOutlined";
 import GroupOutlined from "@digitalservicebund/icons/GroupOutlined";
+import LightbulbOutlined from "@digitalservicebund/icons/LightbulbOutlined";
 import PlaylistAddCheckOutlined from "@digitalservicebund/icons/PlaylistAddCheckOutlined";
+import StickyNote2Outlined from "@digitalservicebund/icons/StickyNote2Outlined";
+import SupportOutlined from "@digitalservicebund/icons/SupportOutlined";
 import TimerOutlined from "@digitalservicebund/icons/TimerOutlined";
 
 export const siteMeta = {
@@ -90,7 +93,7 @@ export const steps = {
       {
         text: "Zur Dokumentation",
         href: ROUTE_DOCUMENTATION.url,
-        look: "ghost",
+        look: "ghost" as const,
       },
     ],
     finished: {
@@ -701,12 +704,12 @@ export const documentation = {
     {
       text: "Dokumentation herunterladen (PDF-Datei)",
       href: ROUTE_DOCUMENTATION_STATIC_PDF.url,
-    } as const,
+    },
     {
       text: "Zurück",
       href: ROUTE_LANDING.url,
-      look: "tertiary",
-    } as const,
+      look: "tertiary" as const,
+    },
   ],
   multipleNotice: {
     headline: "Eine oder mehrere Dokumentationen?",
@@ -748,6 +751,7 @@ export const responsibleActors = {
   },
   content: {
     label: "Anleitung",
+    icon: DrawOutlined,
     title: "Finden Sie konstruktive Gesprächspartnerinnen und -&shy;partner",
     text: `Beginnen Sie mit der Kontaktaufnahme oben in der Hierarchie, lassen Sie ggf. über Ihre Referats- und (Unter-)abteilungsleitung den Kontakt herstellen. Fragen Sie nach den Fachexpertinnen und -experten auf Arbeitsebene, hier steckt in der Regel das tiefste Praxiswissen.
 <br class="block content-[''] !mb-24" />
@@ -765,6 +769,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
         alt: `Eine Excel-Tabelle mit dem Titel "Beteiligte Ebenen auswählen und Ansprechpersonen sammeln für [ARBEITSTITEL]" enthält Spalten für Name, Zuständigkeit, Akteursgruppe, Kontaktdaten und Bemerkungen. Der erste Eintrag listet als Beispiel "Maria Muster" als Referentin für das Statistische Bundesamt, zugehörig zur Akteursgruppe "Bund" mit ihren Kontaktdaten.`,
       },
       label: "Vorlage",
+      icon: StickyNote2Outlined,
       title: "Beteiligte Ebenen auswählen und Ansprechpersonen sammeln",
       text: `Die Excelvorlage hilft Ihnen, die beteiligten Ebenen auszuwählen, Zuständigkeiten zu klären und hilfreiche Ansprechpersonen zu sammeln.`,
       buttons: [
@@ -777,6 +782,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   ],
   tip: {
     label: "Tipps",
+    icon: LightbulbOutlined,
     title: "Gespräche über die aktuelle Umsetzungspraxis",
     text: `- **Keine Sorge vor falscher Kontaktaufnahme:** Es kann nichts passieren, außer dass man Sie an die richtige Ansprechperson verweist.
 - **Persönliche Gespräche statt Schriftverkehr:** Bitten Sie um persönliche Gespräche bei der Kontaktaufnahme. Schriftlicher Austausch lädt zu Missverständnissen ein.  
@@ -784,17 +790,18 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   },
   nextStep: {
     label: "So geht es weiter:",
+    icon: ArrowCircleRightOutlined,
     title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
     text: `Damit Ihre Regelung wirkungsvoll in die Praxis kommt, müssen Sie die **aktuellen Rahmenbedingungen** verstehen. Holen Sie sich dazu Unterstützung von den Akteurinnen und Akteuren, die Sie identifiziert haben. Sie müssen noch nicht auf geplante Neuerungen eingehen. Konzentrieren Sie sich auf den **Status Quo**.`,
     buttons: [
       {
         text: "Aufgaben und Abläufe klären",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_METHODS_TASKS_PROCESSES.url,
       },
     ],
   },
-} as TMethodPage;
+};
 
 export const tasksProcesses = {
   title: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
@@ -811,6 +818,7 @@ export const tasksProcesses = {
   },
   content: {
     label: "Anleitung",
+    icon: DrawOutlined,
     title: "Erfassen Sie die aktuellen Abläufe",
     text: `Listen Sie auf, welche Schritte und Aufgaben aktuell erfüllt werden, damit das Ziel des Vorhabens erreicht wird, und wie diese im Zusammenhang stehen.
 
@@ -827,6 +835,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
         alt: `Ein Flussdiagramm mit dem Titel „Beispielprozess-Ablauf ‚Einkommensteuer-Erklärung durchführen‘“. Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als „Akteurin oder Akteur“ beschriftet. Als Beispiel steht darunter „Finanzämter“. Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit „Arbeitsprozess“ beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als „Adressatin oder Adressat“. Als Beispiel ist „Bundeszentralamt für Steuern“ eingetragen.`,
       },
       label: "Vorlage",
+      icon: StickyNote2Outlined,
       title: "Einfache Abläufe und Aufgaben erfassen",
       text: `1. Sammeln Sie [Akteurinnen und Akteure](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. (“Wer”)
 2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“von wem”)
@@ -846,6 +855,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
         alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
+      icon: StickyNote2Outlined,
       title: "Visualisierungsbeispiele für komplexe Abläufe",
       text: `Komplexe Abläufe können schwieriger zu durchdringen sein und erfordern daher eine detaillierte und strukturierte Herangehensweise. Beginnen Sie mit der groben Skizzierung der wichtigsten Abläufe und unterteilen Sie diese anschließend in spezifische Aufgaben.  Auf der [Werkzeugfinder-Seite des BMI](https://visualisieren.digitalcheck.bund.de/) finden Sie Anleitungen für verschiedene Visualisierungsmethoden. 
 
@@ -854,7 +864,7 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
   ],
   tip: {
     label: "Tipps",
-
+    icon: LightbulbOutlined,
     title: "Wertschätzende und zielorientierte Kommunikation",
     text: `
 - **Hürden und Anforderungen wertschätzen:** Sicherlich werden bei den Gesprächen auch Wünsche und Anforderungen an neue Abläufe auftauchen. Wahrscheinlich werden Sie nicht alle umsetzen können. Bedanken Sie sich für den Input, kommunizieren Sie, was nicht eingearbeitet wird und erläutern Sie die Gründe.
@@ -862,32 +872,33 @@ Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetz
   },
   support: {
     label: "Unterstützungsangebot",
-
+    icon: SupportOutlined,
     title: "Visualisierungen gemeinsam erstellen",
     text: `Der Digitalcheck-Support unterstützt Sie bei der Visualsierung von Abläufen. Wir helfen Ihnen gerne, insbesondere bei komplexen Abläufen. 
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
+Für ein einstündiges Videotelefonat, schreiben Sie eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder buchen Sie direkt einen Termin.`,
     buttons: [
       {
         text: "Termin buchen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_SUPPORT.url,
       },
     ],
   },
   nextStep: {
     label: "So geht es weiter:",
+    icon: ArrowCircleRightOutlined,
     title: "2.3. IT-Systeme erfassen",
     text: `Nutzen Sie das Fachwissen der Akteurinnen und Akteure, um die verwendete IT-Infrastruktur für die identifizierten Abläufe zu erfassen und zu verstehen.`,
     buttons: [
       {
         text: "IT-Landschaft verstehen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_METHODS_COLLECT_IT_SYSTEMS.url,
       },
     ],
   },
-} as TMethodPage;
+};
 
 export const collectITSystems = {
   title: "2.3. IT-Systeme gemeinsam erfassen",
@@ -904,6 +915,7 @@ export const collectITSystems = {
   },
   content: {
     label: "Anleitung",
+    icon: DrawOutlined,
     title: "So erfassen Sie die IT-Systeme",
     text: `Dokumentieren Sie die verwendeten IT-Systeme mit ihren Funktionalitäten, Schnittstellen und Anforderungen. 
 <br class="block content-[''] !mb-24" />
@@ -919,7 +931,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
         alt: `Eine Excel-Tabelle mit dem Titel „IT-Systeme erfassen für [ARBEITSTITEL]“, die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
       },
       label: "Vorlage",
-
+      icon: StickyNote2Outlined,
       title: "IT-Systeme erfassen",
       text: `Nutzen Sie die Vorlage, um die IT-Systeme systematisch und detailliert zu dokumentieren. Sie müssen nicht selbst über das Wissen verfügen: Fragen Sie die zuständigen Akteurinnen und Akteure und ziehen Sie ggf. neutrale IT-Expertise hinzu.`,
       buttons: [
@@ -932,42 +944,41 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
   ],
   support: {
     label: "Unterstützungsangebot",
-
+    icon: SupportOutlined,
     title: "IT-Wissen einfach erklärt",
-    text: `Der Digitalcheck-Support unterstützt Sie mit kostenloser IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt — jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
+    text: `Der Digitalcheck-Support unterstützt Sie mit kostenloser IT-Beratung, um Erkenntnisse zu erläutern und für Ihre Regelung zu nutzen, z. B. durch IT-Hintergrundwissen zu Schnittstellen. Jede Frage ist berechtigt – jede verstandene Antwort wird die Regelung digitaltauglicher machen. 
 
-<br class="block content-[''] !mb-24" />
-
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
+Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder buchen Sie direkt einen Termin.`,
     buttons: [
       {
         text: "Termin buchen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_SUPPORT.url,
       },
     ],
   },
   nextStep: {
     label: "So geht es weiter:",
-
+    icon: ArrowCircleRightOutlined,
     title:
       "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
     text: `Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Die fünf Prinzipien für digitaltaugliche Gesetzgebung decken unterschiedliche Aspekte der digitalen Umsetzung ab: Nutzen Sie die Erkenntnisse über den Ist-Zustand, um mithilfe der Prinzipien die **Möglichkeiten der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen.**`,
     buttons: [
       {
         text: "Fünf Prinzipien nutzen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
       },
     ],
   },
-} as TMethodPage;
+};
 
 export const fivePrinciples = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
   principles: [
     {
       label: "Anleitung",
+      icon: DrawOutlined,
       title: "So nutzen Sie die fünf Prinzipien für Ihr Regelungsvorhaben",
       content: `### Als konkrete Umsetzungstipps
 
@@ -1050,28 +1061,28 @@ Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation”
   ],
   nextStepMethods: {
     label: "So geht es weiter:",
-
+    icon: ArrowCircleRightOutlined,
     title: "2.5. Technische Umsetzbarkeit sicherstellen",
     text: `Analysieren Sie die Auswirkungen Ihres Regelungsvorhabens auf bestehende und neue Abläufe und IT-Systeme. Damit stellen Sie die technische Machbarkeit sicher. Greifen Sie dafür auf das Fachwissen der umsetzenden Akteurinnen und Akteure zurück.`,
     buttons: [
       {
-        look: "tertiary",
+        look: "tertiary" as const,
         text: "IT-Auswirkungen prüfen",
         href: ROUTE_METHODS_TECHNICAL_FEASIBILITY.url,
-      } as const,
+      },
     ],
   },
   nextStep: {
     label: "So geht es weiter:",
-
+    icon: ArrowCircleRightOutlined,
     title: "Vorprüfung: Digitalbezug einschätzen",
     text: `Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.`,
     buttons: [
       {
         text: "Digitalbezug einschätzen",
         href: ROUTE_LANDING.url,
-        look: "tertiary",
-      } as const,
+        look: "tertiary" as const,
+      },
     ],
   },
 };
@@ -1086,19 +1097,23 @@ export const technicalFeasibility = {
 **Support:** Sie können sich vom Digitalcheck-Support unterstützen lassen.`,
   content: {
     label: "Anleitung",
+    icon: DrawOutlined,
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
     text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
 <br class="block content-[''] !mb-24" />
-So erfahren Sie 
-- welche IT-Systeme für Ihr Vorhaben verwendet werden können,
+So erfahren Sie
+- welche IT-Systeme für Ihr Vorhaben verwendet werden können
 - und an welchen Stellen Änderungen nötig sind.
 <br class="block content-[''] !mb-24" />
 
-**Sie müssen nicht alles allein bewältigen:** Unterstützung bekommen Sie etwa vom Digitalcheck-Support unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
+### Sie müssen nicht alles allein bewältigen
+
+Bei kleinen Fragen rufen Sie den Digitalcheck-Support an unter 0151/40 76 78 39.
+Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
     buttons: [
       {
         text: "Termin buchen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_SUPPORT.url,
       },
     ],
@@ -1110,6 +1125,7 @@ So erfahren Sie
         alt: `Ein Dokument mit der Überschrift „Gesprächsleitfaden technische Umsetzbarkeit“. Darunter ist ein Kasten zu sehen, in dem steht „Welche Verbindungen oder Daten müssen angepasst werde?“. Vom Kasten führt ein Pfeil nach unten an dem steht „Fertig? Weiter zum nächsten Punkt“. Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
+      icon: StickyNote2Outlined,
       title: "Gesprächsleitfaden: Aspekte technischer Umsetzbarkeit",
       text: `Besprechen Sie die Fragen im Schaubild gemeinsam mit den IT-Expertinnen und Experten in der Umsetzung. Multidisziplinäre Zusammenarbeit ist hier der Schlüssel.
 
@@ -1124,42 +1140,46 @@ Das PDF ist barrierearm/barrierefrei.`,
   ],
   tip: {
     label: "Tipps",
+    icon: LightbulbOutlined,
     title: "Gespräche über IT-Anpassungen",
     text: `- **Aufwand verstehen:** Fragen Sie nach dem Aufwand für IT-Anpassungen. Lassen Sie sich die Details erklären, bis Sie die Aufwände nachvollziehen können. So werden Sie selbst sprechfähig.
 - **Fokus auf das Regelungsziel:** Gehen Sie konstruktiv und mit dem Regelungsziel im Fokus in Gespräche. Veränderungen in der IT bedeuten organisatorischen und finanziellen Aufwand, was die Lösungsfindung erschweren kann.`,
   },
   support: {
     label: "Unterstützungsangebot",
+    icon: SupportOutlined,
     title: "Die technische Umsetzung gemeinsam durchdenken",
-    text: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei, 
+    text: `Wenn die technischen Anforderungen zu komplex werden, unterstützt Sie der Digitalcheck-Support. Wir helfen als neutraler Akteur dabei
 - die **technische Umsetzung** im Detail zu durchdenken und Nutzerfreundlichkeit, Datenverwendung und IT-Sicherheit zu beachten,
 - als **neutrale Moderation** in Gesprächen mit zuständigen Akteurinnen und Akteuren, um potenzielle Interessenkonflikte durch Fachlichkeit zu entschärfen,
-- **Erkenntnisse visuell** aufzubereiten — das ist die beste Grundlage für interne und externe Beteiligungsprozesse,
+- **Erkenntnisse visuell aufzubereiten** – das ist die beste Grundlage für interne und externe Beteiligungsprozesse – und
 - die **Aussagen externer Dienstleister** zu reflektieren: Wirtschaftlichkeit kann eine Motivation für aufwändige Lösungen sein.
+<br class="block content-[''] !mb-24" />
 
-Vereinbaren Sie einen Termin unter [0151/40 76 78 39](tel:+4915140767839) oder [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de)`,
+Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder buchen Sie direkt einen Termin.`,
     buttons: [
       {
         text: "Termin buchen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_SUPPORT.url,
       },
     ],
   },
   nextStep: {
     label: "So geht es weiter:",
+    icon: ArrowCircleRightOutlined,
     title:
       "Verfassen Sie den Regelungsentwurf und dokumentieren Sie Ihre Entscheidungen",
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
     buttons: [
       {
         text: "Zu den Hilfestellungen",
-        look: "tertiary",
+        look: "tertiary" as const,
         href: ROUTE_METHODS.url,
       },
     ],
   },
-} as TMethodPage;
+};
 
 export const support = {
   title: "Hilfe für digitaltaugliche Regelungsvorhaben",
@@ -1212,9 +1232,9 @@ export const support = {
         buttons: [
           {
             text: "E-Mail senden",
-            look: "tertiary",
+            look: "tertiary" as const,
             href: "mailto:digitalcheck@digitalservice.bund.de?subject=Unterstützungsangebote:%20erarbeiten.digitalcheck.bund.de",
-          } as const,
+          },
         ],
       },
       {
@@ -1225,8 +1245,8 @@ export const support = {
         buttons: [
           {
             text: "Termin buchen",
-            look: "tertiary",
-          } as const,
+            look: "tertiary" as const,
+          },
         ],
       },
     ],
