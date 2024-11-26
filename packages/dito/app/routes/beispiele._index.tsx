@@ -3,32 +3,15 @@ import Box from "@digitalcheck/shared/components/Box.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
-import { redirect } from "@remix-run/node";
 import { MetaFunction, useOutletContext } from "@remix-run/react";
 import { Prinzip } from "utils/strapiData.server.ts";
 import { digitalSuitability, header } from "../resources/content.ts";
-import {
-  ROUTE_EXAMPLES,
-  ROUTE_LANDING,
-  ROUTE_PRINCIPLES,
-} from "../resources/staticRoutes.ts";
-import unleash from "../utils/featureFlags.server.ts";
+import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_EXAMPLES.title, matches);
 };
-
-export function loader() {
-  const digitalSuitabilityFlag = unleash.isEnabled(
-    "digitalcheck.digital-suitability",
-  );
-
-  if (!digitalSuitabilityFlag) {
-    return redirect(ROUTE_LANDING.url);
-  }
-  return {};
-}
 
 export default function Digitaltauglichkeit_index() {
   const principles = useOutletContext<Prinzip[]>();
