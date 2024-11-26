@@ -19,25 +19,58 @@ import ParagraphList from "../components/ParagraphList.tsx";
 
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
-import { type Prinzip } from "../utils/strapiData.server.ts";
+import {
+  fetchStrapiData,
+  paragraphFields,
+  prinzipCoreFields,
+  type Prinzip,
+} from "../utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 
-export const loader = ({ params }: LoaderFunctionArgs) => {
-  return { slug: params.prinzip as string };
+const GET_PRINZIPS_QUERY = `
+${paragraphFields}
+${prinzipCoreFields}
+query GetPrinzips($slug: String!) {
+  prinzips(filters: { URLBezeichnung: { eq: $slug } }) {
+    ...PrinzipCoreFields
+    GuteUmsetzungen {
+      documentId
+      Paragraphen {
+        ...ParagraphFields
+      }
+      Regelungsvorhaben {
+        documentId
+        Ressort
+        Rechtsgebiet
+        Titel
+        URLBezeichnung
+        LinkRegelungstext
+        VeroeffentlichungsDatum
+      }
+    }
+  }
+}`;
+
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  const prinzipData = await fetchStrapiData<{ prinzips: Prinzip[] }>(
+    GET_PRINZIPS_QUERY,
+    { slug: params.prinzip as string },
+  );
+
+  if ("error" in prinzipData) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw new Response(prinzipData.error, { status: 400 });
+  }
+
+  return { prinzip: prinzipData.prinzips[0] };
 };
 
 export default function Digitaltauglichkeit_Prinzipien_Detail() {
-  const { slug } = useLoaderData<typeof loader>();
+  const { prinzip } = useLoaderData<typeof loader>();
   const prinzips = useOutletContext<Prinzip[]>();
-
-  const prinzip = prinzips.find((prinzip) => prinzip.URLBezeichnung === slug);
-  if (!prinzip) {
-    // eslint-disable-next-line @typescript-eslint/only-throw-error
-    throw new Response("Prinzip not found", { status: 404 });
-  }
 
   const { GuteUmsetzungen } = prinzip;
 

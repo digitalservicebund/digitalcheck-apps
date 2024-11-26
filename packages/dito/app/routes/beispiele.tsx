@@ -6,32 +6,15 @@ import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
 import {
   fetchStrapiData,
-  paragraphFields,
   Prinzip,
   prinzipCoreFields,
 } from "../utils/strapiData.server.ts";
 
 const GET_PRINZIPS_QUERY = `
-${paragraphFields}
 ${prinzipCoreFields}
 query GetPrinzips {
   prinzips {
     ...PrinzipCoreFields
-    GuteUmsetzungen {
-      documentId
-      Paragraphen {
-        ...ParagraphFields
-      }
-      Regelungsvorhaben {
-        documentId
-        Ressort
-        Rechtsgebiet
-        Titel
-        URLBezeichnung
-        LinkRegelungstext
-        VeroeffentlichungsDatum
-      }
-    }
   }
 }`;
 
