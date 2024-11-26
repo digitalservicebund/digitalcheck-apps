@@ -1,7 +1,7 @@
-import { json, redirect } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 
+import { redirect } from "@remix-run/node";
 import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
 import {
@@ -35,10 +35,7 @@ export async function loader() {
     throw new Response(prinzipData.error, { status: 400 });
   }
 
-  return json(
-    prinzipData.prinzips.toSorted((a, b) => a.Nummer - b.Nummer),
-    { headers: { "Cache-Control": "max-age=3600" } },
-  );
+  return prinzipData.prinzips.toSorted((a, b) => a.Nummer - b.Nummer);
 }
 
 export default function Digitaltauglichkeit() {
