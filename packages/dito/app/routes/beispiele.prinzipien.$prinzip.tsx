@@ -101,6 +101,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                 to={`${ROUTE_PRINCIPLES.url}/${p.URLBezeichnung}`}
                 key={p.Nummer}
                 className="ds-link-01-bold"
+                prefetch="viewport"
               >
                 Prinzip {p.Nummer}
               </Link>
@@ -116,6 +117,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                 target="_blank"
                 to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
                 rel="noreferrer"
+                prefetch="viewport"
               >
                 <Heading
                   tagName="h2"

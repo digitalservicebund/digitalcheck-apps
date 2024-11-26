@@ -3,7 +3,11 @@ import Box from "@digitalcheck/shared/components/Box.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
-import { MetaFunction, useOutletContext } from "@remix-run/react";
+import {
+  MetaFunction,
+  PrefetchPageLinks,
+  useOutletContext,
+} from "@remix-run/react";
 import { Prinzip } from "utils/strapiData.server.ts";
 import { digitalSuitability, header } from "../resources/content.ts";
 import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
@@ -54,6 +58,13 @@ export default function Digitaltauglichkeit_index() {
                 className: "mr-16 ds-link-01-bold", // The margin is used as a hack to force all links on a new line without using w-full
               }))}
             additionalClassNames="mb-56"
+          />
+        ))}
+        {/* The button prop does not support prefetching, so we are using the PrefetchPageLinks component instead */}
+        {principles.map((principle) => (
+          <PrefetchPageLinks
+            key={principle.Nummer}
+            page={ROUTE_PRINCIPLES.url + "/" + principle.URLBezeichnung}
           />
         ))}
       </Container>
