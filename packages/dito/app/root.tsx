@@ -146,12 +146,13 @@ export const meta: MetaFunction<typeof loader> = ({
   ];
 };
 
-export const headers: HeadersFunction = () => ({
+export const headers: HeadersFunction = ({ loaderHeaders }) => ({
   // "X-Frame-Options": "SAMEORIGIN",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy":
     "geolocation=(), midi=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), fullscreen=(self), payment=(), usb=()",
+  "Cache-Control": loaderHeaders.get("Cache-Control") ?? "no-store",
 });
 
 export const links: LinksFunction = () => [
