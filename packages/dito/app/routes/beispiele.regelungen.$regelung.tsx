@@ -26,7 +26,7 @@ import {
   prinzipCoreFields,
   Regelungsvorhaben,
 } from "../utils/strapiData.server.ts";
-import { slugify } from "../utils/utilFunctions.ts";
+import { formatDate, slugify } from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
@@ -161,11 +161,7 @@ export default function Gesetz() {
               {
                 label: regulations.infoLabels[0],
                 value: regelung.VeroeffentlichungsDatum
-                  ? new Intl.DateTimeFormat("de-DE", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    }).format(new Date(regelung.VeroeffentlichungsDatum))
+                  ? formatDate(regelung.VeroeffentlichungsDatum)
                   : "",
               },
               {
@@ -252,7 +248,7 @@ export default function Gesetz() {
                       />
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.publishedOn}
-                        value={regelung.VeroeffentlichungsDatum}
+                        value={formatDate(regelung.VeroeffentlichungsDatum)}
                       />
                       {visualisierung.Visualisierungsart && (
                         <LabelValuePair

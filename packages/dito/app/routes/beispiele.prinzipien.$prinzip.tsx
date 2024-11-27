@@ -22,9 +22,10 @@ import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import {
   fetchStrapiData,
   paragraphFields,
-  prinzipCoreFields,
   type Prinzip,
+  prinzipCoreFields,
 } from "../utils/strapiData.server.ts";
+import { formatDate } from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
@@ -138,14 +139,9 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                     label: regulations.infoLabels[0],
                     value: digitalcheck.Regelungsvorhaben
                       .VeroeffentlichungsDatum
-                      ? new Intl.DateTimeFormat("de-DE", {
-                          day: "2-digit",
-                          month: "long",
-                          year: "numeric",
-                        }).format(
-                          new Date(
-                            digitalcheck.Regelungsvorhaben.VeroeffentlichungsDatum,
-                          ),
+                      ? formatDate(
+                          digitalcheck.Regelungsvorhaben
+                            .VeroeffentlichungsDatum,
                         )
                       : "",
                   },
