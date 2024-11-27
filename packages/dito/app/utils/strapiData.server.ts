@@ -1,4 +1,6 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer";
+import crypto from "crypto";
+import NodeCache from "node-cache";
 
 const url =
   process.env.STRAPI_URL ??
@@ -151,10 +153,30 @@ type errorResponse = {
   error: string;
 };
 
+function generateCacheKey(query: string, variables?: object): string {
+  const variablesString = variables
+    ? JSON.stringify(variables, Object.keys(variables).sort())
+    : "";
+  const hash = crypto
+    .createHash("md5")
+    .update(query + variablesString)
+    .digest("hex");
+  return `cache:${hash}`;
+}
+
+const cache = new NodeCache({ stdTTL: 3600, checkperiod: 600 });
+
 export async function fetchStrapiData<DataType>(
   query: string,
   variables?: object,
 ): Promise<DataType | errorResponse> {
+  const cacheKey = generateCacheKey(query, variables);
+  const cachedData = cache.get<DataType>(cacheKey);
+
+  if (cachedData) {
+    return cachedData;
+  }
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -162,7 +184,7 @@ export async function fetchStrapiData<DataType>(
     },
     body: JSON.stringify({ query, variables }),
   });
-  // handle fetch errors
+
   if (!response.ok) {
     const errorDetails = await response.text();
     console.error(
@@ -175,14 +197,16 @@ export async function fetchStrapiData<DataType>(
       error: `Failed to fetch: ${response.status} ${response.statusText}`,
     };
   }
+
   const responseData = (await response.json()) as GraphQLResponse<DataType>;
-  // handle GraphQL errors
+
   if (responseData.errors) {
     console.error("GraphQL errors:", responseData.errors);
     return {
       error: responseData.errors[0].message,
     };
   }
+  cache.set(cacheKey, responseData.data);
 
   return responseData.data;
 }
