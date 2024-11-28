@@ -196,7 +196,7 @@ const AbsatzContent = ({
     const baseLabelID = `warumGut-${absatzGroup.id}`;
 
     return (
-      <div>
+      <div className="paragraph-list">
         <BlocksRenderer
           content={prependNumberToAbsatz(absatzGroup)}
           modifiers={{

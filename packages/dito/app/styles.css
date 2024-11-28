@@ -24,3 +24,11 @@ main .ds-button:not(.ds-button-ghost) {
   overflow: hidden;
   visibility: hidden;
 }
+
+.paragraph-list ol {
+  list-style-type: decimal; /* Default for top-level */
+}
+
+.paragraph-list ol ol {
+  list-style-type: lower-alpha; /* Nested lists are alphabetic */
+}
