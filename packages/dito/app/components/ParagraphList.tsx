@@ -17,9 +17,9 @@ import type {
 // Color mapping for different principles
 const HIGHLIGHT_COLORS = {
   1: { background: "bg-yellow-300", border: "border-yellow-500" },
-  2: { background: "bg-blue-300", border: "border-blue-500" },
+  2: { background: "bg-blue-400", border: "border-blue-500" },
   3: { background: "bg-red-300", border: "border-red-500" },
-  4: { background: "bg-purple-300", border: "border-purple-500" },
+  4: { background: "bg-orange-200", border: "border-orange-500" },
   5: { background: "bg-green-300", border: "border-green-500" },
 } as const;
 
