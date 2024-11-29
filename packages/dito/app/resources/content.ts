@@ -1786,7 +1786,7 @@ export const regulations = {
     },
   },
   principles: {
-    title: "Formulierungen aus dem Regelungsentwurf",
+    title: "Formulierungen aus der Regelung",
     subtitle:
       "So hat das Referat in der Dokumentation die Digitaltauglichkeit in die Regelung geschrieben",
   },
