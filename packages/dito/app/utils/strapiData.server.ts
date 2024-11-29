@@ -164,7 +164,7 @@ function generateCacheKey(query: string, variables?: object): string {
   return `cache:${hash}`;
 }
 
-const cache = new NodeCache({ stdTTL: 3600, checkperiod: 600 });
+const cache = new NodeCache({ stdTTL: 3600, checkperiod: 10 });
 
 export async function fetchStrapiData<DataType>(
   query: string,
