@@ -31,7 +31,7 @@ const extractTextParts = (children: ReactNode) => {
     return null;
   }
   const text = children.props.children as string;
-  return text.split(/(\[\d\])/g);
+  return text.split(/(\[\d])/g);
 };
 
 const RemoveHighlight = ({ children }: { children: ReactNode }) => {
@@ -156,6 +156,45 @@ const prependNumberRecursive = (node: Node, number: number): Node => {
   return node;
 };
 
+/**
+ * Since we get lists instead of list-items for nested lists from Strapi,
+ * this function restructures the nodes to build a properly nested list hierarchy.
+ */
+const buildNestedList = (nodes: Node[]): BlocksContent => {
+  const result: Node[] = [];
+  let previousListItem: Node | null = null;
+
+  nodes.forEach((node) => {
+    const newNode = { ...node };
+    if (newNode.children) {
+      newNode.children = buildNestedList(newNode.children);
+    }
+
+    if (newNode.type === "list") {
+      if (previousListItem && previousListItem.type === "list-item") {
+        // Nest the list inside the previous list item
+        if (!previousListItem.children) {
+          previousListItem.children = [];
+        }
+        previousListItem.children.push(newNode);
+      } else {
+        // No previous list item to attach to, add to result
+        result.push(newNode);
+      }
+      // After nesting, reset previousListItem as the list cannot be nested under multiple items
+      previousListItem = null;
+    } else if (newNode.type === "list-item") {
+      result.push(newNode);
+      previousListItem = newNode;
+    } else {
+      result.push(newNode);
+      previousListItem = null;
+    }
+  });
+
+  return result as BlocksContent;
+};
+
 const prependNumberToAbsatz = (absatz: AbsatzWithNumber) => {
   return [
     prependNumberRecursive(
@@ -193,12 +232,14 @@ const AbsatzContent = ({
   if (isStandaloneAbsatz(absatzGroup)) {
     // This ID is used to label the reference in the highlight with the general explanation header
     // and also serves as a basis for the link between the highlight and the specific explanation
+
     const baseLabelID = `warumGut-${absatzGroup.id}`;
+    const content = buildNestedList(prependNumberToAbsatz(absatzGroup));
 
     return (
       <div className="paragraph-list">
         <BlocksRenderer
-          content={prependNumberToAbsatz(absatzGroup)}
+          content={content}
           modifiers={{
             underline: ({ children }) =>
               PrincipleHighlight(
