@@ -1770,7 +1770,7 @@ export const regulations = {
     "Hier finden Sie alles zur Digitaltauglichkeit dieser Regelung.",
     "Inhalt",
   ],
-  infoLabels: ["Veröffentlicht am", "Veröffentlicht auf", "Ressort"],
+  infoLabels: ["Fassung vom", "Aktuelle Fassung", "Ressort"],
   visualisations: {
     title: "Visualisierungen",
     subtitle:
