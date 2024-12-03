@@ -3,7 +3,7 @@ import SupportBanner from "components/SupportBanner";
 
 import { redirect } from "@remix-run/node";
 import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
-import unleash from "../utils/featureFlags.server.ts";
+import { getFeatureFlag } from "../utils/featureFlags.server.ts";
 import {
   fetchStrapiData,
   GET_PRINZIPS_QUERY,
@@ -11,7 +11,7 @@ import {
 } from "../utils/strapiData.server.ts";
 
 export async function loader() {
-  const digitalSuitabilityFlag = unleash.isEnabled(
+  const digitalSuitabilityFlag = getFeatureFlag(
     "digitalcheck.digital-suitability",
   );
   if (!digitalSuitabilityFlag) {

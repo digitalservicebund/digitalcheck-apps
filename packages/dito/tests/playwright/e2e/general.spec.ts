@@ -9,7 +9,6 @@ test.describe("test general availability", () => {
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
   });
 
-  // TODO: activate after pw is removed from /digitaltauglichkeit
   test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
     page,
   }) => {
