@@ -10,7 +10,7 @@ test.describe("test general availability", () => {
   });
 
   // TODO: activate after pw is removed from /digitaltauglichkeit
-  test.skip("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
+  test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
     page,
   }) => {
     // Remove first page from allRoutes array
