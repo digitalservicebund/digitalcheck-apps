@@ -53,7 +53,7 @@ export default function Digitaltauglichkeit_index() {
               .toSorted((a, b) => a.Nummer - b.Nummer)
               .map((principle) => ({
                 text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
-                href: ROUTE_PRINCIPLES.url + "/" + principle.URLBezeichnung,
+                href: `${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`,
                 look: "ghost" as const,
                 className: "mr-16 ds-link-01-bold", // The margin is used as a hack to force all links on a new line without using w-full
               }))}
@@ -64,7 +64,7 @@ export default function Digitaltauglichkeit_index() {
         {principles.map((principle) => (
           <PrefetchPageLinks
             key={principle.Nummer}
-            page={ROUTE_PRINCIPLES.url + "/" + principle.URLBezeichnung}
+            page={`${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`}
           />
         ))}
       </Container>
