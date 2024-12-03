@@ -22,7 +22,7 @@ unleash.on("warn", console.warn);
 export const getFeatureFlag = (name: string): boolean => {
   if (!unleashInitialized) {
     console.warn(
-      `[WebServer] Unleash not initialized. Defaulting "${name}" to ${DEFAULT_FLAG_STATE}.`,
+      `Unleash not initialized. Defaulting "${name}" to ${DEFAULT_FLAG_STATE}.`,
     );
     return DEFAULT_FLAG_STATE;
   }
