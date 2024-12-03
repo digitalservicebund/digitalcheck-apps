@@ -27,8 +27,7 @@ export const getFeatureFlag = (name: string): boolean => {
     return DEFAULT_FLAG_STATE;
   }
 
-  const isEnabled = unleash.isEnabled(name);
-  return isEnabled !== undefined ? isEnabled : DEFAULT_FLAG_STATE;
+  return unleash.isEnabled(name);
 };
 
 export const getFeatureFlags = () =>
