@@ -2,13 +2,18 @@ import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
 import { Link, useLocation } from "@remix-run/react";
-import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import classNames from "classnames";
 import { ReactNode, useState } from "react";
+import {
+  AbsatzWithNumber,
+  isStandaloneAbsatz,
+  nestListInListItems,
+  prependNumberToAbsatz,
+} from "utils/blocksContentUtils.ts";
 import { digitalSuitability } from "../resources/content.ts";
 import { cyrb53 } from "../utils/cyrb53.tsx";
 import type {
-  Absatz,
   Paragraph,
   Prinzip,
   PrinzipErfuellung,
@@ -127,83 +132,6 @@ const PrincipleExplanation = ({
     </div>
   );
 };
-type AbsatzWithNumber = Absatz & { number: number };
-type Node = { type: string; text?: string; children?: Node[] };
-
-const isStandaloneAbsatz = (
-  absatz: AbsatzWithNumber | AbsatzWithNumber[],
-): absatz is AbsatzWithNumber => "id" in absatz;
-
-// Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
-const prependNumberRecursive = (node: Node, number: number): Node => {
-  if (node.type === "text" && node.text) {
-    return {
-      ...node,
-      text: `(${number}) ${node.text}`,
-    };
-  }
-
-  if (node.children && node.children.length > 0) {
-    return {
-      ...node,
-      children: [
-        prependNumberRecursive(node.children[0], number),
-        ...node.children.slice(1),
-      ],
-    };
-  }
-
-  return node;
-};
-
-/**
- * Since we get lists instead of list-items for nested lists from Strapi,
- * this function restructures the nodes to build a properly nested list hierarchy.
- */
-const buildNestedList = (nodes: Node[]): BlocksContent => {
-  const result: Node[] = [];
-  let previousListItem: Node | null = null;
-
-  nodes.forEach((node) => {
-    const newNode = { ...node };
-    if (newNode.children) {
-      newNode.children = buildNestedList(newNode.children);
-    }
-
-    if (newNode.type === "list") {
-      if (previousListItem && previousListItem.type === "list-item") {
-        // Nest the list inside the previous list item
-        if (!previousListItem.children) {
-          previousListItem.children = [];
-        }
-        previousListItem.children.push(newNode);
-      } else {
-        // No previous list item to attach to, add to result
-        result.push(newNode);
-      }
-      // After nesting, reset previousListItem as the list cannot be nested under multiple items
-      previousListItem = null;
-    } else if (newNode.type === "list-item") {
-      result.push(newNode);
-      previousListItem = newNode;
-    } else {
-      result.push(newNode);
-      previousListItem = null;
-    }
-  });
-
-  return result as BlocksContent;
-};
-
-const prependNumberToAbsatz = (absatz: AbsatzWithNumber) => {
-  return [
-    prependNumberRecursive(
-      absatz.Text[0],
-      absatz.number,
-    ) as BlocksContent[number],
-    ...absatz.Text.slice(1),
-  ];
-};
 
 const AbsatzContent = ({
   absatzGroup,
@@ -234,7 +162,7 @@ const AbsatzContent = ({
     // and also serves as a basis for the link between the highlight and the specific explanation
 
     const baseLabelID = `warumGut-${absatzGroup.id}`;
-    const content = buildNestedList(prependNumberToAbsatz(absatzGroup));
+    const content = nestListInListItems(prependNumberToAbsatz(absatzGroup));
 
     return (
       <div className="paragraph-list">
