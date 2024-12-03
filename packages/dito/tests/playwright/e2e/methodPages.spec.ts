@@ -79,7 +79,7 @@ test.describe("test method sub pages", () => {
     );
   });
 
-  test("links to five principals", async ({ page }) => {
+  test("links to five principles", async ({ page }) => {
     await page.goto(ROUTE_METHODS.url);
 
     await page.getByRole("link", { name: "Fünf Prinzipien nutzen" }).click();
