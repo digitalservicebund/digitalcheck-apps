@@ -47,6 +47,16 @@
     /* 70ch @ 18px font size = 630px */
     @apply max-w-prose;
   }
+
+  *:focus-visible {
+    @apply outline;
+    @apply outline-2;
+    @apply no-underline;
+    @apply outline-offset-1;
+    @apply text-blue-800;
+    @apply outline-blue-800;
+    text-decoration: none !important;
+  }
 }
 
 @layer components {
