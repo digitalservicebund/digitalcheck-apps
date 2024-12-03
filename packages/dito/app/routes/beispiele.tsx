@@ -1,9 +1,6 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 
-import { redirect } from "@remix-run/node";
-import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
-import { getFeatureFlag } from "../utils/featureFlags.server.ts";
 import {
   fetchStrapiData,
   GET_PRINZIPS_QUERY,
@@ -11,13 +8,6 @@ import {
 } from "../utils/strapiData.server.ts";
 
 export async function loader() {
-  const digitalSuitabilityFlag = getFeatureFlag(
-    "digitalcheck.digital-suitability",
-  );
-  if (!digitalSuitabilityFlag) {
-    return redirect(ROUTE_LANDING.url);
-  }
-
   const prinzipData = await fetchStrapiData<{ prinzips: Prinzip[] }>(
     GET_PRINZIPS_QUERY,
   );
