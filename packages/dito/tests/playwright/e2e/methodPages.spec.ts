@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import {
   ROUTE_DOCUMENTATION,
+  ROUTE_EXAMPLES,
   ROUTE_LANDING,
   ROUTE_METHODS,
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
@@ -8,6 +9,7 @@ import {
   ROUTE_METHODS_RESPONSIBLE_ACTORS,
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_PRINCIPLES,
 } from "resources/staticRoutes";
 
 test.describe("test method page link flow", () => {
@@ -103,8 +105,8 @@ test.describe("test method sub pages", () => {
   });
 });
 
-test.describe("five principals page", () => {
-  test("five principals conditional next step is accurate", async ({
+test.describe("five principles page", () => {
+  test("five principles conditional next step is accurate", async ({
     page,
   }) => {
     await page.goto(ROUTE_LANDING.url);
@@ -129,6 +131,24 @@ test.describe("five principals page", () => {
     );
     await page.getByRole("link", { name: "IT-Auswirkungen prüfen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
+  });
+
+  test("five principles page links to examples", async ({ page }) => {
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
+      .first()
+      .click();
+    await expect(page).toHaveURL(ROUTE_EXAMPLES.url);
+
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
+      .last()
+      .click();
+    await expect(page).toHaveURL(
+      `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
+    );
   });
 });
 
