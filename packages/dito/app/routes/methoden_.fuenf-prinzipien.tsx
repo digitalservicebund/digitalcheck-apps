@@ -121,7 +121,7 @@ export default function Index() {
                     content: principle.content,
                     buttons: [
                       {
-                        text: "Beispiele betrachten",
+                        text: fivePrinciples.buttonText,
                         href: buttonLink,
                         look: "tertiary" as const,
                       },

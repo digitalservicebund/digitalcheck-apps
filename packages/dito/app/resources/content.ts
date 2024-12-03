@@ -975,6 +975,7 @@ Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an [digitalcheck
 
 export const fivePrinciples = {
   title: "Fünf Prinzipien für digitaltaugliche Gesetzgebung",
+  buttonText: "Beispiele betrachten",
   principles: [
     {
       label: "Anleitung",
