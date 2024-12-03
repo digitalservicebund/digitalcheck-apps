@@ -6,17 +6,9 @@ import { ROUTE_LANDING } from "../resources/staticRoutes.ts";
 import unleash from "../utils/featureFlags.server.ts";
 import {
   fetchStrapiData,
+  GET_PRINZIPS_QUERY,
   Prinzip,
-  prinzipCoreFields,
 } from "../utils/strapiData.server.ts";
-
-const GET_PRINZIPS_QUERY = `
-${prinzipCoreFields}
-query GetPrinzips {
-  prinzips {
-    ...PrinzipCoreFields
-  }
-}`;
 
 export async function loader() {
   const digitalSuitabilityFlag = unleash.isEnabled(

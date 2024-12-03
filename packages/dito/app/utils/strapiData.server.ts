@@ -133,6 +133,14 @@ fragment ParagraphFields on Paragraph {
   }
 }`;
 
+export const GET_PRINZIPS_QUERY = `
+${prinzipCoreFields}
+query GetPrinzips {
+  prinzips {
+    ...PrinzipCoreFields
+  }
+}`;
+
 type GraphQLResponse<DataType> = {
   data: DataType;
   errors?: {
