@@ -987,7 +987,12 @@ Nutzen Sie die Tipps als Inspiration, um in Ihrem Regelungsvorhaben die Möglich
 <br class="block content-[''] !mb-48" />
 ### Als Checkliste für den Gesamtprozess
 
-Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf [visualisieren.digitalcheck.bund.de](https://visualisieren.digitalcheck.bund.de).`,
+Besonders erkenntnisreich sind die fünf Prinzipien, wenn Sie diese auf eine Skizze des geplanten Umsetzungsprozesses anwenden. Skizzieren Sie Schritt für Schritt die Umsetzung und markieren Sie die Stellen, an denen eines oder mehrere Prinzipien wichtig sind. Mehr Infos zu Visualisierungen finden Sie auf [visualisieren.digitalcheck.bund.de](https://visualisieren.digitalcheck.bund.de).
+<br class="block content-[''] !mb-48" />
+### Als Startpunkt für ihren Regelungstext
+
+Nutzen Sie die gesammelten Beispiele als Startpunkt für Ihre Formulierungen. Bauen Sie auf Formulierungen auf, oder lassen Sie sich durch die Wirklogiken Ihrer Kolleginnen und Kollegen inspirieren. Sie finden gute Formulierungen, Einordnungen und deren Kontext im Regelungstext auf:
+      `,
     },
     {
       label: "Prinzip 1",
@@ -1436,11 +1441,15 @@ Mit freundlichen Grüßen`,
               {
                 icon: TimerOutlined,
                 title: "Nächste Termine",
-                text: `
+                text:
+                  "Wir planen bald neue Termine für Schulungen in 2025. Schreiben Sie uns eine E-Mail und wir setzen Sie auf die Warteliste.\n" +
+                  "Sie können sich bis dahin das [Schulungsmaterial ansehen](https://github.com/digitalservicebund/digitalcheck-content/tree/main/src/online-schulungen).",
+              },
+              /*                text: `
 - **Donnerstag, 14. November,**<br class="max-md:hidden"> 10:30–12:00 Uhr
 - **Dienstag, 19. November,**<br class="max-md:hidden"> 13:00–14:30 Uhr
 - **Donnerstag, 28. November,**<br class="max-md:hidden"> 11:00–12:30 Uhr`,
-              },
+              },*/
               {
                 icon: CheckCircleOutlined,
                 title: "Was Sie bekommen",
