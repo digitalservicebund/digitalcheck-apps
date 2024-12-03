@@ -8,6 +8,7 @@ const principles = [
   "klare-regelungen-fuer-eine-digitale-ausfuehrung-finden",
   "automatisierung-ermoeglichen",
 ];
+test.setTimeout(15000);
 
 test.describe("Digitaltauglichkeit main functionality", () => {
   test.describe("Principle-specific tests", () => {
