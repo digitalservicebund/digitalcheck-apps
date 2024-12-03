@@ -9,38 +9,20 @@ test.describe("test general availability", () => {
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
   });
 
-  test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
+  // TODO: activate after pw is removed from /digitaltauglichkeit
+  test.skip("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
     page,
   }) => {
-    test.setTimeout(30000);
-
+    // Remove first page from allRoutes array
     for (const route of allRoutes.slice(1)) {
       if (route.url.endsWith(".pdf")) {
         continue;
       }
-
-      console.log(`Testing route: ${route.url}`);
-      try {
-        await page.goto(route.url, {
-          waitUntil: "domcontentloaded",
-        });
-        const breadcrumbs = page.getByTestId("breadcrumbs-menu");
-
-        console.log("Checking breadcrumbs visibility");
-        await breadcrumbs.waitFor({
-          state: "visible",
-        });
-
-        const pageTitle = await page.title();
-        console.log(`Page title: ${pageTitle}`);
-        await expect(breadcrumbs).toBeVisible();
-        await expect(page).toHaveTitle(
-          /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
-        );
-      } catch (error) {
-        console.error(`Error on route ${route.url}:`, error);
-        throw error;
-      }
+      await page.goto(route.url);
+      await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
+      await expect(page).toHaveTitle(
+        /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
+      );
     }
   });
 });
