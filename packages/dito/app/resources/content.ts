@@ -1449,7 +1449,7 @@ Mit freundlichen Grüßen`,
 - **Donnerstag, 14. November,**<br class="max-md:hidden"> 10:30–12:00 Uhr
 - **Dienstag, 19. November,**<br class="max-md:hidden"> 13:00–14:30 Uhr
 - **Donnerstag, 28. November,**<br class="max-md:hidden"> 11:00–12:30 Uhr`,
-              },*/
+              },
               {
                 icon: CheckCircleOutlined,
                 title: "Was Sie bekommen",
@@ -1457,7 +1457,7 @@ Mit freundlichen Grüßen`,
 - Tipps für einen erfolgreichen Digitalcheck
 - Beispiele für digitaltaugliche Formulierungen
 - Einführung zum Anwenden der Prinzipien für Digitaltauglichkeit`,
-              },
+              },*/
             ],
           },
           {
