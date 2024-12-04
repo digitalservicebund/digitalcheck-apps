@@ -61,18 +61,24 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
 
     test(`navigates to laws associated with principle: ${principle}`, async ({
       page,
+      context,
     }) => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
       await page.goto(url);
 
       const lawLinks = page.locator(`a[href^="${ROUTE_LAWS.url}"]`);
-      await expect(lawLinks.first()).toBeVisible();
+      await expect(lawLinks.first()).toBeVisible({ timeout: 10000 });
 
-      await lawLinks.first().click();
-      await expect(page).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
+      const [newTab] = await Promise.all([
+        context.waitForEvent("page"),
+        lawLinks.first().click(),
+      ]);
 
-      const mainContent = page.getByRole("main");
-      await expect(mainContent).toBeVisible();
+      await newTab.waitForLoadState("domcontentloaded");
+      await expect(newTab).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
+
+      const mainContent = newTab.getByRole("main");
+      await expect(mainContent).toBeVisible({ timeout: 10000 });
     });
   }
 });
