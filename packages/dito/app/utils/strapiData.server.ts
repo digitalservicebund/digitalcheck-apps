@@ -1,6 +1,6 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer";
 import crypto from "crypto";
-import NodeCache from "node-cache";
+import { LRUCache } from "lru-cache";
 
 const url =
   process.env.STRAPI_URL ??
@@ -172,14 +172,14 @@ function generateCacheKey(query: string, variables?: object): string {
   return `cache:${hash}`;
 }
 
-const cache = new NodeCache({ stdTTL: 60, checkperiod: 10 });
+const cache = new LRUCache({ ttl: 1000 * 60, ttlAutopurge: true });
 
-export async function fetchStrapiData<DataType>(
+export async function fetchStrapiData<DataType extends object>(
   query: string,
   variables?: object,
 ): Promise<DataType | errorResponse> {
   const cacheKey = generateCacheKey(query, variables);
-  const cachedData = cache.get<DataType>(cacheKey);
+  const cachedData = cache.get(cacheKey) as DataType;
 
   if (cachedData) {
     return cachedData;

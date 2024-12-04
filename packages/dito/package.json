@@ -29,9 +29,9 @@
     "@rvf/zod": "^6.0.0",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "isbot": "^5.1.4",
+    "lru-cache": "^10.4.3",
     "marked": "^15.0.0",
     "mime-types": "^2.1.35",
-    "node-cache": "^5.1.2",
     "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
