@@ -126,14 +126,10 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                   look="ds-heading-03-bold"
                   className="inline max-w-full"
                 />
-                <OpenInNewIcon
-                  height="1.2em"
-                  width="1.2em"
-                  className="!inline ml-[0.2em] mb-1"
-                />
+                <OpenInNewIcon className="!inline scale-90 ml-4 mb-6 fill-blue-800" />
               </Link>
               <InlineInfoList
-                className="bg-blue-200 my-32"
+                className="my-32 pl-16"
                 items={[
                   {
                     label: regulations.infoLabels[0],

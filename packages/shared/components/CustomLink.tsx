@@ -1,5 +1,5 @@
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
-import { Link as RemixLink } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import { ReactNode } from "react";
 
 export type CustomLinkProps = {
@@ -20,16 +20,16 @@ export default function CustomLink({
   const isExternal = to.startsWith("http://") || to.startsWith("https://");
 
   return (
-    <RemixLink
+    <Link
       to={to}
       target={target || (isExternal ? "_blank" : undefined)}
       rel={target === "_blank" || isExternal ? "noreferrer" : rel}
-      className={`inline-flex ${className || ""}`}
+      className={`flex items-center ${className || ""}`}
     >
       {children}
       {(target === "_blank" || isExternal) && (
-        <OpenInNewIcon className="ml-4 scale-90" />
+        <OpenInNewIcon className="scale-75 fill-blue-800" />
       )}
-    </RemixLink>
+    </Link>
   );
 }
