@@ -2,22 +2,46 @@ import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
 import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
+import { mockGraphQLResponse } from "../data/principleResponse.ts";
 
 test.describe("test general availability", () => {
+  test.afterEach(async ({ context }) => {
+    for (const page of context.pages()) {
+      await page.close();
+    }
+    await context.close();
+  });
+
   test("landing page to not have breadcrumbs", async ({ page }) => {
     await page.goto(allRoutes[0].url);
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
   });
 
-  test.skip("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
+  test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
     page,
   }) => {
+    test.setTimeout(90000);
+    // Intercept and mock backend GraphQL requests
+    await page.route(
+      "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql",
+      async (route) => {
+        console.log("Intercepting request for:", route.request().url());
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: mockGraphQLResponse,
+          }),
+        });
+      },
+    );
     // Remove first page from allRoutes array
     for (const route of allRoutes.slice(1)) {
       if (route.url.endsWith(".pdf")) {
         continue;
       }
-      await page.goto(route.url);
+      console.log("Checking ", route.url);
+      await page.goto(route.url, { waitUntil: "networkidle" });
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(
         /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
