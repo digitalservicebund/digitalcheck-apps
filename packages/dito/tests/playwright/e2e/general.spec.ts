@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
 import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
-import { mockGraphQLResponse } from "../data/principleResponse.ts";
+import { mockGraphQL } from "../utils/mocks.ts";
 
 test.describe("test general availability", () => {
   test.afterEach(async ({ context }) => {
@@ -22,19 +22,8 @@ test.describe("test general availability", () => {
   }) => {
     test.setTimeout(90000);
     // Intercept and mock backend GraphQL requests
-    await page.route(
-      "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql",
-      async (route) => {
-        console.log("Intercepting request for:", route.request().url());
-        await route.fulfill({
-          status: 200,
-          contentType: "application/json",
-          body: JSON.stringify({
-            data: mockGraphQLResponse,
-          }),
-        });
-      },
-    );
+    await mockGraphQL(page);
+
     // Remove first page from allRoutes array
     for (const route of allRoutes.slice(1)) {
       if (route.url.endsWith(".pdf")) {

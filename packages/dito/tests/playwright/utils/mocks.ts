@@ -1,4 +1,21 @@
-export const mockGraphQLResponse = {
+import { Page } from "@playwright/test";
+
+export async function mockGraphQL(page: Page) {
+  await page.route(
+    "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql",
+    async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          data: mockGraphQLResponse,
+        }),
+      });
+    },
+  );
+}
+
+const mockGraphQLResponse = {
   data: {
     prinzips: [
       {
