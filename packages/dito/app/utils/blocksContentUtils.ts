@@ -72,7 +72,6 @@ export function prependNumberToAbsatz(absatz: AbsatzWithNumber) {
  * ]
  */
 export function nestListInListItems(nodes: Node[]): BlocksContent {
-  console.log("nodes", JSON.stringify(nodes, null, 2));
   const result: Node[] = [];
   let currentListItem: Node | null = null;
 
