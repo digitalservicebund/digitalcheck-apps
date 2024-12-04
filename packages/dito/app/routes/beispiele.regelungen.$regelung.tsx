@@ -165,7 +165,7 @@ export default function Gesetz() {
                   : "",
               },
               {
-                label: regulations.infoLabels[1],
+                key: regulations.infoLabels[1],
                 value: regelung.LinkRegelungstext ? (
                   <CustomLink
                     to={regelung.LinkRegelungstext}
@@ -173,7 +173,7 @@ export default function Gesetz() {
                     rel="noreferrer"
                     className="text-blue-800 underline"
                   >
-                    Gesetzestext
+                    {regulations.infoLabels[1]}
                   </CustomLink>
                 ) : null,
               },

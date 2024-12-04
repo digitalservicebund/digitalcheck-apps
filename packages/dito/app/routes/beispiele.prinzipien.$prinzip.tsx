@@ -142,7 +142,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                       : "",
                   },
                   {
-                    label: regulations.infoLabels[1],
+                    key: regulations.infoLabels[1],
                     value: digitalcheck.Regelungsvorhaben.LinkRegelungstext ? (
                       <CustomLink
                         to={digitalcheck.Regelungsvorhaben.LinkRegelungstext}
@@ -150,7 +150,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                         rel="noreferrer"
                         className="text-blue-800 underline"
                       >
-                        Gesetzestext
+                        {regulations.infoLabels[1]}
                       </CustomLink>
                     ) : null,
                   },
