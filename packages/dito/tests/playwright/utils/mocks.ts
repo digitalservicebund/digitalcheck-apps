@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-export async function mockGraphQL(page: Page) {
+export async function mockGraphQLMainPrinciplePage(page: Page) {
   await page.route(
     "https://secure-dinosaurs-1a634d1a3d.strapiapp.com/graphql",
     async (route) => {
@@ -8,14 +8,14 @@ export async function mockGraphQL(page: Page) {
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          data: mockGraphQLResponse,
+          data: mockGraphQLResponsePrincipleMainPage,
         }),
       });
     },
   );
 }
 
-const mockGraphQLResponse = {
+const mockGraphQLResponsePrincipleMainPage = {
   data: {
     prinzips: [
       {

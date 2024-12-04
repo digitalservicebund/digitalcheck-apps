@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
 import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
-import { mockGraphQL } from "../utils/mocks.ts";
+import { mockGraphQLMainPrinciplePage } from "../utils/mocks.ts";
 
 test.describe("test general availability", () => {
   test.afterEach(async ({ context }) => {
@@ -22,7 +22,7 @@ test.describe("test general availability", () => {
   }) => {
     test.setTimeout(90000);
     // Intercept and mock backend GraphQL requests
-    await mockGraphQL(page);
+    await mockGraphQLMainPrinciplePage(page);
 
     // Remove first page from allRoutes array
     for (const route of allRoutes.slice(1)) {
