@@ -68,9 +68,11 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
       const lawLinks = page.locator(`a[href^="${ROUTE_LAWS.url}"]`);
       await expect(lawLinks.first()).toBeVisible();
 
-      await Promise.all([page.waitForNavigation(), lawLinks.first().click()]);
+      await lawLinks.first().click();
+      await expect(page).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
 
-      expect(page.url()).toMatch(new RegExp(`${ROUTE_LAWS.url}/.+`));
+      const mainContent = page.getByRole("main");
+      await expect(mainContent).toBeVisible();
     });
   }
 });
