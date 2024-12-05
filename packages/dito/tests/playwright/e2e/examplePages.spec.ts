@@ -67,7 +67,7 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
       await page.goto(url);
 
       const lawLinks = page.locator(`a[href^="${ROUTE_LAWS.url}"]`);
-      await expect(lawLinks.first()).toBeVisible({ timeout: 10000 });
+      await expect(lawLinks.first()).toBeVisible();
 
       const [newTab] = await Promise.all([
         context.waitForEvent("page"),
@@ -78,7 +78,7 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
       await expect(newTab).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
 
       const mainContent = newTab.getByRole("main");
-      await expect(mainContent).toBeVisible({ timeout: 10000 });
+      await expect(mainContent).toBeVisible();
     });
   }
 });
