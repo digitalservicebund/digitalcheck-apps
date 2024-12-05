@@ -9,7 +9,6 @@ test.describe("basic example a11y test", () => {
   test("check a11y of all routes", async ({ page }) => {
     for (const route of allRoutes.filter(
       (allRoute) =>
-        !allRoute.url.includes("/beispiele") &&
         !allRoute.url.endsWith(".pdf") &&
         !allRoute.url.endsWith(ROUTE_SUPPORT.url),
     )) {
