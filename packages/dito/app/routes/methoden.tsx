@@ -4,7 +4,7 @@ import Header from "@digitalcheck/shared/components/Header";
 import { BulletList, NumberedList } from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { type MetaFunction } from "@remix-run/react";
+import { Link, type MetaFunction } from "@remix-run/react";
 import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
@@ -20,6 +20,10 @@ interface InfoItem {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   text: string;
 }
+
+export const handle = {
+  breadcrumb: () => <Link to={ROUTE_METHODS.url}>{ROUTE_METHODS.title}</Link>,
+};
 
 export default function Methoden() {
   const renderInfoItem = (info: InfoItem) => (

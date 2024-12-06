@@ -6,7 +6,7 @@ import Header from "@digitalcheck/shared/components/Header";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
 import { ReactNode } from "react";
 import allRoutes from "resources/allRoutes.ts";
@@ -36,6 +36,12 @@ const notFound = new Response("Method page not found", {
   status: 404,
   statusText: "Not Found",
 });
+
+export const handle = {
+  breadcrumb: ({ route }: { route?: { url: string; title: string } }) => {
+    return route ? <Link to={route.url}>{route.title}</Link> : null;
+  },
+};
 
 export function loader({ params }: LoaderFunctionArgs) {
   const { subPage } = params;

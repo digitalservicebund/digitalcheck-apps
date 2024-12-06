@@ -1,5 +1,4 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Breadcrumbs from "@digitalcheck/shared/components/Breadcrumbs";
 import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
@@ -22,11 +21,11 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useLoaderData,
+  useMatches,
   useRouteError,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
 import React, { type ReactNode } from "react";
-import routes from "resources/allRoutes";
 import { header, siteMeta } from "resources/content";
 import {
   ROUTE_A11Y,
@@ -199,6 +198,10 @@ marked.use({
   },
 });
 
+export const handle = {
+  breadcrumb: () => <Link to={ROUTE_LANDING.url}>{ROUTE_LANDING.title}</Link>,
+};
+
 const footerLinks = [
   { url: ROUTE_IMPRINT.url, text: "Impressum" },
   { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
@@ -211,47 +214,69 @@ const footerLinks = [
   { url: ROUTE_SITEMAP.url, text: "Sitemap" },
 ];
 
+type RouteData = { url: string; title: string };
+type Match = {
+  handle?: { breadcrumb: (match: { route?: RouteData }) => React.JSX.Element };
+  data?: { route: RouteData };
+};
+
 const PageHeader = ({
   includeBreadcrumbs = true,
 }: {
   includeBreadcrumbs?: boolean;
-}) => (
-  <header>
-    <div className="min-h-64 p-16 flex justify-between items-center">
-      <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
-        <img src={bundLogo} alt="Logo des Bundes" width={54} />
-      </Link>
-      <div className="flex items-center max-lg:hidden">
-        <div className="ds-label-02-reg text-lg">
-          <span className="font-bold">{header.title}</span>
-          <span className="mx-8">|</span>
-          <Button href="/unterstuetzung" look="ghost">
-            Unterstützungsangebote
-          </Button>
-          <span className="mx-8">|</span>
-          {header.contact.msg}
+}) => {
+  const matches = useMatches() as Match[];
+  return (
+    <header>
+      <div className="min-h-64 p-16 flex justify-between items-center">
+        <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
+          <img src={bundLogo} alt="Logo des Bundes" width={54} />
+        </Link>
+        <div className="flex items-center max-lg:hidden">
+          <div className="ds-label-02-reg text-lg">
+            <span className="font-bold">{header.title}</span>
+            <span className="mx-8">|</span>
+            <Button href="/unterstuetzung" look="ghost">
+              Unterstützungsangebote
+            </Button>
+            <span className="mx-8">|</span>
+            {header.contact.msg}
+          </div>
+          <PhoneOutlined className="mx-8 w-18" />
+          <a
+            href={`tel:${header.contact.number}`}
+            className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click plausible-event-position=header"
+          >
+            {header.contact.number}
+          </a>
         </div>
-        <PhoneOutlined className="mx-8 w-18" />
-        <a
-          href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click plausible-event-position=header"
-        >
-          {header.contact.number}
-        </a>
+        <div className="lg:hidden">
+          <a
+            href="/unterstuetzung"
+            className="ds-link-01-bold text-lg underline"
+          >
+            Kontakt & Unterstützung
+          </a>
+        </div>
       </div>
-      <div className="lg:hidden">
-        <a href="/unterstuetzung" className="ds-link-01-bold text-lg underline">
-          Kontakt & Unterstützung
-        </a>
-      </div>
-    </div>
-    {includeBreadcrumbs && (
-      <Background backgroundColor="blue">
-        <Breadcrumbs breadcrumbs={routes} useIconForHome />
-      </Background>
-    )}
-  </header>
-);
+      {includeBreadcrumbs && (
+        <Background backgroundColor="blue">
+          <ol>
+            {matches
+              .filter((match) => match.handle?.breadcrumb)
+              .map((match, index) => (
+                <li key={index}>
+                  {match?.handle?.breadcrumb({
+                    route: match?.data?.route,
+                  })}
+                </li>
+              ))}
+          </ol>
+        </Background>
+      )}
+    </header>
+  );
+};
 
 function Document({
   children,
@@ -263,7 +288,6 @@ function Document({
   trackingScript: React.ReactNode;
 }>) {
   const nonce = useNonce();
-
   return (
     <html lang="de">
       <head>
