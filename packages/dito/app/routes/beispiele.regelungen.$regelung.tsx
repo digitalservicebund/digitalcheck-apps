@@ -241,7 +241,7 @@ export default function Gesetz() {
                       />
                     </a>
 
-                    <div className="p-12 bg-gray-100">
+                    <div className="p-12 bg-gray-100 break-words">
                       <LabelValuePair
                         label={regulations.visualisations.imageInfo.legalArea}
                         value={regelung.Rechtsgebiet}
