@@ -11,7 +11,7 @@ export function isStandaloneAbsatz(
 }
 
 // Add Absatz number to text by traversing down the content tree to find the first text node and prepending the number
-const prependNumberRecursive = (node: Node, number: number): Node => {
+function prependNumberRecursively(node: Node, number: number): Node {
   if (node.type === "text" && node.text) {
     return {
       ...node,
@@ -23,18 +23,18 @@ const prependNumberRecursive = (node: Node, number: number): Node => {
     return {
       ...node,
       children: [
-        prependNumberRecursive(node.children[0], number),
+        prependNumberRecursively(node.children[0], number),
         ...node.children.slice(1),
       ],
     };
   }
 
   return node;
-};
+}
 
 export function prependNumberToAbsatz(absatz: AbsatzWithNumber) {
   return [
-    prependNumberRecursive(
+    prependNumberRecursively(
       absatz.Text[0],
       absatz.number,
     ) as BlocksContent[number],
