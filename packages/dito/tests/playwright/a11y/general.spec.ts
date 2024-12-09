@@ -23,7 +23,6 @@ test.describe("basic example a11y test", () => {
         await page.goto(redirectedUrl);
       }
 
-      await page.goto(route.url);
       const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
       console.log("Checking A11Y on route:", route.url);
       expect(accessibilityScanResults.violations).toEqual([]);
