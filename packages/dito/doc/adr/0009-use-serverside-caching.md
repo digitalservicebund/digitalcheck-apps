@@ -1,4 +1,4 @@
-# 8. Use Server-Side Caching with NodeCache for Strapi Data Fetching
+# 9. Use Server-Side Caching with NodeCache for Strapi Data Fetching
 
 **Date:** 2024-12-05
 
