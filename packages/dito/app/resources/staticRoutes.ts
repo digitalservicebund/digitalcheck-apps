@@ -1,5 +1,6 @@
 const PRE_CHECK_PDF = "digitalcheck-vorpruefung.pdf";
 const DOCUMENTATION_PDF = "digitalcheck-begleitende-dokumentation.pdf";
+export const TOOLFINDER = "https://visualisieren.digitalcheck.bund.de/";
 
 export type Route = {
   url: string;

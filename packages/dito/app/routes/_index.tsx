@@ -4,12 +4,15 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
+import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon.tsx";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import SupportBanner from "components/SupportBanner";
 import { header, landing } from "resources/content";
+import useFeatureFlag from "../utils/featureFlags.ts";
 
 export default function Index() {
+  const showLinksToTools = useFeatureFlag("digitalcheck.show-links-to-tools");
   return (
     <>
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
@@ -68,6 +71,46 @@ export default function Index() {
           items={landing.summary.items}
         />
       </Container>
+      {showLinksToTools && (
+        <Background
+          backgroundColor="midLightBlue"
+          paddingTop="0"
+          paddingBottom="0"
+        >
+          <Container>
+            <div className="ds-stack-8 gap-8 scroll-my-40">
+              <Heading
+                className="max-sm:ds-heading-02-reg"
+                tagName="h2"
+                text={landing.links.title}
+              />
+              <RichText markdown={landing.links.subtitle} />
+              <div className="flex flex-row max-md:flex-col gap-28 pt-32">
+                {landing.links.items.map((item) => (
+                  <div key={item.label} className="bg-white p-28 rounded-md">
+                    <Box
+                      heading={{
+                        tagName: "h3",
+                        look: "ds-heading-03-bold",
+                        text: item.headline.text,
+                      }}
+                      label={{
+                        text: LabelWithIcon({
+                          ...item,
+                          look: "secondary",
+                        }),
+                      }}
+                      content={{ markdown: item.content }}
+                      buttons={item.buttons}
+                      additionalClassNames="!justify-between h-full"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Background>
+      )}
       <SupportBanner />
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
         <Container>

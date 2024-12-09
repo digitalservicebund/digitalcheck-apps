@@ -3,6 +3,7 @@ import {
   ROUTE_A11Y,
   ROUTE_DOCUMENTATION,
   ROUTE_DOCUMENTATION_STATIC_PDF,
+  ROUTE_EXAMPLES,
   ROUTE_LANDING,
   ROUTE_METHODS,
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
@@ -14,8 +15,10 @@ import {
   ROUTE_PRIVACY,
   ROUTE_RESULT,
   ROUTE_SUPPORT,
+  TOOLFINDER,
 } from "./staticRoutes";
 
+import { DriveFileRenameOutline, Source } from "@digitalservicebund/icons";
 import AdsClickOutlined from "@digitalservicebund/icons/AdsClickOutlined";
 import ArrowCircleRightOutlined from "@digitalservicebund/icons/ArrowCircleRightOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
@@ -183,6 +186,43 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
           text: "Alle Regelungsvorhaben sind betroffen",
         },
         content: `Der Digitalcheck gilt für alle Regelungsvorhaben (Gesetze, Verordnungen und Verwaltungsvorschriften), sowohl für neue Vorhaben als auch für Änderungen an bestehenden Regelungen.`,
+      },
+    ],
+  },
+  links: {
+    title: "Weitere Unterstützungsangebote für Ihr Vorhaben",
+    subtitle:
+      "Nutzen Sie unsere Services die Ihnen dabei helfen digitaltaugliche Regelungen zu schreiben.",
+    items: [
+      {
+        headline: {
+          text: "Werkzeuge für Visualisierung",
+        },
+        label: "Werkzeugfinder",
+        icon: DriveFileRenameOutline,
+        content: `Finden Sie mit dem Werkzeugfinder die passenden Werkzeuge und Methoden, um Prozesse zu visualisieren.`,
+        buttons: [
+          {
+            text: "Werkzeugfinder nutzen",
+            href: TOOLFINDER,
+            look: "tertiary" as const,
+          },
+        ],
+      },
+      {
+        headline: {
+          text: "Digitaltaugliche Beispiele",
+        },
+        label: "Beispielsammlung",
+        icon: Source,
+        content: `Sehen Sie Beispiele von Regelungen an, die digitaltaugliche Aspekte berücksichtigen und die Prinzipien für Digitaltauglichkeit bedacht haben.`,
+        buttons: [
+          {
+            text: "Beispiele ansehen",
+            href: ROUTE_EXAMPLES.url,
+            look: "tertiary" as const,
+          },
+        ],
       },
     ],
   },

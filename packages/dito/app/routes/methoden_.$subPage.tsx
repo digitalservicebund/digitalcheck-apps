@@ -4,11 +4,11 @@ import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Header from "@digitalcheck/shared/components/Header";
 import Image from "@digitalcheck/shared/components/Image";
+import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon.tsx";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
-import { ReactNode } from "react";
 import allRoutes from "resources/allRoutes.ts";
 import {
   collectITSystems,
@@ -59,16 +59,6 @@ export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
     matches,
   );
 };
-
-const LabelWithIcon = (content: {
-  label: string;
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
-}): ReactNode => (
-  <span className="flex gap-4 items-center">
-    <content.icon className="h-12 w-12 mb-2" />
-    {content.label}
-  </span>
-);
 
 export default function Index() {
   const { route } = useLoaderData<typeof loader>();
