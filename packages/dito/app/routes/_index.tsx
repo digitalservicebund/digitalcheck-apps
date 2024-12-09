@@ -90,7 +90,7 @@ export default function Index() {
                   <div key={item.label} className="bg-white p-28 rounded-md">
                     <Box
                       heading={{
-                        tagName: "h3",
+                        tagName: "h2",
                         look: "ds-heading-03-bold",
                         text: item.headline.text,
                       }}
@@ -115,7 +115,7 @@ export default function Index() {
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
         <Container>
           <div className="ds-stack-16 scroll-my-40">
-            <Heading tagName="h3" text={landing.principals.title} />
+            <Heading tagName="h2" text={landing.principals.title} />
             <RichText
               markdown={landing.principals.content}
               className="!mt-32 !ds-stack-16
