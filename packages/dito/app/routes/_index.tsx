@@ -78,14 +78,14 @@ export default function Index() {
           paddingBottom="0"
         >
           <Container>
-            <div className="ds-stack-8 gap-8 scroll-my-40">
+            <div className="ds-stack-8 scroll-my-40">
               <Heading
                 className="max-sm:ds-heading-02-reg"
                 tagName="h2"
                 text={landing.links.title}
               />
               <RichText markdown={landing.links.subtitle} />
-              <div className="flex flex-row max-md:flex-col gap-28 pt-32">
+              <div className="flex flex-row max-md:flex-col gap-24 pt-32">
                 {landing.links.items.map((item) => (
                   <div key={item.label} className="bg-white p-28 rounded-md">
                     <Box

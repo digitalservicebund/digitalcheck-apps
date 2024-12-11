@@ -16,7 +16,7 @@ function LabelWithIcon(content: {
   });
   const wrapperClassNames = classNames({
     "gap-4": look == "primary",
-    "gap-8": look == "secondary",
+    "gap-12": look == "secondary",
   });
 
   return (
