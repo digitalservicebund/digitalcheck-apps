@@ -90,7 +90,7 @@ export default function Index() {
                   <div key={item.label} className="bg-white p-28 rounded-md">
                     <Box
                       heading={{
-                        tagName: "h2",
+                        tagName: "h3",
                         look: "ds-heading-03-bold",
                         text: item.headline.text,
                       }}
