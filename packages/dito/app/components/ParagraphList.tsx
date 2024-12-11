@@ -100,7 +100,7 @@ const PrincipleExplanation = ({
   const shouldHighlight = location.hash === `#${id}`;
   const color = HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer];
   const explanationClasses = classNames(
-    "p-4 w-fit min-w-[642px]",
+    "p-4 w-fit max-w-[642px]",
     color.border,
     {
       "border-4": shouldHighlight,
