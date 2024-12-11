@@ -410,12 +410,11 @@ export const preCheck = {
       text: "**Praxisbeispiel**: Ein Vorhaben sieht vor, dass Bürger:innen in der EU eine digitale Identitäts-Wallet nutzen können, die von ihrem Heimatstaat ausgestellt wird. Diese Wallet erlaubt es, Identitätsnachweise und Dokumente (z. B. Führerscheine, Berufsqualifikationen) grenzüberschreitend zu verwenden. Damit andere Mitgliedstaaten diese Nachweise anerkennen können, ist ein Austausch von Daten und harmonisierten Standards erforderlich, um deren Echtheit zu überprüfen.",
       hint: {
         title: "Wen betrifft dieser Daten- und Informationsaustausch?",
-        text: `Interaktionen beschreiben die Zusammenarbeit und den Austausch von Daten und Informationen zwischen digitalen öffentlichen Diensten von EU-Mitgliedsstaaten:
+        text: `Daten und Informationen können zwischen den digitalen öffentlichen Diensten in der EU ausgetauscht werden:
       <br />
-- grenzüberschreitend zwischen öffentlichen Verwaltungen von EU-Mitgliedsstaaten,
-- zwischen Institutionen der EU oder
-- Unternehmen und 
-- zwischen Institutionen der EU und der öffentlichen Verwaltung.`,
+- Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben oder Dienste zu erfüllen.
+- Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
+- Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.`,
       },
     },
   ].map((question, index, questions) => ({
