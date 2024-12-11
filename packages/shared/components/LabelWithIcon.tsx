@@ -20,10 +20,10 @@ function LabelWithIcon(content: {
   });
 
   return (
-    <span className={`flex items-center ${wrapperClassNames}`}>
+    <div className={`flex items-center ${wrapperClassNames}`}>
       <content.icon className={`h-12 w-12 mb-2 ${iconClassNames}`} />
       <span className={`${labelClassNames}`}>{content.label}</span>
-    </span>
+    </div>
   );
 }
 

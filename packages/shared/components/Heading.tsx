@@ -17,6 +17,7 @@ function Heading({
   look,
   id,
   children,
+  ...additionalProps
 }: HeadingProps) {
   const Tag = tagName as keyof React.JSX.IntrinsicElements;
   const cssClasses = classNames(
@@ -27,7 +28,7 @@ function Heading({
 
   if (children) {
     return (
-      <Tag id={id} className={cssClasses}>
+      <Tag id={id} className={cssClasses} {...additionalProps}>
         {children || text}
       </Tag>
     );
@@ -36,6 +37,7 @@ function Heading({
     <Tag
       id={id}
       className={cssClasses}
+      {...additionalProps}
       dangerouslySetInnerHTML={{
         __html: text ?? "",
       }}

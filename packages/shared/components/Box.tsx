@@ -21,6 +21,8 @@ const Box = ({
   buttons,
   additionalClassNames,
 }: BoxProps) => {
+  const headingId = heading?.id || Math.random().toString(36).slice(2);
+  const labelId = `${headingId}-label`;
   return (
     <div
       className={classNames(
@@ -32,17 +34,22 @@ const Box = ({
     >
       <div className="ds-stack-8">
         {label && (
-          <Heading tagName="div" look="ds-label-section text-gray-900">
-            {/* Visually styled label */}
-            <span aria-hidden="true">{label.text || label.children}</span>
-            {/* Accessible label for screen readers */}
-            <span role="heading" aria-level={1} className="sr-only">
-              {label.text || label.children}
-            </span>
-            {/* Render as children if provided */}
+          <Heading
+            tagName="div"
+            look="ds-label-section text-gray-900"
+            id={labelId}
+          >
+            <span>{label.text || label.children}</span>
           </Heading>
         )}
-        {heading && <Heading tagName="h2" {...heading} />}
+        {heading && (
+          <Heading
+            tagName="h2"
+            id={headingId}
+            {...heading}
+            aria-labelledby={`${labelId} ${headingId}`}
+          />
+        )}
         {content && <RichText {...content} />}
       </div>
       {buttons && buttons.length > 0 && <ButtonContainer buttons={buttons} />}
