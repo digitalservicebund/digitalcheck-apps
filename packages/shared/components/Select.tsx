@@ -41,6 +41,7 @@ const Select = ({
       <select
         name={name}
         id={name}
+        data-testid={name}
         className={selectClassName}
         value={value}
         onChange={onChange}

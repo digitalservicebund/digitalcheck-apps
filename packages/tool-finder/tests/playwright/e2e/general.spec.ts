@@ -43,7 +43,7 @@ test.describe("test links", () => {
       "Startseite/Werkzeugfinder für Visualisierungen",
     );
 
-    await page.getByLabel("Ressort").selectOption("bmi");
+    await page.getByTestId("ressort").selectOption("bmi");
     await page.getByLabel("Für meinen Austausch").check();
     await page.getByLabel("Interaktionen von Akteuren").check();
     await page.getByRole("button", { name: "Werkzeug suchen" }).click();

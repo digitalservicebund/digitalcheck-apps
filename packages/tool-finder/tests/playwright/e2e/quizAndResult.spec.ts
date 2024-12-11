@@ -4,7 +4,7 @@ import { getAllObjects } from "persistance/repository";
 import * as allRoutes from "routes/index";
 
 async function fillOutForm(page: Page) {
-  await page.getByLabel("Ressort").selectOption("bmi");
+  await page.getByTestId("ressort").selectOption("bmi");
   await page.getByLabel("Für meinen Austausch").check();
   await page.getByLabel("Interaktionen von Akteuren").check();
 }
@@ -87,14 +87,14 @@ test.describe("test result page", () => {
   test("change selection button works", async ({ page }) => {
     await page.getByRole("link", { name: "Eingaben ändern" }).click();
     await expect(page).toHaveURL(allRoutes.PATH_QUIZ);
-    await expect(page.getByLabel("Ressort")).toHaveValue("bmi");
+    await expect(page.getByTestId("ressort")).toHaveValue("bmi");
     await expect(page.getByLabel("Interaktionen von Akteuren")).toBeChecked();
     await expect(page.getByLabel("Für meinen Austausch")).toBeChecked();
   });
 
   test("going to info page resets state", async ({ page }) => {
     await page.goto(allRoutes.PATH_QUIZ);
-    await expect(page.getByLabel("Ressort")).toHaveValue("bmi");
+    await expect(page.getByTestId("ressort")).toHaveValue("bmi");
     await expect(page.getByLabel("Interaktionen von Akteuren")).toBeChecked();
     await expect(page.getByLabel("Für meinen Austausch")).toBeChecked();
     await page.goto(allRoutes.PATH_INFO);
@@ -102,7 +102,7 @@ test.describe("test result page", () => {
       page.getByRole("link", { name: "Werkzeug finden" }),
     ).toBeVisible();
     await page.goto(allRoutes.PATH_QUIZ);
-    await expect(page.getByLabel("Ressort")).toHaveValue("");
+    await expect(page.getByTestId("ressort")).toHaveValue("");
     await expect(
       page.getByLabel("Interaktionen von Akteuren"),
     ).not.toBeChecked();
