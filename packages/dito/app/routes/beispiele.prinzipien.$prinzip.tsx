@@ -117,60 +117,66 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
       </Background>
       {GuteUmsetzungen.length > 0 && (
         <Container additionalClassNames="rich-text ds-stack-64">
-          {GuteUmsetzungen.map((digitalcheck) => (
-            <div key={digitalcheck.documentId}>
-              <Link
-                target="_blank"
-                to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
-                rel="noreferrer"
-                prefetch="viewport"
-              >
-                <Heading
-                  tagName="h2"
-                  text={digitalcheck.Regelungsvorhaben.Titel}
-                  look="ds-heading-03-bold"
-                  className="inline max-w-full"
-                />
-                <OpenInNewIcon className="!inline scale-90 ml-4 mb-6 fill-blue-800" />
-              </Link>
-              <InlineInfoList
-                className="my-32 pl-16"
-                items={[
-                  {
-                    label: regulations.infoLabels[0],
-                    value: digitalcheck.Regelungsvorhaben
-                      .VeroeffentlichungsDatum
-                      ? formatDate(
-                          digitalcheck.Regelungsvorhaben
-                            .VeroeffentlichungsDatum,
-                        )
-                      : "",
-                  },
-                  {
-                    key: regulations.infoLabels[1],
-                    value: digitalcheck.Regelungsvorhaben.LinkRegelungstext ? (
-                      <CustomLink
-                        to={digitalcheck.Regelungsvorhaben.LinkRegelungstext}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-blue-800 underline"
-                      >
-                        {regulations.infoLabels[1]}
-                      </CustomLink>
-                    ) : null,
-                  },
-                  {
-                    label: regulations.infoLabels[2],
-                    value: digitalcheck.Regelungsvorhaben.Ressort,
-                  },
-                ]}
-              />
-              <ParagraphList
-                paragraphs={digitalcheck.Paragraphen}
-                principlesToShow={[prinzip]}
-              />
-            </div>
-          ))}
+          {GuteUmsetzungen.map(
+            (digitalcheck) =>
+              digitalcheck.Regelungsvorhaben && (
+                <div key={digitalcheck.documentId}>
+                  <Link
+                    target="_blank"
+                    to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}
+                    rel="noreferrer"
+                    prefetch="viewport"
+                  >
+                    <Heading
+                      tagName="h2"
+                      text={digitalcheck.Regelungsvorhaben.Titel}
+                      look="ds-heading-03-bold"
+                      className="inline max-w-full"
+                    />
+                    <OpenInNewIcon className="!inline scale-90 ml-4 mb-6 fill-blue-800" />
+                  </Link>
+                  <InlineInfoList
+                    className="my-32 pl-16"
+                    items={[
+                      {
+                        label: regulations.infoLabels[0],
+                        value: digitalcheck.Regelungsvorhaben
+                          .VeroeffentlichungsDatum
+                          ? formatDate(
+                              digitalcheck.Regelungsvorhaben
+                                .VeroeffentlichungsDatum,
+                            )
+                          : "",
+                      },
+                      {
+                        key: regulations.infoLabels[1],
+                        value: digitalcheck.Regelungsvorhaben
+                          .LinkRegelungstext ? (
+                          <CustomLink
+                            to={
+                              digitalcheck.Regelungsvorhaben.LinkRegelungstext
+                            }
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-800 underline"
+                          >
+                            {regulations.infoLabels[1]}
+                          </CustomLink>
+                        ) : null,
+                      },
+                      {
+                        label: regulations.infoLabels[2],
+                        value: digitalcheck.Regelungsvorhaben.Ressort,
+                      },
+                    ]}
+                  />
+                  <ParagraphList
+                    paragraphs={digitalcheck.Paragraphen}
+                    principlesToShow={[prinzip]}
+                  />
+                </div>
+              ),
+          )}
         </Container>
       )}
       <div className="my-40">

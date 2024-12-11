@@ -49,7 +49,7 @@ export type Paragraph = {
   Gesetz: string;
   Titel?: string;
   Artikel?: string;
-  Digitalcheck: Digitalcheck;
+  Digitalcheck?: Digitalcheck;
   Absaetze: Absatz[];
 };
 
@@ -85,7 +85,7 @@ export type Digitalcheck = {
   EinschaetzungDatenschutz: EinschaetzungReferat;
   EinschaetzungKlareRegelungen: EinschaetzungReferat;
   EinschaetzungAutomatisierung: EinschaetzungReferat;
-  Regelungsvorhaben: Regelungsvorhaben;
+  Regelungsvorhaben?: Regelungsvorhaben;
   Paragraphen: Paragraph[];
   Visualisierungen: Visualisierung[];
 };
