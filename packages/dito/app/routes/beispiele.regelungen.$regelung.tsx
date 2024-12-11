@@ -86,6 +86,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response(regelungData.error, { status: 400 });
   }
 
+  if (regelungData.regelungsvorhabens.length === 0) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw new Response("No Regelung for slug found", { status: 404 });
+  }
+
   return regelungData.regelungsvorhabens[0];
 };
 

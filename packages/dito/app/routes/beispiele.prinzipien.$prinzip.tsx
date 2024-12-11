@@ -66,6 +66,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response(prinzipData.error, { status: 400 });
   }
 
+  if (prinzipData.prinzips.length === 0) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw new Response("No Prinzip for slug found", { status: 404 });
+  }
+
   return { prinzip: prinzipData.prinzips[0] };
 };
 
