@@ -1,4 +1,5 @@
 import Check from "@digitalservicebund/icons/Check";
+import { Link } from "@remix-run/react";
 import classNames from "classnames";
 import { useId } from "react";
 import { preCheck } from "resources/content";
@@ -77,8 +78,8 @@ function NavItem({
 
   return (
     <li className={liClassNames}>
-      <a
-        href={url}
+      <Link
+        to={url}
         className={itemClassNames}
         aria-disabled={isDisabled || isCurrent}
         aria-current={isCurrent}
@@ -86,7 +87,7 @@ function NavItem({
       >
         {isDone && <Check id={iconId} className="shrink-0" />}
         <span title={label}>{label}</span>
-      </a>
+      </Link>
     </li>
   );
 }
