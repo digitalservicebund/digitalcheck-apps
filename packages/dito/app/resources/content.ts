@@ -398,6 +398,26 @@ export const preCheck = {
 - weitere Organisationen wie z.B. Vereine.`,
       },
     },
+    {
+      id: "eu-bezug",
+      title: "EU-Bezug",
+      question:
+        "Ist durch die Regelung vorgesehen, dass Daten und Informationen zwischen Verwaltungen von EU-Mitgliedsstaaten ausgetauscht werden?",
+      positiveResult:
+        "einem Daten- und Informationsaustausch zwischen EU-Mitgliedsstaaten.",
+      negativeResult:
+        "keinem Daten- und Informationsaustausch zwischen EU-Mitgliedsstaaten.",
+      text: "**Praxisbeispiel**: Ein Vorhaben sieht vor, dass Bürger:innen in der EU eine digitale Identitäts-Wallet nutzen können, die von ihrem Heimatstaat ausgestellt wird. Diese Wallet erlaubt es, Identitätsnachweise und Dokumente (z. B. Führerscheine, Berufsqualifikationen) grenzüberschreitend zu verwenden. Damit andere Mitgliedstaaten diese Nachweise anerkennen können, ist ein Austausch von Daten und harmonisierten Standards erforderlich, um deren Echtheit zu überprüfen.",
+      hint: {
+        title: "Wen betrifft dieser Daten- und Informationsaustausch?",
+        text: `Interaktionen beschreiben die Zusammenarbeit und den Austausch von Daten und Informationen zwischen digitalen öffentlichen Diensten von EU-Mitgliedsstaaten:
+      <br />
+- grenzüberschreitend zwischen öffentlichen Verwaltungen von EU-Mitgliedsstaaten,
+- zwischen Institutionen der EU oder
+- Unternehmen und 
+- zwischen Institutionen der EU und der öffentlichen Verwaltung.`,
+      },
+    },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
     ...question,
