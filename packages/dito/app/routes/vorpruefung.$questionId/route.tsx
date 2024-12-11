@@ -1,18 +1,12 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
-import ProgressBar from "@digitalcheck/shared/components/ProgressBar.tsx";
 import Question from "@digitalcheck/shared/components/Question";
 import {
   ActionFunctionArgs,
   json,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import {
-  MetaFunction,
-  redirect,
-  useLoaderData,
-  useNavigate,
-} from "@remix-run/react";
+import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
 import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
@@ -25,6 +19,7 @@ import {
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import { z } from "zod";
+import LinkBar from "../../components/LinkBar";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
@@ -152,15 +147,6 @@ export default function Index() {
     }),
   );
 
-  const navigate = useNavigate();
-
-  const handleQuestionClick = (
-    index: number,
-    question: { id: string; url: string },
-  ) => {
-    navigate(question.url);
-  };
-
   return (
     <div className="flex bg-blue-100 sm:pt-32">
       <div className="hidden lg:block flex-none pl-32">
@@ -168,12 +154,7 @@ export default function Index() {
       </div>
       <section>
         <Container paddingTop="0" additionalClassNames="lg:hidden">
-          <ProgressBar
-            totalElements={questions.length}
-            currentElementIndex={questionIdx}
-            elements={questions}
-            onElementClick={handleQuestionClick}
-          />
+          <LinkBar currentElement={question} elements={questions} />
         </Container>
         <form {...form.getFormProps()}>
           <input type="hidden" name="questionId" value={question.id} />
