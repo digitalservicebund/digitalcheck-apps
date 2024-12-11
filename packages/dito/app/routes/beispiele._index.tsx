@@ -2,14 +2,13 @@ import Background from "@digitalcheck/shared/components/Background.tsx";
 import Box from "@digitalcheck/shared/components/Box.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import {
   MetaFunction,
   PrefetchPageLinks,
   useOutletContext,
 } from "@remix-run/react";
 import { Prinzip } from "utils/strapiData.server.ts";
-import { digitalSuitability, header } from "../resources/content.ts";
+import { digitalSuitability } from "../resources/content.ts";
 import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 
@@ -33,11 +32,6 @@ export default function Digitaltauglichkeit_index() {
               className: "md:text-2xl",
             }}
           ></Header>
-        </Container>
-      </Background>
-      <Background backgroundColor="yellow">
-        <Container paddingTop="10" paddingBottom="10">
-          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container>

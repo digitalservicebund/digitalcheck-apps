@@ -5,10 +5,9 @@ import Header from "@digitalcheck/shared/components/Header";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { NumberedList } from "@digitalcheck/shared/components/List";
-import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
-import { documentation, header } from "resources/content";
+import { documentation } from "resources/content";
 import { ROUTE_DOCUMENTATION } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
 
@@ -32,11 +31,6 @@ export default function Index() {
             }}
           />
           <ButtonContainer className="mt-48" buttons={documentation.buttons} />
-        </Container>
-      </Background>
-      <Background backgroundColor="yellow">
-        <Container paddingTop="10" paddingBottom="10">
-          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container additionalClassNames="max-sm:!p-0">

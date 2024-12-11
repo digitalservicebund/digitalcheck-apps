@@ -8,7 +8,7 @@ import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon.tsx";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import SupportBanner from "components/SupportBanner";
-import { header, landing } from "resources/content";
+import { landing } from "resources/content";
 import { useFeatureFlag } from "../utils/featureFlags.ts";
 
 export default function Index() {
@@ -27,11 +27,6 @@ export default function Index() {
               className: "md:text-2xl",
             }}
           ></Header>
-        </Container>
-      </Background>
-      <Background backgroundColor="yellow">
-        <Container paddingTop="10" paddingBottom="10">
-          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container>

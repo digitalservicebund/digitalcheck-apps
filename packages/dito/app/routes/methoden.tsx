@@ -3,12 +3,11 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import { BulletList, NumberedList } from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
-import RichText from "@digitalcheck/shared/components/RichText";
 import { type MetaFunction } from "@remix-run/react";
 import FeedbackForm from "components/FeedbackForm.tsx";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
-import { header, methods } from "resources/content";
+import { methods } from "resources/content";
 import { ROUTE_METHODS } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
 
@@ -58,11 +57,6 @@ export default function Methoden() {
               className: "md:text-2xl",
             }}
           ></Header>
-        </Container>
-      </Background>
-      <Background backgroundColor="yellow">
-        <Container paddingTop="10" paddingBottom="10">
-          <RichText markdown={header.underConstruction}></RichText>
         </Container>
       </Background>
       <Container>
