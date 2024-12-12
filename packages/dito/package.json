@@ -25,6 +25,7 @@
     "@remix-run/node": "^2.15.0",
     "@remix-run/react": "^2.15.0",
     "@remix-run/serve": "^2.15.0",
+    "@remix-run/testing": "^2.15.1",
     "@rvf/remix": "^6.3.0",
     "@rvf/zod": "^6.0.0",
     "@strapi/blocks-react-renderer": "^1.0.1",
