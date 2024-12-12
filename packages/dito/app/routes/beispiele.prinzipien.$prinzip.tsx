@@ -120,7 +120,10 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
           {GuteUmsetzungen.map(
             (digitalcheck) =>
               digitalcheck.Regelungsvorhaben && (
-                <div key={digitalcheck.documentId}>
+                <div
+                  key={digitalcheck.documentId}
+                  data-testid="regelung-on-prinzip"
+                >
                   <Link
                     target="_blank"
                     to={`${ROUTE_LAWS.url}/${digitalcheck.Regelungsvorhaben.URLBezeichnung}`}

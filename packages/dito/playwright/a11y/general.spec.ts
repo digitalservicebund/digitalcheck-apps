@@ -29,19 +29,23 @@ test.describe("basic example a11y test", () => {
     }
   });
 
-  test("check a11y of example pages", async ({ page, context }) => {
+  test("check a11y of example pages", async ({ page }) => {
     await page.goto(
       `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
     );
-    const [newTab] = await Promise.all([
-      context.waitForEvent("page"),
-      page.click("Register"),
-    ]);
-    await newTab.waitForLoadState("domcontentloaded");
 
-    const accessibilityScanResults = await new AxeBuilder({
-      page: newTab,
-    }).analyze();
+    const principleScanResults = await new AxeBuilder({ page }).analyze();
+    expect(principleScanResults.violations).toEqual([]);
+
+    // get URL of first regelung from page
+    const regelungUrl = await page.getAttribute(
+      '[data-testid="regelung-on-prinzip"] a',
+      "href",
+    );
+    expect(regelungUrl).not.toBeNull();
+    await page.goto(regelungUrl!);
+
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
