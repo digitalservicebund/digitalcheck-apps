@@ -290,9 +290,11 @@ function Paragraph({
   return (
     <div key={paragraph.Nummer}>
       <div className="ds-stack-8 rich-text">
-        <p className="ds-label-01-bold">
-          § {paragraph.Nummer} {paragraph.Gesetz}
-        </p>
+        <Heading
+          tagName="h3"
+          text={`§ ${paragraph.Nummer} ${paragraph.Gesetz}`}
+          look="ds-label-01-bold"
+        />
         <p className="ds-label-01-bold">{paragraph.Titel}</p>
         <div className="border-l-4 border-gray-300 pl-8 ds-stack-16">
           {groupedAbsaetze.map((absatzGroup) => (
