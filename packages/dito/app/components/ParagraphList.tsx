@@ -112,7 +112,7 @@ const PrincipleExplanation = ({
     <div className={explanationClasses} id={id}>
       <div className="flex gap-4 content-center">
         <Heading
-          tagName="h3"
+          tagName="h4"
           text={`Prinzip ${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
           look="ds-label-01-bold"
         />
