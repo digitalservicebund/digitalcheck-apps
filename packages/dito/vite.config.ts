@@ -14,13 +14,13 @@ export default defineConfig({
         },
       ],
     }),
-    remix(),
+    !process.env.VITEST && remix(),
     tsconfigPaths(),
   ],
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: ["vitest-setup.ts"],
-    include: ["app/**/*.spec.ts"],
+    include: ["app/**/*.spec.ts*"],
   },
 });
