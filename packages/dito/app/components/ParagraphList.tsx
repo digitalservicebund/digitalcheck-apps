@@ -65,7 +65,7 @@ function PrincipleHighlight(
       replace
       to={`#${explanationID(baseLabelID, number)}`}
       onClick={() => onClick(highlightID, number)}
-      aria-labelledby={baseLabelID}
+      aria-label={`Erfüllt Prinzip ${number}: ${parts[0]}`}
       className="!no-underline"
     >
       <mark className={`ds-body-01-reg ${HIGHLIGHT_COLORS[number].background}`}>
