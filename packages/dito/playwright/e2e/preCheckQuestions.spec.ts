@@ -263,4 +263,62 @@ test.describe("test question navigation", () => {
         .getByTestId("CheckIcon"),
     ).toBeVisible();
   });
+
+  test("Navigation with LinkBar works and restricts unanswered questions", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ height: 600, width: 360 });
+
+    await page.goto(questions[0].url);
+
+    // Answer the first question
+    await page.getByLabel("Ja").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+
+    const linkBar = page.locator(".lg\\:hidden .flex");
+
+    // Check that the first question link has a light color
+    await expect(linkBar.locator(`a[href="${questions[0].url}"]`)).toHaveClass(
+      /bg-blue-300/,
+    );
+
+    // Check that the second question link has a dark color
+    await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
+      /bg-blue-800/,
+    );
+
+    // Navigate to answered question
+    await linkBar.locator(`a[href="${questions[0].url}"]`).click();
+    await expect(page).toHaveURL(questions[0].url);
+
+    // Navigate back to second question
+    await linkBar.locator(`a[href="${questions[1].url}"]`).click();
+    await expect(page).toHaveURL(questions[1].url);
+
+    // Navigation to next (unanswered) question is not possible
+    const unansweredQuestionLink = linkBar.locator(
+      `a[href="${questions[2].url}"]`,
+    );
+    const originalURL = page.url();
+    await unansweredQuestionLink.click();
+    await expect(page).toHaveURL(originalURL);
+
+    // Answer the second question
+    await page.getByLabel("Ja").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+
+    // Check that the second question link now has a light color
+    await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
+      /bg-blue-300/,
+    );
+
+    // Check that the third question link has a dark color
+    await expect(linkBar.locator(`a[href="${questions[2].url}"]`)).toHaveClass(
+      /bg-blue-800/,
+    );
+
+    // Clicking on second question should now navigate
+    await linkBar.locator(`a[href="${questions[1].url}"]`).click();
+    await expect(page).toHaveURL(questions[1].url);
+  });
 });
