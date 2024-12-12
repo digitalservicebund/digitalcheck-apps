@@ -2,7 +2,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import baseConfig from "../../../../playwright.config-base";
+import baseConfig from "../../../playwright.config-base";
 
 // Get the directory name of the current module
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

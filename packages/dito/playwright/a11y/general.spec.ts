@@ -2,7 +2,7 @@ import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 import allRoutes from "resources/allRoutes";
-import { ROUTE_SUPPORT } from "resources/staticRoutes";
+import { ROUTE_PRINCIPLES, ROUTE_SUPPORT } from "resources/staticRoutes";
 
 test.describe("basic example a11y test", () => {
   test.setTimeout(60000);
@@ -27,5 +27,21 @@ test.describe("basic example a11y test", () => {
       console.log("Checking A11Y on route:", route.url);
       expect(accessibilityScanResults.violations).toEqual([]);
     }
+  });
+
+  test("check a11y of example pages", async ({ page, context }) => {
+    await page.goto(
+      `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
+    );
+    const [newTab] = await Promise.all([
+      context.waitForEvent("page"),
+      page.click("Register"),
+    ]);
+    await newTab.waitForLoadState("domcontentloaded");
+
+    const accessibilityScanResults = await new AxeBuilder({
+      page: newTab,
+    }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
