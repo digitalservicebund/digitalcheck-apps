@@ -124,20 +124,20 @@ export default function Gesetz() {
             {regelung.Digitalchecks.map((digitalcheck, index) => (
               <React.Fragment key={digitalcheck.documentId}>
                 <li>
-                  ↓{" "}
+                  ↓
                   <Link
                     to={`#${slugify(regulations.principles.title)}-${index}`}
-                    className="underline underline-offset-4 decoration-1"
+                    className="ml-4 underline underline-offset-4 decoration-1"
                   >
                     {regulations.principles.title}
                   </Link>
                 </li>
                 {digitalcheck.Visualisierungen.length > 0 && (
                   <li>
-                    ↓{" "}
+                    ↓
                     <Link
                       to={`#${slugify(regulations.visualisations.title)}-${index}`}
-                      className="underline underline-offset-4 decoration-1"
+                      className="ml-4 underline underline-offset-4 decoration-1"
                     >
                       {regulations.visualisations.title}
                     </Link>
@@ -145,10 +145,10 @@ export default function Gesetz() {
                 )}
                 {digitalcheck.NKRStellungnahmeDCText && (
                   <li>
-                    ↓{" "}
+                    ↓
                     <Link
                       to={`#${slugify(regulations.nkr.title)}-${index}`}
-                      className="underline underline-offset-4 decoration-1"
+                      className="ml-4 underline underline-offset-4 decoration-1"
                     >
                       {regulations.nkr.title}
                     </Link>
