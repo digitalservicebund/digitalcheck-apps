@@ -274,15 +274,24 @@ test("Reasoning is only shown for relevant Prinzip", () => {
 
 test("Clicking on Mark highlights Reasoning and adds backlink", () => {
   render(<RemixStubAllPrinciples />);
+  const id = "warumGut-1-1";
+  const firstMark = screen.getByText("Text mit 1Markierung").closest("a");
+  console.log(firstMark);
+  expect(firstMark).toHaveAttribute("href", `/#${id}`);
+
+  // clicking on mark removes highlighting and backlink
   act(() => {
-    screen.getByText("Text mit 1Markierung").click();
+    firstMark?.click();
   });
-  expect(screen.getByTestId("warumGut-1-1")).toHaveClass("border-4");
-  expect(screen.getByLabelText("Zurück zum Text")).toBeVisible();
+  expect(screen.getByTestId(id)).toHaveClass("border-4");
+  const backlink = screen.getByLabelText("Zurück zum Text");
+  expect(backlink).toHaveAttribute("href", `/#${firstMark?.id}`);
+  expect(backlink).toBeVisible();
+
+  // clicking on backlink removes highlighting and backlink
   act(() => {
     screen.getByLabelText("Zurück zum Text").click();
   });
-  // clicking on backlink removes highlighting and backlink
   expect(screen.getByTestId("warumGut-1-1")).toHaveClass("border-l-4");
   expect(screen.getByTestId("warumGut-1-1")).not.toHaveClass("border-4");
   expect(screen.queryByLabelText("Zurück zum Text")).not.toBeInTheDocument();
