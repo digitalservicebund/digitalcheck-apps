@@ -167,8 +167,8 @@ export default function FeedbackForm() {
     if (window.plausible) {
       window.plausible("Feedback Methoden", {
         props: {
-          questionSimple: simpleFeedback?.toString() || "No Feedback",
-          questionUseful: usefulFeedback?.toString() || "No Feedback",
+          questionSimple: simpleFeedback ?? "No Feedback",
+          questionUseful: usefulFeedback ?? "No Feedback",
         },
       });
     }
