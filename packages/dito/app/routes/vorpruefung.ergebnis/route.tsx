@@ -85,7 +85,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const uniqueUrl = (await uniqueResponse.json()).url as string;
   if (_action === "email") {
     const emailTemplate = preCheck.result.form.emailTemplate;
-    const subject = `${emailTemplate.subject}: „${formData.get("title")}“`;
+    const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
     const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
     const mailToLink = encodeURI(
       `mailto:${emailTemplate.to}?subject=${subject}&body=${body}`,
