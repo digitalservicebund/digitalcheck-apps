@@ -39,7 +39,7 @@ const ABSAETZE: Absatz[] = [
         children: [
           { type: "text", text: "Text" },
           { type: "text", text: "Text mit 1Markierung[1]", underline: true },
-          { type: "text", text: "Text" },
+          { type: "text", text: "Textohne" },
         ],
       },
     ],
@@ -79,6 +79,27 @@ const ABSAETZE: Absatz[] = [
       },
     ],
   },
+  {
+    id: 4,
+    Text: [
+      {
+        type: "paragraph",
+        children: [
+          { type: "text", text: "Text" },
+          { type: "text", text: "mitmit[2]", underline: true },
+          { type: "text", text: "mehreren" },
+          { type: "text", text: "2Markierungen[2]", underline: true },
+        ],
+      },
+    ],
+    PrinzipErfuellungen: [
+      {
+        id: 2,
+        Prinzip: PRINZIPS[1],
+        WarumGut: [],
+      },
+    ],
+  },
 ];
 
 const PARAGRAPHS: Paragraph[] = [
@@ -104,6 +125,39 @@ const RemixStubAllPrinciples = createRemixStub([
   },
 ]);
 
+test("Has heading with paragraph number and law", () => {
+  render(<RemixStubAllPrinciples />);
+  expect(screen.getByText("§ 2 GG")).toBeVisible();
+});
+
+test("Mark of Prinzip is shown", () => {
+  render(<RemixStubAllPrinciples />);
+
+  expect(screen.queryByText("Text mit 1Markierung[1]")).not.toBeInTheDocument();
+  expect(screen.queryByText("Text mit 3Markierung[3]")).not.toBeInTheDocument();
+  expect(
+    screen.queryByText("(3) Text mit 3Markierung[3]"),
+  ).not.toBeInTheDocument();
+  expect(screen.getByText("P1")).toBeVisible();
+  expect(screen.getByText("P3")).toBeVisible();
+  expect(screen.getByText("Text mit 1Markierung")).toBeVisible();
+  expect(screen.getByText("(3) Text mit 3Markierung")).toBeVisible();
+  expect(screen.getByText("Text mit 1Markierung")).toHaveRole("mark");
+  expect(screen.getByText("(3) Text mit 3Markierung")).toHaveRole("mark");
+});
+
+test("Text without underline is not marked", () => {
+  render(<RemixStubAllPrinciples />);
+  expect(screen.getByText(/Textohne/)).not.toHaveRole("mark");
+});
+
+test("Absatz 2 without Mark is collapsed", () => {
+  render(<RemixStubAllPrinciples />);
+  expect(screen.getByText("(2)")).toBeVisible();
+  expect(screen.getByText("(2) Text ohne Markierung")).toBeInTheDocument();
+  expect(screen.getByText("(2) Text ohne Markierung")).not.toBeVisible();
+});
+
 const RemixStubFirstPrinciple = createRemixStub([
   {
     path: "/",
@@ -115,39 +169,15 @@ const RemixStubFirstPrinciple = createRemixStub([
   },
 ]);
 
-test("Has heading with paragraph number and law", () => {
-  render(<RemixStubAllPrinciples />);
-  expect(screen.getByText("§ 2 GG")).toBeInTheDocument();
-});
-
-test("Mark of Prinzip is shown", () => {
-  render(<RemixStubAllPrinciples />);
-
-  expect(screen.queryByText("Text mit 1Markierung[1]")).not.toBeInTheDocument();
-  expect(screen.queryByText("Text mit 3Markierung[3]")).not.toBeInTheDocument();
-  expect(
-    screen.queryByText("(3) Text mit 3Markierung[3]"),
-  ).not.toBeInTheDocument();
-  expect(screen.getByText("P1")).toBeInTheDocument();
-  expect(screen.getByText("P3")).toBeInTheDocument();
-  expect(screen.getByText("Text mit 1Markierung")).toHaveRole("mark");
-  expect(screen.getByText("(3) Text mit 3Markierung")).toHaveRole("mark");
-});
-
-test("Absatz 2 without Mark is collapsed", () => {
-  render(<RemixStubAllPrinciples />);
-  expect(screen.getByText("(2)")).toBeVisible();
-  expect(screen.getByText("(2) Text ohne Markierung")).toBeInTheDocument();
-  expect(screen.getByText("(2) Text ohne Markierung")).not.toBeVisible();
-});
-
-test("Absatz 2 and 3 without relevant Prinzip are collapsed", () => {
+test("Absatz 2 through 4 without relevant Prinzip are collapsed", () => {
   render(<RemixStubFirstPrinciple />);
-  expect(screen.getByText("(2) – (3)")).toBeVisible();
+  expect(screen.getByText("(2) – (4)")).toBeVisible();
   expect(screen.getByText("(2) Text ohne Markierung")).toBeInTheDocument();
   expect(screen.getByText("(3) Text mit 3Markierung")).toBeInTheDocument();
+  expect(screen.getByText(/mehreren/)).toBeInTheDocument();
   expect(screen.getByText("(2) Text ohne Markierung")).not.toBeVisible();
   expect(screen.getByText("(3) Text mit 3Markierung")).not.toBeVisible();
+  expect(screen.getByText(/mehreren/)).not.toBeVisible();
 });
 
 test("Mark of Absatz 3 is not shown when no relevant Prinzip", () => {
@@ -159,9 +189,20 @@ test("Mark of Absatz 3 is not shown when no relevant Prinzip", () => {
     screen.queryByText("(3) Text mit 3Markierung[3]"),
   ).not.toBeInTheDocument();
   // only relevant mark is shown
-  expect(screen.getByText("P1")).toBeInTheDocument();
+  expect(screen.getByText("P1")).toBeVisible();
   expect(screen.getByRole("mark")).toHaveTextContent("Text mit 1Markierung");
 });
+
+test("Multiple Marks in one Absatz", () => {
+  render(<RemixStubAllPrinciples />);
+  expect(screen.getByText(/mitmit/)).toBeVisible();
+  expect(screen.getByText(/2Markierung/)).toBeVisible();
+  expect(screen.getByText(/mitmit/)).toHaveRole("mark");
+  expect(screen.getByText(/2Markierung/)).toHaveRole("mark");
+  // test multiple Ps
+});
+
+// markierung in
 
 // Begründungen
 // test links
