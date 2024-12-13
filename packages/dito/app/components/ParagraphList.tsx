@@ -109,7 +109,7 @@ const PrincipleExplanation = ({
   );
 
   return (
-    <div className={explanationClasses} id={id}>
+    <div className={explanationClasses} id={id} data-testid={id}>
       <div className="flex gap-4 content-center">
         <Heading
           tagName="h4"
