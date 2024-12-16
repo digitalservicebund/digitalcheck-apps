@@ -8,6 +8,7 @@ import Image from "@digitalcheck/shared/components/Image.tsx";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { MetaFunction } from "@remix-run/react";
+import Accordion from "components/Accordion.tsx";
 import SupportBanner from "components/SupportBanner";
 import { preCheck } from "resources/content";
 import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
@@ -74,7 +75,7 @@ export default function Index() {
           items={preCheck.start.summary.items}
         ></InfoBox>
       </Container>
-      <Container>
+      <Container paddingTop="0">
         <Background backgroundColor="blue">
           <div className="px-64 py-40 flex gap-64 items-center max-sm:flex-col-reverse max-sm:px-16 max-sm:gap-48">
             <div className="md:pl-32 ds-stack-8 gap-20 md:w-1/3">
@@ -93,6 +94,14 @@ export default function Index() {
             </div>
           </div>
         </Background>
+      </Container>
+      <Container>
+        <Heading
+          tagName="h2"
+          look="ds-heading-02-reg text-center mb-64 max-sm:mb-56"
+          text={preCheck.faq.title}
+        />
+        <Accordion items={preCheck.faq.items} />
       </Container>
       <SupportBanner />
     </>

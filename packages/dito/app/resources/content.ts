@@ -343,6 +343,45 @@ Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, h
       },
     },
   },
+  faq: {
+    title: "Häufige Fragen",
+    items: [
+      {
+        headline: "Was ist Interoperabilität im EU-Kontext?",
+        content: `Interoperabilität bedeutet, dass Verwaltungen und öffentliche Einrichtungen in der EU zusammenarbeiten und Informationen austauschen können. So können digitale Dienstleistungen, wie z. B. das Beantragen von Dokumenten oder der Austausch von Gesundheitsdaten, über Länder- und Organisationsgrenzen hinweg einfach bereitgestellt werden.
+
+Das [European Interoperability Framework (EIF)](https://interoperable-europe.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/european-interoperability-framework-detail) legt hierfür Standards und Regeln fest, die sicherstellen, dass IT-Systeme in der EU miteinander kompatibel sind. Das macht es für Bürger:innen und Unternehmen leichter, öffentliche Dienste in der gesamten EU zu nutzen.
+        `,
+      },
+      {
+        headline: "Was bedeutet Interoperabilität in meinem Vorhaben?",
+        content: `Wenn Gesetze und Regelungen die Interoperabilität berücksichtigen, fördern sie die Zusammenarbeit zwischen den EU-Ländern und ihren Verwaltungen. Einheitliche Standards sorgen dafür, dass digitale Dienste bürgerfreundlich, effizient und sicher sind. Gleichzeitig werden einheitliche Regeln geschaffen, die die grenzüberschreitende Zusammenarbeit in der EU erleichtern und eine harmonische Entwicklung der Rechtsvorschriften fördern.`,
+      },
+      {
+        headline: "Was ist Digitalbezug?",
+        content: `Digitalbezug im Kontext der Umsetzung bedeutet, dass ein Prozess zumindest teilweise durch ein IT-System abgebildet  wird. Beispiele sind:
+- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
+- die Abfrage von Daten aus einem Register oder
+- das Bereitstellen von Informationen auf einer Website.`,
+      },
+      {
+        headline: "Warum digitaltaugliche Regelungen schreiben?",
+        content: `**Digitaltaugliche Regelungen sparen Ressourcen**<br/>
+Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden - auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.
+<br/><br/>
+**Relevant für all Regelungsvorhaben**<br/>
+Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Verwaltungsvorschriften. Es fallen sowohl neue Vorhaben, als auch für Änderungen an bestehenden Regelungen darunter.`,
+      },
+      {
+        headline: "Was ist, wenn ich mehrere Regelungen habe?",
+        content: `Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.`,
+      },
+      {
+        headline: "Kann ich das PDF für die Vorprüfung weiterhin verwenden?",
+        content: `Sie können weiterhin das PDF-Dokument zur Vorprüfung verwenden, um den digitalen Aspekt Ihres Vorhabens zu bewerten. Bitte beachten Sie jedoch, dass die PDF-Version nicht geeignet ist, um Anforderungen zur Interoperabilität zu identifizieren.`,
+      },
+    ],
+  },
   nextButton: "Übernehmen & weiter",
   answerOptions: {
     yes: "Ja",
