@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { preCheck } from "resources/content";
 import {
   ROUTE_DOCUMENTATION,
@@ -6,7 +7,6 @@ import {
   ROUTE_PRECHECK,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
-import { PRE_CHECK_START_BUTTON_ID } from "routes/vorpruefung._index.tsx";
 
 test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
