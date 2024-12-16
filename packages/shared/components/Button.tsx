@@ -88,6 +88,7 @@ function Button({
         onKeyDown={onKeyDown}
         onClick={onClick}
         id={id}
+        data-testid={id}
         reloadDocument={isDownload}
         download={isDownload}
         title={(isDownload && `${text} (${ext}-Datei)`) || undefined}
