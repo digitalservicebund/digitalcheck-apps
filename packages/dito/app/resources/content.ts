@@ -339,12 +339,12 @@ Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, h
       `,
       images: [
         {
-          src: "/assets/images/speach-to-text.svg",
-          alt: `foobar`,
+          src: "/assets/images/digital-readiness-meets-interop.svg",
+          alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen.`,
         },
         {
           src: "/assets/images/eu-flag.png",
-          alt: `foo bar`,
+          alt: `EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
         },
       ],
     },

@@ -77,14 +77,16 @@ export default function Index() {
       <Container>
         <Background backgroundColor="blue">
           <div className="px-64 py-40 flex gap-64 items-center">
-            <div className="pl-32 ds-stack-8 w-1/3">
-              {preCheck.start.info.images.map((image, index) => (
-                <Image
-                  key={index}
-                  url={image.src}
-                  alternativeText={image.alt}
-                />
-              ))}
+            <div className="pl-32 ds-stack-8 gap-20 w-1/3 flex items-center">
+              <Image
+                url={preCheck.start.info.images[0].src}
+                alternativeText={preCheck.start.info.images[0].alt}
+              />
+              <Image
+                url={preCheck.start.info.images[1].src}
+                alternativeText={preCheck.start.info.images[1].alt}
+                className="w-4/5"
+              />
             </div>
             <div>
               <Heading
