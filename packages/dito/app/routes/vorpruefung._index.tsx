@@ -2,8 +2,11 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
+import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import Image from "@digitalcheck/shared/components/Image.tsx";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
+import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { MetaFunction } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 import { preCheck } from "resources/content";
@@ -35,6 +38,15 @@ export default function Index() {
           ></Box>
         </Container>
         <Container paddingTop="0">
+          <div className="ds-stack-16 mb-40">
+            {preCheck.start.hints.map((hint, index) => (
+              <DetailsSummary
+                key={index}
+                title={hint.title}
+                content={hint.text}
+              />
+            ))}
+          </div>
           <ButtonContainer
             buttons={[
               {
@@ -53,14 +65,6 @@ export default function Index() {
           />
         </Container>
       </Background>
-      <Container additionalClassNames="max-sm:!p-0">
-        <InlineNotice
-          look="tips"
-          title={preCheck.start.info.title}
-          tagName="h2"
-          content={preCheck.start.info.text}
-        ></InlineNotice>
-      </Container>
       <Container>
         <InfoBox
           heading={{
@@ -69,6 +73,29 @@ export default function Index() {
           }}
           items={preCheck.start.summary.items}
         ></InfoBox>
+      </Container>
+      <Container>
+        <Background backgroundColor="blue">
+          <div className="px-64 py-40 flex gap-64 items-center">
+            <div className="pl-32 ds-stack-8 w-1/3">
+              {preCheck.start.info.images.map((image, index) => (
+                <Image
+                  key={index}
+                  url={image.src}
+                  alternativeText={image.alt}
+                />
+              ))}
+            </div>
+            <div>
+              <Heading
+                tagName="h3"
+                look="ds-heading-03-reg"
+                text={preCheck.start.info.title}
+              />
+              <RichText markdown={preCheck.start.info.text} />
+            </div>
+          </div>
+        </Background>
       </Container>
       <SupportBanner />
     </>
