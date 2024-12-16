@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { useId } from "react";
 import { ButtonLinkProps, ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";
@@ -21,7 +22,8 @@ const Box = ({
   buttons,
   additionalClassNames,
 }: BoxProps) => {
-  const headingId = heading?.id || Math.random().toString(36).slice(2);
+  const generatedId = useId();
+  const headingId = heading?.id || generatedId;
   const labelId = `${headingId}-label`;
   return (
     <div
