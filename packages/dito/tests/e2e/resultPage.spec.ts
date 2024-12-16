@@ -6,11 +6,12 @@ import {
   ROUTE_PRECHECK,
   ROUTE_RESULT,
 } from "resources/staticRoutes";
+import { PRE_CHECK_START_BUTTON_ID } from "routes/vorpruefung._index.tsx";
 
 test.describe("test result page general content", () => {
   test.beforeEach("Click though preCheck", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < preCheck.questions.length; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -44,8 +45,8 @@ test.describe("test result page reasoning", () => {
   test("one positive answer leads to positive result", async ({ page }) => {
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 0; i < 4; i++) {
-      await page.waitForURL(preCheck.questions[i + 1].url);
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -59,8 +60,8 @@ test.describe("test result page reasoning", () => {
   }) => {
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 0; i < 4; i++) {
-      await page.waitForURL(preCheck.questions[i + 1].url);
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -78,8 +79,8 @@ test.describe("test result page reasoning", () => {
   }) => {
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 0; i < 4; i++) {
-      await page.waitForURL(preCheck.questions[i + 1].url);
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -97,8 +98,8 @@ test.describe("test result page reasoning", () => {
   }) => {
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 0; i < 4; i++) {
-      await page.waitForURL(preCheck.questions[i + 1].url);
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -129,7 +130,7 @@ test.describe("test result page redirects", () => {
     page,
   }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.goto(ROUTE_RESULT.url);

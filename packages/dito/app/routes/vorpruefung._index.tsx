@@ -18,6 +18,8 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRECHECK.title, matches);
 };
 
+export const PRE_CHECK_START_BUTTON_ID = "preCheck-start-button";
+
 export default function Index() {
   return (
     <>
@@ -51,7 +53,7 @@ export default function Index() {
           <ButtonContainer
             buttons={[
               {
-                id: "preCheck-start-button",
+                id: PRE_CHECK_START_BUTTON_ID,
                 text: preCheck.start.buttonText,
                 href: preCheck.questions[0].url,
                 type: "submit",
