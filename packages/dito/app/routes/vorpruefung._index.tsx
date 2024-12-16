@@ -76,16 +76,11 @@ export default function Index() {
       </Container>
       <Container>
         <Background backgroundColor="blue">
-          <div className="px-64 py-40 flex gap-64 items-center">
-            <div className="pl-32 ds-stack-8 gap-20 w-1/3 flex items-center">
+          <div className="px-64 py-40 flex gap-64 items-center max-sm:flex-col-reverse max-sm:px-16 max-sm:gap-48">
+            <div className="md:pl-32 ds-stack-8 gap-20 md:w-1/3">
               <Image
-                url={preCheck.start.info.images[0].src}
-                alternativeText={preCheck.start.info.images[0].alt}
-              />
-              <Image
-                url={preCheck.start.info.images[1].src}
-                alternativeText={preCheck.start.info.images[1].alt}
-                className="w-4/5"
+                url={preCheck.start.info.image.src}
+                alternativeText={preCheck.start.info.image.alt}
               />
             </div>
             <div>

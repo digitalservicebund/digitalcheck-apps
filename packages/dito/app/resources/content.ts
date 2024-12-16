@@ -337,16 +337,10 @@ Interoperabilität bedeutet, dass verschiedene öffentliche Institutionen über 
 <br />
 Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. 
       `,
-      images: [
-        {
-          src: "/assets/images/digital-readiness-meets-interop.svg",
-          alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen.`,
-        },
-        {
-          src: "/assets/images/eu-flag.png",
-          alt: `EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
-        },
-      ],
+      image: {
+        src: "/assets/images/digital-readiness-meets-interop.svg",
+        alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen mit EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
+      },
     },
   },
   nextButton: "Übernehmen & weiter",
