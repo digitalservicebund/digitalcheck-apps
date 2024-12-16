@@ -148,7 +148,7 @@ export default function Index() {
   );
 
   return (
-    <div className="flex bg-blue-100 sm:pt-32">
+    <div className="flex bg-blue-100 sm:pt-32 max-lg:flex-col">
       <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
@@ -203,6 +203,11 @@ export default function Index() {
           </Container>
         </form>
       </section>
+      <div className="hidden max-lg:block">
+        <Container paddingTop="0" paddingBottom="40">
+          <PreCheckNavigation question={question} answers={answers ?? {}} />
+        </Container>
+      </div>
     </div>
   );
 }
