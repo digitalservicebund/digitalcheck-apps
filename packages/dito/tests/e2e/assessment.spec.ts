@@ -18,7 +18,7 @@ import {
 test.describe("test positive assessment page and PDF", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < preCheck.questions.length; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
