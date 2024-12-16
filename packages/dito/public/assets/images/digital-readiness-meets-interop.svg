@@ -1,0 +1,61 @@
+<svg width="211" height="150" viewBox="0 0 211 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 7172">
+<path id="Vector" d="M129.399 33.8184C132.323 33.8184 134.704 36.1136 134.704 38.9327L134.704 48.7435L127.542 41.8392L125.899 43.4265L135.047 52.2487C135.264 52.4608 135.561 52.5762 135.869 52.5762C136.176 52.5762 136.474 52.4577 136.69 52.2487L145.842 43.4265L144.195 41.8392L137.033 48.7435L137.033 38.9358C137.033 34.8787 133.607 31.5762 129.399 31.5762L114.842 31.5762L114.842 33.8215L129.399 33.8184Z" fill="#004B76"/>
+<path id="Vector_2" d="M86.3082 110.139C83.3839 110.139 81.003 107.843 81.003 105.024L81.003 95.2135L88.165 102.118L89.8084 100.531L80.6601 91.7083C80.4433 91.4962 80.1457 91.3809 79.8384 91.3809C79.5311 91.3809 79.2335 91.4994 79.0168 91.7083L69.8652 100.531L71.5118 102.118L78.6739 95.2135L78.6739 105.021C78.6739 109.078 82.0996 112.381 86.3082 112.381L100.865 112.381L100.865 110.136L86.3082 110.139Z" fill="#004B76"/>
+<rect id="Rectangle 2506" x="15.377" y="19.8164" width="18" height="16" stroke="#004B76" stroke-width="2"/>
+<rect id="Rectangle 2507" x="15.4863" y="41.1289" width="10" height="10" stroke="#004B76" stroke-width="2"/>
+<line id="Line 119" x1="42.7188" y1="20.9551" x2="84.7188" y2="20.9551" stroke="#004B76" stroke-width="2"/>
+<line id="Line 120" x1="42.7188" y1="33.9727" x2="84.7188" y2="33.9727" stroke="#004B76" stroke-width="2"/>
+<line id="Line 121" x1="42.7188" y1="46.9883" x2="84.7188" y2="46.9883" stroke="#004B76" stroke-width="2"/>
+<g id="Group 7170">
+<g id="Group 7167">
+<g id="Rectangle 2501">
+<mask id="path-8-inside-1_5798_10505" fill="white">
+<rect x="0.71875" y="0.955078" width="102" height="73.2037" rx="2"/>
+</mask>
+<rect x="0.71875" y="0.955078" width="102" height="73.2037" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-8-inside-1_5798_10505)"/>
+</g>
+<g id="Rectangle 2502">
+<mask id="path-9-inside-2_5798_10505" fill="white">
+<rect x="42.3672" y="72.4805" width="16.15" height="14.4752" rx="2"/>
+</mask>
+<rect x="42.3672" y="72.4805" width="16.15" height="14.4752" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-9-inside-2_5798_10505)"/>
+</g>
+<line id="Line 118" x1="1.57422" y1="62.1602" x2="100.574" y2="62.1602" stroke="#004B76" stroke-width="2.5"/>
+</g>
+<line id="Line 124" x1="33.8691" y1="85.7051" x2="67.8691" y2="85.7051" stroke="#004B76" stroke-width="2.5"/>
+</g>
+<g id="Group 7171">
+<g id="Group 7169">
+<g id="Rectangle 2501_2">
+<mask id="path-12-inside-3_5798_10505" fill="white">
+<rect x="108.279" y="63.0469" width="102" height="73.2275" rx="2"/>
+</mask>
+<rect x="108.279" y="63.0469" width="102" height="73.2275" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-12-inside-3_5798_10505)"/>
+</g>
+<line id="Line 118_2" x1="109.135" y1="125.125" x2="209.435" y2="125.125" stroke="#004B76" stroke-width="2.5"/>
+<g id="Rectangle 2508">
+<mask id="path-14-inside-4_5798_10505" fill="white">
+<rect x="124.43" y="75.8203" width="22" height="22" rx="2"/>
+</mask>
+<rect x="124.43" y="75.8203" width="22" height="22" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-14-inside-4_5798_10505)"/>
+</g>
+<g id="Rectangle 2509">
+<mask id="path-15-inside-5_5798_10505" fill="white">
+<rect x="124.43" y="102.227" width="22" height="12" rx="2"/>
+</mask>
+<rect x="124.43" y="102.227" width="22" height="12" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-15-inside-5_5798_10505)"/>
+</g>
+<line id="Line 122" x1="155.881" y1="113.738" x2="197.881" y2="113.738" stroke="#004B76" stroke-width="2.5"/>
+<line id="Line 123" x1="155.881" y1="100.965" x2="197.881" y2="100.965" stroke="#004B76" stroke-width="2.5"/>
+</g>
+<g id="Rectangle 2502_2">
+<mask id="path-18-inside-6_5798_10505" fill="white">
+<rect x="154.18" y="134.572" width="16.15" height="14.4752" rx="2"/>
+</mask>
+<rect x="154.18" y="134.572" width="16.15" height="14.4752" rx="2" stroke="#004B76" stroke-width="5" mask="url(#path-18-inside-6_5798_10505)"/>
+</g>
+<line id="Line 125" x1="145.678" y1="147.797" x2="179.678" y2="147.797" stroke="#004B76" stroke-width="2.5"/>
+</g>
+</g>
+</svg>
