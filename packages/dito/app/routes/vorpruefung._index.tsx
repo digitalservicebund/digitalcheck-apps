@@ -10,6 +10,7 @@ import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion.tsx";
 import SupportBanner from "components/SupportBanner";
+import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { preCheck } from "resources/content";
 import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
@@ -17,8 +18,6 @@ import prependMetaTitle from "utils/metaTitle";
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRECHECK.title, matches);
 };
-
-export const PRE_CHECK_START_BUTTON_ID = "preCheck-start-button";
 
 export default function Index() {
   return (
