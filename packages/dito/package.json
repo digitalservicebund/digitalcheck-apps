@@ -14,8 +14,8 @@
     "lint:check": "eslint --cache --ignore-path ../../.gitignore .",
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest",
-    "test:e2e": "playwright test playwright/e2e --config=playwright/playwright.config.ts",
-    "test:a11y": "playwright test playwright/a11y --config=playwright/playwright.config.ts",
+    "test:e2e": "playwright test tests/e2e --config=tests/playwright.config.ts",
+    "test:a11y": "playwright test tests/a11y --config=tests/playwright.config.ts",
     "tests": "vitest run && npm run test:e2e && npm run test:a11y",
     "test:generate-coverage": "jest --coverage",
     "typecheck": "tsc"
