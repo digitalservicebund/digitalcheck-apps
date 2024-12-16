@@ -464,7 +464,7 @@ Beispiele für Akteur:innen sind:
       hint: {
         title: "Wen betrifft dieser Daten- und Informationsaustausch?",
         text: `Daten und Informationen können zwischen den digitalen öffentlichen Diensten in der EU ausgetauscht werden:
-      <br />
+      <br /><br />
 - Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben oder Dienste zu erfüllen.
 - Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
 - Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.`,
