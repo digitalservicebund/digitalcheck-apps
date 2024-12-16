@@ -19,7 +19,7 @@ export const ROUTE_PRECHECK_STATIC_PDF: Route = {
 
 export const ROUTE_PRECHECK: Route = {
   url: "/vorpruefung",
-  title: "Vorprüfung",
+  title: "Vorprüfung: Digitalbezug einschätzen",
   parent: ROUTE_LANDING.url,
 };
 export const ROUTE_RESULT: Route = {

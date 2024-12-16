@@ -292,12 +292,22 @@ export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
-    buttonText: "Einschätzung starten",
-    info: {
-      title: "Eine oder mehrere Vorprüfungen?",
-      text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
-    },
+      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung, oder auch EU-Anforderungen an Interoperabilität achten müssen.",
+    hints: [
+      {
+        title: "Was ist Digitalbezug?",
+        text: `Digitalbezug beschreibt die digitale Umsetzung, wenn ein Prozess nach Inkrafttreten eines Vorhabens zumindest teilweise durch ein IT-System abgebildet wird. Beispiele sind:
+              <br />
+- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
+- die Abfrage von Daten aus einem Register oder
+- das Bereitstellen von Informationen auf einer Website.`,
+      },
+      {
+        title: "Was ist Interoperabilität?",
+        text: `Interoperabilität ist die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen in der EU, zusammenzuarbeiten und Informationen auszutauschen. Sie ermöglicht, dass digitale öffentliche Dienstleistungen über Länder-, Sektor- und Organisationsgrenzen hinweg bereitgestellt werden können. **Diese Verordnung tritt ab Januar 2025 in Kraft.**`,
+      },
+    ],
+    buttonText: "Vorprüfung starten",
     summary: {
       title: "Zusammengefasst",
       items: [
@@ -310,12 +320,31 @@ export const preCheck = {
         },
         {
           headline: {
-            text: "Was ist Digitalbezug?",
+            text: "Warum ist die Vorprüfung relevant für mein Vorhaben?",
           },
-          content: `Wir sprechen von Digitalbezug der Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet werden wird. Beispiele sind:
-- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
-- die Abfrage von Daten aus einem Register oder
-- das Bereitstellen von Informationen auf einer Website.`,
+          content: `
+- **Digitalisierungspotenziale frühzeitig nutzen:** Wenn Sie frühzeitig Chancen für die Digitalisierung erkennen, können optimieren Sie den Regelungstext und sichern Sie sich technisch und rechtlich ab, und ermöglichen praxisnahe Umsetzung.
+- **EU-Anforderungen berücksichtigen:** Indem Sie Anforderungen an die Interoperabilität zu Beginn einbeziehen, ermöglichen Sie technische Standardisierung und rechtliche Harmonisierung, sowie verbesserte bürgerzentrierte Dienste innerhalb der EU.
+- **Rechtliche Grundlage:** Seit Juni 2024 ist es verpflichtend nationale Regelungsvorhaben auf Digitaltauglichkeit zu prüfen. Die Grundlage dafür ist das Onlinezugangsgesetz (OZG) von 2017. Zusätzlich muss ab Januar 2025 die Interoperabilität für bestimmte Regelungsvorhaben auf EU-Ebene gewährleistet sein. Dies sieht die EU-Verordnung Interoperable Europe Act (IEA) vor.
+          `,
+        },
+      ],
+    },
+    info: {
+      title: "Digitalbezug und Interoperabilität",
+      text: `Digitalbezug und Interoperabilität sind eng miteinander verknüpft. Wenn ein Gesetz oder eine Regelung digitale Prozesse vorsieht, müssen oft technische und organisatorische Standards eingehalten werden. 
+Interoperabilität bedeutet, dass verschiedene öffentliche Institutionen über Ländergrenzen hinweg zusammenarbeiten können.
+<br />
+Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. 
+      `,
+      images: [
+        {
+          src: "/assets/images/speach-to-text.svg",
+          alt: `foobar`,
+        },
+        {
+          src: "/assets/images/eu-flag.png",
+          alt: `foo bar`,
         },
       ],
     },
