@@ -304,7 +304,7 @@ export const preCheck = {
       },
       {
         title: "Was ist Interoperabilität?",
-        text: `Interoperabilität ist die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen in der EU, zusammenzuarbeiten und Informationen auszutauschen. Sie ermöglicht, dass digitale öffentliche Dienstleistungen über Länder-, Sektor- und Organisationsgrenzen hinweg bereitgestellt werden können. **Diese Verordnung tritt ab Januar 2025 in Kraft.**`,
+        text: `Die EU-Anforderungen zur Interoperabilität beschreibt die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen innerhalb der EU, effektiv zusammenzuarbeiten und Informationen auszutauschen. Sie ermöglicht, dass digitale öffentliche Dienstleistungen über Länder-, Sektor- und Organisationsgrenzen hinweg bereitgestellt werden können. **Diese Verordnung tritt ab Januar 2025 in Kraft.**`,
       },
     ],
     buttonText: "Vorprüfung starten",
@@ -323,9 +323,9 @@ export const preCheck = {
             text: "Warum ist die Vorprüfung relevant für mein Vorhaben?",
           },
           content: `
-- **Digitalisierungspotenziale frühzeitig nutzen:** Wenn Sie frühzeitig Chancen für die Digitalisierung erkennen, können optimieren Sie den Regelungstext und sichern Sie sich technisch und rechtlich ab, und ermöglichen praxisnahe Umsetzung.
-- **EU-Anforderungen berücksichtigen:** Indem Sie Anforderungen an die Interoperabilität zu Beginn einbeziehen, ermöglichen Sie technische Standardisierung und rechtliche Harmonisierung, sowie verbesserte bürgerzentrierte Dienste innerhalb der EU.
-- **Rechtliche Grundlage:** Seit Juni 2024 ist es verpflichtend nationale Regelungsvorhaben auf Digitaltauglichkeit zu prüfen. Die Grundlage dafür ist das Onlinezugangsgesetz (OZG) von 2017. Zusätzlich muss ab Januar 2025 die Interoperabilität für bestimmte Regelungsvorhaben auf EU-Ebene gewährleistet sein. Dies sieht die EU-Verordnung Interoperable Europe Act (IEA) vor.
+- **Digitalisierungspotenziale frühzeitig nutzen:** Wenn Sie frühzeitig Chancen für die Digitalisierung erkennen, optimieren Sie den Regelungstext und sichern Sie sich technisch und rechtlich ab und ermöglichen praxisnahe Umsetzung.<br/><br/>
+- **EU-Anforderungen identifizieren:** Im Rahmen der Vorprüfung ermitteln Sie, ob grenzüberschreitende Interoperabilität für Ihr Vorhaben relevant ist. Regelungen die  Interoperabilität fördern, ermöglichen technische Standardisierung, rechtliche Harmonisierung und digitale bürgerzentrierte Dienste innerhalb der EU.<br/><br/>
+- **Rechtliche Grundlage:** Seit Juni 2024 ist es verpflichtend nationale Regelungsvorhaben auf Digitaltauglichkeit zu prüfen. Die Grundlage dafür ist das Onlinezugangsgesetz (OZG) von 2017. Zusätzlich müssen ab Januar 2025 bestimmte Regelungsvorhaben die Anforderungen an Interoperabilität auf EU-Ebene unterstützen. Dies ergibt sich aus der EU-Verordnung [Interoperable Europe Act](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R0903).<br/><br/>
           `,
         },
       ],
