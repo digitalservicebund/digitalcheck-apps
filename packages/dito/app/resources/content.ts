@@ -275,19 +275,6 @@ export const interviewBanner = {
   text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20erarbeiten.digitalcheck.bund.de).`,
 };
 
-const hintInvolved = {
-  title: "Wer sind Beteiligte?",
-  text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteurinnen und -akteure als auch Betroffene sein.
-    
-Beispiele für Beteiligte sind:
-- Bürgerinnen und Bürger,
-- Einwohnende,
-- Kommunen, die Verwaltung und Behörden, deren IT- oder Rechtsabteilungen,
-- IT-Dienstleistende,
-- Unternehmen und
-- weitere Organisationen wie z.B. Vereine.`,
-};
-
 export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
@@ -393,7 +380,7 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       id: "it-system",
       title: "IT-System",
       question:
-        "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
+        "Muss durch die Regelung ein IT-System angepasst oder neu entwickelt werden?",
       positiveResult:
         "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
       negativeResult:
@@ -401,7 +388,7 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
       hint: {
         title: "Was ist ein IT-System?",
-        text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
+        text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) oder Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
       <br />
       Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der Einkommenssteuererklärung mit ELSTER.`,
       },
@@ -410,55 +397,59 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       id: "verpflichtungen-fuer-beteiligte",
       title: "Verpflichtungen für Beteiligte",
       question:
-        "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
+        "Entstehen durch die Regelung Mitwirkungspflichten für Akteur:innen?",
       positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
       negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
       text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
-      hint: hintInvolved,
+      hint: {
+        title: "Wer sind Akteur:innen?",
+        text: `Akteur:innen sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteur:innen als auch Betroffene sein.
+  <br /><br />
+Beispiele für Akteur:innen sind:
+- Bürger:innen, 
+- Einwohnende, 
+- Kommunen, Verwaltungen und Behörden, deren IT- oder Rechtsabteilungen
+- IT-Dienstleistende,
+- Unternehmen und 
+- weitere Organisationen wie z.B. Vereine.`,
+      },
     },
     {
       id: "datenaustausch",
       title: "Datenaustausch",
       question:
-        "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Oder kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
+        "Werden durch die Regelung Daten erhoben, die der Verwaltung möglicherweise bereits vorliegen?",
       positiveResult:
         "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
       negativeResult:
         "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
       text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
+      hint: {
+        title: "Was ist mit “Daten erheben” gemeint?",
+        text: `Einige Informationen liegen in der Verwaltung bereits vor: Dies können Daten von Bürger:innen, Unternehmen und Organisationen bspw. Vereinen sein. Im besten Fall werden diese Daten automatisiert zwischen den Behörden ausgetauscht.`,
+      },
     },
     {
       id: "kommunikation",
       title: "Digitale Kommunikation",
       question:
-        "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
+        "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen?",
       positiveResult:
         "wird Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
       negativeResult:
         "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
-      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen.",
-      hint: hintInvolved,
+      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen. Es können z.B. Unternehmen, Bürger:innen oder Organisationen den Antrag einreichen.",
     },
     {
       id: "automatisierung",
       title: "Automatisierung",
       question:
-        "Kann durch (Teil&#8209;)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
+        "Kann die Umsetzung der Regelung verbessert werden, indem man Schritte automatisiert?",
       positiveResult:
         "kann den Aufwand für Betroffene durch (Teil&#8209;)Automatisierung reduzieren.",
       negativeResult:
         "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
       text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
-      hint: {
-        title: "Wer sind Betroffene?",
-        text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
-      <br />
-      Beispiele für Betroffene sind:
-- Bürgerinnen und Bürger, 
-- Einwohnende,
-- Unternehmen und 
-- weitere Organisationen wie z.B. Vereine.`,
-      },
     },
     {
       id: "eu-bezug",
