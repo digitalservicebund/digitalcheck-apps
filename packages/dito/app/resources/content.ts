@@ -469,6 +469,7 @@ Beispiele für Akteur:innen sind:
 - Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
 - Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.`,
       },
+      interoperability: true,
     },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link

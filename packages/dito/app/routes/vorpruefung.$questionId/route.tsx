@@ -115,6 +115,7 @@ export type TQuestion = {
     title: string;
     text: string;
   };
+  interoperability?: boolean;
 };
 
 export type PreCheckAnswerOption = {
