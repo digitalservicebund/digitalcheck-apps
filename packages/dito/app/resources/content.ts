@@ -488,7 +488,7 @@ Beispiele für Akteur:innen sind:
   result: {
     title: "Ergebnis der Vorprüfung",
     positive: {
-      title: "Ihr Regelungsvorhaben hat Digitalbezug.",
+      title: "Das Regelungsvorhaben hat einen Digitalbezug und ",
       reasoningIntro: "Das Regelungsvorhaben ...",
       actionButton: {
         text: "Vorprüfung herunterladen",
@@ -532,11 +532,22 @@ Beispiele für Akteur:innen sind:
       },
     },
     negative: {
-      title: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
+      title: "Das Regelungsvorhaben hat keinen Digitalbezug und ",
       reasoningIntro: "Das Regelungsvorhaben ...",
       nextSteps: {
         title: "So machen Sie weiter",
         steps: [steps.preCheck.finished, steps.nkrFinal],
+      },
+    },
+    interoperability: {
+      positive: {
+        title: "enthält Anforderungen der Interoperabilität.",
+      },
+      negative: {
+        title: "keine Anforderungen der Interoperabilität.",
+      },
+      unsure: {
+        title: "unklare Anforderungen der Interoperabilität.",
       },
     },
     form: {
