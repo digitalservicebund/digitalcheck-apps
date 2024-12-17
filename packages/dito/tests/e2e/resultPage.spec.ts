@@ -97,7 +97,14 @@ test.describe("test result page reasoning", () => {
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
     );
 
-    // TODO: check positive and negative answers being shown
+    await expect(page.getByRole("main")).toContainText(
+      preCheck.questions[0].negativeResult,
+    );
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await expect(page.getByRole("main")).toContainText(
+        preCheck.questions[i].positiveResult,
+      );
+    }
   });
 
   test("checking all negative answers leads to negative result", async ({
