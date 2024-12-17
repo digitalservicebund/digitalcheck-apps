@@ -27,8 +27,6 @@ import {
 } from "../utils/strapiData.server.ts";
 import { formatDate } from "../utils/utilFunctions.ts";
 
-import { gesetzStatusMap } from "./utilFunctions.ts";
-
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
@@ -52,7 +50,6 @@ query GetPrinzips($slug: String!) {
         URLBezeichnung
         LinkRegelungstext
         VeroeffentlichungsDatum
-        GesetzStatus
       }
     }
   }
@@ -166,11 +163,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
                             rel="noreferrer"
                             className="text-blue-800 underline"
                           >
-                            {digitalcheck.Regelungsvorhaben?.GesetzStatus
-                              ? gesetzStatusMap[
-                                  digitalcheck.Regelungsvorhaben.GesetzStatus
-                                ]
-                              : regulations.infoLabels[1]}
+                            {regulations.infoLabels[1]}
                           </CustomLink>
                         ) : null,
                       },

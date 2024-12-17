@@ -5,7 +5,6 @@ import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import {
@@ -29,8 +28,6 @@ import {
 } from "../utils/strapiData.server.ts";
 import { formatDate, slugify } from "../utils/utilFunctions.ts";
 
-import { gesetzStatusMap } from "./utilFunctions.ts";
-
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
@@ -50,7 +47,6 @@ query GetRegelungsvorhabens($slug: String!) {
     VeroeffentlichungsDatum
     LinkRegelungstext
     NKRStellungnahmeLink
-    GesetzStatus
     Digitalchecks {
       documentId
       Titel
@@ -182,9 +178,7 @@ export default function Gesetz() {
                     rel="noreferrer"
                     className="text-blue-800 underline"
                   >
-                    {regelung?.GesetzStatus
-                      ? gesetzStatusMap[regelung.GesetzStatus]
-                      : regulations.infoLabels[1]}
+                    {regulations.infoLabels[1]}
                   </CustomLink>
                 ) : null,
               },
@@ -196,16 +190,6 @@ export default function Gesetz() {
           />
         </Container>
       </Background>
-      {regelung.GesetzStatus !== "Verkuendetes_Gesetz_aktuelle_Fassung" && (
-        <Container paddingBottom="0">
-          <InlineNotice
-            title={regulations.infoTitle}
-            look="tips"
-            tagName="h2"
-            content={regulations.infoText}
-          />
-        </Container>
-      )}
       {regelung.Digitalchecks.map((digitalcheck, index) => (
         <Container
           key={digitalcheck.documentId}
