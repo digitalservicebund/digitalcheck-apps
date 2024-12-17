@@ -425,7 +425,7 @@ Beispiele für Akteur:innen sind:
         "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
       text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
       hint: {
-        title: "Was ist mit “Daten erheben” gemeint?",
+        title: "Was ist mit „Daten erheben“ gemeint?",
         text: `Einige Informationen liegen in der Verwaltung bereits vor: Dies können Daten von Bürger:innen, Unternehmen und Organisationen bspw. Vereinen sein. Im besten Fall werden diese Daten automatisiert zwischen den Behörden ausgetauscht.`,
       },
     },
