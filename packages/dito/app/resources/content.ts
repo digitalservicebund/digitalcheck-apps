@@ -1821,6 +1821,9 @@ export const regulations = {
     "Inhalt",
   ],
   infoLabels: ["Fassung vom", "Aktuelle Fassung", "Ressort"],
+  infoTitle: "Hinweis",
+  infoText:
+    "Markierte Formulierungen sind gute Beispiele für die Ermöglichung digitaler Umsetzung, trotz ausstehender Verabschiedung.",
   visualisations: {
     title: "Visualisierungen",
     subtitle:
