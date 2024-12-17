@@ -25,6 +25,7 @@ import ResultNegative from "./ResultNegative";
 import ResultPositive from "./ResultPositive";
 import ResultUnsure from "./ResultUnsure";
 import getResultValidatorForAnswers from "./resultValidation";
+import { ResultType, TResult } from "./TResult.tsx";
 
 const { questions } = preCheck;
 
@@ -41,19 +42,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(ROUTE_PRECHECK.url);
   }
 
-  const resultDigital = getResult(answers);
-  let resultInteroperability = "Negativ";
-  if (resultDigital === "Positiv") {
-    resultInteroperability = getResult(answers, true);
-  }
+  const result: TResult = getResult(answers);
 
   void trackCustomEvent(request, {
     name: "Vorprüfung Resultat",
-    props: { result: resultDigital },
+    props: { result: result.digital },
   });
   void trackCustomEvent(request, {
     name: "Vorprüfung Resultat Interoperability",
-    props: { result: resultInteroperability },
+    props: { result: result.interoperability },
   });
 
   // Set cookie to store user has viewed result
@@ -61,26 +58,34 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return json(
     {
-      result: resultDigital,
-      resultInteroperability,
+      result,
       answers,
     },
     await getHeaderFromCookie(cookie),
   );
 }
 
-function getResult(
+function getResult(answers: PreCheckAnswers): TResult {
+  const digital = getResultForRelevantAnswers(answers);
+  let interoperability = ResultType.NEGATIVE;
+  if (digital === ResultType.POSITIVE) {
+    interoperability = getResultForRelevantAnswers(answers, true);
+  }
+  return { digital, interoperability };
+}
+
+function getResultForRelevantAnswers(
   answers: PreCheckAnswers,
   interoperability: boolean = false,
 ) {
-  let result = "Negativ";
+  let result = ResultType.NEGATIVE;
 
   const relevantAnswers = getRelevantAnswers(answers, interoperability);
 
   if (Object.values(relevantAnswers).find((a) => a === "yes")) {
-    result = "Positiv";
+    result = ResultType.POSITIVE;
   } else if (Object.values(relevantAnswers).find((a) => a === "unsure")) {
-    result = "Unsicher";
+    result = ResultType.UNSURE;
   }
   return result;
 }
@@ -136,16 +141,15 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Result() {
   const { result, answers } = useLoaderData<typeof loader>();
 
-  // We have at least one positive answer
-  if (result === "Positiv") {
-    return <ResultPositive answers={answers} />;
+  if (result.digital === ResultType.POSITIVE) {
+    return <ResultPositive answers={answers} result={result} />;
   }
 
   // Some answers are unsure
-  if (result === "Unsicher") {
+  if (result.digital === ResultType.UNSURE) {
     return <ResultUnsure answers={answers} />;
   }
 
   // All answers are negative
-  return <ResultNegative answers={answers} />;
+  return <ResultNegative answers={answers} result={result} />;
 }
