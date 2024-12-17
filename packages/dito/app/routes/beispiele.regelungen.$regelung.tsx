@@ -129,15 +129,17 @@ export default function Gesetz() {
           <ol className="mt-16">
             {regelung.Digitalchecks.map((digitalcheck, index) => (
               <React.Fragment key={digitalcheck.documentId}>
-                <li>
-                  ↓
-                  <Link
-                    to={`#${slugify(regulations.principles.title)}-${index}`}
-                    className="ml-4 underline underline-offset-4 decoration-1"
-                  >
-                    {regulations.principles.title}
-                  </Link>
-                </li>
+                {digitalcheck.Paragraphen.length > 0 && (
+                  <li>
+                    ↓
+                    <Link
+                      to={`#${slugify(regulations.principles.title)}-${index}`}
+                      className="ml-4 underline underline-offset-4 decoration-1"
+                    >
+                      {regulations.principles.title}
+                    </Link>
+                  </li>
+                )}
                 {digitalcheck.Visualisierungen.length > 0 && (
                   <li>
                     ↓
@@ -215,13 +217,15 @@ export default function Gesetz() {
           additionalClassNames="ds-stack-64 rich-text"
         >
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
-          <Heading
-            id={`${slugify(regulations.principles.title)}-${index}`}
-            tagName="h2"
-            look="ds-heading-02-bold"
-          >
-            {regulations.principles.title}
-          </Heading>
+          {digitalcheck.Paragraphen.length > 0 && (
+            <Heading
+              id={`${slugify(regulations.principles.title)}-${index}`}
+              tagName="h2"
+              look="ds-heading-02-bold"
+            >
+              {regulations.principles.title}
+            </Heading>
+          )}
           <ParagraphList
             paragraphs={digitalcheck.Paragraphen}
             principlesToShow={principles}
