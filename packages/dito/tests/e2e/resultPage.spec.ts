@@ -22,7 +22,7 @@ test.describe("test result page general content", () => {
   test("happy path leads to positive result", async ({ page }) => {
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
     );
   });
 
@@ -58,7 +58,7 @@ test.describe("test result page reasoning", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
     );
   });
 
@@ -78,7 +78,7 @@ test.describe("test result page reasoning", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und die Anforderungen der Interoperabilität sind unklar",
+      "Das Regelungsvorhaben hat einen Digitalbezug und unklare Anforderungen der Interoperabilität.",
     );
 
     // TODO check for hint
@@ -96,7 +96,7 @@ test.describe("test result page reasoning", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
     );
   });
 
@@ -111,7 +111,7 @@ test.describe("test result page reasoning", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
     );
     await expect(page.getByRole("main")).toContainText(
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
@@ -133,21 +133,21 @@ test.describe("test result page reasoning", () => {
   test("checking all negative answers leads to negative result", async ({
     page,
   }) => {
-    for (let i = 1; i < preCheck.questions.length; i++) {
+    for (let i = 0; i < preCheck.questions.length; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Nein").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
     );
   });
 
   test("checking all negative answers for digital and positive for interoperability leads to negative result with warning", async ({
     page,
   }) => {
-    for (let i = 1; i < preCheck.questions.length; i++) {
+    for (let i = 0; i < preCheck.questions.length; i++) {
       const question = preCheck.questions[i];
       await page.waitForURL(question.url);
       if (question.interoperability) {
@@ -159,7 +159,7 @@ test.describe("test result page reasoning", () => {
     }
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität",
+      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
     );
     await expect(page.getByRole("main")).toContainText(
       "EU-Anforderungen an Interoperabilität nicht erfüllt.",
