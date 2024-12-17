@@ -10,3 +10,9 @@ export const formatDate = (date: string | undefined) => {
       }).format(new Date(date))
     : undefined;
 };
+
+export const gesetzStatusMap = {
+  Verkuendetes_Gesetz_aktuelle_Fassung: "Verkündetes Gesetz (aktuelle Fassung)",
+  Regelungsentwurf: "Regelungsentwurf",
+  Text_im_Parlament: "Text im Parlament",
+};

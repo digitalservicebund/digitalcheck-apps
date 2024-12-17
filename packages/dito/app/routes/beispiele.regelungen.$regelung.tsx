@@ -27,9 +27,11 @@ import {
   prinzipCoreFields,
   Regelungsvorhaben,
 } from "../utils/strapiData.server.ts";
-import { formatDate, slugify } from "../utils/utilFunctions.ts";
-
-import { gesetzStatusMap } from "./utilFunctions.ts";
+import {
+  formatDate,
+  gesetzStatusMap,
+  slugify,
+} from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);

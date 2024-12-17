@@ -25,9 +25,7 @@ import {
   type Prinzip,
   prinzipCoreFields,
 } from "../utils/strapiData.server.ts";
-import { formatDate } from "../utils/utilFunctions.ts";
-
-import { gesetzStatusMap } from "./utilFunctions.ts";
+import { formatDate, gesetzStatusMap } from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
