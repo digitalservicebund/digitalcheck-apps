@@ -31,6 +31,11 @@ export type Ressort =
 
 export type Rechtsgebiet = "TBD";
 
+export type GesetzStatus =
+  | "Verkuendetes_Gesetz_aktuelle_Fassung"
+  | "Regelungsentwurf"
+  | "Text_im_Parlament";
+
 export type PrinzipErfuellung = {
   id: number;
   Prinzip?: Prinzip;
@@ -102,6 +107,7 @@ export type Regelungsvorhaben = {
   VeroeffentlichungsDatum?: string;
   Digitalchecks: Digitalcheck[];
   LinkRegelungstext: string;
+  GesetzStatus?: GesetzStatus;
 };
 
 export const prinzipCoreFields = `
