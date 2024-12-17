@@ -1,8 +1,8 @@
 import {
-  json,
-  redirect,
   type ActionFunctionArgs,
+  json,
   type LoaderFunctionArgs,
+  redirect,
 } from "@remix-run/node";
 import {
   MetaFunction,
@@ -41,17 +41,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(ROUTE_PRECHECK.url);
   }
 
-  // Track result
-  let result = "Negativ";
-  if (Object.values(answers).find((a) => a === "yes")) {
-    result = "Positiv";
-  } else if (Object.values(answers).find((a) => a === "unsure")) {
-    result = "Unsicher";
+  const resultDigital = getResult(answers);
+  let resultInteroperability = "Negativ";
+  if (resultDigital === "Positiv") {
+    resultInteroperability = getResult(answers, true);
   }
 
   void trackCustomEvent(request, {
     name: "Vorprüfung Resultat",
-    props: { result },
+    props: { result: resultDigital },
+  });
+  void trackCustomEvent(request, {
+    name: "Vorprüfung Resultat Interoperability",
+    props: { result: resultInteroperability },
   });
 
   // Set cookie to store user has viewed result
@@ -59,11 +61,43 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return json(
     {
-      result,
+      result: resultDigital,
+      resultInteroperability,
       answers,
     },
     await getHeaderFromCookie(cookie),
   );
+}
+
+function getResult(
+  answers: PreCheckAnswers,
+  interoperability: boolean = false,
+) {
+  let result = "Negativ";
+
+  const relevantAnswers = getRelevantAnswers(answers, interoperability);
+
+  if (Object.values(relevantAnswers).find((a) => a === "yes")) {
+    result = "Positiv";
+  } else if (Object.values(relevantAnswers).find((a) => a === "unsure")) {
+    result = "Unsicher";
+  }
+  return result;
+}
+
+function getRelevantAnswers(
+  answers: PreCheckAnswers,
+  interoperability: boolean,
+) {
+  const relevantAnswers: PreCheckAnswers = {};
+  for (const [k, v] of Object.entries(answers)) {
+    const question = questions.find((question) => question.id === k);
+    const questionInteroperability = question?.interoperability || false;
+    if (questionInteroperability === interoperability) {
+      relevantAnswers[k] = v;
+    }
+  }
+  return relevantAnswers;
 }
 
 export async function action({ request }: ActionFunctionArgs) {
