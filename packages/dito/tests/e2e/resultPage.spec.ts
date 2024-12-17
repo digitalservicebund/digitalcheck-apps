@@ -62,6 +62,29 @@ test.describe("test result page reasoning", () => {
     );
   });
 
+  test("one positive answer for digital and all unsure for interoperability leads to positive result with hint", async ({
+    page,
+  }) => {
+    await page.getByLabel("Ja").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      const question = preCheck.questions[i];
+      await page.waitForURL(question.url);
+      if (question.interoperability) {
+        await page.getByLabel("Ich bin unsicher").click();
+      } else {
+        await page.getByLabel("Nein").click();
+      }
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat einen Digitalbezug und die Anforderungen der Interoperabilität sind unklar",
+    );
+
+    // TODO check for hint
+    await expect(page.getByRole("main")).toContainText("");
+  });
+
   test("one positive answer and only negativ interoperability question leads to positive result without interoperability", async ({
     page,
   }) => {
