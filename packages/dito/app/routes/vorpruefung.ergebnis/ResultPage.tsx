@@ -19,7 +19,6 @@ import ResultForm from "./ResultForm.tsx";
 import ResultHeader from "./ResultHeader";
 import { ResultType, TResult } from "./TResult.tsx";
 
-const { nextSteps } = preCheck.result.positive;
 const { questions } = preCheck;
 
 type QuestionAndAnswer = {
@@ -46,6 +45,15 @@ function resolveTitleDigital(result: TResult) {
       return preCheck.result.negative.title;
     case ResultType.UNSURE:
       return preCheck.result.unsure.title;
+  }
+}
+
+function resolveNextSteps(result: ResultType) {
+  switch (result) {
+    case ResultType.POSITIVE:
+      return preCheck.result.positive.nextSteps;
+    case ResultType.NEGATIVE:
+      return preCheck.result.negative.nextSteps;
   }
 }
 
@@ -84,6 +92,8 @@ export default function ResultPage({
   const questionsForInteroperabilityUnsure = questionsAndAnswers.filter(
     (tuple) => tuple.question.interoperability && tuple.answer === "unsure",
   );
+
+  const nextSteps = resolveNextSteps(result.digital);
 
   function getReasonListItem(data: {
     tuple: QuestionAndAnswer;
@@ -195,7 +205,7 @@ export default function ResultPage({
         </Container>
       </ResultHeader>
       <Container paddingBottom="40">
-        {result.digital === ResultType.UNSURE ? (
+        {result.digital === ResultType.UNSURE && (
           <Box
             heading={{
               text: preCheck.result.unsure.nextStep.title,
@@ -212,7 +222,8 @@ export default function ResultPage({
               },
             ]}
           />
-        ) : (
+        )}
+        {result.digital !== ResultType.UNSURE && nextSteps && (
           <NumberedList
             heading={{
               text: nextSteps.title,

@@ -54,7 +54,7 @@ const stepNKR = {
   headline: {
     text: "Prüfung durch den NKR (Nationaler Normenkontrollrat)",
   },
-  content: `Der NKR prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
+  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
 };
 export const steps = {
   preCheck: {
@@ -78,10 +78,17 @@ export const steps = {
   },
   methods: {
     headline: {
-      text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+      text: "Erarbeiten des Regelungsvorhabens",
     },
     content:
-      "Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.",
+      "Nutzen Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit und Interoperabilität in Ihrer Regelung sicherzustellen. Das Digitalcheck-Team steht Ihnen bei der Erarbeitung zur Verfügung.",
+    buttons: [
+      {
+        text: "Zu „Erarbeiten“",
+        href: ROUTE_METHODS.url,
+        look: "ghost" as const,
+      },
+    ],
     finished: {
       headline: {
         text: "Abgeschlossene Erarbeitung eines digitaltauglichen Regelungsvorhabens.",
@@ -91,12 +98,12 @@ export const steps = {
   },
   documentation: {
     headline: {
-      text: "Dokumentieren der Digitaltauglichkeit",
+      text: "Dokumentieren des Regelungsvorhabens",
     },
-    content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.`,
+    content: `Dokumentieren Sie in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit  Sie besonders geachtet haben. Beschreiben Sie wie Sie diese in das Regelungsvorhaben einfließen lassen. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen. `,
     buttons: [
       {
-        text: "Zur Dokumentation",
+        text: "Zu „Dokumentieren“",
         href: ROUTE_DOCUMENTATION.url,
         look: "ghost" as const,
       },
@@ -136,13 +143,6 @@ export const landing = {
           text: "Bei positiver Vorprüfung:",
         },
         ...steps.methods,
-        buttons: [
-          {
-            text: "Zu den Hilfestellungen",
-            href: ROUTE_METHODS.url,
-            look: "ghost" as const,
-          },
-        ],
       },
       steps.documentation,
       steps.nkr,
@@ -510,15 +510,9 @@ Beispiele für Akteur:innen sind:
           steps.preCheck.finished,
           {
             ...steps.methods,
-            buttons: [
-              {
-                text: "Zu den Hilfestellungen",
-                href: ROUTE_METHODS.url,
-              },
-            ],
           },
           steps.documentation,
-          steps.nkr,
+          steps.nkrFinal,
         ],
       },
     },
