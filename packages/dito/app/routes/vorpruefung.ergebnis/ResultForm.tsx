@@ -1,5 +1,4 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
-import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Input from "@digitalcheck/shared/components/Input";
@@ -39,11 +38,7 @@ export default function ResultForm({
   const isPositive = !!Object.values(answers).find((a) => a === "yes");
 
   return (
-    <Container
-      backgroundColor="white"
-      additionalClassNames="rounded-lg"
-      overhangingBackground
-    >
+    <>
       <form {...form.getFormProps()}>
         <fieldset className="ds-stack-32">
           <legend>
@@ -136,6 +131,6 @@ export default function ResultForm({
           ))}
         </div>
       )}
-    </Container>
+    </>
   );
 }
