@@ -528,7 +528,7 @@ Beispiele für Akteur:innen sind:
           "Sie können auch ohne positive Vorprüfung die Digitaltauglichkeit Ihres Regelungsvorhabens sicherstellen.",
         text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
         link: {
-          text: "Zu den Hilfestellungen",
+          text: "Zu „Erarbeiten“",
           href: ROUTE_METHODS.url,
         },
       },
@@ -1317,7 +1317,7 @@ Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an [digitalcheck
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
     buttons: [
       {
-        text: "Zu den Hilfestellungen",
+        text: "Zu „Erarbeiten“",
         look: "tertiary" as const,
         href: ROUTE_METHODS.url,
       },

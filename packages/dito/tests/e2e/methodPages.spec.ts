@@ -39,7 +39,7 @@ test.describe("test method page link flow", () => {
     await page.getByRole("link", { name: "IT-Auswirkungen prüfen" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
 
-    await page.getByRole("link", { name: "Zu den Hilfestellungen" }).click();
+    await page.getByRole("link", { name: "Zu „Erarbeiten“" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS.url);
   });
 });
@@ -100,7 +100,7 @@ test.describe("test method sub pages", () => {
   });
 
   test("method page links to documentation", async ({ page }) => {
-    await page.getByRole("link", { name: "Dokumentation" }).click();
+    await page.getByRole("link", { name: "Zu „Dokumentieren“" }).click();
     await expect(page).toHaveURL(ROUTE_DOCUMENTATION.url);
   });
 });
@@ -120,7 +120,7 @@ test.describe("five principles page", () => {
     await page.getByRole("link", { name: "Digitalbezug einschätzen" }).click();
     await expect(page).toHaveURL(ROUTE_LANDING.url);
 
-    await page.getByRole("link", { name: "Zu den Hilfestellungen" }).click();
+    await page.getByRole("link", { name: "Zu „Erarbeiten“" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS.url);
 
     await page.getByRole("link", { name: "Fünf Prinzipien nutzen" }).click();
