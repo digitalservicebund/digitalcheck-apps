@@ -52,7 +52,7 @@ export const header = {
 
 const stepNKR = {
   headline: {
-    text: "Prüfung durch den NKR (Nationaler Normenkontrollrat)",
+    text: "Prüfen durch den NKR",
   },
   content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
 };
