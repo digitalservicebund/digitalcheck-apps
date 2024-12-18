@@ -21,9 +21,7 @@ import {
 import getBaseURL from "utils/getBaseURL";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
-import ResultNegative from "./ResultNegative";
-import ResultPositive from "./ResultPositive";
-import ResultUnsure from "./ResultUnsure";
+import ResultPage from "./ResultPage.tsx";
 import getResultValidatorForAnswers from "./resultValidation";
 import { ResultType, TResult } from "./TResult.tsx";
 
@@ -141,15 +139,5 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Result() {
   const { result, answers } = useLoaderData<typeof loader>();
 
-  if (result.digital === ResultType.POSITIVE) {
-    return <ResultPositive answers={answers} result={result} />;
-  }
-
-  // Some answers are unsure
-  if (result.digital === ResultType.UNSURE) {
-    return <ResultUnsure answers={answers} />;
-  }
-
-  // All answers are negative
-  return <ResultNegative answers={answers} result={result} />;
+  return <ResultPage answers={answers} result={result} />;
 }

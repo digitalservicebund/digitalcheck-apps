@@ -381,10 +381,8 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       title: "IT-System",
       question:
         "Muss durch die Regelung ein IT-System angepasst oder neu entwickelt werden?",
-      positiveResult:
-        "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
-      negativeResult:
-        "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
+      positiveResult: "einer Anpassung oder Neuentwicklung einer IT-Lösung.",
+      negativeResult: "keiner Anpassung oder Neuentwicklung einer IT-Lösung.",
       text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
       hint: {
         title: "Was ist ein IT-System?",
@@ -398,8 +396,8 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       title: "Verpflichtungen für Beteiligte",
       question:
         "Entstehen durch die Regelung Mitwirkungspflichten für Akteur:innen?",
-      positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
-      negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
+      positiveResult: "einer Festlegung von Mitwirkungspflichten für Akteure.",
+      negativeResult: "keiner Festlegung von Mitwirkungspflichten für Akteure.",
       text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
       hint: {
         title: "Wer sind Akteur:innen?",
@@ -419,10 +417,8 @@ Beispiele für Akteur:innen sind:
       title: "Datenaustausch",
       question:
         "Werden durch die Regelung Daten erhoben, die der Verwaltung möglicherweise bereits vorliegen?",
-      positiveResult:
-        "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
-      negativeResult:
-        "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
+      positiveResult: "einem Austausch von Daten.",
+      negativeResult: "keinem Austausch von Daten.",
       text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
       hint: {
         title: "Was ist mit „Daten erheben“ gemeint?",
@@ -435,9 +431,9 @@ Beispiele für Akteur:innen sind:
       question:
         "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen?",
       positiveResult:
-        "wird Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
+        "einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen.",
       negativeResult:
-        "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
+        "keiner Interaktion zwischen Behörden und Bürger:innen/Unternehmen.",
       text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen. Es können z.B. Unternehmen, Bürger:innen oder Organisationen den Antrag einreichen.",
     },
     {
@@ -446,9 +442,9 @@ Beispiele für Akteur:innen sind:
       question:
         "Kann die Umsetzung der Regelung verbessert werden, indem man Schritte automatisiert?",
       positiveResult:
-        "kann den Aufwand für Betroffene durch (Teil&#8209;)Automatisierung reduzieren.",
+        "einer Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
       negativeResult:
-        "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
+        "keiner Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
       text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
     },
     {
@@ -487,9 +483,20 @@ Beispiele für Akteur:innen sind:
 
   result: {
     title: "Ergebnis der Vorprüfung",
+    reasoningIntro: {
+      digital: {
+        sure: "In Bezug auf **digitale Aspekte** führt ihr Regelungsvorhaben zu...",
+        unsure:
+          "In Bezug auf **digitale Aspekte** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      },
+      interoperability: {
+        sure: "In Bezug auf **Interoperabilität** führt ihr Regelungsvorhaben zu...",
+        unsure:
+          "In Bezug auf **Interoperabilität** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      },
+    },
     positive: {
       title: "Das Regelungsvorhaben hat einen Digitalbezug und ",
-      reasoningIntro: "Das Regelungsvorhaben ...",
       actionButton: {
         text: "Vorprüfung herunterladen",
       },
@@ -514,9 +521,6 @@ Beispiele für Akteur:innen sind:
     unsure: {
       title: "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
-      unsureIntro:
-        "**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**",
-      negativeIntro: "**Folgende Fragen haben Sie mit „Nein“ beantwortet:**",
       actionButton: {
         text: "Vorprüfung wiederholen",
         href: ROUTE_PRECHECK.url,
@@ -533,7 +537,6 @@ Beispiele für Akteur:innen sind:
     },
     negative: {
       title: "Das Regelungsvorhaben hat keinen Digitalbezug und ",
-      reasoningIntro: "Das Regelungsvorhaben ...",
       nextSteps: {
         title: "So machen Sie weiter",
         steps: [steps.preCheck.finished, steps.nkrFinal],
@@ -547,7 +550,7 @@ Beispiele für Akteur:innen sind:
         title: "keine Anforderungen der Interoperabilität.",
       },
       unsure: {
-        title: "unklare Anforderungen der Interoperabilität.",
+        title: "keine eindeutigen Anforderungen der Interoperabilität.",
       },
     },
     form: {
