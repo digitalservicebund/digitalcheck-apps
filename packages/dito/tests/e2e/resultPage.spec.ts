@@ -30,12 +30,12 @@ test.describe("test result page general content", () => {
   });
 
   test("result page links to methods", async ({ page }) => {
-    await page.getByRole("link", { name: "Zu den Hilfestellungen" }).click();
+    await page.getByRole("link", { name: "Zu „Erarbeiten“" }).click();
     await expect(page).toHaveURL(ROUTE_METHODS.url);
   });
 
   test("result page links to documentation", async ({ page }) => {
-    await page.getByRole("link", { name: "Dokumentation" }).click();
+    await page.getByRole("link", { name: "Zu „Dokumentieren“" }).click();
     await expect(page).toHaveURL(ROUTE_DOCUMENTATION.url);
   });
 });
