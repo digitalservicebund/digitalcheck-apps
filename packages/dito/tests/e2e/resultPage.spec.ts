@@ -109,18 +109,23 @@ test.describe("test result page reasoning", () => {
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     for (let i = 1; i < preCheck.questions.length; i++) {
-      await page.waitForURL(preCheck.questions[i].url);
-      await page.getByLabel("Nein").click();
+      const question = preCheck.questions[i];
+      await page.waitForURL(question.url);
+      if (question.interoperability) {
+        await page.getByLabel("Ich bin unsicher").click();
+      } else {
+        await page.getByLabel("Nein").click();
+      }
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
       "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
     );
-    await expect(page.getByRole("main")).not.toContainText(
+    await expect(page.getByRole("main")).toContainText(
       `In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
     );
     await expect(page.getByRole("main")).not.toContainText(
-      `Was können Sie tun?: Kontaktieren Sie uns`,
+      `Was können Sie tun? Kontaktieren Sie uns`,
     );
   });
 

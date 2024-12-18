@@ -92,10 +92,16 @@ export default function ResultPage({
     resultType: "positiveResult" | "negativeResult";
   }) {
     const classes = classNames("w-28 h-auto", data.additionalClassName);
+    const resultHint = data.tuple.question?.resultHint?.[data.resultType];
     return (
       <>
         <data.icon className={classes}></data.icon>
-        <span>{data.tuple.question?.[data.resultType]}</span>
+        <span>
+          <span>
+            {data.tuple.question?.[data.resultType]}
+            {resultHint && <RichText markdown={resultHint} />}
+          </span>
+        </span>
       </>
     );
   }
@@ -129,7 +135,7 @@ export default function ResultPage({
     return filteredQuestionsAndAnswers
       .sort((t1) => (t1.answer === "yes" ? -1 : 1))
       .map((tuple) => (
-        <li key={tuple.question.id} className="flex gap-12">
+        <li key={tuple.question.id} className="flex items-start gap-12">
           {getReason(tuple)}
         </li>
       ));
