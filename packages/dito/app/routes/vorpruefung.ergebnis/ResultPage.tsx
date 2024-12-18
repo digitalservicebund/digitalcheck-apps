@@ -26,40 +26,23 @@ type QuestionAndAnswer = {
   answer: string;
 };
 
-function resolveTitleInteroperability(result: TResult) {
-  switch (result.interoperability) {
-    case ResultType.POSITIVE:
-      return preCheck.result.interoperability.positive.title;
-    case ResultType.NEGATIVE:
-      return preCheck.result.interoperability.negative.title;
-    case ResultType.UNSURE:
-      return preCheck.result.interoperability.unsure.title;
-  }
-}
+const title = {
+  interoperability: {
+    [ResultType.POSITIVE]: preCheck.result.interoperability.positive.title,
+    [ResultType.NEGATIVE]: preCheck.result.interoperability.negative.title,
+    [ResultType.UNSURE]: preCheck.result.interoperability.unsure.title,
+  },
+  digital: {
+    [ResultType.POSITIVE]: preCheck.result.positive.title,
+    [ResultType.NEGATIVE]: preCheck.result.negative.title,
+    [ResultType.UNSURE]: preCheck.result.unsure.title,
+  },
+};
 
-function resolveTitleDigital(result: TResult) {
-  switch (result.digital) {
-    case ResultType.POSITIVE:
-      return preCheck.result.positive.title;
-    case ResultType.NEGATIVE:
-      return preCheck.result.negative.title;
-    case ResultType.UNSURE:
-      return preCheck.result.unsure.title;
-  }
-}
-
-function resolveNextSteps(result: ResultType) {
-  switch (result) {
-    case ResultType.POSITIVE:
-      return preCheck.result.positive.nextSteps;
-    case ResultType.NEGATIVE:
-      return preCheck.result.negative.nextSteps;
-  }
-}
-
-function resolveTitle(result: TResult) {
-  return resolveTitleDigital(result) + resolveTitleInteroperability(result);
-}
+const nextSteps = {
+  [ResultType.POSITIVE]: preCheck.result.positive.nextSteps,
+  [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
+};
 
 function matchQuestionsAndAnswers(answers: PreCheckAnswers) {
   return Object.keys(answers).map((key) => {
@@ -92,8 +75,6 @@ export default function ResultPage({
   const questionsForInteroperabilityUnsure = questionsAndAnswers.filter(
     (tuple) => tuple.question.interoperability && tuple.answer === "unsure",
   );
-
-  const nextSteps = resolveNextSteps(result.digital);
 
   function getReasonListItem(data: {
     tuple: QuestionAndAnswer;
@@ -168,7 +149,12 @@ export default function ResultPage({
     <>
       <ResultHeader
         resultType={result.digital}
-        resultHeading={resolveTitle(result)}
+        resultHeading={
+          title.digital[result.digital] +
+          (result.digital !== ResultType.UNSURE
+            ? title.interoperability[result.interoperability]
+            : "")
+        }
         resultHint={
           result.digital === ResultType.UNSURE
             ? preCheck.result.unsure.hint
@@ -226,10 +212,10 @@ export default function ResultPage({
         {result.digital !== ResultType.UNSURE && nextSteps && (
           <NumberedList
             heading={{
-              text: nextSteps.title,
+              text: nextSteps[result.digital].title,
               tagName: "h2",
             }}
-            items={nextSteps.steps}
+            items={nextSteps[result.digital].steps}
           />
         )}
       </Container>
