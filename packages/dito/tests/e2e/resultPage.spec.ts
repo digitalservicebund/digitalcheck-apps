@@ -24,6 +24,9 @@ test.describe("test result page general content", () => {
     await expect(page.getByRole("main")).toContainText(
       "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
     );
+    await expect(page.getByRole("main")).not.toContainText(
+      `In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
+    );
   });
 
   test("result page links to methods", async ({ page }) => {
@@ -78,7 +81,7 @@ test.describe("test result page reasoning", () => {
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
     await expect(page.getByRole("main")).toContainText(
-      "Das Regelungsvorhaben hat einen Digitalbezug und unklare Anforderungen der Interoperabilität.",
+      "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
     );
 
     // TODO check for hint
@@ -97,6 +100,27 @@ test.describe("test result page reasoning", () => {
     }
     await expect(page.getByRole("main")).toContainText(
       "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
+    );
+  });
+
+  test("one positive answer and only unsure interoperability answers leads to positive result with hint", async ({
+    page,
+  }) => {
+    await page.getByLabel("Ja").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
+      await page.getByLabel("Nein").click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
+    );
+    await expect(page.getByRole("main")).not.toContainText(
+      `In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
+    );
+    await expect(page.getByRole("main")).not.toContainText(
+      `Was können Sie tun?: Kontaktieren Sie uns`,
     );
   });
 
@@ -142,6 +166,12 @@ test.describe("test result page reasoning", () => {
     await expect(page.getByRole("main")).toContainText(
       "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
     );
+    await expect(page.getByRole("main")).not.toContainText(
+      `In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
+    );
+    await expect(page.getByRole("main")).not.toContainText(
+      `In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
+    );
   });
 
   test("checking all negative answers for digital and positive for interoperability leads to negative result with warning", async ({
@@ -162,7 +192,7 @@ test.describe("test result page reasoning", () => {
       "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
     );
     await expect(page.getByRole("main")).toContainText(
-      "EU-Anforderungen an Interoperabilität nicht erfüllt.",
+      "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
     );
   });
 
@@ -179,7 +209,7 @@ test.describe("test result page reasoning", () => {
     await expect(page).toHaveURL(ROUTE_RESULT.url);
     await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
     await expect(page.getByRole("main")).toContainText(
-      "Sie haben mehrere Aussagen mit “Ich bin unsicher” beantwortet.",
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
     );
     await expect(page.getByRole("main")).toContainText(
       `In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...`,
@@ -190,8 +220,36 @@ test.describe("test result page reasoning", () => {
     await expect(page.getByRole("main")).toContainText(
       `In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...`,
     );
-    await expect(page.getByRole("main")).not.toContainText(
+    await expect(page.getByRole("main")).toContainText(
       "Sie können auch ohne positive Vorprüfung die Digitaltauglichkeit Ihres Regelungsvorhabens sicherstellen.",
+    );
+  });
+
+  test("checking mix of unsure and negative answers for digital aspects and positive for interoperability leads to unsure result with a hint", async ({
+    page,
+  }) => {
+    await page.getByLabel("Ich bin unsicher").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 1; i < preCheck.questions.length; i++) {
+      const question = preCheck.questions[i];
+      await page.waitForURL(question.url);
+      if (question.interoperability) {
+        await page.getByLabel("Ja").click();
+      } else {
+        await page.getByLabel("Nein").click();
+      }
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await expect(page).toHaveURL(ROUTE_RESULT.url);
+    await expect(page.getByRole("main")).toContainText("Digitalcheck-Support");
+    await expect(page.getByRole("main")).toContainText(
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      `In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...`,
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
     );
   });
 });
