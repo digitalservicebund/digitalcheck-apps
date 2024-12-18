@@ -269,12 +269,10 @@ test.describe("test question navigation", () => {
 
     const linkBar = page.locator(".lg\\:hidden .flex");
 
-    // Check that the first question link has a light color
+    // Check that the first and second question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[0].url}"]`)).toHaveClass(
-      /bg-blue-300/,
+      /bg-blue-800/,
     );
-
-    // Check that the second question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
       /bg-blue-800/,
     );
@@ -299,12 +297,10 @@ test.describe("test question navigation", () => {
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
 
-    // Check that the second question link now has a light color
+    // Check that the second question link still has a dark color
     await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
-      /bg-blue-300/,
+      /bg-blue-800/,
     );
-
-    // Check that the third question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[2].url}"]`)).toHaveClass(
       /bg-blue-800/,
     );
