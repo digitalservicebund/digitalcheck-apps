@@ -23,7 +23,7 @@
   "dependencies": {
     "react-router-dom": "^6.22.1",
     "@rvf/react": "^6.2.0",
-    "@rvf/zod": "^6.0.0"
+    "@rvf/zod": "^7.0.1"
   },
   "engines": {
     "node": ">=20.0.0"
