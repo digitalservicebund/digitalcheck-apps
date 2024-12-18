@@ -103,6 +103,11 @@ export type TQuestion = {
   question: string;
   positiveResult: string;
   negativeResult: string;
+  resultHint?: {
+    positiveResult?: string;
+    negativeResult?: string;
+    unsureResult?: string;
+  };
   text?: string;
   url: string;
   prevLink: string;
