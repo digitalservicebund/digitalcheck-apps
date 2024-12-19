@@ -17,13 +17,14 @@ async function interceptMailToRedirectAndExpect(
 
     if (status === "302" && redirectUrl?.startsWith("mailto:")) {
       const mailTo = new URL(redirectUrl);
-      expect(mailTo.searchParams.get("subject")).toBe(expected?.subject || "");
-      expected?.recipients?.every((expectedRecipient) =>
+      if (expected?.subject)
+        expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
+      expected?.recipients?.forEach((expectedRecipient) =>
         expect(mailTo.pathname).toContain(expectedRecipient),
       );
-      expected?.bodyContains?.every((expectedString) =>
-        expect(mailTo.searchParams.get("body")).toContain(expectedString),
-      );
+      expected?.bodyContains?.forEach((expectedString) => {
+        expect(mailTo.searchParams.get("body")).toContain(expectedString);
+      });
 
       await route.abort();
     } else {
@@ -44,18 +45,15 @@ test.describe("test positive assessment page", () => {
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
-    await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
-    await expect(page.getByLabel("Ihre E-Mail Adresse")).toHaveValue(
+    await page.getByLabel("Ihre E-Mail Adresse (optional)").fill("foo@bar.de");
+    await expect(page.getByLabel("Ihre E-Mail Adresse (optional)")).toHaveValue(
       "foo@bar.de",
     );
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy 123",
     );
-    await interceptMailToRedirectAndExpect(page, {
-      subject: "Digitalcheck Vorprüfung: „Policy 123“",
-      recipients: ["foo@bar.de"],
-    });
+    await interceptMailToRedirectAndExpect(page);
     await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
@@ -145,7 +143,7 @@ test.describe("test email positive result with mixed answers", () => {
     await page.waitForURL(ROUTE_RESULT.url);
   });
 
-  test("creates draft email with correct subject", async ({ page }) => {
+  test("creates email with correct subject", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
@@ -154,30 +152,25 @@ test.describe("test email positive result with mixed answers", () => {
       subject: "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
     });
     await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 
-  test("creates draft email with correct recipients", async ({ page }) => {
-    await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
+  test("creates email with correct recipients", async ({ page }) => {
+    await page
+      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
+      .fill("Policy ABCDEFG");
+    await page.getByLabel("Ihre E-Mail Adresse (optional)").fill("foo@bar.de");
     await interceptMailToRedirectAndExpect(page, {
       recipients: ["nkr@bmj.bund.de", "foo@bar.de"],
     });
     await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 
   test("email contains all answers", async ({ page }) => {
-    await page.goto(preCheck.questions[0].url);
-    await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(preCheck.questions[1].url);
-    await page.getByLabel("Ich bin unsicher").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 2; i < preCheck.questions.length; i++) {
-      await page.waitForURL(preCheck.questions[i].url);
-      await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
-    }
-    await page.waitForURL(ROUTE_RESULT.url);
-
+    await page
+      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
+      .fill("Policy ABCDEFG");
     const bodyContains = [
       "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
@@ -192,6 +185,8 @@ test.describe("test email positive result with mixed answers", () => {
     await interceptMailToRedirectAndExpect(page, {
       bodyContains: bodyContains,
     });
+    await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 });
 
@@ -220,5 +215,6 @@ test.describe("test email negative result", () => {
       ],
     });
     await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 });
