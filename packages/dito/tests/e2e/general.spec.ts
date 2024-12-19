@@ -55,14 +55,12 @@ test.describe("test landing page", () => {
       "1Vorprüfung: Digitalbezug einschätzen",
     );
     await expect(page.getByRole("main")).toContainText(
-      "2Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+      "2Erarbeiten des Regelungsvorhabens",
     );
     await expect(page.getByRole("main")).toContainText(
-      "3Dokumentieren der Digitaltauglichkeit",
+      "3Dokumentieren des Regelungsvorhabens",
     );
-    await expect(page.getByRole("main")).toContainText(
-      "4Prüfung durch den NKR",
-    );
+    await expect(page.getByRole("main")).toContainText("4Prüfen durch den NKR");
   });
 });
 
@@ -107,7 +105,7 @@ test.describe("test links", () => {
 
   test("links in landing page work", async ({ page }) => {
     await page.goto(staticRoutes.ROUTE_LANDING.url);
-    await page.getByRole("link", { name: "Hilfestellungen" }).click();
+    await page.getByRole("link", { name: "Zu „Erarbeiten“" }).click();
     await expect(page).toHaveURL(staticRoutes.ROUTE_METHODS.url);
   });
 
