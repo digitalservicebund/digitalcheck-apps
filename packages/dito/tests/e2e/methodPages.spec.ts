@@ -144,6 +144,42 @@ test.describe("five principles page", () => {
     await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
     await page
       .getByRole("link", { name: "Beispiele betrachten" })
+      .nth(1)
+      .click();
+    await expect(page).toHaveURL(
+      `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
+    );
+
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
+      .nth(2)
+      .click();
+    await expect(page).toHaveURL(
+      `${ROUTE_PRINCIPLES.url}/wiederverwendung-von-daten-und-standards-ermoeglichen`,
+    );
+
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
+      .nth(3)
+      .click();
+    await expect(page).toHaveURL(
+      `${ROUTE_PRINCIPLES.url}/datenschutz-und-informationssicherheit-gewaehrleisten`,
+    );
+
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
+      .nth(4)
+      .click();
+    await expect(page).toHaveURL(
+      `${ROUTE_PRINCIPLES.url}/klare-regelungen-fuer-eine-digitale-ausfuehrung-finden`,
+    );
+
+    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+    await page
+      .getByRole("link", { name: "Beispiele betrachten" })
       .last()
       .click();
     await expect(page).toHaveURL(
