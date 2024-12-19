@@ -96,7 +96,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
             der DigitalcheckWorkshops teilgenommen haben. Bitten Sie sie um Unterstützung oder 
             wenden Sie sich an den Digitalcheck-Support (digitalcheck@digitalservice.bund.de, 
             0151 4076 7839). Mehr zur Visualisierung mit Flussdiagrammen finden Sie hier: 
-            [ondea.de/DE/ZfL/ZfL_node.html](https://www.ondea.de/DE/ZfL/ZfL_node.html), Modul 10 im Video “Visualisierung“.`,
+            [ondea.de/DE/ZfL/ZfL_node.html](https://www.ondea.de/DE/ZfL/ZfL_node.html), Modul 10 im Video „Visualisierung“.`,
           }}
         ></Box>
       </Container>

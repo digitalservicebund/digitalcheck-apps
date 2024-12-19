@@ -253,7 +253,7 @@ export const feedbackForm = {
   heading: "Ihr Feedback hilft uns weiter!",
   labels: ["Sehr schwierig", "Schwierig", "Moderat", "Einfach", "Sehr einfach"],
   questionSimple:
-    "Wie einfach war es für Sie, unseren Dienst “Digitaltaugliche Regelungen erarbeiten” zu nutzen?",
+    "Wie einfach war es für Sie, unseren Dienst „Digitaltaugliche Regelungen erarbeiten“ zu nutzen?",
   questionUseful:
     "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
   mail: "Schreiben Sie uns eine Email an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
@@ -477,7 +477,7 @@ export const preCheck = {
         title: "Häufige Fragen",
         details: [
           {
-            label: "Was passiert, wenn ich auf „E-Mail erstellen” klicke?",
+            label: "Was passiert, wenn ich auf „E-Mail erstellen“ klicke?",
             text: "In Ihrem E-Mail Programm öffnet sich eine neue E-Mail. Diese enthält ein kurzes Anschreiben mit einem eindeutigen Link, über den die Vorprüfung aufgerufen und heruntergeladen werden kann. Sie haben die Möglichkeit, den Text individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
           },
           {
@@ -866,7 +866,7 @@ Der Überblick lohnt sich auch bei scheinbar einfachen Abläufen:
 - Fehlende Verbindungen oder unerwartete Abhängigkeiten werden sichtbar.
 - Sie erfahren, auf welchen bestehenden Abläufen Sie aufbauen können.
 
-Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „Wer will was wann von wem?”`,
+Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „Wer will was wann von wem?“`,
   },
   boxes: [
     {
@@ -877,9 +877,9 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
       label: "Vorlage",
       icon: StickyNote2Outlined,
       title: "Einfache Abläufe und Aufgaben erfassen",
-      text: `1. Sammeln Sie [Akteurinnen und Akteure](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. (“Wer”)
-2. Rechts tragen Sie die Adressatinnen und Adressaten ein. (“von wem”)
-3. In die Mitte schreiben Sie die verbindenden Aufgaben. (“will wann was”)
+      text: `1. Sammeln Sie [Akteurinnen und Akteure](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}), die an der Umsetzung beteiligt sind, und tragen Sie diese auf der linken Seite ein. („Wer“)
+2. Rechts tragen Sie die Adressatinnen und Adressaten ein. („von wem“)
+3. In die Mitte schreiben Sie die verbindenden Aufgaben. („will wann was“)
 
 Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adressatinnen und Adressaten, die einen Antrag stellen, können auf der linken Seite stehen, die entsprechende Behörde steht dann rechts.`,
       buttons: [
@@ -1096,7 +1096,7 @@ Durch eindeutige und klare Formulierungen können die Regelungen verständlich d
       title: "Automatisierung ermöglichen",
       content: `### Darum ist das wichtig
 
-Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die “Duplikation” oder Skalierung kostet jedoch (fast) nichts. Daher ist es personell und wirtschaftlich sinnvoll, sich wiederholende Schritte, Prozesse oder Vorgehen zu automatisieren. Ein Regelungsvorhaben, das Ermessensspielraum lässt, kann nicht vollständig automatisiert werden: Soweit es dem Regelungsziel dient, sollte darauf verzichtet werden. Dadurch entstehen zeitliche und finanzielle Freiräume für Fälle, die eine gesonderte Auseinandersetzung benötigen.
+Digitale Lösungen zu erstellen, ist zunächst aufwändig. Die „Duplikation“ oder Skalierung kostet jedoch (fast) nichts. Daher ist es personell und wirtschaftlich sinnvoll, sich wiederholende Schritte, Prozesse oder Vorgehen zu automatisieren. Ein Regelungsvorhaben, das Ermessensspielraum lässt, kann nicht vollständig automatisiert werden: Soweit es dem Regelungsziel dient, sollte darauf verzichtet werden. Dadurch entstehen zeitliche und finanzielle Freiräume für Fälle, die eine gesonderte Auseinandersetzung benötigen.
 <br class="block content-[''] !mb-48" />
 ### Tipps für Ihr Regelungsvorhaben
 
