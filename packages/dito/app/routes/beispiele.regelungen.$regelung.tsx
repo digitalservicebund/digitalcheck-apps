@@ -183,16 +183,19 @@ export default function Gesetz() {
           />
         </Container>
       </Background>
-      {regelung.GesetzStatus !== "Verkuendetes_Gesetz_aktuelle_Fassung" && (
-        <Container paddingBottom="0">
-          <InlineNotice
-            title={regulations.infoTitle}
-            look="tips"
-            tagName="h2"
-            content={regulations.infoText}
-          />
-        </Container>
-      )}
+      {regelung.Digitalchecks.some(
+        (digitalcheck) => digitalcheck.Paragraphen.length > 0,
+      ) &&
+        regelung.GesetzStatus !== "Verkuendetes_Gesetz_aktuelle_Fassung" && (
+          <Container paddingBottom="0">
+            <InlineNotice
+              title={regulations.infoTitle}
+              look="tips"
+              tagName="h2"
+              content={regulations.infoText}
+            />
+          </Container>
+        )}
       {regelung.Digitalchecks.map((digitalcheck, index) => (
         <Container
           key={digitalcheck.documentId}

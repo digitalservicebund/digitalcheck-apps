@@ -73,7 +73,7 @@ const VisualisationItem = ({
       paddingTop="0"
       paddingBottom="0"
     >
-      <Heading tagName="h4" look="ds-heading-03-reg" className="mb-16">
+      <Heading tagName="h3" look="ds-heading-03-reg" className="mb-16">
         {visualisierung.Titel}
       </Heading>
       <BlocksRenderer content={visualisierung.Beschreibung}></BlocksRenderer>

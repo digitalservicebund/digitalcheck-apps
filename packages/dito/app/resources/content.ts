@@ -12,9 +12,11 @@ import {
   ROUTE_METHODS_TASKS_PROCESSES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
   ROUTE_PRECHECK,
+  ROUTE_PRINCIPLES,
   ROUTE_PRIVACY,
   ROUTE_RESULT,
   ROUTE_SUPPORT,
+  ROUTE_VISUALISATIONS,
   TOOLFINDER,
 } from "./staticRoutes";
 
@@ -689,28 +691,29 @@ export const digitalSuitability = {
     explanation: "Warum ist das gut?",
   },
   boxItems: [
-    // {
-    //   title: "Visualisierungen",
-    //   content: `Visualisierungen helfen, komplexe Sachverhalte zu strukturieren und dadurch schneller und intuitiver erfassbar zu machen – Zusammenhänge werden sichtbar und Möglichkeiten der Digitalisierung können einfach identifiziert werden.
-    //   <br class="block content-[''] !mb-24" />
-    //   Hier finden Sie Visualisierungen, welche Legistinnen und Legisten beim erarbeiten der Digitaltauglichkeit geholfen haben und veröffentlicht wurden.`,
-    //   buttons: [
-    //     {
-    //       text: "Zu den Visualisierungen",
-    //     },
-    //   ],
-    // },
+    {
+      title: "Visualisierungen",
+      content: `Visualisierungen helfen, komplexe Sachverhalte zu strukturieren und dadurch schneller und intuitiver erfassbar zu machen – Zusammenhänge werden sichtbar und Möglichkeiten der Digitalisierung können einfach identifiziert werden.
+      <br class="block content-[''] !mb-24" />
+      Hier finden Sie Visualisierungen, welche Legistinnen und Legisten beim Erarbeiten der Digitaltauglichkeit geholfen haben und veröffentlicht wurden.`,
+      buttons: [
+        {
+          text: "Zu den Visualisierungen",
+          href: ROUTE_VISUALISATIONS.url,
+        },
+      ],
+    },
     {
       title: "Die 5 Prinzipien im Regelungstext",
       content: `Die 5 Prinzipien für Digitaltaugliche Gesetzgebung dienen Ihnen als Inspiration und gemeinsame Sprache für die Erarbeitung und Begleitung der Regelungsarbeit. Sie geben Anhaltspunkte wie Ihnen Digitalisierung beim Design der Wirklogik Ihrer Regelung helfen kann.
       <br class="block content-[''] !mb-24" />
       Hier finden Sie Formulierungen, wie Ihre Kolleginnen und Kollegen die Prinzipien für Digitaltaugliche Gesetzgebung genutzt haben um den Regelungstext digitaltauglich zu formulieren.`,
-      // buttons: [
-      //   {
-      //     text: "Zu den Prinzipien",
-      //     href: ROUTE_PRINCIPLES.url,
-      //   },
-      // ],
+      buttons: [
+        {
+          text: "Zu den Prinzipien",
+          href: ROUTE_PRINCIPLES.url,
+        },
+      ],
     },
     // {
     //   title: "NKR-Stellungnahmen",

@@ -21,7 +21,9 @@ export const meta: MetaFunction = ({ matches }) => {
 };
 
 export default function Digitaltauglichkeit_index() {
-  const principles = useOutletContext<Prinzip[]>();
+  const principles = useOutletContext<Prinzip[]>().toSorted(
+    (a, b) => a.Nummer - b.Nummer,
+  );
   return (
     <>
       <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
@@ -41,29 +43,23 @@ export default function Digitaltauglichkeit_index() {
       <Container>
         {digitalSuitability.boxItems.map((item) => (
           <Box
+            additionalClassNames="pb-64"
             key={item.title}
             heading={{
               tagName: "h2",
               text: item.title,
             }}
             content={{ markdown: item.content }}
-            buttons={[
-              ...principles
-                .toSorted((a, b) => a.Nummer - b.Nummer)
-                .map((principle) => ({
-                  text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
-                  href: `${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`,
-                  look: "ghost" as const,
-                  className: "w-full ds-link-01-bold",
-                })),
-              {
-                text: ROUTE_VISUALISATIONS.title,
-                href: ROUTE_VISUALISATIONS.url,
-                look: "ghost" as const,
-                className: "w-full ds-link-01-bold",
-              },
-            ]}
-            additionalClassNames="mb-56"
+            buttons={
+              item.buttons[0].href == ROUTE_PRINCIPLES.url
+                ? [
+                    {
+                      ...item.buttons[0],
+                      href: `${ROUTE_PRINCIPLES.url}/${principles[0].URLBezeichnung}`,
+                    },
+                  ]
+                : item.buttons
+            }
           />
         ))}
         {/* The button prop does not support prefetching, so we are using the PrefetchPageLinks component instead */}
