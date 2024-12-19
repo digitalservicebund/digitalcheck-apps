@@ -129,12 +129,13 @@ test.describe("test result page reasoning", () => {
     );
   });
 
-  test("all answers are shown as reasons either positive or negative case", async ({
-    page,
-  }) => {
+  test("all answers are shown as reasons", async ({ page }) => {
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 1; i < preCheck.questions.length; i++) {
+    await page.waitForURL(preCheck.questions[1].url);
+    await page.getByLabel("Ich bin unsicher").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    for (let i = 2; i < preCheck.questions.length; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -144,6 +145,9 @@ test.describe("test result page reasoning", () => {
     );
     await expect(page.getByRole("main")).toContainText(
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
     );
     await expect(page.getByRole("main")).toContainText(
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
