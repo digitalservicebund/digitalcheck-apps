@@ -552,13 +552,13 @@ Beispiele für Akteur:innen sind:
       },
     },
     form: {
-      formLegend: "Senden Sie die Vorprüfung zum NKR",
-      instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
-- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
-- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
-      instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung in die entsprechenden Felder ein.
-- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
-- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
+      formLegend: "Vorprüfung senden",
+      instructions: `Wir erstellen für Sie eine E-Mail mit dem Ergebnis der Vorprüfung, die Sie anschließend an den Nationalen Normkontrollrat (NKR), den Digitalcheck und an Ihre eigene E-Mail-Adresse senden können.
+      <br/><br/>
+- Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.<br/><br/> 
+- Falls Ihr Vorhaben EU-Anforderungen an Interoperabilität enthält, unterstützt Sie das Digitalcheck-Team bei den nächsten Schritten. Kontaktieren Sie uns gerne unter [0151/40 76 78 39](tel:+4915140767839), wenn Sie hierzu weitere Fragen haben.<br/><br/>
+- Geben Sie Ihre E-Mail-Adresse ein und senden Sie die E-Mail auch an sich selbst und Ihre Kolleg:innen, damit diese sie als Dokumentation speichern können.`,
+      emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
       policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
@@ -574,12 +574,11 @@ Beispiele für Akteur:innen sind:
         details: [
           {
             label: "Was passiert, wenn ich auf „E-Mail erstellen“ klicke?",
-            text: "In Ihrem E-Mail Programm öffnet sich eine neue E-Mail. Diese enthält ein kurzes Anschreiben mit einem eindeutigen Link, über den die Vorprüfung aufgerufen und heruntergeladen werden kann. Sie haben die Möglichkeit, den Text individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
+            text: "In Ihrem E-Mail-Programm öffnet sich eine neue E-Mail. Diese enthält das Vorprüfungs-Ergebnis in Textform mit Ergebnissen zum Digitalbezug und EU-Interoperabilität. Sie haben die Möglichkeit, den Text und Empfänger individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
           },
           {
-            label:
-              "Warum sollte ich die Vorprüfung bereits jetzt an den NKR schicken?",
-            text: "Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.",
+            label: "Warum die Vorprüfung an den NKR schicken?",
+            text: "Erfahrungswerte zeigen, dass ein frühzeitiger Austausch mit dem NKR oder dem DigitalService das Erarbeiten für Sie vereinfacht und die Prüfung beschleunigt. So können Sie von den Erfahrungen in anderen Vorhaben profitieren – wenn Sie dies wünschen.",
           },
         ],
       },
