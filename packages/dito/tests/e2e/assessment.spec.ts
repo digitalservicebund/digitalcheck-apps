@@ -19,13 +19,13 @@ test.describe("test positive assessment page", () => {
       "Policy #123",
     );
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 
   test("title can't be too long", async ({ page }) => {
-    await page
-      .getByLabel("Arbeitstitel des Vorhabens")
-      .fill("Policy #987".repeat(500));
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(501));
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await expect(page.getByTestId("title-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
   });
 });
@@ -46,6 +46,7 @@ test.describe("test form in negative case", () => {
   test("negative reasoning is required", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await expect(page.getByTestId("negativeReasoning-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     );
@@ -56,6 +57,7 @@ test.describe("test form in negative case", () => {
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await expect(page.getByTestId("title-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
@@ -65,6 +67,8 @@ test.describe("test form in negative case", () => {
     await page.getByLabel("Begründung").fill("A".repeat(5001));
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("B".repeat(501));
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await expect(page.getByTestId("title-error")).toBeVisible();
+    await expect(page.getByTestId("negativeReasoning-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).toContainText("kürzere Begründung");
   });
