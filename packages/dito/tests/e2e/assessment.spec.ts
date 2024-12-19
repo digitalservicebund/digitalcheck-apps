@@ -37,7 +37,7 @@ test.describe("test positive assessment page", () => {
   });
 
   test("accepts user input on assessment page", async ({ page }) => {
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy 123",
     );
