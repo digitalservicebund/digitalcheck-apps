@@ -2,20 +2,17 @@ import Background from "@digitalcheck/shared/components/Background.tsx";
 import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import Image from "@digitalcheck/shared/components/Image.tsx";
-import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { regulations, visualisations } from "../resources/content.ts";
+import { visualisations } from "../resources/content.ts";
 import { ROUTE_VISUALISATIONS } from "../resources/staticRoutes.ts";
 
+import VisualisationItem from "../components/VisualisationItem.tsx";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
   visualisationFields,
   Visualisierung,
 } from "../utils/strapiData.server.ts";
-import { formatDate } from "../utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);
@@ -60,15 +57,12 @@ const groupByRegelung = (visualisations: Visualisierung[]) => {
     (acc, visualisation) => {
       const regelung = visualisation.Digitalcheck?.Regelungsvorhaben;
 
-      // Check if Regelungsvorhaben exists
+      // Check if Regelungsvorhaben exists (visualisation is connected to a digitalcheck)
       if (!regelung) {
-        console.warn(
-          `Warning: Visualization '${visualisation.Titel}' has no assigned Regelungsvorhaben.`,
-        );
-        return acc; // Skip this visualisation
+        return acc;
       }
 
-      const regelungTitle = regelung.Titel || "Unassigned Regelung";
+      const regelungTitle = regelung.Titel;
 
       if (!acc[regelungTitle]) {
         acc[regelungTitle] = [];
@@ -80,15 +74,6 @@ const groupByRegelung = (visualisations: Visualisierung[]) => {
     {} as Record<string, Visualisierung[]>,
   );
 };
-
-// TODO
-const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
-  value ? (
-    <div className="space-x-8">
-      <span>{label}</span>
-      <span className="ds-label-01-bold">{value}</span>
-    </div>
-  ) : null;
 
 export default function BeispieleVisualisierungen() {
   const visualisationsData = useLoaderData<typeof loader>();
@@ -110,10 +95,8 @@ export default function BeispieleVisualisierungen() {
         </Container>
       </Background>
       <Container>
-        //TODO: check if thre is a better way
         {Object.entries(groupedVisualisations).map(
           ([regelungTitle, visualisations]) => (
-            //TODO: link
             <div key={regelungTitle}>
               <Heading
                 tagName="h2"
@@ -123,76 +106,12 @@ export default function BeispieleVisualisierungen() {
                 {regelungTitle}
               </Heading>
 
-              {/* Render Visualisations for this Regelung */}
+              {/* Render VisualisationItem for each visualisation */}
               {visualisations.map((visualisation) => (
-                <div
-                  className="flex max-sm:flex-col mt-16 gap-32"
+                <VisualisationItem
                   key={visualisation.Bild.documentId}
-                >
-                  <div className="w-1/2 max-sm:px-16 max-sm:pt-32">
-                    <a
-                      href={visualisation.Bild.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block relative border border-blue-500 aspect-square overflow-hidden"
-                    >
-                      <Image
-                        url={visualisation.Bild.url}
-                        alternativeText={visualisation.Bild.alternativeText}
-                        className="w-full h-full object-cover"
-                      />
-                      <ZoomInOutlined
-                        className="absolute bottom-16 left-16 bg-blue-800 p-1 shadow"
-                        fill="white"
-                      />
-                    </a>
-
-                    <div className="p-12 bg-gray-100">
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.legalArea}
-                        value={
-                          visualisation.Digitalcheck?.Regelungsvorhaben
-                            ?.Rechtsgebiet
-                        }
-                      />
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.publishedOn}
-                        value={formatDate(
-                          visualisation.Digitalcheck?.Regelungsvorhaben
-                            ?.VeroeffentlichungsDatum,
-                        )}
-                      />
-                      {visualisation.Visualisierungsart && (
-                        <LabelValuePair
-                          label={regulations.visualisations.imageInfo.type}
-                          value={visualisation.Visualisierungsart}
-                        />
-                      )}
-                      {visualisation.Visualisierungstool && (
-                        <LabelValuePair
-                          label={regulations.visualisations.imageInfo.tool}
-                          value={visualisation.Visualisierungstool}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  <Container
-                    additionalClassNames="w-1/2 p-0 mb-12"
-                    paddingTop="0"
-                    paddingBottom="0"
-                  >
-                    <Heading
-                      tagName="h4"
-                      look="ds-heading-03-reg"
-                      className="mb-16"
-                    >
-                      {visualisation.Titel}
-                    </Heading>
-                    <BlocksRenderer
-                      content={visualisation.Beschreibung}
-                    ></BlocksRenderer>
-                  </Container>
-                </div>
+                  visualisierung={visualisation}
+                />
               ))}
             </div>
           ),

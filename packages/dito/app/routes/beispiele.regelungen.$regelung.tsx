@@ -3,10 +3,8 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import CustomLink from "@digitalcheck/shared/components/CustomLink.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import Image from "@digitalcheck/shared/components/Image.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice.tsx";
-import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import {
   Link,
@@ -16,6 +14,7 @@ import {
 } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import ParagraphList from "components/ParagraphList.tsx";
+import VisualisationItem from "components/VisualisationItem.tsx";
 import React from "react";
 import { regulations } from "../resources/content.ts";
 import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
@@ -91,14 +90,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   return regelungData.regelungsvorhabens[0];
 };
-
-const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
-  value ? (
-    <div className="space-x-8">
-      <span>{label}</span>
-      <span className="ds-label-01-bold">{value}</span>
-    </div>
-  ) : null;
 
 export default function Gesetz() {
   const regelung = useLoaderData<typeof loader>();
@@ -206,7 +197,7 @@ export default function Gesetz() {
         <Container
           key={digitalcheck.documentId}
           paddingBottom="80"
-          additionalClassNames="ds-stack-64 rich-text"
+          additionalClassNames="ds-stack-64"
         >
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
@@ -238,68 +229,10 @@ export default function Gesetz() {
                 }}
               />
               {digitalcheck.Visualisierungen.map((visualisierung) => (
-                <div
-                  className="flex max-sm:flex-col mt-32 gap-32"
+                <VisualisationItem
                   key={visualisierung.Bild.documentId}
-                >
-                  <div className="w-1/2 max-sm:px-16 max-sm:pt-32">
-                    <a
-                      href={visualisierung.Bild.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block relative border border-blue-500 aspect-square overflow-hidden"
-                    >
-                      <Image
-                        url={visualisierung.Bild.url}
-                        alternativeText={visualisierung.Bild.alternativeText}
-                        className="w-full h-full object-cover"
-                      />
-                      <ZoomInOutlined
-                        className="absolute bottom-16 left-16 bg-blue-800 p-1 shadow"
-                        fill="white"
-                      />
-                    </a>
-
-                    <div className="p-12 bg-gray-100">
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.legalArea}
-                        value={regelung.Rechtsgebiet}
-                      />
-                      <LabelValuePair
-                        label={regulations.visualisations.imageInfo.publishedOn}
-                        value={formatDate(regelung.VeroeffentlichungsDatum)}
-                      />
-                      {visualisierung.Visualisierungsart && (
-                        <LabelValuePair
-                          label={regulations.visualisations.imageInfo.type}
-                          value={visualisierung.Visualisierungsart}
-                        />
-                      )}
-                      {visualisierung.Visualisierungstool && (
-                        <LabelValuePair
-                          label={regulations.visualisations.imageInfo.tool}
-                          value={visualisierung.Visualisierungstool}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  <Container
-                    additionalClassNames="w-1/2 p-0 mb-12"
-                    paddingTop="0"
-                    paddingBottom="0"
-                  >
-                    <Heading
-                      tagName="h4"
-                      look="ds-heading-03-reg"
-                      className="mb-16"
-                    >
-                      {visualisierung.Titel}
-                    </Heading>
-                    <BlocksRenderer
-                      content={visualisierung.Beschreibung}
-                    ></BlocksRenderer>
-                  </Container>
-                </div>
+                  visualisierung={visualisierung}
+                />
               ))}
             </div>
           )}
