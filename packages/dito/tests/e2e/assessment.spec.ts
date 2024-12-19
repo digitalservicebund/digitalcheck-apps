@@ -5,7 +5,9 @@ import { ROUTE_RESULT } from "resources/staticRoutes";
 async function interceptMailToRedirectAndExpect(
   page: Page,
   expected?: {
-    subject: string;
+    subject?: string;
+    recipient?: string;
+    bodyContains?: string;
   },
 ) {
   await page.route("**", async (route) => {
@@ -13,11 +15,13 @@ async function interceptMailToRedirectAndExpect(
     const status = response.headers()["x-remix-status"];
     const redirectUrl = response.headers()["x-remix-redirect"];
 
-    const mailTo = new URL(redirectUrl);
-
     if (status === "302" && redirectUrl?.startsWith("mailto:")) {
-      if (expected !== undefined)
-        expect(mailTo.searchParams.get("subject")).toBe(expected.subject);
+      const mailTo = new URL(redirectUrl);
+      expect(mailTo.pathname).toContain(expected?.recipient || "");
+      expect(mailTo.searchParams.get("subject")).toBe(expected?.subject || "");
+      expect(mailTo.searchParams.get("body")).toContain(
+        expected?.bodyContains || "",
+      );
       await route.abort();
     } else {
       await route.continue();
@@ -122,6 +126,8 @@ test.describe("test quicksend email", () => {
 
     await interceptMailToRedirectAndExpect(page, {
       subject: "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
+      bodyContains: "ausgefüllten Vorprüfung im Rahmen des Digitalcheck",
+      recipient: "nkr@bmj.bund.de",
     });
     await page.getByTestId("result-email-button").click();
   });
