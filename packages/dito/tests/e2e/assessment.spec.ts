@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import { ROUTE_RESULT } from "resources/staticRoutes";
 
-test.describe("test positive assessment page and PDF", () => {
+test.describe("test positive assessment page", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
     await page.goto(preCheck.questions[0].url);
     for (let i = 0; i < preCheck.questions.length; i++) {
@@ -18,18 +18,15 @@ test.describe("test positive assessment page and PDF", () => {
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
       "Policy #123",
     );
-    await page.getByRole("button", { name: "herunterladen" }).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("title can't be too long", async ({ page }) => {
     await page
       .getByLabel("Arbeitstitel des Vorhabens")
       .fill("Policy #987".repeat(500));
-    await page.getByRole("button", { name: "herunterladen" }).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
-    await expect(page.getByRole("main")).not.toContainText(
-      "wird heruntergeladen",
-    );
   });
 });
 
@@ -67,12 +64,9 @@ test.describe("test form in negative case", () => {
   test("title and reasoning can't be too long", async ({ page }) => {
     await page.getByLabel("Begründung").fill("A".repeat(5001));
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("B".repeat(501));
-    await page.getByRole("button", { name: "herunterladen" }).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
     await expect(page.getByRole("main")).toContainText("kürzere Begründung");
-    await expect(page.getByRole("main")).not.toContainText(
-      "wird heruntergeladen",
-    );
   });
 });
 
@@ -93,7 +87,7 @@ test.describe("test quicksend email", () => {
       .fill("Policy ABCDEFG");
 
     const requestPromise = page.waitForRequest(/mailto:.*/);
-    await page.getByRole("button", { name: "E-Mail" }).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     const request = await requestPromise;
     const mailTo = new URL(request.url());
 
