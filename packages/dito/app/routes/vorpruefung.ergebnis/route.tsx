@@ -124,8 +124,11 @@ export async function action({ request }: ActionFunctionArgs) {
     const emailTemplate = preCheck.result.form.emailTemplate;
     const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
     const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
+    const email = formData.get("email");
+    const additionalRecipient = email !== null ? `,${email as string}` : "";
+    const recipients = `${emailTemplate.to}${additionalRecipient}`;
     const mailToLink = encodeURI(
-      `mailto:${emailTemplate.to}?subject=${subject}&body=${body}`,
+      `mailto:${recipients},${formData.get("email") as string}?subject=${subject}&body=${body}`,
     );
     return redirect(mailToLink);
   } else if (_action === "download") {
