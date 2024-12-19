@@ -41,13 +41,7 @@ export default function ResultForm({
           <legend>
             <Heading tagName="h2" text={preCheck.result.form.formLegend} />
           </legend>
-          <RichText
-            markdown={
-              isPositive
-                ? preCheck.result.form.instructionsPositive
-                : preCheck.result.form.instructionsNegative
-            }
-          />
+          <RichText markdown={preCheck.result.form.instructions} />
           {Object.keys(answers).map((answer) => (
             <input
               key={answer}
@@ -56,6 +50,12 @@ export default function ResultForm({
               type="hidden"
             />
           ))}
+          <Input
+            name="email"
+            type={"email"}
+            label={preCheck.result.form.emailLabel}
+            error={form.error("email")}
+          />
           <Input
             name="title"
             label={preCheck.result.form.policyTitleLabel}
@@ -79,13 +79,6 @@ export default function ResultForm({
                 text: preCheck.result.form.sendEmailButton.text,
                 look: "primary",
                 className: "plausible-event-name=Quicksend+Click",
-              },
-              {
-                id: "result-download-button",
-                name: "_action",
-                value: "download",
-                text: preCheck.result.form.downloadPdfButton.text,
-                look: "ghost",
               },
             ]}
           />
