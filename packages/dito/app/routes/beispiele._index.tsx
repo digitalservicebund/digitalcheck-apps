@@ -9,7 +9,11 @@ import {
 } from "@remix-run/react";
 import { Prinzip } from "utils/strapiData.server.ts";
 import { digitalSuitability } from "../resources/content.ts";
-import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
+import {
+  ROUTE_EXAMPLES,
+  ROUTE_PRINCIPLES,
+  ROUTE_VISUALISATIONS,
+} from "../resources/staticRoutes.ts";
 import prependMetaTitle from "../utils/metaTitle.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
@@ -43,14 +47,22 @@ export default function Digitaltauglichkeit_index() {
               text: item.title,
             }}
             content={{ markdown: item.content }}
-            buttons={principles
-              .toSorted((a, b) => a.Nummer - b.Nummer)
-              .map((principle) => ({
-                text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
-                href: `${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`,
+            buttons={[
+              ...principles
+                .toSorted((a, b) => a.Nummer - b.Nummer)
+                .map((principle) => ({
+                  text: `Prinzip ${principle.Nummer} – ${principle.Name}`,
+                  href: `${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`,
+                  look: "ghost" as const,
+                  className: "w-full ds-link-01-bold",
+                })),
+              {
+                text: ROUTE_VISUALISATIONS.title,
+                href: ROUTE_VISUALISATIONS.url,
                 look: "ghost" as const,
-                className: "mr-16 ds-link-01-bold", // The margin is used as a hack to force all links on a new line without using w-full
-              }))}
+                className: "w-full ds-link-01-bold",
+              },
+            ]}
             additionalClassNames="mb-56"
           />
         ))}
@@ -61,6 +73,10 @@ export default function Digitaltauglichkeit_index() {
             page={`${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`}
           />
         ))}
+        <PrefetchPageLinks
+          key={ROUTE_VISUALISATIONS.title}
+          page={ROUTE_VISUALISATIONS.url}
+        />
       </Container>
     </>
   );

@@ -117,6 +117,12 @@ export const ROUTE_LAWS: Route = {
   parent: ROUTE_EXAMPLES.url,
 };
 
+export const ROUTE_VISUALISATIONS: Route = {
+  url: `${ROUTE_EXAMPLES.url}/visualisierungen`,
+  title: "Visualisierungen",
+  parent: ROUTE_EXAMPLES.url,
+};
+
 const routes: Route[] = [
   ROUTE_LANDING,
   ROUTE_PRECHECK,
@@ -134,6 +140,7 @@ const routes: Route[] = [
   ROUTE_A11Y,
   ROUTE_SITEMAP,
   ROUTE_EXAMPLES,
+  ROUTE_VISUALISATIONS,
 ];
 
 export default routes;

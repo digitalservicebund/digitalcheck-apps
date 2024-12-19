@@ -139,6 +139,21 @@ fragment ParagraphFields on Paragraph {
   }
 }`;
 
+export const visualisationFields = `
+fragment VisualisationFields on Visualisierung {
+  documentId
+  Titel
+  Beschreibung
+  Visualisierungsart
+  Visualisierungstool
+  Bild {
+    documentId
+    url
+    previewUrl
+    alternativeText
+  }
+}`;
+
 export const GET_PRINZIPS_QUERY = `
 ${prinzipCoreFields}
 query GetPrinzips {

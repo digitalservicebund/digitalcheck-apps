@@ -26,6 +26,7 @@ import {
   Prinzip,
   prinzipCoreFields,
   Regelungsvorhaben,
+  visualisationFields,
 } from "../utils/strapiData.server.ts";
 import {
   formatDate,
@@ -41,6 +42,7 @@ export const meta: MetaFunction = ({ matches }) => {
 const GET_REGELUNGSVORHABENS_BY_SLUG_QUERY = `
 ${prinzipCoreFields}
 ${paragraphFields}
+${visualisationFields}
 query GetRegelungsvorhabens($slug: String!) {
   regelungsvorhabens(filters: { URLBezeichnung: { eq: $slug } }) {
     documentId
@@ -66,17 +68,7 @@ query GetRegelungsvorhabens($slug: String!) {
         ...ParagraphFields
       }
       Visualisierungen {
-        documentId
-        Titel
-        Beschreibung
-        Visualisierungsart
-        Visualisierungstool
-        Bild {
-          documentId
-          url
-          previewUrl
-          alternativeText
-        }
+        ...VisualisationFields
       }
     }
   }
