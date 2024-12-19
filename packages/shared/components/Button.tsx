@@ -99,7 +99,12 @@ function Button({
   }
 
   return (
-    <button {...(props as ButtonProps)} className={buttonClasses}>
+    <button
+      {...(props as ButtonProps)}
+      className={buttonClasses}
+      id={id}
+      data-testid={id}
+    >
       {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
     </button>
   );

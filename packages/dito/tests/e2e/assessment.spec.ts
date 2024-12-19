@@ -1,6 +1,29 @@
-import { expect, test } from "@playwright/test";
+import { expect, Page, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import { ROUTE_RESULT } from "resources/staticRoutes";
+
+async function interceptMailToRedirectAndExpect(
+  page: Page,
+  expected?: {
+    subject: string;
+  },
+) {
+  await page.route("**", async (route) => {
+    const response = await route.fetch();
+    const status = response.headers()["x-remix-status"];
+    const redirectUrl = response.headers()["x-remix-redirect"];
+
+    const mailTo = new URL(redirectUrl);
+
+    if (status === "302" && redirectUrl?.startsWith("mailto:")) {
+      if (expected !== undefined)
+        expect(mailTo.searchParams.get("subject")).toBe(expected.subject);
+      await route.abort();
+    } else {
+      await route.continue();
+    }
+  });
+}
 
 test.describe("test positive assessment page", () => {
   test.beforeEach("Go to assessment page", async ({ page }) => {
@@ -16,15 +39,19 @@ test.describe("test positive assessment page", () => {
   test("accepts user input on assessment page", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #123");
     await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
-      "Policy #123",
+      "Policy 123",
     );
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await interceptMailToRedirectAndExpect(page, {
+      subject: `Digitalcheck Vorprüfung: „Policy 123“`,
+    });
+    await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).not.toBeVisible();
   });
 
   test("title can't be too long", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(501));
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await interceptMailToRedirectAndExpect(page);
+    await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
   });
@@ -45,7 +72,8 @@ test.describe("test form in negative case", () => {
 
   test("negative reasoning is required", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await interceptMailToRedirectAndExpect(page);
+    await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("negativeReasoning-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
@@ -56,7 +84,8 @@ test.describe("test form in negative case", () => {
     await page
       .getByLabel("Begründung")
       .fill("Dieses Vorhaben hat keinen Digitalbezug.");
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await interceptMailToRedirectAndExpect(page);
+    await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
@@ -66,7 +95,8 @@ test.describe("test form in negative case", () => {
   test("title and reasoning can't be too long", async ({ page }) => {
     await page.getByLabel("Begründung").fill("A".repeat(5001));
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("B".repeat(501));
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
+    await interceptMailToRedirectAndExpect(page);
+    await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).toBeVisible();
     await expect(page.getByTestId("negativeReasoning-error")).toBeVisible();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
@@ -85,18 +115,14 @@ test.describe("test quicksend email", () => {
     await page.waitForURL(ROUTE_RESULT.url);
   });
 
-  test.skip("creates draft email with correct subject", async ({ page }) => {
+  test("creates draft email with correct subject", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
 
-    const requestPromise = page.waitForRequest(/mailto:.*/);
-    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
-    const request = await requestPromise;
-    const mailTo = new URL(request.url());
-
-    expect(mailTo.searchParams.get("subject")).toBe(
-      "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
-    );
+    await interceptMailToRedirectAndExpect(page, {
+      subject: "Digitalcheck Vorprüfung: „Policy ABCDEFG“",
+    });
+    await page.getByTestId("result-email-button").click();
   });
 });
