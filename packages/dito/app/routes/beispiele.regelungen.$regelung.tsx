@@ -200,7 +200,7 @@ export default function Gesetz() {
         <Container
           key={digitalcheck.documentId}
           paddingBottom="80"
-          additionalClassNames="ds-stack-64"
+          additionalClassNames="ds-stack-64 rich-text"
         >
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
