@@ -320,7 +320,9 @@ export default function ParagraphList({
   return (
     <div className="ds-stack-32">
       {paragraphs
-        .toSorted((a, b) => a.Nummer.localeCompare(b.Nummer))
+        .toSorted((a, b) =>
+          a.Nummer.localeCompare(b.Nummer, "de-DE", { numeric: true }),
+        )
         .map((paragraph) => (
           <Paragraph
             key={paragraph.documentId}
