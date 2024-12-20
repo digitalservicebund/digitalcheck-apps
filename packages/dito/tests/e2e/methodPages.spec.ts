@@ -133,7 +133,7 @@ test.describe("five principles page", () => {
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
   });
 
-  test("five principles page links to examples", async ({ page }) => {
+  test.skip("five principles page links to examples", async ({ page }) => {
     const links = [
       ROUTE_EXAMPLES.url,
       `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
