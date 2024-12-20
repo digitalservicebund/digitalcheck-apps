@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "resources/staticRoutes";
+import {
+  ROUTE_LAWS,
+  ROUTE_PRINCIPLES,
+  ROUTE_VISUALISATIONS,
+} from "resources/staticRoutes";
 
 const principles = [
   "digitale-kommunikation-sicherstellen",
@@ -81,4 +85,59 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
       await expect(mainContent).toBeVisible();
     });
   }
+});
+
+test.describe("Visualizations Overview Page", () => {
+  test("displays main heading and subtitle", async ({ page }) => {
+    await page.goto(ROUTE_VISUALISATIONS.url);
+
+    const pageTitle = page.getByRole("heading").first();
+    await expect(pageTitle).toContainText("Beispiele für Visualisierungen");
+
+    const subtitle = page.getByText(
+      "Hier finden Sie Visualisierungen, welche Legistinnen und Legisten beim Erarbeiten der Digitaltauglichkeit geholfen haben und veröffentlicht wurden.",
+    );
+    await expect(subtitle).toBeVisible();
+  });
+
+  test("displays visualization details correctly", async ({ page }) => {
+    await page.goto(ROUTE_VISUALISATIONS.url);
+
+    const firstVisualization = page.locator(".flex.max-sm\\:flex-col").first();
+
+    await expect(firstVisualization.locator("img")).toBeVisible();
+
+    const metadataSection = firstVisualization.locator(".p-12.bg-gray-100");
+    await expect(metadataSection.getByText("Veröffentlicht am")).toBeVisible();
+    await expect(
+      metadataSection.getByText("Art der Visualisierung"),
+    ).toBeVisible();
+  });
+
+  test("opens images in new tab", async ({ page, context }) => {
+    await page.goto(ROUTE_VISUALISATIONS.url);
+
+    const firstImage = page.locator('a[target="_blank"]').first();
+    await expect(firstImage.locator("svg")).toBeVisible(); // Zoom icon
+
+    // Test image zoom in new tab
+    const [newTab] = await Promise.all([
+      context.waitForEvent("page"),
+      firstImage.click(),
+    ]);
+
+    await newTab.waitForLoadState("domcontentloaded");
+    expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
+  });
+
+  test("navigation to regulation detail works", async ({ page }) => {
+    await page.goto(ROUTE_VISUALISATIONS.url);
+
+    const firstRegulationLink = page
+      .locator(`a[href^="${ROUTE_LAWS.url}"]`)
+      .first();
+    await firstRegulationLink.click();
+
+    await expect(page).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
+  });
 });
