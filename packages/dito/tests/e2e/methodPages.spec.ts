@@ -133,58 +133,28 @@ test.describe("five principles page", () => {
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
   });
 
-  test.skip("five principles page links to examples", async ({ page }) => {
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .first()
-      .click();
-    await expect(page).toHaveURL(ROUTE_EXAMPLES.url);
-
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .nth(1)
-      .click();
-    await expect(page).toHaveURL(
+  test("five principles page links to examples", async ({ page }) => {
+    const links = [
+      ROUTE_EXAMPLES.url,
       `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
-    );
-
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .nth(2)
-      .click();
-    await expect(page).toHaveURL(
       `${ROUTE_PRINCIPLES.url}/wiederverwendung-von-daten-und-standards-ermoeglichen`,
-    );
-
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .nth(3)
-      .click();
-    await expect(page).toHaveURL(
       `${ROUTE_PRINCIPLES.url}/datenschutz-und-informationssicherheit-gewaehrleisten`,
-    );
-
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .nth(4)
-      .click();
-    await expect(page).toHaveURL(
       `${ROUTE_PRINCIPLES.url}/klare-regelungen-fuer-eine-digitale-ausfuehrung-finden`,
-    );
-
-    await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-    await page
-      .getByRole("link", { name: "Beispiele betrachten" })
-      .last()
-      .click();
-    await expect(page).toHaveURL(
       `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
-    );
+    ];
+
+    for (const [index, url] of links.entries()) {
+      await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+      await page.waitForLoadState("networkidle");
+
+      const link = page
+        .getByRole("link", { name: "Beispiele betrachten" })
+        .nth(index);
+      await link.waitFor({ state: "visible" });
+      await link.click();
+      await page.waitForURL(url);
+      await expect(page).toHaveURL(url);
+    }
   });
 });
 
