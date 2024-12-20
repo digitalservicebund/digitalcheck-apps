@@ -3,10 +3,9 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import VisualisationItem from "../components/VisualisationItem.tsx";
 import { visualisations } from "../resources/content.ts";
 import { ROUTE_LAWS, ROUTE_VISUALISATIONS } from "../resources/staticRoutes.ts";
-
-import VisualisationItem from "../components/VisualisationItem.tsx";
 import prependMetaTitle from "../utils/metaTitle.ts";
 import {
   fetchStrapiData,
@@ -18,7 +17,6 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);
 };
 
-// prinzipCoreFields are being used in paragraphFields and so need to be included
 const GET_VISUALISATIONS_QUERY = `
 ${visualisationFields}
 query GetVisualisierungen {
@@ -106,7 +104,7 @@ export default function BeispieleVisualisierungen() {
                 />
               </Link>
 
-              {/* Render Visualisations each Regelung */}
+              {/* Render Visualisations for each Regelung */}
               <div className="pb-32">
                 {visualisations.map((visualisation) => (
                   <VisualisationItem

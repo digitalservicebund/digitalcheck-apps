@@ -1,4 +1,3 @@
-import Container from "@digitalcheck/shared/components/Container.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import Image from "@digitalcheck/shared/components/Image.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
@@ -20,16 +19,13 @@ const VisualisationItem = ({
 }: {
   visualisierung: Visualisierung;
 }) => (
-  <div
-    className="flex max-sm:flex-col mt-16 gap-32 pb-16 rich-text"
-    key={visualisierung.Bild.documentId}
-  >
+  <div className="flex max-sm:flex-col mt-16 gap-32 pb-16 rich-text">
     <div className="w-1/2 max-sm:px-16 max-sm:pt-32">
       <a
         href={visualisierung.Bild.url}
         target="_blank"
-        rel="noopener noreferrer"
         className="block relative border border-blue-500 aspect-square overflow-hidden"
+        rel="noreferrer"
       >
         <Image
           url={visualisierung.Bild.url}
@@ -54,30 +50,22 @@ const VisualisationItem = ({
               ?.VeroeffentlichungsDatum,
           )}
         />
-        {visualisierung.Visualisierungsart && (
-          <LabelValuePair
-            label={regulations.visualisations.imageInfo.type}
-            value={visualisierung.Visualisierungsart}
-          />
-        )}
-        {visualisierung.Visualisierungstool && (
-          <LabelValuePair
-            label={regulations.visualisations.imageInfo.tool}
-            value={visualisierung.Visualisierungstool}
-          />
-        )}
+        <LabelValuePair
+          label={regulations.visualisations.imageInfo.type}
+          value={visualisierung.Visualisierungsart}
+        />
+        <LabelValuePair
+          label={regulations.visualisations.imageInfo.tool}
+          value={visualisierung.Visualisierungstool}
+        />
       </div>
     </div>
-    <Container
-      additionalClassNames="w-1/2 p-0 mb-12"
-      paddingTop="0"
-      paddingBottom="0"
-    >
+    <div className="w-1/2 p-0 mb-12">
       <Heading tagName="h3" look="ds-heading-03-reg" className="mb-16">
         {visualisierung.Titel}
       </Heading>
       <BlocksRenderer content={visualisierung.Beschreibung}></BlocksRenderer>
-    </Container>
+    </div>
   </div>
 );
 
