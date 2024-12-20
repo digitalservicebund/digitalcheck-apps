@@ -85,8 +85,10 @@ export default function BeispieleVisualisierungen() {
               tagName: "h1",
               className: "max-w-full",
             }}
+            content={{
+              markdown: visualisations.subtitle,
+            }}
           />
-          <p className="mt-10">{visualisations.subtitle}</p>
         </Container>
       </Background>
       <Container>

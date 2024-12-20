@@ -104,8 +104,10 @@ export default function Gesetz() {
               tagName: "h1",
               className: "max-w-full",
             }}
+            content={{
+              markdown: regulations.subtitle[0],
+            }}
           />
-          <p className="mt-10">{regulations.subtitle[0]}</p>
           <p className="mt-24 ds-label-01-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
