@@ -138,4 +138,22 @@ test.describe("test error pages", () => {
     await page.getByRole("link", { name: "Zurück zur Startseite" }).click();
     await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
   });
+
+  test("clicking on example link on landing page leads to correct page", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.getByRole("link", { name: "Jetzt Beispiele entdecken" }).click();
+    await expect(
+      page.getByRole("heading", { name: "Beispiele für Digitaltauglichkeit" }),
+    ).toBeInViewport();
+    await expect(
+      page.getByRole("heading", {
+        name: "Die 5 Prinzipien im Regelungstext",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "IT-Wissen einfach erklärt" }),
+    ).not.toBeVisible();
+  });
 });

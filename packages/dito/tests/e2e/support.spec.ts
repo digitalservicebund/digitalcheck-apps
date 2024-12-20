@@ -37,22 +37,4 @@ test.describe("test support page", () => {
       page.getByRole("heading", { name: "Digitale Umsetzung erarbeiten" }),
     ).toBeVisible();
   });
-
-  test("clicking on training link on landing page leads to correct tab", async ({
-    page,
-  }) => {
-    await page.goto("/");
-    await page.getByRole("link", { name: "Schulungen" }).click();
-    await expect(
-      page.getByRole("heading", { name: "Unsere Unterstützungsangebote" }),
-    ).toBeInViewport();
-    await expect(
-      page.getByRole("heading", {
-        name: "praktische Tipps für den Digitalcheck",
-      }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("heading", { name: "IT-Wissen einfach erklärt" }),
-    ).not.toBeVisible();
-  });
 });
