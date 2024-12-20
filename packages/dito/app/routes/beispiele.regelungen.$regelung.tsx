@@ -206,18 +206,21 @@ export default function Gesetz() {
         >
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
-            <Heading
-              id={`${slugify(regulations.principles.title)}-${index}`}
-              tagName="h2"
-              look="ds-heading-02-bold"
-            >
-              {regulations.principles.title}
-            </Heading>
+            <>
+              <Heading
+                id={`${slugify(regulations.principles.title)}-${index}`}
+                tagName="h2"
+                look="ds-heading-02-bold"
+              >
+                {regulations.principles.title}
+              </Heading>
+
+              <ParagraphList
+                paragraphs={digitalcheck.Paragraphen}
+                principlesToShow={principles}
+              />
+            </>
           )}
-          <ParagraphList
-            paragraphs={digitalcheck.Paragraphen}
-            principlesToShow={principles}
-          />
 
           {/* ----- Visualisierungen ----- */}
           {digitalcheck.Visualisierungen.length > 0 && (
