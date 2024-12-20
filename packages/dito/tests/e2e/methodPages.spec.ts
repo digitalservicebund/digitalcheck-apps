@@ -144,7 +144,7 @@ test.describe("five principles page", () => {
     ];
 
     for (const [index, url] of links.entries()) {
-      await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+      await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url, { waitUntil: "load" });
       await page.waitForLoadState("networkidle");
 
       const link = page
