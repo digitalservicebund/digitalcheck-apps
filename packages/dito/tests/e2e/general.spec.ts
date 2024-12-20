@@ -25,7 +25,6 @@ test.describe("test general availability", () => {
       if (route.url.endsWith(".pdf")) {
         continue;
       }
-      console.log("Checking ", route.url);
       await page.goto(route.url, { waitUntil: "networkidle" });
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(
