@@ -154,7 +154,16 @@ export const landing = {
       "Um in dieser Zeit zu Ihrem alten Arbeitsstand zurückzukehren, nutzen Sie bitte denselben Rechner und Browser.",
   },
   trainings: {
-    title: "Schulungsangebote im Herbst",
+    title: "Beispiele für Digitaltauglichkeit",
+    text: `Auf dieser neuen Seite finden Sie Beispiele für digitaltaugliche Regelungsvorhaben. Lassen Sie sich inspirieren durch:
+- die Umsetzung der 5 Prinzipien in Regelungstexten durch konkrete Formulierungen
+- geeignete Visualisierungen einzelner Sachverhalte und ganzer Regelungsvorhaben`,
+    link: {
+      text: "Jetzt Beispiele entdecken",
+      href: ROUTE_EXAMPLES.url,
+      look: "ghost" as const,
+    },
+    /*    title: "Schulungsangebote im Herbst",
     text: `In den kommenden Monaten bieten wir 90-minütige Online-Schulungen an zu folgenden Themen:
 - **Regelungen digitaltauglich gestalten** – praktische Tipps für den Digitalcheck
 - **Visualisieren lernen** – Komplexes einfach darstellen`,
@@ -162,7 +171,7 @@ export const landing = {
       text: "Zu Schulungen anmelden",
       href: ROUTE_SUPPORT.url + "#angebote",
       look: "ghost" as const,
-    },
+    },*/
   },
   summary: {
     title: "Zusammengefasst",
