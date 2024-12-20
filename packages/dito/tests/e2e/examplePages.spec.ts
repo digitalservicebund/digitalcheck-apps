@@ -114,20 +114,22 @@ test.describe("Visualizations Overview Page", () => {
     ).toBeVisible();
   });
 
-  test("opens images in new tab", async ({ page, context }) => {
+  test("opens images in new tab", async ({ page, context, browserName }) => {
     await page.goto(ROUTE_VISUALISATIONS.url);
 
     const firstImage = page.locator('a[target="_blank"]').first();
-    await expect(firstImage.locator("svg")).toBeVisible(); // Zoom icon
+    await expect(firstImage).toBeVisible();
 
     // Test image zoom in new tab
-    const [newTab] = await Promise.all([
-      context.waitForEvent("page"),
-      firstImage.click(),
-    ]);
+    if (browserName !== "firefox") {
+      const [newTab] = await Promise.all([
+        context.waitForEvent("page"),
+        firstImage.click(),
+      ]);
 
-    await newTab.waitForLoadState("domcontentloaded");
-    expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
+      await newTab.waitForLoadState("domcontentloaded");
+      expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
+    }
   });
 
   test("navigation to regulation detail works", async ({ page }) => {

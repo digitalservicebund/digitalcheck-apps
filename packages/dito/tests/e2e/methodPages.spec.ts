@@ -133,7 +133,10 @@ test.describe("five principles page", () => {
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
   });
 
-  test.skip("five principles page links to examples", async ({ page }) => {
+  test("five principles page links to examples", async ({
+    page,
+    browserName,
+  }) => {
     const links = [
       ROUTE_EXAMPLES.url,
       `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
@@ -143,17 +146,21 @@ test.describe("five principles page", () => {
       `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
     ];
 
-    for (const [index, url] of links.entries()) {
-      await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url, { waitUntil: "load" });
-      await page.waitForLoadState("networkidle");
+    if (browserName !== "firefox") {
+      for (const [index, url] of links.entries()) {
+        await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url, {
+          waitUntil: "load",
+        });
+        await page.waitForLoadState("networkidle");
 
-      const link = page
-        .getByRole("link", { name: "Beispiele betrachten" })
-        .nth(index);
-      await link.waitFor({ state: "visible" });
-      await link.click();
-      await page.waitForURL(url);
-      await expect(page).toHaveURL(url);
+        const link = page
+          .getByRole("link", { name: "Beispiele betrachten" })
+          .nth(index);
+        await link.waitFor({ state: "visible" });
+        await link.click();
+        await page.waitForURL(url);
+        await expect(page).toHaveURL(url);
+      }
     }
   });
 });
