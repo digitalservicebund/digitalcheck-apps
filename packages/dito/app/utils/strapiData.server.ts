@@ -111,7 +111,7 @@ export type Regelungsvorhaben = {
 };
 
 export const prinzipCoreFields = `
- fragment PrinzipCoreFields on Prinzip {
+fragment PrinzipCoreFields on Prinzip {
   documentId
   Nummer
   Name
