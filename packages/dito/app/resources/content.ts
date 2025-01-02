@@ -556,7 +556,7 @@ Beispiele für Akteur:innen sind:
       instructions: `Wir erstellen für Sie eine E-Mail mit dem Ergebnis der Vorprüfung, die sich in Ihrem E-Mail-Programm öffnet. Diese können Sie anschließend an den Nationalen Normenkontrollrat (NKR), das Digitalcheck-Team und an Ihre eigene E-Mail-Adresse senden. Geben Sie auch Ihre eigene E-Mail-Adresse, um sich diese als Dokumentation zu schicken.
       <br/><br/>
 - Falls Ihr Vorhaben Interoperabilitäts-Anforderungen erfüllt, erhält auch das Digitalcheck-Team automatisch eine Kopie des Vorprüfungsergebnisses per E-Mail. Wir kontaktieren Sie für die nächsten Schritte. Bei Fragen können Sie uns auch direkt unter [0151/40 76 78 39](tel:+4915140767839) erreichen.<br/><br/> 
-- Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.`,
+- Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller wird die Prüfung abgeschlossen.`,
       emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
