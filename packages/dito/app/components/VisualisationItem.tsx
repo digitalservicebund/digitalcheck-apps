@@ -58,6 +58,10 @@ const VisualisationItem = ({
           label={regulations.visualisations.imageInfo.tool}
           value={visualisierung.Visualisierungstool}
         />
+        <LabelValuePair
+          label={regulations.visualisations.imageInfo.department}
+          value={visualisierung.Digitalcheck?.Regelungsvorhaben?.Ressort}
+        />
       </div>
     </div>
     <div className="w-1/2 p-0 mb-12">

@@ -152,6 +152,15 @@ fragment VisualisationFields on Visualisierung {
     previewUrl
     alternativeText
   }
+  Digitalcheck {
+    Regelungsvorhaben {
+      URLBezeichnung
+      VeroeffentlichungsDatum
+      Rechtsgebiet
+      Titel
+      Ressort
+    }
+  }
 }`;
 
 export const GET_PRINZIPS_QUERY = `

@@ -22,14 +22,6 @@ ${visualisationFields}
 query GetVisualisierungen {
   visualisierungen {
     ...VisualisationFields
-    Digitalcheck {
-      Regelungsvorhaben {
-        URLBezeichnung
-        VeroeffentlichungsDatum
-        Rechtsgebiet
-        Titel
-      }
-    }
   }
 }`;
 

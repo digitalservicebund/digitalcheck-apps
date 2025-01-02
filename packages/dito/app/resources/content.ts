@@ -1849,6 +1849,7 @@ export const regulations = {
       publishedOn: "Veröffentlicht am:",
       law: "Regelung:",
       digitalCheck: "Digitalcheck",
+      department: "Ressort:",
     },
   },
   principles: {
