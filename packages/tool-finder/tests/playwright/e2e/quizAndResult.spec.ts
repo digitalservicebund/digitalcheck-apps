@@ -37,13 +37,13 @@ test.describe("test quiz page", () => {
   }) => {
     await page.getByRole("button", { name: "Werkzeug suchen" }).click();
     await expect(
-      page.getByRole("group", { name: "1 von 3" }).getByTestId("inputError"),
+      page.getByRole("group", { name: "1 von 3" }).getByTestId("ressort-error"),
     ).toBeVisible();
     await expect(
-      page.getByRole("group", { name: "2 von 3" }).getByTestId("inputError"),
+      page.getByRole("group", { name: "2 von 3" }).getByTestId("object-error"),
     ).toBeVisible();
     await expect(
-      page.getByRole("group", { name: "3 von 3" }).getByTestId("inputError"),
+      page.getByRole("group", { name: "3 von 3" }).getByTestId("reason-error"),
     ).toBeVisible();
   });
 });
