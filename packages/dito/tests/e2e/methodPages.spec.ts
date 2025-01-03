@@ -145,13 +145,22 @@ test.describe("five principles page", () => {
 
     for (const [index, url] of links.entries()) {
       await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
-      await Promise.all([page.waitForLoadState("networkidle")]);
+
+      await Promise.all([
+        page.waitForLoadState("domcontentloaded"),
+        page.waitForLoadState("networkidle"),
+      ]);
 
       const link = page
         .getByRole("link", { name: "Beispiele betrachten" })
         .nth(index);
 
-      await Promise.all([page.waitForURL(url), link.click()]);
+      await expect(link).toBeVisible();
+      const navigationPromise = page.waitForURL(url);
+      await link.click();
+      await navigationPromise;
+
+      await expect(page).toHaveURL(url);
     }
   });
 });
