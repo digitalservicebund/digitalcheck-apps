@@ -114,7 +114,7 @@ test.describe("Visualizations Overview Page", () => {
     ).toBeVisible();
   });
 
-  test("opens images in new tab", async ({ page, context, browserName }) => {
+  test("opens images in new tab", async ({ page, context }) => {
     await page.goto(ROUTE_VISUALISATIONS.url);
 
     const firstImage = page.locator('a[target="_blank"]').first();
