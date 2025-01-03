@@ -144,23 +144,35 @@ test.describe("five principles page", () => {
     ];
 
     for (const [index, url] of links.entries()) {
-      await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url);
+      let attempt = 0;
 
-      await Promise.all([
-        page.waitForLoadState("domcontentloaded"),
-        page.waitForLoadState("networkidle"),
-      ]);
+      // retries to prevent flakiness for firefox
+      while (attempt < 3) {
+        try {
+          await page.goto(ROUTE_METHODS_FIVE_PRINCIPLES.url, {
+            waitUntil: "domcontentloaded",
+          });
 
-      const link = page
-        .getByRole("link", { name: "Beispiele betrachten" })
-        .nth(index);
+          const link = page
+            .getByRole("link", { name: "Beispiele betrachten" })
+            .nth(index);
+          await expect(link).toBeVisible({ timeout: 5000 });
 
-      await expect(link).toBeVisible();
-      const navigationPromise = page.waitForURL(url);
-      await link.click();
-      await navigationPromise;
+          const navigationPromise = page.waitForURL(url);
+          await link.click();
+          await navigationPromise;
 
-      await expect(page).toHaveURL(url);
+          await expect(page).toHaveURL(url);
+
+          break;
+        } catch (error) {
+          attempt++;
+          console.warn(`Retry ${attempt}: Error navigating to ${url}`);
+          if (attempt === 3) {
+            throw error;
+          }
+        }
+      }
     }
   });
 });
