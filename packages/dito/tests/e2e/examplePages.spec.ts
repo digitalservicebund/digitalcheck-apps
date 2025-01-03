@@ -78,7 +78,7 @@ test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
         lawLinks.first().click(),
       ]);
 
-      await newTab.waitForLoadState("domcontentloaded");
+      await newTab.waitForLoadState("load");
       await expect(newTab).toHaveURL(new RegExp(`${ROUTE_LAWS.url}/.+`));
 
       const mainContent = newTab.getByRole("main");
@@ -121,15 +121,13 @@ test.describe("Visualizations Overview Page", () => {
     await expect(firstImage).toBeVisible();
 
     // Test image zoom in new tab
-    if (browserName !== "firefox") {
-      const [newTab] = await Promise.all([
-        context.waitForEvent("page"),
-        firstImage.click(),
-      ]);
+    const [newTab] = await Promise.all([
+      context.waitForEvent("page"),
+      firstImage.click(),
+    ]);
 
-      await newTab.waitForLoadState("domcontentloaded");
-      expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
-    }
+    await newTab.waitForLoadState("load");
+    expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
   });
 
   test("navigation to regulation detail works", async ({ page }) => {
