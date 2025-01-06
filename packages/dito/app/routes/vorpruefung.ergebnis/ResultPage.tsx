@@ -85,7 +85,7 @@ export default function ResultPage({
               <>
                 {reasons.length !== 0 && (
                   <>
-                    <RichText className="mt-40" markdown={intro} />
+                    <RichText className="mt-40 first:mt-0" markdown={intro} />
                     <ul className="ds-stack-16 mt-16">
                       {reasons
                         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
