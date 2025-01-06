@@ -628,6 +628,8 @@ Direkte Veraktung:
 - Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
   
         
+        
+        
 Mit freundlichen Grüßen
 
 *Diese E-Mail wurde automatisch erstellt.*

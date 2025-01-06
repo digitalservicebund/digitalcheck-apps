@@ -103,7 +103,7 @@ function getRelevantAnswers(
 function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
   const resultContent = resolveResultContent(answers, getResult(answers));
 
-  let resultText: string = resultContent.title + "\n\n";
+  let resultText: string = resultContent.title + "\n\n\n";
 
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
@@ -114,14 +114,14 @@ function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
         .forEach((reason) => {
           resultText += "- " + reason.text + "\n";
         });
-      resultText += "\n";
+      resultText += "\n\n";
     });
 
   resultText += negativeReasoning
     ? preCheck.result.form.reasonLabel + ":\n\n" + negativeReasoning + "\n\n"
     : "";
 
-  return `${emailTemplate.bodyBefore}\n\n${resultText}${emailTemplate.bodyAfter}`;
+  return `${emailTemplate.bodyBefore}\n${resultText}\n\n\n${emailTemplate.bodyAfter}`;
 }
 
 export async function action({ request }: ActionFunctionArgs) {
