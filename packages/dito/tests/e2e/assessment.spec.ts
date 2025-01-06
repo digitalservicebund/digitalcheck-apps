@@ -10,6 +10,9 @@ async function interceptMailToRedirectAndExpect(
     cc?: string[];
     bodyContains?: string[];
   },
+  notExpected?: {
+    recipients?: string[];
+  },
 ) {
   await page.route("**", async (route) => {
     const response = await route.fetch();
@@ -29,6 +32,10 @@ async function interceptMailToRedirectAndExpect(
       expected?.bodyContains?.forEach((expectedString) => {
         expect(mailTo.searchParams.get("body")).toContain(expectedString);
       });
+
+      notExpected?.recipients?.forEach((notExpectedRecipient) =>
+        expect(mailTo.pathname).not.toContain(notExpectedRecipient),
+      );
 
       await route.abort();
     } else {
@@ -167,6 +174,41 @@ test.describe("test email positive result with mixed answers", () => {
     await interceptMailToRedirectAndExpect(page, {
       recipients: ["nkr@bmj.bund.de"],
       cc: ["foo@bar.de"],
+    });
+    await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
+  });
+
+  test("email recipient includes digitalcheck team if interoperability is not negative", async ({
+    page,
+  }) => {
+    await page
+      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
+      .fill("Policy ABCDEFG");
+    await interceptMailToRedirectAndExpect(page, {
+      recipients: ["digitalcheck@digitalservice.bund.de"],
+    });
+    await page.getByTestId("result-email-button").click();
+    await expect(page.getByTestId("title-error")).not.toBeVisible();
+  });
+
+  test("email recipient does not include digitalcheck team if interoperability is negative", async ({
+    page,
+  }) => {
+    await page.goto(preCheck.questions[0].url);
+    for (let i = 0; i < preCheck.questions.length; i++) {
+      const question = preCheck.questions[i];
+      await page.waitForURL(question.url);
+      if (question.interoperability) {
+        await page.getByLabel("Nein").click();
+      }
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
+    await page
+      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
+      .fill("Policy ABCDEFG");
+    await interceptMailToRedirectAndExpect(page, undefined, {
+      recipients: ["digitalcheck@digitalservice.bund.de"],
     });
     await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).not.toBeVisible();

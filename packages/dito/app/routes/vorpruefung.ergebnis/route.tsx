@@ -100,8 +100,12 @@ function getRelevantAnswers(
   return relevantAnswers;
 }
 
-function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
-  const resultContent = resolveResultContent(answers, getResult(answers));
+function buildEmailBody(
+  answers: PreCheckAnswers,
+  result: TResult,
+  negativeReasoning?: string,
+) {
+  const resultContent = resolveResultContent(answers, result);
 
   let resultText: string = resultContent.title + "\n\n\n";
 
@@ -124,6 +128,14 @@ function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
   return `${emailTemplate.bodyBefore}\n${resultText}\n\n\n${emailTemplate.bodyAfter}`;
 }
 
+function resolveRecipients(result: TResult) {
+  const additionalRecipient =
+    result.interoperability !== ResultType.NEGATIVE
+      ? `,${emailTemplate.toDC}`
+      : "";
+  return `${emailTemplate.toNkr}${additionalRecipient}`;
+}
+
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const { _action, title, negativeReasoning, ...answers } =
@@ -138,13 +150,14 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   if (_action === "email") {
+    const result = getResult(preCheckAnswers);
     const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
     const email = formData.get("email");
     const cc = email !== null ? `&cc=${email as string}` : "";
     const negativeReasoning = formData.get("negativeReasoning") as string;
-    const recipients = `${emailTemplate.toNkr}`;
+    const recipients = resolveRecipients(result);
     const mailToLink = encodeURI(
-      `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, negativeReasoning)}${cc}`,
+      `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, result, negativeReasoning)}${cc}`,
     );
     return redirect(mailToLink);
   }
