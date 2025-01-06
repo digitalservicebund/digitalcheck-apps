@@ -141,7 +141,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
     const email = formData.get("email");
     const cc = email !== null ? `&cc=${email as string}` : "";
-    const negativeReasoning = formData.get("negativeReasoning");
+    const negativeReasoning = formData.get("negativeReasoning") as string;
     const recipients = `${emailTemplate.toNkr}`;
     const mailToLink = encodeURI(
       `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, negativeReasoning)}${cc}`,
