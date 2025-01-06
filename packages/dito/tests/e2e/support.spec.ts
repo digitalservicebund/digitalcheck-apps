@@ -16,7 +16,8 @@ test.describe("test support page", () => {
         .frameLocator(
           'iframe[title="Beratung erhalten Sie in einem 45-minütigem Gespräch"]',
         )
-        .getByText("Appointments"),
+        .getByText("Appointments")
+        .first(),
     ).toBeVisible();
   });
 
