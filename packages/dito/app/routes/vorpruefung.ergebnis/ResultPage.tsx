@@ -10,49 +10,17 @@ import {
 } from "@digitalservicebund/icons";
 import classNames from "classnames";
 import { preCheck } from "resources/content";
-import {
-  PreCheckAnswers,
-  TQuestion,
-} from "routes/vorpruefung.$questionId/route";
+import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import Accordion from "../../components/Accordion.tsx";
 import ResultForm from "./ResultForm.tsx";
 import ResultHeader from "./ResultHeader";
 import { ResultType, TResult } from "./TResult.tsx";
-
-const { questions } = preCheck;
-
-type QuestionAndAnswer = {
-  question: TQuestion;
-  answer: string;
-};
-
-const title = {
-  interoperability: {
-    [ResultType.POSITIVE]: preCheck.result.interoperability.positive.title,
-    [ResultType.NEGATIVE]: preCheck.result.interoperability.negative.title,
-    [ResultType.UNSURE]: preCheck.result.interoperability.unsure.title,
-  },
-  digital: {
-    [ResultType.POSITIVE]: preCheck.result.positive.title,
-    [ResultType.NEGATIVE]: preCheck.result.negative.title,
-    [ResultType.UNSURE]: preCheck.result.unsure.title,
-  },
-};
+import resolveResultContent, { Reason } from "./resolveResultContent.ts";
 
 const nextSteps = {
   [ResultType.POSITIVE]: preCheck.result.positive.nextSteps,
   [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
 };
-
-function matchQuestionsAndAnswers(answers: PreCheckAnswers) {
-  return Object.keys(answers).map((key) => {
-    const question = questions.find((q) => q.id === key);
-    if (!question) {
-      throw new Error(`No matching question found for key: ${key}`);
-    }
-    return { question, answer: answers[key] };
-  });
-}
 
 export default function ResultPage({
   answers,
@@ -61,87 +29,39 @@ export default function ResultPage({
   answers: PreCheckAnswers;
   result: TResult;
 }>) {
-  const questionsAndAnswers = matchQuestionsAndAnswers(answers);
+  const resultContent = resolveResultContent(answers, result);
 
-  const questionsForDigitalAndSure = questionsAndAnswers.filter(
-    (tuple) => !tuple.question.interoperability && tuple.answer !== "unsure",
-  );
-  const questionsForDigitalAndUnsure = questionsAndAnswers.filter(
-    (tuple) => !tuple.question.interoperability && tuple.answer === "unsure",
-  );
-  const questionsForInteroperabilitySure = questionsAndAnswers.filter(
-    (tuple) => tuple.question.interoperability && tuple.answer !== "unsure",
-  );
-  const questionsForInteroperabilityUnsure = questionsAndAnswers.filter(
-    (tuple) => tuple.question.interoperability && tuple.answer === "unsure",
-  );
-
-  function getReasonListItem(data: {
-    tuple: QuestionAndAnswer;
-    icon: React.FC<React.SVGProps<SVGSVGElement>>;
-    additionalClassName?: string;
-    resultType: "positiveResult" | "negativeResult";
-  }) {
-    const classes = classNames("w-28 h-auto", data.additionalClassName);
-    const resultHint = data.tuple.question?.resultHint?.[data.resultType];
-    return (
-      <>
-        <data.icon className={classes}></data.icon>
-        <span>
-          <span>
-            {data.tuple.question?.[data.resultType]}
-            {resultHint && <RichText markdown={resultHint} />}
-          </span>
-        </span>
-      </>
-    );
-  }
-
-  function getReason(tuple: QuestionAndAnswer) {
-    switch (tuple.answer) {
+  function getIconForReason(reason: Reason) {
+    const defaultClasses = "w-28 h-auto";
+    switch (reason.answer) {
       case "yes":
-        return getReasonListItem({
-          tuple,
-          icon: ControlPointOutlined,
-          additionalClassName: "fill-green-900",
-          resultType: "positiveResult",
-        });
+        return (
+          <ControlPointOutlined
+            className={classNames(defaultClasses, "fill-green-900")}
+          ></ControlPointOutlined>
+        );
       case "no":
-        return getReasonListItem({
-          tuple,
-          icon: RemoveCircleOutline,
-          additionalClassName: "fill-red-900",
-          resultType: "negativeResult",
-        });
+        return (
+          <RemoveCircleOutline
+            className={classNames(defaultClasses, "fill-red-900")}
+          ></RemoveCircleOutline>
+        );
       case "unsure":
-        return getReasonListItem({
-          tuple,
-          icon: HelpOutline,
-          resultType: "positiveResult",
-        });
+        return <HelpOutline className={defaultClasses}></HelpOutline>;
     }
   }
 
-  function getReasons(filteredQuestionsAndAnswers: QuestionAndAnswer[]) {
-    return filteredQuestionsAndAnswers
-      .sort((t1) => (t1.answer === "yes" ? -1 : 1))
-      .map((tuple) => (
-        <li key={tuple.question.id} className="flex items-start gap-12">
-          {getReason(tuple)}
-        </li>
-      ));
-  }
-
-  function getReasonsList(questions: QuestionAndAnswer[], intro: string) {
+  function getReasonListItem(reason: Reason) {
     return (
-      <>
-        {questions.length !== 0 && (
-          <>
-            <RichText className="mt-40" markdown={intro} />
-            <ul className="ds-stack-16 mt-16">{getReasons(questions)}</ul>
-          </>
-        )}
-      </>
+      <li key={reason.text} className="flex items-start gap-12">
+        {getIconForReason(reason)}
+        <span>
+          <span>
+            {reason.text}
+            {reason.hint && <RichText markdown={reason.hint} />}
+          </span>
+        </span>
+      </li>
     );
   }
 
@@ -149,12 +69,7 @@ export default function ResultPage({
     <>
       <ResultHeader
         resultType={result.digital}
-        resultHeading={
-          title.digital[result.digital] +
-          (result.digital !== ResultType.UNSURE
-            ? title.interoperability[result.interoperability]
-            : "")
-        }
+        resultHeading={resultContent.title}
         resultHint={
           result.digital === ResultType.UNSURE
             ? preCheck.result.unsure.hint
@@ -166,22 +81,20 @@ export default function ResultPage({
       >
         <Container backgroundColor="white" additionalClassNames="rounded-b-lg">
           <div className="pb-40 border-solid border-0 border-b-2 border-gray-400 last:border-0 last:pb-0">
-            {getReasonsList(
-              questionsForDigitalAndSure,
-              preCheck.result.reasoningIntro.digital.sure,
-            )}
-            {getReasonsList(
-              questionsForDigitalAndUnsure,
-              preCheck.result.reasoningIntro.digital.unsure,
-            )}
-            {getReasonsList(
-              questionsForInteroperabilitySure,
-              preCheck.result.reasoningIntro.interoperability.sure,
-            )}
-            {getReasonsList(
-              questionsForInteroperabilityUnsure,
-              preCheck.result.reasoningIntro.interoperability.unsure,
-            )}
+            {resultContent.reasoningList.map(({ intro, reasons }) => (
+              <>
+                {reasons.length !== 0 && (
+                  <>
+                    <RichText className="mt-40" markdown={intro} />
+                    <ul className="ds-stack-16 mt-16">
+                      {reasons
+                        .sort((reason) => (reason.answer === "yes" ? -1 : 1))
+                        .map((reason) => getReasonListItem(reason))}
+                    </ul>
+                  </>
+                )}
+              </>
+            ))}
           </div>
           {result.digital !== ResultType.UNSURE && (
             <div className="mt-32">
