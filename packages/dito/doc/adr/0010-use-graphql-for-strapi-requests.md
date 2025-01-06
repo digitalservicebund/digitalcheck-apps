@@ -21,24 +21,24 @@ Strapi supports both REST and GraphQL, and while REST has long been the standard
 1. **REST API**
 
    - **Pros:**
-      - Simple and well-documented.
-      - Familiar to most developers and integrates easily with a variety of tools.
-      - Requires no additional configuration in Strapi.
+     - Simple and well-documented.
+     - Familiar to most developers and integrates easily with a variety of tools.
+     - Requires no additional configuration in Strapi.
    - **Cons:**
-      - Over-fetching or under-fetching is common, especially for nested data structures.
-      - Requires separate endpoints for different data needs, leading to increased maintenance overhead.
-      - Limited flexibility in defining query shapes.
+     - Over-fetching or under-fetching is common, especially for nested data structures.
+     - Requires separate endpoints for different data needs, leading to increased maintenance overhead.
+     - Limited flexibility in defining query shapes.
 
 2. **GraphQL API**
 
    - **Pros:**
-      - Query only the data you need, reducing over-fetching and under-fetching.
-      - Single endpoint for all requests, simplifying API management.
-      - Built-in support for nested queries, relationships, and filtering.
-      - Easier to adapt and extend as requirements evolve.
+     - Query only the data you need, reducing over-fetching and under-fetching.
+     - Single endpoint for all requests, simplifying API management.
+     - Built-in support for nested queries, relationships, and filtering.
+     - Easier to adapt and extend as requirements evolve.
    - **Cons:**
-      - Not as common and familiar as REST.
-      - Potential performance overhead for complex queries if not optimized correctly.
+     - Not as common and familiar as REST.
+     - Potential performance overhead for complex queries if not optimized correctly.
 
 ## Decision
 
@@ -53,12 +53,12 @@ Key considerations for choosing GraphQL:
 
 ## Consequences
 
-The decision to use GraphQL for data requests brings several benefits and challenges. GraphQL optimizes data retrieval 
-by allowing our client to request only the necessary fields, reducing over-fetching and under-fetching. 
-The single-endpoint architecture simplifies API management, particularly 
-as the application scales, and its schema flexibility allows the API to evolve without 
-significant rewrites or versioning. 
+The decision to use GraphQL for data requests brings several benefits and challenges. GraphQL optimizes data retrieval
+by allowing our client to request only the necessary fields, reducing over-fetching and under-fetching.
+The single-endpoint architecture simplifies API management, particularly
+as the application scales, and its schema flexibility allows the API to evolve without
+significant rewrites or versioning.
 
-However, there are challenges to consider. Developers unfamiliar with GraphQL may need onboarding. 
-Also, poorly optimized queries could strain server resources, making caching and query optimization 
+However, there are challenges to consider. Developers unfamiliar with GraphQL may need onboarding.
+Also, poorly optimized queries could strain server resources, making caching and query optimization
 critical for maintaining performance (see [caching](0009-use-serverside-caching.md)).
