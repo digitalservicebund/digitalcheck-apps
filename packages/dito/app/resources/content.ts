@@ -614,12 +614,31 @@ Beispiele für Akteur:innen sind:
         subject: "Digitalcheck Vorprüfung",
         bodyBefore: `Guten Tag,
 
-nachfolgend der E-Mail finden Sie einen Link zu unserer ausgefüllten Vorprüfung im Rahmen des Digitalcheck.
+hiermit erhalten Sie das Ergebnis Ihrer Vorprüfung:`,
+        bodyAfter: `Veraktung der E-Mail zur Dokumentation
+        
+Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
 
-Der automatisch generierte Link ermöglicht Ihnen den sicheren Download des Dokuments.`,
-        bodyAfter: `Mit freundlichen Grüßen
+Manuell über Outlook:
+- Klicken Sie in Outlook auf „Drucken“.
+- Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
+- Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
 
-*Diese E-Mail wurde automatisch erstellt.*`,
+Direkte Veraktung:
+- Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
+  
+        
+Mit freundlichen Grüßen
+
+*Diese E-Mail wurde automatisch erstellt.*
+
+------------------------------------------
+
+Der Digitalcheck ist die Prozessbegleitung für digitaltaugliche Gesetze und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
+
+Mehr Informationen zu Digitaltauglichkeit finden Sie unter Mehr Informationen zu Digitaltauglichkeit finden Sie unter erarbeiten.digitalcheck.bund.de.
+Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über digitalcheck@digitalservice.bund.de oder rufen Sie uns an unter 0151/40 76 78 39.
+`,
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",
     },

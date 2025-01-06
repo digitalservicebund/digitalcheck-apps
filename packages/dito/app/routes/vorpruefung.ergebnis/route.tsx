@@ -4,11 +4,7 @@ import {
   type LoaderFunctionArgs,
   redirect,
 } from "@remix-run/node";
-import {
-  MetaFunction,
-  redirectDocument,
-  useLoaderData,
-} from "@remix-run/react";
+import { MetaFunction, useLoaderData } from "@remix-run/react";
 
 import { validationError } from "@rvf/remix";
 import { preCheck } from "resources/content";
@@ -18,14 +14,15 @@ import {
   getAnswersFromCookie,
   getHeaderFromCookie,
 } from "utils/cookies.server";
-import getBaseURL from "utils/getBaseURL";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
+import resolveResultContent from "./resolveResultContent.ts";
 import ResultPage from "./ResultPage.tsx";
 import getResultValidatorForAnswers from "./resultValidation";
 import { ResultType, TResult } from "./TResult.tsx";
 
 const { questions } = preCheck;
+const { emailTemplate } = preCheck.result.form;
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_RESULT.title, matches);
@@ -103,37 +100,53 @@ function getRelevantAnswers(
   return relevantAnswers;
 }
 
+function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
+  const resultContent = resolveResultContent(answers, getResult(answers));
+
+  let resultText: string = resultContent.title + "\n\n";
+
+  resultContent.reasoningList
+    .filter((reasoning) => reasoning.reasons.length !== 0)
+    .forEach(({ intro, reasons }) => {
+      resultText += intro + "\n\n";
+      reasons
+        .sort((reason) => (reason.answer === "yes" ? -1 : 1))
+        .forEach((reason) => {
+          resultText += "- " + reason.text + "\n";
+        });
+      resultText += "\n";
+    });
+
+  resultText += negativeReasoning
+    ? preCheck.result.form.reasonLabel + ":\n\n" + negativeReasoning + "\n\n"
+    : "";
+
+  return `${emailTemplate.bodyBefore}\n\n${resultText}${emailTemplate.bodyAfter}`;
+}
+
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const { _action, title, negativeReasoning, ...answers } =
     Object.fromEntries(formData);
 
   // server side form validation in case the user has JavaScript disabled
-  const validator = getResultValidatorForAnswers(answers as PreCheckAnswers);
+  const preCheckAnswers = answers as PreCheckAnswers;
+  const validator = getResultValidatorForAnswers(preCheckAnswers);
   const result = await validator.validate({ title, negativeReasoning });
   if (result.error) {
     return validationError(result.error, result.submittedData);
   }
 
-  const uniqueResponse = await fetch(`${getBaseURL(request)}/uniq`, {
-    method: "POST",
-    body: formData,
-  });
-  const uniqueUrl = (await uniqueResponse.json()).url as string;
   if (_action === "email") {
-    const emailTemplate = preCheck.result.form.emailTemplate;
     const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
-    const body = `${emailTemplate.bodyBefore}\n\n${uniqueUrl}\n\n${emailTemplate.bodyAfter}`;
     const email = formData.get("email");
-    const additionalRecipient = email !== null ? `,${email as string}` : "";
-    const recipients = `${emailTemplate.to}${additionalRecipient}`;
+    const cc = email !== null ? `&cc=${email as string}` : "";
+    const negativeReasoning = formData.get("negativeReasoning");
+    const recipients = `${emailTemplate.toNkr}`;
     const mailToLink = encodeURI(
-      `mailto:${recipients},${formData.get("email") as string}?subject=${subject}&body=${body}`,
+      `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, negativeReasoning)}${cc}`,
     );
     return redirect(mailToLink);
-  } else if (_action === "download") {
-    // we need to force a native navigation to trigger the download here
-    return redirectDocument(uniqueUrl);
   }
   // eslint-disable-next-line @typescript-eslint/only-throw-error
   throw new Response("Unknown action", { status: 400 });

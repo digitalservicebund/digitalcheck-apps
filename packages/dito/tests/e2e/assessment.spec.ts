@@ -7,6 +7,7 @@ async function interceptMailToRedirectAndExpect(
   expected?: {
     subject?: string;
     recipients?: string[];
+    cc?: string[];
     bodyContains?: string[];
   },
 ) {
@@ -21,6 +22,9 @@ async function interceptMailToRedirectAndExpect(
         expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
       expected?.recipients?.forEach((expectedRecipient) =>
         expect(mailTo.pathname).toContain(expectedRecipient),
+      );
+      expected?.cc?.forEach((expectedCC) =>
+        expect(mailTo.searchParams.get("cc")).toContain(expectedCC),
       );
       expected?.bodyContains?.forEach((expectedString) => {
         expect(mailTo.searchParams.get("body")).toContain(expectedString);
@@ -161,7 +165,8 @@ test.describe("test email positive result with mixed answers", () => {
       .fill("Policy ABCDEFG");
     await page.getByLabel("Ihre E-Mail Adresse (optional)").fill("foo@bar.de");
     await interceptMailToRedirectAndExpect(page, {
-      recipients: ["nkr@bmj.bund.de", "foo@bar.de"],
+      recipients: ["nkr@bmj.bund.de"],
+      cc: ["foo@bar.de"],
     });
     await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).not.toBeVisible();
@@ -173,9 +178,9 @@ test.describe("test email positive result with mixed answers", () => {
       .fill("Policy ABCDEFG");
     const bodyContains = [
       "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
-      "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
-      "In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
-      "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
+      "In Bezug auf **digitale Aspekte** führt ihr Regelungsvorhaben zu...",
+      "In Bezug auf **digitale Aspekte** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      "In Bezug auf **Interoperabilität** führt ihr Regelungsvorhaben zu...",
       preCheck.questions[0].negativeResult,
     ];
     for (let i = 1; i < preCheck.questions.length; i++) {
@@ -207,11 +212,14 @@ test.describe("test email negative result", () => {
       .fill("Policy ABCDEFG");
     await page
       .getByLabel("Begründung")
-      .fill("Dieses Vorhaben hat keinen Digitalbezug.");
+      .fill(
+        "Dieses Vorhaben hat keinen Digitalbezug, weil es nicht relevant ist.",
+      );
     await interceptMailToRedirectAndExpect(page, {
       bodyContains: [
-        "Das Regelungsvorhaben hat einen Digitalbezug und Anforderungen an Interoperabilität.",
-        "Dieses Vorhaben hat keinen Digitalbezug.",
+        "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
+        "Begründung:",
+        "Dieses Vorhaben hat keinen Digitalbezug, weil es nicht relevant ist.",
       ],
     });
     await page.getByTestId("result-email-button").click();
