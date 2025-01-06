@@ -345,6 +345,13 @@ Das [European Interoperability Framework (EIF)](https://interoperable-europe.ec.
         content: `Wenn Gesetze und Regelungen die Interoperabilität berücksichtigen, fördern sie die Zusammenarbeit zwischen den EU-Mitgliedsstaaten und ihren Verwaltungen. Einheitliche Standards sorgen dafür, dass digitale Dienste bürgerfreundlich, effizient und sicher sind. Gleichzeitig werden einheitliche Regeln geschaffen, die die grenzüberschreitende Zusammenarbeit in der EU erleichtern und eine harmonische Entwicklung der Rechtsvorschriften fördern.`,
       },
       {
+        headline:
+          "Welche Rolle spielt der Digitalcheck bei interoperablen Regelungsvorhaben?",
+        content: `Der Digitalcheck begleitet Sie bei der Erarbeitung für digitaltaugliche und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
+        <br/><br/>
+Wenn Ihr Regelungsvorhaben Anforderungen an Interoperabilität beinhaltet, unterstützen wir Sie dabei, diese optimal umzusetzen. In diesem Fall wird das Digitalcheck-Team automatisch über das Ergebnis informiert, sobald Sie es per E-Mail absenden. Wir setzen uns dann mit Ihnen in Verbindung, um gemeinsam die weiteren Schritte zu planen und umzusetzen. Sollten Sie vorab Fragen haben, können Sie sich jederzeit direkt an uns wenden - telefonisch unter [0151/40 76 78 39](tel:+4915140767839) oder  per E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de).`,
+      },
+      {
         headline: "Was ist Digitalbezug?",
         content: `Digitalbezug im Kontext der Umsetzung bedeutet, dass ein Prozess zumindest teilweise durch ein IT-System abgebildet  wird. Beispiele sind:
 - eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
@@ -574,6 +581,20 @@ Beispiele für Akteur:innen sind:
           {
             label: "Was passiert, wenn ich auf „E-Mail erstellen“ klicke?",
             text: "In Ihrem E-Mail-Programm öffnet sich eine neue E-Mail. Diese enthält das Vorprüfungs-Ergebnis in Textform mit Ergebnissen zum Digitalbezug und EU-Interoperabilität. Sie haben die Möglichkeit, den Text und Empfänger individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
+          },
+          {
+            label: "Wie wird das Ergebnis der Vorprüfung dokumentiert?",
+            text: `Wenn Sie das Ergebnis für Ihre Dokumentation benötigen, schicken Sie das Ergebnis per E-Mail an sich selbst und ggf. an Ihre Kolleg:innen. Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
+<br/>
+**Manuell über Outlook:**
+- Klicken Sie in Outlook auf „Drucken“.
+- Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
+- Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
+
+
+**Direkte Veraktung:**
+- Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
+`,
           },
           {
             label: "Warum die Vorprüfung an den NKR schicken?",
