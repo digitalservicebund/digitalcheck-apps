@@ -108,7 +108,7 @@ function buildEmailBody(answers: PreCheckAnswers, negativeReasoning?: string) {
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
     .forEach(({ intro, reasons }) => {
-      resultText += intro + "\n\n";
+      resultText += intro.replaceAll("**", "") + "\n\n";
       reasons
         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {

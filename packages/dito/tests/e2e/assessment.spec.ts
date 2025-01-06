@@ -178,9 +178,9 @@ test.describe("test email positive result with mixed answers", () => {
       .fill("Policy ABCDEFG");
     const bodyContains = [
       "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
-      "In Bezug auf **digitale Aspekte** führt ihr Regelungsvorhaben zu...",
-      "In Bezug auf **digitale Aspekte** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
-      "In Bezug auf **Interoperabilität** führt ihr Regelungsvorhaben zu...",
+      "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
+      "In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
       preCheck.questions[0].negativeResult,
     ];
     for (let i = 1; i < preCheck.questions.length; i++) {
