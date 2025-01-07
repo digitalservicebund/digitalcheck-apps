@@ -470,7 +470,7 @@ Beispiele für Akteur:innen sind:
       hint: {
         title: "Wen betrifft dieser Daten- und Informationsaustausch?",
         text: `Daten und Informationen können zwischen den digitalen öffentlichen Diensten in der EU ausgetauscht werden:
-      <br /><br />
+      <br />
 - Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben oder Dienste zu erfüllen.
 - Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
 - Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.`,
@@ -584,12 +584,11 @@ Beispiele für Akteur:innen sind:
           {
             label: "Wie wird das Ergebnis der Vorprüfung dokumentiert?",
             text: `Wenn Sie das Ergebnis für Ihre Dokumentation benötigen, schicken Sie das Ergebnis per E-Mail an sich selbst und ggf. an Ihre Kolleg:innen. Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
-<br/>
+
 **Manuell über Outlook:**
 - Klicken Sie in Outlook auf „Drucken“.
 - Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
 - Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
-
 
 **Direkte Veraktung:**
 - Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
