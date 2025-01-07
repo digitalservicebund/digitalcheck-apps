@@ -56,7 +56,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Index() {
   const { referrer, prinzips } = useLoaderData<typeof loader>();
-  console.log(prinzips);
 
   const nextStep = referrer.startsWith(ROUTE_METHODS.url)
     ? fivePrinciples.nextStepMethods
@@ -124,6 +123,10 @@ export default function Index() {
                         text: fivePrinciples.buttonText,
                         href: buttonLink,
                         look: "tertiary" as const,
+                        "aria-label":
+                          index > 0
+                            ? `Beispiele für "${principle.label}: ${principle.title}" betrachten`
+                            : "Alle Beispiele betrachten",
                       },
                     ],
                   },
