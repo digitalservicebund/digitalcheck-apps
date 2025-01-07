@@ -16,17 +16,20 @@ export default function DetailsSummary({
   bold = true,
   open = false,
 }: DetailsSummaryProps) {
-  const summaryClasses = classNames("focus:outline-none cursor-pointer", {
-    "ds-label-01-bold": bold,
-    "ds-label-01-reg": !bold,
-  });
+  const summaryClasses = classNames(
+    "summary-content inline-flex focus:outline-none cursor-pointer list-none bg-no-repeat pl-[24px]",
+    {
+      "ds-label-01-bold": bold,
+      "ds-label-01-reg": !bold,
+    },
+  );
   return (
     <details
       open={open}
-      className="focus-within:outline focus-within:outline-4 focus-within:outline-offset-4 focus-within:outline-blue-800 text-blue-800"
+      className="details focus-within:outline focus-within:outline-4 focus-within:outline-offset-4 focus-within:outline-blue-800 text-blue-800"
     >
       <summary className={summaryClasses}>{title}</summary>
-      <span className="block ds-label-01-reg pt-4 pl-16 text-black">
+      <span className="block ds-label-01-reg pt-4 pl-[24px] text-black">
         {typeof content === "string" ? (
           <RichText markdown={content} />
         ) : (
