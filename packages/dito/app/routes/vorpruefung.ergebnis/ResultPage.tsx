@@ -1,5 +1,7 @@
+import Background from "@digitalcheck/shared/components/Background.tsx";
 import Box from "@digitalcheck/shared/components/Box.tsx";
 import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
@@ -8,12 +10,14 @@ import {
   HelpOutline,
   RemoveCircleOutline,
 } from "@digitalservicebund/icons";
+import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
+import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
+import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
 import classNames from "classnames";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import Accordion from "../../components/Accordion.tsx";
 import ResultForm from "./ResultForm.tsx";
-import ResultHeader from "./ResultHeader";
 import { ResultType, TResult } from "./TResult.tsx";
 import resolveResultContent, { Reason } from "./resolveResultContent.ts";
 
@@ -30,6 +34,18 @@ export default function ResultPage({
   result: TResult;
 }>) {
   const resultContent = resolveResultContent(answers, result);
+
+  function getHeaderIcon() {
+    const iconClassName = "w-full h-full";
+    switch (result.digital) {
+      case ResultType.POSITIVE:
+        return <CheckCircleOutlined className={iconClassName} />;
+      case ResultType.NEGATIVE:
+        return <CancelOutlined className={iconClassName} />;
+      case ResultType.UNSURE:
+        return <WarningAmberOutlined className={iconClassName} />;
+    }
+  }
 
   function getIconForReason(reason: Reason) {
     const defaultClasses = "w-28 h-auto";
@@ -65,20 +81,34 @@ export default function ResultPage({
     );
   }
 
+  const resultHint =
+    result.digital === ResultType.UNSURE ? preCheck.result.unsure.hint : "";
   return (
     <>
-      <ResultHeader
-        resultType={result.digital}
-        resultHeading={resultContent.title}
-        resultHint={
-          result.digital === ResultType.UNSURE
-            ? preCheck.result.unsure.hint
-            : ""
-        }
-        resultBackgroundColor={
-          result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
-        }
-      >
+      <Background backgroundColor="blue" paddingTop="40" paddingBottom="40">
+        <Container
+          backgroundColor={
+            result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
+          }
+          paddingTop="32"
+          paddingBottom="32"
+          additionalClassNames="rounded-t-lg"
+        >
+          <div className="flex sm:flex-row flex-col gap-16">
+            <div className="flex-none w-36 h-36 flex items-center justify-center">
+              {getHeaderIcon()}
+            </div>
+            <Header
+              heading={{
+                tagName: "h1",
+                look: "ds-heading-02-reg",
+                text: resultContent.title,
+                className: "mb-0",
+              }}
+              {...(resultHint && { content: { markdown: resultHint } })}
+            />
+          </div>
+        </Container>
         <Container backgroundColor="white" additionalClassNames="rounded-b-lg">
           <div className="pb-40 border-solid border-0 border-b-2 border-gray-400 last:border-0 last:pb-0">
             {resultContent.reasoningList.map(({ intro, reasons }) => (
@@ -102,7 +132,7 @@ export default function ResultPage({
             </div>
           )}
         </Container>
-      </ResultHeader>
+      </Background>
       <Container paddingBottom="40">
         {result.digital === ResultType.UNSURE && (
           <Box
