@@ -7,14 +7,12 @@ export type AccordionItemProps = {
   headline: string;
   content?: string | ReactNode;
   id?: string;
-  boldAppearance?: boolean;
 };
 
 export default function AccordionItem({
   headline,
   content,
   id,
-  boldAppearance,
 }: AccordionItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -31,8 +29,7 @@ export default function AccordionItem({
       >
         <div
           className={classNames(
-            "pr-10 font-bold text-left text-16 leading-22 md:text-18 md:leading-24",
-            { "text-blue-800": boldAppearance },
+            "pr-10 font-bold text-left text-16 leading-22 md:text-18 md:leading-24 text-blue-800",
           )}
         >
           {headline}
@@ -40,11 +37,7 @@ export default function AccordionItem({
         <Add className="w-24 h-24 flex-shrink-0 fill-blue-800 group-open:hidden" />
         <Remove className="w-24 h-24 flex-shrink-0 fill-blue-800 hidden group-open:block" />
       </summary>
-      <div
-        className={classNames("p-24 pr-24", {
-          "pr-48 md:pb-64 md:pr-64 text-18": boldAppearance,
-        })}
-      >
+      <div className="p-24 pr-24">
         {typeof content === "string" ? (
           <RichText markdown={content} />
         ) : (
