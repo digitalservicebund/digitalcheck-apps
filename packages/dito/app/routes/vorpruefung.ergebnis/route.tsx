@@ -153,7 +153,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const result = getResult(preCheckAnswers);
     const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
     const email = formData.get("email");
-    const cc = email !== null ? `&cc=${email as string}` : "";
+    const cc = email ? `&cc=${email as string}` : "";
     const negativeReasoning = formData.get("negativeReasoning") as string;
     const recipients = resolveRecipients(result);
     const mailToLink = encodeURI(
