@@ -194,7 +194,7 @@
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
   @media (hover: hover) {
     .summary-content:hover {
-      @apply underline;
+      @apply !underline;
       @apply underline-offset-2;
       @apply decoration-2;
     }
