@@ -53,13 +53,13 @@ export default function ResultPage({
       case "yes":
         return (
           <ControlPointOutlined
-            className={classNames(defaultClasses, "fill-green-900")}
+            className={classNames(defaultClasses, "fill-[#005E34]")}
           ></ControlPointOutlined>
         );
       case "no":
         return (
           <RemoveCircleOutline
-            className={classNames(defaultClasses, "fill-red-900")}
+            className={classNames(defaultClasses, "fill-[#8E001B]")}
           ></RemoveCircleOutline>
         );
       case "unsure":
