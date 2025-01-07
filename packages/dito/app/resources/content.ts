@@ -100,7 +100,7 @@ export const steps = {
     headline: {
       text: "Dokumentieren des Regelungsvorhabens",
     },
-    content: `Dokumentieren Sie in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit  Sie besonders geachtet haben. Beschreiben Sie wie Sie diese in das Regelungsvorhaben einfließen lassen. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen. `,
+    content: `Dokumentieren Sie in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit  Sie besonders geachtet haben. Beschreiben Sie wie Sie diese in das Regelungsvorhaben einfließen lassen. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.`,
     buttons: [
       {
         text: "Zu „Dokumentieren“",
@@ -284,7 +284,6 @@ export const preCheck = {
       {
         title: "Was ist Digitalbezug?",
         text: `Digitalbezug beschreibt die digitale Umsetzung, wenn ein Prozess nach Inkrafttreten eines Vorhabens zumindest teilweise durch ein IT-System abgebildet wird. Beispiele sind:
-              <br />
 - eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
 - die Abfrage von Daten aus einem Register oder
 - das Bereitstellen von Informationen auf einer Website.`,
@@ -353,7 +352,7 @@ Wenn Ihr Regelungsvorhaben Anforderungen an Interoperabilität beinhaltet, unter
       },
       {
         headline: "Was ist Digitalbezug?",
-        content: `Digitalbezug im Kontext der Umsetzung bedeutet, dass ein Prozess zumindest teilweise durch ein IT-System abgebildet  wird. Beispiele sind:
+        content: `Digitalbezug im Kontext der Umsetzung bedeutet, dass ein Prozess zumindest teilweise durch ein IT-System abgebildet wird. Beispiele sind:
 - eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
 - die Abfrage von Daten aus einem Register oder
 - das Bereitstellen von Informationen auf einer Website.`,
@@ -364,7 +363,7 @@ Wenn Ihr Regelungsvorhaben Anforderungen an Interoperabilität beinhaltet, unter
 Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden - auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.
 <br/><br/>
 **Relevant für all Regelungsvorhaben**<br/>
-Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Verwaltungsvorschriften. Es fallen sowohl neue Vorhaben, als auch für Änderungen an bestehenden Regelungen darunter.`,
+Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Verwaltungsvorschriften. Es fallen sowohl neue Vorhaben, als auch Änderungen an bestehenden Regelungen darunter.`,
       },
       {
         headline: "Was ist, wenn ich mehrere Regelungen habe?",
@@ -409,7 +408,7 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
       hint: {
         title: "Wer sind Akteur:innen?",
         text: `Akteur:innen sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteur:innen als auch Betroffene sein.
-  <br /><br />
+
 Beispiele für Akteur:innen sind:
 - Bürger:innen, 
 - Einwohnende, 
