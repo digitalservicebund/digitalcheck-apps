@@ -10,8 +10,12 @@ export type AccordionItemProps = {
   boldAppearance?: boolean;
 };
 
-export default function AccordionItem(props: AccordionItemProps) {
-  const { headline, content, id, boldAppearance } = props;
+export default function AccordionItem({
+  headline,
+  content,
+  id,
+  boldAppearance,
+}: AccordionItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
