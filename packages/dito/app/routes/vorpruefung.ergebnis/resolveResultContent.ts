@@ -59,7 +59,7 @@ function getRelevantReasons(
     )
     .map((question) => {
       const answer = answers[question.id];
-      let reasonText: string;
+      let reasonText;
       let reasonHint;
 
       switch (answer) {

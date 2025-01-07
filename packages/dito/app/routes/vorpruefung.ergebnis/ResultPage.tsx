@@ -26,6 +26,38 @@ const nextSteps = {
   [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
 };
 
+function getIconForReason(reason: Reason) {
+  const defaultClasses = "w-28 h-auto shrink-0";
+  switch (reason.answer) {
+    case "yes":
+      return (
+        <ControlPointOutlined
+          className={classNames(defaultClasses, "fill-[#005E34]")}
+        ></ControlPointOutlined>
+      );
+    case "no":
+      return (
+        <RemoveCircleOutline
+          className={classNames(defaultClasses, "fill-[#8E001B]")}
+        ></RemoveCircleOutline>
+      );
+    case "unsure":
+      return <HelpOutline className={defaultClasses}></HelpOutline>;
+  }
+}
+
+function getReasonListItem(reason: Reason) {
+  return (
+    <li key={reason.text} className="flex items-start gap-12">
+      {getIconForReason(reason)}
+      <span>
+        {reason.text}
+        {reason.hint && <RichText markdown={reason.hint} />}
+      </span>
+    </li>
+  );
+}
+
 export default function ResultPage({
   answers,
   result,
@@ -45,40 +77,6 @@ export default function ResultPage({
       case ResultType.UNSURE:
         return <WarningAmberOutlined className={iconClassName} />;
     }
-  }
-
-  function getIconForReason(reason: Reason) {
-    const defaultClasses = "w-28 h-auto shrink-0";
-    switch (reason.answer) {
-      case "yes":
-        return (
-          <ControlPointOutlined
-            className={classNames(defaultClasses, "fill-[#005E34]")}
-          ></ControlPointOutlined>
-        );
-      case "no":
-        return (
-          <RemoveCircleOutline
-            className={classNames(defaultClasses, "fill-[#8E001B]")}
-          ></RemoveCircleOutline>
-        );
-      case "unsure":
-        return <HelpOutline className={defaultClasses}></HelpOutline>;
-    }
-  }
-
-  function getReasonListItem(reason: Reason) {
-    return (
-      <li key={reason.text} className="flex items-start gap-12">
-        {getIconForReason(reason)}
-        <span>
-          <span>
-            {reason.text}
-            {reason.hint && <RichText markdown={reason.hint} />}
-          </span>
-        </span>
-      </li>
-    );
   }
 
   const resultHint =
