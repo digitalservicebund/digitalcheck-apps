@@ -27,6 +27,7 @@ test.describe("test result page general content", () => {
     await expect(page.getByRole("main")).not.toContainText(
       `In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
     );
+    await expect(page.getByRole("main")).not.toContainText(`Begründung`);
   });
 
   test("result page links to methods", async ({ page }) => {
@@ -163,6 +164,7 @@ test.describe("test result page reasoning", () => {
     await expect(page.getByRole("main")).not.toContainText(
       `In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...`,
     );
+    await expect(page.getByRole("main")).toContainText(`Begründung`);
   });
 
   test("checking all negative answers for digital and positive for interoperability leads to negative result with warning", async ({
@@ -185,6 +187,7 @@ test.describe("test result page reasoning", () => {
     await expect(page.getByRole("main")).toContainText(
       "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
     );
+    await expect(page.getByRole("main")).toContainText(`Begründung`);
   });
 
   test("checking mix of unsure and negative answers leads to unsure result", async ({

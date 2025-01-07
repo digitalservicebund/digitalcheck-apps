@@ -9,10 +9,13 @@ import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
+import { ResultType, TResult } from "./TResult.tsx";
 
 export default function ResultForm({
+  result,
   answers,
 }: Readonly<{
+  result: TResult;
   answers: PreCheckAnswers;
 }>) {
   const form = useForm({
@@ -31,8 +34,6 @@ export default function ResultForm({
       setWarning(null);
     }
   };
-
-  const isPositive = !!Object.values(answers).find((a) => a === "yes");
 
   return (
     <>
@@ -61,7 +62,7 @@ export default function ResultForm({
             label={preCheck.result.form.policyTitleLabel}
             error={form.error("title")}
           />
-          {!isPositive && (
+          {result.digital === ResultType.NEGATIVE && (
             <Textarea
               name="negativeReasoning"
               label={preCheck.result.form.reasonLabel}

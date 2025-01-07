@@ -98,7 +98,7 @@ export default function ResultPage({
           </div>
           {result.digital !== ResultType.UNSURE && (
             <div className="mt-32">
-              <ResultForm answers={answers} />
+              <ResultForm result={result} answers={answers} />
             </div>
           )}
         </Container>
