@@ -86,52 +86,57 @@ export default function ResultPage({
   return (
     <>
       <Background backgroundColor="blue" paddingTop="40" paddingBottom="40">
-        <Container
-          backgroundColor={
-            result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
-          }
-          paddingTop="32"
-          paddingBottom="32"
-          additionalClassNames="rounded-t-lg"
-        >
-          <div className="flex sm:flex-row flex-col gap-16">
-            <div className="flex-none w-36 h-36 flex items-center justify-center">
-              {getHeaderIcon()}
+        <div className="px-16">
+          <Container
+            backgroundColor={
+              result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
+            }
+            paddingTop="32"
+            paddingBottom="32"
+            additionalClassNames="rounded-t-lg"
+          >
+            <div className="flex sm:flex-row flex-col gap-16">
+              <div className="flex-none w-36 h-36 flex items-center justify-center">
+                {getHeaderIcon()}
+              </div>
+              <Header
+                heading={{
+                  tagName: "h1",
+                  look: "ds-heading-02-reg",
+                  text: resultContent.title,
+                  className: "mb-0",
+                }}
+                {...(resultHint && { content: { markdown: resultHint } })}
+              />
             </div>
-            <Header
-              heading={{
-                tagName: "h1",
-                look: "ds-heading-02-reg",
-                text: resultContent.title,
-                className: "mb-0",
-              }}
-              {...(resultHint && { content: { markdown: resultHint } })}
-            />
-          </div>
-        </Container>
-        <Container backgroundColor="white" additionalClassNames="rounded-b-lg">
-          <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
-            {resultContent.reasoningList.map(({ intro, reasons }) => (
-              <>
-                {reasons.length !== 0 && (
-                  <>
-                    <RichText className="mt-40 first:mt-0" markdown={intro} />
-                    <ul className="ds-stack-16 mt-16">
-                      {reasons
-                        .sort((reason) => (reason.answer === "yes" ? -1 : 1))
-                        .map((reason) => getReasonListItem(reason))}
-                    </ul>
-                  </>
-                )}
-              </>
-            ))}
-          </div>
-          {result.digital !== ResultType.UNSURE && (
-            <div className="mt-32">
-              <ResultForm result={result} answers={answers} />
+          </Container>
+          <Container
+            backgroundColor="white"
+            additionalClassNames="rounded-b-lg"
+          >
+            <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
+              {resultContent.reasoningList.map(({ intro, reasons }) => (
+                <>
+                  {reasons.length !== 0 && (
+                    <>
+                      <RichText className="mt-40 first:mt-0" markdown={intro} />
+                      <ul className="ds-stack-16 mt-16">
+                        {reasons
+                          .sort((reason) => (reason.answer === "yes" ? -1 : 1))
+                          .map((reason) => getReasonListItem(reason))}
+                      </ul>
+                    </>
+                  )}
+                </>
+              ))}
             </div>
-          )}
-        </Container>
+            {result.digital !== ResultType.UNSURE && (
+              <div className="mt-32">
+                <ResultForm result={result} answers={answers} />
+              </div>
+            )}
+          </Container>
+        </div>
       </Background>
       <Container paddingBottom="40">
         {result.digital === ResultType.UNSURE && (
