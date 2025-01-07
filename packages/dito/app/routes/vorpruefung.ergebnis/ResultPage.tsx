@@ -48,7 +48,7 @@ export default function ResultPage({
   }
 
   function getIconForReason(reason: Reason) {
-    const defaultClasses = "w-28 h-auto";
+    const defaultClasses = "w-28 h-auto shrink-0";
     switch (reason.answer) {
       case "yes":
         return (
