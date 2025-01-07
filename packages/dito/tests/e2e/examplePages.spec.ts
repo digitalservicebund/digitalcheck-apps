@@ -127,7 +127,7 @@ test.describe("Visualizations Overview Page", () => {
     ]);
 
     await newTab.waitForLoadState("load");
-    expect(newTab.url()).toMatch(/^https?:\/\/secure-dinosaurs.+/);
+    expect(newTab.url()).toMatch(/.*visualisierung.*/);
   });
 
   test("navigation to regulation detail works", async ({ page }) => {
