@@ -113,20 +113,20 @@ export default function ResultPage({
             additionalClassNames="rounded-b-lg"
           >
             <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
-              {resultContent.reasoningList.map(({ intro, reasons }) => (
-                <>
-                  {reasons.length !== 0 && (
-                    <>
-                      <RichText className="mt-40 first:mt-0" markdown={intro} />
-                      <ul className="ds-stack-16 mt-16">
-                        {reasons
-                          .sort((reason) => (reason.answer === "yes" ? -1 : 1))
-                          .map((reason) => getReasonListItem(reason))}
-                      </ul>
-                    </>
-                  )}
-                </>
-              ))}
+              {resultContent.reasoningList
+                .filter(({ reasons }) => reasons.length > 0)
+                .map(({ intro, reasons }) => (
+                  <>
+                    <RichText className="mt-40 first:mt-0" markdown={intro} />
+                    <ul className="ds-stack-16 mt-16">
+                      {reasons
+                        .toSorted((reason) =>
+                          reason.answer === "yes" ? -1 : 1,
+                        )
+                        .map((reason) => getReasonListItem(reason))}
+                    </ul>
+                  </>
+                ))}
             </div>
             {result.digital !== ResultType.UNSURE && (
               <div className="mt-32">
