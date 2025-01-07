@@ -105,8 +105,8 @@ export default function SupportTabs() {
           {tab.offerings.map((offering: Offering) => (
             <Container
               key={offering.title}
+              className="flex max-md:flex-col gap-32 rounded-xl mb-32 px-40"
               backgroundColor="blue"
-              additionalClassNames="flex max-md:flex-col gap-32 rounded-xl mb-32 px-40"
             >
               <Box
                 heading={{

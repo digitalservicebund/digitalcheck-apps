@@ -40,8 +40,8 @@ export default function ResultForm({
 
   return (
     <Container
+      className="rounded-lg"
       backgroundColor="white"
-      additionalClassNames="rounded-lg"
       overhangingBackground
     >
       <form {...form.getFormProps()}>

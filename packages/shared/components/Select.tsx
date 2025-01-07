@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import type { ReactNode } from "react";
 import { ChangeEvent } from "react";
+import { twJoin } from "tailwind-merge";
 import InputError from "./InputError";
 
 export type SelectOptionsProps = {
@@ -12,7 +12,6 @@ export type SelectProps = {
   name: string;
   options: SelectOptionsProps;
   label: ReactNode;
-  altLabel?: string;
   placeholder?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
@@ -30,9 +29,7 @@ const Select = ({
 }: SelectProps) => {
   const hasError = !!error;
   const errorId = hasError ? `${name}-error` : undefined;
-  const selectClassName = classNames("ds-select", {
-    "has-error": hasError,
-  });
+  const selectClassName = twJoin("ds-select", hasError && "has-error");
 
   return (
     <>

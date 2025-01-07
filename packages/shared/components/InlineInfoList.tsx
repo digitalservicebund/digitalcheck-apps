@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type InlineInfoListItem =
   | { key?: string; label: string; value: ReactNode }
@@ -13,9 +13,9 @@ export type InlineInfoListProps = {
 export default function InlineInfoList({
   items,
   className,
-}: InlineInfoListProps) {
+}: Readonly<InlineInfoListProps>) {
   return (
-    <div className={classNames("bg-blue-200 space-x-16", className)}>
+    <div className={twMerge("bg-blue-200 space-x-16", className)}>
       {items.map(
         (item) =>
           item.value && (

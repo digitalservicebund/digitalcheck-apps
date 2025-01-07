@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twJoin } from "tailwind-merge";
 import Heading, { type HeadingProps } from "./Heading";
 import InfoBoxItem, { type InfoBoxItemProps } from "./InfoBoxItem";
 
@@ -22,10 +22,10 @@ const InfoBox = ({
       {label && <Heading {...label} />}
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       <ul
-        className={classNames("list-none ps-0 info-box", {
-          "ds-stack-48": !separator,
-          "ds-stack-32": separator,
-        })}
+        className={twJoin(
+          "list-none ps-0 info-box",
+          separator ? "ds-stack-32" : "ds-stack-48",
+        )}
       >
         {items.map((item, index) => (
           <InfoBoxItem

@@ -153,13 +153,13 @@ export default function Index() {
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
-        <Container paddingTop="0" additionalClassNames="lg:hidden">
+        <Container className="pt-0 lg:hidden">
           <LinkBar currentElement={question} elements={questions} />
         </Container>
         <form {...form.getFormProps()}>
           <input type="hidden" name="questionId" value={question.id} />
           <Question
-            paddingBottom="40"
+            className="pb-40"
             stack={32}
             heading={{
               text: question.question,
@@ -183,7 +183,7 @@ export default function Index() {
             }}
             ariaLabel={`Frage ${questionIdx + 1} von ${questions.length}`}
           />
-          <Container paddingTop="0" paddingBottom="40">
+          <Container className="pt-0 pb-40">
             <ButtonContainer
               buttons={[
                 {

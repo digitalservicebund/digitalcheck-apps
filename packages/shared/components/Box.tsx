@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import { useId } from "react";
+import { twMerge } from "tailwind-merge";
 import { ButtonLinkProps, ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";
@@ -10,7 +10,7 @@ export type BoxProps = {
   label?: HeadingProps;
   heading?: HeadingProps;
   content?: RichTextProps;
-  additionalClassNames?: string;
+  className?: string;
   buttons?: (ButtonLinkProps | ButtonProps)[];
 };
 
@@ -20,18 +20,14 @@ const Box = ({
   heading,
   content,
   buttons,
-  additionalClassNames,
+  className,
 }: BoxProps) => {
   const generatedId = useId();
-  const headingId = heading?.id || generatedId;
+  const headingId = heading?.id ?? generatedId;
   const labelId = `${headingId}-label`;
   return (
     <div
-      className={classNames(
-        "box",
-        additionalClassNames ?? "",
-        "ds-stack-16 scroll-my-40",
-      )}
+      className={twMerge("box ds-stack-16 scroll-my-40", className)}
       id={identifier}
     >
       <div className="ds-stack-8">

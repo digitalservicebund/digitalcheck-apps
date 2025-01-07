@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twJoin } from "tailwind-merge";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 
@@ -52,9 +52,9 @@ export default function Input({
           id={name}
           name={name}
           type={type}
-          className={classNames(
+          className={twJoin(
             "ds-input forced-color-adjust-none",
-            { "has-error": error },
+            error && "has-error",
             width && widthClass(width),
           )}
           aria-invalid={error !== undefined}

@@ -76,11 +76,7 @@ export default function Index() {
         </Container>
       </Background>
       <Background backgroundColor="midBlue">
-        <Container
-          paddingTop="0"
-          paddingBottom="0"
-          additionalClassNames={`flex flex-col lg:flex-row lg:h-[420px]`}
-        >
+        <Container className="pt-0 pb-0 flex flex-col lg:flex-row lg:h-[420px]">
           <div className="py-32 sm:py-48 lg:w-1/2 lg:self-center">
             <RichText
               markdown={socialProof.text}
@@ -102,10 +98,10 @@ export default function Index() {
       <div className="sm:hidden">
         <SocialProofImage />
       </div>
-      <Container additionalClassNames="lg:hidden">
+      <Container className="lg:hidden">
         <Testimonial />
       </Container>
-      <Container paddingTop="48">
+      <Container className="pt-48">
         <Header
           heading={{
             tagName: "h2",

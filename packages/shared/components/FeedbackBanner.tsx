@@ -9,8 +9,8 @@ export default function FeedbackBanner() {
     "Ich stehe gerne für ein Gespräch zur Verfügung, um Feedback zu geben.";
 
   return (
-    <Background backgroundColor="midBlue" paddingTop="32" paddingBottom="40">
-      <Container paddingTop="0" paddingBottom="0">
+    <Background backgroundColor="midBlue" className="pt-32 pb-40">
+      <Container className="pt-0 pb-0">
         <Box
           heading={{
             tagName: "h2",
@@ -22,7 +22,7 @@ export default function FeedbackBanner() {
           }}
         ></Box>
       </Container>
-      <Container paddingTop="24" paddingBottom="0">
+      <Container className="pt-24 pb-0">
         <Box
           heading={{
             tagName: "h2",

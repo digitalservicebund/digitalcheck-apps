@@ -13,7 +13,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "classnames": "^2.5.1",
     "marked": "^15.0.0"
   },
   "devDependencies": {

@@ -11,8 +11,8 @@ function InfoPage() {
 
   return (
     <>
-      <Background backgroundColor="blue" paddingTop="48" paddingBottom="48">
-        <Container paddingTop="0" paddingBottom="0">
+      <Background backgroundColor="blue" className="pt-48 pb-48">
+        <Container className="pt-0 pb-0">
           <Header
             heading={{
               tagName: "h1",
@@ -25,7 +25,7 @@ function InfoPage() {
         </Container>
       </Background>
       <BetaBanner />
-      <Container paddingTop="48" paddingBottom="48">
+      <Container className="pt-48 pb-48">
         <Box
           identifier="info-section-which-tool"
           heading={{
@@ -45,9 +45,9 @@ function InfoPage() {
           ]}
         ></Box>
       </Container>
-      <Container paddingTop="0" paddingBottom="48">
+      <Container className="pt-0 pb-48">
         <Box
-          additionalClassNames="ds-stack-16"
+          className="ds-stack-16"
           identifier="info-section-why-visualisation"
           heading={{
             tagName: "h2",
@@ -65,15 +65,9 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
           }}
         ></Box>
       </Container>
-      <Container
-        paddingTop="0"
-        paddingBottom="0"
-        additionalClassNames={
-          "flex flex-col md:flex-row gap-32 md:gap-32 items-start"
-        }
-      >
+      <Container className="pt-0 pb-0 flex flex-col md:flex-row gap-32 md:gap-32 items-start">
         <Box
-          additionalClassNames="pt-20"
+          className="pt-20"
           heading={{
             tagName: "h3",
             look: "ds-heading-03-bold",
@@ -84,9 +78,9 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
             `,
           }}
         ></Box>
-        <Background backgroundColor="midBlue" paddingTop="0" paddingBottom="0">
+        <Background backgroundColor="midBlue" className="pt-0 pb-0">
           <Box
-            additionalClassNames="p-20"
+            className="p-20"
             heading={{
               tagName: "h3",
               look: "ds-heading-03-bold",
@@ -98,7 +92,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
           ></Box>
         </Background>
       </Container>
-      <Container paddingTop="16" paddingBottom="48">
+      <Container className="pt-16 pb-48">
         <Box
           content={{
             markdown: `Mehr dazu lesen Sie in diesem Blogbeitrag: [Mit Visualisierungen zu einer digitaltauglichen Gesetzgebung](https://digitalservice.bund.de/blog/mit-visualisierungen-zu-einer-digitaltauglichen-gesetzgebung).

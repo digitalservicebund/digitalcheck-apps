@@ -28,12 +28,11 @@ export default function ResultHeaderWithReasoning({
 }>) {
   const iconClassName = "w-full h-full";
   return (
-    <Background backgroundColor="blue" paddingTop="40" paddingBottom="40">
+    <Background backgroundColor="blue" className="pt-40 pb-40">
       <Container
-        overhangingBackground
+        className="pt-32 pb-32"
         backgroundColor={resultBackgroundColor}
-        paddingTop="32"
-        paddingBottom="32"
+        overhangingBackground
       >
         <div className="flex sm:flex-row flex-col gap-16">
           <div className="flex-none w-36 h-36 flex items-center justify-center">

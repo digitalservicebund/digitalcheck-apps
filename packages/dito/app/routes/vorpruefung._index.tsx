@@ -18,11 +18,7 @@ export default function Index() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container
-          paddingTop="64"
-          paddingBottom="56"
-          additionalClassNames="max-sm:!py-32"
-        >
+        <Container className="pt-64 pb-56 max-sm:!py-32">
           <Box
             heading={{
               tagName: "h1",
@@ -34,7 +30,7 @@ export default function Index() {
             }}
           ></Box>
         </Container>
-        <Container paddingTop="0">
+        <Container className="pt-0">
           <ButtonContainer
             buttons={[
               {
@@ -53,7 +49,7 @@ export default function Index() {
           />
         </Container>
       </Background>
-      <Container additionalClassNames="max-sm:!p-0">
+      <Container className="max-sm:!p-0">
         <InlineNotice
           look="tips"
           title={preCheck.start.info.title}

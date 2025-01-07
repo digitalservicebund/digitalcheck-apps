@@ -15,7 +15,7 @@ export default function Index() {
   const showLinksToTools = useFeatureFlag("digitalcheck.show-links-to-tools");
   return (
     <>
-      <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
+      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
         <Container>
           <Header
             heading={{
@@ -38,7 +38,7 @@ export default function Index() {
           items={landing.list.items}
         />
       </Container>
-      {/* <Container additionalClassNames="max-sm:!p-0">
+      {/* <Container className="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={landing.dataNotice.headline}
@@ -67,11 +67,7 @@ export default function Index() {
         />
       </Container>
       {showLinksToTools && (
-        <Background
-          backgroundColor="midLightBlue"
-          paddingTop="0"
-          paddingBottom="0"
-        >
+        <Background backgroundColor="midLightBlue" className="pt-0 pb-0">
           <Container>
             <div className="ds-stack-8 scroll-my-40">
               <Heading
@@ -97,7 +93,7 @@ export default function Index() {
                       }}
                       content={{ markdown: item.content }}
                       buttons={item.buttons}
-                      additionalClassNames="!justify-between h-full"
+                      className="!justify-between h-full"
                     />
                   </div>
                 ))}
@@ -107,7 +103,7 @@ export default function Index() {
         </Background>
       )}
       <SupportBanner />
-      <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
+      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
         <Container>
           <div className="ds-stack-16 scroll-my-40">
             <Heading tagName="h2" text={landing.principals.title} />
