@@ -68,7 +68,7 @@ function getRelevantReasons(
           if (
             !!question.interoperability &&
             !!question.resultHint &&
-            result.digital === ResultType.NEGATIVE
+            result.digital !== ResultType.POSITIVE
           ) {
             reasonHint = question.resultHint.positiveResult;
           }
