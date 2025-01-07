@@ -110,7 +110,7 @@ export default function ResultPage({
           </div>
         </Container>
         <Container backgroundColor="white" additionalClassNames="rounded-b-lg">
-          <div className="pb-40 border-solid border-0 border-b-2 border-gray-400 last:border-0 last:pb-0">
+          <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
             {resultContent.reasoningList.map(({ intro, reasons }) => (
               <>
                 {reasons.length !== 0 && (
