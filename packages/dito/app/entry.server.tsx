@@ -16,7 +16,7 @@ import { NonceProvider } from "utils/nonce";
 import logResponseStatus from "./utils/logging.ts";
 
 const ABORT_DELAY = 5_000;
-const STRAPI_MEDIA_URL =
+export const STRAPI_MEDIA_URL =
   process.env.STRAPI_MEDIA_URL ||
   "https://secure-dinosaurs-1a634d1a3d.media.strapiapp.com";
 

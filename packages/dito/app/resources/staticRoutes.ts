@@ -117,6 +117,12 @@ export const ROUTE_LAWS: Route = {
   parent: ROUTE_EXAMPLES.url,
 };
 
+export const ROUTE_VISUALISATION: Route = {
+  url: `${ROUTE_EXAMPLES.url}/visualisierung`,
+  title: "Visualisierung",
+  parent: ROUTE_EXAMPLES.url,
+};
+
 export const ROUTE_VISUALISATIONS: Route = {
   url: `${ROUTE_EXAMPLES.url}/visualisierungen`,
   title: "Visualisierungen",
