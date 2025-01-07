@@ -23,7 +23,6 @@ export default function AccordionItem({
       id={id}
     >
       <summary
-        role="button"
         aria-expanded={isExpanded}
         className="accordion-summary w-full p-24 flex items-center justify-between hover:bg-blue-200 focus:bg-blue-200 focus:outline focus:outline-4 focus:outline-blue-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-800 cursor-pointer group-open:bg-blue-200"
       >
