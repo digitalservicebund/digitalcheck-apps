@@ -61,43 +61,28 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 function getResult(answers: PreCheckAnswers): TResult {
-  const digital = getResultForRelevantAnswers(answers);
-  let interoperability = ResultType.NEGATIVE;
-  if (digital === ResultType.POSITIVE) {
-    interoperability = getResultForRelevantAnswers(answers, true);
-  }
+  const digital = getResultForRelevantAnswers(answers, false);
+  const interoperability =
+    digital === ResultType.POSITIVE
+      ? getResultForRelevantAnswers(answers, true)
+      : ResultType.NEGATIVE;
   return { digital, interoperability };
 }
 
 function getResultForRelevantAnswers(
   answers: PreCheckAnswers,
-  interoperability: boolean = false,
-) {
-  let result = ResultType.NEGATIVE;
-
-  const relevantAnswers = getRelevantAnswers(answers, interoperability);
-
-  if (Object.values(relevantAnswers).find((a) => a === "yes")) {
-    result = ResultType.POSITIVE;
-  } else if (Object.values(relevantAnswers).find((a) => a === "unsure")) {
-    result = ResultType.UNSURE;
-  }
-  return result;
-}
-
-function getRelevantAnswers(
-  answers: PreCheckAnswers,
   interoperability: boolean,
 ) {
-  const relevantAnswers: PreCheckAnswers = {};
-  for (const [k, v] of Object.entries(answers)) {
-    const question = questions.find((question) => question.id === k);
-    const questionInteroperability = question?.interoperability || false;
-    if (questionInteroperability === interoperability) {
-      relevantAnswers[k] = v;
-    }
+  const relevantAnswers = questions
+    .filter((question) => !!question.interoperability === interoperability)
+    .map((question) => answers[question.id]);
+  if (relevantAnswers.includes("yes")) {
+    return ResultType.POSITIVE;
   }
-  return relevantAnswers;
+  if (relevantAnswers.includes("unsure")) {
+    return ResultType.UNSURE;
+  }
+  return ResultType.NEGATIVE;
 }
 
 function buildEmailBody(
