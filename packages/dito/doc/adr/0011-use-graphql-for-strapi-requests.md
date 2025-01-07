@@ -1,4 +1,4 @@
-# 10. Use GraphQL Instead of REST for Data Requests to Strapi
+# 11. Use GraphQL Instead of REST for Data Requests to Strapi
 
 **Date:** 2025-01-02
 
@@ -61,4 +61,4 @@ significant rewrites or versioning.
 
 However, there are challenges to consider. Developers unfamiliar with GraphQL may need onboarding.
 Also, poorly optimized queries could strain server resources, making caching and query optimization
-critical for maintaining performance (see [caching](0009-use-serverside-caching.md)).
+critical for maintaining performance (see [caching](0010-use-serverside-caching.md)).
