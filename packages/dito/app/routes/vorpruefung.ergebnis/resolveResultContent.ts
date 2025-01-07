@@ -47,6 +47,7 @@ function getResultTitle(result: TResult) {
 
 function getRelevantReasons(
   answers: PreCheckAnswers,
+  result: TResult,
   interoperability: boolean,
   sure: boolean,
 ): Reason[] {
@@ -63,13 +64,22 @@ function getRelevantReasons(
 
       switch (answer) {
         case "yes":
-        case "unsure":
           reasonText = question.positiveResult;
-          reasonHint = question.resultHint?.positiveResult;
+          if (
+            !!question.interoperability &&
+            !!question.resultHint &&
+            result.digital === ResultType.NEGATIVE
+          ) {
+            reasonHint = question.resultHint.positiveResult;
+          }
           break;
         case "no":
           reasonText = question.negativeResult;
           reasonHint = question.resultHint?.negativeResult;
+          break;
+        case "unsure":
+          reasonText = question.positiveResult;
+          reasonHint = question.resultHint?.unsureResult;
           break;
       }
 
@@ -90,19 +100,19 @@ export default function resolveResultContent(
     reasoningList: [
       {
         intro: preCheck.result.reasoningIntro.digital.sure,
-        reasons: getRelevantReasons(answers, false, true),
+        reasons: getRelevantReasons(answers, result, false, true),
       },
       {
         intro: preCheck.result.reasoningIntro.digital.unsure,
-        reasons: getRelevantReasons(answers, false, false),
+        reasons: getRelevantReasons(answers, result, false, false),
       },
       {
         intro: preCheck.result.reasoningIntro.interoperability.sure,
-        reasons: getRelevantReasons(answers, true, true),
+        reasons: getRelevantReasons(answers, result, true, true),
       },
       {
         intro: preCheck.result.reasoningIntro.interoperability.unsure,
-        reasons: getRelevantReasons(answers, true, false),
+        reasons: getRelevantReasons(answers, result, true, false),
       },
     ],
   };
