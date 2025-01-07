@@ -153,9 +153,10 @@ test.describe("five principles page", () => {
             waitUntil: "domcontentloaded",
           });
 
-          const link = page
-            .getByRole("link", { name: "Beispiele betrachten" })
-            .nth(index);
+          const linksOnPage = await page
+            .locator('a:has-text("Beispiele betrachten")')
+            .all();
+          const link = linksOnPage[index];
           await expect(link).toBeVisible({ timeout: 5000 });
 
           const navigationPromise = page.waitForURL(url);
