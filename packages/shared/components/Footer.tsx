@@ -15,13 +15,9 @@ type LinkProps = {
 
 type FooterProps = {
   links: LinkProps[];
-  useContainer?: boolean;
 };
 
-export default function Footer({
-  links,
-  useContainer = true,
-}: Readonly<FooterProps>) {
+export default function Footer({ links }: Readonly<FooterProps>) {
   const linksMiddleIndex = Math.ceil(links.length / 2);
   const linksFirstColumn: typeof links = links.slice(0, linksMiddleIndex);
   const linksSecondColumn: typeof links = links.slice(linksMiddleIndex);
@@ -57,7 +53,7 @@ export default function Footer({
     </ul>
   );
 
-  const footerContent = useContainer ? (
+  const footerContent = (
     <div className="flex flex-wrap items-start justify-between gap-y-32">
       <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
         <div className="py-4 pr-4">
@@ -87,36 +83,6 @@ export default function Footer({
         {renderLinks(linksSecondColumn)}
       </div>
     </div>
-  ) : (
-    <div className="flex flex-wrap items-center justify-center gap-y-32 gap-x-32 text-center">
-      <div className="py-4 pr-4">
-        <Image
-          url={bmiLogo}
-          width={120}
-          alternativeText="Logo des Bundesministerium des Innern und für Heimat"
-        />
-      </div>
-      <div>
-        {renderLinks([
-          {
-            preText: "Ein Onlinedienst der",
-            text: "DigitalService GmbH des Bundes",
-            url: "https://digitalservice.bund.de/",
-            openInNewTab: true,
-          },
-          {
-            preText: "Im Auftrag des",
-            text: "Bundesministerium des Innern und für Heimat",
-            url: "https://www.bmi.bund.de/",
-            openInNewTab: true,
-          },
-        ])}
-      </div>
-      <div className="flex gap-x-32">
-        {renderLinks(linksFirstColumn)}
-        {renderLinks(linksSecondColumn)}
-      </div>
-    </div>
   );
 
   return (
@@ -124,11 +90,9 @@ export default function Footer({
       className="text-base leading-snug w-full"
       aria-label="Seitenfußbereich"
     >
-      {useContainer ? (
-        <Container className="pt-48">{footerContent}</Container>
-      ) : (
-        <div className="px-4 sm:px-8 lg:px-16 py-12">{footerContent}</div>
-      )}
+      <Container className="pb-0 sm:px-8 lg:px-16 pt-32">
+        {footerContent}
+      </Container>
     </footer>
   );
 }

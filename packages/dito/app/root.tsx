@@ -276,7 +276,7 @@ function Document({
       <body className="min-h-screen flex flex-col">
         <PageHeader includeBreadcrumbs={!error} />
         {children}
-        <Footer links={footerLinks} useContainer={false} />
+        <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
