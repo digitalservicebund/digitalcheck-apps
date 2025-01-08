@@ -11,10 +11,9 @@ dotenv.config({ path: path.resolve(__dirname, "../", ".env.test") });
 const config: PlaywrightTestConfig = {
   ...baseConfig,
   webServer: {
-    command: "npm run dev",
-    port: 5173,
+    command: "npm run dev -- --port 5172",
+    port: 5172,
     timeout: parseInt(process.env.WAIT_ON_TIMEOUT ?? `${5 * 1000}`),
-    reuseExistingServer: true,
   },
 };
 
