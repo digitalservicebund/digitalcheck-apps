@@ -22,6 +22,11 @@ export const ROUTE_PRECHECK: Route = {
   title: "Vorprüfung: Digitalbezug einschätzen",
   parent: ROUTE_LANDING.url,
 };
+export const ROUTE_GENERAL_INFO: Route = {
+  url: `${ROUTE_PRECHECK.url}/hinweise`,
+  title: "Allgemeine Hinweise",
+  parent: ROUTE_PRECHECK.url,
+};
 export const ROUTE_RESULT: Route = {
   url: `${ROUTE_PRECHECK.url}/ergebnis`,
   title: "Ergebnis",
@@ -132,6 +137,7 @@ export const ROUTE_VISUALISATIONS: Route = {
 const routes: Route[] = [
   ROUTE_LANDING,
   ROUTE_PRECHECK,
+  ROUTE_GENERAL_INFO,
   ROUTE_RESULT,
   ROUTE_METHODS,
   ROUTE_METHODS_RESPONSIBLE_ACTORS,

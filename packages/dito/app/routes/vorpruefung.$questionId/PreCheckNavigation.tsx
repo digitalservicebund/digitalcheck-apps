@@ -10,21 +10,21 @@ import { twJoin } from "tailwind-merge";
 
 type PreCheckNavigationProps = Readonly<{
   question?: TQuestion;
-  answers: PreCheckAnswers;
+  answers?: PreCheckAnswers;
 }>;
 
 export default function PreCheckNavigation({
   question,
   answers,
 }: PreCheckNavigationProps) {
-  const firstUnansweredQuestionIdx = Object.keys(answers).length;
+  const firstUnansweredQuestionIdx = answers ? Object.keys(answers).length : -1;
   const questions = preCheck.questions;
 
   return (
     <nav aria-label="Alle Fragen" className="precheck-navigation">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
-          const isDone = q.id in answers;
+          const isDone = answers ? q.id in answers : false;
           const isCurrent = q.id === question?.id;
           const isDisabled = idx > firstUnansweredQuestionIdx;
           return (
