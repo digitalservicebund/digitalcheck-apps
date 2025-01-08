@@ -26,7 +26,7 @@ function FeedbackInput({
 }>) {
   const classes = twJoin(
     "rounded-lg px-24 h-64 flex items-center gap-8",
-    selected ? "bg-blue-200 text-blue-800" : "bg-blue-800 text-white",
+    selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
   );
 
   return (
