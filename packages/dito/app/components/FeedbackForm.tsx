@@ -3,9 +3,9 @@ import Container from "@digitalcheck/shared/components/Container";
 import RichText from "@digitalcheck/shared/components/RichText";
 import ThumbDownOutlined from "@digitalservicebund/icons/ThumbDownOutlined";
 import ThumbUpOutlined from "@digitalservicebund/icons/ThumbUpOutlined";
-import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 import { feedbackForm } from "resources/content";
+import { twJoin } from "tailwind-merge";
 
 function FeedbackInput({
   children,
@@ -24,10 +24,10 @@ function FeedbackInput({
   id: string;
   ariaLabel: string;
 }>) {
-  const classes = classNames(`rounded-lg px-24 h-64 flex items-center gap-8`, {
-    "bg-blue-200 text-blue-800": !selected,
-    "bg-blue-800 text-white": selected,
-  });
+  const classes = twJoin(
+    "rounded-lg px-24 h-64 flex items-center gap-8",
+    selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
+  );
 
   return (
     <label className={classes}>
@@ -65,9 +65,9 @@ function FeedbackQuestion({
 
   return (
     <fieldset
-      className={classNames(
+      className={twJoin(
         "flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-blue-300",
-        { "border-b-2": !isLast }, // conditional rendering because last:border-b-0 doesn't work here
+        !isLast && "border-b-2", // conditional rendering because last:border-b-0 doesn't work here
       )}
     >
       <div className="lg:w-1/2">
@@ -186,7 +186,7 @@ export default function FeedbackForm() {
   if (submitted) {
     return (
       <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
-        <Background backgroundColor="blue" paddingTop="40" paddingBottom="48">
+        <Background backgroundColor="blue" className="pt-40 pb-48">
           <Container backgroundColor="white" overhangingBackground>
             <h2>Vielen Dank für Ihr Feedback!</h2>
             <br />
@@ -201,7 +201,7 @@ export default function FeedbackForm() {
   }
 
   return (
-    <Background backgroundColor="blue" paddingTop="40" paddingBottom="48">
+    <Background backgroundColor="blue" className="pt-40 pb-48">
       <Container backgroundColor="white" overhangingBackground>
         <h2>{feedbackForm.heading}</h2>
         <form onSubmit={handleSubmit} className="mb-48">

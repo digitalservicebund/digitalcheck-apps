@@ -1,17 +1,15 @@
-import classNames from "classnames";
 import { PropsWithChildren } from "react";
+import { twMerge } from "tailwind-merge";
+import { BackgroundColor } from ".";
 import Box, { BoxProps } from "./Box";
-import { CommonWrapperProps } from "./CommonWrapperProps";
 import DetailsSummary from "./DetailsSummary";
 import Heading, { HeadingProps } from "./Heading";
 import RadioGroup, { type RadioGroupProps } from "./RadioGroup";
 import RichText, { RichTextProps } from "./RichText";
 import Select, { type SelectProps } from "./Select";
 
-const DEFAULT_PADDING_TOP = "0";
-const DEFAULT_PADDING_BOTTOM = "80";
-
 export type QuestionProps = {
+  backgroundColor?: BackgroundColor;
   box?: BoxProps;
   heading?: HeadingProps;
   content?: RichTextProps;
@@ -22,13 +20,11 @@ export type QuestionProps = {
   select?: SelectProps;
   radio?: RadioGroupProps;
   stack?: 8 | 16 | 32 | 48;
-  additionalClassNames?: string;
+  className?: string;
   ariaLabel?: string;
-} & PropsWithChildren<CommonWrapperProps>;
+};
 
 export default function Question({
-  paddingTop = "default",
-  paddingBottom = "default",
   backgroundColor = "default",
   box,
   heading,
@@ -37,19 +33,14 @@ export default function Question({
   select,
   radio,
   stack,
-  additionalClassNames,
+  className,
   ariaLabel = "",
-}: QuestionProps) {
-  let cssClasses = additionalClassNames ?? "";
-  cssClasses = classNames(
-    cssClasses,
-    "container",
+}: PropsWithChildren<QuestionProps>) {
+  const cssClasses = twMerge(
+    "container pt-0 pb-80",
     `ds-stack-${stack ?? 16}`,
-    `!pt-${paddingTop === "default" ? DEFAULT_PADDING_TOP : paddingTop}`,
-    `!pb-${
-      paddingBottom === "default" ? DEFAULT_PADDING_BOTTOM : paddingBottom
-    }`,
     backgroundColor !== "default" && "text-black",
+    className,
   );
 
   return (

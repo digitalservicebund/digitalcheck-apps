@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import { cloneElement, type ReactElement } from "react";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   text?: string;
@@ -39,18 +39,18 @@ function Button({
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
-  const buttonClasses = classNames(
+  const buttonClasses = twMerge(
     "ds-button",
-    {
-      "ds-button-secondary": look == "secondary",
-      "ds-button-tertiary": look == "tertiary",
-      "ds-button-ghost": look == "ghost",
-      "ds-button-large": size == "large",
-      "ds-button-small": size == "small",
-      "ds-button-with-icon": iconLeft ?? iconRight,
-      "ds-button-with-icon-only": (iconLeft ?? iconRight) && !children,
-      "ds-button-full-width": fullWidth,
-    },
+    look == "secondary" && "ds-button-secondary",
+    look == "tertiary" && "ds-button-tertiary",
+    look == "ghost" && "ds-button-ghost",
+    size == "large" && "ds-button-large",
+    size == "small" && "ds-button-small",
+    (iconLeft ?? iconRight) && [
+      "ds-button-with-icon",
+      !children && "ds-button-with-icon-only",
+    ],
+    fullWidth && "ds-button-full-width",
     props.className,
   );
 

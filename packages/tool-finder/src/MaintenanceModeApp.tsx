@@ -16,7 +16,7 @@ function MaintenanceModeApp() {
         </Routes>
       </main>
       <footer>
-        <Container paddingTop="48" paddingBottom="48">
+        <Container className="pt-48 pb-48">
           <Link to={PATH_IMPRINT} className="text-link increase-tap-area">
             Impressum
           </Link>

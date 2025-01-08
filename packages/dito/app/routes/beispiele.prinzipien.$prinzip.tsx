@@ -84,7 +84,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container paddingBottom="0">
+        <Container className="pb-0">
           <Box
             label={{
               text: `Prinzip ${prinzip.Nummer} – ${prinzip.Name}`,
@@ -93,11 +93,11 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
               text: `Prinzip ${prinzip.Nummer} in Regelungstexten`,
               tagName: "h1",
             }}
-            additionalClassNames="mb-16"
+            className="mb-16"
           />
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
         </Container>
-        <Container additionalClassNames="flex space-x-20 items-center">
+        <Container className="flex space-x-20 items-center">
           {prinzips.map((p) =>
             prinzip.Nummer === p.Nummer ? (
               <div key={p.Nummer} className="ds-label-01-bold">
@@ -117,7 +117,7 @@ export default function Digitaltauglichkeit_Prinzipien_Detail() {
         </Container>
       </Background>
       {GuteUmsetzungen.length > 0 && (
-        <Container additionalClassNames="rich-text ds-stack-64">
+        <Container className="rich-text ds-stack-64">
           {GuteUmsetzungen.map(
             (digitalcheck) =>
               digitalcheck.Regelungsvorhaben && (

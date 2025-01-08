@@ -99,12 +99,8 @@ export default function FeedbackForm({
   }
 
   return (
-    <Background backgroundColor="yellow" paddingTop="32" paddingBottom="40">
-      <Container
-        paddingTop="0"
-        paddingBottom="0"
-        additionalClassNames="ds-stack-32"
-      >
+    <Background backgroundColor="yellow" className="pt-32 pb-40">
+      <Container className="pt-0 pb-0 ds-stack-32">
         <Box
           heading={{
             tagName: "h3",

@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import type { ChangeEvent, ReactNode } from "react";
+import { twJoin } from "tailwind-merge";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
 import InputWarning from "./InputWarning.tsx";
@@ -44,11 +44,9 @@ const Textarea = ({
       <textarea
         name={name}
         id={name}
-        className={classNames(
+        className={twJoin(
           "ds-textarea forced-color-adjust-none placeholder-gray-600",
-          {
-            "has-error": error,
-          },
+          error && "has-error",
         )}
         aria-invalid={error !== undefined}
         aria-describedby={error ? errorId : undefined}

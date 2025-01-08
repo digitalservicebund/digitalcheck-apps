@@ -153,7 +153,7 @@ export default function Gesetz() {
         </Container>
       </Background>
       <Background backgroundColor="midLightBlue">
-        <Container paddingTop="0" paddingBottom="0">
+        <Container className="pt-0 pb-0">
           <InlineInfoList
             items={[
               {
@@ -189,7 +189,7 @@ export default function Gesetz() {
         (digitalcheck) => digitalcheck.Paragraphen.length > 0,
       ) &&
         regelung.GesetzStatus !== "Verkuendetes_Gesetz_aktuelle_Fassung" && (
-          <Container paddingBottom="0">
+          <Container className="pb-0">
             <InlineNotice
               title={regulations.infoTitle}
               look="tips"
@@ -201,8 +201,7 @@ export default function Gesetz() {
       {regelung.Digitalchecks.map((digitalcheck, index) => (
         <Container
           key={digitalcheck.documentId}
-          paddingBottom="80"
-          additionalClassNames="ds-stack-64 rich-text"
+          className="pb-80 ds-stack-64 rich-text"
         >
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (

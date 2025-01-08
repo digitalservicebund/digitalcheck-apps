@@ -88,14 +88,14 @@ export default function Index() {
         </Container>
       </Background>
       {"accordion" in content && (
-        <Container paddingBottom="0">
+        <Container className="pb-0">
           <DetailsSummary
             title={content.accordion.title}
             content={content.accordion.text}
           />
         </Container>
       )}
-      <Container additionalClassNames="ds-stack-32">
+      <Container className="ds-stack-32">
         <Box
           heading={{ text: content.content.title }}
           label={{
@@ -121,7 +121,7 @@ export default function Index() {
                 label={{ text: LabelWithIcon(box) }}
                 content={{ markdown: box.text }}
                 buttons={"buttons" in box ? box.buttons : []}
-                additionalClassNames="px-96 py-64 max-sm:px-16 max-sm:py-32"
+                className="px-96 py-64 max-sm:px-16 max-sm:py-32"
               />
             </Background>
           </div>

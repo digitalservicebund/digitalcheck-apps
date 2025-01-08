@@ -1,12 +1,12 @@
 import Check from "@digitalservicebund/icons/Check";
 import { Link } from "@remix-run/react";
-import classNames from "classnames";
 import { useId } from "react";
 import { preCheck } from "resources/content";
 import type {
   PreCheckAnswers,
   TQuestion,
 } from "routes/vorpruefung.$questionId/route";
+import { twJoin } from "tailwind-merge";
 
 type PreCheckNavigationProps = Readonly<{
   question?: TQuestion;
@@ -58,21 +58,16 @@ function NavItem({
   isCurrent,
   isDone,
 }: Readonly<NavItem>) {
-  const liClassNames = classNames(
+  const liClassNames = twJoin(
     "list-none border-b-[1px] border-b-white border-l-[4px]",
-    {
-      "text-gray-800 pointer-events-none": isDisabled,
-      "border-l-blue-800 pointer-events-none": isCurrent,
-      "border-l-blue-100": !isCurrent,
-    },
+    isCurrent ? "border-l-blue-800 pointer-events-none" : "border-l-blue-100",
+    isDisabled && "text-gray-800 pointer-events-none",
   );
 
   // Transparent left borders to avoid layout shifts
-  const itemClassNames = classNames(
+  const itemClassNames = twJoin(
     "bg-blue-100 w-full ds-label-02-reg p-16 flex gap-x-4 items-center hover:underline hover:bg-blue-300 active:bg-white focus-visible:shadow-[inset_0px_0px_0px_4px] focus:shadow-blue-800",
-    {
-      "ds-label-02-bold bg-blue-400": isCurrent,
-    },
+    isCurrent && "ds-label-02-bold bg-blue-400",
   );
   const iconId = useId();
 

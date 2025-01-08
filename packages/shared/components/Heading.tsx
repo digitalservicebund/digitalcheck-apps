@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type HeadingProps = {
   tagName?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
@@ -18,18 +18,14 @@ function Heading({
   id,
   children,
   ...additionalProps
-}: HeadingProps) {
+}: Readonly<HeadingProps>) {
   const Tag = tagName as keyof React.JSX.IntrinsicElements;
-  const cssClasses = classNames(
-    look === "default" ? null : look,
-    className,
-    "hyphens-none",
-  );
+  const cssClasses = twMerge("hyphens-none", look, className);
 
   if (children) {
     return (
       <Tag id={id} className={cssClasses} {...additionalProps}>
-        {children || text}
+        {children ?? text}
       </Tag>
     );
   }

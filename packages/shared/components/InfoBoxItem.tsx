@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twJoin } from "tailwind-merge";
 import { type ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import DetailsSummary, { type DetailsSummaryProps } from "./DetailsSummary";
@@ -30,12 +30,10 @@ const InfoBoxItem = ({
   return (
     <li
       id={identifier}
-      className={classNames(
+      className={twJoin(
         "flex flex-row items-center justify-center max-w-none max-[499px]:flex-col scroll-my-40",
-        {
-          "pb-40 border-solid border-0 border-b-2 border-gray-400 last:border-none":
-            separator,
-        },
+        separator &&
+          "pb-40 border-solid border-0 border-b-2 border-gray-400 last:border-none",
       )}
     >
       {image && (

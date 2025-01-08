@@ -23,11 +23,7 @@ export default function Index() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container
-          paddingTop="64"
-          paddingBottom="56"
-          additionalClassNames="max-sm:!py-32"
-        >
+        <Container className="pt-64 pb-56 max-sm:!py-32">
           <Box
             heading={{
               tagName: "h1",
@@ -39,11 +35,11 @@ export default function Index() {
             }}
           ></Box>
         </Container>
-        <Container paddingTop="0">
+        <Container className="pt-0">
           <div className="ds-stack-16 mb-40">
-            {preCheck.start.hints.map((hint, index) => (
+            {preCheck.start.hints.map((hint) => (
               <DetailsSummary
-                key={index}
+                key={hint.title}
                 title={hint.title}
                 content={hint.text}
               />
@@ -76,7 +72,7 @@ export default function Index() {
           items={preCheck.start.summary.items}
         ></InfoBox>
       </Container>
-      <Container paddingTop="0">
+      <Container className="pt-0">
         <Background backgroundColor="blue">
           <div className="px-64 py-40 flex gap-64 items-center max-sm:flex-col-reverse max-sm:px-16 max-sm:gap-48">
             <div className="md:pl-32 ds-stack-8 gap-20 md:w-1/3">

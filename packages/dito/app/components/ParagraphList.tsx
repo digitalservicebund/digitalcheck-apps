@@ -3,8 +3,8 @@ import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
 import { Link, useLocation } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import classNames from "classnames";
 import { ReactNode, useState } from "react";
+import { twJoin } from "tailwind-merge";
 import {
   AbsatzWithNumber,
   isStandaloneAbsatz,
@@ -99,13 +99,10 @@ const PrincipleExplanation = ({
   // Using the hash leads to a hydration mismatch due to the location hash only being available on the client
   const shouldHighlight = location.hash === `#${id}`;
   const color = HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer];
-  const explanationClasses = classNames(
+  const explanationClasses = twJoin(
     "p-4 w-fit max-w-[642px]",
     color.border,
-    {
-      "border-4": shouldHighlight,
-      "border-l-4 py-8": !shouldHighlight,
-    },
+    shouldHighlight ? "border-4" : "border-l-4 py-8",
   );
 
   return (

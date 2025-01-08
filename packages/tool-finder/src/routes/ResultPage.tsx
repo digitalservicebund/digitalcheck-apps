@@ -38,11 +38,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
 
   return result ? (
     <>
-      <Container
-        paddingTop="48"
-        paddingBottom="24"
-        additionalClassNames="max-sm:px-0"
-      >
+      <Container className="pt-48 pb-24 max-sm:px-0">
         <div className="border-4 sm:border-8 sm:rounded-lg border-[#EBF3FD]">
           <Image
             url={getImageUrl(result.cluster.img.src)}
@@ -55,7 +51,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
                 Wir empfehlen Ihnen eine Visualisierung als:
               </p>
               <Box
-                additionalClassNames="pt-16"
+                className="pt-16"
                 heading={{
                   tagName: "h1",
                   text: result.cluster.name,
@@ -86,13 +82,9 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
           </div>
         </div>
       </Container>
-      <Container
-        paddingTop="24"
-        paddingBottom="48"
-        additionalClassNames="max-sm:px-0"
-      >
+      <Container className="pt-24 pb-48 max-sm:px-0">
         <Box
-          additionalClassNames="p-12 sm:border-2 sm:rounded-md border-blue-100 bg-blue-100"
+          className="p-12 sm:border-2 sm:rounded-md border-blue-100 bg-blue-100"
           heading={{
             tagName: "h3",
             look: "ds-label-01-bold",
@@ -123,7 +115,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
       />
     </>
   ) : (
-    <Container paddingTop="48" paddingBottom="48">
+    <Container className="pt-48 pb-48">
       <Box
         identifier="info-section-why-visualisation"
         heading={{

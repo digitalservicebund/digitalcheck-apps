@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import Button, { type ButtonLinkProps, type ButtonProps } from "./Button";
 
 type ButtonContainerProps = {
@@ -14,11 +14,9 @@ const ButtonContainer = ({
 }: ButtonContainerProps) => {
   return (
     <div
-      className={classNames(
+      className={twMerge(
         "flex flex-wrap gap-16",
-        {
-          "flex-wrap-reverse": reverseOrder,
-        },
+        reverseOrder && "flex-wrap-reverse",
         className,
       )}
     >

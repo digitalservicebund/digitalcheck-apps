@@ -9,8 +9,8 @@ function Privacy() {
 
   return (
     <>
-      <Background backgroundColor="blue" paddingTop="48" paddingBottom="48">
-        <Container paddingTop="0" paddingBottom="0">
+      <Background backgroundColor="blue" className="pt-48 pb-48">
+        <Container className="pt-0 pb-0">
           <Header
             heading={{
               tagName: "h1",
@@ -19,7 +19,7 @@ function Privacy() {
           ></Header>
         </Container>
       </Background>
-      <Container paddingTop="48" paddingBottom="48">
+      <Container className="pt-48 pb-48">
         <Box
           content={{
             markdown: `

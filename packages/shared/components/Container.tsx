@@ -1,33 +1,23 @@
-import classNames from "classnames";
 import type { PropsWithChildren } from "react";
-import { BACKGROUND_COLORS } from ".";
-import type { CommonWrapperProps } from "./CommonWrapperProps";
-
-const DEFAULT_PADDING_TOP = "40";
-const DEFAULT_PADDING_BOTTOM = "48";
+import { twMerge } from "tailwind-merge";
+import { BACKGROUND_COLORS, type BackgroundColor } from ".";
 
 type ContainerProps = {
+  backgroundColor?: BackgroundColor;
   overhangingBackground?: boolean;
-  additionalClassNames?: string;
-} & PropsWithChildren<CommonWrapperProps>;
+  className?: string;
+};
 
 export default function Container({
-  paddingTop = "default",
-  paddingBottom = "default",
   backgroundColor = "default",
   overhangingBackground,
   children,
-  additionalClassNames,
-}: ContainerProps) {
-  let cssClasses = additionalClassNames ?? "";
-  cssClasses = classNames(
-    cssClasses,
-    "container",
-    `!pt-${paddingTop === "default" ? DEFAULT_PADDING_TOP : paddingTop}`,
-    `!pb-${
-      paddingBottom === "default" ? DEFAULT_PADDING_BOTTOM : paddingBottom
-    }`,
+  className,
+}: PropsWithChildren<ContainerProps>) {
+  let cssClasses = twMerge(
+    "container pt-40 pb-48",
     backgroundColor !== "default" && "text-black",
+    className,
   );
 
   if (backgroundColor === "default") {
@@ -35,10 +25,10 @@ export default function Container({
   }
 
   if (backgroundColor && overhangingBackground) {
-    cssClasses = classNames(
-      cssClasses,
+    cssClasses = twMerge(
       "relative before:content-[''] before:absolute before:inset-y-0 before:-left-32 before:-right-32 before:rounded-lg",
       `before:${BACKGROUND_COLORS[backgroundColor]}`,
+      cssClasses,
     );
 
     return (
@@ -51,7 +41,7 @@ export default function Container({
   }
 
   if (backgroundColor) {
-    cssClasses = classNames(cssClasses, BACKGROUND_COLORS[backgroundColor]);
+    cssClasses = twMerge(BACKGROUND_COLORS[backgroundColor], cssClasses);
   }
 
   return <div className={cssClasses}>{children}</div>;

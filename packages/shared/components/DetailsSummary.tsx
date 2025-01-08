@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import { ReactNode } from "react";
+import { twJoin } from "tailwind-merge";
 import RichText from "./RichText";
 
 export type DetailsSummaryProps = {
@@ -15,13 +15,10 @@ export default function DetailsSummary({
   content,
   bold = true,
   open = false,
-}: DetailsSummaryProps) {
-  const summaryClasses = classNames(
+}: Readonly<DetailsSummaryProps>) {
+  const summaryClasses = twJoin(
     "summary-content inline-flex focus:outline-none cursor-pointer list-none bg-no-repeat pl-[24px]",
-    {
-      "ds-label-01-bold": bold,
-      "ds-label-01-reg": !bold,
-    },
+    bold ? "ds-label-01-bold" : "ds-label-01-reg",
   );
   return (
     <details

@@ -26,7 +26,7 @@ export default function Digitaltauglichkeit_index() {
   );
   return (
     <>
-      <Background backgroundColor="darkBlue" paddingTop="24" paddingBottom="24">
+      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
         <Container>
           <Header
             heading={{
@@ -43,7 +43,7 @@ export default function Digitaltauglichkeit_index() {
       <Container>
         {digitalSuitability.boxItems.map((item) => (
           <Box
-            additionalClassNames="pb-64"
+            className="pb-64"
             key={item.title}
             heading={{
               tagName: "h2",

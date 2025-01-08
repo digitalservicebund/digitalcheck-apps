@@ -125,7 +125,7 @@ export default function Footer({
       aria-label="Seitenfußbereich"
     >
       {useContainer ? (
-        <Container paddingTop="48">{footerContent}</Container>
+        <Container className="pt-48">{footerContent}</Container>
       ) : (
         <div className="px-4 sm:px-8 lg:px-16 py-12">{footerContent}</div>
       )}

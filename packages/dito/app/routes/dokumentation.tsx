@@ -33,7 +33,7 @@ export default function Index() {
           <ButtonContainer className="mt-48" buttons={documentation.buttons} />
         </Container>
       </Background>
-      <Container additionalClassNames="max-sm:!p-0">
+      <Container className="max-sm:!p-0">
         <InlineNotice
           look="warning"
           title={documentation.multipleNotice.headline}

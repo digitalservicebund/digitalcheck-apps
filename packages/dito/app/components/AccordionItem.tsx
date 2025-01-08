@@ -1,6 +1,5 @@
 import RichText from "@digitalcheck/shared/components/RichText.tsx";
 import { Add, Remove } from "@digitalservicebund/icons";
-import classNames from "classnames";
 import { ReactNode, useState } from "react";
 
 export type AccordionItemProps = {
@@ -26,11 +25,7 @@ export default function AccordionItem({
         aria-expanded={isExpanded}
         className="accordion-summary w-full p-24 flex items-center justify-between hover:bg-blue-200 focus:bg-blue-200 focus:outline focus:outline-4 focus:outline-blue-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-800 cursor-pointer group-open:bg-blue-200"
       >
-        <div
-          className={classNames(
-            "pr-10 font-bold text-left text-16 leading-22 md:text-18 md:leading-24 text-blue-800",
-          )}
-        >
+        <div className="pr-10 font-bold text-left text-16 leading-22 md:text-18 md:leading-24 text-blue-800">
           {headline}
         </div>
         <Add className="w-24 h-24 flex-shrink-0 fill-blue-800 group-open:hidden" />

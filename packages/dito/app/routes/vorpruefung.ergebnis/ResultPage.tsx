@@ -13,9 +13,9 @@ import {
 import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
-import classNames from "classnames";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import { twJoin } from "tailwind-merge";
 import Accordion from "../../components/Accordion.tsx";
 import ResultForm from "./ResultForm.tsx";
 import { ResultType, TResult } from "./TResult.tsx";
@@ -32,13 +32,13 @@ function getIconForReason(reason: Reason) {
     case "yes":
       return (
         <ControlPointOutlined
-          className={classNames(defaultClasses, "fill-[#005E34]")}
+          className={twJoin(defaultClasses, "fill-[#005E34]")}
         ></ControlPointOutlined>
       );
     case "no":
       return (
         <RemoveCircleOutline
-          className={classNames(defaultClasses, "fill-[#8E001B]")}
+          className={twJoin(defaultClasses, "fill-[#8E001B]")}
         ></RemoveCircleOutline>
       );
     case "unsure":
@@ -83,15 +83,13 @@ export default function ResultPage({
     result.digital === ResultType.UNSURE ? preCheck.result.unsure.hint : "";
   return (
     <>
-      <Background backgroundColor="blue" paddingTop="40" paddingBottom="40">
+      <Background backgroundColor="blue" className="pt-40 pb-40">
         <div className="px-16">
           <Container
+            className="pt-32 pb-32 rounded-t-lg"
             backgroundColor={
               result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
             }
-            paddingTop="32"
-            paddingBottom="32"
-            additionalClassNames="rounded-t-lg"
           >
             <div className="flex sm:flex-row flex-col gap-16">
               <div className="flex-none w-36 h-36 flex items-center justify-center">
@@ -108,10 +106,7 @@ export default function ResultPage({
               />
             </div>
           </Container>
-          <Container
-            backgroundColor="white"
-            additionalClassNames="rounded-b-lg"
-          >
+          <Container className="rounded-b-lg" backgroundColor="white">
             <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
               {resultContent.reasoningList
                 .filter(({ reasons }) => reasons.length > 0)
@@ -136,7 +131,7 @@ export default function ResultPage({
           </Container>
         </div>
       </Background>
-      <Container paddingBottom="40">
+      <Container className="pb-40">
         {result.digital === ResultType.UNSURE && (
           <Box
             heading={{
