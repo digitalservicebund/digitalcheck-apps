@@ -67,7 +67,7 @@ export default function Index() {
         />
       </Container>
       {showLinksToTools && (
-        <Background backgroundColor="midLightBlue" className="pt-0 pb-0">
+        <Background backgroundColor="midLightBlue">
           <Container>
             <div className="ds-stack-8 scroll-my-40">
               <Heading
