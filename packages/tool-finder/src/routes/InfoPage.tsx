@@ -78,7 +78,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
             `,
           }}
         ></Box>
-        <Background backgroundColor="midBlue" className="pt-0 pb-0">
+        <Background backgroundColor="midBlue">
           <Box
             className="p-20"
             heading={{
