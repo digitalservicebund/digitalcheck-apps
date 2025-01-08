@@ -12,11 +12,7 @@ import Accordion from "components/Accordion.tsx";
 import SupportBanner from "components/SupportBanner";
 import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { preCheck } from "resources/content";
-import {
-  ROUTE_GENERAL_INFO,
-  ROUTE_LANDING,
-  ROUTE_PRECHECK,
-} from "resources/staticRoutes";
+import { ROUTE_LANDING, ROUTE_PRECHECK } from "resources/staticRoutes";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
@@ -54,7 +50,7 @@ export default function Index() {
               {
                 id: PRE_CHECK_START_BUTTON_ID,
                 text: preCheck.start.buttonText,
-                href: ROUTE_GENERAL_INFO.url,
+                href: preCheck.questions[0].url,
                 type: "submit",
               },
               {
