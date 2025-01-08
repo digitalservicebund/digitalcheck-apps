@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
 
@@ -7,29 +8,20 @@ const { questions } = preCheck;
 test.describe("test questions form", () => {
   test("all answer options are submittable", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
-    await page.waitForURL(preCheck.questions[0].url);
-    await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(preCheck.questions[1].url);
-    await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(preCheck.questions[2].url);
-    await page.getByLabel("Ich bin unsicher").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(preCheck.questions[3].url);
-    await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
-    await page.waitForURL(preCheck.questions[4].url);
-    await page.getByLabel("Ich bin unsicher").click();
-    await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
+    const answerOptions = ["Ja", "Nein", "Ich bin unsicher"];
+    for (let i = 0; i < preCheck.questions.length; i++) {
+      await page.waitForURL(preCheck.questions[i].url);
+      await page.getByLabel(answerOptions[i % answerOptions.length]).click();
+      await page.getByRole("button", { name: "Übernehmen" }).click();
+    }
     await expect(page).toHaveURL(ROUTE_RESULT.url);
   });
 
   test("clicking through questions works", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
-    for (let i = 0; i < 5; i++) {
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
+    for (let i = 0; i < preCheck.questions.length; i++) {
       // check that the page shows correct question
       await expect(page).toHaveURL(questions[i].url);
       await expect(page.getByTestId("breadcrumbs-menu")).toContainText(
@@ -78,7 +70,7 @@ test.describe("test questions form", () => {
     // that's why the test is a bit more extensive than it could be
     // we've sinced moved to using rvf but we'll keep it like this for now
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
@@ -125,7 +117,7 @@ test.describe("test questions form", () => {
 
   test("redirect to first unanswered question", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.waitForURL(questions[1].url);
@@ -145,8 +137,8 @@ test.describe("test questions form", () => {
 test.describe("test question navigation", () => {
   test("navigation leads to correct pages", async ({ page }) => {
     await page.goto(ROUTE_PRECHECK.url);
-    await page.getByRole("link", { name: "Einschätzung starten" }).click();
-    for (let i = 0; i < 4; i++) {
+    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
+    for (let i = 0; i < preCheck.questions.length - 1; i++) {
       await page.waitForURL(preCheck.questions[i].url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
@@ -163,7 +155,7 @@ test.describe("test question navigation", () => {
     page,
   }) => {
     await page.goto(questions[0].url);
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < preCheck.questions.length; i++) {
       await expect(
         page.getByRole("link", { name: questions[i].title }),
       ).toBeDisabled();
@@ -174,7 +166,7 @@ test.describe("test question navigation", () => {
     await expect(
       page.getByRole("link", { name: questions[0].title }),
     ).toBeEnabled();
-    for (let i = 2; i < 5; i++) {
+    for (let i = 2; i < preCheck.questions.length; i++) {
       await expect(
         page.getByRole("link", { name: questions[i].title }),
       ).toBeDisabled();
@@ -184,7 +176,7 @@ test.describe("test question navigation", () => {
     await expect(
       page.getByRole("link", { name: questions[1].title }),
     ).toBeEnabled();
-    for (let i = 2; i < 5; i++) {
+    for (let i = 2; i < preCheck.questions.length; i++) {
       await expect(
         page.getByRole("link", { name: questions[i].title }),
       ).toBeDisabled();
@@ -277,12 +269,10 @@ test.describe("test question navigation", () => {
 
     const linkBar = page.locator(".lg\\:hidden .flex");
 
-    // Check that the first question link has a light color
+    // Check that the first and second question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[0].url}"]`)).toHaveClass(
-      /bg-blue-300/,
+      /bg-blue-800/,
     );
-
-    // Check that the second question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
       /bg-blue-800/,
     );
@@ -307,12 +297,10 @@ test.describe("test question navigation", () => {
     await page.getByLabel("Ja").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
 
-    // Check that the second question link now has a light color
+    // Check that the second question link still has a dark color
     await expect(linkBar.locator(`a[href="${questions[1].url}"]`)).toHaveClass(
-      /bg-blue-300/,
+      /bg-blue-800/,
     );
-
-    // Check that the third question link has a dark color
     await expect(linkBar.locator(`a[href="${questions[2].url}"]`)).toHaveClass(
       /bg-blue-800/,
     );

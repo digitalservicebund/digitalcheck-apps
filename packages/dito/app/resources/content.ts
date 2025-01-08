@@ -52,9 +52,9 @@ export const header = {
 
 const stepNKR = {
   headline: {
-    text: "Prüfung durch den NKR (Nationaler Normenkontrollrat)",
+    text: "Prüfen durch den NKR",
   },
-  content: `Der NKR prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
+  content: `Der NKR (Nationaler Normenkontrollrat) prüft Ihr Vorhaben hinsichtlich der Berücksichtigung der Prinzipien digitaltauglicher Gesetzgebung. Bei Fragen wird der NKR auf Sie zukommen.`,
 };
 export const steps = {
   preCheck: {
@@ -78,10 +78,17 @@ export const steps = {
   },
   methods: {
     headline: {
-      text: "Erarbeiten eines digitaltauglichen Regelungsvorhabens",
+      text: "Erarbeiten des Regelungsvorhabens",
     },
     content:
-      "Hier finden Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit in Ihrer Regelung sicherzustellen.",
+      "Nutzen Sie passende Methoden und Werkzeuge, um Digitaltauglichkeit und Interoperabilität in Ihrer Regelung sicherzustellen. Das Digitalcheck-Team steht Ihnen bei der Erarbeitung zur Verfügung.",
+    buttons: [
+      {
+        text: "Zu „Erarbeiten“",
+        href: ROUTE_METHODS.url,
+        look: "ghost" as const,
+      },
+    ],
     finished: {
       headline: {
         text: "Abgeschlossene Erarbeitung eines digitaltauglichen Regelungsvorhabens.",
@@ -91,12 +98,12 @@ export const steps = {
   },
   documentation: {
     headline: {
-      text: "Dokumentieren der Digitaltauglichkeit",
+      text: "Dokumentieren des Regelungsvorhabens",
     },
-    content: `Sie dokumentieren in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit Sie besonders geachtet haben. Und wie Sie diese in Ihr Regelungsvorhaben einfließen lassen. Der NKR prüft die Digitaltauglichkeit anhand dieser Dokumentation. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.`,
+    content: `Dokumentieren Sie in einem Fragebogen, auf welche Aspekte der Digitaltauglichkeit  Sie besonders geachtet haben. Beschreiben Sie wie Sie diese in das Regelungsvorhaben einfließen lassen. Die Erkenntnisse der vorigen Schritte helfen Ihnen beim Ausfüllen.`,
     buttons: [
       {
-        text: "Zur Dokumentation",
+        text: "Zu „Dokumentieren“",
         href: ROUTE_DOCUMENTATION.url,
         look: "ghost" as const,
       },
@@ -136,13 +143,6 @@ export const landing = {
           text: "Bei positiver Vorprüfung:",
         },
         ...steps.methods,
-        buttons: [
-          {
-            text: "Zu den Hilfestellungen",
-            href: ROUTE_METHODS.url,
-            look: "ghost" as const,
-          },
-        ],
       },
       steps.documentation,
       steps.nkr,
@@ -275,29 +275,25 @@ export const interviewBanner = {
   text: `Um diese Seite weiterzuentwickeln, suchen wir nach Personen, die uns in einem 45-minütigen Gespräch Feedback geben. Schreiben Sie uns gerne eine E-Mail und wir melden uns bei Ihnen: [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Gesprächspartner:%20erarbeiten.digitalcheck.bund.de).`,
 };
 
-const hintInvolved = {
-  title: "Wer sind Beteiligte?",
-  text: `Beteiligte sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteurinnen und -akteure als auch Betroffene sein.
-    
-Beispiele für Beteiligte sind:
-- Bürgerinnen und Bürger,
-- Einwohnende,
-- Kommunen, die Verwaltung und Behörden, deren IT- oder Rechtsabteilungen,
-- IT-Dienstleistende,
-- Unternehmen und
-- weitere Organisationen wie z.B. Vereine.`,
-};
-
 export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie in den nächsten 5 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen.",
-    buttonText: "Einschätzung starten",
-    info: {
-      title: "Eine oder mehrere Vorprüfungen?",
-      text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
-    },
+      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung, oder auch EU-Anforderungen an Interoperabilität achten müssen.",
+    hints: [
+      {
+        title: "Was ist Digitalbezug?",
+        text: `Digitalbezug beschreibt die digitale Umsetzung, wenn ein Prozess nach Inkrafttreten eines Vorhabens zumindest teilweise durch ein IT-System abgebildet wird. Beispiele sind:
+- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
+- die Abfrage von Daten aus einem Register oder
+- das Bereitstellen von Informationen auf einer Website.`,
+      },
+      {
+        title: "Was ist Interoperabilität?",
+        text: `Die EU-Anforderungen zur Interoperabilität beschreiben die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen innerhalb der EU, effektiv zusammenzuarbeiten und Informationen auszutauschen. Sie ermöglicht, dass digitale öffentliche Dienstleistungen über Länder-, Sektor- und Organisationsgrenzen hinweg bereitgestellt werden können.`,
+      },
+    ],
+    buttonText: "Vorprüfung starten",
     summary: {
       title: "Zusammengefasst",
       items: [
@@ -310,15 +306,74 @@ export const preCheck = {
         },
         {
           headline: {
-            text: "Was ist Digitalbezug?",
+            text: "Warum ist die Vorprüfung relevant für mein Vorhaben?",
           },
-          content: `Wir sprechen von Digitalbezug der Umsetzung, wenn ein Prozess zumindest teilweise von einem IT-System abgebildet werden wird. Beispiele sind:
-- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
-- die Abfrage von Daten aus einem Register oder
-- das Bereitstellen von Informationen auf einer Website.`,
+          content: `
+- **Digitalisierungspotenziale frühzeitig nutzen:** Wenn Sie frühzeitig Chancen für die Digitalisierung erkennen, optimieren Sie den Regelungstext und sichern Sie sich technisch und rechtlich ab und ermöglichen praxisnahe Umsetzung.<br/><br/>
+- **EU-Anforderungen identifizieren:** Im Rahmen der Vorprüfung ermitteln Sie, ob grenzüberschreitende Interoperabilität für Ihr Vorhaben relevant ist. Regelungen die  Interoperabilität fördern, ermöglichen technische Standardisierung, rechtliche Harmonisierung und digitale bürgerzentrierte Dienste innerhalb der EU.<br/><br/>
+- **Rechtliche Grundlage:** Seit Juni 2024 ist es verpflichtend nationale Regelungsvorhaben auf Digitaltauglichkeit zu prüfen. Die Grundlage dafür ist das Onlinezugangsgesetz (OZG) von 2017. Zusätzlich müssen ab Januar 2025 bestimmte Regelungsvorhaben die Anforderungen an Interoperabilität auf EU-Ebene unterstützen. Dies ergibt sich aus der EU-Verordnung [Interoperable Europe Act](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R0903).<br/><br/>
+          `,
         },
       ],
     },
+    info: {
+      title: "Digitalbezug und Interoperabilität",
+      text: `Digitalbezug und Interoperabilität sind eng miteinander verknüpft. Wenn ein Gesetz oder eine Regelung digitale Prozesse vorsieht, müssen oft technische und organisatorische Standards eingehalten werden. 
+Interoperabilität bedeutet, dass verschiedene öffentliche Institutionen über Ländergrenzen hinweg zusammenarbeiten können.
+<br />
+Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. 
+      `,
+      image: {
+        src: "/assets/images/digital-readiness-meets-interop.svg",
+        alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen mit EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
+      },
+    },
+  },
+  faq: {
+    title: "Häufige Fragen",
+    items: [
+      {
+        headline: "Was ist Interoperabilität im EU-Kontext?",
+        content: `Interoperabilität bedeutet, dass Verwaltungen und öffentliche Einrichtungen in der EU zusammenarbeiten und Informationen austauschen können. So können digitale Dienstleistungen, wie z. B. das Beantragen von Dokumenten oder der Austausch von Gesundheitsdaten, über Länder- und Organisationsgrenzen hinweg einfach bereitgestellt werden.
+
+Das [European Interoperability Framework (EIF)](https://interoperable-europe.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/european-interoperability-framework-detail) legt hierfür Standards und Regeln fest, die sicherstellen, dass IT-Systeme in der EU miteinander kompatibel sind. Das macht es für Bürger:innen und Unternehmen leichter, öffentliche Dienste in der gesamten EU zu nutzen.
+        `,
+      },
+      {
+        headline: "Was bedeutet Interoperabilität in meinem Vorhaben?",
+        content: `Wenn Gesetze und Regelungen die Interoperabilität berücksichtigen, fördern sie die Zusammenarbeit zwischen den EU-Mitgliedsstaaten und ihren Verwaltungen. Einheitliche Standards sorgen dafür, dass digitale Dienste bürgerfreundlich, effizient und sicher sind. Gleichzeitig werden einheitliche Regeln geschaffen, die die grenzüberschreitende Zusammenarbeit in der EU erleichtern und eine harmonische Entwicklung der Rechtsvorschriften fördern.`,
+      },
+      {
+        headline:
+          "Welche Rolle spielt der Digitalcheck bei interoperablen Regelungsvorhaben?",
+        content: `Der Digitalcheck begleitet Sie bei der Erarbeitung für digitaltaugliche und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
+        <br/><br/>
+Wenn Ihr Regelungsvorhaben Anforderungen an Interoperabilität beinhaltet, unterstützen wir Sie dabei, diese optimal umzusetzen. In diesem Fall wird das Digitalcheck-Team automatisch über das Ergebnis informiert, sobald Sie es per E-Mail absenden. Wir setzen uns dann mit Ihnen in Verbindung, um gemeinsam die weiteren Schritte zu planen und umzusetzen. Sollten Sie vorab Fragen haben, können Sie sich jederzeit direkt an uns wenden - telefonisch unter [0151/40 76 78 39](tel:+4915140767839) oder  per E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de).`,
+      },
+      {
+        headline: "Was ist Digitalbezug?",
+        content: `Digitalbezug im Kontext der Umsetzung bedeutet, dass ein Prozess zumindest teilweise durch ein IT-System abgebildet wird. Beispiele sind:
+- eine Reihe von Aufgaben mit einem bestimmten Ziel, zum Beispiel das Ausfüllen eines Formulars in ELSTER, um die Steuererklärung einzureichen,
+- die Abfrage von Daten aus einem Register oder
+- das Bereitstellen von Informationen auf einer Website.`,
+      },
+      {
+        headline: "Warum digitaltaugliche Regelungen schreiben?",
+        content: `**Digitaltaugliche Regelungen sparen Ressourcen**<br/>
+Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden - auf Seiten der Normadressaten und -adressatinnen und auf Seiten der Verwaltung.
+<br/><br/>
+**Relevant für all Regelungsvorhaben**<br/>
+Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Verwaltungsvorschriften. Es fallen sowohl neue Vorhaben, als auch Änderungen an bestehenden Regelungen darunter.`,
+      },
+      {
+        headline: "Was ist, wenn ich mehrere Regelungen habe?",
+        content: `Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.`,
+      },
+      {
+        headline: "Kann ich das PDF für die Vorprüfung weiterhin verwenden?",
+        content: `Sie können weiterhin das PDF-Dokument zur Vorprüfung verwenden, um den digitalen Aspekt Ihres Vorhabens zu bewerten. Bitte beachten Sie jedoch, dass die PDF-Version nicht geeignet ist, um Anforderungen zur Interoperabilität zu identifizieren.`,
+      },
+    ],
   },
   nextButton: "Übernehmen & weiter",
   answerOptions: {
@@ -331,15 +386,13 @@ export const preCheck = {
       id: "it-system",
       title: "IT-System",
       question:
-        "Führt das Regelungsvorhaben zur Anpassung oder Neuentwicklung eines IT-Systems?",
-      positiveResult:
-        "führt zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
-      negativeResult:
-        "führt nicht zu einer Anpassung oder Neuentwicklung eines IT-Systems.",
+        "Muss durch die Regelung ein IT-System angepasst oder neu entwickelt werden?",
+      positiveResult: "einer Anpassung oder Neuentwicklung einer IT-Lösung.",
+      negativeResult: "keiner Anpassung oder Neuentwicklung einer IT-Lösung.",
       text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potentielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
       hint: {
         title: "Was ist ein IT-System?",
-        text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) und Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
+        text: `IT-Systeme sind technische Lösungen, die aus Hardware (wie Computer, Kartenlesegeräte, Router) oder Software (Programme wie ELSTER und Word, Websiten, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
       <br />
       Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der Einkommenssteuererklärung mit ELSTER.`,
       },
@@ -348,55 +401,81 @@ export const preCheck = {
       id: "verpflichtungen-fuer-beteiligte",
       title: "Verpflichtungen für Beteiligte",
       question:
-        "Beinhaltet das Regelungsvorhaben Verpflichtungen für Beteiligte?",
-      positiveResult: "beinhaltet Verpflichtungen für Beteiligte.",
-      negativeResult: "beinhaltet keine Verpflichtungen für Beteiligte.",
+        "Entstehen durch die Regelung Mitwirkungspflichten für Akteur:innen?",
+      positiveResult: "einer Festlegung von Mitwirkungspflichten für Akteure.",
+      negativeResult: "keiner Festlegung von Mitwirkungspflichten für Akteure.",
       text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden, dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht, bzw. geschaffen werden.",
-      hint: hintInvolved,
+      hint: {
+        title: "Wer sind Akteur:innen?",
+        text: `Akteur:innen sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteur:innen als auch Betroffene sein.
+
+Beispiele für Akteur:innen sind:
+- Bürger:innen, 
+- Einwohnende, 
+- Kommunen, Verwaltungen und Behörden, deren IT- oder Rechtsabteilungen
+- IT-Dienstleistende,
+- Unternehmen und 
+- weitere Organisationen wie z.B. Vereine.`,
+      },
     },
     {
       id: "datenaustausch",
       title: "Datenaustausch",
       question:
-        "Hat das Regelungsvorhaben einen Datenaustausch zur Folge? Oder kann eine Wiederverwendung von Daten die Umsetzung erleichtern?",
-      positiveResult:
-        "hat einen Datenaustausch zur Folge. Oder eine Wiederverwendung von Daten kann die Umsetzung erleichtern.",
-      negativeResult:
-        "hat keinen Datenaustausch zur Folge. Eine Wiederverwendung von Daten kann die Umsetzung nicht erleichtern.",
+        "Werden durch die Regelung Daten erhoben, die der Verwaltung möglicherweise bereits vorliegen?",
+      positiveResult: "einem Austausch von Daten.",
+      negativeResult: "keinem Austausch von Daten.",
       text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
+      hint: {
+        title: "Was ist mit „Daten erheben“ gemeint?",
+        text: `Einige Informationen liegen in der Verwaltung bereits vor: Dies können Daten von Bürger:innen, Unternehmen und Organisationen bspw. Vereinen sein. Im besten Fall werden diese Daten automatisiert zwischen den Behörden ausgetauscht.`,
+      },
     },
     {
       id: "kommunikation",
       title: "Digitale Kommunikation",
       question:
-        "Spielen Interaktion und/oder Kommunikation zwischen Beteiligten in der Umsetzung des Regelungsvorhabens eine Rolle?",
+        "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen?",
       positiveResult:
-        "wird Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
+        "einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen.",
       negativeResult:
-        "wird keine Interaktion und/oder Kommunikation zwischen Beteiligten zur Folge haben.",
-      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen.",
-      hint: hintInvolved,
+        "keiner Interaktion zwischen Behörden und Bürger:innen/Unternehmen.",
+      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden — dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen. Es können z.B. Unternehmen, Bürger:innen oder Organisationen den Antrag einreichen.",
     },
     {
       id: "automatisierung",
       title: "Automatisierung",
       question:
-        "Kann durch (Teil&#8209;)Automatisierung der Aufwand für Betroffene reduziert werden? Kann digitale Dokumentation die Umsetzung verbessern?",
+        "Kann die Umsetzung der Regelung verbessert werden, indem man Schritte automatisiert?",
       positiveResult:
-        "kann den Aufwand für Betroffene durch (Teil&#8209;)Automatisierung reduzieren.",
+        "einer Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
       negativeResult:
-        "kann den Aufwand für Betroffene nicht durch (Teil&#8209;)Automatisierung reduzieren.",
+        "keiner Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
       text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
-      hint: {
-        title: "Wer sind Betroffene?",
-        text: `Betroffene sind in diesem Zusammenhang all diejenigen, die von der Umsetzung des Regelungsvorhabens betroffen sind.
-      <br />
-      Beispiele für Betroffene sind:
-- Bürgerinnen und Bürger, 
-- Einwohnende,
-- Unternehmen und 
-- weitere Organisationen wie z.B. Vereine.`,
+    },
+    {
+      id: "eu-bezug",
+      title: "EU-Bezug",
+      question:
+        "Ist durch die Regelung vorgesehen, dass Daten und Informationen zwischen Verwaltungen von EU-Mitgliedsstaaten ausgetauscht werden?",
+      positiveResult:
+        "einem Daten- und Informationsaustausch zwischen EU-Mitgliedsstaaten.",
+      negativeResult:
+        "keinem Daten- und Informationsaustausch zwischen EU-Mitgliedsstaaten.",
+      resultHint: {
+        positiveResult: `**Bitte beachten Sie:** Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden – selbst dann nicht, wenn ein Daten- und Informationsaustausch zwischen EU-Mitgliedsstaaten stattfindet.`,
+        unsureResult: `**Das können Sie tun:** Kontaktieren Sie uns unter [0151/40 76 78 39](tel:+4915140767839) oder  per E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de). Wir unterstützen Sie gerne bei der Beantwortung dieser Frage.`,
       },
+      text: "**Praxisbeispiel**: Ein Vorhaben sieht vor, dass Bürger:innen in der EU eine digitale Identitäts-Wallet nutzen können, die von ihrem Heimatstaat ausgestellt wird. Diese Wallet erlaubt es, Identitätsnachweise und Dokumente (z. B. Führerscheine, Berufsqualifikationen) grenzüberschreitend zu verwenden. Damit andere Mitgliedstaaten diese Nachweise anerkennen können, ist ein Austausch von Daten und harmonisierten Standards erforderlich, um deren Echtheit zu überprüfen.",
+      hint: {
+        title: "Wen betrifft dieser Daten- und Informationsaustausch?",
+        text: `Daten und Informationen können zwischen den digitalen öffentlichen Diensten in der EU ausgetauscht werden:
+      <br />
+- Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben oder Dienste zu erfüllen.
+- Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
+- Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.`,
+      },
+      interoperability: true,
     },
   ].map((question, index, questions) => ({
     // generate list from the questions such that each list has a path, a previous link and a next link
@@ -414,9 +493,20 @@ export const preCheck = {
 
   result: {
     title: "Ergebnis der Vorprüfung",
+    reasoningIntro: {
+      digital: {
+        sure: "In Bezug auf **digitale Aspekte** führt ihr Regelungsvorhaben zu...",
+        unsure:
+          "In Bezug auf **digitale Aspekte** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      },
+      interoperability: {
+        sure: "In Bezug auf **Interoperabilität** führt ihr Regelungsvorhaben zu...",
+        unsure:
+          "In Bezug auf **Interoperabilität** ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+      },
+    },
     positive: {
-      title: "Ihr Regelungsvorhaben hat Digitalbezug.",
-      reasoningIntro: "Das Regelungsvorhaben ...",
+      title: "Das Regelungsvorhaben hat einen Digitalbezug und ",
       actionButton: {
         text: "Vorprüfung herunterladen",
       },
@@ -426,24 +516,15 @@ export const preCheck = {
           steps.preCheck.finished,
           {
             ...steps.methods,
-            buttons: [
-              {
-                text: "Zu den Hilfestellungen",
-                href: ROUTE_METHODS.url,
-              },
-            ],
           },
           steps.documentation,
-          steps.nkr,
+          steps.nkrFinal,
         ],
       },
     },
     unsure: {
       title: "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
       hint: "Bitte kontaktieren Sie den Digitalcheck-Support unter: [0151/40 76 78 39](tel:+4915140767839) oder schreiben Sie uns eine E-Mail an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.",
-      unsureIntro:
-        "**Folgende Fragen haben Sie mit „Ich bin unsicher“ beantwortet:**",
-      negativeIntro: "**Folgende Fragen haben Sie mit „Nein“ beantwortet:**",
       actionButton: {
         text: "Vorprüfung wiederholen",
         href: ROUTE_PRECHECK.url,
@@ -453,27 +534,36 @@ export const preCheck = {
           "Sie können auch ohne positive Vorprüfung die Digitaltauglichkeit Ihres Regelungsvorhabens sicherstellen.",
         text: "Wenn digitale Umsetzung für Ihr Regelungsvorhaben wichtig ist, finden Sie hier passende Methoden und Werkzeuge. Sie erfahren, wie Sie den Prozess darstellen und durchdenken, mit Beteiligten ins Gespräch kommen und die fünf Prinzipien anwenden.",
         link: {
-          text: "Zu den Hilfestellungen",
+          text: "Zu „Erarbeiten“",
           href: ROUTE_METHODS.url,
         },
       },
     },
     negative: {
-      title: "Ihr Regelungsvorhaben hat keinen Digitalbezug.",
-      reasoningIntro: "Das Regelungsvorhaben ...",
+      title: "Das Regelungsvorhaben hat keinen Digitalbezug und ",
       nextSteps: {
         title: "So machen Sie weiter",
         steps: [steps.preCheck.finished, steps.nkrFinal],
       },
     },
+    interoperability: {
+      positive: {
+        title: "enthält Anforderungen der Interoperabilität.",
+      },
+      negative: {
+        title: "keine Anforderungen der Interoperabilität.",
+      },
+      unsure: {
+        title: "keine eindeutigen Anforderungen der Interoperabilität.",
+      },
+    },
     form: {
-      formLegend: "Senden Sie die Vorprüfung zum NKR",
-      instructionsPositive: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens in das entsprechende Feld ein.
-- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
-- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
-      instructionsNegative: `- Bitte geben Sie den (vorläufigen) Arbeitstitel Ihres Vorhabens sowie eine kurze Erläuterung der Einschätzung in die entsprechenden Felder ein.
-- Klicken Sie auf „E-Mail erstellen“. Wir generieren für Sie automatisch eine E-Mail mit dem passenden Text und einem Link zu Ihrer Vorprüfung.
-- Versenden Sie die automatisch erstellte E-Mail an den NKR.`,
+      formLegend: "Vorprüfung senden",
+      instructions: `Wir erstellen für Sie eine E-Mail mit dem Ergebnis der Vorprüfung, die sich in Ihrem E-Mail-Programm öffnet. Diese können Sie anschließend an den Nationalen Normenkontrollrat (NKR), das Digitalcheck-Team und an Ihre eigene E-Mail-Adresse senden. Geben Sie Ihre eigene E-Mail-Adresse, um sich diese als **Teil der Dokumentation** zu schicken.
+      <br/><br/>
+- Falls Ihr Vorhaben Interoperabilitäts-Anforderungen erfüllt, erhält auch das Digitalcheck-Team automatisch eine Kopie des Vorprüfungsergebnisses per E-Mail. Wir kontaktieren Sie für die nächsten Schritte. Bei Fragen können Sie uns auch direkt unter [0151/40 76 78 39](tel:+4915140767839) erreichen.<br/><br/> 
+- Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller wird die Prüfung abgeschlossen.`,
+      emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
       policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
@@ -485,16 +575,28 @@ export const preCheck = {
         "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
       reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
       faqs: {
-        title: "Häufige Fragen",
+        title: "Häufige Fragen zum Senden der Vorprüfung",
         details: [
           {
             label: "Was passiert, wenn ich auf „E-Mail erstellen“ klicke?",
-            text: "In Ihrem E-Mail Programm öffnet sich eine neue E-Mail. Diese enthält ein kurzes Anschreiben mit einem eindeutigen Link, über den die Vorprüfung aufgerufen und heruntergeladen werden kann. Sie haben die Möglichkeit, den Text individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
+            text: "In Ihrem E-Mail-Programm öffnet sich eine neue E-Mail. Diese enthält das Vorprüfungs-Ergebnis in Textform mit Ergebnissen zum Digitalbezug und EU-Interoperabilität. Sie haben die Möglichkeit, den Text und Empfänger individuell anzupassen und zusätzliche Dokumente anzufügen. Den Zeitpunkt des Versands wählen Sie selbst.",
           },
           {
-            label:
-              "Warum sollte ich die Vorprüfung bereits jetzt an den NKR schicken?",
-            text: "Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller geht die Prüfung am Ende.",
+            label: "Wie wird das Ergebnis der Vorprüfung dokumentiert?",
+            text: `Wenn Sie das Ergebnis für Ihre Dokumentation benötigen, schicken Sie das Ergebnis per E-Mail an sich selbst und ggf. an Ihre Kolleg:innen. Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
+
+**Manuell über Outlook:**
+- Klicken Sie in Outlook auf „Drucken“.
+- Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
+- Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
+
+**Direkte Veraktung:**
+- Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
+`,
+          },
+          {
+            label: "Warum die Vorprüfung an den NKR schicken?",
+            text: "Erfahrungswerte zeigen, dass ein frühzeitiger Austausch mit dem NKR oder dem DigitalService das Erarbeiten für Sie vereinfacht und die Prüfung beschleunigt. So können Sie von den Erfahrungen in anderen Vorhaben profitieren – wenn Sie dies wünschen.",
           },
         ],
       },
@@ -505,16 +607,38 @@ export const preCheck = {
         text: "E-Mail erstellen",
       },
       emailTemplate: {
-        to: "nkr@bmj.bund.de",
+        toNkr: "nkr@bmj.bund.de",
+        toDC: "digitalcheck@digitalservice.bund.de",
         subject: "Digitalcheck Vorprüfung",
         bodyBefore: `Guten Tag,
 
-nachfolgend der E-Mail finden Sie einen Link zu unserer ausgefüllten Vorprüfung im Rahmen des Digitalcheck.
+hiermit erhalten Sie das Ergebnis Ihrer Vorprüfung:`,
+        bodyAfter: `Veraktung der E-Mail zur Dokumentation
+        
+Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
 
-Der automatisch generierte Link ermöglicht Ihnen den sicheren Download des Dokuments.`,
-        bodyAfter: `Mit freundlichen Grüßen
+Manuell über Outlook:
+- Klicken Sie in Outlook auf „Drucken“.
+- Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
+- Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
 
-*Diese E-Mail wurde automatisch erstellt.*`,
+Direkte Veraktung:
+- Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
+  
+        
+        
+        
+Mit freundlichen Grüßen
+
+*Diese E-Mail wurde automatisch erstellt.*
+
+------------------------------------------
+
+Der Digitalcheck ist die Prozessbegleitung für digitaltaugliche Gesetze und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
+
+Mehr Informationen zu Digitaltauglichkeit finden Sie unter Mehr Informationen zu Digitaltauglichkeit finden Sie unter erarbeiten.digitalcheck.bund.de.
+Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über digitalcheck@digitalservice.bund.de oder rufen Sie uns an unter 0151/40 76 78 39.
+`,
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",
     },
@@ -1232,7 +1356,7 @@ Für ein einstündiges Videotelefonat schreiben Sie eine E-Mail an [digitalcheck
     text: `Die gesammelten Erkenntnisse und Ergebnisse helfen Ihnen dabei, Aspekte der Digitaltauglichkeit in Ihrem Regelungsentwurf zu berücksichtigen. Diese Entscheidungen dokumentieren Sie in einem Fragebogen.`,
     buttons: [
       {
-        text: "Zu den Hilfestellungen",
+        text: "Zu „Erarbeiten“",
         look: "tertiary" as const,
         href: ROUTE_METHODS.url,
       },

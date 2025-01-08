@@ -88,6 +88,7 @@ function Button({
         onKeyDown={onKeyDown}
         onClick={onClick}
         id={id}
+        data-testid={id}
         reloadDocument={isDownload}
         download={isDownload}
         title={(isDownload && `${text} (${ext}-Datei)`) || undefined}
@@ -98,7 +99,12 @@ function Button({
   }
 
   return (
-    <button {...(props as ButtonProps)} className={buttonClasses}>
+    <button
+      {...(props as ButtonProps)}
+      className={buttonClasses}
+      id={id}
+      data-testid={id}
+    >
       {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
     </button>
   );

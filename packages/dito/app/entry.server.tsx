@@ -120,7 +120,7 @@ function handleBrowserRequest(
 
   responseHeaders.set(
     "Content-Security-Policy",
-    `default-src 'none'; script-src 'self' https: 'nonce-${nonce}'; style-src 'self'; font-src 'self'; img-src 'self' ${STRAPI_MEDIA_URL}; frame-ancestors 'self' https://calendar.google.com https://calendar.app.google; frame-src 'self' https://calendar.google.com; connect-src 'self' https://plausible.io`,
+    `default-src 'none'; script-src 'self' https: 'nonce-${nonce}'; style-src 'self'; font-src 'self'; img-src 'self' ${STRAPI_MEDIA_URL} data:; frame-ancestors 'self' https://calendar.google.com https://calendar.app.google; frame-src 'self' https://calendar.google.com; connect-src 'self' https://plausible.io`,
   );
 
   return new Promise((resolve, reject) => {
