@@ -435,7 +435,7 @@ Beispiele für Akteur:innen sind:
       id: "kommunikation",
       title: "Digitale Kommunikation",
       question:
-        "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen?",
+        "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürger:innen / Unternehmen?",
       positiveResult:
         "einer Interaktion zwischen Behörden und Bürger:innen/Unternehmen.",
       negativeResult:
