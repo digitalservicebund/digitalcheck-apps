@@ -66,7 +66,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
               width={120}
               alternativeText="Logo des Bundesministerium des Innern und für Heimat"
             />
-            <nav>
+            <div>
               {renderLinks([
                 {
                   preText: "Ein Onlinedienst der",
@@ -81,13 +81,13 @@ export default function Footer({ links }: Readonly<FooterProps>) {
                   openInNewTab: true,
                 },
               ])}
-            </nav>
+            </div>
           </div>
 
-          <nav className="flex flex-wrap gap-x-16 gap-y-8">
+          <div className="flex flex-wrap gap-x-16 gap-y-8">
             {renderLinks(linksFirstColumn)}
             {renderLinks(linksSecondColumn)}
-          </nav>
+          </div>
         </div>
       </Container>
     </footer>
