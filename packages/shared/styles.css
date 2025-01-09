@@ -32,6 +32,14 @@
     white-space: nowrap;
   }
 
+  ul {
+    @apply list-disc pl-24;
+  }
+
+  ol {
+    @apply list-decimal pl-24;
+  }
+
   h1,
   h2,
   .ds-heading-01-reg,
@@ -154,11 +162,6 @@
 
   .text-white .rich-text a {
     @apply text-link-white;
-  }
-
-  .rich-text ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
   }
 
   .rich-text {

@@ -43,7 +43,6 @@ import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
 import bundLogo from "../../shared/public/img/bund-logo.png";
-import styles from "./styles.css?url";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
@@ -156,7 +155,6 @@ export const headers: HeadersFunction = () => ({
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: sharedStyles },
-  { rel: "stylesheet", href: styles },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
