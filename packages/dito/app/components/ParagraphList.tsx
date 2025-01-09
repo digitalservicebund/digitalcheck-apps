@@ -162,7 +162,7 @@ const AbsatzContent = ({
     const content = nestListInListItems(prependNumberToAbsatz(absatzGroup));
 
     return (
-      <>
+      <div className="[&_ol]:list-decimal [&_ol_ol]:list-[lower-alpha]">
         <BlocksRenderer
           content={content}
           modifiers={{
@@ -200,7 +200,7 @@ const AbsatzContent = ({
             )}
           </div>
         )}
-      </>
+      </div>
     );
   }
 
@@ -315,7 +315,7 @@ export default function ParagraphList({
   principlesToShow: Prinzip[];
 }>) {
   return (
-    <div className="paragraph-list ds-stack-32">
+    <div className="ds-stack-32">
       {paragraphs
         .toSorted((a, b) =>
           a.Nummer.localeCompare(b.Nummer, "de-DE", { numeric: true }),

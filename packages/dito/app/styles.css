@@ -1,11 +1,3 @@
 main .rich-text ol {
   @apply list-decimal ml-16;
 }
-
-.paragraph-list ol {
-  list-style-type: decimal; /* Default for top-level */
-}
-
-.paragraph-list ol ol {
-  list-style-type: lower-alpha; /* Nested lists are alphabetic */
-}
