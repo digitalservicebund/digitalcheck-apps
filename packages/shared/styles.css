@@ -88,8 +88,7 @@
    ***********/
 
   .ds-button-ghost {
-    padding: 0;
-    text-align: start;
+    @apply p-0 text-start;
   }
 
   .ds-button:not(.ds-button-ghost) {
@@ -101,23 +100,11 @@
    *********/
 
   .text-link {
-    @apply text-blue-800;
-    @apply underline;
-    @apply underline-offset-4;
-    @apply decoration-1;
-  }
-
-  .text-link:visited {
-    @apply text-[#4c2c92];
+    @apply text-blue-800 underline underline-offset-4 decoration-1 visited:text-[#4c2c92] active:text-black;
   }
 
   .text-link-white {
-    @apply text-link;
-    @apply text-gray-100;
-  }
-
-  .text-link-white:visited {
-    @apply text-gray-300;
+    @apply text-link text-gray-100 visited:text-gray-300;
   }
 
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
@@ -125,10 +112,6 @@
     .text-link:hover {
       @apply decoration-[3px];
     }
-  }
-
-  .text-link:active {
-    @apply text-black;
   }
 
   .rich-text a {
@@ -159,9 +142,7 @@
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
   @media (hover: hover) {
     .summary-content:hover {
-      @apply !underline;
-      @apply underline-offset-2;
-      @apply decoration-2;
+      @apply !underline underline-offset-2 decoration-2;
     }
   }
 
