@@ -123,31 +123,31 @@ function resolveRecipients(result: PreCheckResult) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const { _action, title, negativeReasoning, ...answers } =
-    Object.fromEntries(formData);
+  const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
   // server side form validation in case the user has JavaScript disabled
   const preCheckAnswers = answers as PreCheckAnswers;
   const validator = getResultValidatorForAnswers(preCheckAnswers);
-  const result = await validator.validate({ title, negativeReasoning });
-  if (result.error) {
-    return validationError(result.error, result.submittedData);
+  const validationResult = await validator.validate({
+    title,
+    negativeReasoning,
+  });
+  if (validationResult.error) {
+    return validationError(
+      validationResult.error,
+      validationResult.submittedData,
+    );
   }
 
-  if (_action === "email") {
-    const result = getResult(preCheckAnswers);
-    const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
-    const email = formData.get("email");
-    const cc = email ? `&cc=${email as string}` : "";
-    const negativeReasoning = formData.get("negativeReasoning") as string;
-    const recipients = resolveRecipients(result);
-    const mailToLink = encodeURI(
-      `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, result, negativeReasoning)}${cc}`,
-    );
-    return redirect(mailToLink);
-  }
-  // eslint-disable-next-line @typescript-eslint/only-throw-error
-  throw new Response("Unknown action", { status: 400 });
+  const result = getResult(preCheckAnswers);
+  const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
+  const email = formData.get("email");
+  const cc = email ? `&cc=${email as string}` : "";
+  const recipients = resolveRecipients(result);
+  const mailToLink = encodeURI(
+    `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, result, formData.get("negativeReasoning") as string)}${cc}`,
+  );
+  return redirect(mailToLink);
 }
 
 export default function Result() {
