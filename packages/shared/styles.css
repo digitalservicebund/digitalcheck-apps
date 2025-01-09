@@ -87,10 +87,6 @@
    * BUTTONS *
    ***********/
 
-  .ds-radio {
-    background: transparent; /* for old Safari */
-  }
-
   .ds-button-ghost {
     padding: 0;
     text-align: start;
