@@ -165,9 +165,6 @@
     @apply text-lg;
   }
 
-  .rich-text-2xl {
-    @apply text-2xl;
-  }
   /***********
    * DETAILS *
    ***********/
