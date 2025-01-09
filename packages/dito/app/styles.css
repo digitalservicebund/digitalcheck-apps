@@ -1,7 +1,3 @@
-main .rich-text a {
-  @apply font-bold;
-}
-
 main .rich-text ol {
   @apply list-decimal ml-16;
 }

@@ -161,7 +161,7 @@
   }
 
   .rich-text a {
-    @apply text-link;
+    @apply text-link font-bold;
   }
 
   .text-white .rich-text a {
