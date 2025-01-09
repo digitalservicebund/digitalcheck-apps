@@ -6,10 +6,6 @@ main .rich-text ol {
   @apply list-decimal ml-16;
 }
 
-main .ds-button:not(.ds-button-ghost) {
-  @apply max-sm:ds-button-full-width sm:ds-button-large;
-}
-
 .precheck-navigation span::after {
   /* prevent shifting on navigation */
   @apply ds-label-02-bold;

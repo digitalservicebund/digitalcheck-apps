@@ -93,6 +93,10 @@
     text-align: start;
   }
 
+  .ds-button:not(.ds-button-ghost) {
+    @apply max-sm:ds-button-full-width sm:ds-button-large;
+  }
+
   .text-link {
     /* IE 11 and others that don't support text-decoration-line */
     text-decoration: underline;
