@@ -81,7 +81,12 @@ function NavItem({
         aria-describedby={iconId}
       >
         {isDone && <Check id={iconId} className="shrink-0" />}
-        <span title={label}>{label}</span>
+        <span
+          title={label}
+          className="after:content-[attr(title)] after:ds-label-02-bold after:block after:h-0 after:invisible" // Prevent shifting on navigation
+        >
+          {label}
+        </span>
       </Link>
     </li>
   );

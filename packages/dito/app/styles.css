@@ -2,17 +2,6 @@ main .rich-text ol {
   @apply list-decimal ml-16;
 }
 
-.precheck-navigation span::after {
-  /* prevent shifting on navigation */
-  @apply ds-label-02-bold;
-  display: block;
-  content: attr(title);
-  height: 1px;
-  color: transparent;
-  overflow: hidden;
-  visibility: hidden;
-}
-
 .paragraph-list ol {
   list-style-type: decimal; /* Default for top-level */
 }
