@@ -18,7 +18,7 @@ export const meta: MetaFunction = ({ matches }) => {
 
 export default function GeneralInfo() {
   return (
-    <div className="flex bg-blue-100 sm:pt-32">
+    <div className="flex grow bg-blue-100 sm:pt-32 w-full h-full">
       <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation />
       </div>
