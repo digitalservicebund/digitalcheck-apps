@@ -26,7 +26,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function GeneralInfo() {
   const { answers } = useLoaderData<typeof loader>();
   return (
-    <div className="flex grow bg-blue-100 sm:pt-32 w-full h-full">
+    <div className="flex bg-blue-100 sm:pt-32 main-bg-blue">
       <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation answers={answers ?? {}} />
       </div>
