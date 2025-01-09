@@ -122,10 +122,6 @@
     @apply text-link-white;
   }
 
-  .rich-text {
-    @apply text-lg;
-  }
-
   /***********
    * DETAILS *
    ***********/
