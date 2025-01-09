@@ -31,7 +31,7 @@ export default function Footer({
       {link?.preText}{" "}
       <Link
         to={link.url}
-        className="text-link increase-tap-area"
+        className="text-link increase-tap-area whitespace-nowrap"
         target={link.openInNewTab ? "_blank" : undefined}
         rel={link.openInNewTab ? "noreferrer" : undefined}
         aria-describedby={

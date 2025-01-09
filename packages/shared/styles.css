@@ -137,10 +137,6 @@
     @apply text-black;
   }
 
-  footer a {
-    @apply increase-tap-area whitespace-nowrap;
-  }
-
   .rich-text a {
     @apply text-link font-bold;
   }
