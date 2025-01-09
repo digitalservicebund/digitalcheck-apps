@@ -131,23 +131,6 @@
     }
   }
 
-  /* browsers without :focus-visible support */
-  .text-link:focus {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply text-blue-800;
-    @apply outline-blue-800;
-  }
-
-  /* reset :focus styles for browsers with :focus-visible support */
-  .text-link:not(:focus-visible):focus {
-    @apply outline-none;
-    @apply underline;
-  }
-
-  /* ignored by browsers without :focus-visible support */
   .text-link:focus-visible {
     @apply outline;
     @apply outline-2;
