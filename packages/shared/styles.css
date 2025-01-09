@@ -61,13 +61,7 @@
   }
 
   *:focus-visible {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply text-blue-800;
-    @apply outline-blue-800;
-    text-decoration: none !important;
+    @apply outline outline-2 !no-underline outline-offset-1 !text-blue-800 outline-blue-800;
   }
 }
 
@@ -137,15 +131,6 @@
     .text-link:hover {
       @apply decoration-[3px];
     }
-  }
-
-  .text-link:focus-visible {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply !text-blue-800;
-    @apply outline-blue-800;
   }
 
   .text-link:active {
