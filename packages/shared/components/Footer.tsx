@@ -7,7 +7,6 @@ import Image from "./Image";
 
 type LinkProps = {
   preText?: string;
-  postText?: string;
   url: string;
   text: string;
   openInNewTab?: boolean;
@@ -43,7 +42,6 @@ export default function Footer({ links }: Readonly<FooterProps>) {
           />
         )}
       </Link>
-      {link?.postText}
     </li>
   );
 
