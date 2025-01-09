@@ -71,7 +71,7 @@ const ListItem = ({
             )}
           </div>
         )}
-        <div className={`flex flex-row gap-16 max items-start ${textColor}`}>
+        <div className={`flex flex-row gap-16 items-start ${textColor}`}>
           <div className={`shrink-0 ${responsiveWidth}`}>
             {numeric && (
               <div className="w-[40px] h-[40px] flex justify-center items-center border-2 border-solid border-gray-400 rounded-full">
