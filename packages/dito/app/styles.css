@@ -28,13 +28,3 @@ main .ds-button:not(.ds-button-ghost) {
 .paragraph-list ol ol {
   list-style-type: lower-alpha; /* Nested lists are alphabetic */
 }
-
-.accordion-summary:focus:not(:focus-visible) {
-  @apply outline-none;
-}
-
-/* Hide arrow in accordions  */
-.accordion > details > summary::marker, /* Latest Chrome, Edge, Firefox */
-.accordion > details > summary::-webkit-details-marker /* Safari */ {
-  display: none;
-}
