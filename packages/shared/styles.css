@@ -11,9 +11,7 @@
   }
 
   body {
-    min-height: 100vh;
-    font-size: 1.125rem;
-    line-height: 1.5;
+    @apply min-h-screen text-lg leading-6;
   }
 
   h1 {
@@ -29,7 +27,7 @@
   }
 
   a[href^="tel:"] {
-    white-space: nowrap;
+    @apply whitespace-nowrap;
   }
 
   ul {
