@@ -16,10 +16,10 @@ import {
 } from "utils/cookies.server";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
+import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 import resolveResultContent from "./resolveResultContent.ts";
 import ResultPage from "./ResultPage.tsx";
 import getResultValidatorForAnswers from "./resultValidation";
-import { ResultType, TResult } from "./TResult.tsx";
 
 const { questions } = preCheck;
 const { emailTemplate } = preCheck.result.form;
@@ -37,7 +37,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(ROUTE_PRECHECK.url);
   }
 
-  const result: TResult = getResult(answers);
+  const result: PreCheckResult = getResult(answers);
 
   void trackCustomEvent(request, {
     name: "Vorprüfung Resultat",
@@ -60,7 +60,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   );
 }
 
-function getResult(answers: PreCheckAnswers): TResult {
+function getResult(answers: PreCheckAnswers): PreCheckResult {
   const digital = getResultForRelevantAnswers(answers, false);
   const interoperability =
     digital === ResultType.POSITIVE
@@ -87,7 +87,7 @@ function getResultForRelevantAnswers(
 
 function buildEmailBody(
   answers: PreCheckAnswers,
-  result: TResult,
+  result: PreCheckResult,
   negativeReasoning?: string,
 ) {
   const resultContent = resolveResultContent(answers, result);
@@ -113,7 +113,7 @@ function buildEmailBody(
   return `${emailTemplate.bodyBefore}\n${resultText}\n\n\n${emailTemplate.bodyAfter}`;
 }
 
-function resolveRecipients(result: TResult) {
+function resolveRecipients(result: PreCheckResult) {
   const additionalRecipient =
     result.interoperability !== ResultType.NEGATIVE
       ? `,${emailTemplate.toDC}`

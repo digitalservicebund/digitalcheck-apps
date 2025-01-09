@@ -17,9 +17,9 @@ import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import { twJoin } from "tailwind-merge";
 import Accordion from "../../components/Accordion.tsx";
-import ResultForm from "./ResultForm.tsx";
-import { ResultType, TResult } from "./TResult.tsx";
+import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 import resolveResultContent, { Reason } from "./resolveResultContent.ts";
+import ResultForm from "./ResultForm.tsx";
 
 const nextSteps = {
   [ResultType.POSITIVE]: preCheck.result.positive.nextSteps,
@@ -63,7 +63,7 @@ export default function ResultPage({
   result,
 }: Readonly<{
   answers: PreCheckAnswers;
-  result: TResult;
+  result: PreCheckResult;
 }>) {
   const resultContent = resolveResultContent(answers, result);
 

@@ -1,4 +1,4 @@
-export type TResult = {
+export type PreCheckResult = {
   digital: ResultType;
   interoperability: ResultType;
 };

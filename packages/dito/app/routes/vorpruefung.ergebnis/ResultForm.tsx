@@ -9,13 +9,13 @@ import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
-import { ResultType, TResult } from "./TResult.tsx";
+import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 
 export default function ResultForm({
   result,
   answers,
 }: Readonly<{
-  result: TResult;
+  result: PreCheckResult;
   answers: PreCheckAnswers;
 }>) {
   const form = useForm({

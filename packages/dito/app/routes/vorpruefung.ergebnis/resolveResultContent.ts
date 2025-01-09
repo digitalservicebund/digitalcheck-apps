@@ -3,7 +3,7 @@ import {
   PreCheckAnswerOption,
   PreCheckAnswers,
 } from "../vorpruefung.$questionId/route.tsx";
-import { ResultType, TResult } from "./TResult.tsx";
+import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 
 const { questions } = preCheck;
 
@@ -36,7 +36,7 @@ const title = {
   },
 };
 
-function getResultTitle(result: TResult) {
+function getResultTitle(result: PreCheckResult) {
   return (
     title.digital[result.digital] +
     (result.digital !== ResultType.UNSURE
@@ -47,7 +47,7 @@ function getResultTitle(result: TResult) {
 
 function getRelevantReasons(
   answers: PreCheckAnswers,
-  result: TResult,
+  result: PreCheckResult,
   interoperability: boolean,
   sure: boolean,
 ): Reason[] {
@@ -93,7 +93,7 @@ function getRelevantReasons(
 
 export default function resolveResultContent(
   answers: PreCheckAnswers,
-  result: TResult,
+  result: PreCheckResult,
 ): ResultContent {
   return {
     title: getResultTitle(result),
