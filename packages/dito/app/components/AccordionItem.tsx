@@ -12,7 +12,7 @@ export default function AccordionItem({
   headline,
   content,
   id,
-}: AccordionItemProps) {
+}: Readonly<AccordionItemProps>) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
