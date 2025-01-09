@@ -40,7 +40,7 @@
     "@remix-run/eslint-config": "^2.15.0",
     "@types/mime-types": "^2.1.4",
     "dotenv": "^16.4.5",
-    "jsdom": "^25.0.0"
+    "jsdom": "^26.0.0"
   },
   "engines": {
     "node": ">=20.0.0"
