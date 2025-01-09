@@ -75,6 +75,8 @@ export default function ResultForm({
             buttons={[
               {
                 id: "result-email-button",
+                name: "_action",
+                value: "email",
                 text: preCheck.result.form.sendEmailButton.text,
                 look: "primary",
                 className: "plausible-event-name=Quicksend+Click",
