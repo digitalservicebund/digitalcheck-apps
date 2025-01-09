@@ -28,6 +28,10 @@
     @apply ds-heading-03-reg;
   }
 
+  a[href^="tel:"] {
+    white-space: nowrap;
+  }
+
   h1,
   h2,
   .ds-heading-01-reg,
