@@ -58,7 +58,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
       className="text-base leading-snug w-full"
       aria-label="Seitenfußbereich"
     >
-      <Container className="pt-32 sm:px-16">
+      <Container className="sm:px-16">
         <div className="flex flex-wrap items-start justify-between gap-y-32">
           <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
             <Image
