@@ -154,7 +154,7 @@ export default function Index() {
   );
 
   return (
-    <div className="flex bg-blue-100 sm:pt-32 main-bg-blue">
+    <div className="flex bg-blue-100 sm:pt-32 parent-bg-blue">
       <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>

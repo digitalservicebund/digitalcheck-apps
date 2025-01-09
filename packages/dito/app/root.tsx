@@ -299,7 +299,7 @@ export default function App() {
         />
       }
     >
-      <main className="grow [&:has(.main-bg-blue)]:bg-blue-100">
+      <main className="grow [&:has(.parent-bg-blue)]:bg-blue-100">
         <Outlet context={{ featureFlags }} />
       </main>
     </Document>
