@@ -42,47 +42,15 @@ export default function Footer({ links }: Readonly<FooterProps>) {
             className="!inline ml-[0.2em] mb-1"
           />
         )}
-      </Link>{" "}
+      </Link>
       {link?.postText}
     </li>
   );
 
   const renderLinks = (links: LinkProps[]) => (
-    <ul className="list-none m-0 p-0 ds-stack-16 text-left" key={links[0]?.url}>
+    <ul className="list-none ds-stack-16" key={links[0]?.url}>
       {links.map(renderLink)}
     </ul>
-  );
-
-  const footerContent = (
-    <div className="flex flex-wrap items-start justify-between gap-y-32">
-      <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
-        <div className="py-4 pr-4">
-          <Image
-            url={bmiLogo}
-            width={120}
-            alternativeText="Logo des Bundesministerium des Innern und für Heimat"
-          />
-        </div>
-        {renderLinks([
-          {
-            preText: "Ein Onlinedienst der",
-            text: "DigitalService GmbH des Bundes",
-            url: "https://digitalservice.bund.de/",
-            openInNewTab: true,
-          },
-          {
-            preText: "Im Auftrag des",
-            text: "Bundesministerium des Innern und für Heimat",
-            url: "https://www.bmi.bund.de/",
-            openInNewTab: true,
-          },
-        ])}
-      </div>
-      <div className="flex flex-wrap gap-x-16 gap-y-8">
-        {renderLinks(linksFirstColumn)}
-        {renderLinks(linksSecondColumn)}
-      </div>
-    </div>
   );
 
   return (
@@ -90,8 +58,37 @@ export default function Footer({ links }: Readonly<FooterProps>) {
       className="text-base leading-snug w-full"
       aria-label="Seitenfußbereich"
     >
-      <Container className="pb-0 sm:px-8 lg:px-16 pt-32">
-        {footerContent}
+      <Container className="pt-32 sm:px-16">
+        <div className="flex flex-wrap items-start justify-between gap-y-32">
+          <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-16 gap-x-16">
+            <Image
+              url={bmiLogo}
+              width={120}
+              alternativeText="Logo des Bundesministerium des Innern und für Heimat"
+            />
+            <nav>
+              {renderLinks([
+                {
+                  preText: "Ein Onlinedienst der",
+                  text: "DigitalService GmbH des Bundes",
+                  url: "https://digitalservice.bund.de/",
+                  openInNewTab: true,
+                },
+                {
+                  preText: "Im Auftrag des",
+                  text: "Bundesministerium des Innern und für Heimat",
+                  url: "https://www.bmi.bund.de/",
+                  openInNewTab: true,
+                },
+              ])}
+            </nav>
+          </div>
+
+          <nav className="flex flex-wrap gap-x-16 gap-y-8">
+            {renderLinks(linksFirstColumn)}
+            {renderLinks(linksSecondColumn)}
+          </nav>
+        </div>
       </Container>
     </footer>
   );
