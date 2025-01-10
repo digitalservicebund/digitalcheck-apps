@@ -45,18 +45,16 @@ export const loader: LoaderFunction = () => {
 export default function Sitemap(): ReactNode {
   const urls = useLoaderData<Route[]>();
 
-  const renderRoutes = (routes: Route[], level = 0): ReactNode => (
-    <ul
-      className={`space-y-8 ${level > 0 ? "ml-8 pl-8 border-l border-gray-200" : ""}`}
-    >
+  const renderRoutes = (routes: Route[]): ReactNode => (
+    <ul className="space-y-8 list-none pl-0 [&_li>ul]:ml-8 [&_li>ul]:pl-8 [&_li>ul]:border-l [&_li>ul]:border-gray-200">
       {routes.map((route) => (
         <li key={route.url} className="space-y-8 mb-4">
-          <a href={route.url} className={"text-link hover:underline"}>
+          <a href={route.url} className="text-link hover:underline">
             {route.title}
           </a>
           {route.children &&
             route.children.length > 0 &&
-            renderRoutes(route.children, level + 1)}
+            renderRoutes(route.children)}
         </li>
       ))}
     </ul>
