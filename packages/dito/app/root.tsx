@@ -342,15 +342,9 @@ Vielen Dank für Ihr Verständnis.`;
         <div className="border-t-2 border-t-gray-400">
           <Container>
             <div className="ds-stack-8 mb-32">
-              <Heading
-                text={errorStatus}
-                tagName="div"
-                className="ds-label-01-bold"
-              />
+              <span className="ds-label-01-bold">{errorStatus}</span>
               <Heading text={errorTitle} className="ds-heading-02-reg" />
-              <div className="ds-subhead">
-                <RichText markdown={errorMessage} />
-              </div>
+              <RichText markdown={errorMessage} className="ds-subhead" />
             </div>
             <Button
               id="error-back-button"
