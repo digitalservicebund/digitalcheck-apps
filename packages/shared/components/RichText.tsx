@@ -46,7 +46,7 @@ const RichText = ({
         if (ext === "PDF" || ext === "XLSX") {
           return linkHtml.replace(
             /^<a /,
-            `<a download title="${`${token.text} (${ext}-Datei)`}" `,
+            `<a download title="${token.text} (${ext}-Datei)" `,
           );
         }
 
