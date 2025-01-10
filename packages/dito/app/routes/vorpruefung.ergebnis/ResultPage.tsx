@@ -113,7 +113,7 @@ export default function ResultPage({
                 .map(({ intro, reasons }) => (
                   <>
                     <RichText className="mt-40 first:mt-0" markdown={intro} />
-                    <ul className="ds-stack-16 mt-16">
+                    <ul className="ds-stack-16 mt-16 pl-0">
                       {reasons
                         .toSorted((reason) =>
                           reason.answer === "yes" ? -1 : 1,

@@ -75,7 +75,7 @@ export default function Index() {
           />
           <div className="mt-64">
             <Heading tagName="div" text="Inhalt" className="font-bold" />
-            <ol className="ds-stack-8 mt-16">
+            <ol className="ds-stack-8 mt-16 list-none pl-0">
               {fivePrinciples.principles.map((principle) => (
                 <li key={principle.label}>
                   <Link
