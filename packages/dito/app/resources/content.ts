@@ -4,6 +4,7 @@ import {
   ROUTE_DOCUMENTATION,
   ROUTE_DOCUMENTATION_STATIC_PDF,
   ROUTE_EXAMPLES,
+  ROUTE_GENERAL_INFO,
   ROUTE_LANDING,
   ROUTE_METHODS,
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
@@ -381,6 +382,15 @@ Der Digitalcheck gilt für alle Regelungsvorhaben - Gesetze, Verordnungen und Ve
     no: "Nein",
     unsure: "Ich bin unsicher",
   },
+  generalInfo: {
+    headline: "Allgemeine Hinweise",
+    text: "Alle Fragen beziehen sich auch auf die **Umsetzung** nach Inkrafttreten des Regelungsvorhabens.",
+    hint: {
+      title: "Eine oder mehrere Vorprüfungen?",
+      text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
+    },
+    nextButton: "Okay & weiter",
+  },
   questions: [
     {
       id: "it-system",
@@ -483,7 +493,7 @@ Beispiele für Akteur:innen sind:
     url: `${ROUTE_PRECHECK.url}/${question.id}`,
     prevLink:
       index === 0
-        ? ROUTE_PRECHECK.url
+        ? ROUTE_GENERAL_INFO.url
         : `${ROUTE_PRECHECK.url}/${questions[index - 1].id}`,
     nextLink:
       index === questions.length - 1

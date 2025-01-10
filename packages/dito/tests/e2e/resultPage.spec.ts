@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { preCheck } from "resources/content";
 import {
   ROUTE_DOCUMENTATION,
@@ -259,8 +258,7 @@ test.describe("test result page redirects", () => {
   test("result page without all answers redirects to precheck", async ({
     page,
   }) => {
-    await page.goto(ROUTE_PRECHECK.url);
-    await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
+    await page.goto(preCheck.questions[0].url);
     await page.getByLabel("Nein").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
     await page.goto(ROUTE_RESULT.url);
