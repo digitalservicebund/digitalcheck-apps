@@ -11,7 +11,7 @@
   }
 
   body {
-    @apply min-h-screen text-lg leading-6;
+    @apply text-lg/6 min-h-screen flex flex-col;
   }
 
   h1 {

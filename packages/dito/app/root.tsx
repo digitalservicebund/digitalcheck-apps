@@ -271,7 +271,7 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body>
         <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />
