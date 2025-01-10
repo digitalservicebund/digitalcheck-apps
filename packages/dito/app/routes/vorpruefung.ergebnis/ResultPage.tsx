@@ -112,7 +112,7 @@ export default function ResultPage({
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (
                   <>
-                    <RichText className="mt-40 first:mt-0" markdown={intro} />
+                    <RichText markdown={intro} className="mt-40 first:mt-0" />
                     <ul className="ds-stack-16 mt-16 pl-0">
                       {reasons
                         .toSorted((reason) =>
