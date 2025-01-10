@@ -109,11 +109,10 @@ export default function Index() {
             <Heading tagName="h2" text={landing.principals.title} />
             <RichText
               markdown={landing.principals.content}
-              className="!mt-32 !ds-stack-16
-              [&_ol]:mb-16
-              [&_ol]:!list-none
-              [&_ol]:!ml-0
-              [&_ol_li+li]:mt-8
+              className="ds-stack-32
+              [&_ol]:list-none
+              [&_ol]:pl-0
+              [&_ol]:space-y-8
               [&_ol_li+li:before]:content-['']
               [&_ol_li+li:before]:block
               [&_ol_li+li:before]:w-1/2
@@ -121,7 +120,7 @@ export default function Index() {
               [&_ol_li+li:before]:border-t
               [&_ol_li+li:before]:border-blue-700
               "
-              // These strange class names are because we are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
+              // We are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
             />
           </div>
         </Container>
