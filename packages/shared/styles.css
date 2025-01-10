@@ -6,12 +6,13 @@
 
 @layer base {
   html {
-    /* keep 16px, don't change! (e.g. angie library depends on it) */
+    /* Keep 16px, don't change! (e.g. angie library depends on it) */
     font-size: 16px;
   }
 
   body {
-    @apply text-lg/6 min-h-screen flex flex-col;
+    /* By default, text is 16px * 1.125 = 18px and line height is 150% of that (27px). */
+    @apply text-lg leading-[1.5em] min-h-screen flex flex-col;
   }
 
   h1 {
