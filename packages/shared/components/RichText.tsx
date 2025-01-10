@@ -1,5 +1,5 @@
 import { marked, Marked, type Renderer, type Tokens } from "marked";
-import twMerge from "utils/tailwind-merge";
+import twMerge from "../utils/tailwind-merge";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import { openInNewIconString } from "./openInNewWindow";
 
@@ -62,7 +62,6 @@ const RichText = ({
   return html ? (
     <div
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       className={twMerge("rich-text ds-stack-8", className)}
       dangerouslySetInnerHTML={{ __html: html }}
     />
