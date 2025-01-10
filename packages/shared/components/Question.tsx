@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { twMerge } from "tailwind-merge";
+import twMerge from "utils/tailwind-merge";
 import { BackgroundColor } from ".";
 import Box, { BoxProps } from "./Box";
 import DetailsSummary from "./DetailsSummary";

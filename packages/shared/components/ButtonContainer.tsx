@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import twMerge from "utils/tailwind-merge";
 import Button, { type ButtonLinkProps, type ButtonProps } from "./Button";
 
 type ButtonContainerProps = {

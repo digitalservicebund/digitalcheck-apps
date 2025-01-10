@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { twMerge } from "tailwind-merge";
+import twMerge from "utils/tailwind-merge";
 import { ButtonLinkProps, ButtonProps } from "./Button";
 import ButtonContainer from "./ButtonContainer";
 import Heading, { type HeadingProps } from "./Heading";

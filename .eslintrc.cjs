@@ -33,6 +33,19 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "tailwind-merge",
+            importNames: ["twMerge"],
+            message:
+              "Please import { twMerge } from '@digitalcheck/shared/utils/tailwind-merge'.",
+          },
+        ],
+      },
+    ],
   },
 
   overrides: [

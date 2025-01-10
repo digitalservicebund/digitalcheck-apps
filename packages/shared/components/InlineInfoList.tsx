@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
+import twMerge from "utils/tailwind-merge";
 
 export type InlineInfoListItem =
   | { key?: string; label: string; value: ReactNode }
