@@ -280,7 +280,7 @@ export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung, oder auch EU-Anforderungen an Interoperabilität achten müssen.",
+      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben Aspekte der digitalen Umsetzung und EU-Anforderungen an Interoperabilität beachten müssen.",
     hints: [
       {
         title: "Was ist Digitalbezug?",
