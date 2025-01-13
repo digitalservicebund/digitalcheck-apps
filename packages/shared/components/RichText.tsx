@@ -28,7 +28,7 @@ const RichText = ({
           const newLinkHtml = linkHtml
             .replace(
               /^<a /,
-              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" class="inline-" `,
+              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" `,
             )
             .replace(
               `>${token.text}<`,
