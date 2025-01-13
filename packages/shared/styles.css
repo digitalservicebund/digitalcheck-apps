@@ -99,8 +99,8 @@
     @apply text-blue-800 underline underline-offset-4 decoration-1 visited:text-[#4c2c92] active:text-black;
   }
 
-  .text-link-white {
-    @apply text-link text-gray-100 visited:text-gray-300;
+  .text-white .text-link {
+    @apply text-gray-100 visited:text-gray-300;
   }
 
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
@@ -108,14 +108,6 @@
     .text-link:hover {
       @apply decoration-[3px];
     }
-  }
-
-  .rich-text a {
-    @apply text-link font-bold;
-  }
-
-  .text-white .rich-text a {
-    @apply text-link-white;
   }
 
   /***********

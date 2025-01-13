@@ -62,7 +62,10 @@ const RichText = ({
   return html ? (
     <div
       {...props}
-      className={twMerge("rich-text ds-stack-8", className)}
+      className={twMerge(
+        "ds-stack-8 [&_a]:text-link [&_a]:font-bold",
+        className,
+      )}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   ) : null;

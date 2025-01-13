@@ -120,7 +120,7 @@ export default function Index() {
             </ol>
             <Link
               to={landing.principles.link.href}
-              className="text-link-white font-bold"
+              className="text-link font-bold"
             >
               {landing.principles.link.text}
             </Link>
