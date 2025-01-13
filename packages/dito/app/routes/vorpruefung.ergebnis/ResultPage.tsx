@@ -14,7 +14,7 @@ import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
 import Accordion from "components/Accordion";
-import { useState } from "react";
+import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import type { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import {
@@ -127,7 +127,7 @@ export default function ResultPage({
               {resultContent.reasoningList
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (
-                  <>
+                  <React.Fragment key={intro}>
                     <RichText markdown={intro} className="mt-40 first:mt-0" />
                     <ul className="ds-stack-16 mt-16 pl-0">
                       {reasons
@@ -136,7 +136,7 @@ export default function ResultPage({
                         )
                         .map((reason) => getReasonListItem(reason))}
                     </ul>
-                  </>
+                  </React.Fragment>
                 ))}
             </div>
             {result.digital !== ResultType.UNSURE && (
