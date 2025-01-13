@@ -4,6 +4,7 @@ import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
 import { Link, useLocation } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode, useState } from "react";
+import { digitalSuitability } from "resources/content.ts";
 import { twJoin } from "tailwind-merge";
 import {
   AbsatzWithNumber,
@@ -11,13 +12,12 @@ import {
   nestListInListItems,
   prependNumberToAbsatz,
 } from "utils/blocksContentUtils.ts";
-import { digitalSuitability } from "../resources/content.ts";
-import { cyrb53 } from "../utils/cyrb53.tsx";
 import type {
   Paragraph,
   Prinzip,
   PrinzipErfuellung,
-} from "../utils/strapiData.server.ts";
+} from "utils/strapiData.server.ts";
+import { cyrb53 } from "utils/utilFunctions.ts";
 
 // Color mapping for different principles
 const HIGHLIGHT_COLORS = {
