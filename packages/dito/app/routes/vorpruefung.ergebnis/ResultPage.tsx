@@ -127,7 +127,7 @@ export default function ResultPage({
               {resultContent.reasoningList
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (
-                  <>
+                  <div key={intro}>
                     <RichText className="mt-40 first:mt-0" markdown={intro} />
                     <ul className="ds-stack-16 mt-16">
                       {reasons
@@ -136,7 +136,7 @@ export default function ResultPage({
                         )
                         .map((reason) => getReasonListItem(reason))}
                     </ul>
-                  </>
+                  </div>
                 ))}
             </div>
             {result.digital !== ResultType.UNSURE && (

@@ -100,7 +100,7 @@ export default function ResultForm({
                       type: "button",
                       className: "plausible-event-name=Quicksend+Click",
                       onClick: () => {
-                        window.print();
+                        if (window) window.print();
                       },
                     },
                   ]
