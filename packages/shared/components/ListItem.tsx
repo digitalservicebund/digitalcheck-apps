@@ -1,3 +1,4 @@
+import { twJoin } from "tailwind-merge";
 import { type BackgroundColor, isBackgroundColor } from ".";
 import Background from "./Background";
 import { type ButtonProps } from "./Button";
@@ -89,7 +90,12 @@ const ListItem = ({
           // TODO: This is very similar to the markup used in dito/methoden/$subPage.
           // We should probably create a component for this to keep it consistent.
            */}
-          <div className={`overflow-hidden ${backgroundColor && "rounded-lg"}`}>
+          <div
+            className={twJoin(
+              "overflow-hidden",
+              backgroundColor && "rounded-lg",
+            )}
+          >
             <Background
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >
