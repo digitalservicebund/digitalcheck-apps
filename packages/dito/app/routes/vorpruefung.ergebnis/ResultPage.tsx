@@ -102,7 +102,7 @@ export default function ResultPage({
                 heading={{
                   tagName: "h2",
                   look: "ds-heading-03-reg",
-                  text: `Ihr Vorhaben: ${policyTitle}`,
+                  text: `${preCheck.result.print.titlePrefix}${policyTitle}`,
                   className: "hidden print:block pb-24 font-bold",
                 }}
               />

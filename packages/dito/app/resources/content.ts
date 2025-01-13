@@ -652,6 +652,9 @@ Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weit
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",
     },
+    print: {
+      titlePrefix: "Ihr Vorhaben: ",
+    },
   },
 };
 
