@@ -1,5 +1,5 @@
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import { PropsWithChildren } from "react";
-import twMerge from "utils/tailwind-merge";
 import { BACKGROUND_COLORS, type BackgroundColor } from ".";
 
 type BackgroundProps = {

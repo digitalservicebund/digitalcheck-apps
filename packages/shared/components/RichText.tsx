@@ -1,5 +1,5 @@
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import { marked, Marked, type Renderer, type Tokens } from "marked";
-import twMerge from "utils/tailwind-merge";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import { openInNewIconString } from "./openInNewWindow";
 

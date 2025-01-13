@@ -1,4 +1,4 @@
-import twMerge from "utils/tailwind-merge";
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import Button, { type ButtonLinkProps, type ButtonProps } from "./Button";
 
 type ButtonContainerProps = {
