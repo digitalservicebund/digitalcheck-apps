@@ -623,7 +623,7 @@ Beispiele für Akteur:innen sind:
         bodyBefore: `Guten Tag,
 
 hiermit erhalten Sie das Ergebnis Ihrer Vorprüfung:`,
-        bodyAfter: `Veraktung der E-Mail zur Dokumentation
+        bodyAfter: `✎ Veraktung der E-Mail zur Dokumentation
         
 Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
 

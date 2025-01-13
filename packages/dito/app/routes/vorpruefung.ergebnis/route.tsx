@@ -97,11 +97,14 @@ function buildEmailBody(
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
     .forEach(({ intro, reasons }) => {
-      resultText += intro.replaceAll("**", "") + "\n\n";
+      resultText += "➤ " + intro.replaceAll("**", "") + "\n\n";
       reasons
         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {
-          resultText += "- " + reason.text + "\n";
+          resultText += reason.answer === "yes" ? "+" : "";
+          resultText += reason.answer === "no" ? "-" : "";
+          resultText += reason.answer === "unsure" ? "?" : "";
+          resultText += " " + reason.text + "\n";
         });
       resultText += "\n\n";
     });
@@ -144,10 +147,13 @@ export async function action({ request }: ActionFunctionArgs) {
   const email = formData.get("email");
   const cc = email ? `&cc=${email as string}` : "";
   const recipients = resolveRecipients(result);
-  const mailToLink = encodeURI(
-    `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, result, formData.get("negativeReasoning") as string)}${cc}`,
+  const body = buildEmailBody(
+    preCheckAnswers,
+    result,
+    formData.get("negativeReasoning") as string,
   );
-  return redirect(mailToLink);
+  const uri = `mailto:${recipients}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${cc}`;
+  return redirect(uri);
 }
 
 export default function Result() {
