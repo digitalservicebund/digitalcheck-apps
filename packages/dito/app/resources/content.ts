@@ -611,7 +611,7 @@ Beispiele für Akteur:innen sind:
         ],
       },
       downloadPdfButton: {
-        text: "Nur herunterladen (PDF-Datei)",
+        text: "Als PDF-Datei herunterladen",
       },
       sendEmailButton: {
         text: "E-Mail erstellen",

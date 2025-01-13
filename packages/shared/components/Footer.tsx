@@ -53,7 +53,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
 
   return (
     <footer
-      className="text-base leading-snug w-full"
+      className="text-base leading-snug w-full print:hidden"
       aria-label="Seitenfußbereich"
     >
       <Container className="sm:px-16">

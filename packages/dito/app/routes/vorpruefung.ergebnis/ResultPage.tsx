@@ -14,6 +14,7 @@ import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
 import Accordion from "components/Accordion.tsx";
+import { useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import { twJoin } from "tailwind-merge";
@@ -65,6 +66,8 @@ export default function ResultPage({
   answers: PreCheckAnswers;
   result: PreCheckResult;
 }>) {
+  const [policyTitle, setPolicyTitle] = useState("");
+
   const resultContent = resolveResultContent(answers, result);
 
   function getHeaderIcon() {
@@ -83,7 +86,7 @@ export default function ResultPage({
     result.digital === ResultType.UNSURE ? preCheck.result.unsure.hint : "";
   return (
     <>
-      <Background backgroundColor="blue" className="pt-40 pb-40">
+      <Background backgroundColor="blue" className="pt-40 pb-40 print:pb-0">
         <div className="px-16">
           <Container
             className="pt-32 pb-32 rounded-t-lg"
@@ -91,6 +94,16 @@ export default function ResultPage({
               result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
             }
           >
+            {policyTitle && (
+              <Header
+                heading={{
+                  tagName: "h2",
+                  look: "ds-heading-03-reg",
+                  text: `Ihr Vorhaben: ${policyTitle}`,
+                  className: "hidden print:block pb-24 font-bold",
+                }}
+              />
+            )}
             <div className="flex sm:flex-row flex-col gap-16">
               <div className="flex-none w-36 h-36 flex items-center justify-center">
                 {getHeaderIcon()}
@@ -107,7 +120,7 @@ export default function ResultPage({
             </div>
           </Container>
           <Container className="rounded-b-lg" backgroundColor="white">
-            <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0">
+            <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0 print:border-0 print:pb-0">
               {resultContent.reasoningList
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (
@@ -124,8 +137,12 @@ export default function ResultPage({
                 ))}
             </div>
             {result.digital !== ResultType.UNSURE && (
-              <div className="mt-32">
-                <ResultForm result={result} answers={answers} />
+              <div className="mt-32 print:hidden">
+                <ResultForm
+                  result={result}
+                  answers={answers}
+                  setPolicyTitle={setPolicyTitle}
+                />
               </div>
             )}
           </Container>
@@ -160,7 +177,7 @@ export default function ResultPage({
           />
         )}
       </Container>
-      <Container>
+      <Container className="print:hidden">
         <Heading
           tagName="h2"
           look="ds-heading-02-reg text-center mb-64 max-sm:mb-56"

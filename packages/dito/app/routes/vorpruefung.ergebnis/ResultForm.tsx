@@ -5,23 +5,34 @@ import Input from "@digitalcheck/shared/components/Input";
 import RichText from "@digitalcheck/shared/components/RichText";
 import Textarea from "@digitalcheck/shared/components/Textarea";
 import { useForm } from "@rvf/remix";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
+import { useFeatureFlag } from "../../utils/featureFlags.ts";
 import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 
 export default function ResultForm({
   result,
   answers,
+  setPolicyTitle,
 }: Readonly<{
   result: PreCheckResult;
   answers: PreCheckAnswers;
+  setPolicyTitle: Dispatch<SetStateAction<string>>;
 }>) {
+  const showSaveToPdf = useFeatureFlag("digitalcheck.show-save-to-pdf-option");
+
   const form = useForm({
     validator: getResultValidatorForAnswers(answers),
     method: "post",
   });
+
+  const handlePolicyTitleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setPolicyTitle(event.target.value);
+  };
 
   const [warning, setWarning] = useState<string | null>(null);
   const handleNegativeReasoningChange = (
@@ -61,6 +72,7 @@ export default function ResultForm({
             name="title"
             label={preCheck.result.form.policyTitleLabel}
             error={form.error("title")}
+            onChange={handlePolicyTitleChange}
           />
           {result.digital === ResultType.NEGATIVE && (
             <Textarea
@@ -72,14 +84,35 @@ export default function ResultForm({
             />
           )}
           <ButtonContainer
-            buttons={[
-              {
-                id: "result-email-button",
-                text: preCheck.result.form.sendEmailButton.text,
-                look: "primary",
-                className: "plausible-event-name=Quicksend+Click",
-              },
-            ]}
+            buttons={
+              showSaveToPdf
+                ? [
+                    {
+                      id: "result-email-button",
+                      text: preCheck.result.form.sendEmailButton.text,
+                      look: "primary",
+                      className: "plausible-event-name=Quicksend+Click",
+                    },
+                    {
+                      id: "result-print-button",
+                      text: preCheck.result.form.downloadPdfButton.text,
+                      look: "ghost",
+                      type: "button",
+                      className: "plausible-event-name=Quicksend+Click",
+                      onClick: () => {
+                        window.print();
+                      },
+                    },
+                  ]
+                : [
+                    {
+                      id: "result-email-button",
+                      text: preCheck.result.form.sendEmailButton.text,
+                      look: "primary",
+                      className: "plausible-event-name=Quicksend+Click",
+                    },
+                  ]
+            }
           />
         </fieldset>
       </form>

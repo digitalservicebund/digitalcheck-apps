@@ -47,7 +47,7 @@ export default function Breadcrumbs({
 
   return filteredBreadcrumbs.length > 1 ? (
     <nav
-      className="py-8 max-sm:py-16 px-16 bg-blue-100 flex flex-wrap items-center text-base"
+      className="py-8 max-sm:py-16 px-16 bg-blue-100 flex flex-wrap items-center text-base print:hidden"
       data-testid="breadcrumbs-menu"
       aria-label="breadcrumb navigation"
     >
