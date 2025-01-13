@@ -92,12 +92,12 @@ function buildEmailBody(
 ) {
   const resultContent = resolveResultContent(answers, result);
 
-  let resultText: string = resultContent.title + "\n\n\n";
+  let resultText: string = `${resultContent.title}\n\n\n`;
 
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
     .forEach(({ intro, reasons }) => {
-      resultText += `➤ ${intro.replaceAll("**", "")} \n\n`;
+      resultText += `➤ ${intro} \n\n`;
       reasons
         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {
@@ -105,13 +105,12 @@ function buildEmailBody(
           resultText += reason.answer === "no" ? "-" : "";
           resultText += reason.answer === "unsure" ? "?" : "";
           resultText += ` ${reason.text}\n`;
-          resultText += reason.hint
-            ? `${reason.hint.replaceAll("**", "")}\n`
-            : "";
+          resultText += reason.hint ? `${reason.hint}\n` : "";
         });
       resultText += "\n\n";
     });
 
+  resultText = resultText.replaceAll("**", "");
   resultText += negativeReasoning
     ? `${preCheck.result.form.reasonLabel}:\n\n${negativeReasoning}\n\n`
     : "";
