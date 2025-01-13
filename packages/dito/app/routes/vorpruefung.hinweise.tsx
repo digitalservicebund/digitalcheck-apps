@@ -7,8 +7,8 @@ import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { preCheck } from "resources/content";
 import { ROUTE_GENERAL_INFO, ROUTE_PRECHECK } from "resources/staticRoutes";
+import { getAnswersFromCookie } from "utils/cookies.server.ts";
 import prependMetaTitle from "utils/metaTitle";
-import { getAnswersFromCookie } from "../utils/cookies.server.ts";
 import PreCheckNavigation from "./vorpruefung.$questionId/PreCheckNavigation.tsx";
 
 const { questions, generalInfo } = preCheck;

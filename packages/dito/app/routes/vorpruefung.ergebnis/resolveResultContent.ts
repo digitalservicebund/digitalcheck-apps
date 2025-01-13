@@ -1,4 +1,4 @@
-import { preCheck } from "../../resources/content.ts";
+import { preCheck } from "resources/content.ts";
 import {
   PreCheckAnswerOption,
   PreCheckAnswers,

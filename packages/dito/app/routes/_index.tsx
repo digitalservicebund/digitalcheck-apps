@@ -9,7 +9,7 @@ import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import SupportBanner from "components/SupportBanner";
 import { landing } from "resources/content";
-import { useFeatureFlag } from "../utils/featureFlags.ts";
+import { useFeatureFlag } from "utils/featureFlags.ts";
 
 export default function Index() {
   const showLinksToTools = useFeatureFlag("digitalcheck.show-links-to-tools");

@@ -5,6 +5,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
 import Heading from "@digitalcheck/shared/components/Heading";
 import RichText from "@digitalcheck/shared/components/RichText";
+import bundLogo from "@digitalcheck/shared/public/img/bund-logo.png";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import type {
@@ -42,7 +43,6 @@ import {
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
-import bundLogo from "../../shared/public/img/bund-logo.png";
 import styles from "./styles.css?url";
 
 export function loader({ request }: LoaderFunctionArgs) {

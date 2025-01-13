@@ -13,10 +13,10 @@ import {
 import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
+import Accordion from "components/Accordion.tsx";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import { twJoin } from "tailwind-merge";
-import Accordion from "../../components/Accordion.tsx";
 import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
 import resolveResultContent, { Reason } from "./resolveResultContent.ts";
 import ResultForm from "./ResultForm.tsx";
