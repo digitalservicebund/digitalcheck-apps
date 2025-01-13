@@ -145,7 +145,7 @@ export default function ResultPage({
                 id: "result-method-button",
                 text: preCheck.result.unsure.nextStep.link.text,
                 href: preCheck.result.unsure.nextStep.link.href,
-                look: "ghost",
+                look: "link",
               },
             ]}
           />

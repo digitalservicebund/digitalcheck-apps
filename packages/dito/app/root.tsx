@@ -225,7 +225,7 @@ const PageHeader = ({
         <div className="ds-label-02-reg text-lg">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
-          <Button href="/unterstuetzung" look="ghost">
+          <Button href="/unterstuetzung" look="link">
             Unterstützungsangebote
           </Button>
           <span className="mx-8">|</span>
