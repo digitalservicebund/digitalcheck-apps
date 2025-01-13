@@ -1,15 +1,15 @@
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice.tsx";
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
+import Heading from "@digitalcheck/shared/components/Heading";
+import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
+import RichText from "@digitalcheck/shared/components/RichText";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { preCheck } from "resources/content";
 import { ROUTE_GENERAL_INFO, ROUTE_PRECHECK } from "resources/staticRoutes";
-import { getAnswersFromCookie } from "utils/cookies.server.ts";
+import { getAnswersFromCookie } from "utils/cookies.server";
 import prependMetaTitle from "utils/metaTitle";
-import PreCheckNavigation from "./vorpruefung.$questionId/PreCheckNavigation.tsx";
+import PreCheckNavigation from "./vorpruefung.$questionId/PreCheckNavigation";
 
 const { questions, generalInfo } = preCheck;
 const { headline, text, nextButton, hint } = generalInfo;

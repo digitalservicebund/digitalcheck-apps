@@ -16,9 +16,9 @@ import {
 } from "utils/cookies.server";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
-import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
-import resolveResultContent from "./resolveResultContent.ts";
-import ResultPage from "./ResultPage.tsx";
+import { PreCheckResult, ResultType } from "./PreCheckResult";
+import resolveResultContent from "./resolveResultContent";
+import ResultPage from "./ResultPage";
 import getResultValidatorForAnswers from "./resultValidation";
 
 const { questions } = preCheck;

@@ -1,5 +1,5 @@
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_URL } from "./constants.server";
-import logResponseStatus from "./logging.ts";
+import logResponseStatus from "./logging";
 
 class FetchError extends Error {
   status: number;

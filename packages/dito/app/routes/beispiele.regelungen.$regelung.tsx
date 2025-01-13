@@ -1,10 +1,10 @@
-import Background from "@digitalcheck/shared/components/Background.tsx";
-import Container from "@digitalcheck/shared/components/Container.tsx";
-import CustomLink from "@digitalcheck/shared/components/CustomLink.tsx";
-import Header from "@digitalcheck/shared/components/Header.tsx";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
-import InlineNotice from "@digitalcheck/shared/components/InlineNotice.tsx";
+import Background from "@digitalcheck/shared/components/Background";
+import Container from "@digitalcheck/shared/components/Container";
+import CustomLink from "@digitalcheck/shared/components/CustomLink";
+import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
+import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList";
+import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import {
   Link,
@@ -13,12 +13,12 @@ import {
   useOutletContext,
 } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import ParagraphList from "components/ParagraphList.tsx";
-import VisualisationItem from "components/VisualisationItem.tsx";
+import ParagraphList from "components/ParagraphList";
+import VisualisationItem from "components/VisualisationItem";
 import React from "react";
-import { regulations } from "resources/content.ts";
-import { ROUTE_LAWS } from "resources/staticRoutes.ts";
-import prependMetaTitle from "utils/metaTitle.ts";
+import { regulations } from "resources/content";
+import { ROUTE_LAWS } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 import {
   fetchStrapiData,
   paragraphFields,
@@ -26,8 +26,8 @@ import {
   prinzipCoreFields,
   Regelungsvorhaben,
   visualisationFields,
-} from "utils/strapiData.server.ts";
-import { formatDate, gesetzStatusMap, slugify } from "utils/utilFunctions.ts";
+} from "utils/strapiData.server";
+import { formatDate, gesetzStatusMap, slugify } from "utils/utilFunctions";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);

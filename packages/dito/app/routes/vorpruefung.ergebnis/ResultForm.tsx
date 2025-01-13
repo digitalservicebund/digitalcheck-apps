@@ -9,8 +9,8 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { preCheck } from "resources/content";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
-import { useFeatureFlag } from "../../utils/featureFlags.ts";
-import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
+import { useFeatureFlag } from "utils/featureFlags";
+import { PreCheckResult, ResultType } from "./PreCheckResult";
 
 export default function ResultForm({
   result,

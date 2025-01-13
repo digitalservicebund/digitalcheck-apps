@@ -4,12 +4,12 @@ import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Header from "@digitalcheck/shared/components/Header";
 import Image from "@digitalcheck/shared/components/Image";
-import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon.tsx";
+import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import InterviewBanner from "components/InterviewBanner";
-import allRoutes from "resources/allRoutes.ts";
+import allRoutes from "resources/allRoutes";
 import {
   collectITSystems,
   responsibleActors,
