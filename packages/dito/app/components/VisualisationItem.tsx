@@ -3,10 +3,10 @@ import Image from "@digitalcheck/shared/components/Image.tsx";
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
 import { Link } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { regulations } from "resources/content.ts";
 import { ROUTE_VISUALISATION } from "resources/staticRoutes.ts";
-import { regulations } from "../resources/content.ts";
-import { Visualisierung } from "../utils/strapiData.server.ts";
-import { formatDate } from "../utils/utilFunctions.ts";
+import { Visualisierung } from "utils/strapiData.server.ts";
+import { formatDate } from "utils/utilFunctions.ts";
 
 const LabelValuePair = ({ label, value }: { label: string; value?: string }) =>
   value ? (

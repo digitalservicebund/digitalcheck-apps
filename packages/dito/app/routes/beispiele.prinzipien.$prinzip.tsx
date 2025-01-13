@@ -13,19 +13,19 @@ import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import ParagraphList from "components/ParagraphList.tsx";
 import { regulations } from "resources/content.ts";
 import prependMetaTitle from "utils/metaTitle.ts";
-import ParagraphList from "../components/ParagraphList.tsx";
 
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
-import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "../resources/staticRoutes.ts";
+import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "resources/staticRoutes.ts";
 import {
   fetchStrapiData,
   paragraphFields,
   type Prinzip,
   prinzipCoreFields,
-} from "../utils/strapiData.server.ts";
-import { formatDate, gesetzStatusMap } from "../utils/utilFunctions.ts";
+} from "utils/strapiData.server.ts";
+import { formatDate, gesetzStatusMap } from "utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
