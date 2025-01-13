@@ -24,7 +24,7 @@ export default function PreCheckNavigation({
     <nav aria-label="Alle Fragen" className="precheck-navigation">
       <ul className="pl-0">
         {questions.map((q: TQuestion, idx) => {
-          const isDone = answers ? q.id in answers : false;
+          const isDone = !!answers && q.id in answers;
           const isCurrent = q.id === question?.id;
           const isDisabled = idx > firstUnansweredQuestionIdx;
           return (

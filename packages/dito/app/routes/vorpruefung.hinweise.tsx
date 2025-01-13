@@ -31,7 +31,7 @@ export default function GeneralInfo() {
         <PreCheckNavigation answers={answers ?? {}} />
       </div>
       <section>
-        <Container className="pb-40">
+        <Container className="pt-0">
           <Heading
             text={headline}
             tagName="h1"
