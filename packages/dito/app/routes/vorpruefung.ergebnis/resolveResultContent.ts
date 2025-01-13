@@ -1,8 +1,8 @@
 import { preCheck } from "resources/content";
-import {
+import type {
   PreCheckAnswerOption,
   PreCheckAnswers,
-} from "../vorpruefung.$questionId/route";
+} from "routes/vorpruefung.$questionId/route";
 import { PreCheckResult, ResultType } from "./PreCheckResult";
 
 const { questions } = preCheck;

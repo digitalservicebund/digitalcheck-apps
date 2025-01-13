@@ -1,4 +1,4 @@
-import { expect, Page, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import { ROUTE_RESULT } from "resources/staticRoutes";
 

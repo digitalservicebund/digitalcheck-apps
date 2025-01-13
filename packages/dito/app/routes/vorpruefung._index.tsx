@@ -7,7 +7,7 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import SupportBanner from "components/SupportBanner";
 import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";

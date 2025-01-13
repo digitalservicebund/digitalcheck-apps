@@ -16,10 +16,13 @@ import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined
 import Accordion from "components/Accordion";
 import { useState } from "react";
 import { preCheck } from "resources/content";
-import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import type { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import {
+  type PreCheckResult,
+  ResultType,
+} from "routes/vorpruefung.ergebnis/PreCheckResult";
 import { twJoin } from "tailwind-merge";
-import { PreCheckResult, ResultType } from "./PreCheckResult";
-import resolveResultContent, { Reason } from "./resolveResultContent";
+import resolveResultContent, { type Reason } from "./resolveResultContent";
 import ResultForm from "./ResultForm";
 
 const nextSteps = {
