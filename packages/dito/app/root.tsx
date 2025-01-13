@@ -299,6 +299,7 @@ export default function App() {
         />
       }
     >
+      {/* .parent-bg-blue can be set by child components to set the background of main to blue (e.g. used for question pages) */}
       <main className="grow [&:has(.parent-bg-blue)]:bg-blue-100">
         <Outlet context={{ featureFlags }} />
       </main>
