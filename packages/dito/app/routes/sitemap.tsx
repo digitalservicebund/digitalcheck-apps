@@ -46,7 +46,7 @@ export default function Sitemap(): ReactNode {
   const urls = useLoaderData<Route[]>();
 
   const renderRoutes = (routes: Route[]): ReactNode => (
-    <ul className="space-y-8 list-none pl-0 max-w-none [&_li>ul]:ml-8 [&_li>ul]:pl-8 [&_li>ul]:border-l [&_li>ul]:border-gray-200">
+    <ul className="list-unstyled space-y-8 [&_li>ul]:ml-8 [&_li>ul]:pl-8 [&_li>ul]:border-l [&_li>ul]:border-gray-200">
       {routes.map((route) => (
         <li key={route.url} className="space-y-8 mb-4">
           <a href={route.url} className="text-link hover:underline">

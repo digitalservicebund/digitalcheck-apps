@@ -13,7 +13,7 @@ const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
     <div className="scroll-my-40 relative ds-stack-8" id={identifier}>
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       <ol
-        className="list-none ps-0 max-w-none ds-stack-32 relative"
+        className="list-unstyled ds-stack-32 relative"
         aria-live="polite"
         aria-labelledby={identifier ? `${identifier}-heading` : undefined}
       >
@@ -63,7 +63,7 @@ const BulletList = ({ identifier, items, heading }: BaseListProps) => {
         </div>
       </div>
       <ol
-        className="list-none ps-0 max-w-none ds-stack-32 relative"
+        className="list-unstyled ds-stack-32 relative"
         aria-live="polite"
         aria-labelledby={identifier ? `${identifier}-heading` : undefined}
       >

@@ -46,7 +46,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
   );
 
   const renderLinks = (links: LinkProps[]) => (
-    <ul className="list-none pl-0 max-w-none ds-stack-16" key={links[0]?.url}>
+    <ul className="list-unstyled ds-stack-16" key={links[0]?.url}>
       {links.map(renderLink)}
     </ul>
   );

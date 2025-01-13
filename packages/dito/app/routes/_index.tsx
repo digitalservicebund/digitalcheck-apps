@@ -108,7 +108,7 @@ export default function Index() {
         <Container>
           <div className="ds-stack-32 scroll-my-40">
             <Heading tagName="h2" text={landing.principles.title} />
-            <ol className="list-none pl-0 space-y-8">
+            <ol className="list-unstyled space-y-8">
               {landing.principles.content.map((principle) => (
                 <li
                   key={principle}

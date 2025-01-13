@@ -22,7 +22,7 @@ export default function PreCheckNavigation({
 
   return (
     <nav aria-label="Alle Fragen" className="precheck-navigation">
-      <ul className="pl-0">
+      <ul className="list-unstyled">
         {questions.map((q: TQuestion, idx) => {
           const isDone = !!answers && q.id in answers;
           const isCurrent = q.id === question?.id;
@@ -59,7 +59,7 @@ function NavItem({
   isDone,
 }: Readonly<NavItem>) {
   const liClassNames = twJoin(
-    "list-none border-b-[1px] border-b-white border-l-[4px]",
+    "border-b-[1px] border-b-white border-l-[4px]",
     isCurrent ? "border-l-blue-800 pointer-events-none" : "border-l-blue-100",
     isDisabled && "text-gray-800 pointer-events-none",
   );

@@ -161,4 +161,8 @@
     /* 70ch @ 18px font size = 630px */
     max-width: 630px;
   }
+
+  .list-unstyled {
+    @apply list-none pl-0 max-w-none;
+  }
 }
