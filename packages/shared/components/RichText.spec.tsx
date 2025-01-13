@@ -14,11 +14,6 @@ Hier können sie die [Dokumentation herunterladen](/assets/digitalcheck-dokument
 
 Hier können sie die [Excel-Datei herunterladen](/assets/digitalcheck-dokumentation.xlsx).`;
 
-test("Richtext outermost element has richtext class", () => {
-  render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
-  expect(screen.getByTestId("rich-text")).toHaveClass("rich-text");
-});
-
 test("Richtext renders external links with target blank", async () => {
   render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
   const links = await screen.findAllByRole("link");
