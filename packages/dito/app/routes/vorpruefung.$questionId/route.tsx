@@ -9,6 +9,7 @@ import {
 import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
 import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
+import LinkBar from "components/LinkBar";
 import { useEffect, useState } from "react";
 import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK } from "resources/staticRoutes";
@@ -19,7 +20,6 @@ import {
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import { z } from "zod";
-import LinkBar from "../../components/LinkBar";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
@@ -154,7 +154,7 @@ export default function Index() {
   );
 
   return (
-    <div className="flex bg-blue-100 sm:pt-32">
+    <div className="flex bg-blue-100 sm:pt-32 parent-bg-blue">
       <div className="hidden lg:block flex-none pl-32">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>

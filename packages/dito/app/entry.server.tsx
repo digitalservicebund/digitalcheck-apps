@@ -12,8 +12,8 @@ import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import logResponseStatus from "utils/logging.ts";
 import { NonceProvider } from "utils/nonce";
-import logResponseStatus from "./utils/logging.ts";
 
 const ABORT_DELAY = 5_000;
 export const STRAPI_MEDIA_URL =

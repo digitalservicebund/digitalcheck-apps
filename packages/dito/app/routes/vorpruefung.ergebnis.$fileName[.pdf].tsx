@@ -3,8 +3,8 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { preCheck } from "resources/content";
+import { userAnswers } from "utils/cookies.server.ts";
 import trackCustomEvent from "utils/trackCustomEvent.server";
-import { userAnswers } from "../utils/cookies.server.ts";
 import { PreCheckAnswers } from "./vorpruefung.$questionId/route";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";

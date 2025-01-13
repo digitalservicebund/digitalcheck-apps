@@ -87,7 +87,7 @@ export const steps = {
       {
         text: "Zu „Erarbeiten“",
         href: ROUTE_METHODS.url,
-        look: "ghost" as const,
+        look: "link" as const,
       },
     ],
     finished: {
@@ -106,7 +106,7 @@ export const steps = {
       {
         text: "Zu „Dokumentieren“",
         href: ROUTE_DOCUMENTATION.url,
-        look: "ghost" as const,
+        look: "link" as const,
       },
     ],
     finished: {
@@ -162,7 +162,7 @@ export const landing = {
     link: {
       text: "Jetzt Beispiele entdecken",
       href: ROUTE_EXAMPLES.url,
-      look: "ghost" as const,
+      look: "link" as const,
     },
     /*    title: "Schulungsangebote im Herbst",
     text: `In den kommenden Monaten bieten wir 90-minütige Online-Schulungen an zu folgenden Themen:
@@ -171,7 +171,7 @@ export const landing = {
     link: {
       text: "Zu Schulungen anmelden",
       href: ROUTE_SUPPORT.url + "#angebote",
-      look: "ghost" as const,
+      look: "link" as const,
     },*/
   },
   summary: {
@@ -284,7 +284,7 @@ export const preCheck = {
   start: {
     title: "1. Vorprüfung: Digitalbezug einschätzen",
     subtitle:
-      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung, oder auch EU-Anforderungen an Interoperabilität achten müssen.",
+      "Finden Sie in 6 Fragen heraus, ob Sie in Ihrem Regelungsvorhaben Aspekte der digitalen Umsetzung und EU-Anforderungen an Interoperabilität beachten müssen.",
     hints: [
       {
         title: "Was ist Digitalbezug?",
@@ -307,14 +307,14 @@ export const preCheck = {
             text: "Beginnen Sie so früh wie möglich",
           },
           content:
-            "Führen Sie die Vorprüfung zu Beginn Ihrer Arbeit an einem Regelungsvorhaben durch, das heißt: vor der Formulierung eines Regelungstextes.",
+            "Führen Sie die Vorprüfung zu Beginn Ihrer Arbeit an einem Regelungsvorhaben durch. Das heißt bevor Sie den Regelungstext formulieren.",
         },
         {
           headline: {
             text: "Warum ist die Vorprüfung relevant für mein Vorhaben?",
           },
           content: `
-- **Digitalisierungspotenziale frühzeitig nutzen:** Wenn Sie frühzeitig Chancen für die Digitalisierung erkennen, optimieren Sie den Regelungstext und sichern Sie sich technisch und rechtlich ab und ermöglichen praxisnahe Umsetzung.<br/><br/>
+- **Digitalisierungsbezug frühzeitig erkennen:** Setzen Sie sich frühzeitig mit Chancen der Digitalisierung auseinander, um den Regelungstext so zu gestalten, dass er die praxisnahe Umsetzung ermöglicht.<br/><br/>
 - **EU-Anforderungen identifizieren:** Im Rahmen der Vorprüfung ermitteln Sie, ob grenzüberschreitende Interoperabilität für Ihr Vorhaben relevant ist. Regelungen die  Interoperabilität fördern, ermöglichen technische Standardisierung, rechtliche Harmonisierung und digitale bürgerzentrierte Dienste innerhalb der EU.<br/><br/>
 - **Rechtliche Grundlage:** Seit Juni 2024 ist es verpflichtend nationale Regelungsvorhaben auf Digitaltauglichkeit zu prüfen. Die Grundlage dafür ist das Onlinezugangsgesetz (OZG) von 2017. Zusätzlich müssen ab Januar 2025 bestimmte Regelungsvorhaben die Anforderungen an Interoperabilität auf EU-Ebene unterstützen. Dies ergibt sich aus der EU-Verordnung [Interoperable Europe Act](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R0903).<br/><br/>
           `,
@@ -615,7 +615,7 @@ Beispiele für Akteur:innen sind:
         ],
       },
       downloadPdfButton: {
-        text: "Nur herunterladen (PDF-Datei)",
+        text: "Als PDF-Datei herunterladen",
       },
       sendEmailButton: {
         text: "E-Mail erstellen",
@@ -1438,7 +1438,7 @@ export const support = {
         title: "Beratung erhalten Sie in einem 45-minütigem Gespräch",
         text: "In einem (Video)-Telefonat können wir gemeinsam herausfinden, welche Unterstützungsangebote für Sie hilfreich sind.",
         iframe:
-          "https://calendar.google.com/calendar/appointments/AcZssZ1rn-7U8Z3vyOlK54HCPidwdJCk6a0RC7OIqjk=?gv=true",
+          "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3BuTyFqeNVDgXvAKBi1u45DbKYBXV7v9Gj2SsKvjiw-kulBNNoPxHDVEccLjUm491ySKM4bZSp?gv=true",
         buttons: [
           {
             text: "Termin buchen",

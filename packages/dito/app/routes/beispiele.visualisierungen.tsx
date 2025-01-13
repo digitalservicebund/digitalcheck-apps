@@ -3,15 +3,15 @@ import Container from "@digitalcheck/shared/components/Container.tsx";
 import Header from "@digitalcheck/shared/components/Header.tsx";
 import Heading from "@digitalcheck/shared/components/Heading.tsx";
 import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import VisualisationItem from "../components/VisualisationItem.tsx";
-import { visualisations } from "../resources/content.ts";
-import { ROUTE_LAWS, ROUTE_VISUALISATIONS } from "../resources/staticRoutes.ts";
-import prependMetaTitle from "../utils/metaTitle.ts";
+import VisualisationItem from "components/VisualisationItem.tsx";
+import { visualisations } from "resources/content.ts";
+import { ROUTE_LAWS, ROUTE_VISUALISATIONS } from "resources/staticRoutes.ts";
+import prependMetaTitle from "utils/metaTitle.ts";
 import {
   fetchStrapiData,
   visualisationFields,
   Visualisierung,
-} from "../utils/strapiData.server.ts";
+} from "utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);

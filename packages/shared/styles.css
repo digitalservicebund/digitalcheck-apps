@@ -87,11 +87,7 @@
    * BUTTONS *
    ***********/
 
-  .ds-button-ghost {
-    @apply p-0 text-start;
-  }
-
-  .ds-button:not(.ds-button-ghost) {
+  .ds-button {
     @apply max-sm:ds-button-full-width sm:ds-button-large;
   }
 

@@ -16,9 +16,9 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import ParagraphList from "components/ParagraphList.tsx";
 import VisualisationItem from "components/VisualisationItem.tsx";
 import React from "react";
-import { regulations } from "../resources/content.ts";
-import { ROUTE_LAWS } from "../resources/staticRoutes.ts";
-import prependMetaTitle from "../utils/metaTitle.ts";
+import { regulations } from "resources/content.ts";
+import { ROUTE_LAWS } from "resources/staticRoutes.ts";
+import prependMetaTitle from "utils/metaTitle.ts";
 import {
   fetchStrapiData,
   paragraphFields,
@@ -26,12 +26,8 @@ import {
   prinzipCoreFields,
   Regelungsvorhaben,
   visualisationFields,
-} from "../utils/strapiData.server.ts";
-import {
-  formatDate,
-  gesetzStatusMap,
-  slugify,
-} from "../utils/utilFunctions.ts";
+} from "utils/strapiData.server.ts";
+import { formatDate, gesetzStatusMap, slugify } from "utils/utilFunctions.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);

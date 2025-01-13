@@ -1,3 +1,4 @@
+import type { ChangeEvent } from "react";
 import { twJoin } from "tailwind-merge";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
@@ -11,6 +12,7 @@ export type InputProps = Readonly<{
   helperText?: string;
   width?: "3" | "5" | "7" | "10" | "16" | "24" | "36" | "54";
   error?: string | null;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }>;
 
 const widthClass = (width: string) => {
@@ -35,6 +37,7 @@ export default function Input({
   helperText,
   width,
   error,
+  onChange,
 }: InputProps) {
   const errorId = `${name}-error`;
   const helperId = `${name}-helper`;
@@ -62,6 +65,7 @@ export default function Input({
             " ",
           )}
           aria-errormessage={error ? errorId : undefined}
+          onChange={onChange}
         />
         {suffix && (
           <div className="ds-input-suffix" aria-hidden="true">

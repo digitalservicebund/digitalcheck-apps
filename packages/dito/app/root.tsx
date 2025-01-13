@@ -5,6 +5,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Footer from "@digitalcheck/shared/components/Footer";
 import Heading from "@digitalcheck/shared/components/Heading";
 import RichText from "@digitalcheck/shared/components/RichText";
+import bundLogo from "@digitalcheck/shared/public/img/bund-logo.png";
 import sharedStyles from "@digitalcheck/shared/styles.css?url";
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
 import type {
@@ -42,7 +43,6 @@ import {
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
-import bundLogo from "../../shared/public/img/bund-logo.png";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
@@ -223,7 +223,7 @@ const PageHeader = ({
         <div className="ds-label-02-reg text-lg">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
-          <Button href="/unterstuetzung" look="ghost">
+          <Button href="/unterstuetzung" look="link">
             Unterstützungsangebote
           </Button>
           <span className="mx-8">|</span>
@@ -297,7 +297,8 @@ export default function App() {
         />
       }
     >
-      <main className="grow">
+      {/* .parent-bg-blue can be set by child components to set the background of main to blue (e.g. used for question pages) */}
+      <main className="grow [&:has(.parent-bg-blue)]:bg-blue-100">
         <Outlet context={{ featureFlags }} />
       </main>
     </Document>

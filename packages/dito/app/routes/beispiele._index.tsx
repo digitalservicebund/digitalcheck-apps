@@ -7,14 +7,14 @@ import {
   PrefetchPageLinks,
   useOutletContext,
 } from "@remix-run/react";
-import { Prinzip } from "utils/strapiData.server.ts";
-import { digitalSuitability } from "../resources/content.ts";
+import { digitalSuitability } from "resources/content.ts";
 import {
   ROUTE_EXAMPLES,
   ROUTE_PRINCIPLES,
   ROUTE_VISUALISATIONS,
-} from "../resources/staticRoutes.ts";
-import prependMetaTitle from "../utils/metaTitle.ts";
+} from "resources/staticRoutes.ts";
+import prependMetaTitle from "utils/metaTitle.ts";
+import { Prinzip } from "utils/strapiData.server.ts";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_EXAMPLES.title, matches);
