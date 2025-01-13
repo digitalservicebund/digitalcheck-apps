@@ -10,7 +10,7 @@ main .rich-text ol {
   @apply list-decimal ml-16;
 }
 
-main .ds-button:not(.ds-button-ghost) {
+main .ds-button {
   @apply max-sm:ds-button-full-width sm:ds-button-large;
 }
 

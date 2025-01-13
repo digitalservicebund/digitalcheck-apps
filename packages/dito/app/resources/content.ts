@@ -87,7 +87,7 @@ export const steps = {
       {
         text: "Zu „Erarbeiten“",
         href: ROUTE_METHODS.url,
-        look: "ghost" as const,
+        look: "link" as const,
       },
     ],
     finished: {
@@ -106,7 +106,7 @@ export const steps = {
       {
         text: "Zu „Dokumentieren“",
         href: ROUTE_DOCUMENTATION.url,
-        look: "ghost" as const,
+        look: "link" as const,
       },
     ],
     finished: {
@@ -162,7 +162,7 @@ export const landing = {
     link: {
       text: "Jetzt Beispiele entdecken",
       href: ROUTE_EXAMPLES.url,
-      look: "ghost" as const,
+      look: "link" as const,
     },
     /*    title: "Schulungsangebote im Herbst",
     text: `In den kommenden Monaten bieten wir 90-minütige Online-Schulungen an zu folgenden Themen:
@@ -171,7 +171,7 @@ export const landing = {
     link: {
       text: "Zu Schulungen anmelden",
       href: ROUTE_SUPPORT.url + "#angebote",
-      look: "ghost" as const,
+      look: "link" as const,
     },*/
   },
   summary: {

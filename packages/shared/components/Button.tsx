@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   text?: string;
-  look?: "primary" | "secondary" | "tertiary" | "ghost";
+  look?: "primary" | "secondary" | "tertiary" | "ghost" | "link";
   size?: "large" | "medium" | "small";
   href?: string;
   iconLeft?: ReactElement;
@@ -39,20 +39,23 @@ function Button({
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
-  const buttonClasses = twMerge(
-    "ds-button",
-    look == "secondary" && "ds-button-secondary",
-    look == "tertiary" && "ds-button-tertiary",
-    look == "ghost" && "ds-button-ghost",
-    size == "large" && "ds-button-large",
-    size == "small" && "ds-button-small",
-    (iconLeft ?? iconRight) && [
-      "ds-button-with-icon",
-      !children && "ds-button-with-icon-only",
-    ],
-    fullWidth && "ds-button-full-width",
-    props.className,
-  );
+  const buttonClasses =
+    look == "link"
+      ? "text-link font-bold"
+      : twMerge(
+          "ds-button",
+          look == "secondary" && "ds-button-secondary",
+          look == "tertiary" && "ds-button-tertiary",
+          look == "ghost" && "ds-button-ghost",
+          size == "large" && "ds-button-large",
+          size == "small" && "ds-button-small",
+          (iconLeft ?? iconRight) && [
+            "ds-button-with-icon",
+            !children && "ds-button-with-icon-only",
+          ],
+          fullWidth && "ds-button-full-width",
+          props.className,
+        );
 
   const textSpan = text ? <span className="ds-button-label">{text}</span> : "";
   const childrenSpan = <span className="ds-button-label">{children}</span>;
