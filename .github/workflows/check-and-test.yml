@@ -6,7 +6,7 @@ on:
       package:
         required: true
         type: string
-        description: "Package to check and test."
+        description: "The Package to check and test."
       shouldRunIntegrationTests:
         required: false
         type: boolean
