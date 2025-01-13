@@ -79,7 +79,7 @@ jobs:
           npx --yes playwright install --with-deps
 
       - name: Run E2E tests
-        if: ${{ inputs.shouldRunIntegrationTests == true }}
+        if: inputs.shouldRunIntegrationTests
         id: e2e
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
@@ -90,7 +90,7 @@ jobs:
           path: packages/${{ inputs.package }}/tests/playwright/playwright-report
 
       - name: Run A11y tests
-        if: ${{ inputs.shouldRunIntegrationTests == true }}
+        if: inputs.shouldRunIntegrationTests
         id: a11y
         run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
         env:
@@ -108,6 +108,6 @@ jobs:
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
-        if: ${{ failure() }}
+        if: failure()
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
