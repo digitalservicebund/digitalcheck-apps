@@ -115,7 +115,7 @@ export default function ResultPage({
                 heading={{
                   tagName: "h1",
                   look: "ds-heading-02-reg",
-                  text: resultContent.title,
+                  markdown: resultContent.title,
                   className: "mb-0",
                 }}
                 {...(resultHint && { content: { markdown: resultHint } })}
