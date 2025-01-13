@@ -54,7 +54,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   };
 }
 
-export default function Index() {
+export default function FivePrinciples() {
   const { referrer, prinzips } = useLoaderData<typeof loader>();
 
   const nextStep = referrer.startsWith(ROUTE_METHODS.url)

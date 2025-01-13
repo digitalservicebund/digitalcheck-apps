@@ -75,7 +75,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return { prinzip: prinzipData.prinzips[0] };
 };
 
-export default function Digitaltauglichkeit_Prinzipien_Detail() {
+export default function DigitaltauglichkeitPrinzipienDetail() {
   const { prinzip } = useLoaderData<typeof loader>();
   const prinzips = useOutletContext<Prinzip[]>();
 
