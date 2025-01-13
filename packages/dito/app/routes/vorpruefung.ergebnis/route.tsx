@@ -16,9 +16,9 @@ import {
 } from "utils/cookies.server";
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
-import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
-import resolveResultContent from "./resolveResultContent.ts";
-import ResultPage from "./ResultPage.tsx";
+import { PreCheckResult, ResultType } from "./PreCheckResult";
+import resolveResultContent from "./resolveResultContent";
+import ResultPage from "./ResultPage";
 import getResultValidatorForAnswers from "./resultValidation";
 
 const { questions } = preCheck;
@@ -92,16 +92,19 @@ function buildEmailBody(
 ) {
   const resultContent = resolveResultContent(answers, result);
 
-  let resultText: string = resultContent.title + "\n\n\n";
+  let resultText: string = resultContent.title.replaceAll("**", "") + "\n\n\n";
 
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
     .forEach(({ intro, reasons }) => {
-      resultText += intro.replaceAll("**", "") + "\n\n";
+      resultText += "➤ " + intro.replaceAll("**", "") + "\n\n";
       reasons
         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {
-          resultText += "- " + reason.text + "\n";
+          resultText += reason.answer === "yes" ? "+" : "";
+          resultText += reason.answer === "no" ? "-" : "";
+          resultText += reason.answer === "unsure" ? "?" : "";
+          resultText += " " + reason.text + "\n";
         });
       resultText += "\n\n";
     });
@@ -144,10 +147,13 @@ export async function action({ request }: ActionFunctionArgs) {
   const email = formData.get("email");
   const cc = email ? `&cc=${email as string}` : "";
   const recipients = resolveRecipients(result);
-  const mailToLink = encodeURI(
-    `mailto:${recipients}?subject=${subject}&body=${buildEmailBody(preCheckAnswers, result, formData.get("negativeReasoning") as string)}${cc}`,
+  const body = buildEmailBody(
+    preCheckAnswers,
+    result,
+    formData.get("negativeReasoning") as string,
   );
-  return redirect(mailToLink);
+  const uri = `mailto:${recipients}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${cc}`;
+  return redirect(uri);
 }
 
 export default function Result() {

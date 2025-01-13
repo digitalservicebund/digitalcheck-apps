@@ -4,7 +4,7 @@ import Header from "@digitalcheck/shared/components/Header";
 import { BulletList, NumberedList } from "@digitalcheck/shared/components/List";
 import { ListItemProps } from "@digitalcheck/shared/components/ListItem";
 import { type MetaFunction } from "@remix-run/react";
-import FeedbackForm from "components/FeedbackForm.tsx";
+import FeedbackForm from "components/FeedbackForm";
 import SupportBanner from "components/SupportBanner";
 import { renderToString } from "react-dom/server";
 import { methods } from "resources/content";

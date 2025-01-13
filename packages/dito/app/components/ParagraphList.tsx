@@ -1,23 +1,23 @@
-import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary.tsx";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
+import Heading from "@digitalcheck/shared/components/Heading";
 import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
 import { Link, useLocation } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode, useState } from "react";
-import { digitalSuitability } from "resources/content.ts";
+import { digitalSuitability } from "resources/content";
 import { twJoin } from "tailwind-merge";
 import {
   AbsatzWithNumber,
   isStandaloneAbsatz,
   nestListInListItems,
   prependNumberToAbsatz,
-} from "utils/blocksContentUtils.ts";
+} from "utils/blocksContentUtils";
 import type {
   Paragraph,
   Prinzip,
   PrinzipErfuellung,
-} from "utils/strapiData.server.ts";
-import { cyrb53 } from "utils/utilFunctions.ts";
+} from "utils/strapiData.server";
+import { cyrb53 } from "utils/utilFunctions";
 
 // Color mapping for different principles
 const HIGHLIGHT_COLORS = {

@@ -5,8 +5,8 @@ import { LoaderFunction } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { ReactNode } from "react";
 import allRoutes from "resources/allRoutes";
-import { ROUTE_SITEMAP } from "resources/staticRoutes.ts";
-import prependMetaTitle from "utils/metaTitle.ts";
+import { ROUTE_SITEMAP } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 
 interface Route {
   url: string;

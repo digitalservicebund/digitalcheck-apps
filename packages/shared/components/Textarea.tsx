@@ -2,7 +2,7 @@ import type { ChangeEvent, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 import InputError from "./InputError";
 import InputLabel from "./InputLabel";
-import InputWarning from "./InputWarning.tsx";
+import InputWarning from "./InputWarning";
 import RichText from "./RichText";
 
 type TextareaProps = Readonly<{

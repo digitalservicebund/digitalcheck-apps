@@ -1,4 +1,4 @@
-import { expect, Page, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { preCheck } from "resources/content";
 import { ROUTE_RESULT } from "resources/staticRoutes";
 
@@ -223,10 +223,11 @@ test.describe("test email positive result with mixed answers", () => {
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
       "In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
-      preCheck.questions[0].negativeResult,
+      "- " + preCheck.questions[0].negativeResult,
+      "? " + preCheck.questions[1].positiveResult,
     ];
-    for (let i = 1; i < preCheck.questions.length; i++) {
-      bodyContains.push(preCheck.questions[i].positiveResult);
+    for (let i = 2; i < preCheck.questions.length; i++) {
+      bodyContains.push("+ " + preCheck.questions[i].positiveResult);
     }
 
     await interceptMailToRedirectAndExpect(page, {

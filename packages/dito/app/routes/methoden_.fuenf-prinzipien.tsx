@@ -11,7 +11,7 @@ import {
   PrefetchPageLinks,
   useLoaderData,
 } from "@remix-run/react";
-import SupportBanner from "components/SupportBanner.tsx";
+import SupportBanner from "components/SupportBanner";
 import { fivePrinciples } from "resources/content";
 import {
   ROUTE_EXAMPLES,
@@ -24,8 +24,8 @@ import {
   fetchStrapiData,
   GET_PRINZIPS_QUERY,
   Prinzip,
-} from "utils/strapiData.server.ts";
-import { slugify } from "utils/utilFunctions.ts";
+} from "utils/strapiData.server";
+import { slugify } from "utils/utilFunctions";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);

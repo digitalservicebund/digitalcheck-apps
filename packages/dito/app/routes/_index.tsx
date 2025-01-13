@@ -4,13 +4,13 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon.tsx";
+import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { Link } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 import { landing } from "resources/content";
-import { useFeatureFlag } from "utils/featureFlags.ts";
+import { useFeatureFlag } from "utils/featureFlags";
 
 export default function Index() {
   const showLinksToTools = useFeatureFlag("digitalcheck.show-links-to-tools");

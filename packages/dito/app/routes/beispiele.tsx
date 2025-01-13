@@ -5,7 +5,7 @@ import {
   fetchStrapiData,
   GET_PRINZIPS_QUERY,
   Prinzip,
-} from "utils/strapiData.server.ts";
+} from "utils/strapiData.server";
 
 export async function loader() {
   const prinzipData = await fetchStrapiData<{ prinzips: Prinzip[] }>(

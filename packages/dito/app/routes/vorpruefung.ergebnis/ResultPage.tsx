@@ -1,10 +1,10 @@
-import Background from "@digitalcheck/shared/components/Background.tsx";
-import Box from "@digitalcheck/shared/components/Box.tsx";
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
-import Header from "@digitalcheck/shared/components/Header.tsx";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
 import { NumberedList } from "@digitalcheck/shared/components/List";
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
+import RichText from "@digitalcheck/shared/components/RichText";
 import {
   ControlPointOutlined,
   HelpOutline,
@@ -13,14 +13,17 @@ import {
 import CancelOutlined from "@digitalservicebund/icons/CancelOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
 import WarningAmberOutlined from "@digitalservicebund/icons/WarningAmberOutlined";
-import Accordion from "components/Accordion.tsx";
+import Accordion from "components/Accordion";
 import { useState } from "react";
 import { preCheck } from "resources/content";
-import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import type { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import {
+  type PreCheckResult,
+  ResultType,
+} from "routes/vorpruefung.ergebnis/PreCheckResult";
 import { twJoin } from "tailwind-merge";
-import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
-import resolveResultContent, { Reason } from "./resolveResultContent.ts";
-import ResultForm from "./ResultForm.tsx";
+import resolveResultContent, { type Reason } from "./resolveResultContent";
+import ResultForm from "./ResultForm";
 
 const nextSteps = {
   [ResultType.POSITIVE]: preCheck.result.positive.nextSteps,
@@ -99,7 +102,7 @@ export default function ResultPage({
                 heading={{
                   tagName: "h2",
                   look: "ds-heading-03-reg",
-                  text: `Ihr Vorhaben: ${policyTitle}`,
+                  text: `${preCheck.result.print.titlePrefix}${policyTitle}`,
                   className: "hidden print:block pb-24 font-bold",
                 }}
               />
@@ -112,7 +115,7 @@ export default function ResultPage({
                 heading={{
                   tagName: "h1",
                   look: "ds-heading-02-reg",
-                  text: resultContent.title,
+                  markdown: resultContent.title,
                   className: "mb-0",
                 }}
                 {...(resultHint && { content: { markdown: resultHint } })}

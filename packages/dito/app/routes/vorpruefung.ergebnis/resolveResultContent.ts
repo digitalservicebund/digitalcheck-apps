@@ -1,9 +1,9 @@
-import { preCheck } from "resources/content.ts";
-import {
+import { preCheck } from "resources/content";
+import type {
   PreCheckAnswerOption,
   PreCheckAnswers,
-} from "../vorpruefung.$questionId/route.tsx";
-import { PreCheckResult, ResultType } from "./PreCheckResult.tsx";
+} from "routes/vorpruefung.$questionId/route";
+import { PreCheckResult, ResultType } from "./PreCheckResult";
 
 const { questions } = preCheck;
 

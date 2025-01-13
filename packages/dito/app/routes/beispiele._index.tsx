@@ -1,20 +1,20 @@
-import Background from "@digitalcheck/shared/components/Background.tsx";
-import Box from "@digitalcheck/shared/components/Box.tsx";
-import Container from "@digitalcheck/shared/components/Container.tsx";
-import Header from "@digitalcheck/shared/components/Header.tsx";
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
 import {
   MetaFunction,
   PrefetchPageLinks,
   useOutletContext,
 } from "@remix-run/react";
-import { digitalSuitability } from "resources/content.ts";
+import { digitalSuitability } from "resources/content";
 import {
   ROUTE_EXAMPLES,
   ROUTE_PRINCIPLES,
   ROUTE_VISUALISATIONS,
-} from "resources/staticRoutes.ts";
-import prependMetaTitle from "utils/metaTitle.ts";
-import { Prinzip } from "utils/strapiData.server.ts";
+} from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
+import { Prinzip } from "utils/strapiData.server";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_EXAMPLES.title, matches);

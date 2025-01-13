@@ -1,4 +1,4 @@
-import RichText from "@digitalcheck/shared/components/RichText.tsx";
+import RichText from "@digitalcheck/shared/components/RichText";
 import { Add, Remove } from "@digitalservicebund/icons";
 import { ReactNode } from "react";
 

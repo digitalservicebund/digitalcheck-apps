@@ -1,4 +1,4 @@
-import Container from "@digitalcheck/shared/components/Container.tsx";
+import Container from "@digitalcheck/shared/components/Container";
 import {
   Link,
   MetaFunction,
@@ -6,26 +6,26 @@ import {
   useOutletContext,
 } from "@remix-run/react";
 
-import Background from "@digitalcheck/shared/components/Background.tsx";
-import Box from "@digitalcheck/shared/components/Box.tsx";
-import CustomLink from "@digitalcheck/shared/components/CustomLink.tsx";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
-import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList.tsx";
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import CustomLink from "@digitalcheck/shared/components/CustomLink";
+import Heading from "@digitalcheck/shared/components/Heading";
+import InlineInfoList from "@digitalcheck/shared/components/InlineInfoList";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import ParagraphList from "components/ParagraphList.tsx";
-import { regulations } from "resources/content.ts";
-import prependMetaTitle from "utils/metaTitle.ts";
+import ParagraphList from "components/ParagraphList";
+import { regulations } from "resources/content";
+import prependMetaTitle from "utils/metaTitle";
 
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
-import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "resources/staticRoutes.ts";
+import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "resources/staticRoutes";
 import {
   fetchStrapiData,
   paragraphFields,
   type Prinzip,
   prinzipCoreFields,
-} from "utils/strapiData.server.ts";
-import { formatDate, gesetzStatusMap } from "utils/utilFunctions.ts";
+} from "utils/strapiData.server";
+import { formatDate, gesetzStatusMap } from "utils/utilFunctions";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);

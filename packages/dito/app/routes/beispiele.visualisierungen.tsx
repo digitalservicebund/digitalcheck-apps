@@ -1,17 +1,17 @@
-import Background from "@digitalcheck/shared/components/Background.tsx";
-import Container from "@digitalcheck/shared/components/Container.tsx";
-import Header from "@digitalcheck/shared/components/Header.tsx";
-import Heading from "@digitalcheck/shared/components/Heading.tsx";
+import Background from "@digitalcheck/shared/components/Background";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
 import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import VisualisationItem from "components/VisualisationItem.tsx";
-import { visualisations } from "resources/content.ts";
-import { ROUTE_LAWS, ROUTE_VISUALISATIONS } from "resources/staticRoutes.ts";
-import prependMetaTitle from "utils/metaTitle.ts";
+import VisualisationItem from "components/VisualisationItem";
+import { visualisations } from "resources/content";
+import { ROUTE_LAWS, ROUTE_VISUALISATIONS } from "resources/staticRoutes";
+import prependMetaTitle from "utils/metaTitle";
 import {
   fetchStrapiData,
   visualisationFields,
   Visualisierung,
-} from "utils/strapiData.server.ts";
+} from "utils/strapiData.server";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);
