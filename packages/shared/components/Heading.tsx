@@ -1,4 +1,4 @@
-import RichText from "components/RichText";
+import RichText from "@digitalcheck/shared/components/RichText";
 import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
