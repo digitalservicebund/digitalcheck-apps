@@ -286,7 +286,7 @@ function Paragraph({
 
   return (
     <div key={paragraph.Nummer}>
-      <div className="ds-stack-8 rich-text">
+      <div className="ds-stack-8">
         <Heading
           tagName="h3"
           text={`§ ${paragraph.Nummer} ${paragraph.Gesetz}`}

@@ -117,7 +117,7 @@ export default function DigitaltauglichkeitPrinzipienDetail() {
         </Container>
       </Background>
       {GuteUmsetzungen.length > 0 && (
-        <Container className="rich-text ds-stack-64">
+        <Container className="ds-stack-64">
           {GuteUmsetzungen.map(
             (digitalcheck) =>
               digitalcheck.Regelungsvorhaben && (
@@ -135,7 +135,7 @@ export default function DigitaltauglichkeitPrinzipienDetail() {
                       tagName="h2"
                       text={digitalcheck.Regelungsvorhaben.Titel}
                       look="ds-heading-03-bold"
-                      className="inline max-w-full"
+                      className="inline max-w-full text-link"
                     />
                     <OpenInNewIcon className="!inline scale-90 ml-4 mb-6 fill-blue-800" />
                   </Link>

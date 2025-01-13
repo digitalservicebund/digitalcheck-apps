@@ -84,7 +84,7 @@ export default function BeispieleVisualisierungen() {
       <Container>
         {Array.from(groupedVisualisations.entries()).map(
           ([regelungTitle, visualisations]) => (
-            <div key={regelungTitle} className="rich-text ds-stack-8">
+            <div key={regelungTitle} className="ds-stack-8">
               <Link
                 to={`${ROUTE_LAWS.url}/${visualisations[0].Digitalcheck?.Regelungsvorhaben?.URLBezeichnung}`}
                 prefetch="viewport"
@@ -92,7 +92,7 @@ export default function BeispieleVisualisierungen() {
                 <Heading
                   tagName="h2"
                   text={regelungTitle}
-                  look="ds-heading-02-bold"
+                  look="ds-heading-02-bold text-link"
                 />
               </Link>
 

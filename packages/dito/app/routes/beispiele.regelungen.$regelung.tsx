@@ -199,10 +199,7 @@ export default function Gesetz() {
           </Container>
         )}
       {regelung.Digitalchecks.map((digitalcheck, index) => (
-        <Container
-          key={digitalcheck.documentId}
-          className="pb-80 ds-stack-64 rich-text"
-        >
+        <Container key={digitalcheck.documentId} className="pb-80 ds-stack-64">
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
             <>
