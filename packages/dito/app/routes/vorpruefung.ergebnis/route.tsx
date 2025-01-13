@@ -92,7 +92,7 @@ function buildEmailBody(
 ) {
   const resultContent = resolveResultContent(answers, result);
 
-  let resultText: string = resultContent.title.replaceAll("**", "") + "\n\n\n";
+  let resultText: string = resultContent.title + "\n\n\n";
 
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
