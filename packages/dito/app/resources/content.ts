@@ -1434,7 +1434,7 @@ export const support = {
         title: "Beratung erhalten Sie in einem 45-minütigem Gespräch",
         text: "In einem (Video)-Telefonat können wir gemeinsam herausfinden, welche Unterstützungsangebote für Sie hilfreich sind.",
         iframe:
-          "https://calendar.google.com/calendar/appointments/AcZssZ1rn-7U8Z3vyOlK54HCPidwdJCk6a0RC7OIqjk=?gv=true",
+          "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3BuTyFqeNVDgXvAKBi1u45DbKYBXV7v9Gj2SsKvjiw-kulBNNoPxHDVEccLjUm491ySKM4bZSp?gv=true",
         buttons: [
           {
             text: "Termin buchen",
