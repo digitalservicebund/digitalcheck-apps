@@ -55,7 +55,6 @@
   p,
   .rich-text ul,
   .rich-text ol {
-    /* 70ch @ 18px font size = 630px */
     @apply max-w-prose;
   }
 
@@ -163,6 +162,7 @@
   }
 
   .max-w-prose {
+    /* 70ch @ 18px font size = 630px */
     max-width: 630px;
   }
 }
