@@ -53,8 +53,8 @@
   .ds-heading-03-reg,
   .ds-heading-03-bold,
   p,
-  .rich-text ul,
-  .rich-text ol {
+  ul,
+  ol {
     @apply max-w-prose;
   }
 

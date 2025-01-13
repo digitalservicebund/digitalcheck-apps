@@ -111,7 +111,7 @@ export default function Gesetz() {
           <p className="mt-24 ds-label-01-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
-          <ol className="mt-16">
+          <ol className="mt-16 list-none pl-0">
             {regelung.Digitalchecks.map((digitalcheck, index) => (
               <React.Fragment key={digitalcheck.documentId}>
                 {digitalcheck.Paragraphen.length > 0 && (
