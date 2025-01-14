@@ -6,7 +6,7 @@ on:
       package:
         required: true
         type: string
-        description: "Package to check and test."
+        description: "The Package to check and test."
       shouldRunIntegrationTests:
         required: false
         type: boolean
@@ -66,23 +66,21 @@ jobs:
         run: npm test --workspace ${{ env.WORKSPACE }}
 
       - name: Install E2E & A11y test dependencies
-        if: ${{ inputs.shouldRunIntegrationTests == true }}
-        run: |
-          npx --yes playwright install --with-deps
+        run: npx --yes playwright install --with-deps
 
       - name: Run E2E tests
-        if: ${{ inputs.shouldRunIntegrationTests == true }}
+        if: inputs.shouldRunIntegrationTests
         id: e2e
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
       - uses: actions/upload-artifact@v4
-        if: ${{ failure() && steps.e2e.outcome == 'failure' }}
+        if: failure() && steps.e2e.outcome == 'failure'
         with:
           name: playwright-e2e-test-results
           path: packages/${{ inputs.package }}/tests/playwright/playwright-report
 
       - name: Run A11y tests
-        if: ${{ inputs.shouldRunIntegrationTests == true }}
+        if: inputs.shouldRunIntegrationTests
         id: a11y
         run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
         env:
@@ -93,13 +91,13 @@ jobs:
           VITE_PORT: 4183
 
       - uses: actions/upload-artifact@v4
-        if: ${{ failure() && steps.a11y.outcome == 'failure' }}
+        if: failure() && steps.a11y.outcome == 'failure'
         with:
           name: playwright-a11y-test-results
           path: packages/*/tests/a11y/playwright-report
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
-        if: ${{ failure() }}
+        if: failure()
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
