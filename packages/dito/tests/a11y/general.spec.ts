@@ -24,10 +24,8 @@ test.describe("basic example a11y test", () => {
           await page.goto(redirectedUrl);
         }
 
-        const accessibilityScanResults = await new AxeBuilder({
-          page,
-        }).analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        const accessibilityResults = await new AxeBuilder({ page }).analyze();
+        expect(accessibilityResults.violations).toEqual([]);
       });
     });
 
