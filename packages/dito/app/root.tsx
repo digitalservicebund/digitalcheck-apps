@@ -24,6 +24,7 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
 import React, { type ReactNode } from "react";
@@ -44,6 +45,8 @@ import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
 import styles from "./styles.css?url";
+
+export type RootLoader = typeof loader;
 
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
@@ -311,6 +314,7 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
+  const loaderData = useRouteLoaderData<RootLoader>("root");
   const error = useRouteError();
 
   let errorStatus = `${500}`;
@@ -336,7 +340,7 @@ Vielen Dank für Ihr Verständnis.`;
     <Document
       error={true}
       trackingScript={
-        !process.env.TRACKING_DISABLED && (
+        loaderData?.trackingDisabled && (
           <script
             key={"error-tracking"}
             defer
