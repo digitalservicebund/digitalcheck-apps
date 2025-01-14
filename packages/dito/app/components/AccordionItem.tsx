@@ -12,10 +12,10 @@ export default function AccordionItem({
   headline,
   content,
   id,
-}: AccordionItemProps) {
+}: Readonly<AccordionItemProps>) {
   return (
     <details className="border-t-2 border-t-blue-800 group" id={id}>
-      <summary className="accordion-summary w-full p-24 flex items-center justify-between hover:bg-blue-200 focus:bg-blue-200 focus:outline focus:outline-4 focus:outline-blue-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-800 cursor-pointer group-open:bg-blue-200">
+      <summary className="w-full p-24 flex items-center justify-between cursor-pointer hover:bg-blue-200 group-open:bg-blue-200 focus-visible:bg-blue-200 focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
         <div className="pr-10 font-bold text-left text-16 leading-22 md:text-18 md:leading-24 text-blue-800">
           {headline}
         </div>

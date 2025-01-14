@@ -107,7 +107,7 @@ export default function Gesetz() {
           <p className="mt-24 ds-label-01-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
-          <ol className="mt-16">
+          <ol className="list-unstyled mt-16">
             {regelung.Digitalchecks.map((digitalcheck, index) => (
               <React.Fragment key={digitalcheck.documentId}>
                 {digitalcheck.Paragraphen.length > 0 && (
@@ -195,10 +195,7 @@ export default function Gesetz() {
           </Container>
         )}
       {regelung.Digitalchecks.map((digitalcheck, index) => (
-        <Container
-          key={digitalcheck.documentId}
-          className="pb-80 ds-stack-64 rich-text"
-        >
+        <Container key={digitalcheck.documentId} className="pb-80 ds-stack-64">
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
             <>

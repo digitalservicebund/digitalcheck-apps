@@ -26,7 +26,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
       {link?.preText}{" "}
       <Link
         to={link.url}
-        className="text-link increase-tap-area"
+        className="text-link increase-tap-area whitespace-nowrap"
         target={link.openInNewTab ? "_blank" : undefined}
         rel={link.openInNewTab ? "noreferrer" : undefined}
         aria-describedby={
@@ -46,7 +46,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
   );
 
   const renderLinks = (links: LinkProps[]) => (
-    <ul className="list-none ds-stack-16" key={links[0]?.url}>
+    <ul className="list-unstyled ds-stack-16" key={links[0]?.url}>
       {links.map(renderLink)}
     </ul>
   );

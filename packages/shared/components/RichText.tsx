@@ -1,3 +1,4 @@
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import { marked, Marked, type Renderer, type Tokens } from "marked";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import { openInNewIconString } from "./openInNewWindow";
@@ -27,7 +28,7 @@ const RichText = ({
           const newLinkHtml = linkHtml
             .replace(
               /^<a /,
-              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" class="inline-" `,
+              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" `,
             )
             .replace(
               `>${token.text}<`,
@@ -45,7 +46,7 @@ const RichText = ({
         if (ext === "PDF" || ext === "XLSX") {
           return linkHtml.replace(
             /^<a /,
-            `<a download title="${`${token.text} (${ext}-Datei)`}" `,
+            `<a download title="${token.text} (${ext}-Datei)" `,
           );
         }
 
@@ -61,7 +62,10 @@ const RichText = ({
   return html ? (
     <div
       {...props}
-      className={`rich-text ds-stack-8 ${className ?? ""}`}
+      className={twMerge(
+        "ds-stack-8 [&_a]:text-link [&_a]:font-bold",
+        className,
+      )}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   ) : null;

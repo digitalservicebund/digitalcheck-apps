@@ -54,7 +54,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   };
 }
 
-export default function Index() {
+export default function FivePrinciples() {
   const { referrer, prinzips } = useLoaderData<typeof loader>();
 
   const nextStep = referrer.startsWith(ROUTE_METHODS.url)
@@ -75,7 +75,7 @@ export default function Index() {
           />
           <div className="mt-64">
             <Heading tagName="div" text="Inhalt" className="font-bold" />
-            <ol className="ds-stack-8 mt-16">
+            <ol className="list-unstyled ds-stack-8 mt-16">
               {fivePrinciples.principles.map((principle) => (
                 <li key={principle.label}>
                   <Link

@@ -1,5 +1,5 @@
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import type { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
 
 export type InlineInfoListItem =
   | { key?: string; label: string; value: ReactNode }

@@ -128,8 +128,8 @@ export default function ResultPage({
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (
                   <React.Fragment key={intro}>
-                    <RichText className="mt-40 first:mt-0" markdown={intro} />
-                    <ul className="ds-stack-16 mt-16">
+                    <RichText markdown={intro} className="mt-40 first:mt-0" />
+                    <ul className="ds-stack-16 mt-16 pl-0">
                       {reasons
                         .toSorted((a, b) => {
                           if (a.answer === b.answer) {

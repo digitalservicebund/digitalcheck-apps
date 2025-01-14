@@ -162,7 +162,7 @@ const AbsatzContent = ({
     const content = nestListInListItems(prependNumberToAbsatz(absatzGroup));
 
     return (
-      <div className="paragraph-list">
+      <div className="[&_ol]:list-decimal [&_ol_ol]:list-[lower-alpha]">
         <BlocksRenderer
           content={content}
           modifiers={{
@@ -286,7 +286,7 @@ function Paragraph({
 
   return (
     <div key={paragraph.Nummer}>
-      <div className="ds-stack-8 rich-text">
+      <div className="ds-stack-8">
         <Heading
           tagName="h3"
           text={`§ ${paragraph.Nummer} ${paragraph.Gesetz}`}

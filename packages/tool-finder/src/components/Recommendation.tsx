@@ -31,10 +31,10 @@ export default function renderRecommendation({
         <Heading tagName="h3" look="ds-heading-03-bold" text={tool.name} />
         <div className="flex flex-col sm:flex-row gap-16 sm:gap-24">
           <RichText
-            className="flex-1 [word-break:break-word]"
             markdown={`${tool.description}
               ${tool.link ? `\n\n${tool.link}` : ""}
               ${tool.access ? "\n\n" + tool.access : ""}`}
+            className="flex-1 [word-break:break-word]"
           />
           {(tool.img.src || recommendation.alternativeTools.length > 0) && (
             <div className="flex-1 space-y-24">

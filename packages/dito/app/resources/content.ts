@@ -238,15 +238,19 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
       },
     ],
   },
-  principals: {
+  principles: {
     title: "5 Prinzipien für digitaltaugliche Gesetzgebung",
-    content: `1. Prinzip 1: Digitale Kommunikation sicherstellen
-2. Prinzip 2: Wiederverwendung von Daten und Standards ermöglichen
-3. Prinzip 3: Datenschutz und Informationssicherheit gewährleisten
-4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
-5. Prinzip 5: Automatisierung ermöglichen
-
-[Details und Beispiele](${ROUTE_METHODS_FIVE_PRINCIPLES.url})`,
+    content: [
+      "Prinzip 1: Digitale Kommunikation sicherstellen",
+      "Prinzip 2: Wiederverwendung von Daten und Standards ermöglichen",
+      "Prinzip 3: Datenschutz und Informationssicherheit gewährleisten",
+      "Prinzip 4: Klare Regelungen für eine digitale Ausführung finden",
+      "Prinzip 5: Automatisierung ermöglichen",
+    ],
+    link: {
+      text: "Details und Beispiele",
+      href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
+    },
   },
 };
 
