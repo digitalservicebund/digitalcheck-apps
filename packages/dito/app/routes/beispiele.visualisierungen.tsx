@@ -43,28 +43,20 @@ export const loader = async () => {
   return visualisationsData.visualisierungen;
 };
 
-const groupByRegelung = (visualisations: Visualisierung[]) => {
-  const grouped = new Map<string, Visualisierung[]>();
-
-  visualisations.forEach((visualisation) => {
-    const regelung = visualisation.Digitalcheck?.Regelungsvorhaben;
-
-    if (regelung?.Titel) {
-      if (!grouped.has(regelung.Titel)) {
-        grouped.set(regelung.Titel, []);
-      }
-      grouped.get(regelung.Titel)?.push(visualisation);
-    }
-  });
-
-  return grouped;
-};
-
 export default function BeispieleVisualisierungen() {
   const visualisationsData = useLoaderData<typeof loader>();
 
   // Group visualisations by Regelung
-  const groupedVisualisations = groupByRegelung(visualisationsData);
+  const groupedVisualisations = visualisationsData.reduce(
+    (acc, item) => {
+      const title = item.Digitalcheck?.Regelungsvorhaben?.Titel;
+      if (!title) return acc;
+      acc[title] = acc[title] ?? [];
+      acc[title].push(item);
+      return acc;
+    },
+    {} as Record<string, Visualisierung[]>,
+  );
   return (
     <>
       <Background backgroundColor="blue">
@@ -82,7 +74,7 @@ export default function BeispieleVisualisierungen() {
         </Container>
       </Background>
       <Container>
-        {Array.from(groupedVisualisations.entries()).map(
+        {Object.entries(groupedVisualisations).map(
           ([regelungTitle, visualisations]) => (
             <div key={regelungTitle} className="ds-stack-8">
               <Link

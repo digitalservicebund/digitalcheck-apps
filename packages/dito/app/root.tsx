@@ -24,6 +24,7 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
 import React, { type ReactNode } from "react";
@@ -57,6 +58,7 @@ export function loader({ request }: LoaderFunctionArgs) {
     BASE_URL,
     PLAUSIBLE_DOMAIN,
     PLAUSIBLE_SCRIPT,
+    trackingDisabled: process.env.TRACKING_DISABLED === "true",
     featureFlags,
   };
 }
@@ -258,7 +260,7 @@ function Document({
 }: Readonly<{
   children: ReactNode;
   error?: boolean;
-  trackingScript: React.ReactNode;
+  trackingScript?: React.ReactNode;
 }>) {
   const nonce = useNonce();
 
@@ -267,7 +269,7 @@ function Document({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {trackingScript}
+        {trackingScript && trackingScript}
         <Meta />
         <Links />
       </head>
@@ -283,18 +285,20 @@ function Document({
 }
 
 export default function App() {
-  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT, featureFlags } =
+  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT, trackingDisabled, featureFlags } =
     useLoaderData<typeof loader>();
 
   return (
     <Document
       trackingScript={
-        <script
-          key={"app-tracking"}
-          defer
-          data-domain={PLAUSIBLE_DOMAIN}
-          src={PLAUSIBLE_SCRIPT}
-        />
+        !trackingDisabled && (
+          <script
+            key={"app-tracking"}
+            defer
+            data-domain={PLAUSIBLE_DOMAIN}
+            src={PLAUSIBLE_SCRIPT}
+          />
+        )
       }
     >
       {/* .parent-bg-blue can be set by child components to set the background of main to blue (e.g. used for question pages) */}
@@ -306,6 +310,7 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
+  const loaderData = useRouteLoaderData<typeof loader>("root");
   const error = useRouteError();
 
   let errorStatus = `${500}`;
@@ -331,12 +336,14 @@ Vielen Dank für Ihr Verständnis.`;
     <Document
       error={true}
       trackingScript={
-        <script
-          key={"error-tracking"}
-          defer
-          data-domain={CLIENT_PLAUSIBLE_DOMAIN}
-          src={CLIENT_PLAUSIBLE_SCRIPT}
-        />
+        loaderData?.trackingDisabled && (
+          <script
+            key={"error-tracking"}
+            defer
+            data-domain={CLIENT_PLAUSIBLE_DOMAIN}
+            src={CLIENT_PLAUSIBLE_SCRIPT}
+          />
+        )
       }
     >
       <main id="error" className="grow">
