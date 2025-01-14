@@ -36,6 +36,10 @@ import {
   ROUTE_PRIVACY,
   ROUTE_SITEMAP,
 } from "resources/staticRoutes";
+import {
+  PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
+  PLAUSIBLE_SCRIPT as CLIENT_PLAUSIBLE_SCRIPT,
+} from "utils/constants";
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
@@ -336,8 +340,8 @@ Vielen Dank für Ihr Verständnis.`;
           <script
             key={"error-tracking"}
             defer
-            data-domain={PLAUSIBLE_DOMAIN}
-            src={PLAUSIBLE_SCRIPT}
+            data-domain={CLIENT_PLAUSIBLE_DOMAIN}
+            src={CLIENT_PLAUSIBLE_SCRIPT}
           />
         )
       }
