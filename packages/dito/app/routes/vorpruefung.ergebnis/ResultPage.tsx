@@ -131,9 +131,12 @@ export default function ResultPage({
                     <RichText className="mt-40 first:mt-0" markdown={intro} />
                     <ul className="ds-stack-16 mt-16">
                       {reasons
-                        .toSorted((reason) =>
-                          reason.answer === "yes" ? -1 : 1,
-                        )
+                        .toSorted((a, b) => {
+                          if (a.answer === b.answer) {
+                            return 0; // Keep the original order
+                          }
+                          return a.answer === "yes" ? -1 : 1; // "yes" comes before "no"
+                        })
                         .map((reason) => getReasonListItem(reason))}
                     </ul>
                   </React.Fragment>
