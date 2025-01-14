@@ -46,8 +46,6 @@ import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
 import styles from "./styles.css?url";
 
-export type RootLoader = typeof loader;
-
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
 
@@ -314,7 +312,7 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
-  const loaderData = useRouteLoaderData<RootLoader>("root");
+  const loaderData = useRouteLoaderData<typeof loader>("root");
   const error = useRouteError();
 
   let errorStatus = `${500}`;
