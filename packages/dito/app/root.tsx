@@ -307,9 +307,6 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
-  const { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT, trackingDisabled } =
-    useLoaderData<typeof loader>();
-
   const error = useRouteError();
 
   let errorStatus = `${500}`;
@@ -335,7 +332,7 @@ Vielen Dank für Ihr Verständnis.`;
     <Document
       error={true}
       trackingScript={
-        !trackingDisabled && (
+        !process.env.TRACKING_DISABLED && (
           <script
             key={"error-tracking"}
             defer
