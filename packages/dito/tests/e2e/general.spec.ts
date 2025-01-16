@@ -4,33 +4,25 @@ import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
-  test.afterEach(async ({ context }) => {
-    for (const page of context.pages()) {
-      await page.close();
-    }
-    await context.close();
-  });
-
   test("landing page to not have breadcrumbs", async ({ page }) => {
     await page.goto(allRoutes[0].url);
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
   });
 
-  test("all routes are reachable and have a breadcrumb menu + title if they aren't landing page or a PDF", async ({
-    page,
-  }) => {
-    test.setTimeout(90000);
-    // Remove first page from allRoutes array
-    for (const route of allRoutes.slice(1)) {
-      if (route.url.endsWith(".pdf")) {
-        continue;
-      }
+  // Remove landing page
+  allRoutes.slice(1).forEach((route) => {
+    if (route.url.endsWith(".pdf")) {
+      return;
+    }
+    test(`${route.url} is reachable and has a breadcrumb menu + title`, async ({
+      page,
+    }) => {
       await page.goto(route.url, { waitUntil: "networkidle" });
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(
         /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
       );
-    }
+    });
   });
 });
 
