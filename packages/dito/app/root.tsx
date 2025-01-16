@@ -234,13 +234,13 @@ const PageHeader = ({
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click plausible-event-position=header"
+          className="ds-link-01-bold plausible-event-name=Phone+Click plausible-event-position=header"
         >
           {header.contact.number}
         </a>
       </div>
       <div className="lg:hidden">
-        <a href="/unterstuetzung" className="ds-link-01-bold text-lg underline">
+        <a href="/unterstuetzung" className="ds-link-01-bold">
           Kontakt & Unterstützung
         </a>
       </div>
