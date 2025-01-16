@@ -580,14 +580,16 @@ Beispiele für Akteur:innen sind:
       emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
-      policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
+      policyTitleTooLong:
+        "Bitte wählen Sie einen kürzeren Titel (100 Zeichen) und ergänzen Sie diesen gegebenenfalls direkt in der resultierenden E-Mail.",
       precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
       reasonLabel: "Begründung",
       reasonRequired:
         "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
       reasonLong:
         "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
-      reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
+      reasonTooLong:
+        "Bitte geben Sie eine kürzere Begründung ein (500 Zeichen) und ergänzen Sie diese gegebenenfalls direkt in der resultierenden E-Mail.",
       faqs: {
         title: "Häufige Fragen zum Senden der Vorprüfung",
         details: [
@@ -627,31 +629,9 @@ Beispiele für Akteur:innen sind:
         bodyBefore: `Guten Tag,
 
 hiermit erhalten Sie das Ergebnis Ihrer Vorprüfung:`,
-        bodyAfter: `✎ Veraktung der E-Mail zur Dokumentation
-        
-Es gibt zwei Möglichkeiten, die E-Mail zu verakten:
-
-Manuell über Outlook:
-- Klicken Sie in Outlook auf „Drucken“.
-- Wählen Sie „Speichern als PDF“ und speichern Sie die Datei ab.
-- Fügen Sie das PDF anschließend in Ihr E-Akten-System ein.
-
-Direkte Veraktung:
-- Nutzen Sie, falls vorhanden, die direkte Veraktungsfunktion in Outlook.
-  
-        
-        
-        
-Mit freundlichen Grüßen
+        bodyAfter: `Mit freundlichen Grüßen
 
 *Diese E-Mail wurde automatisch erstellt.*
-
-------------------------------------------
-
-Der Digitalcheck ist die Prozessbegleitung für digitaltaugliche Gesetze und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
-
-Mehr Informationen zu Digitaltauglichkeit finden Sie unter Mehr Informationen zu Digitaltauglichkeit finden Sie unter erarbeiten.digitalcheck.bund.de.
-Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über digitalcheck@digitalservice.bund.de oder rufen Sie uns an unter 0151/40 76 78 39.
 `,
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",
