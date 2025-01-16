@@ -113,7 +113,7 @@ function buildEmailBody(
     ? preCheck.result.form.reasonLabel + ":\n\n" + negativeReasoning + "\n\n"
     : "";
 
-  return `${emailTemplate.bodyBefore}\n${resultText}${emailTemplate.bodyAfter}`;
+  return `${emailTemplate.bodyBefore}\n${resultText}\n\n${emailTemplate.bodyAfter}`;
 }
 
 function resolveRecipients(result: PreCheckResult) {

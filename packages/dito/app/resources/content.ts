@@ -576,14 +576,16 @@ Beispiele für Akteur:innen sind:
       emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
-      policyTitleTooLong: "Bitte wählen Sie einen kürzeren Titel.",
+      policyTitleTooLong:
+        "Bitte wählen Sie einen kürzeren Titel und ergänzen Sie diesen gegebenenfalls direkt in der resultierenden E-Mail.",
       precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
       reasonLabel: "Begründung",
       reasonRequired:
         "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
       reasonLong:
         "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
-      reasonTooLong: "Bitte geben Sie eine kürzere Begründung ein.",
+      reasonTooLong:
+        "Bitte geben Sie eine kürzere Begründung ein und ergänzen Sie diese gegebenenfalls direkt in der resultierenden E-Mail.",
       faqs: {
         title: "Häufige Fragen zum Senden der Vorprüfung",
         details: [
@@ -626,11 +628,6 @@ hiermit erhalten Sie das Ergebnis Ihrer Vorprüfung:`,
         bodyAfter: `Mit freundlichen Grüßen
 
 *Diese E-Mail wurde automatisch erstellt.*
-
-------------------------------------------
-
-Der Digitalcheck ist die Prozessbegleitung für digitaltaugliche Gesetze und ab Januar 2025 interoperable Regelungsvorhaben. Dieser Auftrag wurde dem Digitalcheck vom BMI erteilt.
-Bei inhaltlichen Anliegen zu Ihrem Regelungsvorhaben helfen wir Ihnen gerne weiter. Schreiben Sie uns über digitalcheck@digitalservice.bund.de oder rufen Sie uns an unter 0151/40 76 78 39.
 `,
       },
       downloadStarted: "Vorprüfung wird heruntergeladen",

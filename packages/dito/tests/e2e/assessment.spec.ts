@@ -70,7 +70,7 @@ test.describe("test positive assessment page", () => {
   });
 
   test("title can't be too long", async ({ page }) => {
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(501));
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(101));
     await interceptMailToRedirectAndExpect(page);
     await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).toBeVisible();
@@ -127,8 +127,8 @@ test.describe("test form in negative case", () => {
   });
 
   test("title and reasoning can't be too long", async ({ page }) => {
-    await page.getByLabel("Begründung").fill("A".repeat(5001));
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("B".repeat(501));
+    await page.getByLabel("Begründung").fill("A".repeat(501));
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("B".repeat(101));
     await interceptMailToRedirectAndExpect(page);
     await page.getByTestId("result-email-button").click();
     await expect(page.getByTestId("title-error")).toBeVisible();
