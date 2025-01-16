@@ -577,7 +577,7 @@ Beispiele für Akteur:innen sind:
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
       policyTitleRequired: "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
       policyTitleTooLong:
-        "Bitte wählen Sie einen kürzeren Titel und ergänzen Sie diesen gegebenenfalls direkt in der resultierenden E-Mail.",
+        "Bitte wählen Sie einen kürzeren Titel (100 Zeichen) und ergänzen Sie diesen gegebenenfalls direkt in der resultierenden E-Mail.",
       precheckAnswersRequired: "Bitte geben Sie die Vorprüfung-Antworten an",
       reasonLabel: "Begründung",
       reasonRequired:
@@ -585,7 +585,7 @@ Beispiele für Akteur:innen sind:
       reasonLong:
         "Achtung, Ihre Begründung ist sehr lang. Möglicherweise sehen Sie in dem PDF nicht den gesamten Text. Sie können ihn aber vollständig kopieren, es gehen keine Inhalte verloren.",
       reasonTooLong:
-        "Bitte geben Sie eine kürzere Begründung ein und ergänzen Sie diese gegebenenfalls direkt in der resultierenden E-Mail.",
+        "Bitte geben Sie eine kürzere Begründung ein (500 Zeichen) und ergänzen Sie diese gegebenenfalls direkt in der resultierenden E-Mail.",
       faqs: {
         title: "Häufige Fragen zum Senden der Vorprüfung",
         details: [
