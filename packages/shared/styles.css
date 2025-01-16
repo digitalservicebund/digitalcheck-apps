@@ -12,7 +12,7 @@
 
   body {
     /* By default, text is 16px * 1.125 = 18px and line height is 150% of that (27px). */
-    @apply text-lg leading-[1.5em] min-h-screen flex flex-col;
+    @apply text-lg leading-[1.5em];
   }
 
   h1 {
