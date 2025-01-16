@@ -156,3 +156,6 @@ lefthook-local.yml
 /blob-report/
 /playwright/.cache/
 /test-results/
+
+# Playwright snapshot testing
+*-snapshots/
