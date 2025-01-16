@@ -1,7 +1,9 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
@@ -102,7 +104,7 @@ export default function Index() {
         <Testimonial />
       </Container>
       <Container className="pt-48">
-        <Header
+        <Box
           heading={{
             tagName: "h2",
             text: supportWhat.title,
@@ -119,7 +121,7 @@ export default function Index() {
                 className="flex max-lg:flex-col gap-16"
               >
                 <supportType.icon className="w-48 h-48 flex-none fill-blue-800" />
-                <Header
+                <Box
                   heading={{
                     tagName: "h3",
                     text: supportType.title,
@@ -134,16 +136,11 @@ export default function Index() {
       </Container>
       <Background backgroundColor="blue">
         <Container>
-          <Header
-            heading={{
-              tagName: "h2",
-              text: supportHow.title,
-            }}
-          />
+          <Heading tagName="h2" text={supportHow.title} />
           {supportHow.supportTypes.length > 0 &&
             supportHow.supportTypes.map((supportType) => (
               <div key={supportType.title} className="ds-stack-16 pt-32 pb-40">
-                <Header
+                <Box
                   heading={{
                     tagName: "h3",
                     text: supportType.title,
@@ -175,7 +172,7 @@ export default function Index() {
       <div id="angebote">
         <Background backgroundColor="white">
           <Container>
-            <Header
+            <Box
               heading={{
                 tagName: "h2",
                 text: supportOfferings.title,
