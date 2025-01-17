@@ -111,7 +111,7 @@ const PrincipleExplanation = ({
         <Heading
           tagName="h4"
           text={`Prinzip ${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
-          look="ds-label-01-bold"
+          look="ds-label-01-bold pb-4"
         />
         {highlightID && (
           <Link
