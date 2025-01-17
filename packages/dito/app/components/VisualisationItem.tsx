@@ -24,7 +24,7 @@ export default function VisualisationItem({
   const visualisationUrl = visualisierung.Bild.url.split("/").pop();
 
   return (
-    <div className="flex max-sm:flex-col gap-32">
+    <div className="flex max-sm:flex-col gap-16 sm:gap-32">
       <div className="sm:w-1/2">
         <Link
           to={`${ROUTE_VISUALISATION.url}/${visualisationUrl}`}
