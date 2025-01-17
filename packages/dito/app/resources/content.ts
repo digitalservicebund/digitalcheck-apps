@@ -1280,13 +1280,13 @@ export const technicalFeasibility = {
     icon: DrawOutlined,
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
     text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
-<br class="block content-[''] !mb-24" />
+
 So erfahren Sie
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können
 - und an welchen Stellen Änderungen nötig sind.
 <br class="block content-[''] !mb-24" />
 
-### Sie müssen nicht alles allein bewältigen
+<h3 class="ds-subhead font-bold">Sie müssen nicht alles allein bewältigen</h3>
 
 Bei kleinen Fragen rufen Sie den Digitalcheck-Support an unter 0151/40 76 78 39.
 Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,
