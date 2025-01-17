@@ -33,7 +33,7 @@
 
   ul:not(.list-unstyled),
   ol:not(.list-unstyled) {
-    @apply pl-24;
+    @apply pl-24 space-y-8;
   }
 
   ul:not(.list-unstyled) {
