@@ -31,12 +31,17 @@
     @apply whitespace-nowrap;
   }
 
-  ul {
-    @apply list-disc pl-24;
+  ul:not(.list-unstyled),
+  ol:not(.list-unstyled) {
+    @apply pl-24;
   }
 
-  ol {
-    @apply list-decimal pl-24;
+  ul:not(.list-unstyled) {
+    @apply list-disc;
+  }
+
+  ol:not(.list-unstyled) {
+    @apply list-decimal;
   }
 
   h1,
@@ -53,8 +58,8 @@
   .ds-heading-03-reg,
   .ds-heading-03-bold,
   p,
-  ul,
-  ol {
+  ul:not(.list-unstyled),
+  ol:not(.list-unstyled) {
     @apply max-w-prose;
   }
 
@@ -152,9 +157,5 @@
   .max-w-prose {
     /* 70ch @ 18px font size = 630px */
     max-width: 630px;
-  }
-
-  .list-unstyled {
-    @apply list-none pl-0 max-w-none;
   }
 }
