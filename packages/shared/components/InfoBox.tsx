@@ -23,7 +23,7 @@ const InfoBox = ({
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       <ul
         className={twJoin(
-          "list-none ps-0 info-box",
+          "list-unstyled info-box",
           separator ? "ds-stack-32" : "ds-stack-48",
         )}
       >

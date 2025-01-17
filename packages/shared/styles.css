@@ -6,26 +6,42 @@
 
 @layer base {
   html {
-    /* keep 16px, don't change! (e.g. angie library depends on it) */
+    /* Keep 16px, don't change! (e.g. angie library depends on it) */
     font-size: 16px;
   }
 
   body {
-    min-height: 100vh;
-    font-size: 1.125rem;
-    line-height: 1.5;
+    /* By default, text is 16px * 1.125 = 18px and line height is 150% of that (27px). */
+    @apply text-lg leading-[1.5em];
   }
 
   h1 {
-    @apply ds-heading-01-reg max-sm:text-3xl max-md:text-5xl;
+    @apply ds-heading-01-reg;
   }
 
   h2 {
-    @apply ds-heading-02-reg max-sm:ds-heading-03-reg;
+    @apply ds-heading-02-reg;
   }
 
   h3 {
     @apply ds-heading-03-reg;
+  }
+
+  a[href^="tel:"] {
+    @apply whitespace-nowrap;
+  }
+
+  ul:not(.list-unstyled),
+  ol:not(.list-unstyled) {
+    @apply pl-24 space-y-8;
+  }
+
+  ul:not(.list-unstyled) {
+    @apply list-disc;
+  }
+
+  ol:not(.list-unstyled) {
+    @apply list-decimal;
   }
 
   h1,
@@ -42,27 +58,20 @@
   .ds-heading-03-reg,
   .ds-heading-03-bold,
   p,
-  .rich-text ul,
-  .rich-text ol {
-    /* 70ch @ 18px font size = 630px */
+  ul:not(.list-unstyled),
+  ol:not(.list-unstyled) {
     @apply max-w-prose;
   }
 
   *:focus-visible {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply text-blue-800;
-    @apply outline-blue-800;
-    text-decoration: none !important;
+    @apply outline outline-2 !no-underline outline-offset-1 !text-blue-800 outline-blue-800;
   }
 }
 
 @layer components {
-  .ds-radio {
-    background: transparent; /* for old Safari */
-  }
+  /*************
+   * CONTAINER *
+   *************/
 
   /* Tailwind's container core plugin is disabled,
    * because its breakpoint-based nature does not fit our needs */
@@ -79,31 +88,24 @@
     margin-right: clamp(1rem, 5vw, 3rem);
   }
 
-  .ds-textarea.has-error {
-    box-shadow: inset 0 0 0 2px #b0243f;
-    background-color: #f9e5ec;
+  /***********
+   * BUTTONS *
+   ***********/
+
+  .ds-button {
+    @apply max-sm:ds-button-full-width sm:ds-button-large;
   }
+
+  /*********
+   * LINKS *
+   *********/
 
   .text-link {
-    /* IE 11 and others that don't support text-decoration-line */
-    text-decoration: underline;
-    @apply text-blue-800;
-    @apply underline;
-    @apply underline-offset-4;
-    @apply decoration-1;
+    @apply text-blue-800 underline underline-offset-4 decoration-1 visited:text-[#4c2c92] active:text-black;
   }
 
-  .text-link:visited {
-    @apply text-[#4c2c92];
-  }
-
-  .text-link-white {
-    @apply text-link;
-    @apply text-gray-100;
-  }
-
-  .text-link-white:visited {
-    @apply text-gray-300;
+  .text-white .text-link {
+    @apply text-gray-100 visited:text-gray-300;
   }
 
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
@@ -113,60 +115,9 @@
     }
   }
 
-  /* browsers without :focus-visible support */
-  .text-link:focus {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply text-blue-800;
-    @apply outline-blue-800;
-  }
-
-  /* reset :focus styles for browsers with :focus-visible support */
-  .text-link:not(:focus-visible):focus {
-    @apply outline-none;
-    @apply underline;
-  }
-
-  /* ignored by browsers without :focus-visible support */
-  .text-link:focus-visible {
-    @apply outline;
-    @apply outline-2;
-    @apply no-underline;
-    @apply outline-offset-1;
-    @apply !text-blue-800;
-    @apply outline-blue-800;
-  }
-
-  .text-link:active {
-    @apply text-black;
-  }
-
-  footer a {
-    @apply increase-tap-area whitespace-nowrap;
-  }
-
-  .rich-text a {
-    @apply text-link;
-  }
-
-  .text-white .rich-text a {
-    @apply text-link-white;
-  }
-
-  .rich-text ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-  }
-
-  .rich-text {
-    @apply text-lg;
-  }
-
-  .rich-text-2xl {
-    @apply text-2xl;
-  }
+  /***********
+   * DETAILS *
+   ***********/
 
   .details .summary-content {
     @apply bg-[position:0_8px];
@@ -177,53 +128,34 @@
     background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 10L16 10L8 0L0 10Z' fill='%23005576'/%3E%3C/svg%3E%0A");
   }
 
-  .summary-content::-webkit-details-marker {
-    display: none;
-  }
-
-  /* when focus without the keyboard, remove the outline of the children*/
-  .details:not(:has(.summary-content:focus-visible)) {
-    @apply outline-none;
-  }
-
   /* Only apply hover effect on devices that support it, see https://stackoverflow.com/a/28058919 */
   @media (hover: hover) {
     .summary-content:hover {
-      @apply !underline;
-      @apply underline-offset-2;
-      @apply decoration-2;
+      @apply !underline underline-offset-2 decoration-2;
     }
+  }
+
+  /********
+   * MISC *
+   ********/
+
+  .ds-textarea.has-error {
+    box-shadow: inset 0 0 0 2px #b0243f;
+    background-color: #f9e5ec;
   }
 }
 
 @layer utilities {
   .increase-tap-area {
-    @apply relative;
-    @apply inline-block;
+    @apply relative inline-block;
   }
 
   .increase-tap-area::before {
-    content: "";
-    @apply absolute;
-    top: -0.75rem;
-    bottom: -0.75rem;
-    left: -0.75rem;
-    right: -0.75rem;
+    @apply absolute -top-12 -left-12 -right-12 -bottom-12 content-[''];
   }
 
   .max-w-prose {
-    @apply max-w-[630px];
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    /* 70ch @ 18px font size = 630px */
+    max-width: 630px;
   }
 }

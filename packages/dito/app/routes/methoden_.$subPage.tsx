@@ -97,10 +97,8 @@ export default function Index() {
       )}
       <Container className="ds-stack-32">
         <Box
-          heading={{ text: content.content.title }}
-          label={{
-            text: LabelWithIcon(content.content),
-          }}
+          heading={{ text: content.content.title, look: "ds-heading-03-reg" }}
+          label={{ text: LabelWithIcon(content.content) }}
           content={{ markdown: content.content.text }}
           buttons={"buttons" in content.content ? content.content.buttons : []}
         />
@@ -117,7 +115,7 @@ export default function Index() {
             </Background>
             <Background backgroundColor="blue">
               <Box
-                heading={{ text: box.title }}
+                heading={{ text: box.title, look: "ds-heading-03-reg" }}
                 label={{ text: LabelWithIcon(box) }}
                 content={{ markdown: box.text }}
                 buttons={"buttons" in box ? box.buttons : []}
@@ -131,7 +129,7 @@ export default function Index() {
         <Background backgroundColor="yellow">
           <Container>
             <Box
-              heading={{ text: content.tip.title }}
+              heading={{ text: content.tip.title, look: "ds-heading-03-reg" }}
               label={{ text: LabelWithIcon(content.tip) }}
               content={{ markdown: content.tip.text }}
             />
@@ -142,7 +140,10 @@ export default function Index() {
         <Background backgroundColor="blue">
           <Container>
             <Box
-              heading={{ text: content.support.title }}
+              heading={{
+                text: content.support.title,
+                look: "ds-heading-03-reg",
+              }}
               label={{ text: LabelWithIcon(content.support) }}
               content={{ markdown: content.support.text }}
               buttons={content.support.buttons}
@@ -153,7 +154,10 @@ export default function Index() {
       {content.nextStep && (
         <Container>
           <Box
-            heading={{ text: content.nextStep.title }}
+            heading={{
+              text: content.nextStep.title,
+              look: "ds-heading-03-reg",
+            }}
             label={{ text: LabelWithIcon(content.nextStep) }}
             content={{ markdown: content.nextStep.text }}
             buttons={content.nextStep.buttons}

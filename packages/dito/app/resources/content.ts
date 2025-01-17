@@ -238,15 +238,19 @@ Damit die digitale Umsetzung reibungslos klappt, muss die Regelung digitaltaugli
       },
     ],
   },
-  principals: {
+  principles: {
     title: "5 Prinzipien für digitaltaugliche Gesetzgebung",
-    content: `1. Prinzip 1: Digitale Kommunikation sicherstellen
-2. Prinzip 2: Wiederverwendung von Daten und Standards ermöglichen
-3. Prinzip 3: Datenschutz und Informationssicherheit gewährleisten
-4. Prinzip 4: Klare Regelungen für eine digitale Ausführung finden
-5. Prinzip 5: Automatisierung ermöglichen
-
-[Details und Beispiele](${ROUTE_METHODS_FIVE_PRINCIPLES.url})`,
+    content: [
+      "Prinzip 1: Digitale Kommunikation sicherstellen",
+      "Prinzip 2: Wiederverwendung von Daten und Standards ermöglichen",
+      "Prinzip 3: Datenschutz und Informationssicherheit gewährleisten",
+      "Prinzip 4: Klare Regelungen für eine digitale Ausführung finden",
+      "Prinzip 5: Automatisierung ermöglichen",
+    ],
+    link: {
+      text: "Details und Beispiele",
+      href: ROUTE_METHODS_FIVE_PRINCIPLES.url,
+    },
   },
 };
 
@@ -659,7 +663,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
 - in der **formellen Beteiligung** eine wirkungsvolle Umsetzung zu besprechen.`,
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: { text: "2.1. Zuständige Akteurinnen und Akteure auflisten" },
         info: [
           {
@@ -676,7 +680,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
         },
@@ -703,7 +707,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.3. IT-Systeme gemeinsam erfassen",
         },
@@ -735,7 +739,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         text: "Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Jetzt geht es darum, Möglichkeiten zur Digitalisierung zu finden und Hindernisse aus dem Weg zu räumen — eine gute digitale Umsetzung spart langfristig Zeit und Geld und erfüllt die heutigen Erwartungen der Betroffenen an den Staat.",
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
         },
@@ -754,7 +758,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.5. Technische Umsetzbarkeit sicherstellen",
         },
@@ -791,7 +795,7 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
 - den **Umsetzungsprozess einfach besprechbar** zu machen in Abstimmungen anhand von Visualisierungen.`,
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: { text: "Schreiben Sie die Regelung" },
         text: "Nutzen Sie Ihre gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben — z. B. eNorm und das Handbuch der Rechtsförmigkeit.",
       },
@@ -1276,13 +1280,13 @@ export const technicalFeasibility = {
     icon: DrawOutlined,
     title: "Verstehen Sie die Auswirkungen auf IT-Systeme",
     text: `Vergleichen Sie gemeinsam mit den [zuständigen Akteurinnen und Akteuren](${ROUTE_METHODS_RESPONSIBLE_ACTORS.url}) das geplante Vorhaben mit den Möglichkeiten der bestehenden IT-Systeme. Überprüfen Sie die Informationen mithilfe neutraler IT-Expertinnen und -Experten. 
-<br class="block content-[''] !mb-24" />
+
 So erfahren Sie
 - welche IT-Systeme für Ihr Vorhaben verwendet werden können
 - und an welchen Stellen Änderungen nötig sind.
 <br class="block content-[''] !mb-24" />
 
-### Sie müssen nicht alles allein bewältigen
+<h3 class="ds-subhead font-bold">Sie müssen nicht alles allein bewältigen</h3>
 
 Bei kleinen Fragen rufen Sie den Digitalcheck-Support an unter 0151/40 76 78 39.
 Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mail an digitalcheck@digitalservice.bund.de oder buchen Sie direkt einen Termin.`,

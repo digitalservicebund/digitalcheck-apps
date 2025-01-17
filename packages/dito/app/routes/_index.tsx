@@ -7,6 +7,7 @@ import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import LabelWithIcon from "@digitalcheck/shared/components/LabelWithIcon";
 import { NumberedList } from "@digitalcheck/shared/components/List";
 import RichText from "@digitalcheck/shared/components/RichText";
+import { Link } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 import { landing } from "resources/content";
 import { useFeatureFlag } from "utils/featureFlags";
@@ -105,24 +106,24 @@ export default function Index() {
       <SupportBanner />
       <Background backgroundColor="darkBlue" className="pt-24 pb-24">
         <Container>
-          <div className="ds-stack-16 scroll-my-40">
-            <Heading tagName="h2" text={landing.principals.title} />
-            <RichText
-              markdown={landing.principals.content}
-              className="!mt-32 !ds-stack-16
-              [&_ol]:mb-16
-              [&_ol]:!list-none
-              [&_ol]:!ml-0
-              [&_ol_li+li]:mt-8
-              [&_ol_li+li:before]:content-['']
-              [&_ol_li+li:before]:block
-              [&_ol_li+li:before]:w-1/2
-              [&_ol_li+li:before]:mb-8
-              [&_ol_li+li:before]:border-t
-              [&_ol_li+li:before]:border-blue-700
-              "
-              // These strange class names are because we are using the Tailwind "arbitrary values" feature to style the list inside this RichText block: https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants
-            />
+          <div className="ds-stack-32 scroll-my-40">
+            <Heading tagName="h2" text={landing.principles.title} />
+            <ol className="list-unstyled space-y-8">
+              {landing.principles.content.map((principle) => (
+                <li
+                  key={principle}
+                  className="first:before:content-none before:content-[''] before:block before:w-1/2 before:mb-8 before:border-t before:border-blue-700"
+                >
+                  {principle}
+                </li>
+              ))}
+            </ol>
+            <Link
+              to={landing.principles.link.href}
+              className="text-link font-bold"
+            >
+              {landing.principles.link.text}
+            </Link>
           </div>
         </Container>
       </Background>

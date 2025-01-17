@@ -44,7 +44,6 @@ import {
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "utils/constants.server";
 import { getFeatureFlags } from "utils/featureFlags.server";
 import { useNonce } from "utils/nonce";
-import styles from "./styles.css?url";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
@@ -158,7 +157,6 @@ export const headers: HeadersFunction = () => ({
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: sharedStyles },
-  { rel: "stylesheet", href: styles },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   {
     rel: "icon",
@@ -220,11 +218,11 @@ const PageHeader = ({
 }) => (
   <header>
     <div className="min-h-64 p-16 flex justify-between items-center">
-      <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
+      <Link to={ROUTE_LANDING.url}>
         <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
       <div className="flex items-center max-lg:hidden">
-        <div className="ds-label-02-reg text-lg">
+        <div className="text-lg">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
           <Button href="/unterstuetzung" look="link">
@@ -236,13 +234,13 @@ const PageHeader = ({
         <PhoneOutlined className="mx-8 w-18" />
         <a
           href={`tel:${header.contact.number}`}
-          className="ds-link-01-bold text-lg underline plausible-event-name=Phone+Click plausible-event-position=header"
+          className="ds-link-01-bold plausible-event-name=Phone+Click plausible-event-position=header"
         >
           {header.contact.number}
         </a>
       </div>
       <div className="lg:hidden">
-        <a href="/unterstuetzung" className="ds-link-01-bold text-lg underline">
+        <a href="/unterstuetzung" className="ds-link-01-bold">
           Kontakt & Unterstützung
         </a>
       </div>
@@ -352,15 +350,9 @@ Vielen Dank für Ihr Verständnis.`;
         <div className="border-t-2 border-t-gray-400">
           <Container>
             <div className="ds-stack-8 mb-32">
-              <Heading
-                text={errorStatus}
-                tagName="div"
-                className="ds-label-01-bold"
-              />
+              <span className="ds-label-01-bold">{errorStatus}</span>
               <Heading text={errorTitle} className="ds-heading-02-reg" />
-              <div className="ds-subhead">
-                <RichText markdown={errorMessage} />
-              </div>
+              <RichText markdown={errorMessage} className="ds-subhead" />
             </div>
             <Button
               id="error-back-button"

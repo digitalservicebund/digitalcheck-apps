@@ -1,8 +1,8 @@
 import Background from "@digitalcheck/shared/components/Background";
-import Box from "@digitalcheck/shared/components/Box";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
+import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
@@ -27,8 +27,8 @@ export default function Index() {
   return (
     <>
       <Background backgroundColor="blue">
-        <Container className="pt-64 pb-56 max-sm:!py-32">
-          <Box
+        <Container>
+          <Header
             heading={{
               tagName: "h1",
               text: preCheck.start.title,
@@ -37,7 +37,7 @@ export default function Index() {
               markdown: preCheck.start.subtitle,
               className: "md:text-2xl",
             }}
-          ></Box>
+          ></Header>
         </Container>
         <Container className="pt-0">
           <div className="ds-stack-16 mb-40">
