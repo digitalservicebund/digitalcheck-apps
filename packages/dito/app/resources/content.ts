@@ -663,7 +663,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
 - in der **formellen Beteiligung** eine wirkungsvolle Umsetzung zu besprechen.`,
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: { text: "2.1. Zuständige Akteurinnen und Akteure auflisten" },
         info: [
           {
@@ -680,7 +680,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.2. Aufgaben und Abläufe gemeinsam erfassen",
         },
@@ -707,7 +707,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.3. IT-Systeme gemeinsam erfassen",
         },
@@ -739,7 +739,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         text: "Mit einem guten Verständnis des Ist-Zustandes erarbeiten Sie nun Ihre Regelung. Jetzt geht es darum, Möglichkeiten zur Digitalisierung zu finden und Hindernisse aus dem Weg zu räumen — eine gute digitale Umsetzung spart langfristig Zeit und Geld und erfüllt die heutigen Erwartungen der Betroffenen an den Staat.",
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.4. Möglichkeiten und Hindernisse der digitalen Umsetzung identifizieren",
         },
@@ -758,7 +758,7 @@ Mit diesen Informationen sind Sie gut vorbereitet, um
         ],
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: {
           text: "2.5. Technische Umsetzbarkeit sicherstellen",
         },
@@ -795,7 +795,7 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
 - den **Umsetzungsprozess einfach besprechbar** zu machen in Abstimmungen anhand von Visualisierungen.`,
       },
       {
-        background: "blue",
+        isSubstep: true,
         headline: { text: "Schreiben Sie die Regelung" },
         text: "Nutzen Sie Ihre gewohnten Programme und Arbeitshilfen, um die Regelung zu schreiben — z. B. eNorm und das Handbuch der Rechtsförmigkeit.",
       },

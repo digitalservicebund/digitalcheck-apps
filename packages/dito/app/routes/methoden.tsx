@@ -30,6 +30,7 @@ export default function Methoden() {
 
   const methodStepsItems: ListItemProps[] = methods.steps.items.map((item) => ({
     ...item,
+    background: item.isSubstep ? "blue" : undefined,
     content: renderToString(
       <>
         {item.info?.map((info) => renderInfoItem(info))}
@@ -38,8 +39,8 @@ export default function Methoden() {
     ),
     headline: {
       ...item.headline,
-      tagName: "h2",
-      look: item.background ? "ds-heading-03-reg" : "ds-heading-03-bold",
+      tagName: item.isSubstep ? "h3" : "h2",
+      look: item.isSubstep ? "ds-heading-03-reg" : "ds-heading-02-bold",
     },
   }));
 
