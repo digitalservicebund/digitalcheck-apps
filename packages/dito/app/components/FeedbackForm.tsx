@@ -25,7 +25,7 @@ function FeedbackInput({
   ariaLabel: string;
 }>) {
   const classes = twJoin(
-    "rounded-lg px-24 h-64 flex items-center gap-8",
+    "px-24 h-64 flex items-center gap-8",
     selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
   );
 
@@ -216,7 +216,7 @@ export default function FeedbackForm() {
           />
           <button
             type="submit"
-            className="mt-16 bg-blue-800 text-white px-24 py-12 rounded-lg"
+            className="mt-16 bg-blue-800 text-white px-24 py-12"
           >
             Feedback absenden
           </button>
