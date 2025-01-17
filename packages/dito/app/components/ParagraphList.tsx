@@ -177,7 +177,7 @@ const AbsatzContent = ({
         />
         {absatzGroup.PrinzipErfuellungen.length > 0 && (
           <div className="ds-stack-8 mt-8">
-            <span className="ds-label-01-bold italic" id={baseLabelID}>
+            <span className="ds-subhead font-bold" id={baseLabelID}>
               {digitalSuitability.paragraphs.explanation}
             </span>
             {absatzGroup.PrinzipErfuellungen.toSorted(
@@ -290,9 +290,10 @@ function Paragraph({
         <Heading
           tagName="h3"
           text={`§ ${paragraph.Nummer} ${paragraph.Gesetz}`}
-          look="ds-label-01-bold"
+          look="ds-subhead"
+          className="font-bold"
         />
-        <p className="ds-label-01-bold">{paragraph.Titel}</p>
+        <p className="ds-subhead font-bold">{paragraph.Titel}</p>
         <div className="border-l-4 border-gray-300 pl-8 ds-stack-16">
           {groupedAbsaetze.map((absatzGroup) => (
             <AbsatzContent

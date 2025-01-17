@@ -221,7 +221,7 @@ export default function FeedbackForm() {
             Feedback absenden
           </button>
         </form>
-        <RichText markdown={feedbackForm.mail} className="ds-label-01-bold" />
+        <RichText markdown={feedbackForm.mail} className="font-bold" />
       </Container>
     </Background>
   );

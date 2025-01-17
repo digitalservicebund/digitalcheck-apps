@@ -13,7 +13,7 @@ export default function SupportBanner({
           <Box
             heading={{
               tagName: "h2",
-              look: "ds-label-01-bold",
+              look: "ds-subhead font-bold",
               text: supportBanner.feedback.title,
             }}
             content={{
@@ -24,7 +24,7 @@ export default function SupportBanner({
         <Box
           heading={{
             tagName: "h2",
-            look: "ds-label-01-bold",
+            look: "ds-subhead font-bold",
             text: supportBanner.support.title,
           }}
           content={{

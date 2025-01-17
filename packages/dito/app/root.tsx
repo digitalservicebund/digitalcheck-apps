@@ -218,11 +218,11 @@ const PageHeader = ({
 }) => (
   <header>
     <div className="min-h-64 p-16 flex justify-between items-center">
-      <Link to={ROUTE_LANDING.url} className="ds-label-01-bold">
+      <Link to={ROUTE_LANDING.url}>
         <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
       <div className="flex items-center max-lg:hidden">
-        <div className="ds-label-02-reg text-lg">
+        <div className="text-lg">
           <span className="font-bold">{header.title}</span>
           <span className="mx-8">|</span>
           <Button href="/unterstuetzung" look="link">

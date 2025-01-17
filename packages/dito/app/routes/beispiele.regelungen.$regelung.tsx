@@ -104,7 +104,7 @@ export default function Gesetz() {
               markdown: regulations.subtitle[0],
             }}
           />
-          <p className="mt-24 ds-label-01-bold">
+          <p className="mt-24 ds-subhead font-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
           <ol className="list-unstyled mt-16">
