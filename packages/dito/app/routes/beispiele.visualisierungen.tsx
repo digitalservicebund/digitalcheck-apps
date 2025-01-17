@@ -73,23 +73,22 @@ export default function BeispieleVisualisierungen() {
           />
         </Container>
       </Background>
-      <Container>
+      <Container className="ds-stack-48">
         {Object.entries(groupedVisualisations).map(
           ([regelungTitle, visualisations]) => (
-            <div key={regelungTitle} className="ds-stack-8">
-              <Link
-                to={`${ROUTE_LAWS.url}/${visualisations[0].Digitalcheck?.Regelungsvorhaben?.URLBezeichnung}`}
-                prefetch="viewport"
-              >
-                <Heading
-                  tagName="h2"
-                  text={regelungTitle}
-                  look="ds-heading-02-bold text-link"
-                />
-              </Link>
+            <div key={regelungTitle}>
+              <div className="ds-stack-32">
+                <Link
+                  to={`${ROUTE_LAWS.url}/${visualisations[0].Digitalcheck?.Regelungsvorhaben?.URLBezeichnung}`}
+                  prefetch="viewport"
+                >
+                  <Heading
+                    tagName="h2"
+                    text={regelungTitle}
+                    look="ds-heading-02-bold text-link"
+                  />
+                </Link>
 
-              {/* Render Visualisations for each Regelung */}
-              <div className="pb-32">
                 {visualisations.map((visualisation) => (
                   <VisualisationItem
                     key={visualisation.Bild.documentId}

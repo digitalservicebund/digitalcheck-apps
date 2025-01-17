@@ -24,8 +24,8 @@ export default function VisualisationItem({
   const visualisationUrl = visualisierung.Bild.url.split("/").pop();
 
   return (
-    <div className="flex max-sm:flex-col mt-16 gap-32 pb-16">
-      <div className="w-1/2 max-sm:px-16 max-sm:pt-32">
+    <div className="flex max-sm:flex-col gap-32">
+      <div className="sm:w-1/2">
         <Link
           to={`${ROUTE_VISUALISATION.url}/${visualisationUrl}`}
           reloadDocument
@@ -71,7 +71,7 @@ export default function VisualisationItem({
           />
         </div>
       </div>
-      <div className="w-1/2 p-0 mb-12">
+      <div className="sm:w-1/2 mb-12">
         <Heading tagName="h3" look="ds-heading-03-reg" className="mb-16">
           {visualisierung.Titel}
         </Heading>
