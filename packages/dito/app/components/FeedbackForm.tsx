@@ -25,7 +25,7 @@ function FeedbackInput({
   ariaLabel: string;
 }>) {
   const classes = twJoin(
-    "px-24 h-64 flex items-center gap-8",
+    "px-16 h-48 sm:px-24 sm:h-64 flex items-center",
     selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
   );
 
@@ -103,7 +103,7 @@ function FeedbackQuestion({
           </div>
         ) : (
           <div className="max-w-fit">
-            <div className="flex gap-16">
+            <div className="flex gap-8 sm:gap-16">
               {[1, 2, 3, 4, 5].map((number) => {
                 let ariaLabel: string;
                 switch (number) {
