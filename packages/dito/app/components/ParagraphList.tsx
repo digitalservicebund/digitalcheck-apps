@@ -100,9 +100,9 @@ const PrincipleExplanation = ({
   const shouldHighlight = location.hash === `#${id}`;
   const color = HIGHLIGHT_COLORS[erfuellung.Prinzip.Nummer];
   const explanationClasses = twJoin(
-    "p-4 w-fit max-w-[642px]",
+    "w-fit max-w-[642px] px-8",
     color.border,
-    shouldHighlight ? "border-4" : "border-l-4 py-8",
+    shouldHighlight ? "border-4 p-4" : "border-l-4 p-8",
   );
 
   return (
@@ -111,7 +111,7 @@ const PrincipleExplanation = ({
         <Heading
           tagName="h4"
           text={`Prinzip ${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
-          look="ds-label-01-bold pb-4"
+          look="ds-label-01-bold pb-8"
         />
         {highlightID && (
           <Link
