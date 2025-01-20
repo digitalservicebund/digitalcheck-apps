@@ -105,8 +105,9 @@ function buildEmailBody(
           resultText += reason.answer === "no" ? "-" : "";
           resultText += reason.answer === "unsure" ? "?" : "";
           resultText += " " + reason.text + "\n";
-          resultText +=
-            !!reason.hint && reason.hint.replaceAll("**", "") + "\n";
+          resultText += reason.hint
+            ? reason.hint.replaceAll("**", "") + "\n"
+            : "";
         });
       resultText += "\n\n";
     });
