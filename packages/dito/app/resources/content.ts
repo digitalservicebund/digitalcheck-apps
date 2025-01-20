@@ -624,7 +624,7 @@ Beispiele für Akteur:innen sind:
       },
       emailTemplate: {
         toNkr: "nkr@bmj.bund.de",
-        toDC: "digitalcheck@digitalservice.bund.de",
+        toDC: "interoperabel@digitalservice.bund.de",
         subject: "Digitalcheck Vorprüfung",
         bodyBefore: `Guten Tag,
 

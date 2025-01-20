@@ -152,7 +152,7 @@ test.describe("test positive result for digital and interoperability", () => {
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
     await interceptMailToRedirectAndExpect(page, {
-      recipients: ["digitalcheck@digitalservice.bund.de"],
+      recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
   });
@@ -236,7 +236,7 @@ test.describe("test positive result for digital and negative for interoperabilit
       .fill("Policy ABCDEFG");
     // set expected to undefined to set notExpected
     await interceptMailToRedirectAndExpect(page, undefined, {
-      recipients: ["digitalcheck@digitalservice.bund.de"],
+      recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
   });
@@ -280,7 +280,7 @@ test.describe("test positive result for digital and unsure for interoperability"
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
     await interceptMailToRedirectAndExpect(page, {
-      recipients: ["digitalcheck@digitalservice.bund.de"],
+      recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
   });
