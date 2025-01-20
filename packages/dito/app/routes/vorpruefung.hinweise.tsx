@@ -3,7 +3,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Heading from "@digitalcheck/shared/components/Heading";
 import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import { type LoaderFunctionArgs } from "@remix-run/node";
 import { type MetaFunction, useLoaderData } from "@remix-run/react";
 import { preCheck } from "resources/content";
 import { ROUTE_GENERAL_INFO, ROUTE_PRECHECK } from "resources/staticRoutes";
@@ -20,7 +20,7 @@ export const meta: MetaFunction = ({ matches }) => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const { answers } = await getAnswersFromCookie(request);
-  return json({ answers });
+  return { answers };
 }
 
 export default function GeneralInfo() {
