@@ -48,7 +48,7 @@ export default function ResultForm({
 
   return (
     <>
-      <form {...form.getFormProps()}>
+      <form {...form.getFormProps()} data-testid="result-form">
         <fieldset className="ds-stack-32">
           <legend>
             <Heading tagName="h2" text={preCheck.result.form.formLegend} />
