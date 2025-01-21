@@ -1,4 +1,5 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import Container from "@digitalcheck/shared/components/Container";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
@@ -6,7 +7,6 @@ import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
-import RichText from "@digitalcheck/shared/components/RichText";
 import type { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import SupportBanner from "components/SupportBanner";
@@ -78,21 +78,22 @@ export default function Index() {
       </Container>
       <Container className="pt-0">
         <Background backgroundColor="blue">
-          <div className="flex items-center gap-64 px-64 py-40 max-sm:flex-col-reverse max-sm:gap-48 max-sm:px-16">
-            <div className="ds-stack-8 gap-20 md:w-1/3 md:pl-32">
-              <Image
-                url={preCheck.start.info.image.src}
-                alternativeText={preCheck.start.info.image.alt}
-              />
-            </div>
-            <div>
-              <Heading
-                tagName="h3"
-                look="ds-heading-03-reg"
-                text={preCheck.start.info.title}
-              />
-              <RichText markdown={preCheck.start.info.text} />
-            </div>
+          <div className="flex flex-col-reverse items-center gap-48 px-16 py-40 md:flex-row md:gap-64 md:px-64">
+            <Image
+              url={preCheck.start.info.image.src}
+              alternativeText={preCheck.start.info.image.alt}
+              className="md:w-1/3 md:pl-32"
+            />
+            <Box
+              heading={{
+                tagName: "h3",
+                look: "ds-heading-03-reg",
+                text: preCheck.start.info.title,
+              }}
+              content={{
+                markdown: preCheck.start.info.text,
+              }}
+            />
           </div>
         </Background>
       </Container>
