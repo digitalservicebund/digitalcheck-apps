@@ -22,7 +22,7 @@ jobs:
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ inputs.package }}
-      ciE2eTestsOnly: "true"
+      ciE2eTestsOnly: true
     secrets: inherit
 
   build-and-push-image:
