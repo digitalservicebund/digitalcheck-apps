@@ -217,7 +217,7 @@ const PageHeader = ({
   includeBreadcrumbs?: boolean;
 }) => (
   <header>
-    <div className="min-h-64 p-16 flex justify-between items-center">
+    <div className="flex min-h-64 items-center justify-between p-16">
       <Link to={ROUTE_LANDING.url}>
         <img src={bundLogo} alt="Logo des Bundes" width={54} />
       </Link>
@@ -231,7 +231,7 @@ const PageHeader = ({
           <span className="mx-8">|</span>
           {header.contact.msg}
         </div>
-        <PhoneOutlined className="mx-8 w-18" />
+        <PhoneOutlined className="mx-8" />
         <a
           href={`tel:${header.contact.number}`}
           className="ds-link-01-bold plausible-event-name=Phone+Click plausible-event-position=header"
@@ -273,7 +273,7 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-screen flex-col">
         <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />

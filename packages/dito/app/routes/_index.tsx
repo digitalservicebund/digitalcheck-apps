@@ -16,7 +16,7 @@ export default function Index() {
   const showLinksToTools = useFeatureFlag("digitalcheck.show-links-to-tools");
   return (
     <>
-      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
+      <Background backgroundColor="darkBlue" className="py-24">
         <Container>
           <Header
             heading={{
@@ -47,9 +47,9 @@ export default function Index() {
           content={landing.dataNotice.content}
         />
       </Container> */}
-      <div className="bg-[url('/assets/images/trainings.jpeg')] bg-[0%_35%] bg-cover">
+      <div className="bg-[url('/assets/images/trainings.jpeg')] bg-cover bg-[0%_35%]">
         <Container>
-          <div className="max-w-[630px] bg-white px-16 py-28 md:px-80 md:py-40 rounded-lg">
+          <div className="max-w-[630px] rounded-lg bg-white px-16 py-28 md:px-80 md:py-40">
             <Box
               heading={{ text: landing.trainings.title }}
               content={{ markdown: landing.trainings.text }}
@@ -77,9 +77,9 @@ export default function Index() {
                 text={landing.links.title}
               />
               <RichText markdown={landing.links.subtitle} />
-              <div className="flex flex-row max-md:flex-col gap-24 pt-32">
+              <div className="flex flex-row gap-24 pt-32 max-md:flex-col">
                 {landing.links.items.map((item) => (
-                  <div key={item.label} className="bg-white p-28 rounded-md">
+                  <div key={item.label} className="rounded-md bg-white p-28">
                     <Box
                       heading={{
                         tagName: "h3",
@@ -94,7 +94,7 @@ export default function Index() {
                       }}
                       content={{ markdown: item.content }}
                       buttons={item.buttons}
-                      className="!justify-between h-full"
+                      className="h-full !justify-between"
                     />
                   </div>
                 ))}
@@ -104,7 +104,7 @@ export default function Index() {
         </Background>
       )}
       <SupportBanner />
-      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
+      <Background backgroundColor="darkBlue" className="py-24">
         <Container>
           <div className="ds-stack-32 scroll-my-40">
             <Heading tagName="h2" text={landing.principles.title} />
@@ -112,7 +112,7 @@ export default function Index() {
               {landing.principles.content.map((principle) => (
                 <li
                   key={principle}
-                  className="first:before:content-none before:content-[''] before:block before:w-1/2 before:mb-8 before:border-t before:border-blue-700"
+                  className="before:mb-8 before:block before:w-1/2 before:border-t before:border-blue-700 before:content-[''] first:before:content-none"
                 >
                   {principle}
                 </li>

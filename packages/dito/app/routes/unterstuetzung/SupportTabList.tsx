@@ -70,7 +70,7 @@ export default function SupportTabs() {
       <div
         role="tablist"
         aria-label="Support Tabs"
-        className="flex max-sm:flex-col items-start my-32"
+        className="my-32 flex items-start max-sm:flex-col"
       >
         {tabs.map((tab, index) => (
           <button
@@ -87,7 +87,7 @@ export default function SupportTabs() {
             tabIndex={activeTab === index ? 0 : -1}
             onClick={() => setActiveTab(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`text-blue-800 p-8 my-8 mr-48 ${activeTab === index ? "font-bold border-b-2 border-blue-800" : ""}`}
+            className={`my-8 mr-48 p-8 text-blue-800 ${activeTab === index ? "border-b-2 border-blue-800 font-bold" : ""}`}
           >
             {tab.title}
           </button>
@@ -105,7 +105,7 @@ export default function SupportTabs() {
           {tab.offerings.map((offering: Offering) => (
             <Container
               key={offering.title}
-              className="flex max-md:flex-col gap-32 rounded-xl mb-32 px-40"
+              className="mb-32 flex gap-32 rounded-xl px-40 max-md:flex-col"
               backgroundColor="blue"
             >
               <Box
@@ -118,7 +118,7 @@ export default function SupportTabs() {
                 }}
                 buttons={offering.button ? [offering.button] : []}
               />
-              <div className="flex-none md:w-[310px] space-y-20">
+              <div className="flex-none space-y-20 md:w-[310px]">
                 <Background backgroundColor="white">
                   <div className="p-28">
                     <Header
@@ -132,7 +132,7 @@ export default function SupportTabs() {
                         <div key={detail.title} className="py-16">
                           <div className="flex items-center gap-8 pb-8">
                             {detail.icon && (
-                              <detail.icon className="w-24 h-24 fill-gray-800" />
+                              <detail.icon className="size-24 fill-gray-800" />
                             )}
                             <Heading
                               tagName="p"

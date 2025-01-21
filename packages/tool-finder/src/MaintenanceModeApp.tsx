@@ -7,8 +7,8 @@ import MaintenanceModePage from "routes/MaintenanceModePage";
 
 function MaintenanceModeApp() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow flex flex-col">
+    <div className="flex min-h-screen flex-col">
+      <main className="flex grow flex-col">
         <PageHeader />
         <Routes>
           <Route path={PATH_INFO} element={<MaintenanceModePage />} />
@@ -16,7 +16,7 @@ function MaintenanceModeApp() {
         </Routes>
       </main>
       <footer>
-        <Container className="pt-48 pb-48">
+        <Container className="py-48">
           <Link to={PATH_IMPRINT} className="text-link increase-tap-area">
             Impressum
           </Link>

@@ -82,7 +82,7 @@ export default function Index() {
           {content.guidance && (
             <RichText
               markdown={content.guidance}
-              className="mt-24 ds-stack-0"
+              className="ds-stack-0 mt-24"
             />
           )}
         </Container>
@@ -105,10 +105,10 @@ export default function Index() {
         {content.boxes.map((box) => (
           // TODO: This is very similar to the markup used in <ListItem /> when a background color is provided.
           // We should probably create a component for this to keep it consistent.
-          <div key={box.title} className="rounded-lg overflow-hidden">
+          <div key={box.title} className="overflow-hidden rounded-lg">
             <Background backgroundColor="midBlue">
-              <div className="pt-64 px-96 max-sm:px-16 max-sm:pt-32">
-                <div className="rounded-t-lg shadow-2xl overflow-hidden h-0 pb-[40%] &_img:object-cover &_img:object-top">
+              <div className="px-96 pt-64 max-sm:px-16 max-sm:pt-32">
+                <div className="&_img:object-cover &_img:object-top h-0 overflow-hidden rounded-t-lg pb-[40%] shadow-2xl">
                   <Image url={box.image.src} alternativeText={box.image.alt} />
                 </div>
               </div>

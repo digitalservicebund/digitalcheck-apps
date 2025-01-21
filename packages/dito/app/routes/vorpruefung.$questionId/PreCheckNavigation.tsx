@@ -21,7 +21,7 @@ export default function PreCheckNavigation({
   const questions = preCheck.questions;
 
   return (
-    <nav aria-label="Alle Fragen" className="precheck-navigation">
+    <nav aria-label="Alle Fragen">
       <ul className="list-unstyled">
         {questions.map((q: TQuestion, idx) => {
           const isDone = !!answers && q.id in answers;
@@ -83,7 +83,7 @@ function NavItem({
         {isDone && <Check id={iconId} className="shrink-0" />}
         <span
           title={label}
-          className="after:content-[attr(title)] after:ds-label-02-bold after:block after:h-0 after:invisible" // Prevent shifting on navigation
+          className="after:ds-label-02-bold after:invisible after:block after:h-0 after:content-[attr(title)]" // Prevent shifting on navigation
         >
           {label}
         </span>

@@ -14,8 +14,8 @@ function Flowchart() {
 
   return (
     <>
-      <Background backgroundColor="blue" className="pt-48 pb-48">
-        <Container className="pt-0 pb-0">
+      <Background backgroundColor="blue" className="py-48">
+        <Container className="py-0">
           <Header
             heading={{
               tagName: "h1",
@@ -24,7 +24,7 @@ function Flowchart() {
           ></Header>
         </Container>
       </Background>
-      <Container className="pt-48 pb-24">
+      <Container className="pb-24 pt-48">
         <Box
           heading={{
             tagName: "h2",
@@ -54,7 +54,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
           alternativeText="Beispielhafte Darstellung von Elementen eines Flussdiagramms"
         />
       </Container>
-      <Container className="pt-0 pb-24">
+      <Container className="pb-24 pt-0">
         <Box
           heading={{
             tagName: "h2",
@@ -69,7 +69,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
           }}
         ></Box>
       </Container>
-      <Container className="pt-0 pb-24">
+      <Container className="pb-24 pt-0">
         <Box
           heading={{
             tagName: "h2",
@@ -83,7 +83,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
           }}
         ></Box>
       </Container>
-      <Container className="pt-0 pb-48">
+      <Container className="pb-48 pt-0">
         <Box
           heading={{
             tagName: "h2",
@@ -100,7 +100,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
           }}
         ></Box>
       </Container>
-      <Container className="pt-0 pb-48">
+      <Container className="pb-48 pt-0">
         <Button
           id="flowchart-guide-page-back-button"
           text="Zurück"

@@ -154,8 +154,8 @@ export default function Index() {
   );
 
   return (
-    <div className="flex bg-blue-100 sm:pt-32 parent-bg-blue">
-      <div className="hidden lg:block flex-none pl-32">
+    <div className="parent-bg-blue flex bg-blue-100 sm:pt-32">
+      <div className="hidden flex-none pl-32 lg:block">
         <PreCheckNavigation question={question} answers={answers ?? {}} />
       </div>
       <section>
@@ -189,7 +189,7 @@ export default function Index() {
             }}
             ariaLabel={`Frage ${questionIdx + 1} von ${questions.length}`}
           />
-          <Container className="pt-0 pb-40">
+          <Container className="pb-40 pt-0">
             <ButtonContainer
               buttons={[
                 {

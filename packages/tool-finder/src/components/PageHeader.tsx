@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="py-20 px-16">
+    <header className="px-16 py-20">
       <Link
         to="/"
         className="ds-label-01-bold no-underline hover:underline focus:outline active:underline"

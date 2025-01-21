@@ -22,8 +22,8 @@ interface InfoItem {
 
 export default function Methoden() {
   const renderInfoItem = (info: InfoItem) => (
-    <span key={info.text} className="flex gap-4 items-top mb-8 last:mb-24">
-      <info.icon className="h-16 w-16 mt-6" />
+    <span key={info.text} className="mb-8 flex gap-4 last:mb-24">
+      <info.icon className="mt-6 size-16" />
       <span>{info.text}</span>
     </span>
   );

@@ -138,12 +138,12 @@ function App() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <ScrollToTop />
       <PageHeader />
       <Breadcrumbs breadcrumbs={routes} />
-      <main className="flex-grow flex flex-col">
-        <div className="flex-grow">
+      <main className="flex grow flex-col">
+        <div className="grow">
           <Routes>
             {routes.map((route) => {
               return (

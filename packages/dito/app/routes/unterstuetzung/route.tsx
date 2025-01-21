@@ -29,14 +29,14 @@ export const meta: MetaFunction = ({ matches }) => {
 function Testimonial() {
   return (
     <>
-      <p className="text-6xl -mb-20 text-blue-600">&ldquo;</p>
+      <p className="-mb-20 text-6xl text-blue-600">&ldquo;</p>
       <RichText
         markdown={socialProof.testimonials[0].quote}
         className="text-base"
       />
       <RichText
         markdown={socialProof.testimonials[0].position}
-        className="text-base font-bold mt-8"
+        className="mt-8 text-base font-bold"
       />
       <RichText
         markdown={socialProof.testimonials[0].ministry}
@@ -78,20 +78,20 @@ export default function Index() {
         </Container>
       </Background>
       <Background backgroundColor="midBlue">
-        <Container className="pt-0 pb-0 flex flex-col lg:flex-row lg:h-[420px]">
+        <Container className="flex flex-col py-0 lg:h-[420px] lg:flex-row">
           <div className="py-32 sm:py-48 lg:w-1/2 lg:self-center">
             <RichText
               markdown={socialProof.text}
-              className="text-2xl sm:text-3xl leading-10 w-[370px] sm:max-lg:w-[480px]"
+              className="w-[370px] text-2xl leading-10 sm:text-3xl sm:max-lg:w-[480px]"
             />
           </div>
-          <div className="max-sm:hidden relative max-lg:mb-48 lg:w-1/2">
+          <div className="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
             <div
-              className={`w-[630px] lg:w-[50vw] [&>img]:lg:w-full [&>img]:lg:h-[420px] [&>img]:lg:object-[10%_75%] [&>img]:lg:object-none`}
+              className={`w-[630px] lg:w-[50vw] [&>img]:lg:h-[420px] [&>img]:lg:w-full [&>img]:lg:object-none [&>img]:lg:object-[10%_75%]`}
             >
               <SocialProofImage />
             </div>
-            <div className="absolute left-40 bottom-40 max-w-[400px] p-16 bg-white/70 backdrop-blur rounded-lg max-lg:hidden">
+            <div className="absolute bottom-40 left-40 max-w-[400px] rounded-lg bg-white/70 p-16 backdrop-blur max-lg:hidden">
               <Testimonial />
             </div>
           </div>
@@ -113,14 +113,14 @@ export default function Index() {
             markdown: supportWhat.subtitle,
           }}
         />
-        <div className="flex max-sm:flex-col mt-40 gap-32">
+        <div className="mt-40 flex gap-32 max-sm:flex-col">
           {supportWhat.supportTypes.length > 0 &&
             supportWhat.supportTypes.map((supportType) => (
               <div
                 key={supportType.title}
-                className="flex max-lg:flex-col gap-16"
+                className="flex gap-16 max-lg:flex-col"
               >
-                <supportType.icon className="w-48 h-48 flex-none fill-blue-800" />
+                <supportType.icon className="size-48 flex-none fill-blue-800" />
                 <Box
                   heading={{
                     tagName: "h3",
@@ -139,7 +139,7 @@ export default function Index() {
           <Heading tagName="h2" text={supportHow.title} />
           {supportHow.supportTypes.length > 0 &&
             supportHow.supportTypes.map((supportType) => (
-              <div key={supportType.title} className="ds-stack-16 pt-32 pb-40">
+              <div key={supportType.title} className="ds-stack-16 pb-40 pt-32">
                 <Box
                   heading={{
                     tagName: "h3",
@@ -159,7 +159,7 @@ export default function Index() {
                       src={supportType.iframe}
                       title={supportType.title}
                       aria-label={supportType.title}
-                      className={`w-full mt-32 transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "hidden h-0"}`}
+                      className={`mt-32 w-full transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "hidden h-0"}`}
                     ></iframe>
                   </>
                 ) : (

@@ -47,7 +47,7 @@ export default function Breadcrumbs({
 
   return filteredBreadcrumbs.length > 1 ? (
     <nav
-      className="py-8 px-16 bg-blue-100 flex flex-wrap items-center text-base print:hidden"
+      className="flex flex-wrap items-center bg-blue-100 px-16 py-8 text-base print:hidden"
       data-testid="breadcrumbs-menu"
       aria-label="breadcrumb navigation"
     >
@@ -72,7 +72,7 @@ export default function Breadcrumbs({
                   to={breadcrumb.url}
                   className={
                     idx === 0
-                      ? "ds-link-01-bold outline-blue-800 fill-blue-800"
+                      ? "ds-link-01-bold fill-blue-800 outline-blue-800"
                       : "text-link increase-tap-area"
                   }
                 >

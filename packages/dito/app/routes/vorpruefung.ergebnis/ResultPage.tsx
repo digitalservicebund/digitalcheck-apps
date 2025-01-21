@@ -89,10 +89,10 @@ export default function ResultPage({
     result.digital === ResultType.UNSURE ? preCheck.result.unsure.hint : "";
   return (
     <>
-      <Background backgroundColor="blue" className="pt-40 pb-40 print:pb-0">
+      <Background backgroundColor="blue" className="py-40 print:pb-0">
         <div className="px-16">
           <Container
-            className="pt-32 pb-32 rounded-t-lg"
+            className="rounded-t-lg py-32"
             backgroundColor={
               result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
             }
@@ -107,8 +107,8 @@ export default function ResultPage({
                 }}
               />
             )}
-            <div className="flex sm:flex-row flex-col gap-16">
-              <div className="flex-none w-36 h-36 flex items-center justify-center">
+            <div className="flex flex-col gap-16 sm:flex-row">
+              <div className="flex size-36 flex-none items-center justify-center">
                 {getHeaderIcon()}
               </div>
               <Header
@@ -123,7 +123,7 @@ export default function ResultPage({
             </div>
           </Container>
           <Container className="rounded-b-lg" backgroundColor="white">
-            <div className="pb-40 border-solid border-b-2 border-gray-400 last:border-0 last:pb-0 print:border-0 print:pb-0">
+            <div className="border-b-2 border-solid border-gray-400 pb-40 last:border-0 last:pb-0 print:border-0 print:pb-0">
               {resultContent.reasoningList
                 .filter(({ reasons }) => reasons.length > 0)
                 .map(({ intro, reasons }) => (

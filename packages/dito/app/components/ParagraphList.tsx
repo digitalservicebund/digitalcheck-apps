@@ -107,7 +107,7 @@ const PrincipleExplanation = ({
 
   return (
     <div className={explanationClasses} id={id} data-testid={id}>
-      <div className="flex gap-4 content-center">
+      <div className="flex content-center gap-4">
         <Heading
           tagName="h4"
           text={`Prinzip ${erfuellung.Prinzip.Nummer} – ${erfuellung.Prinzip.Name}`}
@@ -294,7 +294,7 @@ function Paragraph({
           className="font-bold"
         />
         <p className="ds-subhead font-bold">{paragraph.Titel}</p>
-        <div className="border-l-4 border-gray-300 pl-8 ds-stack-16">
+        <div className="ds-stack-16 border-l-4 border-gray-300 pl-8">
           {groupedAbsaetze.map((absatzGroup) => (
             <AbsatzContent
               key={"id" in absatzGroup ? absatzGroup.id : absatzGroup[0].number}

@@ -20,7 +20,7 @@ export default function renderRecommendation({
   return (
     <div
       key={`tool-${tool.id}`}
-      className="p-12 md:p-24 border border-gray-400 border-b-0 last:border-b last:rounded-bl last:rounded-br first:rounded-tl first:rounded-tr"
+      className="border border-b-0 border-gray-400 p-12 first:rounded-t last:rounded-b last:border-b md:p-24"
     >
       <div className="ds-stack-8">
         <Heading
@@ -29,7 +29,7 @@ export default function renderRecommendation({
           text={fidelity.name}
         />
         <Heading tagName="h3" look="ds-heading-03-bold" text={tool.name} />
-        <div className="flex flex-col sm:flex-row gap-16 sm:gap-24">
+        <div className="flex flex-col gap-16 sm:flex-row sm:gap-24">
           <RichText
             markdown={`${tool.description}
               ${tool.link ? `\n\n${tool.link}` : ""}
@@ -45,7 +45,7 @@ export default function renderRecommendation({
                 />
               )}
               {recommendation.alternativeTools.length > 0 && (
-                <div className="p-8 bg-gray-100 ds-stack-8 rounded">
+                <div className="ds-stack-8 rounded bg-gray-100 p-8">
                   <h4 className="ds-label-01-bold">Alternativen</h4>
                   <p>
                     Wenn Sie {tool.name} nicht nutzen können oder möchten,

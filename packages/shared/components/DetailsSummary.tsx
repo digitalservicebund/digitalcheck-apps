@@ -23,10 +23,10 @@ export default function DetailsSummary({
   return (
     <details
       open={open}
-      className="details has-[:focus-visible]:outline has-[:focus-visible]:outline-4 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-blue-800 text-blue-800"
+      className="details text-blue-800 has-[:focus-visible]:outline has-[:focus-visible]:outline-4 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-blue-800"
     >
       <summary className={summaryClasses}>{title}</summary>
-      <span className="block pt-4 pl-[24px] text-black">
+      <span className="block pl-[24px] pt-4 text-black">
         {typeof content === "string" ? (
           <RichText markdown={content} />
         ) : (

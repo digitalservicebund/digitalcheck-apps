@@ -9,8 +9,8 @@ function Accessibility() {
 
   return (
     <>
-      <Background backgroundColor="blue" className="pt-48 pb-48">
-        <Container className="pt-0 pb-0">
+      <Background backgroundColor="blue" className="py-48">
+        <Container className="py-0">
           <Header
             heading={{
               tagName: "h1",
@@ -22,7 +22,7 @@ function Accessibility() {
           ></Header>
         </Container>
       </Background>
-      <Container className="pt-48 pb-48">
+      <Container className="py-48">
         <Box
           content={{
             markdown: `

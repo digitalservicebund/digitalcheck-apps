@@ -73,7 +73,7 @@ export default function Input({
           </div>
         )}
       </div>
-      <div className="label-text mt-6" id={helperId}>
+      <div className="mt-6" id={helperId}>
         {helperText}
       </div>
       {error && <InputError id={errorId}>{error}</InputError>}

@@ -4,8 +4,8 @@ import RichText from "./RichText";
 
 const BetaBanner = () => {
   return (
-    <Background backgroundColor="yellow" className="pt-16 pb-16">
-      <Container className="pt-0 pb-0">
+    <Background backgroundColor="yellow" className="py-16">
+      <Container className="py-0">
         <RichText
           markdown={`Der Werkzeugfinder wird aktuell nicht weiterentwickelt. Dargestellte Informationen sind möglicherweise überholt.`}
         />

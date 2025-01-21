@@ -105,8 +105,8 @@ function QuizPage({
 
   return (
     <>
-      <Background backgroundColor="blue" className="pt-48 pb-48">
-        <Container className="pt-0 pb-0">
+      <Background backgroundColor="blue" className="py-48">
+        <Container className="py-0">
           <Header
             heading={{
               tagName: "h1",
@@ -119,7 +119,7 @@ function QuizPage({
         </Container>
       </Background>
       <BetaBanner />
-      <div className="pt-80 max-w-2xl m-auto">
+      <div className="m-auto max-w-2xl pt-80">
         <form {...form.getFormProps()}>
           <Question
             box={{
@@ -188,7 +188,7 @@ function QuizPage({
               error: form.error("reason"),
             }}
           />
-          <Container className="pt-0 pb-80">
+          <Container className="pb-80 pt-0">
             <Button
               id="quiz-find-tool"
               text="Werkzeug suchen"

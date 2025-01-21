@@ -91,6 +91,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:import/recommended",
         "plugin:import/typescript",
+        "plugin:tailwindcss/recommended",
       ],
       parser: "@typescript-eslint/parser",
       parserOptions: {
@@ -110,6 +111,9 @@ module.exports = {
             tsconfigRootDir: __dirname,
             project: ["**/tsconfig.json"],
           },
+        },
+        tailwindcss: {
+          whitelist: ["ds\\-(.*)", "plausible\\-(.*)", "parent-bg-blue"],
         },
       },
       rules: {

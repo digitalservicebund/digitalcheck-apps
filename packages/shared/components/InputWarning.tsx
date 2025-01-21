@@ -13,8 +13,8 @@ const InputWarning = ({ id, children }: InputWarningProps) => {
       data-testid="inputWarning"
       className="mt-16 flex items-center gap-x-4"
     >
-      <div className="flex-shrink-0">
-        <WarningOutlined className="!w-18 !h-18 fill-yellow-800" />
+      <div className="shrink-0">
+        <WarningOutlined className="fill-yellow-800" />
       </div>
       <span className="sr-only">Warnung:</span> {children}
     </div>

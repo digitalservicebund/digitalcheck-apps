@@ -5,7 +5,7 @@ import { interviewBanner } from "resources/content";
 export default function InterviewBanner() {
   return (
     <Container
-      className="mt-40 mb-48"
+      className="mb-48 mt-40"
       backgroundColor="blue"
       overhangingBackground
     >

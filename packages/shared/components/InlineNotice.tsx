@@ -57,17 +57,17 @@ const InlineNotice = ({
 
   return (
     <div
-      className={`max-w-prose ds-stack-8 scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
+      className={`ds-stack-8 max-w-prose scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
       id={identifier}
     >
-      <div className="flex flex-row gap-[4px] items-center">
-        {showIcon && <IconComponent className="flex-none mr-4" />}
+      <div className="flex flex-row items-center gap-[4px]">
+        {showIcon && <IconComponent className="mr-4 flex-none" />}
         <Heading tagName={tagName} look="ds-label-01-bold">
           {title}
         </Heading>
       </div>
       {content && (
-        <div className="tracking-[0.16px] leading-[26px]">
+        <div className="leading-[26px] tracking-[0.16px]">
           {content && <RichText markdown={content} />}
         </div>
       )}

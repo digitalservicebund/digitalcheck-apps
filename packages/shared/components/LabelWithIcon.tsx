@@ -24,7 +24,7 @@ function LabelWithIcon(
 
   return (
     <div className={`flex items-center ${wrapperClassNames}`}>
-      <content.icon className={`h-12 w-12 mb-2 ${iconClassNames}`} />
+      <content.icon className={`mb-2 size-12 ${iconClassNames}`} />
       <span className={`${labelClassNames}`}>{content.label}</span>
     </div>
   );

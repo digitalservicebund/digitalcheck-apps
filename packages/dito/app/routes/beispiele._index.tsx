@@ -26,7 +26,7 @@ export default function Digitaltauglichkeit_index() {
   );
   return (
     <>
-      <Background backgroundColor="darkBlue" className="pt-24 pb-24">
+      <Background backgroundColor="darkBlue" className="py-24">
         <Container>
           <Header
             heading={{

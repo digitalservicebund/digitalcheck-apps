@@ -24,7 +24,7 @@ export default function VisualisationItem({
   const visualisationUrl = visualisierung.Bild.url.split("/").pop();
 
   return (
-    <div className="flex max-sm:flex-col gap-16 sm:gap-32">
+    <div className="flex gap-16 max-sm:flex-col sm:gap-32">
       <div className="sm:w-1/2">
         <Link
           to={`${ROUTE_VISUALISATION.url}/${visualisationUrl}`}
@@ -32,12 +32,12 @@ export default function VisualisationItem({
           target="_blank"
           rel="noreferrer"
           state={{ image: visualisierung.Bild }}
-          className="block relative border border-blue-500 aspect-square overflow-hidden cursor-zoom-in"
+          className="relative block aspect-square cursor-zoom-in overflow-hidden border border-blue-500"
         >
           <Image
             url={visualisierung.Bild.url}
             alternativeText={visualisierung.Bild.alternativeText}
-            className="w-full h-full object-cover"
+            className="size-full object-cover"
           />
           <ZoomInOutlined
             className="absolute bottom-16 left-16 bg-blue-800 p-1 shadow"
@@ -45,7 +45,7 @@ export default function VisualisationItem({
           />
         </Link>
 
-        <div className="p-12 bg-gray-100">
+        <div className="bg-gray-100 p-12">
           <LabelValuePair
             label={regulations.visualisations.imageInfo.legalArea}
             value={visualisierung.Digitalcheck?.Regelungsvorhaben?.Rechtsgebiet}
@@ -71,7 +71,7 @@ export default function VisualisationItem({
           />
         </div>
       </div>
-      <div className="sm:w-1/2 mb-12">
+      <div className="mb-12 sm:w-1/2">
         <Heading tagName="h3" look="ds-heading-03-reg" className="mb-16">
           {visualisierung.Titel}
         </Heading>

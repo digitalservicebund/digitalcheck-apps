@@ -11,8 +11,8 @@ function InfoPage() {
 
   return (
     <>
-      <Background backgroundColor="blue" className="pt-48 pb-48">
-        <Container className="pt-0 pb-0">
+      <Background backgroundColor="blue" className="py-48">
+        <Container className="py-0">
           <Header
             heading={{
               tagName: "h1",
@@ -25,7 +25,7 @@ function InfoPage() {
         </Container>
       </Background>
       <BetaBanner />
-      <Container className="pt-48 pb-48">
+      <Container className="py-48">
         <Box
           identifier="info-section-which-tool"
           heading={{
@@ -45,7 +45,7 @@ function InfoPage() {
           ]}
         ></Box>
       </Container>
-      <Container className="pt-0 pb-48">
+      <Container className="pb-48 pt-0">
         <Box
           className="ds-stack-16"
           identifier="info-section-why-visualisation"
@@ -65,7 +65,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
           }}
         ></Box>
       </Container>
-      <Container className="pt-0 pb-0 flex flex-col md:flex-row gap-32 md:gap-32 items-start">
+      <Container className="flex flex-col items-start gap-32 py-0 md:flex-row md:gap-32">
         <Box
           className="pt-20"
           heading={{
@@ -92,7 +92,7 @@ Schleifen, uneinheitliche Rechtsbegriffe und mögliche zu vermeidende Schriftfor
           ></Box>
         </Background>
       </Container>
-      <Container className="pt-16 pb-48">
+      <Container className="pb-48 pt-16">
         <Box
           content={{
             markdown: `Mehr dazu lesen Sie in diesem Blogbeitrag: [Mit Visualisierungen zu einer digitaltauglichen Gesetzgebung](https://digitalservice.bund.de/blog/mit-visualisierungen-zu-einer-digitaltauglichen-gesetzgebung).

@@ -10,7 +10,7 @@ type BaseListProps = {
 
 const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
   return (
-    <div className="scroll-my-40 relative ds-stack-8" id={identifier}>
+    <div className="ds-stack-8 relative scroll-my-40" id={identifier}>
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
       <ol
         className="list-unstyled ds-stack-32 relative"
@@ -31,7 +31,7 @@ const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
                 ? item.content
                 : index.toString())
             }
-            className="first:pt-0 scroll-my-40"
+            className="scroll-my-40 first:pt-0"
             aria-describedby={
               item.identifier ? `${item.identifier}-desc` : undefined
             }
@@ -52,13 +52,13 @@ const NumberedList = ({ identifier, items, heading }: BaseListProps) => {
 
 const BulletList = ({ identifier, items, heading }: BaseListProps) => {
   return (
-    <div className="scroll-my-40 relative ds-stack-8" id={identifier}>
+    <div className="ds-stack-8 relative scroll-my-40" id={identifier}>
       {heading && <Heading className="max-sm:ds-heading-02-reg" {...heading} />}
-      <div className="absolute left-[8px] top-32 bottom-0 bg-blue-300 w-[4px]">
-        <div className="text-blue-300 bg-white w-[20px] -left-[8px] absolute text-center text-xl leading-none rotate-180">
+      <div className="absolute bottom-0 left-[8px] top-32 w-[4px] bg-blue-300">
+        <div className="absolute -left-8 w-20 rotate-180 bg-white text-center text-xl leading-none text-blue-300">
           ▲
         </div>
-        <div className="text-blue-300 bg-white w-[20px] -left-[8px] bottom-0 absolute text-center text-xl leading-none">
+        <div className="absolute -left-8 bottom-0 w-20 bg-white text-center text-xl leading-none text-blue-300">
           ▲
         </div>
       </div>
@@ -81,7 +81,7 @@ const BulletList = ({ identifier, items, heading }: BaseListProps) => {
                 ? item.content
                 : index.toString())
             }
-            className="first:pt-0 scroll-my-40"
+            className="scroll-my-40 first:pt-0"
             aria-describedby={
               item.identifier ? `${item.identifier}-desc` : undefined
             }

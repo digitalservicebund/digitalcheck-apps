@@ -11,10 +11,10 @@ const InputError = ({ id, children }: InputErrorProps) => {
       aria-live="assertive"
       id={id}
       data-testid={id}
-      className="mt-16 text-red-800 flex items-center gap-x-4"
+      className="mt-16 flex items-center gap-x-4 text-red-800"
     >
-      <div className="flex-shrink-0">
-        <ErrorOutline className="!w-18 !h-18 fill-red-800" />
+      <div className="shrink-0">
+        <ErrorOutline className="fill-red-800" />
       </div>
       <span className="sr-only">Fehler:</span> {children}
     </div>

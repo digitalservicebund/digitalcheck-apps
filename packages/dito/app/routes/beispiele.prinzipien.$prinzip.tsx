@@ -97,7 +97,7 @@ export default function DigitaltauglichkeitPrinzipienDetail() {
           />
           <BlocksRenderer content={prinzip.Beschreibung}></BlocksRenderer>
         </Container>
-        <Container className="flex space-x-20 items-center">
+        <Container className="flex items-center space-x-20">
           {prinzips.map((p) =>
             prinzip.Nummer === p.Nummer ? (
               <div key={p.Nummer} className="ds-label-01-bold">
@@ -135,9 +135,9 @@ export default function DigitaltauglichkeitPrinzipienDetail() {
                       tagName="h2"
                       text={digitalcheck.Regelungsvorhaben.Titel}
                       look="ds-heading-03-bold"
-                      className="inline max-w-full text-link"
+                      className="text-link inline max-w-full"
                     />
-                    <OpenInNewIcon className="!inline scale-90 ml-4 mb-6 fill-blue-800" />
+                    <OpenInNewIcon className="mb-6 ml-4 !inline scale-90 fill-blue-800" />
                   </Link>
                   <InlineInfoList
                     className="my-32 pl-16"

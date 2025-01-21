@@ -12,7 +12,7 @@ const LinkBar = <T extends { url: string }>({
   );
 
   return (
-    <div className="flex justify-center space-x-8 mt-20">
+    <div className="mt-20 flex justify-center space-x-8">
       {elements.map((element, index) => (
         <Link
           key={element.url}

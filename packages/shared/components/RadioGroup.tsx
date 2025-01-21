@@ -32,7 +32,7 @@ const RadioGroup = ({
       aria-errormessage={errorId}
       aria-invalid={hasError}
     >
-      <ul className="ds-stack-16 border-0 p-0 m-0">
+      <ul className="ds-stack-16 m-0 border-0 p-0">
         {options.map(({ value, text, subText }) => {
           const id = `${name}-${value}`;
           const checked = selectedValue === value;
@@ -51,7 +51,7 @@ const RadioGroup = ({
               />
               <label htmlFor={id}>
                 {text}
-                <div className="text-gray-800 ds-body-02-reg">{subText}</div>
+                <div className="ds-body-02-reg text-gray-800">{subText}</div>
               </label>
             </li>
           );

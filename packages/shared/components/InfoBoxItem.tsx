@@ -47,7 +47,7 @@ const InfoBoxItem = ({
         />
       )}
       <div
-        className={`ds-stack-16 break-words w-full ${
+        className={`ds-stack-16 w-full break-words ${
           image ? "min-[500px]:ml-16" : ""
         }`}
       >

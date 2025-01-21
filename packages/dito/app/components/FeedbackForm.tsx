@@ -141,7 +141,7 @@ function FeedbackQuestion({
                 );
               })}
             </div>
-            <div className="mt-20 text-gray-900 flex justify-between">
+            <div className="mt-20 flex justify-between text-gray-900">
               <span className="">{feedbackForm.labels[0]}</span>
               <span className="">{feedbackForm.labels[4]}</span>
             </div>
@@ -186,7 +186,7 @@ export default function FeedbackForm() {
   if (submitted) {
     return (
       <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
-        <Background backgroundColor="blue" className="pt-40 pb-48">
+        <Background backgroundColor="blue" className="pb-48 pt-40">
           <Container backgroundColor="white" overhangingBackground>
             <h2>Vielen Dank für Ihr Feedback!</h2>
             <br />
@@ -201,7 +201,7 @@ export default function FeedbackForm() {
   }
 
   return (
-    <Background backgroundColor="blue" className="pt-40 pb-48">
+    <Background backgroundColor="blue" className="pb-48 pt-40">
       <Container backgroundColor="white" overhangingBackground>
         <h2>{feedbackForm.heading}</h2>
         <form onSubmit={handleSubmit} className="mb-48">
@@ -216,7 +216,7 @@ export default function FeedbackForm() {
           />
           <button
             type="submit"
-            className="mt-16 bg-blue-800 text-white px-24 py-12"
+            className="mt-16 bg-blue-800 px-24 py-12 text-white"
           >
             Feedback absenden
           </button>

@@ -38,15 +38,15 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
 
   return result ? (
     <>
-      <Container className="pt-48 pb-24 max-sm:px-0">
-        <div className="border-4 sm:border-8 sm:rounded-lg border-[#EBF3FD]">
+      <Container className="pb-24 pt-48 max-sm:px-0">
+        <div className="border-4 border-[#EBF3FD] sm:rounded-lg sm:border-8">
           <Image
             url={getImageUrl(result.cluster.img.src)}
             alternativeText={result.cluster.img.alt}
             data-testid="cluster-img"
           />
-          <div className="p-12 md:p-24 pt-16">
-            <div className="p-12 md:p-24 pb-32">
+          <div className="p-12 pt-16 md:p-24">
+            <div className="p-12 pb-32 md:p-24">
               <p className="ds-label-section text-gray-900">
                 Wir empfehlen Ihnen eine Visualisierung als:
               </p>
@@ -82,9 +82,9 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
           </div>
         </div>
       </Container>
-      <Container className="pt-24 pb-48 max-sm:px-0">
+      <Container className="pb-48 pt-24 max-sm:px-0">
         <Box
-          className="p-12 sm:border-2 sm:rounded-md border-blue-100 bg-blue-100"
+          className="border-blue-100 bg-blue-100 p-12 sm:rounded-md sm:border-2"
           heading={{
             tagName: "h3",
             look: "ds-label-01-bold",
@@ -115,7 +115,7 @@ function ResultPage({ ressort, object, reason }: ResultPageProps) {
       />
     </>
   ) : (
-    <Container className="pt-48 pb-48">
+    <Container className="py-48">
       <Box
         identifier="info-section-why-visualisation"
         heading={{

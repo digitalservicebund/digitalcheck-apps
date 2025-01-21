@@ -14,9 +14,9 @@ function RadioAnswer({
   annotation?: string;
 }>) {
   return (
-    <div className="flex flex-col w-1/5 gap-16">
+    <div className="flex w-1/5 flex-col gap-16">
       {annotation && (
-        <p className="hidden sm:inline text-center">{annotation}</p>
+        <p className="hidden text-center sm:inline">{annotation}</p>
       )}
       <label className="flex flex-col items-center gap-8">
         <span className="ml-2">{value}</span>
@@ -47,13 +47,13 @@ function FeedbackQuestion({
   hasAnnotations?: boolean;
 }>) {
   return (
-    <fieldset className="flex flex-col sm:flex-row items-stretch sm:items-end w-full gap-16 sm:gap-32">
+    <fieldset className="flex w-full flex-col items-stretch gap-16 sm:flex-row sm:items-end sm:gap-32">
       <div className="w-full sm:w-1/5">
         <legend className="font-semibold">{question}</legend>
       </div>
       <div
         role="radiogroup"
-        className="flex-1 flex justify-between items-end mb-8"
+        className="mb-8 flex flex-1 items-end justify-between"
       >
         {[1, 2, 3, 4, 5].map((value) => {
           let annotation: string | undefined = undefined;
@@ -99,8 +99,8 @@ export default function FeedbackForm({
   }
 
   return (
-    <Background backgroundColor="yellow" className="pt-32 pb-40">
-      <Container className="pt-0 pb-0 ds-stack-32">
+    <Background backgroundColor="yellow" className="pb-40 pt-32">
+      <Container className="ds-stack-32 py-0">
         <Box
           heading={{
             tagName: "h3",
@@ -108,7 +108,7 @@ export default function FeedbackForm({
             text: "Ihr Feedback hilft uns weiter!",
           }}
         ></Box>
-        <div className="sm:hidden w-full flex flex-col">
+        <div className="flex w-full flex-col sm:hidden">
           <p className="">1 = {disagreeAnnotation}</p>
           <p className="">5 = {agreeAnnotation}</p>
         </div>

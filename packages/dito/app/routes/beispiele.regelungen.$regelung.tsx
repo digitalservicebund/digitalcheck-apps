@@ -104,7 +104,7 @@ export default function Gesetz() {
               markdown: regulations.subtitle[0],
             }}
           />
-          <p className="mt-24 ds-subhead font-bold">
+          <p className="ds-subhead mt-24 font-bold">
             <b>{regulations.subtitle[1]}</b>
           </p>
           <ol className="list-unstyled mt-16">
@@ -115,7 +115,7 @@ export default function Gesetz() {
                     ↓
                     <Link
                       to={`#${slugify(regulations.principles.title)}-${index}`}
-                      className="ml-4 underline underline-offset-4 decoration-1"
+                      className="ml-4 underline decoration-1 underline-offset-4"
                     >
                       {regulations.principles.title}
                     </Link>
@@ -126,7 +126,7 @@ export default function Gesetz() {
                     ↓
                     <Link
                       to={`#${slugify(regulations.visualisations.title)}-${index}`}
-                      className="ml-4 underline underline-offset-4 decoration-1"
+                      className="ml-4 underline decoration-1 underline-offset-4"
                     >
                       {regulations.visualisations.title}
                     </Link>
@@ -137,7 +137,7 @@ export default function Gesetz() {
                     ↓
                     <Link
                       to={`#${slugify(regulations.nkr.title)}-${index}`}
-                      className="ml-4 underline underline-offset-4 decoration-1"
+                      className="ml-4 underline decoration-1 underline-offset-4"
                     >
                       {regulations.nkr.title}
                     </Link>
@@ -149,7 +149,7 @@ export default function Gesetz() {
         </Container>
       </Background>
       <Background backgroundColor="midLightBlue">
-        <Container className="pt-0 pb-0">
+        <Container className="py-0">
           <InlineInfoList
             items={[
               {
@@ -195,7 +195,7 @@ export default function Gesetz() {
           </Container>
         )}
       {regelung.Digitalchecks.map((digitalcheck, index) => (
-        <Container key={digitalcheck.documentId} className="pb-80 ds-stack-64">
+        <Container key={digitalcheck.documentId} className="ds-stack-64 pb-80">
           {/* ----- Formulierungen / Prinziperfüllungen ----- */}
           {digitalcheck.Paragraphen.length > 0 && (
             <>

@@ -80,7 +80,7 @@ export default function FivePrinciples() {
                 <li key={principle.label}>
                   <Link
                     to={`#${slugify(principle.label)}`}
-                    className="underline underline-offset-4 decoration-1"
+                    className="underline decoration-1 underline-offset-4"
                   >
                     ↓ {principle.label}: {principle.title}
                   </Link>

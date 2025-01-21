@@ -5,6 +5,6 @@ export const openInNewIconString = ReactDOMServer.renderToString(
   <OpenInNewIcon
     height="1.2em"
     width="1.2em"
-    className="!inline ml-[0.2rem] mb-1"
+    className="mb-1 ml-[0.2rem] !inline"
   />,
 );
