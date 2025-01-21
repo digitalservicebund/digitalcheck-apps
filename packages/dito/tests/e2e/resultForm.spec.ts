@@ -36,7 +36,7 @@ async function interceptMailToRedirectAndExpect(
     if (expected?.subject)
       expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
     expected?.recipients?.forEach((expectedRecipient) =>
-      expect(mailTo.pathname).toContain(expectedRecipient),
+      expect(decodeURIComponent(mailTo.pathname)).toContain(expectedRecipient),
     );
     expected?.cc?.forEach((expectedCC) =>
       expect(mailTo.searchParams.get("cc")).toContain(expectedCC),
@@ -46,7 +46,9 @@ async function interceptMailToRedirectAndExpect(
     });
 
     notExpected?.recipients?.forEach((notExpectedRecipient) =>
-      expect(mailTo.pathname).not.toContain(notExpectedRecipient),
+      expect(decodeURIComponent(mailTo.pathname)).not.toContain(
+        notExpectedRecipient,
+      ),
     );
     notExpected?.body?.forEach((notExpectedString) => {
       expect(mailTo.searchParams.get("body")).not.toContain(notExpectedString);

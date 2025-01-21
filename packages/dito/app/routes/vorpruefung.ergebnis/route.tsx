@@ -148,7 +148,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
   const email = formData.get("email");
   const cc = email ? `&cc=${email as string}` : "";
-  const recipients = resolveRecipients(result);
+  const recipients = encodeURIComponent(resolveRecipients(result));
   const body = buildEmailBody(
     preCheckAnswers,
     result,
