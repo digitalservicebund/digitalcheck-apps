@@ -27,33 +27,32 @@ async function interceptMailToRedirectAndExpect(
     const status = response.headers()["x-remix-status"];
     const redirectUrl = response.headers()["x-remix-redirect"];
 
-    if (status === "302" && redirectUrl?.startsWith("mailto:")) {
-      const mailTo = new URL(redirectUrl);
-      if (expected?.subject)
-        expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
-      expected?.recipients?.forEach((expectedRecipient) =>
-        expect(mailTo.pathname).toContain(expectedRecipient),
-      );
-      expected?.cc?.forEach((expectedCC) =>
-        expect(mailTo.searchParams.get("cc")).toContain(expectedCC),
-      );
-      expected?.body?.forEach((expectedString) => {
-        expect(mailTo.searchParams.get("body")).toContain(expectedString);
-      });
-
-      notExpected?.recipients?.forEach((notExpectedRecipient) =>
-        expect(mailTo.pathname).not.toContain(notExpectedRecipient),
-      );
-      notExpected?.body?.forEach((notExpectedString) => {
-        expect(mailTo.searchParams.get("body")).not.toContain(
-          notExpectedString,
-        );
-      });
-
-      await route.abort();
-    } else {
+    if (status !== "302" || !redirectUrl?.startsWith("mailto:")) {
       await route.continue();
+      return;
     }
+
+    const mailTo = new URL(redirectUrl);
+    if (expected?.subject)
+      expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
+    expected?.recipients?.forEach((expectedRecipient) =>
+      expect(mailTo.pathname).toContain(expectedRecipient),
+    );
+    expected?.cc?.forEach((expectedCC) =>
+      expect(mailTo.searchParams.get("cc")).toContain(expectedCC),
+    );
+    expected?.body?.forEach((expectedString) => {
+      expect(mailTo.searchParams.get("body")).toContain(expectedString);
+    });
+
+    notExpected?.recipients?.forEach((notExpectedRecipient) =>
+      expect(mailTo.pathname).not.toContain(notExpectedRecipient),
+    );
+    notExpected?.body?.forEach((notExpectedString) => {
+      expect(mailTo.searchParams.get("body")).not.toContain(notExpectedString);
+    });
+
+    await route.abort();
   });
 }
 
@@ -188,9 +187,9 @@ test.describe("test positive result for digital and interoperability", () => {
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
     ];
-    for (let i = 0; i < questions.length; i++) {
-      bodyContains.push(questions[i].positiveResult);
-    }
+    questions.forEach((question) => {
+      bodyContains.push(question.positiveResult);
+    });
 
     await interceptMailToRedirectAndExpect(page, {
       body: bodyContains,
@@ -211,7 +210,7 @@ test.describe("test positive result for digital and interoperability", () => {
 
 test.describe("test positive result for digital and negative for interoperability", () => {
   test.beforeEach(
-    "answer all digital questions with no and all interoperability questions with yes and go to result page",
+    "answer all digital questions with yes and all interoperability questions with no and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
       for (let i = 0; i < questions.length; i++) {
@@ -256,7 +255,7 @@ test.describe("test positive result for digital and negative for interoperabilit
 
 test.describe("test positive result for digital and unsure for interoperability", () => {
   test.beforeEach(
-    "answer all digital questions with no and all interoperability questions with yes and go to result page",
+    "answer all digital questions with yes and all interoperability questions with unsure and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
       for (let i = 0; i < questions.length; i++) {
@@ -306,11 +305,11 @@ test.describe("test positive result for digital and unsure for interoperability"
     const bodyContains = [
       "In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
     ];
-    for (let i = 0; i < questions.length; i++) {
-      bodyContains.push(
-        questions[i].interoperability ? questions[i].positiveResult : "",
-      );
-    }
+    questions
+      .filter((question) => question.interoperability)
+      .forEach((question) => {
+        bodyContains.push(question.positiveResult);
+      });
 
     await interceptMailToRedirectAndExpect(page, {
       body: bodyContains,
@@ -433,7 +432,7 @@ test.describe("test negative result for digital and positive for interoperabilit
     await expect(page.getByLabel("Begründung")).toBeVisible();
   });
 
-  test("email body contains result title and hint", async ({ page }) => {
+  test("email body contains result title", async ({ page }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
@@ -462,7 +461,7 @@ test.describe("test negative result for digital and positive for interoperabilit
 
 test.describe("test negative result for digital and unsure for interoperability", () => {
   test.beforeEach(
-    "answer all digital questions with no and all interoperability questions with yes and go to result page",
+    "answer all digital questions with no and all interoperability questions with unsure and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
       for (let i = 0; i < questions.length; i++) {
@@ -510,16 +509,16 @@ test.describe("test positive result with mixed answers", () => {
     await page.waitForURL(ROUTE_RESULT.url);
   });
 
-  test("answers in email body are prefixed by a special character indicating the type of ansewr", async ({
+  test("answers in email body are prefixed by a special character indicating the type of answer", async ({
     page,
   }) => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
     const bodyContains = [
-      "- " + questions[0].negativeResult,
-      "? " + questions[1].positiveResult,
-      "+ " + questions[2].positiveResult,
+      `- ${questions[0].negativeResult}`,
+      `? ${questions[1].positiveResult}`,
+      `+ ${questions[2].positiveResult}`,
     ];
     await interceptMailToRedirectAndExpect(page, {
       body: bodyContains,
