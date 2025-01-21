@@ -121,7 +121,7 @@ function buildEmailBody(
 function resolveRecipients(result: PreCheckResult) {
   const additionalRecipient =
     result.interoperability !== ResultType.NEGATIVE
-      ? `,${emailTemplate.toDC}`
+      ? `; ${emailTemplate.toDC}`
       : "";
   return `${emailTemplate.toNkr}${additionalRecipient}`;
 }
