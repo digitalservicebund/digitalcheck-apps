@@ -1,0 +1,21 @@
+name: Nightly Tests
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # Runs daily at 2am
+  # Allow to run this workflow manually
+  workflow_dispatch:
+
+jobs:
+  check-test-build-deploy:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+        exclude:
+          - package: shared
+    uses: ./.github/workflows/check-and-test.yml
+    with:
+      package: ${{ matrix.package }}
+    secrets: inherit

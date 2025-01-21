@@ -12,6 +12,11 @@ on:
         type: boolean
         description: "Whether to run integration tests (E2E and A11y). Default is true."
         default: true
+      ciE2eTestsOnly:
+        required: false
+        type: boolean
+        description: "If enabled e2e tests only ci tests are executed (e.g. testing only on a single browser)."
+        default: false
 
 env:
   WORKSPACE: "@digitalcheck/${{ inputs.package }}"
@@ -68,8 +73,13 @@ jobs:
       - name: Install E2E & A11y test dependencies
         run: npx --yes playwright install --with-deps
 
+      - name: Run CI E2E tests
+        if: inputs.shouldRunIntegrationTests && inputs.ciE2eTestsOnly
+        id: e2e
+        run: npm run test:e2e-ci --workspace ${{ env.WORKSPACE }}
+
       - name: Run E2E tests
-        if: inputs.shouldRunIntegrationTests
+        if: inputs.shouldRunIntegrationTests && !inputs.ciE2eTestsOnly
         id: e2e
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 

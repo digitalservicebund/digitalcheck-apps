@@ -15,6 +15,7 @@
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest",
     "test:e2e": "playwright test tests/e2e --config=tests/playwright.config.ts",
+    "test:e2e-ci": "playwright test tests/e2e --config=tests/playwright.config.ts --project chromium",
     "test:a11y": "playwright test tests/a11y --config=tests/playwright.config.ts",
     "test:snapshots": "playwright test tests/snapshots --config=tests/playwright-snapshots.config.ts",
     "test:update-snapshots": "playwright test tests/snapshots --config=tests/playwright-snapshots.config.ts --update-snapshots",
