@@ -12,9 +12,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        package: ${{ fromJSON(needs.changes.outputs.packages) }}
-        exclude:
-          - package: shared
+        package: ["dito", "tool-finder"]
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ matrix.package }}
