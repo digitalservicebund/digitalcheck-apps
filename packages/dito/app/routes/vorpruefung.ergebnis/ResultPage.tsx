@@ -129,7 +129,7 @@ export default function ResultPage({
                 .map(({ intro, reasons }) => (
                   <React.Fragment key={intro}>
                     <RichText markdown={intro} className="mt-40 first:mt-0" />
-                    <ul className="mt-16 pl-0 ds-stack-16">
+                    <ul className="ds-stack-16 mt-16 pl-0">
                       {reasons
                         .toSorted((a, b) => {
                           if (a.answer === b.answer) {
