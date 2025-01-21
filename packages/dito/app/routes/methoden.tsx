@@ -22,7 +22,7 @@ interface InfoItem {
 
 export default function Methoden() {
   const renderInfoItem = (info: InfoItem) => (
-    <span key={info.text} className="mb-8 flex gap-4 last:mb-24">
+    <span key={info.text} className="mb-8 flex gap-4 last-of-type:mb-8">
       <info.icon className="mt-6 size-16" />
       <span>{info.text}</span>
     </span>
@@ -34,7 +34,7 @@ export default function Methoden() {
     content: renderToString(
       <>
         {item.info?.map((info) => renderInfoItem(info))}
-        {item.text}
+        <p>{item.text}</p>
       </>,
     ),
     headline: {
