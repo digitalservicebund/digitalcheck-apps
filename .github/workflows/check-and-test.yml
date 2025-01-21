@@ -80,7 +80,7 @@ jobs:
 
       - name: Run E2E tests
         if: inputs.shouldRunIntegrationTests && !inputs.ciE2eTestsOnly
-        id: e2e
+        id: e2e-ci
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
       - uses: actions/upload-artifact@v4
