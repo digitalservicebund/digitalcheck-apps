@@ -97,23 +97,23 @@ function buildEmailBody(
   resultContent.reasoningList
     .filter((reasoning) => reasoning.reasons.length !== 0)
     .forEach(({ intro, reasons }) => {
-      resultText += "➤ " + intro.replaceAll("**", "") + "\n\n";
+      resultText += `➤ ${intro.replaceAll("**", "")} \n\n`;
       reasons
         .sort((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {
           resultText += reason.answer === "yes" ? "+" : "";
           resultText += reason.answer === "no" ? "-" : "";
           resultText += reason.answer === "unsure" ? "?" : "";
-          resultText += " " + reason.text + "\n";
+          resultText += ` ${reason.text}\n`;
           resultText += reason.hint
-            ? reason.hint.replaceAll("**", "") + "\n"
+            ? `${reason.hint.replaceAll("**", "")}\n`
             : "";
         });
       resultText += "\n\n";
     });
 
   resultText += negativeReasoning
-    ? preCheck.result.form.reasonLabel + ":\n\n" + negativeReasoning + "\n\n"
+    ? `${preCheck.result.form.reasonLabel}:\n\n${negativeReasoning}\n\n`
     : "";
 
   return `${emailTemplate.bodyBefore}\n${resultText}\n\n${emailTemplate.bodyAfter}`;
