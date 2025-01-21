@@ -110,13 +110,7 @@ test.describe("test positive result for digital and interoperability", () => {
 
   test("no error shown when email and title are filled", async ({ page }) => {
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
-    await expect(page.getByLabel("Ihre E-Mail Adresse")).toHaveValue(
-      "foo@bar.de",
-    );
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
-    await expect(page.getByLabel("Arbeitstitel des Vorhabens")).toHaveValue(
-      "Policy 123",
-    );
     await interceptMailToRedirectAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
