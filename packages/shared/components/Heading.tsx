@@ -1,5 +1,5 @@
+import RichText from "@digitalcheck/shared/components/RichText";
 import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
-import RichText from "components/RichText";
 import type { ReactNode } from "react";
 
 export type HeadingProps = {
