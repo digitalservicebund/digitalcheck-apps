@@ -61,8 +61,8 @@ test.describe("test positive result for digital and interoperability", () => {
     "answer all pre-check questions with yes and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page.getByLabel("Ja").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -207,10 +207,10 @@ test.describe("test positive result for digital and negative for interoperabilit
     "answer all digital questions with yes and all interoperability questions with no and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(questions[i].interoperability ? "Nein" : "Ja")
+          .getByLabel(question.interoperability ? "Nein" : "Ja")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -252,10 +252,10 @@ test.describe("test positive result for digital and unsure for interoperability"
     "answer all digital questions with yes and all interoperability questions with unsure and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(questions[i].interoperability ? "Ich bin unsicher" : "Ja")
+          .getByLabel(question.interoperability ? "Ich bin unsicher" : "Ja")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -317,8 +317,8 @@ test.describe("test negative result for digital and interoperability", () => {
     "answer all pre-check questions with no and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page.getByLabel("Nein").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -366,8 +366,8 @@ test.describe("test negative result for digital and interoperability", () => {
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
     ];
-    for (let i = 0; i < questions.length; i++) {
-      bodyContains.push(questions[i].negativeResult);
+    for (const question of questions) {
+      bodyContains.push(question.negativeResult);
     }
 
     await interceptMailToRedirectAndExpect(page, {
@@ -412,10 +412,10 @@ test.describe("test negative result for digital and positive for interoperabilit
     "answer all digital questions with no and all interoperability questions with yes and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(questions[i].interoperability ? "Ja" : "Nein")
+          .getByLabel(question.interoperability ? "Ja" : "Nein")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -458,12 +458,10 @@ test.describe("test negative result for digital and unsure for interoperability"
     "answer all digital questions with no and all interoperability questions with unsure and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(
-            questions[i].interoperability ? "Ich bin unsicher" : "Nein",
-          )
+          .getByLabel(question.interoperability ? "Ich bin unsicher" : "Nein")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -495,8 +493,8 @@ test.describe("test positive result with mixed answers", () => {
     await page.waitForURL(questions[1].url);
     await page.getByLabel("Ich bin unsicher").click();
     await page.getByRole("button", { name: "Übernehmen" }).click();
-    for (let i = 2; i < questions.length; i++) {
-      await page.waitForURL(questions[i].url);
+    for (const question of questions.slice(2)) {
+      await page.waitForURL(question.url);
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Übernehmen" }).click();
     }
@@ -526,10 +524,10 @@ test.describe("test unsure result for digital and positive for interoperability"
     "answer all digital questions with unsure and all interoperability questions with yes and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(questions[i].interoperability ? "Ja" : "Ich bin unsicher")
+          .getByLabel(question.interoperability ? "Ja" : "Ich bin unsicher")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -546,12 +544,10 @@ test.describe("test unsure result for digital and negative for interoperability"
     "answer all digital questions with unsure and all interoperability questions with no and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page
-          .getByLabel(
-            questions[i].interoperability ? "Nein" : "Ich bin unsicher",
-          )
+          .getByLabel(question.interoperability ? "Nein" : "Ich bin unsicher")
           .click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
@@ -568,8 +564,8 @@ test.describe("test unsure result for digital and unsure for interoperability", 
     "answer all digital questions with unsure and go to result page",
     async ({ page }) => {
       await page.goto(questions[0].url);
-      for (let i = 0; i < questions.length; i++) {
-        await page.waitForURL(questions[i].url);
+      for (const question of questions) {
+        await page.waitForURL(question.url);
         await page.getByLabel("Ich bin unsicher").click();
         await page.getByRole("button", { name: "Übernehmen" }).click();
       }
