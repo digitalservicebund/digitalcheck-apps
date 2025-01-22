@@ -54,6 +54,7 @@ export const projectsCi = projects.filter(
 );
 
 const config: PlaywrightTestConfig = {
+  workers: 4,
   fullyParallel: true,
   forbidOnly: !!process.env.CI, // Fail the build on CI if test.only is present
   retries: process.env.CI ? 1 : 0, // Retry on CI only
