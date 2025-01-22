@@ -32,7 +32,7 @@ test.describe("Digitaltauglichkeit main functionality", () => {
     }) => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
       await page.goto(url);
-      await page.locator('main').waitFor();
+      await page.locator("main").waitFor();
 
       const nextPrincipleIndex = principles.indexOf(principle) + 1;
       if (nextPrincipleIndex < principles.length) {
