@@ -93,7 +93,7 @@ jobs:
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
       - uses: actions/upload-artifact@v4
-        if: failure() && steps.e2e.outcome == 'failure'
+        if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-ci.outcome == 'failure')
         with:
           name: playwright-e2e-test-results
           path: packages/${{ inputs.package }}/tests/playwright/playwright-report
@@ -115,10 +115,10 @@ jobs:
           VITE_PORT: 4183
 
       - uses: actions/upload-artifact@v4
-        if: failure() && steps.a11y.outcome == 'failure'
+        if: failure() && (steps.a11y.outcome == 'failure' || steps.a11y-ci.outcome == 'failure')
         with:
           name: playwright-a11y-test-results
-          path: packages/*/tests/a11y/playwright-report
+          path: packages/${{ inputs.package }}/tests/a11y/playwright-report
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
