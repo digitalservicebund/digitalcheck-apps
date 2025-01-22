@@ -10,7 +10,6 @@ jobs:
   check-test-build-deploy:
     strategy:
       fail-fast: false
-      max-parallel: 1
       matrix:
         package: ["dito", "tool-finder"]
     uses: ./.github/workflows/check-and-test.yml
