@@ -16,9 +16,9 @@
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest",
     "test:e2e": "playwright test tests/playwright/e2e --config=tests/playwright/playwright.config.ts",
-    "test:e2e-ci": "playwright test tests/playwright/e2e --config=tests/playwright/playwright.config.ts --project chromium",
+    "test:e2e-ci": "playwright test tests/playwright/e2e --config=tests/playwright/playwright-ci.config.ts",
     "test:a11y": "playwright test tests/playwright/a11y --config=tests/playwright/playwright.config.ts",
-    "test:a11y-ci": "playwright test tests/playwright/a11y --config=tests/playwright/playwright.config.ts  --project chromium",
+    "test:a11y-ci": "playwright test tests/playwright/a11y --config=tests/playwright/playwright-ci.config.ts",
     "tests": "vitest run && npm run test:e2e && npm run test:a11y",
     "tests-ci": "vitest run && npm run test:e2e-ci && npm run test:a11y-ci",
     "typecheck": "tsc"
