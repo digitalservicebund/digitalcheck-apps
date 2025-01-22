@@ -4,7 +4,6 @@ import { ROUTE_RESULT } from "resources/staticRoutes";
 
 const { questions } = preCheck;
 
-const CREATE_EMAIL_BUTTON = "result-email-button";
 const EMAIL_INPUT_ERROR = "email-error";
 const TITLE_INPUT_ERROR = "title-error";
 const NEGATIVE_REASONING_ERROR = "negativeReasoning-error";
@@ -87,9 +86,9 @@ test.describe("test positive result for digital and interoperability", () => {
   test("error is shown if title is empty", async ({ page }) => {
     // not filling title
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).toBeVisible();
-    await expect(page.getByTestId(TITLE_INPUT_ERROR)).toContainText(
+    await expect(page.locator("main")).toContainText(
       "Bitte geben Sie einen Titel für Ihr Vorhaben an.",
     );
   });
@@ -97,16 +96,16 @@ test.describe("test positive result for digital and interoperability", () => {
   test("error is shown if title is too long", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(101));
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).toBeVisible();
-    await expect(page.getByRole("main")).toContainText("kürzeren Titel");
+    await expect(page.locator("main")).toContainText("kürzeren Titel");
   });
 
   test("no error is shown if optional email is empty", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Vorhaben XY");
     // not filling email
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
   });
 
@@ -114,7 +113,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).not.toBeVisible();
   });
@@ -127,7 +126,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       subject: "Digitalcheck Vorprüfung: „Policy ABC“",
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email recipients include nkr", async ({ page }) => {
@@ -137,7 +136,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["nkr@bmj.bund.de"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email recipients include digitalcheck team if interoperability is positive", async ({
@@ -149,7 +148,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email cc includes email from email input", async ({ page }) => {
@@ -160,7 +159,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       cc: ["foo@bar.de"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains result title", async ({ page }) => {
@@ -172,7 +171,7 @@ test.describe("test positive result for digital and interoperability", () => {
         "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains all answers in positive form", async ({ page }) => {
@@ -190,7 +189,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body does not contain negative reasoning", async ({ page }) => {
@@ -200,7 +199,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, undefined, {
       body: ["Begründung:"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -233,7 +232,7 @@ test.describe("test positive result for digital and negative for interoperabilit
     await registerMailInterceptionHandlerAndExpect(page, undefined, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains result title", async ({ page }) => {
@@ -245,7 +244,7 @@ test.describe("test positive result for digital and negative for interoperabilit
         "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -277,7 +276,7 @@ test.describe("test positive result for digital and unsure for interoperability"
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains result title", async ({ page }) => {
@@ -289,7 +288,7 @@ test.describe("test positive result for digital and unsure for interoperability"
         "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains all answers for interoperability in unsure form", async ({
@@ -310,7 +309,7 @@ test.describe("test positive result for digital and unsure for interoperability"
     await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -342,9 +341,9 @@ test.describe("test negative result for digital and interoperability", () => {
   test("error is shown if negative reasoning is empty", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
-    await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toContainText(
+    await expect(page.locator("main")).toContainText(
       "Bitte geben Sie eine Begründung für den fehlenden Digitalbezug an.",
     );
   });
@@ -353,11 +352,9 @@ test.describe("test negative result for digital and interoperability", () => {
     await page.getByLabel("Begründung").fill("A".repeat(501));
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Test 123");
     await registerMailInterceptionHandlerAndExpect(page);
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
-    await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toContainText(
-      "kürzere Begründung",
-    );
+    await expect(page.locator("main")).toContainText("kürzere Begründung");
   });
 
   test("email body contains all answers in negative form", async ({ page }) => {
@@ -375,7 +372,7 @@ test.describe("test negative result for digital and interoperability", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains result title", async ({ page }) => {
@@ -387,7 +384,7 @@ test.describe("test negative result for digital and interoperability", () => {
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains negative reasoning", async ({ page }) => {
@@ -405,7 +402,7 @@ test.describe("test negative result for digital and interoperability", () => {
         "Dieses Vorhaben hat keinen Digitalbezug, weil es nicht relevant ist.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -437,7 +434,7 @@ test.describe("test negative result for digital and positive for interoperabilit
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 
   test("email body contains hint that interoperability is not possible if digital is negative", async ({
@@ -451,7 +448,7 @@ test.describe("test negative result for digital and positive for interoperabilit
         "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -483,7 +480,7 @@ test.describe("test negative result for digital and unsure for interoperability"
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
       ],
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
@@ -517,7 +514,7 @@ test.describe("test positive result with mixed answers", () => {
     await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
-    await page.getByTestId(CREATE_EMAIL_BUTTON).click();
+    await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
 });
 
