@@ -17,6 +17,10 @@ const projects = [
     use: { ...devices["Desktop Safari"] },
   },
   {
+    name: "Desktop Edge",
+    use: { ...devices["Desktop Edge"] },
+  },
+  {
     name: "Mobile Chrome",
     use: { ...devices["Pixel 7"] },
   },
