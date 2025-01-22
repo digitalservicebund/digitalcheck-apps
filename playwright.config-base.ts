@@ -18,11 +18,11 @@ const projects = [
   },
   {
     name: "Mobile Chrome",
-    use: { ...devices["Pixel 7"], isMobile: true },
+    use: { ...devices["Pixel 7"] },
   },
   {
     name: "Mobile Safari",
-    use: { ...devices["iPhone 14 Pro"], isMobile: true },
+    use: { ...devices["iPhone 14 Pro"] },
   },
   {
     name: "Tablet Chrome",

@@ -9,6 +9,8 @@ import {
 
 const { questions } = preCheck;
 
+const SCREEN_LG = 1024; // tailwind lg breakpoint
+
 test.describe("test questions form", () => {
   test("all answer options are submittable", async ({ page }) => {
     await page.goto(questions[0].url);
@@ -139,8 +141,8 @@ test.describe("test questions form", () => {
 });
 
 test.describe("test question navigation", () => {
-  test.beforeEach("skip tests on small screens", ({ isMobile }) => {
-    if (isMobile)
+  test.beforeEach("skip tests on small screens", ({ viewport }) => {
+    if (viewport && viewport.width < SCREEN_LG)
       test.skip(
         true,
         "Skipping because sidebar navigation is not visible on small screen",
@@ -269,8 +271,8 @@ test.describe("test question navigation", () => {
 });
 
 test.describe("test question navigation on mobile screens", () => {
-  test.beforeEach("Only run tests on mobile screens", ({ isMobile }) => {
-    if (!isMobile)
+  test.beforeEach("Only run tests on mobile screens", ({ viewport }) => {
+    if (!viewport || viewport.width >= SCREEN_LG)
       test.skip(true, "Skipping LinkBar is not visible on small screen");
   });
 
