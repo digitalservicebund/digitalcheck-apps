@@ -11,6 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, "../", ".env.test") });
 
 const config: PlaywrightTestConfig = {
   ...configDefault,
+  fullyParallel: true,
   projects: projectsCi,
 };
 
