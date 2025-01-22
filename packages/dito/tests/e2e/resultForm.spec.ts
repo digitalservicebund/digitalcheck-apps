@@ -9,7 +9,7 @@ const EMAIL_INPUT_ERROR = "email-error";
 const TITLE_INPUT_ERROR = "title-error";
 const NEGATIVE_REASONING_ERROR = "negativeReasoning-error";
 
-async function interceptMailToRedirectAndExpect(
+async function registerMailInterceptionHandlerAndExpect(
   page: Page,
   expected?: {
     subject?: string;
@@ -86,7 +86,7 @@ test.describe("test positive result for digital and interoperability", () => {
 
   test("error is shown if title is empty", async ({ page }) => {
     // not filling title
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).toBeVisible();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).toContainText(
@@ -96,7 +96,7 @@ test.describe("test positive result for digital and interoperability", () => {
 
   test("error is shown if title is too long", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("A".repeat(101));
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).toBeVisible();
     await expect(page.getByRole("main")).toContainText("kürzeren Titel");
@@ -105,7 +105,7 @@ test.describe("test positive result for digital and interoperability", () => {
   test("no error is shown if optional email is empty", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Vorhaben XY");
     // not filling email
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
   });
@@ -113,7 +113,7 @@ test.describe("test positive result for digital and interoperability", () => {
   test("no error shown when email and title are filled", async ({ page }) => {
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
     await expect(page.getByTestId(TITLE_INPUT_ERROR)).not.toBeVisible();
@@ -124,7 +124,7 @@ test.describe("test positive result for digital and interoperability", () => {
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABC");
 
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       subject: "Digitalcheck Vorprüfung: „Policy ABC“",
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -134,7 +134,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["nkr@bmj.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -146,7 +146,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -157,7 +157,7 @@ test.describe("test positive result for digital and interoperability", () => {
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       cc: ["foo@bar.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -167,7 +167,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
       ],
@@ -187,7 +187,7 @@ test.describe("test positive result for digital and interoperability", () => {
       bodyContains.push(question.positiveResult);
     });
 
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -197,7 +197,7 @@ test.describe("test positive result for digital and interoperability", () => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, undefined, {
+    await registerMailInterceptionHandlerAndExpect(page, undefined, {
       body: ["Begründung:"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -230,7 +230,7 @@ test.describe("test positive result for digital and negative for interoperabilit
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
     // set expected to undefined to set notExpected
-    await interceptMailToRedirectAndExpect(page, undefined, {
+    await registerMailInterceptionHandlerAndExpect(page, undefined, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -240,7 +240,7 @@ test.describe("test positive result for digital and negative for interoperabilit
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
@@ -274,7 +274,7 @@ test.describe("test positive result for digital and unsure for interoperability"
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -284,7 +284,7 @@ test.describe("test positive result for digital and unsure for interoperability"
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
       ],
@@ -307,7 +307,7 @@ test.describe("test positive result for digital and unsure for interoperability"
         bodyContains.push(question.positiveResult);
       });
 
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -341,7 +341,7 @@ test.describe("test negative result for digital and interoperability", () => {
 
   test("error is shown if negative reasoning is empty", async ({ page }) => {
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toContainText(
@@ -352,7 +352,7 @@ test.describe("test negative result for digital and interoperability", () => {
   test("error is shown if negative reasoning is too long", async ({ page }) => {
     await page.getByLabel("Begründung").fill("A".repeat(501));
     await page.getByLabel("Arbeitstitel des Vorhabens").fill("Test 123");
-    await interceptMailToRedirectAndExpect(page);
+    await registerMailInterceptionHandlerAndExpect(page);
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toContainText(
@@ -372,7 +372,7 @@ test.describe("test negative result for digital and interoperability", () => {
       bodyContains.push(question.negativeResult);
     }
 
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
@@ -382,7 +382,7 @@ test.describe("test negative result for digital and interoperability", () => {
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
@@ -399,7 +399,7 @@ test.describe("test negative result for digital and interoperability", () => {
       .fill(
         "Dieses Vorhaben hat keinen Digitalbezug, weil es nicht relevant ist.",
       );
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Begründung:",
         "Dieses Vorhaben hat keinen Digitalbezug, weil es nicht relevant ist.",
@@ -432,7 +432,7 @@ test.describe("test negative result for digital and positive for interoperabilit
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
       ],
@@ -446,7 +446,7 @@ test.describe("test negative result for digital and positive for interoperabilit
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
       ],
@@ -478,7 +478,7 @@ test.describe("test negative result for digital and unsure for interoperability"
     await page
       .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
       .fill("Policy ABCDEFG");
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
       ],
@@ -514,7 +514,7 @@ test.describe("test positive result with mixed answers", () => {
       `? ${questions[1].positiveResult}`,
       `+ ${questions[2].positiveResult}`,
     ];
-    await interceptMailToRedirectAndExpect(page, {
+    await registerMailInterceptionHandlerAndExpect(page, {
       body: bodyContains,
     });
     await page.getByTestId(CREATE_EMAIL_BUTTON).click();
