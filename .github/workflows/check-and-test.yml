@@ -80,8 +80,7 @@ jobs:
 
       - name: Install E2E & A11y test dependencies
         if: inputs.shouldRunIntegrationTests && !(inputs.ciTestsOnly && steps.cache-playwright-deps.outputs.cache-hit == 'true')
-        run: |
-          npx --yes playwright install --with-deps
+        run: npx --yes playwright install --with-deps
 
       - name: Run CI E2E tests
         if: inputs.shouldRunIntegrationTests && inputs.ciTestsOnly
