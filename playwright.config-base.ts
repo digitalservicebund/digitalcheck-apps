@@ -1,51 +1,36 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-const desktopViewport = { width: 1200, height: 4800 };
-
 const projects = [
   {
     name: "Desktop Chrome",
     use: {
       ...devices["Desktop Chrome"],
       channel: "chrome",
-      viewport: desktopViewport,
     },
   },
   {
     name: "Desktop Firefox",
-    use: { ...devices["Desktop Firefox"], viewport: desktopViewport },
+    use: { ...devices["Desktop Firefox"] },
   },
   {
     name: "Desktop Safari",
-    use: { ...devices["Desktop Safari"], viewport: desktopViewport },
+    use: { ...devices["Desktop Safari"] },
   },
   {
     name: "Mobile Chrome",
-    use: {
-      ...devices["Pixel 7"],
-      viewport: { ...devices["Pixel 7"].viewport, height: 3200 },
-    },
+    use: { ...devices["Pixel 7"] },
   },
   {
     name: "Mobile Safari",
-    use: {
-      ...devices["iPhone 14 Pro"],
-      viewport: { ...devices["iPhone 14 Pro"].viewport, height: 3200 },
-    },
+    use: { ...devices["iPhone 14 Pro"] },
   },
   {
     name: "Tablet Chrome",
-    use: {
-      ...devices["Galaxy Tab S4 landscape"],
-      viewport: { ...devices["Galaxy Tab S4 landscape"].viewport },
-    },
+    use: { ...devices["Galaxy Tab S4 landscape"] },
   },
   {
     name: "Tablet Safari",
-    use: {
-      ...devices["iPad Pro 11 landscape"],
-      viewport: { ...devices["iPad Pro 11 landscape"].viewport },
-    },
+    use: { ...devices["iPad Pro 11 landscape"] },
   },
 ];
 
