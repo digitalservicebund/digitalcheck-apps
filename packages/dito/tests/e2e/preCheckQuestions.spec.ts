@@ -139,6 +139,14 @@ test.describe("test questions form", () => {
 });
 
 test.describe("test question navigation", () => {
+  test.beforeEach("skip tests on small screens", ({ isMobile }) => {
+    if (isMobile)
+      test.skip(
+        true,
+        "Skipping because sidebar navigation is not visible on small screen",
+      );
+  });
+
   test("navigation leads to correct pages", async ({ page }) => {
     await page.goto(questions[0].url);
     for (let i = 0; i < questions.length - 1; i++) {
@@ -258,12 +266,17 @@ test.describe("test question navigation", () => {
         .getByTestId("CheckIcon"),
     ).toBeVisible();
   });
+});
+
+test.describe("test question navigation on mobile screens", () => {
+  test.beforeEach("Only run tests on mobile screens", ({ isMobile }) => {
+    if (!isMobile)
+      test.skip(true, "Skipping LinkBar is not visible on small screen");
+  });
 
   test("Navigation with LinkBar works and restricts unanswered questions", async ({
     page,
   }) => {
-    await page.setViewportSize({ height: 600, width: 360 });
-
     await page.goto(questions[0].url);
 
     // Answer the first question
