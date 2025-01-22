@@ -70,8 +70,18 @@ jobs:
       - name: Run unit tests
         run: npm test --workspace ${{ env.WORKSPACE }}
 
+      - name: Cache Playwright dependencies
+        id: cache-playwright-deps
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-${{ inputs.package }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-${{ inputs.package }}-playwright-
+
       - name: Install E2E & A11y test dependencies
-        run: npx --yes playwright install --with-deps
+        if: inputs.shouldRunIntegrationTests && steps.cache-playwright-deps.outputs.cache-hit != 'true'
+        run: |
+          npx --yes playwright install --with-deps
 
       - name: Run CI E2E tests
         if: inputs.shouldRunIntegrationTests && inputs.ciTestsOnly
