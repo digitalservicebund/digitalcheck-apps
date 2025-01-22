@@ -39,6 +39,7 @@ test.describe("Digitaltauglichkeit main functionality", () => {
         const nextPrincipleLink = page.getByRole("link", {
           name: `Prinzip ${nextPrincipleIndex + 1}`,
         });
+        await nextPrincipleLink.waitFor();
         await nextPrincipleLink.click();
         await expect(page).toHaveURL(
           `${ROUTE_PRINCIPLES.url}/${principles[nextPrincipleIndex]}`,
