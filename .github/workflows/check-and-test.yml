@@ -79,7 +79,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ inputs.package }}-playwright-
 
       - name: Install E2E & A11y test dependencies
-        if: inputs.shouldRunIntegrationTests && steps.cache-playwright-deps.outputs.cache-hit != 'true'
+        if: inputs.shouldRunIntegrationTests && !(inputs.ciTestsOnly && steps.cache-playwright-deps.outputs.cache-hit == 'true')
         run: |
           npx --yes playwright install --with-deps
 
