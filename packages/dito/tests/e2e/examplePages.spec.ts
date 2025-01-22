@@ -21,7 +21,8 @@ test.describe("Digitaltauglichkeit main functionality", () => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
       await page.goto(url);
 
-      const mainContent = page.getByRole("main");
+      const mainContent = page.locator("main");
+      await mainContent.waitFor();
       await expect(mainContent).toContainText(
         `Prinzip ${principles.indexOf(principle) + 1} in Regelungstexten`,
       );
@@ -32,7 +33,6 @@ test.describe("Digitaltauglichkeit main functionality", () => {
     }) => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
       await page.goto(url);
-      await page.locator("main").waitFor();
 
       const nextPrincipleIndex = principles.indexOf(principle) + 1;
       if (nextPrincipleIndex < principles.length) {
