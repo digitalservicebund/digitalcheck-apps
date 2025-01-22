@@ -102,7 +102,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("no error is shown if optional email is empty", async ({ page }) => {
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Vorhaben XY");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     // not filling email
     await registerMailInterceptionHandlerAndExpect(page);
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
@@ -111,7 +111,7 @@ test.describe("test positive result for digital and interoperability", () => {
 
   test("no error shown when email and title are filled", async ({ page }) => {
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy 123");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page);
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(EMAIL_INPUT_ERROR)).not.toBeVisible();
@@ -119,9 +119,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email subject includes title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABC");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
 
     await registerMailInterceptionHandlerAndExpect(page, {
       subject: "Digitalcheck Vorprüfung: „Policy ABC“",
@@ -130,9 +128,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email recipients include nkr", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["nkr@bmj.bund.de"],
     });
@@ -142,9 +138,7 @@ test.describe("test positive result for digital and interoperability", () => {
   test("email recipients include digitalcheck team if interoperability is positive", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
@@ -152,9 +146,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email cc includes email from email input", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await page.getByLabel("Ihre E-Mail Adresse").fill("foo@bar.de");
     await registerMailInterceptionHandlerAndExpect(page, {
       cc: ["foo@bar.de"],
@@ -163,9 +155,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
@@ -175,9 +165,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email body contains all answers in positive form", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     const bodyContains = [
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
@@ -193,9 +181,7 @@ test.describe("test positive result for digital and interoperability", () => {
   });
 
   test("email body does not contain negative reasoning", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, undefined, {
       body: ["Begründung:"],
     });
@@ -225,9 +211,7 @@ test.describe("test positive result for digital and negative for interoperabilit
   test("email recipients do not include digitalcheck team if interoperability is negative", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     // set expected to undefined to set notExpected
     await registerMailInterceptionHandlerAndExpect(page, undefined, {
       recipients: ["interoperabel@digitalservice.bund.de"],
@@ -236,9 +220,7 @@ test.describe("test positive result for digital and negative for interoperabilit
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
@@ -270,9 +252,7 @@ test.describe("test positive result for digital and unsure for interoperability"
   test("email recipients include digitalcheck team if interoperability is unsure", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       recipients: ["interoperabel@digitalservice.bund.de"],
     });
@@ -280,9 +260,7 @@ test.describe("test positive result for digital and unsure for interoperability"
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
@@ -294,9 +272,7 @@ test.describe("test positive result for digital and unsure for interoperability"
   test("email body contains all answers for interoperability in unsure form", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     const bodyContains = [
       "In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
     ];
@@ -339,7 +315,7 @@ test.describe("test negative result for digital and interoperability", () => {
   });
 
   test("error is shown if negative reasoning is empty", async ({ page }) => {
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy #987");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page);
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
@@ -350,7 +326,7 @@ test.describe("test negative result for digital and interoperability", () => {
 
   test("error is shown if negative reasoning is too long", async ({ page }) => {
     await page.getByLabel("Begründung").fill("A".repeat(501));
-    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Test 123");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page);
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
     await expect(page.getByTestId(NEGATIVE_REASONING_ERROR)).toBeVisible();
@@ -358,9 +334,7 @@ test.describe("test negative result for digital and interoperability", () => {
   });
 
   test("email body contains all answers in negative form", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     const bodyContains = [
       "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
       "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
@@ -376,9 +350,7 @@ test.describe("test negative result for digital and interoperability", () => {
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
@@ -388,9 +360,7 @@ test.describe("test negative result for digital and interoperability", () => {
   });
 
   test("email body contains negative reasoning", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await page
       .getByLabel("Begründung")
       .fill(
@@ -426,9 +396,7 @@ test.describe("test negative result for digital and positive for interoperabilit
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
@@ -440,9 +408,7 @@ test.describe("test negative result for digital and positive for interoperabilit
   test("email body contains hint that interoperability is not possible if digital is negative", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
@@ -472,9 +438,7 @@ test.describe("test negative result for digital and unsure for interoperability"
   });
 
   test("email body contains result title", async ({ page }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     await registerMailInterceptionHandlerAndExpect(page, {
       body: [
         "Das Regelungsvorhaben hat keinen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
@@ -503,9 +467,7 @@ test.describe("test positive result with mixed answers", () => {
   test("answers in email body are prefixed by a special character indicating the type of answer", async ({
     page,
   }) => {
-    await page
-      .getByLabel("Vorläufiger Arbeitstitel des Vorhabens")
-      .fill("Policy ABCDEFG");
+    await page.getByLabel("Arbeitstitel des Vorhabens").fill("Policy ABC");
     const bodyContains = [
       `- ${questions[0].negativeResult}`,
       `? ${questions[1].positiveResult}`,
