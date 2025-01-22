@@ -32,13 +32,13 @@ test.describe("Digitaltauglichkeit main functionality", () => {
     }) => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
       await page.goto(url);
+      await page.locator('main').waitFor();
 
       const nextPrincipleIndex = principles.indexOf(principle) + 1;
       if (nextPrincipleIndex < principles.length) {
         const nextPrincipleLink = page.getByRole("link", {
           name: `Prinzip ${nextPrincipleIndex + 1}`,
         });
-
         await nextPrincipleLink.click();
         await expect(page).toHaveURL(
           `${ROUTE_PRINCIPLES.url}/${principles[nextPrincipleIndex]}`,
