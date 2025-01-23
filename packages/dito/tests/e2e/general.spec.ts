@@ -56,16 +56,16 @@ test.describe("test landing page", () => {
 });
 
 test.describe("test links", () => {
-  test("links in footer work", async ({ page }) => {
-    await page.goto(staticRoutes.ROUTE_LANDING.url);
-    await page.getByRole("link", { name: "Datenschutzerklärung" }).click();
-    await expect(page).toHaveURL(staticRoutes.ROUTE_PRIVACY.url);
-    await page.goto(staticRoutes.ROUTE_LANDING.url);
-    await page.getByRole("link", { name: "Barrierefreiheit" }).click();
-    await expect(page).toHaveURL(staticRoutes.ROUTE_A11Y.url);
-    await page.goto(staticRoutes.ROUTE_LANDING.url);
-    await page.getByRole("link", { name: "Impressum" }).click();
-    await expect(page).toHaveURL(staticRoutes.ROUTE_IMPRINT.url);
+  [
+    { name: "Datenschutzerklärung", url: staticRoutes.ROUTE_PRIVACY.url },
+    { name: "Barrierefreiheit", url: staticRoutes.ROUTE_A11Y.url },
+    { name: "Impressum", url: staticRoutes.ROUTE_IMPRINT.url },
+  ].forEach(({ name, url }) => {
+    test(`link ${url} in footer works`, async ({ page }) => {
+      await page.goto(staticRoutes.ROUTE_LANDING.url);
+      await page.getByRole("link", { name: name }).click();
+      await expect(page).toHaveURL(url);
+    });
   });
 
   test("breadcrumb landing link works", async ({ page }) => {
