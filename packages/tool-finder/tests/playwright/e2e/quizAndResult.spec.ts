@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 
 import { getAllObjects } from "persistance/repository";
 import * as allRoutes from "routes/index";
@@ -55,22 +55,21 @@ test.describe("test result page", () => {
     await submitForm(page);
   });
 
-  test("visualisation object leads to correct cluster", async ({ page }) => {
-    const allObjects = getAllObjects();
-
-    for (const object of allObjects) {
+  getAllObjects().forEach(({ name, cluster }) => {
+    test(`visualisation object ${name} leads to correct cluster ${cluster}`, async ({
+      page,
+    }) => {
       await page.goto(allRoutes.PATH_QUIZ);
-      await fillOutForm(page);
+      await page.getByTestId("ressort").selectOption("bmi");
+      await page.getByLabel("Für meinen Austausch").check();
       await page
         .getByRole("group", { name: "2 von 3" })
-        .getByLabel(object.name)
+        .getByLabel(name)
         .check();
       await submitForm(page);
-      await expect(
-        page.getByRole("heading", { name: object.cluster }),
-      ).toBeVisible();
+      await expect(page.getByRole("heading", { name: cluster })).toBeVisible();
       await expect(page.getByTestId("cluster-img")).toBeVisible();
-    }
+    });
   });
 
   test("recommendation shows image and alternatives", async ({ page }) => {
