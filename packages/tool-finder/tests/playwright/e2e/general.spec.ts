@@ -34,7 +34,7 @@ test.describe("test links", () => {
     await expect(page).toHaveURL(allRoutes.PATH_INFO);
   });
 
-  test("examplary breadcrumbs are correct", async ({ page }) => {
+  test("exemplary breadcrumbs are correct", async ({ page }) => {
     await page.goto(allRoutes.PATH_INFO);
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
 
@@ -65,14 +65,16 @@ test.describe("test links", () => {
     await expect(page).toHaveURL(allRoutes.PATH_INFO);
   });
 
-  test("links in footer work", async ({ page }) => {
-    await page.goto(allRoutes.PATH_INFO);
-    await page.getByRole("link", { name: "Datenschutzerklärung" }).click();
-    await expect(page).toHaveURL(allRoutes.PATH_PRIVACY);
-    await page.getByRole("link", { name: "Barrierefreiheit" }).click();
-    await expect(page).toHaveURL(allRoutes.PATH_A11Y);
-    await page.getByRole("link", { name: "Impressum" }).click();
-    await expect(page).toHaveURL(allRoutes.PATH_IMPRINT);
+  [
+    { name: "Datenschutzerklärung", url: allRoutes.PATH_PRIVACY },
+    { name: "Barrierefreiheit", url: allRoutes.PATH_A11Y },
+    { name: "Impressum", url: allRoutes.PATH_IMPRINT },
+  ].forEach(({ name, url }) => {
+    test(`link ${url} in footer works`, async ({ page }) => {
+      await page.goto(allRoutes.PATH_INFO);
+      await page.getByRole("link", { name: name }).click();
+      await expect(page).toHaveURL(url);
+    });
   });
 
   test("links in imprint work", async ({ page }) => {
