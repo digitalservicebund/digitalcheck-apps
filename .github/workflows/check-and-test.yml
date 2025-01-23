@@ -95,8 +95,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-ci.outcome == 'failure')
         with:
-          name: playwright-e2e-test-results
-          path: packages/${{ inputs.package }}/tests/playwright/playwright-report
+          name: ${{ inputs.package }}-playwright-e2e-test-results
+          path: packages/${{ inputs.package }}/**/playwright-report
 
       - name: Run CI A11Y tests
         if: inputs.shouldRunIntegrationTests && inputs.ciTestsOnly
