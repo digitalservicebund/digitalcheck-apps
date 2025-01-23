@@ -9,6 +9,7 @@ const InputError = ({ id, children }: InputErrorProps) => {
   return (
     <div
       aria-live="assertive"
+      role="alert"
       id={id}
       data-testid={id}
       className="mt-16 flex items-center gap-x-4 text-red-800"
