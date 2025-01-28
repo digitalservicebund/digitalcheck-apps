@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import * as allRoutes from "routes/index";
+import * as allRoutes from "routes";
 
 test.describe("test general functionality", () => {
   test("landing page to not have breadcrumbs", async ({ page }) => {

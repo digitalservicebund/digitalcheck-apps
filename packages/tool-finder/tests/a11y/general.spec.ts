@@ -1,7 +1,7 @@
 import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-import * as allRoutes from "routes/index";
+import * as allRoutes from "routes";
 
 test.describe("basic example a11y test", () => {
   test("check a11y of all routes", async ({ page }) => {

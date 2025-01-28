@@ -2,7 +2,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { projectsCi } from "../../../../playwright.config-base";
+import { projectsCi } from "../../../playwright.config-base";
 import configDefault from "./playwright.config";
 
 // Get the directory name of the current module
