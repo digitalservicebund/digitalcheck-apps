@@ -14,7 +14,6 @@ const mobileHeight = 3200;
 
 const config: PlaywrightTestConfig = {
   ...configDefault,
-  fullyParallel: true,
   projects: [
     {
       name: "Desktop Chrome",

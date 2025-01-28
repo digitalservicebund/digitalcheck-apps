@@ -12,10 +12,10 @@ on:
         type: boolean
         description: "Whether to run integration tests (E2E and A11y). Default is true."
         default: true
-      ciTestsOnly:
+      nightlyTests:
         required: false
         type: boolean
-        description: "If enabled only ci tests are executed (e.g. testing e2e and a11y only on a single browser)."
+        description: "If enabled extensive tests are executed sequentially with more devices and browsers."
         default: false
 
 env:
@@ -79,17 +79,17 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ inputs.package }}-playwright-
 
       - name: Install E2E & A11y test dependencies
-        if: inputs.shouldRunIntegrationTests && !(inputs.ciTestsOnly && steps.cache-playwright-deps.outputs.cache-hit == 'true')
+        if: inputs.shouldRunIntegrationTests && (inputs.nightlyTests || steps.cache-playwright-deps.outputs.cache-hit == 'false')
         run: npx --yes playwright install --with-deps
 
-      - name: Run CI E2E tests
-        if: inputs.shouldRunIntegrationTests && inputs.ciTestsOnly
-        id: e2e
-        run: npm run test:e2e-ci --workspace ${{ env.WORKSPACE }}
+      - name: Run nightly E2E tests
+        if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
+        id: e2e-nightly
+        run: npm run test:e2e-nightly --workspace ${{ env.WORKSPACE }}
 
       - name: Run E2E tests
-        if: inputs.shouldRunIntegrationTests && !inputs.ciTestsOnly
-        id: e2e-ci
+        if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
+        id: e2e
         run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
 
       - uses: actions/upload-artifact@v4
@@ -98,20 +98,22 @@ jobs:
           name: ${{ inputs.package }}-playwright-e2e-test-results
           path: packages/${{ inputs.package }}/tests/playwright-report
 
-      - name: Run CI A11Y tests
-        if: inputs.shouldRunIntegrationTests && inputs.ciTestsOnly
-        id: a11y-ci
-        run: npm run test:a11y-ci --workspace ${{ env.WORKSPACE }}
-
-      - name: Run A11y tests
-        if: inputs.shouldRunIntegrationTests && !inputs.ciTestsOnly
-        id: a11y
-        run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
+      - name: Run nightly A11Y tests
+        if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
+        id: a11y-nightly
+        run: npm run test:a11y-nightly --workspace ${{ env.WORKSPACE }}
         env:
           # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
           # starting to occur with playwright/test 1.28.0:
           # Error: http://localhost:4173 is already used ...
           # See https://github.com/digitalservicebund/typescript-vite-application-template/actions/runs/3486985178/jobs/5834089375
+          VITE_PORT: 4183
+
+      - name: Run A11y tests
+        if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
+        id: a11y
+        run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
+        env:
           VITE_PORT: 4183
 
       - uses: actions/upload-artifact@v4

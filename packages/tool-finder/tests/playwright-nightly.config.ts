@@ -2,7 +2,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { projectsCi } from "../../../playwright.config-base";
+import { allProjects } from "../../../playwright.config-base";
 import configDefault from "./playwright.config";
 
 // Get the directory name of the current module
@@ -11,8 +11,9 @@ dotenv.config({ path: path.resolve(__dirname, "../", ".env.test") });
 
 const config: PlaywrightTestConfig = {
   ...configDefault,
-  fullyParallel: true,
-  projects: projectsCi,
+  fullyParallel: false,
+  workers: 1,
+  projects: allProjects,
 };
 
 export default config;

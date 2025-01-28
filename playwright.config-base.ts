@@ -1,6 +1,6 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-const projects = [
+export const allProjects = [
   {
     name: "Desktop Chrome",
     use: {
@@ -39,13 +39,14 @@ const projects = [
   },
 ];
 
-export const projectsCi = projects.filter(
+const defaultProjects = allProjects.filter(
   (project) => project.name === "Desktop Chrome",
 );
 
 const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI, // Fail the build on CI if test.only is present
   retries: process.env.CI ? 1 : 0, // Retry on CI only
+  fullyParallel: true,
   use: {
     viewport: { width: 1280, height: 720 },
     acceptDownloads: true,
@@ -56,7 +57,7 @@ const config: PlaywrightTestConfig = {
     [process.env.CI ? "github" : "list"],
     ["html", { outputFolder: "./playwright-report" }],
   ],
-  projects: projects,
+  projects: defaultProjects,
 };
 
 export default config;

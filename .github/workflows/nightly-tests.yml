@@ -15,4 +15,5 @@ jobs:
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ matrix.package }}
+      nightlyTests: true
     secrets: inherit

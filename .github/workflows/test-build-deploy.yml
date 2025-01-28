@@ -22,7 +22,6 @@ jobs:
     uses: ./.github/workflows/check-and-test.yml
     with:
       package: ${{ inputs.package }}
-      ciTestsOnly: true
     secrets: inherit
 
   build-and-push-image:
