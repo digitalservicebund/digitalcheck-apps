@@ -133,17 +133,15 @@ test.describe("five principles page", () => {
     await expect(page).toHaveURL(ROUTE_METHODS_TECHNICAL_FEASIBILITY.url);
   });
 
-  test("five principles page links to examples", async ({ page }) => {
-    const links = [
-      ROUTE_EXAMPLES.url,
-      `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
-      `${ROUTE_PRINCIPLES.url}/wiederverwendung-von-daten-und-standards-ermoeglichen`,
-      `${ROUTE_PRINCIPLES.url}/datenschutz-und-informationssicherheit-gewaehrleisten`,
-      `${ROUTE_PRINCIPLES.url}/klare-regelungen-fuer-eine-digitale-ausfuehrung-finden`,
-      `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
-    ];
-
-    for (const [index, url] of links.entries()) {
+  [
+    ROUTE_EXAMPLES.url,
+    `${ROUTE_PRINCIPLES.url}/digitale-kommunikation-sicherstellen`,
+    `${ROUTE_PRINCIPLES.url}/wiederverwendung-von-daten-und-standards-ermoeglichen`,
+    `${ROUTE_PRINCIPLES.url}/datenschutz-und-informationssicherheit-gewaehrleisten`,
+    `${ROUTE_PRINCIPLES.url}/klare-regelungen-fuer-eine-digitale-ausfuehrung-finden`,
+    `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
+  ].forEach((url, index) => {
+    test("five principles page links to examples", async ({ page }) => {
       let attempt = 0;
 
       // retries to prevent flakiness for firefox
@@ -174,7 +172,7 @@ test.describe("five principles page", () => {
           }
         }
       }
-    }
+    });
   });
 });
 
