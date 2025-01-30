@@ -55,7 +55,13 @@ const config: PlaywrightTestConfig = {
   },
   reporter: [
     [process.env.CI ? "github" : "list"],
-    ["html", { outputFolder: "./playwright-report" }],
+    [
+      "html",
+      {
+        outputFolder: "./playwright-report",
+        open: process.env.CI ? "never" : "on-failure",
+      },
+    ],
   ],
   projects: defaultProjects,
 };
