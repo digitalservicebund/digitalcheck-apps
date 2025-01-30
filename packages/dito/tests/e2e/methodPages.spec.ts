@@ -141,7 +141,7 @@ test.describe("five principles page", () => {
     `${ROUTE_PRINCIPLES.url}/klare-regelungen-fuer-eine-digitale-ausfuehrung-finden`,
     `${ROUTE_PRINCIPLES.url}/automatisierung-ermoeglichen`,
   ].forEach((url, index) => {
-    test("five principles page links to examples", async ({ page }) => {
+    test(`five principles page ${url} links to examples`, async ({ page }) => {
       let attempt = 0;
 
       // retries to prevent flakiness for firefox
