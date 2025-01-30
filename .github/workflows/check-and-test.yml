@@ -82,6 +82,9 @@ jobs:
         if: inputs.shouldRunIntegrationTests && (inputs.nightlyTests || steps.cache-playwright-deps.outputs.cache-hit == 'false')
         run: npx --yes playwright install --with-deps
 
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1
+
       - name: Run nightly E2E tests
         if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
         id: e2e-nightly
