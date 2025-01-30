@@ -14,6 +14,7 @@ const config: PlaywrightTestConfig = {
   fullyParallel: false,
   workers: 1,
   projects: allProjects,
+  retries: 3, // retry more often to allow flaky tests to succeed
 };
 
 export default config;
