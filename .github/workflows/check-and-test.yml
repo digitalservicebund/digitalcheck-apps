@@ -85,6 +85,8 @@ jobs:
       - name: Collect Workflow Telemetry
         if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
         uses: catchpoint/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1
+        with:
+          theme: dark
 
       - name: Run nightly E2E tests
         if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
