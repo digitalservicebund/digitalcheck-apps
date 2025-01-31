@@ -63,7 +63,7 @@ export const steps = {
       text: "Vorprüfung: Digitalbezug einschätzen",
     },
     content:
-      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben auf Aspekte der digitalen Umsetzung achten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
+      "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben Aspekte der digitalen Umsetzung und EU-Anforderungen an Interoperabilität beachten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     buttons: [
       {
         text: "Digitalbezug einschätzen",
@@ -156,7 +156,7 @@ export const landing = {
   },
   trainings: {
     title: "Beispiele für Digitaltauglichkeit",
-    text: `Auf dieser neuen Seite finden Sie Beispiele für digitaltaugliche Regelungsvorhaben. Lassen Sie sich inspirieren durch:
+    text: `Auf dieser Seite finden Sie Beispiele für digitaltaugliche Regelungsvorhaben. Lassen Sie sich inspirieren durch:
 - die Umsetzung der 5 Prinzipien in Regelungstexten durch konkrete Formulierungen
 - geeignete Visualisierungen einzelner Sachverhalte und ganzer Regelungsvorhaben`,
     link: {
@@ -573,9 +573,9 @@ Beispiele für Akteur:innen sind:
     },
     form: {
       formLegend: "Vorprüfung senden",
-      instructions: `Wir erstellen für Sie eine E-Mail mit dem Ergebnis der Vorprüfung, die sich in Ihrem E-Mail-Programm öffnet. Diese können Sie anschließend an den Nationalen Normenkontrollrat (NKR), das Digitalcheck-Team und an Ihre eigene E-Mail-Adresse senden. Geben Sie Ihre eigene E-Mail-Adresse, um sich diese als **Teil der Dokumentation** zu schicken.
+      instructions: `Wir erstellen für Sie eine E-Mail mit dem Ergebnis der Vorprüfung, die sich in Ihrem E-Mail-Programm öffnet. Diese können Sie anschließend an den Nationalen Normenkontrollrat (NKR), das Digitalcheck-Team und an Ihre eigene E-Mail-Adresse senden. Geben Sie Ihre eigene E-Mail-Adresse an, um sich diese als **Teil der Dokumentation** zu schicken.
       <br/><br/>
-- Falls Ihr Vorhaben Interoperabilitäts-Anforderungen erfüllt, erhält auch das Digitalcheck-Team automatisch eine Kopie des Vorprüfungsergebnisses per E-Mail. Wir kontaktieren Sie für die nächsten Schritte. Bei Fragen können Sie uns auch direkt unter [0151/40 76 78 39](tel:+4915140767839) erreichen.<br/><br/> 
+- Falls Ihr Vorhaben Interoperabilitäts-Anforderungen erfüllt, lassen Sie das Digitalcheck-Team unbedingt im CC. Wir erhalten das Vorprüfungsergebnisses per E-Mail und kontaktieren Sie für die nächsten Schritte. Bei Fragen können Sie uns auch direkt unter [0151/40 76 78 39](tel:+4915140767839) erreichen.<br/><br/> 
 - Je früher und tiefer Sie sich mit dem NKR über den Digitalbezug Ihres Regelungsvorhabens austauschen, desto schneller wird die Prüfung abgeschlossen.`,
       emailLabel: "Ihre E-Mail Adresse (optional)",
       policyTitleLabel: "Vorläufiger Arbeitstitel des Vorhabens",
