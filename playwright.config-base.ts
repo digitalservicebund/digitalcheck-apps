@@ -24,11 +24,10 @@ export const allProjects = [
     name: "Mobile Chrome",
     use: { ...devices["Pixel 7"] },
   },
-  // Omit tests with mobile safari due to very flaky test results
-  // {
-  //   name: "Mobile Safari",
-  //   use: { ...devices["iPhone 14 Pro"] },
-  // },
+  {
+    name: "Mobile Safari",
+    use: { ...devices["iPhone 14 Pro"] },
+  },
   {
     name: "Tablet Chrome",
     use: { ...devices["Galaxy Tab S4 landscape"] },
