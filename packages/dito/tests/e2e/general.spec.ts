@@ -107,9 +107,9 @@ test.describe("test links", () => {
     });
 
     await link.click();
-    // wait for a second to let the new tab open
-    await page.waitForTimeout(1000);
-    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
+    await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url, {
+      timeout: 5000,
+    });
   });
 });
 
