@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 
-const LinkBar = <T extends { url: string }>({
+const LinkBar = <T extends { url: string; title: string }>({
   elements,
   currentElement,
 }: {
@@ -17,6 +17,7 @@ const LinkBar = <T extends { url: string }>({
         <Link
           key={element.url}
           to={element.url}
+          aria-label={element.title}
           className={`h-6 flex-1 transition-all duration-300 ${
             index <= currentIndex ? "bg-blue-800" : "bg-blue-300"
           }`}
