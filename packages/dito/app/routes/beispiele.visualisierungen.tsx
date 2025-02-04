@@ -85,7 +85,7 @@ export default function BeispieleVisualisierungen() {
                   <Heading
                     tagName="h2"
                     text={regelungTitle}
-                    look="ds-heading-02-bold text-link"
+                    look="ds-heading-02-bold text-link break-words"
                   />
                 </Link>
 
