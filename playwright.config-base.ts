@@ -20,15 +20,15 @@ export const allProjects = [
     name: "Desktop Edge",
     use: { ...devices["Desktop Edge"] },
   },
-  {
-    name: "Mobile Chrome",
-    use: { ...devices["Pixel 7"] },
-  },
-  // Omit tests with mobile safari due to very flaky test results
+  // Omit tests with mobile chrome due to very flaky test results
   // {
-  //   name: "Mobile Safari",
-  //   use: { ...devices["iPhone 14 Pro"] },
+  //   name: "Mobile Chrome",
+  //   use: { ...devices["Pixel 7"] },
   // },
+  {
+    name: "Mobile Safari",
+    use: { ...devices["iPhone 14 Pro"] },
+  },
   {
     name: "Tablet Chrome",
     use: { ...devices["Galaxy Tab S4 landscape"] },
