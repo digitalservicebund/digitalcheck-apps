@@ -87,12 +87,7 @@ const ListItem = ({
           // TODO: This is very similar to the markup used in dito/methoden/$subPage.
           // We should probably create a component for this to keep it consistent.
            */}
-          <div
-            className={twJoin(
-              "overflow-hidden",
-              backgroundColor && "rounded-lg",
-            )}
-          >
+          <div className={twJoin(backgroundColor && "rounded-lg")}>
             <Background
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >
