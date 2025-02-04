@@ -64,7 +64,7 @@
   }
 
   *:focus-visible {
-    @apply outline outline-2 !no-underline outline-offset-1 !text-blue-800 outline-blue-800;
+    @apply outline outline-2 no-underline outline-offset-1 text-blue-800 outline-blue-800;
   }
 }
 
@@ -102,6 +102,10 @@
 
   .text-link {
     @apply text-blue-800 underline underline-offset-4 decoration-1 visited:text-[#4c2c92] active:text-black;
+  }
+
+  .text-link:focus-visible {
+    @apply !no-underline !text-blue-800;
   }
 
   .text-white .text-link {
