@@ -13,7 +13,7 @@ function Image({
   alternativeText,
   className,
   ...props
-}: ImageProps) {
+}: Readonly<ImageProps>) {
   if (!url) return null;
 
   // when no alternative text is given, the image is treated
@@ -24,7 +24,7 @@ function Image({
     <img
       {...props}
       src={url}
-      alt={alternativeText || decorativeImage}
+      alt={alternativeText ?? decorativeImage}
       width={width}
       height={height}
       className={className}

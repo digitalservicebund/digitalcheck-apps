@@ -16,13 +16,13 @@ export default function CustomLink({
   rel,
   to,
   className,
-}: CustomLinkProps) {
+}: Readonly<CustomLinkProps>) {
   const isExternal = to.startsWith("http://") || to.startsWith("https://");
 
   return (
     <Link
       to={to}
-      target={target || (isExternal ? "_blank" : undefined)}
+      target={target ?? (isExternal ? "_blank" : undefined)}
       rel={target === "_blank" || isExternal ? "noreferrer" : rel}
       className={`flex items-center ${className || ""}`}
     >
