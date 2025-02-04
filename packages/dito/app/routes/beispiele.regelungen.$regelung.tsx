@@ -216,7 +216,7 @@ export default function Gesetz() {
 
           {/* ----- Visualisierungen ----- */}
           {digitalcheck.Visualisierungen.length > 0 && (
-            <div>
+            <div className="ds-stack-32">
               <Header
                 heading={{
                   id: `${slugify(regulations.visualisations.title)}-${index}`,
