@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import { twJoin } from "tailwind-merge";
 
 const LinkBar = <T extends { url: string; title: string }>({
   elements,
@@ -18,9 +19,10 @@ const LinkBar = <T extends { url: string; title: string }>({
           key={element.url}
           to={element.url}
           aria-label={element.title}
-          className={`h-6 flex-1 transition-all duration-300 ${
-            index <= currentIndex ? "bg-blue-800" : "bg-blue-300"
-          }`}
+          className={twJoin(
+            "h-6 flex-1 transition-all duration-300",
+            index <= currentIndex ? "bg-blue-800" : "bg-blue-300",
+          )}
         />
       ))}
     </div>

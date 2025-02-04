@@ -9,6 +9,7 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import { useLocation } from "@remix-run/react";
 import React, { useEffect, useRef, useState } from "react";
 import { support } from "resources/content";
+import { twJoin } from "tailwind-merge";
 
 const { supportOfferings } = support;
 const { tabs } = supportOfferings;
@@ -87,7 +88,10 @@ export default function SupportTabs() {
             tabIndex={activeTab === index ? 0 : -1}
             onClick={() => setActiveTab(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`my-8 mr-48 p-8 text-blue-800 ${activeTab === index ? "border-b-2 border-blue-800 font-bold" : ""}`}
+            className={twJoin(
+              "my-8 mr-48 p-8 text-blue-800",
+              activeTab === index && "border-b-2 border-blue-800 font-bold",
+            )}
           >
             {tab.title}
           </button>

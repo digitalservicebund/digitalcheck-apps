@@ -3,6 +3,7 @@ import ContactSupportOutlinedIcon from "@digitalservicebund/icons/ContactSupport
 import InfoOutlinedIcon from "@digitalservicebund/icons/InfoOutlined";
 import LightbulbOutlinedIcon from "@digitalservicebund/icons/LightbulbOutlined";
 import WarningAmberIcon from "@digitalservicebund/icons/WarningAmber";
+import { twJoin } from "tailwind-merge";
 import Heading from "./Heading";
 import RichText from "./RichText";
 
@@ -57,7 +58,12 @@ const InlineNotice = ({
 
   return (
     <div
-      className={`ds-stack-8 max-w-prose scroll-my-40 p-16 ${backgroundColor} border ${borderColor} border-2 border-l-8`}
+      className={twJoin(
+        "ds-stack-8 max-w-prose scroll-my-40 p-16",
+        backgroundColor,
+        "border border-2 border-l-8",
+        borderColor,
+      )}
       id={identifier}
     >
       <div className="flex flex-row items-center gap-[4px]">

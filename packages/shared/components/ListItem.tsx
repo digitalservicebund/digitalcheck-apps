@@ -51,15 +51,24 @@ const ListItem = ({
         />
       )}
       <div
-        className={`ds-stack-16 w-full break-words ${image ? "min-[500px]:ml-16" : ""}`}
+        className={twJoin(
+          "ds-stack-16 w-full break-words",
+          image && "min-[500px]:ml-16",
+        )}
       >
         {spacer && (
-          <div className={`!-mb-12 ${numeric && "border-t-2 pb-16"}`}>
+          <div className={twJoin("!-mb-12", numeric && "border-t-2 pb-16")}>
             {spacer !== true && (
               <div
-                className={`flex flex-row items-start gap-16 ${numeric && "mt-32"}`}
+                className={twJoin(
+                  "flex flex-row items-start gap-16",
+                  numeric && "mt-32",
+                )}
               >
-                <span className={`shrink-0 ${responsiveWidth}`} role="none" />
+                <span
+                  className={twJoin("shrink-0", responsiveWidth)}
+                  role="none"
+                />
                 <Heading
                   tagName="div"
                   className="ds-label-section text-gray-900"
@@ -69,8 +78,8 @@ const ListItem = ({
             )}
           </div>
         )}
-        <div className={`flex flex-row items-start gap-16 ${textColor}`}>
-          <div className={`shrink-0 ${responsiveWidth}`}>
+        <div className={twJoin("flex flex-row items-start gap-16", textColor)}>
+          <div className={twJoin("shrink-0", responsiveWidth)}>
             {numeric && (
               <div className="flex size-[40px] items-center justify-center rounded-full border-2 border-solid border-gray-400">
                 {numeric}
@@ -92,7 +101,12 @@ const ListItem = ({
               backgroundColor={(backgroundColor as BackgroundColor) || "white"}
             >
               <div
-                className={`flex flex-col gap-16 ${backgroundColor ? "px-96 py-64 max-sm:px-16 max-sm:py-32" : "mt-4"}`}
+                className={twJoin(
+                  "flex flex-col gap-16",
+                  backgroundColor
+                    ? "px-96 py-64 max-sm:px-16 max-sm:py-32"
+                    : "mt-4",
+                )}
               >
                 <div className="flex flex-row items-center gap-16">
                   {label && <Heading {...label} />}

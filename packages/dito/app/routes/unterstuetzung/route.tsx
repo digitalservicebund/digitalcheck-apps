@@ -10,6 +10,7 @@ import { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
 import { support } from "resources/content";
 import { ROUTE_SUPPORT } from "resources/staticRoutes";
+import { twJoin } from "tailwind-merge";
 import prependMetaTitle from "utils/metaTitle";
 import SupportTabs from "./SupportTabList";
 
@@ -86,9 +87,7 @@ export default function Index() {
             />
           </div>
           <div className="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
-            <div
-              className={`w-[630px] lg:w-[50vw] [&>img]:lg:h-[420px] [&>img]:lg:w-full [&>img]:lg:object-none [&>img]:lg:object-[10%_75%]`}
-            >
+            <div className="w-[630px] lg:w-[50vw] [&>img]:lg:h-[420px] [&>img]:lg:w-full [&>img]:lg:object-none [&>img]:lg:object-[10%_75%]">
               <SocialProofImage />
             </div>
             <div className="absolute bottom-40 left-40 max-w-[400px] rounded-lg bg-white/70 p-16 backdrop-blur max-lg:hidden">
@@ -159,7 +158,10 @@ export default function Index() {
                       src={supportType.iframe}
                       title={supportType.title}
                       aria-label={supportType.title}
-                      className={`mt-32 w-full transition-all duration-700 ${isAppointmentsVisible ? "h-[600px]" : "hidden h-0"}`}
+                      className={twJoin(
+                        "mt-32 w-full transition-all duration-700",
+                        isAppointmentsVisible ? "h-[600px]" : "hidden h-0",
+                      )}
                     ></iframe>
                   </>
                 ) : (

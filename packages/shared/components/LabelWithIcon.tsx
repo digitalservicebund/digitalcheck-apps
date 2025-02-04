@@ -23,9 +23,9 @@ function LabelWithIcon(
   );
 
   return (
-    <div className={`flex items-center ${wrapperClassNames}`}>
-      <content.icon className={`mb-2 size-12 ${iconClassNames}`} />
-      <span className={`${labelClassNames}`}>{content.label}</span>
+    <div className={twJoin("flex items-center", wrapperClassNames)}>
+      <content.icon className={twJoin("mb-2 size-12", iconClassNames)} />
+      <span className={labelClassNames}>{content.label}</span>
     </div>
   );
 }

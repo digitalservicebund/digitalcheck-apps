@@ -68,7 +68,12 @@ function PrincipleHighlight(
       aria-label={`Erfüllt Prinzip ${number}: ${parts[0]}`}
       className="!no-underline"
     >
-      <mark className={`ds-body-01-reg ${HIGHLIGHT_COLORS[number].background}`}>
+      <mark
+        className={twJoin(
+          "ds-body-01-reg",
+          HIGHLIGHT_COLORS[number].background,
+        )}
+      >
         {parts[0]}
         <sup>{`P${number}`}</sup>
       </mark>

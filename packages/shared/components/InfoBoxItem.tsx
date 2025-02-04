@@ -47,9 +47,10 @@ const InfoBoxItem = ({
         />
       )}
       <div
-        className={`ds-stack-16 w-full break-words ${
-          image ? "min-[500px]:ml-16" : ""
-        }`}
+        className={twJoin(
+          "ds-stack-16 w-full break-words",
+          image && "min-[500px]:ml-16",
+        )}
       >
         {label && <Heading {...label} />}
         {headline && <Heading tagName="h3" {...headline} />}

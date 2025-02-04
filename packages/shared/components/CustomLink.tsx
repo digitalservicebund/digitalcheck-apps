@@ -1,3 +1,4 @@
+import twMerge from "@digitalcheck/shared/utils/tailwindMerge";
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { Link } from "@remix-run/react";
 import { ReactNode } from "react";
@@ -24,7 +25,7 @@ export default function CustomLink({
       to={to}
       target={target ?? (isExternal ? "_blank" : undefined)}
       rel={target === "_blank" || isExternal ? "noreferrer" : rel}
-      className={`flex items-center ${className || ""}`}
+      className={twMerge("flex items-center", className)}
     >
       {children}
       {(target === "_blank" || isExternal) && (
