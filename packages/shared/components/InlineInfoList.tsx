@@ -15,7 +15,12 @@ export default function InlineInfoList({
   className,
 }: Readonly<InlineInfoListProps>) {
   return (
-    <div className={twMerge("bg-blue-200 space-x-16", className)}>
+    <div
+      className={twMerge(
+        "flex max-md:flex-col gap-8 md:gap-16 bg-blue-200 py-16",
+        className,
+      )}
+    >
       {items.map(
         (item) =>
           item.value && (
