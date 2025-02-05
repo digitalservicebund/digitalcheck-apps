@@ -1,3 +1,4 @@
+import Alert from "@digitalcheck/shared/components/Alert";
 import ButtonContainer from "@digitalcheck/shared/components/ButtonContainer";
 import DetailsSummary from "@digitalcheck/shared/components/DetailsSummary";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -23,9 +24,13 @@ export default function ResultForm({
 }>) {
   const showSaveToPdf = useFeatureFlag("digitalcheck.show-save-to-pdf-option");
 
+  const [showEmailAlert, setShowEmailAlert] = useState<boolean>(false);
   const form = useForm({
     validator: getResultValidatorForAnswers(answers),
     method: "post",
+    onBeforeSubmit: async ({ getValidatedData }) => {
+      if (await getValidatedData()) setShowEmailAlert(true);
+    },
   });
 
   const handlePolicyTitleChange = (
@@ -116,6 +121,17 @@ export default function ResultForm({
           />
         </fieldset>
       </form>
+      {showEmailAlert && (
+        <div className="mt-16">
+          <Alert
+            title={preCheck.result.form.emailClientHint.title}
+            content={preCheck.result.form.emailClientHint.text}
+            tagName="h3"
+            look="info"
+            setShowAlert={setShowEmailAlert}
+          />
+        </div>
+      )}
       <div className="ds-stack-16 mt-40">
         <Heading
           tagName="h3"
