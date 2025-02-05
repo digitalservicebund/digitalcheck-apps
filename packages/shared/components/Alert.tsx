@@ -60,6 +60,7 @@ const Alert = ({
         borderColor,
       )}
       id={identifier}
+      aria-live="assertive"
     >
       <div className="flex flex-row items-start gap-[4px]">
         {showIcon && (
