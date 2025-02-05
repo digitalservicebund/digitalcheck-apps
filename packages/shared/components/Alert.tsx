@@ -1,5 +1,6 @@
 import { Check, Clear, Sync } from "@digitalservicebund/icons";
 import ErrorOutline from "@digitalservicebund/icons/ErrorOutline";
+import { type Dispatch, SetStateAction } from "react";
 import { twJoin } from "tailwind-merge";
 import Heading from "./Heading";
 import RichText from "./RichText";
@@ -9,6 +10,7 @@ type AlertProps = {
   title: string;
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
   look: "success" | "error" | "info";
+  setShowAlert: Dispatch<SetStateAction<boolean>>;
   content?: string;
   showIcon?: boolean;
 };
@@ -40,10 +42,15 @@ const Alert = ({
   tagName,
   look,
   content,
+  setShowAlert,
   showIcon = true,
 }: AlertProps) => {
   const { backgroundColor, borderColor, iconColor, IconComponent } =
     lookConfig[look];
+
+  const handleCloseButtonClick = () => {
+    setShowAlert(false);
+  };
 
   return (
     <div
@@ -72,6 +79,7 @@ const Alert = ({
           <button
             type="button"
             className="flex size-24 cursor-pointer items-center justify-center rounded-[20px] outline-offset-2 hover:bg-[rgba(255,255,255,0.50)] focus-visible:bg-[rgba(255,255,255,0.50)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-[#004B76] active:bg-[rgba(255,255,255,0.50)]"
+            onClick={handleCloseButtonClick}
           >
             <Clear className="size-16 fill-[#004B76]" />
           </button>
