@@ -14,7 +14,7 @@ test.describe("test general availability", () => {
     if (route.url.endsWith(".pdf")) {
       return;
     }
-    test(`${route.url} is reachable and has a breadcrumb menu + title`, async ({
+    test(`${route.url} is reachable and has a breadcrumb menu and title`, async ({
       page,
     }) => {
       await page.goto(route.url, { waitUntil: "networkidle" });

@@ -9,13 +9,13 @@ import Accordion from "components/Accordion";
 import FeedbackForm from "components/FeedbackForm";
 import SupportBanner from "components/SupportBanner";
 import { interoperability } from "resources/content";
-import { ROUTE_A11Y } from "resources/staticRoutes";
+import { ROUTE_INTEROPERABILITY } from "resources/staticRoutes";
 import { twJoin } from "tailwind-merge";
 import { useFeatureFlag } from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
-  return prependMetaTitle(ROUTE_A11Y.title, matches);
+  return prependMetaTitle(ROUTE_INTEROPERABILITY.title, matches);
 };
 
 export default function Interoperability() {
