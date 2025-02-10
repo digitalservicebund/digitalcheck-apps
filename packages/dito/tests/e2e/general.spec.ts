@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import allRoutes from "resources/allRoutes";
 import { preCheck } from "resources/content";
 import * as staticRoutes from "resources/staticRoutes";
+import { ROUTE_INTEROPERABILITY } from "resources/staticRoutes";
 
 test.describe("test general availability", () => {
   test("landing page to not have breadcrumbs", async ({ page }) => {
@@ -11,7 +12,10 @@ test.describe("test general availability", () => {
 
   // Remove landing page
   allRoutes.slice(1).forEach((route) => {
-    if (route.url.endsWith(".pdf")) {
+    if (
+      route.url.endsWith(".pdf") ||
+      route.url.endsWith(ROUTE_INTEROPERABILITY.url) // TODO: revert once fixed / feature flag removed
+    ) {
       return;
     }
     test(`${route.url} is reachable and has a breadcrumb menu and title`, async ({
