@@ -188,12 +188,9 @@ export default function FeedbackForm() {
       <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
         <Background backgroundColor="blue" className="pb-48 pt-40">
           <Container backgroundColor="white" overhangingBackground>
-            <h2>Vielen Dank für Ihr Feedback!</h2>
+            <h2>{feedbackForm.success.heading}</h2>
             <br />
-            <p>
-              Wir schätzen Ihre Rückmeldung sehr und werden sie in unsere
-              Verbesserungen einfließen lassen.
-            </p>
+            <p>{feedbackForm.success.text}</p>
           </Container>
         </Background>
       </div>

@@ -273,6 +273,10 @@ export const feedbackForm = {
   questionUseful:
     "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
   mail: "Schreiben Sie uns eine Email an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+  success: {
+    heading: "Vielen Dank für Ihr Feedback!",
+    text: "Wir schätzen Ihre Rückmeldung sehr und werden sie in unsere Verbesserungen einfließen lassen.",
+  },
 };
 
 export const interviewBanner = {
