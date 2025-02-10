@@ -21,7 +21,12 @@ import {
   TOOLFINDER,
 } from "./staticRoutes";
 
-import { DriveFileRenameOutline, Source } from "@digitalservicebund/icons";
+import {
+  Apps,
+  DriveFileRenameOutline,
+  Layers,
+  Source,
+} from "@digitalservicebund/icons";
 import AdsClickOutlined from "@digitalservicebund/icons/AdsClickOutlined";
 import ArrowCircleRightOutlined from "@digitalservicebund/icons/ArrowCircleRightOutlined";
 import CheckCircleOutlined from "@digitalservicebund/icons/CheckCircleOutlined";
@@ -2001,4 +2006,116 @@ export const visualisations = {
   title: "Beispiele für Visualisierungen",
   subtitle:
     "Hier finden Sie Visualisierungen, welche Legistinnen und Legisten beim Erarbeiten der Digitaltauglichkeit geholfen haben und veröffentlicht wurden.",
+};
+
+export const interoperability = {
+  headline:
+    "EU-Vorgaben zur Interoperabilität: Alles Wichtige für Ihre Regelung im Überblick",
+  content:
+    "Hier finden Sie kompakt und verständlich alle wichtigen Informationen, um die EU-Vorgaben zur Interoperabilität erfolgreich umzusetzen.",
+  andDigitalReadiness: {
+    headline: "Interoperabilität und Digitaltauglichkeit",
+    content:
+      "Interoperabilität bezeichnet die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen in der EU, miteinander zu kooperieren und Informationen auszutauschen. Sie ist eng mit der Digitaltauglichkeit verknüpft. Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. Darum setzt Deutschland die EU Anforderungen im Digitalcheck um.",
+    image: {
+      src: "/assets/images/interop-and-digital-readiness.png", // TODO: replace image
+      alt: `TODO`, // TODO: provide alt text
+    },
+  },
+  faq: {
+    headline: "Häufig gestellte Fragen",
+    content:
+      "In diesem Bereich erhalten Sie umfassende Informationen zur Einführung der EU-Vorgaben zur Interoperabilität sowie zum Prozess der Erarbeitung von Interoperabilität in Regelungen. Wenn Sie weitere Fragen haben, dann kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).",
+    items: [
+      {
+        headline: "Was ist die Verordnung für ein interoperables Europa?",
+        content: `Durch die [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903) sollen öffentliche Verwaltungen in der EU besser zusammenarbeiten und öffentliche Dienste grenzüberschreitend funktionieren. Dies trägt dazu bei, Kosten und Zeitaufwand für Bürger:innen, Unternehmen und den öffentlichen Sektor selbst zu reduzieren.
+<br /><br />
+Die Verordnung befasst sich mit der Zusammenarbeit von öffentlichen Einrichtungen über Landesgrenzen hinweg. Sie setzt zum Ziel, die europäische Zusammenarbeit zu erleichtern. Dies gelingt durch:
+- Datenaustausch auf technischer Ebene
+- Zusammenarbeit auf organisatorischer Ebene
+- Einheitliche Definitionen auf semantischer Ebene
+- Juristische Auslegung auf rechtliche Ebene
+<br />
+Ein weiterer Bestandteil der EU-Verordnung ist die Berichtspflicht an die Europäische Kommission: Durch Interoperabilitätsbewertungen ermitteln Sie digitale und interoperable Aspekte bereits in der Entwurfsphase Ihres Vorhabens. Aktuell unterstützt Sie das Digitalcheck Team dabei, eine Interoperabilitätsbewertung durchzuführen, zu dokumentieren und den Bericht einzureichen.`,
+      },
+      {
+        headline: "Was sind „transeuropäische digitale öffentliche Dienste“?",
+        content: ``,
+      },
+      {
+        headline:
+          "Wie hängen digitaltaugliche Regelungen und Interoperabilität zusammen?",
+        content: ``,
+      },
+      {
+        headline:
+          "Was bedeutet grenzüberschreitende Interoperabilität und was ist dafür erforderlich?",
+        content: ``,
+      },
+      {
+        headline:
+          "Was ist der europäische Interoperabilitätsrahmen (European Interoperability Framework EIF) und was beinhaltet er?",
+        content: ``,
+      },
+      {
+        headline:
+          "Was sind Interoperabilitätsbewertungen und warum sind sie notwendig?",
+        content: ``,
+      },
+      {
+        headline:
+          "Unter welchen Bedingungen bin ich verpflichtet, eine Interoperabilitätsbewertung durchzuführen?",
+        content: ``,
+      },
+      {
+        headline:
+          "Welche Art von Unterstützung gibt es für die Durchführung von Interoperabilitätsbewertungen? (SPOC?)",
+        content: ``,
+      },
+      {
+        headline:
+          "Wie ist der Prozess des Erarbeitens einer Interoperabilitätsbewertung?",
+        content: ``,
+      },
+      {
+        headline: "Was ist das Ergebnis einer Interoperabilitätsbewertung?",
+        content: ``,
+      },
+    ],
+  },
+  resources: {
+    title: "Ressourcen und Links zu Interoperabilität",
+    subtitle:
+      "Hier finden Sie alle relevanten Links und Ressourcen zu den Anforderungen der EU an Interoperabilität, die für Ihre Regelung relevant sind.",
+    groups: [
+      {
+        title: "Allgemein",
+        icon: Apps,
+        subtitle:
+          "Hier finden Sie die wichtigsten Informationen zu der EU-Verordnung",
+        content: `- [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+- [Ressourcen auf dem Interoperable Europe Portal](): Hier finden sich zusätzliche Informationen, Best Practices und Tools zur Unterstützung bei der Durchführung von Interoperabilitätsbewertungen.`,
+      },
+      {
+        title: "Interoperabilitätsbewertungen",
+        icon: Layers,
+        subtitle:
+          "Hier finden Sie die wichtigsten Informationen zu Interoperabilitätsbewertungen.",
+        content: `- [Interoperabilitätsrahmen](): Rahmenwerk zur Herstellung von interoperablen Regelungen
+- [Richtlinien Interoperbilitätsbewertungen](): Anleitung zur Durchführung von interoperablen Regelungen `,
+      },
+    ],
+  },
+  andPolicyMaking: {
+    headline:
+      "Wie beeinflusst Interoperabilität die Erarbeitung Ihres Vorhabens?",
+    content: `Der Prozess der Erarbeitung von Interoperabilität und Digitaltauglichkeit ist eng miteinander verknüpft, da Interoperabilität einen Digitalbezug in Regelungen erfordert. Wenn ein Gesetz oder eine Regelung digitale Prozesse vorsieht, müssen technische und organisatorische Standards beachtet werden. Diese Aspekte sollten bereits bei der Erarbeitung Ihres Vorhabens berücksichtigt werden.
+<br /><br />
+Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. Kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).`,
+    image: {
+      src: "/assets/images/interop-and-digital-readiness.png", // TODO: replace image
+      alt: `TODO`, // TODO: provide alt text
+    },
+  },
 };

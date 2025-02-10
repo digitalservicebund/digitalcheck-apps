@@ -68,11 +68,18 @@ export const ROUTE_METHODS_TECHNICAL_FEASIBILITY: Route = {
   parent: ROUTE_METHODS.url,
 };
 
+export const ROUTE_INTEROPERABILITY: Route = {
+  url: "/interoperabel",
+  title: "Interoperable Regelungen",
+  parent: ROUTE_LANDING.url,
+};
+
 export const ROUTE_DOCUMENTATION: Route = {
   url: "/dokumentation",
   title: "Dokumentation",
   parent: ROUTE_LANDING.url,
 };
+
 export const ROUTE_DOCUMENTATION_STATIC_PDF: Route = {
   url: `/download/${DOCUMENTATION_PDF}`,
   title: "Begleitende Dokumentation als PDF",
@@ -145,6 +152,7 @@ const routes: Route[] = [
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
   ROUTE_METHODS_FIVE_PRINCIPLES,
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
+  ROUTE_INTEROPERABILITY,
   ROUTE_SUPPORT,
   ROUTE_DOCUMENTATION,
   ROUTE_IMPRINT,
