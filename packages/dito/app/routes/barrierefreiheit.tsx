@@ -11,7 +11,7 @@ export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_A11Y.title, matches);
 };
 
-export default function Index() {
+export default function Accessibility() {
   return (
     <>
       <Background backgroundColor="blue">
