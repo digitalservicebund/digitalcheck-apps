@@ -11,7 +11,7 @@ import type { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import SupportBanner from "components/SupportBanner";
 import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
-import { preCheck } from "resources/content";
+import { general, preCheck } from "resources/content";
 import {
   ROUTE_GENERAL_INFO,
   ROUTE_LANDING,
@@ -59,7 +59,7 @@ export default function Index() {
               },
               {
                 id: "preCheck-back-button",
-                text: "Zurück",
+                text: general.buttonBack.text,
                 href: ROUTE_LANDING.url,
                 look: "tertiary",
               },

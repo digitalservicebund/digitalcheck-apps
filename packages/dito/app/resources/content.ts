@@ -56,6 +56,15 @@ export const header = {
     "Dieses Angebot befindet sich im Aufbau und wird auf Basis Ihrer Rückmeldung weiterentwickelt.",
 };
 
+export const general = {
+  buttonBack: {
+    text: "Zurück",
+  },
+  tableOfContents: {
+    headline: "Inhalt",
+  },
+};
+
 const stepNKR = {
   headline: {
     text: "Prüfen durch den NKR",

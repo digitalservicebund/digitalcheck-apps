@@ -4,6 +4,7 @@ import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import useTitle from "services/useTitle";
 
+import { general } from "@digitalcheck/dito/app/resources/content";
 import Button from "@digitalcheck/shared/components/Button";
 import Image from "@digitalcheck/shared/components/Image";
 import flowchartElementsImage from "resources/img/flowchart-elements.png";
@@ -103,7 +104,7 @@ Der Start mag Ihnen leichter fallen, wenn Sie als Basis eine zeitliche Abfolge w
       <Container className="pb-48 pt-0">
         <Button
           id="flowchart-guide-page-back-button"
-          text="Zurück"
+          text={general.buttonBack.text}
           href={PATH_RESULT}
         />
       </Container>

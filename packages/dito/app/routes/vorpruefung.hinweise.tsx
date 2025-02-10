@@ -5,7 +5,7 @@ import InlineNotice from "@digitalcheck/shared/components/InlineNotice";
 import RichText from "@digitalcheck/shared/components/RichText";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { type MetaFunction, useLoaderData } from "@remix-run/react";
-import { preCheck } from "resources/content";
+import { general, preCheck } from "resources/content";
 import { ROUTE_GENERAL_INFO, ROUTE_PRECHECK } from "resources/staticRoutes";
 import { getAnswersFromCookie } from "utils/cookies.server";
 import prependMetaTitle from "utils/metaTitle";
@@ -54,7 +54,7 @@ export default function GeneralInfo() {
               },
               {
                 id: "generalInfo-back-button",
-                text: "Zurück",
+                text: general.buttonBack.text,
                 href: ROUTE_PRECHECK.url,
                 look: "tertiary",
               },

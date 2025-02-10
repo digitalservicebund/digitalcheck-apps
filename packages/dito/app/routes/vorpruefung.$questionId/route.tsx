@@ -11,7 +11,7 @@ import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import LinkBar from "components/LinkBar";
 import { useEffect, useState } from "react";
-import { preCheck } from "resources/content";
+import { general, preCheck } from "resources/content";
 import { ROUTE_PRECHECK } from "resources/staticRoutes";
 import {
   getAnswersFromCookie,
@@ -200,7 +200,7 @@ export default function Index() {
                 },
                 {
                   id: "preCheck-back-button",
-                  text: "Zurück",
+                  text: general.buttonBack.text,
                   href: question.prevLink,
                   look: "tertiary",
                 },

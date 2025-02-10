@@ -12,7 +12,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
-import { fivePrinciples } from "resources/content";
+import { fivePrinciples, general } from "resources/content";
 import {
   ROUTE_EXAMPLES,
   ROUTE_METHODS,
@@ -74,7 +74,11 @@ export default function FivePrinciples() {
             }}
           />
           <div className="mt-64">
-            <Heading tagName="div" text="Inhalt" className="font-bold" />
+            <Heading
+              tagName="div"
+              text={general.tableOfContents.headline}
+              className="font-bold"
+            />
             <ol className="list-unstyled ds-stack-8 mt-16">
               {fivePrinciples.principles.map((principle) => (
                 <li key={principle.label}>
