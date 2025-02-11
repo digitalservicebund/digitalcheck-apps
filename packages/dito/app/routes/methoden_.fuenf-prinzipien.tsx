@@ -2,17 +2,16 @@ import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
-import Heading from "@digitalcheck/shared/components/Heading";
 import InfoBox from "@digitalcheck/shared/components/InfoBox";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import {
-  Link,
   MetaFunction,
   PrefetchPageLinks,
   useLoaderData,
 } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
-import { fivePrinciples, general } from "resources/content";
+import TableOfContents from "components/TableOfContents";
+import { fivePrinciples } from "resources/content";
 import {
   ROUTE_EXAMPLES,
   ROUTE_METHODS,
@@ -73,25 +72,14 @@ export default function FivePrinciples() {
                 : fivePrinciples.title,
             }}
           />
-          <div className="mt-64">
-            <Heading
-              tagName="div"
-              text={general.tableOfContents.headline}
-              className="font-bold"
-            />
-            <ol className="list-unstyled ds-stack-8 mt-16">
-              {fivePrinciples.principles.map((principle) => (
-                <li key={principle.label}>
-                  <Link
-                    to={`#${slugify(principle.label)}`}
-                    className="underline decoration-1 underline-offset-4"
-                  >
-                    ↓ {principle.label}: {principle.title}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <TableOfContents
+            items={fivePrinciples.principles.map((principle) => {
+              return {
+                id: slugify(principle.label),
+                title: `${principle.label}: ${principle.title}`,
+              };
+            })}
+          />
         </Container>
       </Background>
       {fivePrinciples.principles.map((principle, index) => {
