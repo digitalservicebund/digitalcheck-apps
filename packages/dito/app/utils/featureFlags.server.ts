@@ -20,33 +20,25 @@ const unleash = initialize({
 });
 
 const DEFAULT_FLAG_STATE = true;
-let unleashInitialized = false;
 
 unleash.on("ready", logger.log);
 unleash.on("synchronized", () => {
-  unleashInitialized = true;
   logger.log("Unleash is initialized.");
 });
 unleash.on("error", logger.error);
 unleash.on("warn", logger.warn);
 
-export const getFeatureFlag = (name: string): boolean => {
-  if (!unleashInitialized) {
-    logger.warn(
-      `Unleash not initialized. Defaulting "${name}" to ${DEFAULT_FLAG_STATE}.`,
+export const getFeatureFlags = () => {
+  if (isCI) {
+    console.warn(
+      `Defaulting all feature flags to ${DEFAULT_FLAG_STATE} in CI.`,
     );
     return DEFAULT_FLAG_STATE;
   }
-
-  return unleash.isEnabled(name);
-};
-
-export const getFeatureFlags = () =>
-  Object.fromEntries(
+  return Object.fromEntries(
     unleash
       .getFeatureToggleDefinitions()
       .filter((flag) => flag.name.startsWith("digitalcheck."))
       .map((flag) => [flag.name, flag.enabled]),
   );
-
-export default unleash;
+};
