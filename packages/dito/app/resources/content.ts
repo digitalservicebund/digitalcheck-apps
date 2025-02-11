@@ -2032,6 +2032,7 @@ export const interoperability = {
     },
   },
   faq: {
+    id: "faq",
     headline: "H채ufig gestellte Fragen",
     content:
       "In diesem Bereich erhalten Sie umfassende Informationen zur Einf체hrung der EU-Vorgaben zur Interoperabilit채t sowie zum Prozess der Erarbeitung von Interoperabilit채t in Regelungen. Wenn Sie weitere Fragen haben, dann kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).",
@@ -2094,7 +2095,8 @@ Ein weiterer Bestandteil der EU-Verordnung ist die Berichtspflicht an die Europ�
     ],
   },
   resources: {
-    title: "Ressourcen und Links zu Interoperabilit채t",
+    id: "ressourcen",
+    headline: "Ressourcen und Links zu Interoperabilit채t",
     subtitle:
       "Hier finden Sie alle relevanten Links und Ressourcen zu den Anforderungen der EU an Interoperabilit채t, die f체r Ihre Regelung relevant sind.",
     groups: [
@@ -2117,6 +2119,7 @@ Ein weiterer Bestandteil der EU-Verordnung ist die Berichtspflicht an die Europ�
     ],
   },
   andPolicyMaking: {
+    id: "prozess",
     headline:
       "Wie beeinflusst Interoperabilit채t die Erarbeitung Ihres Vorhabens?",
     content: `Der Prozess der Erarbeitung von Interoperabilit채t und Digitaltauglichkeit ist eng miteinander verkn체pft, da Interoperabilit채t einen Digitalbezug in Regelungen erfordert. Wenn ein Gesetz oder eine Regelung digitale Prozesse vorsieht, m체ssen technische und organisatorische Standards beachtet werden. Diese Aspekte sollten bereits bei der Erarbeitung Ihres Vorhabens ber체cksichtigt werden.
