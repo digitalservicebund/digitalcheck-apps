@@ -32,7 +32,7 @@ unleash.on("warn", logger.warn);
 
 export const getFeatureFlag = (name: string): boolean => {
   if (!unleashInitialized) {
-    console.warn(
+    logger.warn(
       `Unleash not initialized. Defaulting "${name}" to ${DEFAULT_FLAG_STATE}.`,
     );
     return DEFAULT_FLAG_STATE;
