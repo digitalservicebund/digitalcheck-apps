@@ -30,9 +30,7 @@ unleash.on("warn", logger.warn);
 
 export const getFeatureFlags = () => {
   if (isCI) {
-    console.warn(
-      `Defaulting all feature flags to ${DEFAULT_FLAG_STATE} in CI.`,
-    );
+    logger.warn(`Defaulting all feature flags to ${DEFAULT_FLAG_STATE} in CI.`);
     return DEFAULT_FLAG_STATE;
   }
   return Object.fromEntries(
