@@ -20,9 +20,7 @@ if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
     ({ mockServer }) => {
       console.warn("Mock external APIs.");
       mockServer.listen({
-        // This is going to perform unhandled requests
-        // but print no warning whatsoever when they happen.
-        onUnhandledRequest: "bypass",
+        onUnhandledRequest: "warn",
       });
     },
     () => {
