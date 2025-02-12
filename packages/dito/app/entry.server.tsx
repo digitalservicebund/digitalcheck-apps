@@ -11,33 +11,27 @@ import type { EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
+import { mockServer } from "mocks/node";
 import { renderToPipeableStream } from "react-dom/server";
 import logResponseStatus from "utils/logging";
 import { NonceProvider } from "utils/nonce";
 
 if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
-  import("mocks/node").then(
-    ({ mockServer }) => {
-      console.warn("Mock external APIs.");
-      mockServer.listen({
-        onUnhandledRequest(request, print) {
-          const url = new URL(request.url);
+  console.warn("Mock external APIs.");
+  mockServer.listen({
+    onUnhandledRequest(request, print) {
+      const url = new URL(request.url);
 
-          if (
-            url.hostname.indexOf("plausible.io") !== -1 ||
-            url.hostname.indexOf("strapiapp.com") !== -1
-          ) {
-            return;
-          }
+      if (
+        url.hostname.indexOf("plausible.io") !== -1 ||
+        url.hostname.indexOf("strapiapp.com") !== -1
+      ) {
+        return;
+      }
 
-          print.warning();
-        },
-      });
+      print.warning();
     },
-    () => {
-      console.error("Failed to mock external APIs.");
-    },
-  );
+  });
 }
 
 const ABORT_DELAY = 5_000;
