@@ -276,7 +276,6 @@ test("Clicking on Mark highlights Reasoning and adds backlink", () => {
   render(<RemixStubAllPrinciples />);
   const id = "warumGut-1-1";
   const firstMark = screen.getByText("Text mit 1Markierung").closest("a");
-  console.log(firstMark);
   expect(firstMark).toHaveAttribute("href", `/#${id}`);
 
   // clicking on mark removes highlighting and backlink
