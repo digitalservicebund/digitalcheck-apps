@@ -4,28 +4,24 @@ import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import FeedbackForm from "components/FeedbackForm";
 import SupportBanner from "components/SupportBanner";
 import TableOfContents from "components/TableOfContents";
 import { interoperability } from "resources/content";
+import { features } from "resources/features";
 import { ROUTE_INTEROPERABILITY } from "resources/staticRoutes";
 import { twJoin } from "tailwind-merge";
-import { getFeatureFlag } from "utils/featureFlags.server";
+import { useFeatureFlag } from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_INTEROPERABILITY.title, matches);
 };
 
-export function loader() {
-  const showPage = getFeatureFlag("digitalcheck.show-io-landingpage");
-  return { showPage };
-}
-
 export default function Interoperability() {
-  const { showPage } = useLoaderData<typeof loader>();
+  const showPage = useFeatureFlag(features.showIOLandingPage);
 
   if (!showPage) {
     throw new Response("Feature is not enabled for this environment", {
