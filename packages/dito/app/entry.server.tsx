@@ -16,19 +16,14 @@ import logResponseStatus from "utils/logging";
 import { NonceProvider } from "utils/nonce";
 
 if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
-  import("mocks/node").then(
-    ({ mockServer }) => {
-      console.warn("Mock external APIs.");
-      mockServer.listen({
-        // This is going to perform unhandled requests
-        // but print no warning whatsoever when they happen.
-        onUnhandledRequest: "bypass",
-      });
-    },
-    () => {
-      console.error("Failed to mock external APIs.");
-    },
-  );
+  await import("mocks/node").then(({ mockServer }) => {
+    console.warn("Mock external APIs.");
+    mockServer.listen({
+      // This is going to perform unhandled requests
+      // but print no warning whatsoever when they happen.
+      onUnhandledRequest: "bypass",
+    });
+  });
 }
 
 const ABORT_DELAY = 5_000;
