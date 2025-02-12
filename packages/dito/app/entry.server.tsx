@@ -11,17 +11,18 @@ import type { EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
-import { mockServer } from "mocks/node";
 import { renderToPipeableStream } from "react-dom/server";
 import logResponseStatus from "utils/logging";
 import { NonceProvider } from "utils/nonce";
 
 if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
-  console.warn("Mock external APIs.");
-  mockServer.listen({
-    // This is going to perform unhandled requests
-    // but print no warning whatsoever when they happen.
-    onUnhandledRequest: "bypass",
+  await import("mocks/node").then(({ mockServer }) => {
+    console.warn("Mock external APIs.");
+    mockServer.listen({
+      // This is going to perform unhandled requests
+      // but print no warning whatsoever when they happen.
+      onUnhandledRequest: "bypass",
+    });
   });
 }
 
