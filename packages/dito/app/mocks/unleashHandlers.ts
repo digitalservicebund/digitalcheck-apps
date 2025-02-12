@@ -15,6 +15,11 @@ const unleashHandlers: RequestHandler[] = [
     }
     return HttpResponse.json(response);
   }),
+  http.post(`${UNLEASH_API_URL}client/register`, () => {
+    return new HttpResponse(null, {
+      status: 202,
+    });
+  }),
 ];
 
 export default unleashHandlers;
