@@ -20,7 +20,18 @@ if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
     ({ mockServer }) => {
       console.warn("Mock external APIs.");
       mockServer.listen({
-        onUnhandledRequest: "warn",
+        onUnhandledRequest(request, print) {
+          const url = new URL(request.url);
+
+          if (
+            url.hostname.indexOf("plausible.io") !== -1 ||
+            url.hostname.indexOf("strapiapp.com") !== -1
+          ) {
+            return;
+          }
+
+          print.warning();
+        },
       });
     },
     () => {
