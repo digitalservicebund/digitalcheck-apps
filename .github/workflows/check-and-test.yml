@@ -24,8 +24,6 @@ env:
 jobs:
   check-and-test:
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
