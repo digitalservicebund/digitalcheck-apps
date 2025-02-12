@@ -8,7 +8,6 @@ import Textarea from "@digitalcheck/shared/components/Textarea";
 import { useForm } from "@rvf/remix";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { preCheck } from "resources/content";
-import { features } from "resources/features";
 import { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
 import getResultValidatorForAnswers from "routes/vorpruefung.ergebnis/resultValidation";
 import { useFeatureFlag } from "utils/featureFlags";
@@ -23,7 +22,7 @@ export default function ResultForm({
   answers: PreCheckAnswers;
   setPolicyTitle: Dispatch<SetStateAction<string>>;
 }>) {
-  const showSaveToPdf = useFeatureFlag(features.showSaveToPdfOption);
+  const showSaveToPdf = useFeatureFlag("digitalcheck.show-save-to-pdf-option");
 
   const [showEmailAlert, setShowEmailAlert] = useState<boolean>(false);
   const form = useForm({
