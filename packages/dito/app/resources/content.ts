@@ -2126,7 +2126,7 @@ Ein weiterer Bestandteil der EU-Verordnung ist die Berichtspflicht an die Europ�
 <br /><br />
 Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. Kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).`,
     image: {
-      src: "/assets/images/interop-and-digital-readiness.png", // TODO: replace image
+      src: "/assets/images/interop-and-digitalcheck-process.png", // TODO: replace image
       alt: `TODO`, // TODO: provide alt text
     },
   },

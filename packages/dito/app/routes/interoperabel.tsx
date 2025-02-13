@@ -4,7 +4,8 @@ import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
 import Image from "@digitalcheck/shared/components/Image";
 import RichText from "@digitalcheck/shared/components/RichText";
-import { MetaFunction } from "@remix-run/react";
+import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
+import { Link, MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import FeedbackForm from "components/FeedbackForm";
 import LinkListBox from "components/LinkListBox";
@@ -134,11 +135,23 @@ export default function Interoperability() {
             markdown={interoperability.andPolicyMaking.content}
             className="mb-40"
           />
-          <Image
-            url={interoperability.andPolicyMaking.image.src}
-            alternativeText={interoperability.andPolicyMaking.image.alt}
-            className="h-auto w-full"
-          />
+          <Link
+            to={interoperability.andPolicyMaking.image.src}
+            reloadDocument
+            target="_blank"
+            rel="noreferrer"
+            className="relative block cursor-zoom-in"
+          >
+            <Image
+              url={interoperability.andPolicyMaking.image.src}
+              alternativeText={interoperability.andPolicyMaking.image.alt}
+              className="h-auto w-full"
+            />
+            <ZoomInOutlined
+              className="absolute bottom-16 left-16 size-48 bg-blue-800 p-1 shadow"
+              fill="white"
+            />
+          </Link>
         </Container>
       </div>
       <FeedbackForm />
