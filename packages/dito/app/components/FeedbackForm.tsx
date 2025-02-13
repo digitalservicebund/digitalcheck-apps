@@ -1,11 +1,32 @@
 import Background from "@digitalcheck/shared/components/Background";
+import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import RichText from "@digitalcheck/shared/components/RichText";
-import ThumbDownOutlined from "@digitalservicebund/icons/ThumbDownOutlined";
-import ThumbUpOutlined from "@digitalservicebund/icons/ThumbUpOutlined";
 import React, { useEffect, useRef, useState } from "react";
-import { feedbackForm } from "resources/content";
 import { twJoin } from "tailwind-merge";
+
+type FeedbackQuestionOptionProps = {
+  label: string;
+  value: number;
+};
+
+type FeedbackQuestionProps = {
+  id: string;
+  text: string;
+  options: FeedbackQuestionOptionProps[];
+};
+
+type FeedbackFormProps = {
+  heading: string;
+  trackingEvent: string;
+  questions: FeedbackQuestionProps[];
+  contact: string;
+  button: string;
+  success: {
+    heading: string;
+    text: string;
+  };
+};
 
 function FeedbackInput({
   children,
@@ -25,7 +46,7 @@ function FeedbackInput({
   ariaLabel: string;
 }>) {
   const classes = twJoin(
-    "px-16 h-48 sm:px-24 sm:h-64 flex items-center",
+    "px-16 h-48 sm:px-24 sm:h-64 flex items-center cursor-pointer",
     selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
   );
 
@@ -47,15 +68,9 @@ function FeedbackInput({
 }
 
 function FeedbackQuestion({
-  legend,
-  isBinary = false,
-  name,
-  isLast = false,
+  question,
 }: Readonly<{
-  legend: string;
-  isBinary?: boolean;
-  name: string;
-  isLast?: boolean;
+  question: FeedbackQuestionProps;
 }>) {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -66,110 +81,64 @@ function FeedbackQuestion({
   return (
     <fieldset
       className={twJoin(
-        "flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-blue-300",
-        !isLast && "border-b-2", // conditional rendering because last:border-b-0 doesn't work here
+        "flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-blue-300 border-b-2 last:border-b-0",
       )}
     >
       <div className="lg:w-1/2">
         <legend>
-          <p>{legend}</p>
+          <p>{question.text}</p>
         </legend>
       </div>
       <div className="lg:w-1/2">
-        {isBinary ? (
-          <div className="flex gap-16">
-            <FeedbackInput
-              value={1}
-              selected={selected === 1}
-              onChange={onChange}
-              name={name}
-              id={`${name}-yes`}
-              ariaLabel="Ja"
-            >
-              <ThumbUpOutlined />
-              <span className="ds-label-01-bold">Ja</span>
-            </FeedbackInput>
-            <FeedbackInput
-              value={2}
-              selected={selected === 2}
-              onChange={onChange}
-              name={name}
-              id={`${name}-no`}
-              ariaLabel="Nein"
-            >
-              <ThumbDownOutlined />
-              <span className="ds-label-01-bold">Nein</span>
-            </FeedbackInput>
+        <div className="max-w-fit">
+          <div className="flex gap-8 sm:gap-16">
+            {question.options.map(({ value }) => {
+              return (
+                <FeedbackInput
+                  key={value}
+                  value={value}
+                  selected={selected === value}
+                  onChange={onChange}
+                  name={question.id}
+                  id={`${question.id}-${value}`}
+                  ariaLabel={`${value}`}
+                >
+                  <span className="ds-heading-02-reg">{value}</span>
+                </FeedbackInput>
+              );
+            })}
           </div>
-        ) : (
-          <div className="max-w-fit">
-            <div className="flex gap-8 sm:gap-16">
-              {[1, 2, 3, 4, 5].map((number) => {
-                let ariaLabel: string;
-                switch (number) {
-                  case 1:
-                    ariaLabel = "sehr schwierig";
-                    break;
-                  case 2:
-                    ariaLabel = "schwierig";
-                    break;
-                  case 3:
-                    ariaLabel = "mittel";
-                    break;
-                  case 4:
-                    ariaLabel = "einfach";
-                    break;
-                  case 5:
-                    ariaLabel = "sehr einfach";
-                    break;
-                  default:
-                    ariaLabel = "";
-                }
-
-                return (
-                  <FeedbackInput
-                    key={number}
-                    value={number}
-                    selected={selected === number}
-                    onChange={onChange}
-                    name={name}
-                    id={`${name}-${number}`}
-                    ariaLabel={ariaLabel}
-                  >
-                    <span className="ds-heading-02-reg">{number}</span>
-                  </FeedbackInput>
-                );
-              })}
-            </div>
-            <div className="mt-20 flex justify-between text-gray-900">
-              <span className="">{feedbackForm.labels[0]}</span>
-              <span className="">{feedbackForm.labels[4]}</span>
-            </div>
+          <div className="mt-20 flex justify-between text-gray-900">
+            <span className="">{question.options[0].label}</span>
+            <span className="">
+              {question.options[question.options.length - 1].label}
+            </span>
           </div>
-        )}
+        </div>
       </div>
     </fieldset>
   );
 }
 
-export default function FeedbackForm() {
+export default function FeedbackForm(props: FeedbackFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const thankYouMessageRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const simpleFeedback = formData.get("simple-feedback");
-    const usefulFeedback = formData.get("useful-feedback");
-
     // Plausible event trigger with feedback values
     if (window.plausible) {
-      window.plausible("Feedback Methoden", {
-        props: {
-          questionSimple: simpleFeedback ?? "No Feedback",
-          questionUseful: usefulFeedback ?? "No Feedback",
-        },
+      const formData = new FormData(event.currentTarget);
+
+      const trackingEventProps: { [key: string]: string } = {};
+      props.questions.forEach((question) => {
+        trackingEventProps[question.id] =
+          (formData.get(question.id) as string) ?? "No Feedback";
+      });
+
+      window.plausible(props.trackingEvent, {
+        props: trackingEventProps,
       });
     }
 
@@ -188,9 +157,9 @@ export default function FeedbackForm() {
       <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
         <Background backgroundColor="blue" className="pb-48 pt-40">
           <Container backgroundColor="white" overhangingBackground>
-            <h2>{feedbackForm.success.heading}</h2>
+            <h2>{props.success.heading}</h2>
             <br />
-            <p>{feedbackForm.success.text}</p>
+            <p>{props.success.text}</p>
           </Container>
         </Background>
       </div>
@@ -200,25 +169,17 @@ export default function FeedbackForm() {
   return (
     <Background backgroundColor="blue" className="pb-48 pt-40">
       <Container backgroundColor="white" overhangingBackground>
-        <h2>{feedbackForm.heading}</h2>
+        <h2>{props.heading}</h2>
         <form onSubmit={handleSubmit} className="mb-48">
-          <FeedbackQuestion
-            legend={feedbackForm.questionSimple}
-            name="simple-feedback"
-          />
-          <FeedbackQuestion
-            legend={feedbackForm.questionUseful}
-            name="useful-feedback"
-            isLast={true}
-          />
-          <button
-            type="submit"
-            className="mt-16 bg-blue-800 px-24 py-12 text-white"
-          >
-            Feedback absenden
-          </button>
+          <span>
+            {props.questions?.length !== 0 &&
+              props.questions.map((question) => (
+                <FeedbackQuestion key={question.id} question={question} />
+              ))}
+          </span>
+          <Button text={props.button} size="large" type="submit" />
         </form>
-        <RichText markdown={feedbackForm.mail} className="font-bold" />
+        <RichText markdown={props.contact} className="font-bold" />
       </Container>
     </Background>
   );

@@ -289,18 +289,29 @@ export const supportBanner = {
   },
 };
 
-export const feedbackForm = {
+const feedbackForm = {
   heading: "Ihr Feedback hilft uns weiter!",
-  labels: ["Sehr schwierig", "Schwierig", "Moderat", "Einfach", "Sehr einfach"],
-  questionSimple:
-    "Wie einfach war es für Sie, unseren Dienst „Digitaltaugliche Regelungen erarbeiten“ zu nutzen?",
-  questionUseful:
-    "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
-  mail: "Schreiben Sie uns eine Email an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+  contact:
+    "Schreiben Sie uns eine Email an [digitalcheck@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
   success: {
     heading: "Vielen Dank für Ihr Feedback!",
     text: "Wir schätzen Ihre Rückmeldung sehr und werden sie in unsere Verbesserungen einfließen lassen.",
   },
+  button: "Feedback absenden",
+  optionsSimple: [
+    { label: "Sehr schwierig", value: 1 },
+    { label: "Schwierig", value: 2 },
+    { label: "Moderat", value: 3 },
+    { label: "Einfach", value: 4 },
+    { label: "Sehr einfach", value: 5 },
+  ],
+  optionsUseful: [
+    { label: "Nicht hilfreich", value: 1 },
+    { label: "Wenig hilfreich", value: 2 },
+    { label: "Neutral", value: 3 },
+    { label: "Hilfreich", value: 4 },
+    { label: "Sehr hilfreich", value: 5 },
+  ],
 };
 
 export const interviewBanner = {
@@ -845,6 +856,25 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
       steps.documentation,
       steps.nkr,
     ],
+  },
+  feedbackForm: {
+    heading: feedbackForm.heading,
+    trackingEvent: "Feedback Methoden",
+    questions: [
+      {
+        id: "simple-feedback",
+        text: "Wie einfach war es für Sie, unseren Dienst „Digitaltaugliche Regelungen erarbeiten“ zu nutzen?",
+        options: feedbackForm.optionsSimple,
+      },
+      {
+        id: "useful-feedback",
+        text: "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
+        options: feedbackForm.optionsUseful,
+      },
+    ],
+    contact: feedbackForm.contact,
+    button: feedbackForm.button,
+    success: feedbackForm.success,
   },
 };
 
@@ -2277,5 +2307,20 @@ Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. 
       src: "/assets/images/interop-and-digitalcheck-process.png", // TODO: replace image
       alt: `TODO`, // TODO: provide alt text
     },
+  },
+  feedbackForm: {
+    heading: feedbackForm.heading,
+    trackingEvent: "Feedback Interoperabel Landing Page",
+    questions: [
+      {
+        id: "useful-feedback",
+        text: "Wie hilfreich waren die Informationen auf der Seite für Sie?",
+        options: feedbackForm.optionsUseful,
+      },
+    ],
+    contact:
+      "Schreiben Sie uns eine Email an [interoperabel@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+    button: feedbackForm.button,
+    success: feedbackForm.success,
   },
 };
