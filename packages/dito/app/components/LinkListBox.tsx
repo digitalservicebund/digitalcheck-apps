@@ -8,8 +8,8 @@ export type LinkItem = {
 };
 
 export default function LinkListBox({
-  items,
-}: Readonly<{ items: LinkItem[] }>) {
+  links,
+}: Readonly<{ links: LinkItem[] }>) {
   return (
     <div className="mt-64">
       <Heading
@@ -18,13 +18,13 @@ export default function LinkListBox({
         className="font-bold"
       />
       <ol className="list-unstyled ds-stack-8 mt-16">
-        {items.map((item) => (
-          <li key={item.id}>
+        {links.map((link) => (
+          <li key={link.id}>
             <Link
-              to={`#${item.id}`}
+              to={`#${link.id}`}
               className="underline decoration-1 underline-offset-4"
             >
-              ↓ {item.title}
+              ↓ {link.title}
             </Link>
           </li>
         ))}

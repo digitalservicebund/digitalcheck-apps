@@ -44,7 +44,7 @@ export default function Interoperability() {
             }}
           ></Header>
           <LinkListBox
-            items={[
+            links={[
               {
                 id: interoperability.faq.id,
                 title: interoperability.faq.headline,
