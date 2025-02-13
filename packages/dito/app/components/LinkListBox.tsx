@@ -2,14 +2,14 @@ import Heading from "@digitalcheck/shared/components/Heading";
 import { Link } from "@remix-run/react";
 import { general } from "resources/content";
 
-export type TableOfContentsItem = {
+export type LinkItem = {
   id: string;
   title: string;
 };
 
-export default function TableOfContents({
+export default function LinkListBox({
   items,
-}: Readonly<{ items: TableOfContentsItem[] }>) {
+}: Readonly<{ items: LinkItem[] }>) {
   return (
     <div className="mt-64">
       <Heading

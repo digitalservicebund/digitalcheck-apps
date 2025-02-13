@@ -9,8 +9,8 @@ import {
   PrefetchPageLinks,
   useLoaderData,
 } from "@remix-run/react";
+import LinkListBox from "components/LinkListBox";
 import SupportBanner from "components/SupportBanner";
-import TableOfContents from "components/TableOfContents";
 import { fivePrinciples } from "resources/content";
 import {
   ROUTE_EXAMPLES,
@@ -72,7 +72,7 @@ export default function FivePrinciples() {
                 : fivePrinciples.title,
             }}
           />
-          <TableOfContents
+          <LinkListBox
             items={fivePrinciples.principles.map((principle) => {
               return {
                 id: slugify(principle.label),

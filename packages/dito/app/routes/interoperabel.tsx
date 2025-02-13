@@ -7,8 +7,8 @@ import RichText from "@digitalcheck/shared/components/RichText";
 import { MetaFunction } from "@remix-run/react";
 import Accordion from "components/Accordion";
 import FeedbackForm from "components/FeedbackForm";
+import LinkListBox from "components/LinkListBox";
 import SupportBanner from "components/SupportBanner";
-import TableOfContents from "components/TableOfContents";
 import { interoperability } from "resources/content";
 import { features } from "resources/features";
 import { ROUTE_INTEROPERABILITY } from "resources/staticRoutes";
@@ -43,7 +43,7 @@ export default function Interoperability() {
               className: "md:text-2xl",
             }}
           ></Header>
-          <TableOfContents
+          <LinkListBox
             items={[
               {
                 id: interoperability.faq.id,
