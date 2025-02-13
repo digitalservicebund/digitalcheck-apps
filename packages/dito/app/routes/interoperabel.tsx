@@ -12,7 +12,6 @@ import SupportBanner from "components/SupportBanner";
 import { interoperability } from "resources/content";
 import { features } from "resources/features";
 import { ROUTE_INTEROPERABILITY } from "resources/staticRoutes";
-import { twJoin } from "tailwind-merge";
 import { useFeatureFlag } from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 
@@ -61,29 +60,31 @@ export default function Interoperability() {
           />
         </Container>
       </Background>
-      <Background
-        backgroundColor="midBlue"
-        className="flex flex-col md:flex-row"
-      >
-        <Container className="md:ml-auto md:mr-0 md:w-1/2 md:max-w-[calc(59rem/2)]">
-          <Heading
-            tagName="h2"
-            text={interoperability.andDigitalReadiness.headline}
-            className="mb-8"
-          />
-          <RichText markdown={interoperability.andDigitalReadiness.content} />
+      <Background backgroundColor="midBlue">
+        <Container className="flex flex-col py-0 lg:h-[420px] lg:flex-row">
+          <div className="py-32 sm:py-48 lg:w-1/2 lg:self-center lg:pr-48">
+            <Heading
+              tagName="h2"
+              text={interoperability.andDigitalReadiness.headline}
+              className="mb-8"
+            />
+            <RichText markdown={interoperability.andDigitalReadiness.content} />
+          </div>
+          <div className="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
+            <div className="w-[630px] lg:w-[50vw] [&>img]:object-cover [&>img]:lg:h-[420px] [&>img]:lg:w-full">
+              <Image
+                url={interoperability.andDigitalReadiness.image.src}
+                alternativeText={interoperability.andDigitalReadiness.image.alt}
+              />
+            </div>
+          </div>
         </Container>
-        <div
-          className={twJoin(
-            "w-1/2 bg-cover bg-center bg-no-repeat hidden md:block",
-            `bg-[url('${interoperability.andDigitalReadiness.image.src}')]`,
-          )}
-        ></div>
-        <Image
-          url={interoperability.andDigitalReadiness.image.src}
-          alternativeText={interoperability.andDigitalReadiness.image.alt}
-          className="h-auto w-full md:hidden"
-        />
+        <div className="sm:hidden">
+          <Image
+            url={interoperability.andDigitalReadiness.image.src}
+            alternativeText={interoperability.andDigitalReadiness.image.alt}
+          />
+        </div>
       </Background>
       <div id={interoperability.faq.id}>
         <Container>
