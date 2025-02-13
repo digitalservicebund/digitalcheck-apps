@@ -154,7 +154,7 @@ export default function Interoperability() {
           </Link>
         </Container>
       </div>
-      <FeedbackForm {...interoperability.feedbackForm} />
+      <FeedbackForm />
       <SupportBanner withFeedbackBanner={false} />
     </>
   );

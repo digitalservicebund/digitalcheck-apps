@@ -73,7 +73,7 @@ export default function Methoden() {
           items={methods.nextSteps.items}
         />
       </Container>
-      <FeedbackForm {...methods.feedbackForm} />
+      <FeedbackForm />
       <SupportBanner withFeedbackBanner={false} />
     </>
   );
