@@ -12,6 +12,7 @@ type FeedbackQuestionOptionProps = {
 
 type FeedbackQuestionProps = {
   id: string;
+  trackingEvent: string;
   text: string;
   options: FeedbackQuestionOptionProps[];
 };
@@ -133,7 +134,7 @@ export default function FeedbackForm(props: FeedbackFormProps) {
 
       const trackingEventProps: { [key: string]: string } = {};
       props.questions.forEach((question) => {
-        trackingEventProps[question.id] =
+        trackingEventProps[question.trackingEvent] =
           (formData.get(question.id) as string) ?? "No Feedback";
       });
 

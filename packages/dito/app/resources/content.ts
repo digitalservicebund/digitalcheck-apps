@@ -863,11 +863,13 @@ Die Erkenntnisse und Ergebnisse aus den vorigen Schritten helfen Ihnen dabei,
     questions: [
       {
         id: "simple-feedback",
+        trackingEvent: "wie-einfach", // muss mit dem custom property in Plausible übereinstimmen
         text: "Wie einfach war es für Sie, unseren Dienst „Digitaltaugliche Regelungen erarbeiten“ zu nutzen?",
         options: feedbackForm.optionsSimple,
       },
       {
         id: "useful-feedback",
+        trackingEvent: "wie-hilfreich", // muss mit dem custom property in Plausible übereinstimmen
         text: "Wie hilfreich fanden Sie die angebotenen Methoden und Werkzeuge für das Erarbeiten ihres Regelungsvorhaben?",
         options: feedbackForm.optionsUseful,
       },
@@ -2314,6 +2316,7 @@ Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. 
     questions: [
       {
         id: "useful-feedback",
+        trackingEvent: "wie-hilfreich", // muss mit dem custom property in Plausible übereinstimmen
         text: "Wie hilfreich waren die Informationen auf der Seite für Sie?",
         options: feedbackForm.optionsUseful,
       },
