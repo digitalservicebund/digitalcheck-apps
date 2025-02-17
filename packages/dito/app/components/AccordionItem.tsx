@@ -22,9 +22,9 @@ export default function AccordionItem({
         <Add className="size-24 shrink-0 fill-blue-800 group-open:hidden" />
         <Remove className="hidden size-24 shrink-0 fill-blue-800 group-open:block" />
       </summary>
-      <div className="p-24">
+      <div className="p-24 ">
         {typeof content === "string" ? (
-          <RichText markdown={content} />
+          <RichText markdown={content} className="ds-stack-28" />
         ) : (
           content
         )}

@@ -2039,58 +2039,194 @@ export const interoperability = {
     items: [
       {
         headline: "Was ist die Verordnung für ein interoperables Europa?",
-        content: `Durch die [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903) sollen öffentliche Verwaltungen in der EU besser zusammenarbeiten und öffentliche Dienste grenzüberschreitend funktionieren. Dies trägt dazu bei, Kosten und Zeitaufwand für Bürger:innen, Unternehmen und den öffentlichen Sektor selbst zu reduzieren.
-<br /><br />
-Die Verordnung befasst sich mit der Zusammenarbeit von öffentlichen Einrichtungen über Landesgrenzen hinweg. Sie setzt zum Ziel, die europäische Zusammenarbeit zu erleichtern. Dies gelingt durch:
-- Datenaustausch auf technischer Ebene
-- Zusammenarbeit auf organisatorischer Ebene
-- Einheitliche Definitionen auf semantischer Ebene
-- Juristische Auslegung auf rechtliche Ebene
-<br />
-Ein weiterer Bestandteil der EU-Verordnung ist die Berichtspflicht an die Europäische Kommission: Durch Interoperabilitätsbewertungen ermitteln Sie digitale und interoperable Aspekte bereits in der Entwurfsphase Ihres Vorhabens. Aktuell unterstützt Sie das Digitalcheck Team dabei, eine Interoperabilitätsbewertung durchzuführen, zu dokumentieren und den Bericht einzureichen.`,
+        content: `Das Ziel der [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903) ist die Verbesserung digitaler öffentlicher Dienste in der EU durch grenzüberschreitende Datenaustausch.
+
+Dafür schafft die Verordnung einen Kooperationsrahmen zwischen Mitgliedstaaten und der Europäischen Kommission zur Festlegung gemeinsamer Interoperabilitätslösungen. Zudem müssen europäische öffentliche Stellen Interoperabilitätsbewertungen durchführen, um digitale Potentiale und Hindernisse frühzeitig zu berücksichtigen.
+
+Die Vorschriften erleichtern den Datenaustausch und die Wiederverwendung von Lösungen, indem sie bürokratische Hürden abbauen. Dies spart Kosten und Zeit für Bürger, Unternehmen und Verwaltungen.
+
+Bis 2030 soll eine verbesserte Interoperabilität öffentliche Verwaltungen enger vernetzen und transeuropäische digitale Dienste fördern.
+
+
+Wenn für Ihr Vorhaben eine Verpflichtung dazu besteht, Interoperabilität sicherzustellen, begleiten wir Sie durch den Prozess der Bewertung, Dokumentation und der Berichterstellung.
+
+Quellen:
+<br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+`,
       },
       {
         headline: "Was sind „transeuropäische digitale öffentliche Dienste“?",
-        content: ``,
+        content: `
+Transeuropäische digitale öffentliche Dienste sind 
+- digitale Dienste, 
+- die von Einrichtungen der Union oder öffentlichen Stellen 
+  - füreinander oder 
+  - für natürliche oder juristische Personen in der Union erbracht werden und 
+- eine grenzüberschreitende Interaktion 
+  - zwischen den Mitgliedstaaten, 
+  - zwischen Mitgliedstaaten und Einrichtungen der Union oder 
+  - zwischen Einrichtungen der Union erfordern.
+- über deren Netz- und Informationssysteme erfordern.
+
+Beispiele für solche transeuropäischen digitalen öffentlichen Dienste sind Dienste, die durch grenzüberschreitenden Datenaustausch z.B. Folgendes ermöglichen:
+- gegenseitige Anerkennung von akademischen Diplomen oder beruflichen Qualifikationen
+- Austausch von Fahrzeugdaten für die Straßenverkehrssicherheit 
+- Zugang zu Daten der sozialen Sicherheit und des Gesundheitswesens 
+- den Zugang zu Single-Window-Systemen
+- den Austausch von Informationen im Zusammenhang mit Steuern, Zöllen, der Akkreditierung öffentlicher Ausschreibungen, digitalen Führerscheinen oder Handelsregistern 
+
+Zu den transeuropäischen digitalen öffentlichen Diensten gehören im Allgemeinen alle Dienste, die das „Once-Only“-Prinzip für den Zugang und den Austausch grenzüberschreitender Daten anwenden. Auch jeder Dienst, der die europäische Brieftasche für die digitale Identität (EUDI-Wallet) nutzt, kann als transeuropäischer digitaler öffentlicher Dienst betrachtet werden, da er automatisch einen grenzüberschreitenden Datenaustausch mit sich bringt.
+
+Quellen:
+<br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+
+        `,
       },
       {
         headline:
           "Wie hängen digitaltaugliche Regelungen und Interoperabilität zusammen?",
-        content: ``,
+        content: `
+Interoperabilität und Digitaltauglichkeit sind eng miteinander verwoben. Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. Da sich viele Anforderungen der Interoperabilität mit denen der Digitaltauglichkeit überschneiden, wird in Deutschland der bestehenden Digitalcheck um Aspekte der Interoperabilität erweitert.
+
+Bereits heute legen Sie beim Erarbeiten von digitaltauglichen Regelungen die Grundlage für Interoperabilität. Durch das Befolgen der Digitalcheck Prinzipien tun Sie dies auf technischer und semantischer Ebene, durch die Arbeit mit Visualisierungen auf prozessualer Ebene. Damit erfüllen Sie Anforderungen, die sich auch aus der EU-Verordnung ergeben.
+
+Ob sich für Ihre Regelung Anforderungen aus der EU-Verordnung ergeben, erfahren Sie durch die um Interoperabilität erweiterte [Digitalcheck Vorprüfung](/vorpruefung). Falls sich eine Berichtspflicht an die Europäische Kommission ergibt, unterstützt Sie das Digitalcheck Team dabei, eine Interoperabilitätsbewertung durchzuführen, zu dokumentieren und den Bericht einzureichen.
+        `,
       },
       {
         headline:
           "Was bedeutet grenzüberschreitende Interoperabilität und was ist dafür erforderlich?",
-        content: ``,
+        content: `
+Im EU-Kontext bedeutet grenzüberschreitende Interoperabilität, dass öffentliche Stellen der Mitgliedstaaten und der Union digital zusammenarbeiten können. Die Grundlage dafür ist, dass Daten, Informationen und Wissen digital ausgetauscht werden.
+
+Im Ergebnis bedeutet ein hoher Grad an Interoperabilität, dass digitale öffentliche Dienste über Länder- und Sektorgrenzen funktionieren - Bürger:innen und Unternehmen haben eine bessere Nutzendenerfahrung und sparen Zeit und Kosten.
+
+Digitaltaugliche Gesetze, die Interoperabilität unterstützen, legen hierfür die Grundlage. Für Ihre Arbeit an Vorhaben sollte Interoperabilität in unterschiedlichen Dimensionen bewertet werden. Das European Interoperability Framework (EIF) definiert dafür vier Ebenen:
+
+**Rechtliche** Interoperabilität legt die gesetzlichen Grundlagen für den Datenaustausch.
+<br/>**Organisatorische** Interoperabilität beschreibt die für den Datenaustausch notwendigen Geschäftsprozesse.
+<br/>**Semantische** Interoperabilität stellt sicher, dass Daten und Begriffe gleich verstanden werden.
+<br/>**Technische** Interoperabilität beschreibt die erforderlichen technischen Systeme und Standards, die für den Datenaustausch notwendig sind.
+
+Quellen: 
+<br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+<br/>[European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+        `,
       },
       {
         headline:
           "Was ist der europäische Interoperabilitätsrahmen (European Interoperability Framework EIF) und was beinhaltet er?",
-        content: ``,
+        content: `
+Falls die [Digitalcheck Vorprüfung](/vorpruefung) für Ihr Vorhaben einen Bezug zu Interoperabilität ergeben hat, so wird das European Interoperability Framework (EIF) relevant. Das EIF ist ein Leitfaden für die Umsetzung digitaler öffentlicher Dienste.
+
+Der EIF beinhaltet:
+- Einen organisatorischen Rahmen für die Koordinierung von Aktivitäten der Verwaltung
+- Ein konzeptionelles Modell für Konzeption, Entwicklung und Betrieb von öffentlichen Diensten von der lokalen bis zur EU-Ebene
+- Praktische Instrumente in Form einer Reihe von umsetzbaren Empfehlungen
+
+Ein Kerninhalt des EIF ist die Unterteilung von Interoperabilität in vier Ebenen:
+- Rechtliche Interoperabilität definiert die rechtlichen Grundlagen eines Datenaustauschs
+- Organisatorische Interoperabilität beschreibt die für den Datenaustausch notwendigen Geschäftsprozesse
+- Semantische Interoperabilität stellt sicher, dass Daten und Begriffe gleich verstanden werden
+- Technische Interoperabilität beschreibt die erforderlichen technischen Systeme und Standards, die für den Datenaustausch notwendig sind
+
+Die Inhalte des EIF begleiten Sie insbesondere bei der Durchführung von Interoperabilitätsbewertungen. Auch bei der Entwicklung von speziellen oder nationalen Interoperabilitätsrahmen sollte der EIF berücksichtigt werden.
+
+Quellen: 
+<br/>[European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+        `,
       },
       {
         headline:
           "Was sind Interoperabilitätsbewertungen und warum sind sie notwendig?",
-        content: ``,
+        content: `
+Wenn Sie eine Interoperabilitätsbewertung durchführen und den Bericht veröffentlichen, unterstützen Sie zwei Ziele der Verordnung für ein interoperables Europa:
+Unterstützung der gemeinsamen Nutzung grenzüberschreitender Daten
+Verbesserung der Qualität und Zugänglichkeit digitaler öffentlicher Dienste
+
+Durch den Prozess der Interoperabilitätsbewertung ermitteln Sie schon frühzeitig Potenziale und Hindernisse für Interoperabilität. Damit legen Sie die Grundlage für Gesetze, die Interoperabilität ermöglichen. Eine Vorgehensweise ganz ähnlich, wie sie es von der Arbeit an Digitaltauglichkeit kennen. 
+
+Als Bestandteil der Bewertung identifizieren Sie bestehende Lösungen. Lassen sich diese wiederverwenden, werden Kosten und Aufwand in der Umsetzung reduziert.
+
+Die [Verordnung für ein interoperables Europa](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903) definiert im Anhang Mindestanforderungen für die Durchführung einer Interoperabilitätsbewertung, die Details sind in den [Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines) beschrieben.
+
+Durch die [Digitalcheck Vorprüfung](/vorpruefung) identifizieren Sie bereits heute, ob Interoperabilität bei der Erarbeitung Ihrer Regelung eine Rolle spielt. Falls sich daraus eine Berichtspflicht an die Europäische Kommission ergibt, unterstützt Sie das Digitalcheck Team dabei, eine Interoperabilitätsbewertung durchzuführen, zu dokumentieren und den Bericht einzureichen.
+
+Quellen:
+<br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+<br/>[European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
+<br/>[European Commission - Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+        `,
       },
       {
         headline:
-          "Unter welchen Bedingungen bin ich verpflichtet, eine Interoperabilitätsbewertung durchzuführen?",
-        content: ``,
+          "Verbindliche Anforderungen: In welchem Fall ist eine Interoperabilitätsbewertung verpflichtend?\n",
+        content: `
+Mit Hilfe der erweiterten [Digitalcheck Vorprüfung](/vorpruefung) stellen Sie fest, ob es bei Ihrem Vorhaben einen Bezug zu Interoperabilität gibt. 
+
+Wie stellen Sie fest, ob für Ihr Vorhaben eine Interoperabilitätsbewertung verpflichtend ist? Hierzu definieren die [Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines) Kriterien. Vereinfacht beschrieben gehen Sie so vor:
+
+1. Sie prüfen, ob es sich bei Ihrer Regelung um eine „verbindliche Anforderung” im Sinne der Verordnung handelt (“eine Verpflichtung, ein Verbot, eine Bedingung, ein Kriterium oder eine Beschränkung rechtlicher, organisatorischer, semantischer oder technischer Art”)
+2. Sie prüfen, ob Ihre Regelung eine digitale Umsetzung vorsieht.
+3. Sie prüfen, ob Ihre Regelung den Austausch von Daten und Informationen zwischen den Verwaltungen der EU-Mitgliedstaaten vorsieht.
+4. Sie prüfen im [EU-Portal](https://interoperable-europe.ec.europa.eu/collection/assessments), ob für die verbindliche Anforderung bereits eine Interoperabilitätsbewertung durchgeführt wurde
+
+Entscheidungslogik: Berichtspflicht für einen verbindliche Anforderung
+
+Falls sich eine Berichtspflicht an die Europäische Kommission ergibt, unterstützt Sie das Digitalcheck Team dabei, eine Interoperabilitätsbewertung durchzuführen, zu dokumentieren und den Bericht einzureichen.
+
+Quellen:
+<br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+<br/>[European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
+<br/>[European Commission - Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines)
+<br/>[Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+        `,
       },
       {
         headline:
-          "Welche Art von Unterstützung gibt es für die Durchführung von Interoperabilitätsbewertungen? (SPOC?)",
-        content: ``,
+          "Welche Art von Unterstützung gibt es für die Durchführung von Interoperabilitätsbewertungen?",
+        content: `
+Wenn Sie eine Interoperabilitätsbewertung durchführen, stehen Ihnen Unterstützungsmaßnahmen zur Verfügung.
+
+Die [Verordnung für ein interoperables Europa](https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32024R0903) sieht in den Mitgliedstaaten nationale Kontaktstellen vor. Für Deutschland hat das Bundesministerium des Innern und für Heimat das Team vom Digitalcheck mit der Ausführung beauftragt. 
+
+Wir unterstützen Sie derzeit individuell bei der Durchführung einer Interoperabilitätsbewertung für eine interoperable Regelung und bei der Erstellung eines entsprechenden Berichts. Kontaktieren Sie uns jederzeit gerne mit Ihren Anliegen - je früher, desto besser.  Schreiben Sie uns über [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:+4915140767839).
+
+Weitergehende Informationen können Sie hier abrufen:
+
+- Die Mindestanforderungen für die inhaltliche Ausgestaltung des Berichts der Interoperabilitätsbewertung finden Sie im [Anhang der Verordnung](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
+- Detaillierte Leitlinien für die Inhalte der von Interoperabilitätsbewertungen sind in den “[Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines)” aufgeführt
+- [Die Interoperable Europe Framework EIF](https://ec.europa.eu/isa2/sites/default/files/eif_brochure_final.pdf) ist ein Leitfaden für die Umsetzung digitaler öffentlicher Dienste
+- Eine Interoperabilitätsbewertung wird in einem maschinenlesbarem Bericht dokumentiert und veröffentlicht - hierfür stellt der Beirat für ein interoperables Europa ein [Online-Tool zur Verfügung](https://interoperable-europe.ec.europa.eu/collection/assessments) (Registrierung erforderlich)
+        `,
       },
       {
         headline:
           "Wie ist der Prozess des Erarbeitens einer Interoperabilitätsbewertung?",
-        content: ``,
+        content: `
+Die Verordnung für ein interoperables Europa empfiehlt, für Interoperabilitätsbewertungen auf bestehenden Verfahren in den Mitgliedstaaten aufzubauen. Für Deutschland hat das Bundesministerium des Innern und für Heimat das Team den Digitalcheck mit der Koordinierung entsprechender Maßnahmen beauftragt.
+
+Der Prozess der Ausarbeitung einer Interoperabilitätsbewertung und des Berichts hat Schnittmengen mit dem Prozess des Erarbeitens von digitaltauglichen Regelungen. Zum Beispiel greifen die fünf Prinzipien der Digitaltauglichkeit und die vier Ebenen der Interoperabilität ineinander und auch die Arbeit mit Visualisierungen wird in den Leitlinien empfohlen.
+
+Mit Ihnen als Legist:innen wollen wir den Prozess der Ausarbeitung von Interoperabilitätsbewertungen aufwandsarm und anwendungsfreundlich gestalten. Um mit Ihnen zusammen zu lernen, unterstützen wir Sie deshalb bei Interoperabilitätsbewertungen und der Berichterstellung individuell. 
+
+Kontaktieren Sie uns jederzeit gerne mit Ihren Anliegen - je früher, desto besser. Schreiben Sie uns über [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder rufen Sie uns an unter [0151/40 76 78 39](tel:+4915140767839).
+        `,
       },
       {
         headline: "Was ist das Ergebnis einer Interoperabilitätsbewertung?",
-        content: ``,
+        content: `
+Wie beim Prozess für digitaltaugliche Regelungen ist auch der Prozess für Interoperabilitätstaugliche Regelungen zweiteilig.
+
+Im Rahmen einer Interoperabilitätsbewertung identifizieren Sie Potentiale und Hürden für Interoperabilität. Das Ergebnis dokumentieren Sie in einem Bericht.
+
+Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem Format veröffentlicht. Damit wird Ihr Vorgehen transparent für andere Mitgliedstaaten und Sie tragen dazu bei, dass andere öffentliche Stellen oder Einrichtungen der Union sich in Bezug auf Interoperabilität daran ausrichten können.
+        `,
       },
     ],
   },
