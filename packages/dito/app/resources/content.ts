@@ -5,6 +5,7 @@ import {
   ROUTE_DOCUMENTATION_STATIC_PDF,
   ROUTE_EXAMPLES,
   ROUTE_GENERAL_INFO,
+  ROUTE_INTEROPERABILITY,
   ROUTE_LANDING,
   ROUTE_METHODS,
   ROUTE_METHODS_COLLECT_IT_SYSTEMS,
@@ -188,6 +189,15 @@ export const landing = {
       look: "link" as const,
     },*/
   },
+  interoperability: {
+    title: "EU-Vorgaben zur Interoperabilität in Regelungen",
+    text: `Seit Januar 2025 tritt die [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903) in Kraft. Bestimmte Regelungsvorhaben müssen daher die EU-Anforderungen an Interoperabilität erfüllen. Ob und wie die Verordnung Ihr Vorhaben betrifft, erfahren Sie in unserer [Vorprüfung](/vorpruefung) und auf der Übersichtsseite zur Interoperabilität.`,
+    link: {
+      text: "Übersicht zur Interoperabilität",
+      href: ROUTE_INTEROPERABILITY.url,
+      look: "link" as const,
+    },
+  },
   summary: {
     title: "Zusammengefasst",
     items: [
@@ -343,12 +353,16 @@ export const preCheck = {
       title: "Digitalbezug und Interoperabilität",
       text: `Digitalbezug und Interoperabilität sind eng miteinander verknüpft. Wenn ein Gesetz oder eine Regelung digitale Prozesse vorsieht, müssen oft technische und organisatorische Standards eingehalten werden. 
 Interoperabilität bedeutet, dass verschiedene öffentliche Institutionen über Ländergrenzen hinweg zusammenarbeiten können.
-<br />
+<br /><br />
 Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. 
       `,
       image: {
         src: "/assets/images/digital-readiness-meets-interop.svg",
         alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen mit EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
+      },
+      button: {
+        text: "Alles zur Interoperabilität",
+        href: ROUTE_INTEROPERABILITY.url,
       },
     },
   },

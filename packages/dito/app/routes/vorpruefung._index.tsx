@@ -12,11 +12,13 @@ import Accordion from "components/Accordion";
 import SupportBanner from "components/SupportBanner";
 import { PRE_CHECK_START_BUTTON_ID } from "resources/constants";
 import { general, preCheck } from "resources/content";
+import { features } from "resources/features";
 import {
   ROUTE_GENERAL_INFO,
   ROUTE_LANDING,
   ROUTE_PRECHECK,
 } from "resources/staticRoutes";
+import useFeatureFlag from "utils/featureFlags";
 import prependMetaTitle from "utils/metaTitle";
 
 export const meta: MetaFunction = ({ matches }) => {
@@ -24,6 +26,9 @@ export const meta: MetaFunction = ({ matches }) => {
 };
 
 export default function Index() {
+  const showLinkToInteroperabilityLandingPage = useFeatureFlag(
+    features.showIOLandingPage,
+  );
   return (
     <>
       <Background backgroundColor="blue">
@@ -93,6 +98,18 @@ export default function Index() {
               content={{
                 markdown: preCheck.start.info.text,
               }}
+              buttons={
+                showLinkToInteroperabilityLandingPage
+                  ? [
+                      {
+                        text: preCheck.start.info.button.text,
+                        href: preCheck.start.info.button.href,
+                        look: "tertiary",
+                        className: "mt-20",
+                      },
+                    ]
+                  : []
+              }
             />
           </div>
         </Background>

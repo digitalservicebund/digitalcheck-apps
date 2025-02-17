@@ -8,8 +8,14 @@ import { NumberedList } from "@digitalcheck/shared/components/List";
 import { Link } from "@remix-run/react";
 import SupportBanner from "components/SupportBanner";
 import { landing } from "resources/content";
+import { features } from "resources/features";
+import useFeatureFlag from "utils/featureFlags";
 
 export default function Index() {
+  const showInteroperabilitySection = useFeatureFlag(
+    features.showIOLandingPage,
+  );
+
   return (
     <>
       <Background backgroundColor="darkBlue" className="py-24">
@@ -46,11 +52,19 @@ export default function Index() {
       <div className="bg-[url('/assets/images/trainings.jpeg')] bg-cover bg-[0%_35%]">
         <Container>
           <div className="max-w-[630px] rounded-lg bg-white px-16 py-28 md:px-80 md:py-40">
-            <Box
-              heading={{ text: landing.trainings.title }}
-              content={{ markdown: landing.trainings.text }}
-              buttons={[landing.trainings.link]}
-            />
+            {showInteroperabilitySection ? (
+              <Box
+                heading={{ text: landing.interoperability.title }}
+                content={{ markdown: landing.interoperability.text }}
+                buttons={[landing.interoperability.link]}
+              />
+            ) : (
+              <Box
+                heading={{ text: landing.trainings.title }}
+                content={{ markdown: landing.trainings.text }}
+                buttons={[landing.trainings.link]}
+              />
+            )}
           </div>
         </Container>
       </div>
