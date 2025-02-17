@@ -2074,7 +2074,7 @@ export const interoperability = {
       "Interoperabilität bezeichnet die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen in der EU, miteinander zu kooperieren und Informationen auszutauschen. Sie ist eng mit der Digitaltauglichkeit verknüpft. Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. Darum setzt Deutschland die EU Anforderungen im Digitalcheck um.",
     image: {
       src: "/assets/images/interop-and-digital-readiness.png",
-      alt: `TODO`, // TODO: provide alt text
+      alt: `Ein Kreis in der Mitte mit der Aufschrift "Digitaltaugliche Regelung" und ein weiterer Kreis, der den ersten komplett einschließt, in dem steht "Interoperabilität".`,
     },
   },
   faq: {
@@ -2307,7 +2307,7 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
 Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. Kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).`,
     image: {
       src: "/assets/images/interop-and-digitalcheck-process.jpg",
-      alt: `TODO`, // TODO: provide alt text
+      alt: `Ein Prozessdiagramm, dass den Erarbeitungsprozess einer Regelung bezogen auf Digitalbezug und Anforderungen an Interoperabilität darstellt.`,
     },
   },
   feedbackForm: {
