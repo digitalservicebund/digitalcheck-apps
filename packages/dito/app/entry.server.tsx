@@ -11,12 +11,12 @@ import type { EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
-import { mockServer } from "mocks/node";
 import { renderToPipeableStream } from "react-dom/server";
 import logResponseStatus from "utils/logging";
 import { NonceProvider } from "utils/nonce";
 
 if (process.env.MOCK_EXTERNAL_APIS && process.env.NODE_ENV !== "production") {
+  const { mockServer } = await import("./mocks/node");
   console.warn("Mock external APIs.");
   mockServer.listen({
     onUnhandledRequest(request, print) {
