@@ -72,7 +72,7 @@ export default function Interoperability() {
             <RichText markdown={interoperability.andDigitalReadiness.content} />
           </div>
           <div className="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
-            <div className="w-[630px] lg:w-[50vw] [&>img]:object-cover [&>img]:lg:h-[420px] [&>img]:lg:w-full">
+            <div className="w-[630px] bg-[#cee3fb] lg:w-[50vw] [&>img]:object-contain [&>img]:lg:h-[420px] [&>img]:lg:w-full">
               <Image
                 url={interoperability.andDigitalReadiness.image.src}
                 alternativeText={interoperability.andDigitalReadiness.image.alt}
