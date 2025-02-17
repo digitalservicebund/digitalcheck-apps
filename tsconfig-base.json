@@ -13,7 +13,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "ES2022",
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
