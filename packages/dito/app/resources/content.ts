@@ -2286,15 +2286,15 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
         subtitle:
           "Hier finden Sie die wichtigsten Informationen zu der EU-Verordnung",
         content: `- [Verordnung für ein interoperables Europa (EU 2024/903)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
-- [Ressourcen auf dem Interoperable Europe Portal](): Hier finden sich zusätzliche Informationen, Best Practices und Tools zur Unterstützung bei der Durchführung von Interoperabilitätsbewertungen.`,
+- [Ressourcen auf dem Interoperable Europe Portal](https://interoperable-europe.ec.europa.eu/): Hier finden sich zusätzliche Informationen, Best Practices und Tools zur Unterstützung bei der Durchführung von Interoperabilitätsbewertungen.`,
       },
       {
         title: "Interoperabilitätsbewertungen",
         icon: Layers,
         subtitle:
           "Hier finden Sie die wichtigsten Informationen zu Interoperabilitätsbewertungen.",
-        content: `- [Interoperabilitätsrahmen](): Rahmenwerk zur Herstellung von interoperablen Regelungen
-- [Richtlinien Interoperbilitätsbewertungen](): Anleitung zur Durchführung von interoperablen Regelungen `,
+        content: `- [Interoperabilitätsrahmen](https://interoperable-europe.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/solution/european-interoperability-framework-eif-toolbox): Rahmenwerk zur Herstellung von interoperablen Regelungen
+- [Richtlinien Interoperbilitätsbewertungen](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines): Anleitung zur Durchführung von interoperablen Regelungen `,
       },
     ],
   },
