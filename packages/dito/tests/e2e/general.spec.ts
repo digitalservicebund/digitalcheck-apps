@@ -129,21 +129,18 @@ test.describe("test error pages", () => {
     await expect(page).toHaveURL(staticRoutes.ROUTE_LANDING.url);
   });
 
-  test("clicking on example link on landing page leads to correct page", async ({
+  test("clicking on link to interoperability landing page leads to correct page", async ({
     page,
   }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Jetzt Beispiele entdecken" }).click();
-    await expect(
-      page.getByRole("heading", { name: "Beispiele für Digitaltauglichkeit" }),
-    ).toBeInViewport();
+    await page
+      .getByRole("link", { name: "Übersicht zur Interoperabilität" })
+      .click();
+    await expect(page).toHaveURL(staticRoutes.ROUTE_INTEROPERABILITY.url);
     await expect(
       page.getByRole("heading", {
-        name: "Die 5 Prinzipien im Regelungstext",
+        name: "EU-Vorgaben zur Interoperabilität: Alles Wichtige für Ihre Regelung im Überblick",
       }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("heading", { name: "IT-Wissen einfach erklärt" }),
-    ).not.toBeVisible();
+    ).toBeInViewport();
   });
 });
