@@ -17,6 +17,9 @@ export default defineConfig({
     !process.env.VITEST && remix(),
     tsconfigPaths(),
   ],
+  build: {
+    target: "ES2022",
+  },
   test: {
     globals: true,
     environment: "jsdom",

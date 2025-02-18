@@ -38,7 +38,6 @@
     "isbot": "^5.1.4",
     "marked": "^15.0.0",
     "mime-types": "^2.1.35",
-    "msw": "^2.7.0",
     "node-cache": "^5.1.2",
     "pdf-lib": "^1.17.1"
   },
@@ -47,7 +46,8 @@
     "@remix-run/eslint-config": "^2.15.0",
     "@types/mime-types": "^2.1.4",
     "dotenv": "^16.4.5",
-    "jsdom": "^26.0.0"
+    "jsdom": "^26.0.0",
+    "msw": "^2.7.0"
   },
   "engines": {
     "node": ">=20.0.0"
