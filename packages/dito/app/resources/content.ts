@@ -2307,7 +2307,7 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
 Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. Kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).`,
     image: {
       src: "/assets/images/interop-and-digitalcheck-process.jpg",
-      alt: `Ein Prozessdiagramm, dass den Erarbeitungsprozess einer Regelung bezogen auf Digitalbezug und Anforderungen an Interoperabilität darstellt.`,
+      alt: `Der Prozess beginnt mit der Erarbeitung eines Regelungsvorhabens, gefolgt von einer geführten Vorprüfung auf Digitalbezug und Anforderungen an Interoperabilität.Daraus ergeben sich drei mögliche Ergebnisse mit unterschiedlichen Prozessschritten: Bei dem Ergebnis "kein Digitalbezug" ist der Erarbeitungsprozess abgeschlossen und wird dem Normenkontrollrat zur Prüfung übermittelt. Bei dem Ergebnis "Digitalbezug" wird das Ergebnis per E-Mail an den Normenkontrollrat gesendet, gefolgt von einer Schritt-für-Schritt-Anleitung und der Dokumentation der Erstellung des Digitalbezugs, die abschließend vom Normenkontrollrat geprüft wird. Für das Ergebnis " Digitalbezug & Anforderungen an die Interoperabilität" wird das Ergebnis per E-Mail an den Normenkontrollrat und das Digitalcheck-Team gesendet, gefolgt von einer Schritt-für-Schritt-Anleitung mit Unterstützung durch das Digitalcheck-Team, der Dokumentation der Erstellung des Digitalbezugs und der Bewertung der Interoperabilität. Die Dokumentation wird anschließend auf dem Interoperable Europe Portal zur Verfügung gestellt.`,
     },
   },
   feedbackForm: {
