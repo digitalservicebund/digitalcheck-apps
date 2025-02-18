@@ -91,7 +91,7 @@ function getRelevantReasons(
     });
 }
 
-export default function resolveResultContent(
+export default function getContentForResult(
   answers: PreCheckAnswers,
   result: PreCheckResult,
 ): ResultContent {

@@ -6,10 +6,34 @@ import {
 } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 
+import Background from "@digitalcheck/shared/components/Background";
+import Box from "@digitalcheck/shared/components/Box";
+import Container from "@digitalcheck/shared/components/Container";
+import Header from "@digitalcheck/shared/components/Header";
+import Heading from "@digitalcheck/shared/components/Heading";
+import { NumberedList } from "@digitalcheck/shared/components/List";
+import RichText from "@digitalcheck/shared/components/RichText";
+import {
+  CancelOutlined,
+  CheckCircleOutlined,
+  ControlPointOutlined,
+  HelpOutline,
+  RemoveCircleOutline,
+  WarningAmberOutlined,
+} from "@digitalservicebund/icons";
 import { validationError } from "@rvf/remix";
+import Accordion from "components/Accordion";
+import React, { useState } from "react";
 import { preCheck } from "resources/content";
 import { ROUTE_PRECHECK, ROUTE_RESULT } from "resources/staticRoutes";
 import type { PreCheckAnswers } from "routes/vorpruefung.$questionId/route";
+import buildMailtoRedirectUri from "routes/vorpruefung.ergebnis/buildMailtoRedirectUri";
+import getContentForResult, {
+  type Reason,
+} from "routes/vorpruefung.ergebnis/getContentForResult";
+import getResultForAnswers from "routes/vorpruefung.ergebnis/getResultForAnswers";
+import ResultForm from "routes/vorpruefung.ergebnis/ResultForm";
+import { twJoin } from "tailwind-merge";
 import {
   getAnswersFromCookie,
   getHeaderFromCookie,
@@ -17,12 +41,14 @@ import {
 import prependMetaTitle from "utils/metaTitle";
 import trackCustomEvent from "utils/trackCustomEvent.server";
 import { PreCheckResult, ResultType } from "./PreCheckResult";
-import resolveResultContent from "./resolveResultContent";
-import ResultPage from "./ResultPage";
 import getResultValidatorForAnswers from "./resultValidation";
 
 const { questions } = preCheck;
-const { emailTemplate } = preCheck.result.form;
+
+const nextSteps = {
+  [ResultType.POSITIVE]: preCheck.result.positive.nextSteps,
+  [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
+};
 
 export const meta: MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_RESULT.title, matches);
@@ -37,7 +63,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(ROUTE_PRECHECK.url);
   }
 
-  const result: PreCheckResult = getResult(answers);
+  const result: PreCheckResult = getResultForAnswers(answers);
 
   void trackCustomEvent(request, {
     name: "Vorprüfung Resultat",
@@ -60,72 +86,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
   );
 }
 
-function getResult(answers: PreCheckAnswers): PreCheckResult {
-  const digital = getResultForRelevantAnswers(answers, false);
-  const interoperability =
-    digital === ResultType.POSITIVE
-      ? getResultForRelevantAnswers(answers, true)
-      : ResultType.NEGATIVE;
-  return { digital, interoperability };
-}
-
-function getResultForRelevantAnswers(
-  answers: PreCheckAnswers,
-  interoperability: boolean,
-) {
-  const relevantAnswers = questions
-    .filter((question) => !!question.interoperability === interoperability)
-    .map((question) => answers[question.id]);
-  if (relevantAnswers.includes("yes")) {
-    return ResultType.POSITIVE;
-  }
-  if (relevantAnswers.includes("unsure")) {
-    return ResultType.UNSURE;
-  }
-  return ResultType.NEGATIVE;
-}
-
-function buildEmailBody(
-  answers: PreCheckAnswers,
-  result: PreCheckResult,
-  negativeReasoning?: string,
-) {
-  const resultContent = resolveResultContent(answers, result);
-
-  let resultText: string = `${resultContent.title}\n\n\n`;
-
-  resultContent.reasoningList
-    .filter((reasoning) => reasoning.reasons.length !== 0)
-    .forEach(({ intro, reasons }) => {
-      resultText += `➤ ${intro} \n\n`;
-      reasons
-        .sort((reason) => (reason.answer === "yes" ? -1 : 1))
-        .forEach((reason) => {
-          resultText += reason.answer === "yes" ? "+" : "";
-          resultText += reason.answer === "no" ? "-" : "";
-          resultText += reason.answer === "unsure" ? "?" : "";
-          resultText += ` ${reason.text}\n`;
-          resultText += reason.hint ? `${reason.hint}\n` : "";
-        });
-      resultText += "\n\n";
-    });
-
-  resultText = resultText.replaceAll("**", "");
-  resultText += negativeReasoning
-    ? `${preCheck.result.form.reasonLabel}:\n\n${negativeReasoning}\n\n`
-    : "";
-
-  return `${emailTemplate.bodyBefore}\n${resultText}\n\n${emailTemplate.bodyAfter}`;
-}
-
-function resolveRecipients(result: PreCheckResult) {
-  const additionalRecipient =
-    result.interoperability !== ResultType.NEGATIVE
-      ? `; ${emailTemplate.toDC}`
-      : "";
-  return `${emailTemplate.toNkr}${additionalRecipient}`;
-}
-
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
@@ -144,22 +104,175 @@ export async function action({ request }: ActionFunctionArgs) {
     );
   }
 
-  const result = getResult(preCheckAnswers);
-  const subject = `${emailTemplate.subject}: „${formData.get("title") as string}“`;
-  const email = formData.get("email");
-  const cc = email ? `&cc=${email as string}` : "";
-  const recipients = encodeURIComponent(resolveRecipients(result));
-  const body = buildEmailBody(
-    preCheckAnswers,
-    result,
-    formData.get("negativeReasoning") as string,
+  const result = getResultForAnswers(preCheckAnswers);
+  const resultContent = getContentForResult(preCheckAnswers, result);
+  return redirect(
+    buildMailtoRedirectUri(
+      result,
+      resultContent,
+      formData.get("title") as string,
+      formData.get("email") as string,
+      formData.get("negativeReasoning") as string,
+    ),
   );
-  const uri = `mailto:${recipients}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${cc}`;
-  return redirect(uri);
+}
+
+function getIconForReason(reason: Reason) {
+  const defaultClasses = "w-28 h-auto shrink-0";
+  switch (reason.answer) {
+    case "yes":
+      return (
+        <ControlPointOutlined
+          className={twJoin(defaultClasses, "fill-[#005E34]")}
+        ></ControlPointOutlined>
+      );
+    case "no":
+      return (
+        <RemoveCircleOutline
+          className={twJoin(defaultClasses, "fill-[#8E001B]")}
+        ></RemoveCircleOutline>
+      );
+    case "unsure":
+      return <HelpOutline className={defaultClasses}></HelpOutline>;
+  }
+}
+
+function getReasonListItem(reason: Reason) {
+  return (
+    <li key={reason.text} className="flex items-start gap-12">
+      {getIconForReason(reason)}
+      <span>
+        {reason.text}
+        {reason.hint && <RichText markdown={reason.hint} />}
+      </span>
+    </li>
+  );
 }
 
 export default function Result() {
   const { result, answers } = useLoaderData<typeof loader>();
+  const [policyTitle, setPolicyTitle] = useState("");
 
-  return <ResultPage answers={answers} result={result} />;
+  const resultContent = getContentForResult(answers, result);
+
+  function getHeaderIcon() {
+    const iconClassName = "w-full h-full";
+    switch (result.digital) {
+      case ResultType.POSITIVE:
+        return <CheckCircleOutlined className={iconClassName} />;
+      case ResultType.NEGATIVE:
+        return <CancelOutlined className={iconClassName} />;
+      case ResultType.UNSURE:
+        return <WarningAmberOutlined className={iconClassName} />;
+    }
+  }
+
+  const resultHint =
+    result.digital === ResultType.UNSURE ? preCheck.result.unsure.hint : "";
+  return (
+    <>
+      <Background backgroundColor="blue" className="py-40 print:pb-0">
+        <div className="px-16">
+          <Container
+            className="rounded-t-lg py-32"
+            backgroundColor={
+              result.digital === ResultType.UNSURE ? "lightYellow" : "midBlue"
+            }
+          >
+            {policyTitle && (
+              <Header
+                heading={{
+                  tagName: "h2",
+                  look: "ds-heading-03-reg",
+                  text: `${preCheck.result.print.titlePrefix}${policyTitle}`,
+                  className: "hidden print:block pb-24 font-bold",
+                }}
+              />
+            )}
+            <div className="flex flex-col gap-16 sm:flex-row">
+              <div className="flex size-36 flex-none items-center justify-center">
+                {getHeaderIcon()}
+              </div>
+              <Header
+                heading={{
+                  tagName: "h1",
+                  look: "ds-heading-03-reg",
+                  markdown: resultContent.title,
+                  className: "mb-0",
+                }}
+                {...(resultHint && { content: { markdown: resultHint } })}
+              />
+            </div>
+          </Container>
+          <Container className="rounded-b-lg" backgroundColor="white">
+            <div className="border-b-2 border-solid border-gray-400 pb-40 last:border-0 last:pb-0 print:border-0 print:pb-0">
+              {resultContent.reasoningList
+                .filter(({ reasons }) => reasons.length > 0)
+                .map(({ intro, reasons }) => (
+                  <React.Fragment key={intro}>
+                    <RichText markdown={intro} className="mt-40 first:mt-0" />
+                    <ul className="ds-stack-16 mt-16 pl-0">
+                      {reasons
+                        .toSorted((a, b) => {
+                          if (a.answer === b.answer) {
+                            return 0; // Keep the original order
+                          }
+                          return a.answer === "yes" ? -1 : 1; // "yes" comes before "no"
+                        })
+                        .map((reason) => getReasonListItem(reason))}
+                    </ul>
+                  </React.Fragment>
+                ))}
+            </div>
+            {result.digital !== ResultType.UNSURE && (
+              <div className="mt-32 print:hidden">
+                <ResultForm
+                  result={result}
+                  answers={answers}
+                  setPolicyTitle={setPolicyTitle}
+                />
+              </div>
+            )}
+          </Container>
+        </div>
+      </Background>
+      <Container className="pb-40">
+        {result.digital === ResultType.UNSURE && (
+          <Box
+            heading={{
+              text: preCheck.result.unsure.nextStep.title,
+            }}
+            content={{
+              markdown: preCheck.result.unsure.nextStep.text,
+            }}
+            buttons={[
+              {
+                id: "result-method-button",
+                text: preCheck.result.unsure.nextStep.link.text,
+                href: preCheck.result.unsure.nextStep.link.href,
+                look: "link",
+              },
+            ]}
+          />
+        )}
+        {result.digital !== ResultType.UNSURE && nextSteps && (
+          <NumberedList
+            heading={{
+              text: nextSteps[result.digital].title,
+              tagName: "h2",
+            }}
+            items={nextSteps[result.digital].steps}
+          />
+        )}
+      </Container>
+      <Container className="print:hidden">
+        <Heading
+          tagName="h2"
+          look="ds-heading-02-reg text-center mb-64 max-sm:mb-56"
+          text={preCheck.faq.title}
+        />
+        <Accordion items={preCheck.faq.items} />
+      </Container>
+    </>
+  );
 }
