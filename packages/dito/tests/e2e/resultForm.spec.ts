@@ -1,6 +1,11 @@
 import { expect, type Page, test } from "@playwright/test";
 import { preCheck } from "resources/content";
-import { ROUTE_RESULT } from "resources/staticRoutes";
+import {
+  ROUTE_DOCUMENTATION,
+  ROUTE_METHODS,
+  ROUTE_PRECHECK,
+  ROUTE_RESULT,
+} from "resources/staticRoutes";
 
 const { questions } = preCheck;
 
@@ -70,6 +75,28 @@ test.describe("test positive result for digital and interoperability", () => {
       await page.waitForURL(ROUTE_RESULT.url);
     },
   );
+
+  test("page headline shows positive result for digital and interoperability", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat einen Digitalbezug und enthält Anforderungen der Interoperabilität.",
+    );
+  });
+
+  test("page contains all answers in positive form", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
+    );
+    for (const question of questions) {
+      await expect(page.getByRole("main")).toContainText(
+        question.positiveResult,
+      );
+    }
+  });
 
   test("email input is visible", async ({ page }) => {
     await expect(page.getByLabel("Ihre E-Mail Adresse")).toBeVisible();
@@ -187,6 +214,16 @@ test.describe("test positive result for digital and interoperability", () => {
     });
     await page.getByRole("button", { name: "E-Mail erstellen" }).click();
   });
+
+  test("result page links to methods", async ({ page }) => {
+    await page.getByRole("link", { name: "Zu „Erarbeiten“" }).click();
+    await expect(page).toHaveURL(ROUTE_METHODS.url);
+  });
+
+  test("result page links to documentation", async ({ page }) => {
+    await page.getByRole("link", { name: "Zu „Dokumentieren“" }).click();
+    await expect(page).toHaveURL(ROUTE_DOCUMENTATION.url);
+  });
 });
 
 test.describe("test positive result for digital and negative for interoperability", () => {
@@ -203,6 +240,14 @@ test.describe("test positive result for digital and negative for interoperabilit
       }
     },
   );
+
+  test("page headline shows positive result for digital and neagtive for interoperability", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat einen Digitalbezug und keine Anforderungen der Interoperabilität.",
+    );
+  });
 
   test("negative reasoning input is not visible", async ({ page }) => {
     await expect(page.getByLabel("Begründung")).not.toBeVisible();
@@ -244,6 +289,37 @@ test.describe("test positive result for digital and unsure for interoperability"
       }
     },
   );
+
+  test("page headline shows positive result for digital and unsure for interoperability", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat einen Digitalbezug und keine eindeutigen Anforderungen der Interoperabilität.",
+    );
+  });
+
+  test("page contains all answers for interoperability in unsure form", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+    );
+    for (const question of questions.filter(
+      (question) => question.interoperability,
+    )) {
+      await expect(page.getByRole("main")).toContainText(
+        question.positiveResult,
+      );
+    }
+  });
+
+  test("page contains hint regarding unsure interopoerability", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Das können Sie tun: Kontaktieren Sie uns unter",
+    );
+  });
 
   test("negative reasoning input is not visible", async ({ page }) => {
     await expect(page.getByLabel("Begründung")).not.toBeVisible();
@@ -301,6 +377,28 @@ test.describe("test negative result for digital and interoperability", () => {
       }
     },
   );
+
+  test("page headline shows negative result for digital and interoperability", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
+    );
+  });
+
+  test("page contains all answers in negative form", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf digitale Aspekte führt ihr Regelungsvorhaben zu...",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf Interoperabilität führt ihr Regelungsvorhaben zu...",
+    );
+    for (const question of questions) {
+      await expect(page.getByRole("main")).toContainText(
+        question.negativeResult,
+      );
+    }
+  });
 
   test("email input is visible", async ({ page }) => {
     await expect(page.getByLabel("Ihre E-Mail Adresse")).toBeVisible();
@@ -391,6 +489,23 @@ test.describe("test negative result for digital and positive for interoperabilit
     },
   );
 
+  test("page headline shows negative result for digital and negative for interoperability", async ({
+    page,
+  }) => {
+    // no interoperability without digital
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
+    );
+  });
+
+  test("page shows warning that interoperability is not possible without digital", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
+    );
+  });
+
   test("negative reasoning input is not visible", async ({ page }) => {
     await expect(page.getByLabel("Begründung")).toBeVisible();
   });
@@ -432,6 +547,15 @@ test.describe("test negative result for digital and unsure for interoperability"
       }
     },
   );
+
+  test("page headline shows negative result for digital and interoperability", async ({
+    page,
+  }) => {
+    // no interoperability without digital
+    await expect(page.getByRole("main")).toContainText(
+      "Das Regelungsvorhaben hat keinen Digitalbezug und keine Anforderungen der Interoperabilität.",
+    );
+  });
 
   test("negative reasoning input is not visible", async ({ page }) => {
     await expect(page.getByLabel("Begründung")).toBeVisible();
@@ -495,6 +619,26 @@ test.describe("test unsure result for digital and positive for interoperability"
     },
   );
 
+  test("page headline shows unsure result", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
+    );
+  });
+
+  test("page shows section for next step", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Sie können auch ohne positive Vorprüfung die Digitaltauglichkeit Ihres Regelungsvorhabens sicherstellen.",
+    );
+  });
+
+  test("page shows warning that interoperability is not possible without digital", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Bitte beachten Sie: Wenn Ihr Vorhaben keinen Digitalbezug aufweist, können die Anforderungen der Interoperabilität nicht erfüllt werden",
+    );
+  });
+
   test("form is not shown", async ({ page }) => {
     await expect(page.getByTestId("result-form")).not.toBeVisible();
   });
@@ -515,6 +659,12 @@ test.describe("test unsure result for digital and negative for interoperability"
     },
   );
 
+  test("page headline shows unsure result", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
+    );
+  });
+
   test("form is not shown", async ({ page }) => {
     await expect(page.getByTestId("result-form")).not.toBeVisible();
   });
@@ -533,7 +683,46 @@ test.describe("test unsure result for digital and unsure for interoperability", 
     },
   );
 
+  test("page headline shows unsure result", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "Sie haben mehrere Aussagen mit „Ich bin unsicher“ beantwortet.",
+    );
+  });
+
+  test("page contains all answers in unsure form", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf digitale Aspekte ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "In Bezug auf Interoperabilität ist nicht sicher, ob Ihr Regelungsvorhaben zu Folgendem führt...",
+    );
+    for (const question of questions) {
+      await expect(page.getByRole("main")).toContainText(
+        question.positiveResult,
+      );
+    }
+  });
+
   test("form is not shown", async ({ page }) => {
     await expect(page.getByTestId("result-form")).not.toBeVisible();
+  });
+});
+
+test.describe("test redirect to pre-check in case of missing answers", () => {
+  test("result page redirects to pre-check landing page if no question was answered", async ({
+    page,
+  }) => {
+    await page.goto(ROUTE_RESULT.url);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
+  });
+
+  test("result page redirects to first unanswered question if not all questions have been answered", async ({
+    page,
+  }) => {
+    await page.goto(preCheck.questions[0].url);
+    await page.getByLabel("Nein").click();
+    await page.getByRole("button", { name: "Übernehmen" }).click();
+    await page.goto(ROUTE_RESULT.url);
+    await expect(page).toHaveURL(ROUTE_PRECHECK.url);
   });
 });
