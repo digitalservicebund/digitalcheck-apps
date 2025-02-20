@@ -604,6 +604,16 @@ Beispiele für Akteur:innen sind:
       },
     },
     interoperability: {
+      info: {
+        title: "Erfahren Sie mehr über Interoperabilität",
+        content:
+          "Was bedeutet Interoperabilität für Regelungen, und wie beeinflusst sie deren Erarbeitung? Auf unserer Übersichtsseite finden Sie alle wichtigen Informationen dazu.",
+        button: {
+          text: "Mehr zu Interoperabilität",
+          href: ROUTE_INTEROPERABILITY.url,
+          look: "link" as const,
+        },
+      },
       positive: {
         title: "enthält Anforderungen der **Interoperabilität**.",
       },

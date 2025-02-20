@@ -8,6 +8,7 @@ import { MetaFunction, useLoaderData } from "@remix-run/react";
 
 import Background from "@digitalcheck/shared/components/Background";
 import Box from "@digitalcheck/shared/components/Box";
+import Button from "@digitalcheck/shared/components/Button";
 import Container from "@digitalcheck/shared/components/Container";
 import Header from "@digitalcheck/shared/components/Header";
 import Heading from "@digitalcheck/shared/components/Heading";
@@ -31,7 +32,10 @@ import buildMailtoRedirectUri from "routes/vorpruefung.ergebnis/buildMailtoRedir
 import getContentForResult, {
   type Reason,
 } from "routes/vorpruefung.ergebnis/getContentForResult";
-import getResultForAnswers from "routes/vorpruefung.ergebnis/getResultForAnswers";
+import {
+  getResultForAnswers,
+  getResultForRelevantAnswers,
+} from "routes/vorpruefung.ergebnis/getResultForAnswers";
 import ResultForm from "routes/vorpruefung.ergebnis/ResultForm";
 import { twJoin } from "tailwind-merge";
 import {
@@ -223,6 +227,16 @@ export default function Result() {
                     </ul>
                   </React.Fragment>
                 ))}
+              {getResultForRelevantAnswers(answers, true) !==
+                ResultType.NEGATIVE && (
+                <div className="mt-40">
+                  <b>{preCheck.result.interoperability.info.title}</b>
+                  <p className="mb-20 mt-8">
+                    {preCheck.result.interoperability.info.content}
+                  </p>
+                  <Button {...preCheck.result.interoperability.info.button} />
+                </div>
+              )}
             </div>
             {result.digital !== ResultType.UNSURE && (
               <div className="mt-32 print:hidden">

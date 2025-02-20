@@ -4,9 +4,7 @@ import { PreCheckResult, ResultType } from "./PreCheckResult";
 
 const { questions } = preCheck;
 
-export default function getResultForAnswers(
-  answers: PreCheckAnswers,
-): PreCheckResult {
+export function getResultForAnswers(answers: PreCheckAnswers): PreCheckResult {
   const digital = getResultForRelevantAnswers(answers, false);
   const interoperability =
     digital === ResultType.POSITIVE
@@ -15,7 +13,7 @@ export default function getResultForAnswers(
   return { digital, interoperability };
 }
 
-function getResultForRelevantAnswers(
+export function getResultForRelevantAnswers(
   answers: PreCheckAnswers,
   interoperability: boolean,
 ) {
