@@ -26,6 +26,9 @@ jobs:
               - ".github/**"
               - "doc/**"
               - "packages/shared/**"
+            dito:
+              - *shared
+              - "packages/dito/**"
             tool-finder:
               - *shared
               - "packages/tool-finder/**"
