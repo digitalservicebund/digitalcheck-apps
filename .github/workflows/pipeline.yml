@@ -29,9 +29,6 @@ jobs:
             dito:
               - *shared
               - "packages/dito/**"
-            tool-finder:
-              - *shared
-              - "packages/tool-finder/**"
 
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
