@@ -12,9 +12,3 @@ services:
     #   - /home/node/src/node_modules
     ports:
       - 3000:3000
-  tool-finder:
-    build:
-      context: .
-      dockerfile: packages/tool-finder/Dockerfile
-    ports:
-      - 8080:8080

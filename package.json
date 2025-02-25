@@ -11,7 +11,6 @@
     "build": "npm run build --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "dev:dito": "npm run dev --workspace=packages/dito",
-    "dev:tool-finder": "npm run dev --workspace=packages/tool-finder",
     "test": "npm run test --workspaces",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
     "test:e2e-nightly": "npm run test:e2e-nightly --workspaces --if-present",
@@ -30,8 +29,7 @@
     "style:fix": "npm run format:fix && npm run lint:fix",
     "typecheck": "npm run typecheck --workspaces",
     "docker": "docker compose up --build",
-    "docker:dito": "docker compose up dito --build",
-    "docker:tool-finder": "docker compose up tool-finder --build"
+    "docker:dito": "docker compose up dito --build"
   },
   "dependencies": {
     "@digitalcheck/shared": "*",
