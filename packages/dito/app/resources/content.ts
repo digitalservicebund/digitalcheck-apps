@@ -1072,7 +1072,7 @@ export const tasksProcesses = {
     label: "Anleitung",
     icon: DrawOutlined,
     title: "Erfassen Sie die aktuellen Abläufe",
-    text: `Listen Sie auf, welche Schritte und Aufgaben aktuell erfüllt werden, damit das Ziel des Vorhabens erreicht wird, und wie diese im Zusammenhang stehen.
+    text: `Listen Sie auf, welche Schritte und Aufgaben aktuell erfüllt werden, damit das Ziel des Vorhabens erreicht wird, und wie diese im Zusammenhang stehen. Tun Sie dies im Team: Die Diskussion ist ebenso wertvoll wie das Ergebnis.
 
 Der Überblick lohnt sich auch bei scheinbar einfachen Abläufen: 
 - Fehlende Verbindungen oder unerwartete Abhängigkeiten werden sichtbar.
@@ -1108,10 +1108,21 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
       },
       label: "Vorlage",
       icon: StickyNote2Outlined,
-      title: "Visualisierungsbeispiele für komplexe Abläufe",
-      text: `Komplexe Abläufe können schwieriger zu durchdringen sein und erfordern daher eine detaillierte und strukturierte Herangehensweise. Beginnen Sie mit der groben Skizzierung der wichtigsten Abläufe und unterteilen Sie diese anschließend in spezifische Aufgaben.  Auf der [Werkzeugfinder-Seite des BMI](https://visualisieren.digitalcheck.bund.de/) finden Sie Anleitungen für verschiedene Visualisierungsmethoden. 
+      title: "Komplexe Abläufe visualisieren",
+      text: `Jedes Verwaltungshandeln hat einen Anfang und ein Ende. **Flussdiagramme** sind deshalb besonders geeignet, denn sie bilden Prozesse als aufeinanderfolgende Schritte ab. Man sieht, wer welchen Teil des Prozesses übernimmt und Verantwortlichkeiten wechseln.
 
-Sie können sich auch von den [Visualisierungen im Entwurf des Stromsteuergesetzes](https://dserver.bundestag.de/brd/2024/0232-24.pdf#page=134) inspirieren lassen, die im Rahmen des Digitalcheck entstanden sind. Der Gesetzestext wurde als Rulemap visualisiert, der Umsetzungsprozess als Flussdiagramm. `,
+Am schnellsten sind Sie, wenn Sie eine **Papierskizze** machen, bevor Sie am Computer arbeiten. Sie werden einige Anläufe verwerfen, das ist normal und hilfreich. **Wichtig ist das Verständnis, nicht die Ästhetik.**
+
+Für die **digitale Ausarbeitung** eigenen sich Conceptboard, draw.io oder Microsoft PowerPoint. Fragen Sie nach geeigneten Programmen und Ansprechpersonen, zum Beispiel Kolleginnen und Kollegen oder in der Z-Abteilung.
+
+**Vorlagen**
+- [Conceptboard-Vorlage](https://bmas.de.conceptboard.com/board/qh33-xcny-usde-7nc6-82cy) zum Kopieren, Sie können einen Gast-Zugang anlegen.`,
+      buttons: [
+        {
+          text: "Beispiele ansehen",
+          href: "https://erarbeiten.digitalcheck.bund.de/beispiele/visualisierungen",
+        },
+      ],
     },
   ],
   tip: {
