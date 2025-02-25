@@ -41,7 +41,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^2.6.0",
-    "unleash-client": "^6.4.0",
+    "unleash-client": "^6.5.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
