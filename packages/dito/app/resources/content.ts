@@ -1116,7 +1116,9 @@ Am schnellsten sind Sie, wenn Sie eine **Papierskizze** machen, bevor Sie am Com
 Für die **digitale Ausarbeitung** eigenen sich Conceptboard, draw.io oder Microsoft PowerPoint. Fragen Sie nach geeigneten Programmen und Ansprechpersonen, zum Beispiel Kolleginnen und Kollegen oder in der Z-Abteilung.
 
 **Vorlagen**
-- [Conceptboard-Vorlage](https://bmas.de.conceptboard.com/board/qh33-xcny-usde-7nc6-82cy) zum Kopieren, Sie können einen Gast-Zugang anlegen.`,
+
+→ [Download PowerPoint-Vorlage mit Schritt-für-Schritt-Anleitung](/assets/Anleitung_Flussdiagramm_erstellen.pptx)  
+→ [Conceptboard-Vorlage](https://bmas.de.conceptboard.com/board/qh33-xcny-usde-7nc6-82cy) zum Kopieren, Sie können einen Gast-Zugang anlegen.`,
       buttons: [
         {
           text: "Beispiele ansehen",
