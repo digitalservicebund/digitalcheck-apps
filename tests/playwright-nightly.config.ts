@@ -2,7 +2,6 @@ import { PlaywrightTestConfig } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { allProjects } from "../../../playwright.config-base";
 import configDefault from "./playwright.config";
 
 // Get the directory name of the current module
@@ -13,7 +12,6 @@ const config: PlaywrightTestConfig = {
   ...configDefault,
   fullyParallel: false,
   workers: 1,
-  projects: allProjects,
   retries: 3, // retry more often to allow flaky tests to succeed
 };
 
