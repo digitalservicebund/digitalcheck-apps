@@ -1120,7 +1120,7 @@ Für die **digitale Ausarbeitung** eigenen sich Conceptboard, draw.io oder Micro
       buttons: [
         {
           text: "Beispiele ansehen",
-          href: "https://erarbeiten.digitalcheck.bund.de/beispiele/visualisierungen",
+          href: ROUTE_VISUALISATIONS.url,
         },
       ],
     },
