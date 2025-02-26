@@ -2276,7 +2276,7 @@ Weitergehende Informationen können Sie hier abrufen:
         headline:
           "Wie ist der Prozess des Erarbeitens einer Interoperabilitätsbewertung?",
         content: `
-Die Verordnung für ein interoperables Europa empfiehlt, für Interoperabilitätsbewertungen auf bestehenden Verfahren in den Mitgliedstaaten aufzubauen. Für Deutschland hat das Bundesministerium des Innern und für Heimat das Team den Digitalcheck mit der Koordinierung entsprechender Maßnahmen beauftragt.
+Die Verordnung für ein interoperables Europa empfiehlt, für Interoperabilitätsbewertungen auf bestehenden Verfahren in den Mitgliedstaaten aufzubauen. Für Deutschland hat das Bundesministerium des Innern und für Heimat das Team Digitalcheck mit der Koordinierung entsprechender Maßnahmen beauftragt.
 
 Der Prozess der Ausarbeitung einer Interoperabilitätsbewertung und des Berichts hat Schnittmengen mit dem Prozess des Erarbeitens von digitaltauglichen Regelungen. Zum Beispiel greifen die fünf Prinzipien der Digitaltauglichkeit und die vier Ebenen der Interoperabilität ineinander und auch die Arbeit mit Visualisierungen wird in den Leitlinien empfohlen.
 
