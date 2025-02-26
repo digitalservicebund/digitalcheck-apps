@@ -8,58 +8,119 @@ on:
   # Allow to run this workflow manually
   workflow_dispatch:
 
-jobs:
-  changes:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
-    outputs:
-      packages: ${{ steps.filter.outputs.changes }} # Contains the list of packages that have changed
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            shared: &shared
-              - "*"
-              - ".github/**"
-              - "doc/**"
-              - "packages/shared/**"
-            dito:
-              - *shared
-              - "packages/dito/**"
+env:
+  PACKAGE_NAME: digitalcheck-dito
+  IMAGE_NAME: digitalservicebund/digitalcheck-dito
+  ENVIRONMENT: production
 
+jobs:
   vulnerability-scan:
     uses: ./.github/workflows/scan.yml
     secrets: inherit
 
-  check-and-test-shared:
-    needs:
-      - changes
-    if: contains(needs.changes.outputs.packages, 'shared')
+  check-and-test:
     uses: ./.github/workflows/check-and-test.yml
-    with:
-      package: shared
-      shouldRunIntegrationTests: false
     secrets: inherit
 
-  check-test-build-deploy:
-    needs:
-      - changes
-      - check-and-test-shared
-      - vulnerability-scan
-    # always() ensures that the job runs even if the needed jobs are skipped
-    if: ${{ always() && (needs.check-and-test-shared.result == 'success' || needs.check-and-test-shared.result == 'skipped') }}
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        package: ${{ fromJSON(needs.changes.outputs.packages) }}
-        exclude:
-          - package: shared
-    uses: ./.github/workflows/test-build-deploy.yml
-    with:
-      package: ${{ matrix.package }}
-      environment: production
-    secrets: inherit
+  build-and-push-image:
+    needs: [vulnerability-scan, check-and-test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # This is used to complete the identity challenge with sigstore/fulcio.
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image from Dockerfile
+        run: |
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
+
+      - name: Generate cosign vulnerability scan record
+        # Third-party action, pin to commit SHA!
+        # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
+        env:
+          TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db,public.ecr.aws/aquasecurity/trivy-db
+        with:
+          image-ref: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          format: "cosign-vuln"
+          output: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
+
+      - name: Upload cosign vulnerability scan record
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
+          path: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
+          if-no-files-found: error
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
+
+      - name: Login to container registry
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
+        with:
+          registry: "ghcr.io"
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image
+        run: |
+          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}
+          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push --all-tags ghcr.io/${{ env.IMAGE_NAME }}
+
+      - name: Create SBOM
+        uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # v1.2.1
+        with:
+          image_name: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          artifact_name: SBOM-${{ env.PACKAGE_NAME }}
+
+      - name: Sign the published Docker image
+        run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Attest the vulnerability scan
+        run: cosign attest --yes --replace --predicate ${{ env.PACKAGE_NAME }}-vulnerabilities.json --type vuln ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  deploy:
+    needs: [build-and-push-image]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      packages: read
+    environment: production
+    steps:
+      - name: Deploy latest container image
+        uses: digitalservicebund/argocd-deploy@4fac1bb67c92ed168f6d9b22f8779ce241a9e412 # v1.0.0
+        with:
+          environment: "${{ env.PACKAGE_NAME }}/${{ env.ENVIRONMENT }}"
+          version: ${{ github.sha }}
+          deploying_repo: ${{ env.PACKAGE_NAME }}
+          infra_repo: ${{ github.event.repository.name }}-infra
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          app: "${{ env.PACKAGE_NAME }}-${{ env.ENVIRONMENT }}"
+          argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
+          argocd_server: ${{ secrets.ARGOCD_SERVER }}
+          argocd_sync_timeout: 240
+
+      - name: Report Deployment
+        uses: digitalservicebund/track-deployment@5a2815e150e1268983aac5ca04c8c046ed1b614a # v1.1.0
+        with:
+          project: ${{ env.PACKAGE_NAME }}
+          environment: ${{ env.ENVIRONMENT }}
+          metrics_deployment_webhook_url: ${{ secrets.METRICS_DEPLOYMENT_WEBHOOK_URL }}
+          metrics_webhook_token: ${{ secrets.METRICS_WEBHOOK_TOKEN }}
+
+      - name: Send failure to Slack
+        uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
+        if: ${{ failure() }}
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
