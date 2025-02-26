@@ -1,5 +1,5 @@
-import exampleFeaturesResponse from "mocks/stubs/unleash/features.json";
 import { http, HttpResponse, RequestHandler } from "msw";
+import exampleFeaturesResponse from "~/mocks/stubs/unleash/features.json";
 import { features } from "~/resources/features";
 import { UNLEASH_API_URL } from "~/utils/constants";
 
