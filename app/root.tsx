@@ -19,7 +19,6 @@ import {
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
 import React, { type ReactNode } from "react";
-import sharedStyles from "styles.css?url";
 import Background from "~/components/Background";
 import Breadcrumbs from "~/components/Breadcrumbs";
 import Button from "~/components/Button";
@@ -36,6 +35,7 @@ import {
   ROUTE_PRIVACY,
   ROUTE_SITEMAP,
 } from "~/resources/staticRoutes";
+import sharedStyles from "~/styles.css?url";
 import {
   PLAUSIBLE_DOMAIN as CLIENT_PLAUSIBLE_DOMAIN,
   PLAUSIBLE_SCRIPT as CLIENT_PLAUSIBLE_SCRIPT,

@@ -1,0 +1,14 @@
+# For local development
+services:
+  dito:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    # For improved local development where you don't need to rebuild the image when you change the code (not working yet)
+    # volumes:
+    #   - ./packages/dito:/home/node/src/packages/dito
+    #   - /home/node/src/node_modules
+    ports:
+      - 3000:3000
