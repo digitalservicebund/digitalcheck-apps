@@ -128,7 +128,7 @@ test.describe("Visualizations Overview Page", () => {
     ]);
 
     await newTab.waitForLoadState("load");
-    expect(newTab.url()).toMatch(/.*visualisierung.*/);
+    expect(newTab.url()).toContain("visualisierung");
   });
 
   test("navigation to regulation detail works", async ({ page }) => {
