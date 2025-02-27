@@ -13,7 +13,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   }
 
   try {
-    const filePath = path.join("public", "assets", fileName);
+    const filePath = path.join("public", "documents", fileName);
     const fileData = await fs.readFile(filePath);
     const mimeType = mime.contentType(fileName) || "";
 

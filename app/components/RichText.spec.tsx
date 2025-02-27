@@ -10,9 +10,9 @@ Mit den folgenden externen Beispielen können Sie sich ein Bild davon machen, wi
 - [Beispiel 1](https://example.com)
 - [Beispiel 2](https://example.com)
 
-Hier können sie die [Dokumentation herunterladen](/assets/digitalcheck-dokumentation.pdf).
+Hier können sie die [Dokumentation herunterladen](/documents/digitalcheck-dokumentation.pdf).
 
-Hier können sie die [Excel-Datei herunterladen](/assets/digitalcheck-dokumentation.xlsx).`;
+Hier können sie die [Excel-Datei herunterladen](/documents/digitalcheck-dokumentation.xlsx).`;
 
 test("Richtext renders external links with target blank", async () => {
   render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);

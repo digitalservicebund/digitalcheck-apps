@@ -12,11 +12,6 @@ export const ROUTE_LANDING: Route = {
   url: "/",
   title: "Startseite",
 };
-export const ROUTE_PRECHECK_STATIC_PDF: Route = {
-  url: `/download/${PRE_CHECK_PDF}`,
-  title: "Vorprüfung als PDF",
-};
-
 export const ROUTE_PRECHECK: Route = {
   url: "/vorpruefung",
   title: "Vorprüfung: Digitalbezug einschätzen",

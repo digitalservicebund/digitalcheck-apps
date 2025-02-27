@@ -368,7 +368,7 @@ Interoperabilität bedeutet, dass verschiedene öffentliche Institutionen über 
 Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. 
       `,
       image: {
-        src: "/assets/images/digital-readiness-meets-interop.svg",
+        src: "/images/digital-readiness-meets-interop.svg",
         alt: `Illustration von Datenaustausch zwischen zwei Computer-Systemen mit EU-Flagge, symbolisiert europäische digitale Zusammenarbeit.`,
       },
       button: {
@@ -1017,7 +1017,7 @@ Wenn Sie keine persönlichen Kontakte nutzen können, greifen sie auf Organigram
   boxes: [
     {
       image: {
-        src: "/assets/images/ebenen-auswaehlen-und-ansprechpersonen-sammeln.png",
+        src: "/images/ebenen-auswaehlen-und-ansprechpersonen-sammeln.png",
         alt: `Eine Excel-Tabelle mit dem Titel "Beteiligte Ebenen auswählen und Ansprechpersonen sammeln für [ARBEITSTITEL]" enthält Spalten für Name, Zuständigkeit, Akteursgruppe, Kontaktdaten und Bemerkungen. Der erste Eintrag listet als Beispiel "Maria Muster" als Referentin für das Statistische Bundesamt, zugehörig zur Akteursgruppe "Bund" mit ihren Kontaktdaten.`,
       },
       label: "Vorlage",
@@ -1083,7 +1083,7 @@ Die Frage, die Sie sich und Ihren Ansprechpersonen stellen können, lautet: „W
   boxes: [
     {
       image: {
-        src: "/assets/images/einfache-ablaeufe-und-aufgaben-erfassen.png",
+        src: "/images/einfache-ablaeufe-und-aufgaben-erfassen.png",
         alt: `Ein Flussdiagramm mit dem Titel „Beispielprozess-Ablauf ‚Einkommensteuer-Erklärung durchführen‘“. Auf der linken Seite ist ein gezeichnetes Gebäude und daneben ein Figur, sie sind als „Akteurin oder Akteur“ beschriftet. Als Beispiel steht darunter „Finanzämter“. Diese senden Daten zur zentralen Speicherung und Auswertung, dargestellt durch einen Pfeil, der mit „Arbeitsprozess“ beschriftet ist. Rechts steht noch einmal das Gebäude mit der Person daneben, beschriftet als „Adressatin oder Adressat“. Als Beispiel ist „Bundeszentralamt für Steuern“ eingetragen.`,
       },
       label: "Vorlage",
@@ -1103,7 +1103,7 @@ Die Vorlage dient der Orientierung und kann angepasst werden. Ein Beispiel: Adre
     },
     {
       image: {
-        src: "/assets/images/rulemap.jpg",
+        src: "/images/rulemap.jpg",
         alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
       },
       label: "Vorlage",
@@ -1117,7 +1117,7 @@ Für die **digitale Ausarbeitung** eigenen sich Conceptboard, draw.io oder Micro
 
 **Vorlagen**
 
-→ [Download PowerPoint-Vorlage mit Schritt-für-Schritt-Anleitung](/assets/Anleitung_Flussdiagramm_erstellen.pptx)  
+→ [Download PowerPoint-Vorlage mit Schritt-für-Schritt-Anleitung](/documents/Anleitung_Flussdiagramm_erstellen.pptx)  
 → [Conceptboard-Vorlage](https://bmas.de.conceptboard.com/board/qh33-xcny-usde-7nc6-82cy) zum Kopieren, Sie können einen Gast-Zugang anlegen.`,
       buttons: [
         {
@@ -1192,7 +1192,7 @@ Ein Überblick über die IT-Landschaft hilft Ihnen dabei,
   boxes: [
     {
       image: {
-        src: "/assets/images/it-systeme-erfassen.png",
+        src: "/images/it-systeme-erfassen.png",
         alt: `Eine Excel-Tabelle mit dem Titel „IT-Systeme erfassen für [ARBEITSTITEL]“, die Spalten sind Name des IT-Systems, Funktionalitäten, Nutzende, Schnittstellen und Zuständigkeit. Als Beispiel ist ELSTER eingetragen, das zur Übermittlung der Steuererklärung von Bürgerinnen und Bürgern oder Unternehmen zu den Sachbearbeiterinnen und Sachbearbeitern der Finanzämter dienst. Es gibt unter Anderem eine Schnittstelle zu einem IT-System für Kapitalertragssteuer und Kirchensteuer. Für die Entwicklung ist das Bayerische Landesamt für Steuern zuständig.`,
       },
       label: "Vorlage",
@@ -1392,7 +1392,7 @@ Für ein unterstützendes, einstündiges Videotelefonat schreiben Sie eine E-Mai
   boxes: [
     {
       image: {
-        src: "/assets/images/aspekte-technischer-umsetzbarkeit.png",
+        src: "/images/aspekte-technischer-umsetzbarkeit.png",
         alt: `Ein Dokument mit der Überschrift „Gesprächsleitfaden technische Umsetzbarkeit“. Darunter ist ein Kasten zu sehen, in dem steht „Welche Verbindungen oder Daten müssen angepasst werde?“. Vom Kasten führt ein Pfeil nach unten an dem steht „Fertig? Weiter zum nächsten Punkt“. Rechts vom Kasten stehen erläuternde Fragen und Beispiele.`,
       },
       label: "Vorlage",
@@ -1404,7 +1404,7 @@ Das PDF ist barrierearm/barrierefrei.`,
       buttons: [
         {
           text: "Vorlage herunterladen (PDF-Datei)",
-          href: "/assets/Schaubild Aspekte Technischer Umsetzbarkeit.pdf",
+          href: "/documents/Schaubild Aspekte Technischer Umsetzbarkeit.pdf",
         },
       ],
     },
@@ -1460,7 +1460,7 @@ export const support = {
     text: `Wir, die Digital-Expert:innen des DigitalService,<br class="sm:max-lg:hidden" /> haben bereits über <span class="text-[65px] -top-[11px] h-[30px] inline-block relative overflow-visible align-top">70</span> **Regelungsvorhaben** unterstützt.`,
 
     image: {
-      src: "/assets/images/support.png",
+      src: "/images/support.png",
       alt: `Ein Flussdiagramm mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
     },
     testimonials: [
@@ -1627,7 +1627,7 @@ Die Art der Visualisierung richtet sich nach Ihren Anforderungen:
             examples: [
               {
                 image: {
-                  src: "/assets/images/rulemap.jpg",
+                  src: "/images/rulemap.jpg",
                   alt: `Eine Rulemap mit der Überschrift „Rulemap § 9b 2023“. Es zeigt die verschiedenen Bedingungen, unter denen eine Steuerentlastung gewährt wird, und ihre Abhängigkeiten.`,
                 },
                 text: "**Beispiel-Visualisierung:** [Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht](https://dserver.bundestag.de/btd/20/123/2012351.pdf) (Seite 110 ff.)",
@@ -2096,7 +2096,7 @@ export const interoperability = {
     content:
       "Interoperabilität bezeichnet die Fähigkeit von Verwaltungen und öffentlichen Einrichtungen in der EU, miteinander zu kooperieren und Informationen auszutauschen. Sie ist eng mit der Digitaltauglichkeit verknüpft. Wenn ein Vorhaben die EU-Anforderungen für Interoperabilität erfüllen muss, hat es automatisch auch einen Digitalbezug. Darum setzt Deutschland die EU Anforderungen im Digitalcheck um.",
     image: {
-      src: "/assets/images/interop-and-digital-readiness.png",
+      src: "/images/interop-and-digital-readiness.png",
       alt: `Interoperabilität wird als großer Kreis dargestellt, der einen kleineren Kreis mit Digitaltaugliche Regelungen umschließt. Dies zeigt, dass digitaltaugliche Regelungen ein Teil der Interoperabilität sind.`,
     },
   },
@@ -2329,7 +2329,7 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
 <br /><br />
 Das Digitalcheck Team unterstützt Sie bei der Erfüllung dieser Anforderungen. Kontaktieren Sie uns unter: [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Supportanfrage:%20erarbeiten.digitalcheck.bund.de) oder unter [0151/40 76 78 39](tel:+4915140767839).`,
     image: {
-      src: "/assets/images/interop-and-digitalcheck-process.jpg",
+      src: "/images/interop-and-digitalcheck-process.jpg",
       alt: `Der Prozess beginnt mit der Erarbeitung eines Regelungsvorhabens, gefolgt von einer geführten Vorprüfung auf Digitalbezug und Anforderungen an Interoperabilität.Daraus ergeben sich drei mögliche Ergebnisse mit unterschiedlichen Prozessschritten: Bei dem Ergebnis "kein Digitalbezug" ist der Erarbeitungsprozess abgeschlossen und wird dem Normenkontrollrat zur Prüfung übermittelt. Bei dem Ergebnis "Digitalbezug" wird das Ergebnis per E-Mail an den Normenkontrollrat gesendet, gefolgt von einer Schritt-für-Schritt-Anleitung und der Dokumentation der Erstellung des Digitalbezugs, die abschließend vom Normenkontrollrat geprüft wird. Für das Ergebnis " Digitalbezug & Anforderungen an die Interoperabilität" wird das Ergebnis per E-Mail an den Normenkontrollrat und das Digitalcheck-Team gesendet, gefolgt von einer Schritt-für-Schritt-Anleitung mit Unterstützung durch das Digitalcheck-Team, der Dokumentation der Erstellung des Digitalbezugs und der Bewertung der Interoperabilität. Die Dokumentation wird anschließend auf dem Interoperable Europe Portal zur Verfügung gestellt.`,
     },
   },

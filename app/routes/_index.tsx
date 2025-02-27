@@ -49,7 +49,7 @@ export default function Index() {
           content={landing.dataNotice.content}
         />
       </Container> */}
-      <div className="bg-[url('/assets/images/trainings.jpeg')] bg-cover bg-[0%_35%]">
+      <div className="bg-[url('/images/trainings.jpeg')] bg-cover bg-[0%_35%]">
         <Container>
           <div className="max-w-[630px] rounded-lg bg-white px-16 py-28 md:px-80 md:py-40">
             {showInteroperabilitySection ? (

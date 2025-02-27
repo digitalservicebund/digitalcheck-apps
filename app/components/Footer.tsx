@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import Container from "./Container";
 import Image from "./Image";
-import bmiLogo from "/img/bmi-logo.png";
+import bmiLogo from "/logo/bmi-logo.png";
 
 type LinkProps = {
   preText?: string;

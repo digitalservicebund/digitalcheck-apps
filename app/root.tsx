@@ -43,7 +43,7 @@ import {
 import { PLAUSIBLE_DOMAIN, PLAUSIBLE_SCRIPT } from "~/utils/constants.server";
 import { getFeatureFlags } from "~/utils/featureFlags.server";
 import { useNonce } from "~/utils/nonce";
-import bundLogo from "/img/bund-logo.png";
+import bundLogo from "/logo/bund-logo.png";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const featureFlags = getFeatureFlags();
@@ -95,7 +95,7 @@ export const meta: MetaFunction<typeof loader> = ({
 
   const { BASE_URL } = data;
   const url = `${BASE_URL}${location.pathname}`;
-  const ogImage = `${BASE_URL}/assets/images/og-image.png`;
+  const ogImage = `${BASE_URL}/images/og-image.png`;
 
   return [
     ...baseMeta,
