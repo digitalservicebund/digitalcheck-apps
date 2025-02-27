@@ -3,10 +3,6 @@ name: Check and Test
 on:
   workflow_call:
     inputs:
-      package:
-        required: true
-        type: string
-        description: "The Package to check and test."
       shouldRunIntegrationTests:
         required: false
         type: boolean
@@ -19,7 +15,7 @@ on:
         default: false
 
 env:
-  WORKSPACE: "@digitalcheck/${{ inputs.package }}"
+  PACKAGE_NAME: digitalcheck-dito
 
 jobs:
   check-and-test:
@@ -53,30 +49,30 @@ jobs:
         run: npm run audit:licences
 
       - name: Fix format
-        run: npm run format:fix --workspace ${{ env.WORKSPACE }}
+        run: npm run format:fix
 
       - name: Check format
-        run: npm run format:check --workspace ${{ env.WORKSPACE }}
+        run: npm run format:check
 
       - name: Fix lint
-        run: npm run lint:fix --workspace ${{ env.WORKSPACE }}
+        run: npm run lint:fix
 
       - name: Lint
-        run: npm run lint:check --workspace ${{ env.WORKSPACE }}
+        run: npm run lint:check
 
       - name: Check types
-        run: npm run typecheck --workspace ${{ env.WORKSPACE }}
+        run: npm run typecheck
 
       - name: Run unit tests
-        run: npm test --workspace ${{ env.WORKSPACE }}
+        run: npm test
 
       - name: Cache Playwright dependencies
         id: cache-playwright-deps
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-${{ inputs.package }}-playwright-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-${{ inputs.package }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-playwright-
 
       - name: Install E2E & A11y test dependencies
         if: inputs.shouldRunIntegrationTests && (inputs.nightlyTests || steps.cache-playwright-deps.outputs.cache-hit == 'false')
@@ -91,23 +87,23 @@ jobs:
       - name: Run nightly E2E tests
         if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
         id: e2e-nightly
-        run: npm run test:e2e-nightly --workspace ${{ env.WORKSPACE }}
+        run: npm run test:e2e-nightly
 
       - name: Run E2E tests
         if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
         id: e2e
-        run: npm run test:e2e --workspace ${{ env.WORKSPACE }}
+        run: npm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-nightly.outcome == 'failure')
         with:
-          name: ${{ inputs.package }}-playwright-e2e-test-results
-          path: packages/${{ inputs.package }}/tests/playwright-report
+          name: playwright-e2e-test-results
+          path: tests/playwright-report
 
       - name: Run nightly A11Y tests
         if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
         id: a11y-nightly
-        run: npm run test:a11y-nightly --workspace ${{ env.WORKSPACE }}
+        run: npm run test:a11y-nightly
         env:
           # Use a different port (from the one used with E2E tests) to workaround problem in CI/GitHub Actions,
           # starting to occur with playwright/test 1.28.0:
@@ -118,15 +114,15 @@ jobs:
       - name: Run A11y tests
         if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
         id: a11y
-        run: npm run test:a11y --workspace ${{ env.WORKSPACE }}
+        run: npm run test:a11y
         env:
           VITE_PORT: 4183
 
       - uses: actions/upload-artifact@v4
         if: failure() && (steps.a11y.outcome == 'failure' || steps.a11y-nightly.outcome == 'failure')
         with:
-          name: ${{ inputs.package }}-playwright-a11y-test-results
-          path: packages/${{ inputs.package }}/tests/playwright-report
+          name: playwright-a11y-test-results
+          path: tests/playwright-report
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
