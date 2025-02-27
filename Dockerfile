@@ -43,6 +43,14 @@ COPY --from=build /src/build/ ./build/
 # We need to explicitly bring in the public folder here, so that dynamic PDF generation can happen on the server 
 COPY --from=build /src/public/ ./public/
 
+# Make the start script executable
+RUN chmod +x ./start.sh && \
+    # Ensure the node user owns all files in the working directory
+    chown -R node:node /home/node/src
+
+# Switch to non-root user
+USER node
+
 EXPOSE 3000
 
 ENTRYPOINT ["./start.sh"]
