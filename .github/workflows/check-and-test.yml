@@ -3,15 +3,10 @@ name: Check and Test
 on:
   workflow_call:
     inputs:
-      shouldRunIntegrationTests:
-        required: false
-        type: boolean
-        description: "Whether to run integration tests (E2E and A11y). Default is true."
-        default: true
       nightlyTests:
         required: false
         type: boolean
-        description: "If enabled extensive tests are executed sequentially with more devices and browsers."
+        description: "If enabled, extensive tests are executed sequentially with more devices and browsers."
         default: false
 
 env:
@@ -75,22 +70,22 @@ jobs:
           restore-keys: ${{ runner.os }}-playwright-
 
       - name: Install E2E & A11y test dependencies
-        if: inputs.shouldRunIntegrationTests && (inputs.nightlyTests || steps.cache-playwright-deps.outputs.cache-hit == 'false')
+        if: inputs.nightlyTests || steps.cache-playwright-deps.outputs.cache-hit == 'false'
         run: npx --yes playwright install --with-deps
 
       - name: Collect Workflow Telemetry
-        if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
+        if: inputs.nightlyTests
         uses: catchpoint/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1
         with:
           theme: dark
 
       - name: Run nightly E2E tests
-        if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
+        if: inputs.nightlyTests
         id: e2e-nightly
         run: npm run test:e2e-nightly
 
       - name: Run E2E tests
-        if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
+        if: !inputs.nightlyTests
         id: e2e
         run: npm run test:e2e
 
@@ -101,7 +96,7 @@ jobs:
           path: tests/playwright-report
 
       - name: Run nightly A11Y tests
-        if: inputs.shouldRunIntegrationTests && inputs.nightlyTests
+        if: inputs.nightlyTests
         id: a11y-nightly
         run: npm run test:a11y-nightly
         env:
@@ -112,7 +107,7 @@ jobs:
           VITE_PORT: 4183
 
       - name: Run A11y tests
-        if: inputs.shouldRunIntegrationTests && !inputs.nightlyTests
+        if: !inputs.nightlyTests
         id: a11y
         run: npm run test:a11y
         env:

@@ -8,12 +8,7 @@ on:
 
 jobs:
   check-test-build-deploy:
-    strategy:
-      fail-fast: false
-      matrix:
-        package: ["dito"]
     uses: ./.github/workflows/check-and-test.yml
     with:
-      package: ${{ matrix.package }}
       nightlyTests: true
     secrets: inherit
