@@ -24,7 +24,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "react-router-dom": "^6.22.1",
+    "react-router-dom": "^6.30.0",
     "@rvf/react": "^6.2.0",
     "@rvf/zod": "^6.0.0"
   },
