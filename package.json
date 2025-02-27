@@ -1,7 +1,7 @@
 {
-  "name": "digitalcheck",
+  "name": "digitalcheck-apps",
   "private": true,
-  "homepage": "https://digitalservicebund.github.io/digitalcheck/",
+  "homepage": "https://erarbeiten.digitalcheck.bund.de/",
   "sideEffects": false,
   "type": "module",
   "scripts": {
