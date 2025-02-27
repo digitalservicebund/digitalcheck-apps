@@ -1,6 +1,6 @@
-# 9. Use a CMS for the new example pages content
+# 15. Use a CMS for the new example pages content
 
-**Date:** 2024-11-20
+Date: 2024-11-20
 
 ## Status
 

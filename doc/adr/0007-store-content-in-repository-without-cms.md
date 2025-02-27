@@ -1,4 +1,4 @@
-# 6. Store content in the repository without using a CMS
+# 7. Store content in the repository without using a CMS
 
 Date: 2024-05-23
 

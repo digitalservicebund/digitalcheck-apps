@@ -1,4 +1,4 @@
-# 7. Store content in a global file
+# 8. Store content in a global file
 
 Date: 2024-05-23
 

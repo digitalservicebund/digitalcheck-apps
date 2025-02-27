@@ -1,10 +1,10 @@
-# 3. Use a Monorepo for All Digitalcheck Applications
+# 9. Use a Monorepo for All Digitalcheck Applications
 
-Date: 2024-05-23
+Date: 2024-05-24
 
 ## Status
 
-Accepted
+Superceded by []
 
 ## Context
 

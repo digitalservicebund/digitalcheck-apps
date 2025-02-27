@@ -1,4 +1,4 @@
-# 6. Guidelines for testing
+# 12. Guidelines for testing
 
 Date: 2024-06-22
 
