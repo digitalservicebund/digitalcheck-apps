@@ -1,6 +1,6 @@
 # 16. Use GraphQL Instead of REST for Data Requests to Strapi
 
-Date: 2025-01-02
+Date: 2024-11-26
 
 ## Status
 
