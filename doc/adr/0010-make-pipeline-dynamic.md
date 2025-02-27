@@ -4,7 +4,7 @@ Date: 2024-05-24
 
 ## Status
 
-Superceded by
+Superceded by [0018](0018-switch-back-to-polyrepo.md)
 
 ## Context
 
