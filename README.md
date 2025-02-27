@@ -136,8 +136,6 @@ Build and run an app locally to simulate the production environment.
 npm run docker
 ```
 
-The pipeline includes a job to build the Docker Image and push it to GitHub Packages. This job is currently deactivated. To enable it you need to remove the `&& false` from the end of the `if` predicate of the `build-and-push-image` job.
-
 ### DIY
 
 If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
