@@ -45,7 +45,7 @@ test.describe("test method page link flow", () => {
 });
 
 test.describe("test method sub pages", () => {
-  test.beforeEach("Click though preCheck", async ({ page }) => {
+  test.beforeEach("Go to methods page", async ({ page }) => {
     await page.goto(ROUTE_METHODS.url);
   });
 
