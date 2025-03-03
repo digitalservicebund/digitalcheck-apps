@@ -2374,7 +2374,7 @@ Weitere Quellen:
       },
     ],
     contact:
-      "Schreiben Sie uns eine Email an [interoperabel@digitalservice.bund.de](mailto:digitalcheck@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
+      "Schreiben Sie uns eine Email an [interoperabel@digitalservice.bund.de](mailto:interoperabel@digitalservice.bund.de?subject=Feedback:%20erarbeiten.digitalcheck.bund.de), wenn wir Sie für Feedback zu unserem Service kontaktieren dürfen.",
     button: feedbackForm.button,
     success: feedbackForm.success,
   },
