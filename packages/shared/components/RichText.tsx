@@ -28,11 +28,11 @@ const RichText = ({
           const newLinkHtml = linkHtml
             .replace(
               /^<a /,
-              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" `,
+              `<a target="_blank" aria-describedby=${A11Y_MESSAGE_NEW_WINDOW} rel="noopener noreferrer" class="group"`,
             )
             .replace(
               `>${token.text}<`,
-              `>${token.text} ${openInNewIconString}<`,
+              `>${token.text}${openInNewIconString}<`,
             );
 
           return newLinkHtml;
