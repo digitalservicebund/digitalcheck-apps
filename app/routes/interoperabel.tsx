@@ -118,7 +118,7 @@ export default function Interoperability() {
         </Background>
       </div>
       <div id={interoperability.andPolicyMaking.id}>
-        <Container className="pb-0">
+        <Container>
           <Heading
             tagName="h2"
             text={interoperability.andPolicyMaking.headline}
