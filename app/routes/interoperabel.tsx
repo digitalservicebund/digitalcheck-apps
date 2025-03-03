@@ -4,7 +4,7 @@ import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
-import FeedbackForm from "~/components/FeedbackFormDiTo";
+import FeedbackForm from "~/components/FeedbackForm";
 import Header from "~/components/Header";
 import Heading from "~/components/Heading";
 import Image from "~/components/Image";

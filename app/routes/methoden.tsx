@@ -2,7 +2,7 @@ import { type MetaFunction } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
-import FeedbackForm from "~/components/FeedbackFormDiTo";
+import FeedbackForm from "~/components/FeedbackForm";
 import Header from "~/components/Header";
 import { BulletList, NumberedList } from "~/components/List";
 import { ListItemProps } from "~/components/ListItem";

@@ -1,128 +1,186 @@
-import Background from "./Background";
-import Box from "./Box";
-import Container from "./Container";
+import React, { useEffect, useRef, useState } from "react";
+import { twJoin } from "tailwind-merge";
+import Background from "~/components/Background";
+import Button from "~/components/Button";
+import Container from "~/components/Container";
+import RichText from "~/components/RichText";
 
-function RadioAnswer({
-  name,
-  value,
-  onClick,
-  annotation,
-}: Readonly<{
-  name: string;
+type FeedbackQuestionOptionProps = {
+  label: string;
   value: number;
-  onClick: () => void;
-  annotation?: string;
+};
+
+type FeedbackQuestionProps = {
+  id: string;
+  trackingEvent: string;
+  text: string;
+  options: FeedbackQuestionOptionProps[];
+};
+
+type FeedbackFormProps = {
+  heading: string;
+  trackingEvent: string;
+  questions: FeedbackQuestionProps[];
+  contact: string;
+  button: string;
+  success: {
+    heading: string;
+    text: string;
+  };
+};
+
+function FeedbackInput({
+  children,
+  value,
+  selected,
+  onChange,
+  name,
+  id,
+  ariaLabel,
+}: Readonly<{
+  children: React.ReactNode;
+  value: number;
+  selected: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  name: string;
+  id: string;
+  ariaLabel: string;
 }>) {
+  const classes = twJoin(
+    "px-16 h-48 sm:px-24 sm:h-64 flex items-center cursor-pointer",
+    selected ? "bg-blue-800 text-white" : "bg-blue-200 text-blue-800",
+  );
+
   return (
-    <div className="flex w-1/5 flex-col gap-16">
-      {annotation && (
-        <p className="hidden text-center sm:inline">{annotation}</p>
-      )}
-      <label className="flex flex-col items-center gap-8">
-        <span className="ml-2">{value}</span>
-        <input
-          type="radio"
-          className="ds-radio"
-          name={name}
-          value={value}
-          onChange={onClick}
-        />
-      </label>
-    </div>
+    <label className={classes}>
+      <input
+        type="radio"
+        name={name}
+        id={id}
+        value={value}
+        checked={selected}
+        onChange={onChange}
+        aria-label={ariaLabel}
+        className="sr-only"
+      />
+      {children}
+    </label>
   );
 }
 
-const disagreeAnnotation = "Ich stimme überhaupt nicht zu.";
-const agreeAnnotation = "Ich stimme voll und ganz zu.";
-
 function FeedbackQuestion({
   question,
-  name,
-  onFeedbackClick,
-  hasAnnotations = false,
 }: Readonly<{
-  question: string;
-  name: string;
-  onFeedbackClick: (question: string, value: number) => void;
-  hasAnnotations?: boolean;
+  question: FeedbackQuestionProps;
 }>) {
-  return (
-    <fieldset className="flex w-full flex-col items-stretch gap-16 sm:flex-row sm:items-end sm:gap-32">
-      <div className="w-full sm:w-1/5">
-        <legend className="font-semibold">{question}</legend>
-      </div>
-      <div
-        role="radiogroup"
-        className="mb-8 flex flex-1 items-end justify-between"
-      >
-        {[1, 2, 3, 4, 5].map((value) => {
-          let annotation: string | undefined = undefined;
-          if (hasAnnotations) {
-            if (value === 1) annotation = disagreeAnnotation;
-            if (value === 5) annotation = agreeAnnotation;
-          }
+  const [selected, setSelected] = useState<number | null>(null);
 
-          return (
-            <RadioAnswer
-              key={value}
-              name={name}
-              value={value}
-              annotation={annotation}
-              onClick={() => onFeedbackClick(name, value)}
-            />
-          );
-        })}
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelected(Number(event.target.value));
+  };
+
+  return (
+    <fieldset
+      className={twJoin(
+        "flex flex-col lg:flex-row gap-20 lg:gap-24 pt-24 pb-20 border-blue-300 border-b-2 last:border-b-0",
+      )}
+    >
+      <div className="lg:w-1/2">
+        <legend>
+          <p>{question.text}</p>
+        </legend>
+      </div>
+      <div className="lg:w-1/2">
+        <div className="max-w-fit">
+          <div className="flex gap-8 sm:gap-16">
+            {question.options.map(({ value }) => {
+              return (
+                <FeedbackInput
+                  key={value}
+                  value={value}
+                  selected={selected === value}
+                  onChange={onChange}
+                  name={question.id}
+                  id={`${question.id}-${value}`}
+                  ariaLabel={`${value}`}
+                >
+                  <span className="ds-heading-02-reg">{value}</span>
+                </FeedbackInput>
+              );
+            })}
+          </div>
+          <div className="mt-20 flex justify-between text-gray-900">
+            <span className="">{question.options[0].label}</span>
+            <span className="">
+              {question.options[question.options.length - 1].label}
+            </span>
+          </div>
+        </div>
       </div>
     </fieldset>
   );
 }
 
-export default function FeedbackForm({
-  ressort,
-  object,
-  reason,
-  trackFeedbackClick,
-}: Readonly<{
-  ressort: string;
-  object: string;
-  reason: string;
-  trackFeedbackClick: (
-    name: string,
-    value: number,
-    ressort: string,
-    object: string,
-    reason: string,
-  ) => void;
-}>) {
-  function sendFeedback(name: string, value: number) {
-    trackFeedbackClick(name, value, ressort, object, reason);
+export default function FeedbackForm(props: FeedbackFormProps) {
+  const [submitted, setSubmitted] = useState(false);
+  const thankYouMessageRef = useRef<HTMLDivElement>(null);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Plausible event trigger with feedback values
+    if (window.plausible) {
+      const formData = new FormData(event.currentTarget);
+
+      const trackingEventProps: { [key: string]: string } = {};
+      props.questions.forEach((question) => {
+        trackingEventProps[question.trackingEvent] =
+          (formData.get(question.id) as string) ?? "No Feedback";
+      });
+
+      window.plausible(props.trackingEvent, {
+        props: trackingEventProps,
+      });
+    }
+
+    setSubmitted(true);
+  };
+
+  // After submission, move focus to the thanks message for accessibility
+  useEffect(() => {
+    if (submitted && thankYouMessageRef.current) {
+      thankYouMessageRef.current.focus();
+    }
+  }, [submitted]);
+
+  if (submitted) {
+    return (
+      <div ref={thankYouMessageRef} tabIndex={-1} aria-live="polite">
+        <Background backgroundColor="blue" className="pb-48 pt-40">
+          <Container backgroundColor="white" overhangingBackground>
+            <h2>{props.success.heading}</h2>
+            <br />
+            <p>{props.success.text}</p>
+          </Container>
+        </Background>
+      </div>
+    );
   }
 
   return (
-    <Background backgroundColor="yellow" className="pb-40 pt-32">
-      <Container className="ds-stack-32 py-0">
-        <Box
-          heading={{
-            tagName: "h3",
-            look: "ds-heading-03-bold",
-            text: "Ihr Feedback hilft uns weiter!",
-          }}
-        ></Box>
-        <div className="flex w-full flex-col sm:hidden">
-          <p className="">1 = {disagreeAnnotation}</p>
-          <p className="">5 = {agreeAnnotation}</p>
-        </div>
-        <FeedbackQuestion
-          name="question-useful"
-          question="Ich habe gefunden, was ich brauche."
-          hasAnnotations
-          onFeedbackClick={sendFeedback}
-        />
-        <FeedbackQuestion
-          name="question-simple"
-          question="Die Anwendung war einfach zu nutzen."
-          onFeedbackClick={sendFeedback}
-        />
+    <Background backgroundColor="blue" className="pb-48 pt-40">
+      <Container backgroundColor="white" overhangingBackground>
+        <h2>{props.heading}</h2>
+        <form onSubmit={handleSubmit} className="mb-48">
+          <span>
+            {props.questions?.length !== 0 &&
+              props.questions.map((question) => (
+                <FeedbackQuestion key={question.id} question={question} />
+              ))}
+          </span>
+          <Button text={props.button} size="large" type="submit" />
+        </form>
+        <RichText markdown={props.contact} className="font-bold" />
       </Container>
     </Background>
   );
