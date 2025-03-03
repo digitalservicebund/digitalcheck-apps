@@ -2256,7 +2256,7 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
         subtitle:
           "Hier finden Sie die wichtigsten Informationen zu Interoperabilitätsbewertungen.",
         content: `- [Interoperabilitätsrahmen](https://interoperable-europe.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/solution/european-interoperability-framework-eif-toolbox): Rahmenwerk mit Prinzipien zur Erarbeitung von interoperablen Regelungen
-- [Richtlinien Interoperbilitätsbewertungen](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines): Anleitung zur Bewertung der Interoperabilität in Regelungen `,
+- [Richtlinien Interoperabilitätsbewertungen](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines): Anleitung zur Bewertung der Interoperabilität in Regelungen `,
       },
     ],
   },
