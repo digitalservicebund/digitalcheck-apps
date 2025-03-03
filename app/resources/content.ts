@@ -2345,7 +2345,7 @@ Eine verbindliche Anforderung im Sinne der Verordnung ist eine verpflichtende Re
           content: `Die Interoperabilitätsbewertung ist für diese verbindliche Anforderung verpflichtend, wenn die folgenden Kriterien aus den [Guidelines for interoperability assessments](https://interoperable-europe.ec.europa.eu/collection/assessments/assessment-guidelines) erfüllt sind:
 1. Die Regelung sieht eine digitale Umsetzung vor.
 2. Die Regelung sieht den Austausch von Daten und Informationen zwischen Verwaltungen der EU-Mitgliedstaaten vor.
-3. Es wurde für die verbindliche Anforderung noch keine Interoperabilitätsbewertung durchgeführt. wurde. Dies können Sie im [EU-Portal](https://interoperable-europe.ec.europa.eu/collection/assessments) prüfen.
+3. Es wurde für die verbindliche Anforderung noch keine Interoperabilitätsbewertung durchgeführt. Dies können Sie im [EU-Portal](https://interoperable-europe.ec.europa.eu/collection/assessments) prüfen.
 
 Falls sich eine Berichtspflicht an die Europäische Kommission ergibt, dann unterstützt Sie das Digitalcheck Team dabei, die Interoperabilitätsbewertung durchzuführen, sie zu dokumentieren und den Bericht einzureichen. 
 <br/><br/>
