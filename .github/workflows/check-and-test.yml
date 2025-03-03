@@ -85,7 +85,7 @@ jobs:
         run: npm run test:e2e-nightly
 
       - name: Run E2E tests
-        if: !inputs.nightlyTests
+        if: ${{ !inputs.nightlyTests }}
         id: e2e
         run: npm run test:e2e
 
