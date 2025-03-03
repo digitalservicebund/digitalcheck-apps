@@ -1,5 +1,5 @@
-import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { Link } from "react-router-dom";
+import { openInNewIconElement } from "~/components/openInNewWindow";
 import { A11Y_MESSAGE_NEW_WINDOW } from "./Aria";
 import Container from "./Container";
 import Image from "./Image";
@@ -33,14 +33,7 @@ export default function Footer({ links }: Readonly<FooterProps>) {
           link.openInNewTab ? A11Y_MESSAGE_NEW_WINDOW : undefined
         }
       >
-        {link.text}{" "}
-        {link.openInNewTab && (
-          <OpenInNewIcon
-            height="1.2em"
-            width="1.2em"
-            className="mb-1 ml-[0.2em] !inline"
-          />
-        )}
+        {link.text} {link.openInNewTab && openInNewIconElement}
       </Link>
     </li>
   );
