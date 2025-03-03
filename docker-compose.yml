@@ -3,18 +3,12 @@ services:
   dito:
     build:
       context: .
-      dockerfile: packages/dito/Dockerfile
+      dockerfile: Dockerfile
     env_file:
-      - packages/dito/.env
+      - .env
     # For improved local development where you don't need to rebuild the image when you change the code (not working yet)
     # volumes:
     #   - ./packages/dito:/home/node/src/packages/dito
     #   - /home/node/src/node_modules
     ports:
       - 3000:3000
-  tool-finder:
-    build:
-      context: .
-      dockerfile: packages/tool-finder/Dockerfile
-    ports:
-      - 8080:8080
