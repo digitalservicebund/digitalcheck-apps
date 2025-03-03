@@ -183,14 +183,14 @@ marked.use({
       if (href.startsWith("mailto")) {
         return linkHtml.replace(
           /^<a /,
-          `<a class="plausible-event-name=Mail+Click" `,
+          `<a class="plausible-event-name=Mail+Click font-bold" `,
         );
       }
 
       if (href.startsWith("tel")) {
         return linkHtml.replace(
           /^<a /,
-          `<a class="plausible-event-name=Phone+Click" `,
+          `<a class="plausible-event-name=Phone+Click font-bold" `,
         );
       }
 
