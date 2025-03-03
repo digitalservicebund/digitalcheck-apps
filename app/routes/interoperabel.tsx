@@ -184,7 +184,7 @@ export default function Interoperability() {
         </Container>
       </div>
       <div id={interoperability.resources.id}>
-        <Background backgroundColor="blue" className="pb-48 pt-40">
+        <Background backgroundColor="blue" className="pb-48 pt-48">
           <Container backgroundColor="white" overhangingBackground>
             <Heading
               tagName="h2"
