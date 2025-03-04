@@ -193,7 +193,10 @@ type errorResponse = {
 
 function generateCacheKey(query: string, variables?: object): string {
   const variablesString = variables
-    ? JSON.stringify(variables, Object.keys(variables).sort())
+    ? JSON.stringify(
+        variables,
+        Object.keys(variables).sort((a, b) => a.localeCompare(b)),
+      )
     : "";
   const hash = crypto
     .createHash("md5")
