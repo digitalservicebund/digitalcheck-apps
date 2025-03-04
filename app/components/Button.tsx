@@ -39,23 +39,23 @@ function Button({
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
-  const buttonClasses =
-    look == "link"
-      ? "text-link font-bold"
-      : twMerge(
-          "ds-button",
-          look == "secondary" && "ds-button-secondary",
-          look == "tertiary" && "ds-button-tertiary",
-          look == "ghost" && "ds-button-ghost",
-          size == "large" && "ds-button-large",
-          size == "small" && "ds-button-small",
-          (iconLeft ?? iconRight) && [
-            "ds-button-with-icon",
-            !children && "ds-button-with-icon-only",
-          ],
-          fullWidth && "ds-button-full-width",
-          props.className,
-        );
+  let buttonClasses = twMerge(
+    "ds-button",
+    look == "secondary" && "ds-button-secondary",
+    look == "tertiary" && "ds-button-tertiary",
+    look == "ghost" && "ds-button-ghost",
+    size == "large" && "ds-button-large",
+    size == "small" && "ds-button-small",
+    (iconLeft ?? iconRight) && [
+      "ds-button-with-icon",
+      !children && "ds-button-with-icon-only",
+    ],
+    fullWidth && "ds-button-full-width",
+    props.className,
+  );
+  if (look === "link") {
+    buttonClasses = "text-link font-bold";
+  }
 
   const textSpan = text ? <span className="ds-button-label">{text}</span> : "";
   const childrenSpan = <span className="ds-button-label">{children}</span>;
@@ -81,7 +81,7 @@ function Button({
   if (href) {
     const ext =
       (href.endsWith(".pdf") && "PDF") || (href.endsWith(".xlsx") && "XSLX");
-    const isDownload = ext === "PDF" || ext === "XSLX";
+    const isDownload = !!ext;
 
     return (
       <Link
