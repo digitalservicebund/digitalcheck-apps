@@ -43,9 +43,12 @@ test.describe("basic example a11y test", () => {
       "href",
     );
     expect(regelungUrl).not.toBeNull();
-    await page.goto(regelungUrl!);
 
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
+    if (regelungUrl !== null) {
+      await page.goto(regelungUrl);
+
+      const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+      expect(accessibilityScanResults.violations).toEqual([]);
+    }
   });
 });
