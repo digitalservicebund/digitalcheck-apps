@@ -26,11 +26,11 @@ export default function logResponseStatus(
   function logMessage(level: string, message: string) {
     const log = createLog(level, message);
     const logMethod =
-      level === "info"
-        ? console.log
-        : level === "warning"
-          ? console.warn
-          : console.error;
+      {
+        info: console.log,
+        warning: console.warn,
+        error: console.error,
+      }[level] ?? console.error;
     logMethod(JSON.stringify(log));
   }
 
