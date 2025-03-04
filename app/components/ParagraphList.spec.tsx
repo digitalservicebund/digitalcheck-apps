@@ -178,8 +178,8 @@ test("Mark of Prinzip is shown", () => {
   expect(
     screen.queryByText("(3) Text mit 3Markierung[3]"),
   ).not.toBeInTheDocument();
-  expect(screen.queryByText(/mitmit[2]/)).not.toBeInTheDocument();
-  expect(screen.queryByText(/2Markierungen[2]/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/mitmit\[2\]/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/2Markierungen\[2\]/)).not.toBeInTheDocument();
   expect(screen.getByText("P1")).toBeVisible();
   expect(screen.getAllByText("P2")).toHaveLength(3);
   expect(screen.getByText("P3")).toBeVisible();
