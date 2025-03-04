@@ -94,7 +94,7 @@ function Button({
         data-testid={id}
         reloadDocument={isDownload}
         download={isDownload}
-        title={(isDownload && `${text} (${ext}-Datei)`) || undefined}
+        title={isDownload ? `${text} (${ext}-Datei)` : undefined}
       >
         {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
       </Link>
