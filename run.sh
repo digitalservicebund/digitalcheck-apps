@@ -24,7 +24,7 @@ _user() {
 }
 
 _find_placeholder_strings() {
-  grep -rlZ 'digitalcheck-apps' --exclude-dir=.git --exclude-dir=node_modules --exclude=run.sh .
+  grep -rlZ 'digitalcheck-dito' --exclude-dir=.git --exclude-dir=node_modules --exclude=run.sh .
 }
 
 _setup_repo() {
@@ -36,7 +36,7 @@ _setup_repo() {
     if [ -z "$newname" ]; then
       newname=$defaultname
     fi
-    _find_placeholder_strings | xargs sed -i '' 's/digitalcheck-apps/'"$newname"'/g'
+    _find_placeholder_strings | xargs sed -i '' 's/digitalcheck-dito/'"$newname"'/g'
     _info "Renamed, please commit the changes!"
   fi
 }

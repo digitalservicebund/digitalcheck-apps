@@ -10,7 +10,7 @@ Superceded by [0018](0018-switch-back-to-polyrepo.md)
 
 The applications in this monorepo need to have a CI/CD pipeline. We could either use a simplistic global pipeline that always runs all checks, tests, builds and deployments for all applications or we could create a more modular pipeline that only runs these steps for apps whose code changed. A modular approach has the benefit of being faster and less resource intensive, but it is also more complex to set up.
 
-During deployments, the [GitHub deployment action provided by the platform team](https://github.com/digitalservicebund/argocd-deploy) changes the image tag in [the respective infra repository](https://github.com/digitalservicebund/digitalcheck-apps-infra).
+During deployments, the [GitHub deployment action provided by the platform team](https://github.com/digitalservicebund/argocd-deploy) changes the image tag in [the respective infra repository](https://github.com/digitalservicebund/digitalcheck-dito-infra).
 With our mono repo setup, this can lead to git conflicts arising due to the code being changed and pushed simultaneously, regardless of the chosen approach. This could be mitigated in the following ways:
 
 - Running the application workflows in one pipeline sequentially. This would increase the time it takes to deploy all applications and won't help in the case of multiple pipelines being started.

@@ -204,7 +204,7 @@ const footerLinks = [
   { url: ROUTE_PRIVACY.url, text: "Datenschutzerklärung" },
   { url: ROUTE_A11Y.url, text: "Barrierefreiheit" },
   {
-    url: "https://github.com/digitalservicebund/digitalcheck-apps",
+    url: "https://github.com/digitalservicebund/digitalcheck-dito",
     text: "Open Source Code",
     openInNewTab: true,
   },
