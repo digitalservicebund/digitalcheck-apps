@@ -28,15 +28,15 @@ test.describe("test questions form", () => {
     await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
     await page.waitForURL(ROUTE_GENERAL_INFO.url);
     await page.getByRole("link", { name: "Okay & weiter" }).click();
-    for (let i = 0; i < questions.length; i++) {
-      await page.waitForURL(questions[i].url);
+    for (const element of questions) {
+      await page.waitForURL(element.url);
       await expect(page.getByTestId("breadcrumbs-menu")).toContainText(
-        questions[i].title,
+        element.title,
       );
       await expect(page.getByRole("heading", { level: 1 })).toContainText(
-        questions[i].question.replaceAll("&#8209;", "‑"), // workaround for non-breaking hyphen present in last question
+        element.question.replaceAll("&#8209;", "‑"), // workaround for non-breaking hyphen present in last question
       );
-      const hint = questions[i].hint;
+      const hint = element.hint;
       if (hint) {
         await expect(page.getByRole("main")).toContainText(hint.title);
       }
