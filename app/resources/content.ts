@@ -2263,7 +2263,7 @@ Der Bericht wird im EU-Portal hochgeladen und automatisch in maschinenlesbarem F
   andPolicyMaking: {
     id: "prozess",
     headline: "Wie beeinflusst Interoperabilität Ihr Vorhaben?",
-    content: `Die Erarbeitung der Interoperabilität folgt einem ähnlichen Ablauf wie die Erarbeitung der Digitaltauglichkeit. In wenigen Schritten wird sichergestellt, dass ihr Regelungsvorhaben die erforderlichen Anforderungen erfüllen:
+    content: `Die Erarbeitung der Interoperabilität folgt einem ähnlichen Ablauf wie die Erarbeitung der Digitaltauglichkeit. In wenigen Schritten wird sichergestellt, dass Ihr Regelungsvorhaben die erforderlichen Anforderungen erfüllen:
 
 1. **Vorprüfung starten**
     - In der geführten Vorprüfung ermitteln Sie, ob Ihr Regelungsvorhaben einen Digitalbezug hat und ob Interoperabilitätsanforderungen auf EU-Ebene berücksichtigt werden müssen.
