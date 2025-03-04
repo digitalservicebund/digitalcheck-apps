@@ -23,7 +23,7 @@ function buildEmailBody(
     .forEach(({ intro, reasons }) => {
       resultText += `➤ ${intro} \n\n`;
       reasons
-        .sort((reason) => (reason.answer === "yes" ? -1 : 1))
+        .toSorted((reason) => (reason.answer === "yes" ? -1 : 1))
         .forEach((reason) => {
           resultText += reason.answer === "yes" ? "+" : "";
           resultText += reason.answer === "no" ? "-" : "";
