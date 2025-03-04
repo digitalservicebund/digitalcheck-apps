@@ -2163,6 +2163,8 @@ Digitaltaugliche Gesetze, die Interoperabilität unterstützen, legen hierfür d
 <br/>**Semantische** Interoperabilität stellt sicher, dass Daten und Begriffe gleich verstanden werden.
 <br/>**Technische** Interoperabilität beschreibt die erforderlichen technischen Systeme und Standards, die für den Datenaustausch notwendig sind.
 
+![Die Grafik veranschaulicht die vier Ebenen der Interoperabilität mit Symbolen und kurzen Erklärungen. Die rechtliche Interoperabilität (dunkelblau, Waage-Icon) definiert die gesetzlichen Grundlagen für den Datenaustausch. Die organisatorische Interoperabilität (hellblau, vernetzte Personen) beschreibt die organisatorischen Prozesse. Die semantische Interoperabilität (graublau, Sprechblasen) stellt sicher, dass Daten und Begriffe einheitlich verstanden werden. Die technische Interoperabilität (hellgrau, Zahnräder) umfasst die technischen Systeme und Standards, die für den Datenaustausch erforderlich sind.](images/ebenen-der-interoperabilitaet.jpg)
+
 Quellen: 
 <br/>[EUR-Lex - Verordnung für ein interoperables Europa EU 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903)
 <br/>[European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
