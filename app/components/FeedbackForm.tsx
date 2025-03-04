@@ -121,7 +121,7 @@ function FeedbackQuestion({
   );
 }
 
-export default function FeedbackForm(props: FeedbackFormProps) {
+export default function FeedbackForm(props: Readonly<FeedbackFormProps>) {
   const [submitted, setSubmitted] = useState(false);
   const thankYouMessageRef = useRef<HTMLDivElement>(null);
 
