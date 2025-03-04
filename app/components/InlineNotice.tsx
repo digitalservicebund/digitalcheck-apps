@@ -61,7 +61,7 @@ const InlineNotice = ({
       className={twJoin(
         "ds-stack-8 max-w-prose scroll-my-40 p-16",
         backgroundColor,
-        "border border-2 border-l-8",
+        "border-2 border-l-8",
         borderColor,
       )}
       id={identifier}
