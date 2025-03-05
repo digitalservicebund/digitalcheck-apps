@@ -15,6 +15,11 @@ env:
 jobs:
   check-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -87,13 +92,14 @@ jobs:
       - name: Run E2E tests
         if: ${{ !inputs.nightlyTests }}
         id: e2e
-        run: npm run test:e2e
+        run: npm run test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - uses: actions/upload-artifact@v4
         if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-nightly.outcome == 'failure')
         with:
-          name: playwright-e2e-test-results
-          path: tests/playwright-report
+          name: blob-report-${{ matrix.shardIndex }}
+          path: blob-report
+          retention-days: 1
 
       - name: Run nightly A11Y tests
         if: inputs.nightlyTests
