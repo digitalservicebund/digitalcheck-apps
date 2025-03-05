@@ -52,7 +52,7 @@ The following hooks are specified in the `lefthook.yml`:
 
 Before pushing, the following checks are additionally ran:
 
-- `licenses-audit` - uses `license-checker` to verify dependency licenses
+- `licenses-audit` - uses `license-checker-rseidelsohn` to verify dependency licenses
 
 ## Development
 

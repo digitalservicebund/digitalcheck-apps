@@ -5,7 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "audit:licences": "license-checker --production --excludePrivatePackages --summary",
+    "audit:licences": "license-checker-rseidelsohn --production --excludePrivatePackages --summary",
     "build": "remix vite:build",
     "clean": "rm -rf build/",
     "dev": "remix vite:dev --manual",
@@ -82,7 +82,7 @@
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-testing-library": "^7.0.0",
     "jsdom": "^26.0.0",
-    "license-checker": "^25.0.0",
+    "license-checker-rseidelsohn": "^4.4.2",
     "msw": "^2.7.0",
     "prettier": "^3.5.0",
     "prettier-plugin-organize-imports": "^4.1.0",
