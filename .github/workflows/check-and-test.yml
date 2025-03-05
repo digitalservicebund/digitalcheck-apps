@@ -101,6 +101,25 @@ jobs:
           path: blob-report
           retention-days: 1
 
+      - name: Download blob reports from GitHub Actions Artifacts
+        if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-nightly.outcome == 'failure')
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        if: failure() && (steps.e2e.outcome == 'failure' || steps.e2e-nightly.outcome == 'failure')
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-e2e-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14
+
       - name: Run nightly A11Y tests
         if: inputs.nightlyTests
         id: a11y-nightly
@@ -122,8 +141,28 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure() && (steps.a11y.outcome == 'failure' || steps.a11y-nightly.outcome == 'failure')
         with:
-          name: playwright-a11y-test-results
-          path: tests/playwright-report
+          name: blob-report-${{ matrix.shardIndex }}
+          path: blob-report
+          retention-days: 1
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        if: failure() && (steps.a11y.outcome == 'failure' || steps.a11y-nightly.outcome == 'failure')
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        if: failure() && (steps.a11y.outcome == 'failure' || steps.a11y-nightly.outcome == 'failure')
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-a11y-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14
 
       - name: Send failure to Slack
         uses: digitalservicebund/notify-on-failure-gha@814d0c4b2ad6a3443e89c991f8657b10126510bf # v1.5.0
