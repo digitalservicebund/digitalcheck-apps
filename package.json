@@ -49,7 +49,7 @@
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^3.0.2",
     "unleash-client": "^6.6.0",
     "zod": "^3.23.8"
   },
