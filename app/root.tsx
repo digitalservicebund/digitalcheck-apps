@@ -300,8 +300,8 @@ function Document({
         <Links />
       </head>
       <body className="flex min-h-screen flex-col">
-      <ScrollAndFocus />
-      <PageHeader includeBreadcrumbs={!error} />
+        <ScrollAndFocus />
+        <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
