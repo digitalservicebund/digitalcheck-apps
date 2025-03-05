@@ -193,7 +193,7 @@ export function ScrollAndFocus() {
     <div
       ref={mainRef}
       tabIndex={-1}
-      style={{ position: "absolute", top: 0, left: 0, outline: "none" }}
+      className="absolute top-0 left-0 outline-none focus-visible:outline-auto"
     />
   );
 }
