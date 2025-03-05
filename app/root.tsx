@@ -14,11 +14,12 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useLoaderData,
+  useLocation,
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
 import { marked, type Tokens } from "marked";
-import React, { type ReactNode } from "react";
+import React, { useEffect, useRef, type ReactNode } from "react";
 import Background from "~/components/Background";
 import Breadcrumbs from "~/components/Breadcrumbs";
 import Button from "~/components/Button";
@@ -172,6 +173,31 @@ export const links: LinksFunction = () => [
   },
 ];
 
+/**
+ * Ensures the page scrolls to the top and moves focus to an invisible element
+ * when navigating between pages.
+ *
+ */
+export function ScrollAndFocus() {
+  const { pathname } = useLocation();
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    requestAnimationFrame(() => {
+      mainRef.current?.focus();
+    });
+  }, [pathname]);
+
+  return (
+    <div
+      ref={mainRef}
+      tabIndex={-1}
+      style={{ position: "absolute", top: 0, left: 0, outline: "none" }}
+    />
+  );
+}
+
 // Override the link renderer for the whole application (works because this renderer is used in <RichText />)
 const renderer = new marked.Renderer();
 marked.use({
@@ -274,7 +300,8 @@ function Document({
         <Links />
       </head>
       <body className="flex min-h-screen flex-col">
-        <PageHeader includeBreadcrumbs={!error} />
+      <ScrollAndFocus />
+      <PageHeader includeBreadcrumbs={!error} />
         {children}
         <Footer links={footerLinks} />
         <ScrollRestoration nonce={nonce} />
