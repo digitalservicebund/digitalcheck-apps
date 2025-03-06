@@ -13,7 +13,49 @@ env:
   PACKAGE_NAME: digitalcheck-dito
 
 jobs:
-  check-and-test:
+  licenses-format-lint-typecheck-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Cache npm dependencies
+        id: cache-npm-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-npm-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Audit used licences
+        run: npm run audit:licences
+
+      - name: Check format
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint:check
+
+      - name: Check types
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm test
+
+  run-e2e-a11y-tests:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -44,27 +86,6 @@ jobs:
       - name: Install dependencies
         if: steps.cache-npm-deps.outputs.cache-hit != 'true'
         run: npm ci
-
-      - name: Audit used licences
-        run: npm run audit:licences
-
-      - name: Fix format
-        run: npm run format:fix
-
-      - name: Check format
-        run: npm run format:check
-
-      - name: Fix lint
-        run: npm run lint:fix
-
-      - name: Lint
-        run: npm run lint:check
-
-      - name: Check types
-        run: npm run typecheck
-
-      - name: Run unit tests
-        run: npm test
 
       - name: Cache Playwright dependencies
         id: cache-playwright-deps
@@ -127,8 +148,8 @@ jobs:
           retention-days: 1
 
   send-failure-to-slack:
-    needs: [check-and-test]
-    if: failure() && needs.check-and-test.result == 'failure'
+    needs: [licenses-format-lint-typecheck-unit-tests, run-e2e-a11y-tests]
+    if: failure() && (needs.licenses-format-lint-typecheck-unit-tests.result == 'failure' || needs.run-e2e-a11y-tests.result == 'failure')
     runs-on: ubuntu-latest
     steps:
       - name: Send failure to Slack
