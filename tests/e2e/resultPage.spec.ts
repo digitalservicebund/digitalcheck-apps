@@ -63,7 +63,11 @@ async function registerMailInterceptionHandlerAndExpect(
   });
 }
 
+test.describe.configure({ mode: "parallel" });
+
 test.describe("test positive result for digital and interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all pre-check questions with yes and go to result page",
@@ -247,6 +251,8 @@ test.describe("test positive result for digital and interoperability", () => {
 });
 
 test.describe("test positive result for digital and negative for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with yes and all interoperability questions with no and go to result page",
@@ -311,6 +317,8 @@ test.describe("test positive result for digital and negative for interoperabilit
 });
 
 test.describe("test positive result for digital and unsure for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with yes and all interoperability questions with unsure and go to result page",
@@ -410,6 +418,8 @@ test.describe("test positive result for digital and unsure for interoperability"
 });
 
 test.describe("test negative result for digital and interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all pre-check questions with no and go to result page",
@@ -536,6 +546,8 @@ test.describe("test negative result for digital and interoperability", () => {
 });
 
 test.describe("test negative result for digital and positive for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with no and all interoperability questions with yes and go to result page",
@@ -608,6 +620,8 @@ test.describe("test negative result for digital and positive for interoperabilit
 });
 
 test.describe("test negative result for digital and unsure for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with no and all interoperability questions with unsure and go to result page",
@@ -664,6 +678,8 @@ test.describe("test negative result for digital and unsure for interoperability"
 });
 
 test.describe("test positive result with mixed answers", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll("Go to assessment page", async ({ browser }) => {
     page = await browser.newPage();
@@ -704,6 +720,8 @@ test.describe("test positive result with mixed answers", () => {
 });
 
 test.describe("test unsure result for digital and positive for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with unsure and all interoperability questions with yes and go to result page",
@@ -761,6 +779,8 @@ test.describe("test unsure result for digital and positive for interoperability"
 });
 
 test.describe("test unsure result for digital and negative for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with unsure and all interoperability questions with no and go to result page",
@@ -806,6 +826,8 @@ test.describe("test unsure result for digital and negative for interoperability"
 });
 
 test.describe("test unsure result for digital and unsure for interoperability", () => {
+  test.describe.configure({ mode: "default" });
+
   let page: Page;
   test.beforeAll(
     "answer all digital questions with unsure and go to result page",
@@ -863,6 +885,8 @@ test.describe("test unsure result for digital and unsure for interoperability", 
 });
 
 test.describe("test redirect to pre-check in case of missing answers", () => {
+  test.describe.configure({ mode: "default" });
+
   test("result page redirects to pre-check landing page if no question was answered", async ({
     page,
   }) => {
