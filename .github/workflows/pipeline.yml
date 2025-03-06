@@ -59,6 +59,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: COMMIT_SHA=${{ github.sha }}
+          sbom: SBOM-${{ env.PACKAGE_NAME }}
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
@@ -80,12 +81,6 @@ jobs:
 
       - name: Install cosign
         uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
-
-      - name: Create SBOM
-        uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # v1.2.1
-        with:
-          image_name: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          artifact_name: SBOM-${{ env.PACKAGE_NAME }}
 
       - name: Sign the published Docker image
         run: cosign sign --yes ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
