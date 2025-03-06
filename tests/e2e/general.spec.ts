@@ -3,7 +3,7 @@ import allRoutes from "~/resources/allRoutes";
 import { preCheck } from "~/resources/content";
 import * as staticRoutes from "~/resources/staticRoutes";
 
-test.describe("test general availability", () => {
+test.describe("test breadcrumbs and titles", () => {
   test("landing page to not have breadcrumbs", async ({ page }) => {
     await page.goto(allRoutes[0].url);
     await expect(page.getByTestId("breadcrumbs-menu")).not.toBeVisible();
@@ -14,10 +14,8 @@ test.describe("test general availability", () => {
     if (route.url.endsWith(".pdf")) {
       return;
     }
-    test(`${route.url} is reachable and has a breadcrumb menu and title`, async ({
-      page,
-    }) => {
-      await page.goto(route.url, { waitUntil: "networkidle" });
+    test(`${route.url} has breadcrumbs and title`, async ({ page }) => {
+      await page.goto(route.url);
       await expect(page.getByTestId("breadcrumbs-menu")).toBeVisible();
       await expect(page).toHaveTitle(
         /Digitalcheck: Digitaltaugliche Regelungen erarbeiten$/,
