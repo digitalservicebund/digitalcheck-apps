@@ -4,6 +4,8 @@ import { expect, test } from "@playwright/test";
 import allRoutes from "~/resources/allRoutes";
 import { ROUTE_PRINCIPLES, ROUTE_SUPPORT } from "~/resources/staticRoutes";
 
+test.describe.configure({ mode: "parallel" });
+
 test.describe("basic example a11y test", () => {
   allRoutes
     .filter(
