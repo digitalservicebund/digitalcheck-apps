@@ -13,9 +13,9 @@ const principles = [
   "automatisierung-ermoeglichen",
 ];
 
-test.describe("Digitaltauglichkeit main functionality", () => {
+test.describe("Prinzipienseiten", () => {
   for (const principle of principles) {
-    test(`displays detailed information for principle: ${principle}`, async ({
+    test(`displays information for principle: ${principle}`, async ({
       page,
     }) => {
       const url = `${ROUTE_PRINCIPLES.url}/${principle}`;
@@ -49,7 +49,7 @@ test.describe("Digitaltauglichkeit main functionality", () => {
   }
 });
 
-test.describe("Digitaltauglichkeit Prinzipien Detail", () => {
+test.describe("Prinzipien Detail", () => {
   for (const principle of principles) {
     test(`displays paragraphs with relevant principles for: ${principle}`, async ({
       page,
