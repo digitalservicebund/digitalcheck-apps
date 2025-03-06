@@ -40,9 +40,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build image from Dockerfile
-        run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} . --build-arg COMMIT_SHA=${{ github.sha }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: "${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }} ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: COMMIT_SHA=${{ github.sha }}
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
@@ -71,12 +77,6 @@ jobs:
           registry: "ghcr.io"
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push image
-        run: |
-          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}
-          docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          docker push --all-tags ghcr.io/${{ env.IMAGE_NAME }}
 
       - name: Create SBOM
         uses: digitalservicebund/create-sbom@9535ef832c2895b44b7266f84e16ad7598d1ead9 # v1.2.1
