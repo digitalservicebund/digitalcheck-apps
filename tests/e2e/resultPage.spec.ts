@@ -63,8 +63,6 @@ async function registerMailInterceptionHandlerAndExpect(
   });
 }
 
-test.describe.configure({ mode: "parallel" });
-
 test.describe("test positive result for digital and interoperability", () => {
   test.describe.configure({ mode: "default" });
 
