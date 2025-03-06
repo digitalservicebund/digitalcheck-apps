@@ -59,7 +59,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: COMMIT_SHA=${{ github.sha }}
-          sbom: SBOM-${{ env.PACKAGE_NAME }}
+          sbom: true
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
