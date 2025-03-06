@@ -62,7 +62,7 @@ const config: PlaywrightTestConfig = {
     trace: "retain-on-failure",
   },
   reporter: [
-    [process.env.CI ? "blob" : "list"],
+    ["list"],
     [
       "html",
       {
