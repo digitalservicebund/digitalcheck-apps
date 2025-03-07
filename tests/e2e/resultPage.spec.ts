@@ -29,15 +29,14 @@ async function registerMailInterceptionHandlerAndExpect(
 ) {
   await page.route("**", async (route) => {
     const response = await route.fetch();
-    const status = response.headers()["x-remix-status"];
-    const redirectUrl = response.headers()["x-remix-redirect"];
+    const location = response.headers()["location"];
 
-    if (status !== "302" || !redirectUrl?.startsWith("mailto:")) {
+    if (!location?.startsWith("mailto:")) {
       await route.continue();
       return;
     }
 
-    const mailTo = new URL(redirectUrl);
+    const mailTo = new URL(location);
     if (expected?.subject)
       expect(mailTo.searchParams.get("subject")).toBe(expected?.subject);
     expected?.recipients?.forEach((expectedRecipient) =>
