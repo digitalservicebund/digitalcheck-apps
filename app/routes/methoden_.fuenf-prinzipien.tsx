@@ -1,9 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import {
-  MetaFunction,
-  PrefetchPageLinks,
-  useLoaderData,
-} from "@remix-run/react";
+import { MetaFunction, useLoaderData } from "@remix-run/react";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
@@ -114,6 +110,7 @@ export default function FivePrinciples() {
                       {
                         text: fivePrinciples.buttonText,
                         href: buttonLink,
+                        prefetch: "viewport",
                         look: "tertiary" as const,
                         "aria-label":
                           index > 0
@@ -124,8 +121,6 @@ export default function FivePrinciples() {
                   },
                 ]}
               />
-              {/* The button prop does not support prefetching, so we are using the PrefetchPageLinks component instead */}
-              <PrefetchPageLinks page={buttonLink} />
             </Container>
           </Background>
         );

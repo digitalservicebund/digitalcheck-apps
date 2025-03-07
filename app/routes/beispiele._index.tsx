@@ -1,18 +1,10 @@
-import {
-  MetaFunction,
-  PrefetchPageLinks,
-  useOutletContext,
-} from "@remix-run/react";
+import { MetaFunction, useOutletContext } from "@remix-run/react";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
 import Header from "~/components/Header";
 import { digitalSuitability } from "~/resources/content";
-import {
-  ROUTE_EXAMPLES,
-  ROUTE_PRINCIPLES,
-  ROUTE_VISUALISATIONS,
-} from "~/resources/staticRoutes";
+import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
 import { Prinzip } from "~/utils/strapiData.server";
 
@@ -56,23 +48,13 @@ export default function Digitaltauglichkeit_index() {
                     {
                       ...item.buttons[0],
                       href: `${ROUTE_PRINCIPLES.url}/${principles[0].URLBezeichnung}`,
+                      prefetch: "viewport",
                     },
                   ]
                 : item.buttons
             }
           />
         ))}
-        {/* The button prop does not support prefetching, so we are using the PrefetchPageLinks component instead */}
-        {principles.map((principle) => (
-          <PrefetchPageLinks
-            key={principle.Nummer}
-            page={`${ROUTE_PRINCIPLES.url}/${principle.URLBezeichnung}`}
-          />
-        ))}
-        <PrefetchPageLinks
-          key={ROUTE_VISUALISATIONS.title}
-          page={ROUTE_VISUALISATIONS.url}
-        />
       </Container>
     </>
   );
