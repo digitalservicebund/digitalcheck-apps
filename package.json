@@ -59,6 +59,7 @@
     "@playwright/test": "^1.50.1",
     "@remix-run/dev": "^2.16.0",
     "@remix-run/eslint-config": "^2.16.0",
+    "@remix-run/fs-routes": "^2.16.0",
     "@testing-library/jest-dom": "^6.6.1",
     "@testing-library/react": "^16.2.0",
     "@types/mime-types": "^2.1.4",
