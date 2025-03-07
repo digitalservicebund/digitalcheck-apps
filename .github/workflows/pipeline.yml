@@ -63,6 +63,7 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: COMMIT_SHA=${{ github.sha }}
           sbom: true
+          load: true
 
       - name: Push only to GitHub Container Registry
         run: docker push --all-tags ghcr.io/${{ env.IMAGE_NAME }}
