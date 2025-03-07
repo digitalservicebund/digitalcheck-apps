@@ -18,6 +18,9 @@ const negativeValidation = positiveValidation.extend({
 });
 
 export default function getResultValidatorForAnswers(answers: PreCheckAnswers) {
-  const isPositive = !!Object.values(answers).find((a) => a === "yes");
+  const ignoredQuestionIds = ["eu-bezug"];
+  const isPositive = Object.entries(answers).some(
+    ([key, value]) => value === "yes" && !ignoredQuestionIds.includes(key),
+  );
   return withZod(isPositive ? positiveValidation : negativeValidation);
 }
