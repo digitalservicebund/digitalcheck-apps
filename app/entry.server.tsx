@@ -146,9 +146,10 @@ function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <NonceProvider value={nonce}>
-        <RemixServer context={remixContext} url={request.url} />
+        <RemixServer context={remixContext} url={request.url} nonce={nonce} />
       </NonceProvider>,
       {
+        nonce,
         onShellReady() {
           shellRendered = true;
           const body = new PassThrough();
