@@ -1,8 +1,4 @@
-import {
-  ActionFunctionArgs,
-  json,
-  type LoaderFunctionArgs,
-} from "@remix-run/node";
+import { ActionFunctionArgs, type LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
 import { useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
@@ -47,7 +43,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     });
   }
 
-  return json({ questionIdx, question: questions[questionIdx], answers });
+  return { questionIdx, question: questions[questionIdx], answers };
 }
 
 const validator = withZod(

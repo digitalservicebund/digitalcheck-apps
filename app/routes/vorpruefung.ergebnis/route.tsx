@@ -1,7 +1,7 @@
 import {
   type ActionFunctionArgs,
-  json,
   type LoaderFunctionArgs,
+  data,
   redirect,
 } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
@@ -81,7 +81,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   // Set cookie to store user has viewed result
   cookie.hasViewedResult = true;
 
-  return json(
+  return data(
     {
       result,
       answers,
