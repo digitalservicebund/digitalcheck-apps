@@ -3,7 +3,15 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [!process.env.VITEST && remix(), tsconfigPaths()],
+  plugins: [
+    !process.env.VITEST &&
+      remix({
+        future: {
+          unstable_optimizeDeps: true,
+        },
+      }),
+    tsconfigPaths(),
+  ],
   build: {
     target: "ES2022",
   },
