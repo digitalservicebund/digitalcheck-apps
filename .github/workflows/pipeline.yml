@@ -58,7 +58,6 @@ jobs:
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}
             ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: COMMIT_SHA=${{ github.sha }}
@@ -71,7 +70,7 @@ jobs:
         env:
           TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db,public.ecr.aws/aquasecurity/trivy-db
         with:
-          image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          image-ref: ghcr.io/${{ env.IMAGE_NAME }}
           format: "cosign-vuln"
           output: "${{ env.PACKAGE_NAME }}-vulnerabilities.json"
 
