@@ -14,23 +14,23 @@ env:
   ENVIRONMENT: production
 
 jobs:
-  # vulnerability-scan:
-  #   uses: ./.github/workflows/scan.yml
-  #   secrets: inherit
+  vulnerability-scan:
+    uses: ./.github/workflows/scan.yml
+    secrets: inherit
 
-  # check-and-test:
-  #   uses: ./.github/workflows/check-and-test.yml
-  #   secrets: inherit
+  check-and-test:
+    uses: ./.github/workflows/check-and-test.yml
+    secrets: inherit
 
-  # create-unified-test-report:
-  #   needs: [check-and-test]
-  #   # Merge reports only if some shards have failed
-  #   if: failure() && needs.check-and-test.result == 'failure'
-  #   uses: ./.github/workflows/create-unified-test-report.yml
-  #   secrets: inherit
+  create-unified-test-report:
+    needs: [check-and-test]
+    # Merge reports only if some shards have failed
+    if: failure() && needs.check-and-test.result == 'failure'
+    uses: ./.github/workflows/create-unified-test-report.yml
+    secrets: inherit
 
   build-and-push-image:
-    # needs: [vulnerability-scan, check-and-test]
+    needs: [vulnerability-scan, check-and-test]
     runs-on: ubuntu-latest
     permissions:
       contents: read
