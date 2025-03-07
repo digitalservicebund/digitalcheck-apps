@@ -1804,7 +1804,7 @@ E-Mail: [DVI3@bmi.bund.de](mailto:DVI3@bmi.bund.de)
 ### Realisierung, Design, Hosting
 
 DigitalService GmbH des Bundes<br />
-Frau Christina Lang und Frau Anja Theurer<br />
+Frau Anja Theurer<br />
 Prinzessinnenstraße 8-14<br />
 10969 Berlin<br />
 E-Mail: [hallo@digitalservice.bund.de](mailto:hallo@digitalservice.bund.de)
