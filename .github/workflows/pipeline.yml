@@ -50,23 +50,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
 
-      - name: Build and tag
+      - name: Build and push
         uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
         with:
           context: .
-          push: false
+          push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ghcr.io/${{ env.IMAGE_NAME }}
             ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: COMMIT_SHA=${{ github.sha }}
           sbom: true
-          load: true
-
-      - name: Push only to GitHub Container Registry
-        run: docker push --all-tags ghcr.io/${{ env.IMAGE_NAME }}
 
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
