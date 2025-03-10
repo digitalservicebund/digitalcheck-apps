@@ -1,4 +1,10 @@
 {
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2023"],
     "isolatedModules": true,
@@ -17,9 +23,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "types": [
-      "vite/client",
-      "@react-router/dev",
       "@react-router/node",
+      "vite/client",
       "vitest/globals",
       "@testing-library/react"
     ],
