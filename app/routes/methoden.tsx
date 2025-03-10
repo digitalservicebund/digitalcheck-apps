@@ -1,5 +1,5 @@
 import { renderToString } from "react-dom/server";
-import { type MetaFunction } from "react-router";
+
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import FeedbackForm from "~/components/FeedbackForm";
@@ -10,8 +10,9 @@ import SupportBanner from "~/components/SupportBanner";
 import { methods } from "~/resources/content";
 import { ROUTE_METHODS } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
+import type { Route } from "./+types/methoden";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta: Route.MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
 

@@ -1,12 +1,7 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import React from "react";
-import {
-  Link,
-  MetaFunction,
-  useLoaderData,
-  useOutletContext,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { Link, useLoaderData, useOutletContext } from "react-router";
+
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import CustomLink from "~/components/CustomLink";
@@ -28,8 +23,9 @@ import {
   visualisationFields,
 } from "~/utils/strapiData.server";
 import { formatDate, gesetzStatusMap, slugify } from "~/utils/utilFunctions";
+import type { Route } from "./+types/beispiele.regelungen.$regelung";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta: Route.MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
 
@@ -69,7 +65,7 @@ query GetRegelungsvorhabens($slug: String!) {
   }
 }`;
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
   const regelungData = await fetchStrapiData<{
     regelungsvorhabens: Regelungsvorhaben[];
   }>(GET_REGELUNGSVORHABENS_BY_SLUG_QUERY, { slug: params.regelung as string });

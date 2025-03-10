@@ -1,24 +1,17 @@
-import {
-  Link,
-  MetaFunction,
-  useLoaderData,
-  useOutletContext,
-} from "react-router";
-import Container from "~/components/Container";
-
+import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { type LoaderFunctionArgs } from "react-router";
+import { Link, useLoaderData, useOutletContext } from "react-router";
+
 import Background from "~/components/Background";
 import Box from "~/components/Box";
+import Container from "~/components/Container";
 import CustomLink from "~/components/CustomLink";
 import Heading from "~/components/Heading";
 import InlineInfoList from "~/components/InlineInfoList";
 import ParagraphList from "~/components/ParagraphList";
 import { regulations } from "~/resources/content";
-import prependMetaTitle from "~/utils/metaTitle";
-
-import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { ROUTE_LAWS, ROUTE_PRINCIPLES } from "~/resources/staticRoutes";
+import prependMetaTitle from "~/utils/metaTitle";
 import {
   fetchStrapiData,
   paragraphFields,
@@ -26,8 +19,9 @@ import {
   prinzipCoreFields,
 } from "~/utils/strapiData.server";
 import { formatDate, gesetzStatusMap } from "~/utils/utilFunctions";
+import type { Route } from "./+types/beispiele.prinzipien.$prinzip";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta: Route.MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 
@@ -56,7 +50,7 @@ query GetPrinzips($slug: String!) {
   }
 }`;
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
   const prinzipData = await fetchStrapiData<{ prinzips: Prinzip[] }>(
     GET_PRINZIPS_QUERY,
     { slug: params.prinzip as string },

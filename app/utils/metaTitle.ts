@@ -1,9 +1,8 @@
-import { MetaMatches } from "@react-router/react/dist/routeModules";
-import { MetaDescriptor } from "react-router";
+import type { MetaArgs, MetaDescriptor } from "react-router";
 
 export default function prependMetaTitle(
   title: string,
-  metaMatches: MetaMatches,
+  metaMatches: MetaArgs["matches"],
 ): MetaDescriptor[] {
   // Get the title of the root metadata, this should always be first in the array
   const rootMeta = metaMatches[0].meta?.[0];

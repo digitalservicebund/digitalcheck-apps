@@ -1,5 +1,3 @@
-import { LoaderFunction } from "react-router";
-
-export const loader: LoaderFunction = () => {
+export const loader = () => {
   return "OK";
 };

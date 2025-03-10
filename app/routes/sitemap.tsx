@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
-import { LoaderFunction, MetaFunction, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
+
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import Header from "~/components/Header";
 import allRoutes from "~/resources/allRoutes";
 import { ROUTE_SITEMAP } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
+import type { Route } from "./+types/sitemap";
 
 interface Route {
   url: string;
@@ -33,11 +35,11 @@ const groupRoutesByParent = (routes: Route[]): Route[] => {
   return Array.from(routeMap.values()).filter((route) => !route.parent);
 };
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta: Route.MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_SITEMAP.title, matches);
 };
 
-export const loader: LoaderFunction = () => {
+export const loader = () => {
   return groupRoutesByParent(allRoutes as Route[]);
 };
 

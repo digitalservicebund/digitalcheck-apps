@@ -1,13 +1,4 @@
 import {
-  type ActionFunctionArgs,
-  type LoaderFunctionArgs,
-  MetaFunction,
-  data,
-  redirect,
-  useLoaderData,
-} from "react-router";
-
-import {
   CancelOutlined,
   CheckCircleOutlined,
   ControlPointOutlined,
@@ -17,7 +8,9 @@ import {
 } from "@digitalservicebund/icons";
 import { validationError } from "@rvf/react-router";
 import React, { useState } from "react";
+import { data, redirect, useLoaderData } from "react-router";
 import { twJoin } from "tailwind-merge";
+
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
@@ -45,6 +38,7 @@ import {
 } from "~/utils/cookies.server";
 import prependMetaTitle from "~/utils/metaTitle";
 import trackCustomEvent from "~/utils/trackCustomEvent.server";
+import type { Route } from "./+types/route";
 import { PreCheckResult, ResultType } from "./PreCheckResult";
 import getResultValidatorForAnswers from "./resultValidation";
 
@@ -55,11 +49,11 @@ const nextSteps = {
   [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
 };
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta: Route.MetaFunction = ({ matches }) => {
   return prependMetaTitle(ROUTE_RESULT.title, matches);
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const cookie = await getAnswersFromCookie(request);
   const { answers } = cookie;
 
@@ -91,7 +85,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   );
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);
 
