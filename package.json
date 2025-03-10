@@ -37,7 +37,7 @@
     "@react-router/serve": "^7.0.0",
     "@rvf/react-router": "^7.0.0",
     "@rvf/zod": "^7.0.0",
-    "@strapi/blocks-react-renderer": "^1.0.2",
+    "@strapi/blocks-react-renderer": "^1.0.1",
     "@types/node": "^22.13.1",
     "isbot": "^5.1.4",
     "marked": "^15.0.0",
