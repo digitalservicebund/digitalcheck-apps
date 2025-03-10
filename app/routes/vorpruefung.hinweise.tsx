@@ -1,5 +1,8 @@
-import { type LoaderFunctionArgs } from "@remix-run/node";
-import { type MetaFunction, useLoaderData } from "@remix-run/react";
+import {
+  type LoaderFunctionArgs,
+  type MetaFunction,
+  useLoaderData,
+} from "react-router";
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
 import Heading from "~/components/Heading";

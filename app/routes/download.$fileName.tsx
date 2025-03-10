@@ -1,7 +1,7 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
 import { promises as fs } from "fs";
 import mime from "mime-types";
 import path from "path";
+import { LoaderFunctionArgs } from "react-router";
 import trackCustomEvent from "~/utils/trackCustomEvent.server";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {

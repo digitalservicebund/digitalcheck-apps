@@ -1,5 +1,5 @@
-import { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
+import { MetaFunction } from "react-router";
 import { twJoin } from "tailwind-merge";
 import Background from "~/components/Background";
 import Box from "~/components/Box";

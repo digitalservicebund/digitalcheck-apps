@@ -1,10 +1,11 @@
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
+  MetaFunction,
   data,
   redirect,
-} from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+  useLoaderData,
+} from "react-router";
 
 import {
   CancelOutlined,
@@ -14,7 +15,7 @@ import {
   RemoveCircleOutline,
   WarningAmberOutlined,
 } from "@digitalservicebund/icons";
-import { validationError } from "@rvf/remix";
+import { validationError } from "@rvf/react-router";
 import React, { useState } from "react";
 import { twJoin } from "tailwind-merge";
 import Accordion from "~/components/Accordion";

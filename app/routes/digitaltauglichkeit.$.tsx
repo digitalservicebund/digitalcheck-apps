@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs, redirect } from "react-router";
 
 export function loader({ request }: LoaderFunctionArgs) {
   // Redirect all requests to /digitaltauglichkeit/... to /beispiele/...

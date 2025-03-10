@@ -1,4 +1,4 @@
-import { LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunction, LoaderFunctionArgs } from "react-router";
 import allRoutes from "~/resources/allRoutes";
 
 export const loader: LoaderFunction = ({ request }: LoaderFunctionArgs) => {

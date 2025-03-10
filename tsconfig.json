@@ -18,8 +18,8 @@
     "baseUrl": ".",
     "types": [
       "vite/client",
-      "@remix-run/dev",
-      "@remix-run/node",
+      "@react-router/dev",
+      "@react-router/node",
       "vitest/globals",
       "@testing-library/react"
     ],

@@ -1,4 +1,4 @@
-import { createCookie } from "@remix-run/node";
+import { createCookie } from "react-router";
 import type { PreCheckAnswers } from "~/routes/vorpruefung.$questionId/route";
 
 export const userAnswers = createCookie("user-answers", {

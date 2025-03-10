@@ -1,5 +1,5 @@
 import HomeOutlined from "@digitalservicebund/icons/HomeOutlined";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 
 export type Breadcrumb = {
   url: string;

@@ -1,5 +1,5 @@
-import { MetaDescriptor } from "@remix-run/node";
-import { MetaMatches } from "@remix-run/react/dist/routeModules";
+import { MetaMatches } from "@react-router/react/dist/routeModules";
+import { MetaDescriptor } from "react-router";
 
 export default function prependMetaTitle(
   title: string,

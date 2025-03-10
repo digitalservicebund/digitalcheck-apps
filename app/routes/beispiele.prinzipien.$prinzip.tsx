@@ -3,11 +3,11 @@ import {
   MetaFunction,
   useLoaderData,
   useOutletContext,
-} from "@remix-run/react";
+} from "react-router";
 import Container from "~/components/Container";
 
-import { type LoaderFunctionArgs } from "@remix-run/node";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { type LoaderFunctionArgs } from "react-router";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import CustomLink from "~/components/CustomLink";

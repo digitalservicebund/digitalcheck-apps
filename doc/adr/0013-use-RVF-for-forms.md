@@ -34,6 +34,6 @@ The decision came down to us preferring its documentation and server side syntax
 ## Consequences
 
 We will migrate all forms to RVF.
-We will use `@rvf/react` for the tool finder and `@rvf/remix` for DiTo.
+We will use `@rvf/react` for the tool finder and `@rvf/react-router` for DiTo.
 
 We will use `@rvf/zod` for direct integration with our form validation.

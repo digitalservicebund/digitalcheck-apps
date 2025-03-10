@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { LoaderFunctionArgs, MetaFunction, useLoaderData } from "react-router";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";

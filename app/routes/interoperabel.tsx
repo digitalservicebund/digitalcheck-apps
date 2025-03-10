@@ -1,5 +1,5 @@
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
-import { Link, MetaFunction } from "@remix-run/react";
+import { Link, MetaFunction } from "react-router";
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";

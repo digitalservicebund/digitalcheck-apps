@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import Box from "~/components/Box";

@@ -1,9 +1,11 @@
 import PhoneOutlined from "@digitalservicebund/icons/PhoneOutlined";
+import { marked, type Tokens } from "marked";
+import React, { useEffect, useRef, type ReactNode } from "react";
 import type {
   HeadersFunction,
   LinksFunction,
   LoaderFunctionArgs,
-} from "@remix-run/node";
+} from "react-router";
 import {
   Link,
   Links,
@@ -17,9 +19,7 @@ import {
   useLocation,
   useRouteError,
   useRouteLoaderData,
-} from "@remix-run/react";
-import { marked, type Tokens } from "marked";
-import React, { useEffect, useRef, type ReactNode } from "react";
+} from "react-router";
 import Background from "~/components/Background";
 import Breadcrumbs from "~/components/Breadcrumbs";
 import Button from "~/components/Button";

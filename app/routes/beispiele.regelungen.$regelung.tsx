@@ -1,12 +1,12 @@
-import { type LoaderFunctionArgs } from "@remix-run/node";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import React from "react";
 import {
   Link,
   MetaFunction,
   useLoaderData,
   useOutletContext,
-} from "@remix-run/react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import React from "react";
+  type LoaderFunctionArgs,
+} from "react-router";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import CustomLink from "~/components/CustomLink";

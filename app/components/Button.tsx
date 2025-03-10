@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
 import { cloneElement, type ReactElement } from "react";
+import { Link } from "react-router";
 import twMerge from "~/utils/tailwindMerge";
 
 type Props = {

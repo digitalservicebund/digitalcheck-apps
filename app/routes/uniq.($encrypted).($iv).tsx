@@ -1,6 +1,6 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { ROUTE_RESULT_PDF } from "~/resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "~/utils/constants.server";
 import getBaseURL from "~/utils/getBaseURL";

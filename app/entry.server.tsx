@@ -7,11 +7,11 @@
 import crypto from "node:crypto";
 import { PassThrough } from "node:stream";
 
-import type { EntryContext } from "@remix-run/node";
-import { createReadableStreamFromReadable } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
+import { createReadableStreamFromReadable } from "@react-router/node";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import type { EntryContext } from "react-router";
+import { ServerRouter } from "react-router";
 import logResponseStatus from "~/utils/logging";
 import { NonceProvider } from "~/utils/nonce";
 
@@ -45,7 +45,7 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
 ) {
   const startTime = Date.now();
   const isReadinessCheck =
@@ -57,7 +57,7 @@ export default function handleRequest(
       request,
       responseStatusCode,
       responseHeaders,
-      remixContext,
+      reactRouterContext,
       startTime,
     );
   } else {
@@ -65,7 +65,7 @@ export default function handleRequest(
       request,
       responseStatusCode,
       responseHeaders,
-      remixContext,
+      reactRouterContext,
       startTime,
     );
   }
@@ -75,13 +75,13 @@ function handleBotRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
   startTime: number,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer context={remixContext} url={request.url} />,
+      <ServerRouter context={reactRouterContext} url={request.url} />,
       {
         onAllReady() {
           shellRendered = true;
@@ -132,7 +132,7 @@ function handleBrowserRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
   startTime: number,
 ) {
   const nonce = crypto.randomBytes(16).toString("hex");
@@ -146,7 +146,11 @@ function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <NonceProvider value={nonce}>
-        <RemixServer context={remixContext} url={request.url} nonce={nonce} />
+        <ServerRouter
+          context={reactRouterContext}
+          url={request.url}
+          nonce={nonce}
+        />
       </NonceProvider>,
       {
         nonce,

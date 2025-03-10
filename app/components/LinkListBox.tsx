@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import Heading from "~/components/Heading";
 import { general } from "~/resources/content";
 

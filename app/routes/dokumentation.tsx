@@ -1,4 +1,4 @@
-import { MetaFunction } from "@remix-run/react";
+import { MetaFunction } from "react-router";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";

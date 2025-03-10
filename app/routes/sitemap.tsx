@@ -1,6 +1,5 @@
-import { LoaderFunction } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { ReactNode } from "react";
+import { LoaderFunction, MetaFunction, useLoaderData } from "react-router";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import Header from "~/components/Header";

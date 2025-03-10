@@ -1,5 +1,5 @@
-import { type MetaFunction } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
+import { type MetaFunction } from "react-router";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import FeedbackForm from "~/components/FeedbackForm";

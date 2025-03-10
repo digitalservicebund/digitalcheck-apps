@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { twJoin } from "tailwind-merge";
 
 const LinkBar = <T extends { url: string; title: string }>({
