@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { type MetaArgs } from "react-router";
 import { twJoin } from "tailwind-merge";
 
 import Background from "~/components/Background";
@@ -12,7 +13,6 @@ import RichText from "~/components/RichText";
 import { support } from "~/resources/content";
 import { ROUTE_SUPPORT } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
-import type { Route } from "./+types/route";
 import SupportTabs from "./SupportTabList";
 
 const {
@@ -24,7 +24,7 @@ const {
   subtitle,
 } = support;
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_SUPPORT.title, matches);
 };
 

@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { type MetaArgs, useLoaderData } from "react-router";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
@@ -22,7 +22,7 @@ import {
 import { slugify } from "~/utils/utilFunctions";
 import type { Route } from "./+types/methoden_.fuenf-prinzipien";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);
 };
 

@@ -1,6 +1,11 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import React from "react";
-import { Link, useLoaderData, useOutletContext } from "react-router";
+import {
+  Link,
+  useLoaderData,
+  useOutletContext,
+  type MetaArgs,
+} from "react-router";
 
 import Background from "~/components/Background";
 import Container from "~/components/Container";
@@ -25,7 +30,7 @@ import {
 import { formatDate, gesetzStatusMap, slugify } from "~/utils/utilFunctions";
 import type { Route } from "./+types/beispiele.regelungen.$regelung";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_LAWS.title, matches);
 };
 

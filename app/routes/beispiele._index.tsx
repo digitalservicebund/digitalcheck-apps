@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, type MetaArgs } from "react-router";
 
 import Background from "~/components/Background";
 import Box from "~/components/Box";
@@ -8,9 +8,8 @@ import { digitalSuitability } from "~/resources/content";
 import { ROUTE_EXAMPLES, ROUTE_PRINCIPLES } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
 import { Prinzip } from "~/utils/strapiData.server";
-import type { Route } from "./+types/beispiele._index";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_EXAMPLES.title, matches);
 };
 

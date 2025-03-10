@@ -1,3 +1,4 @@
+import { type MetaArgs } from "react-router";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import Header from "~/components/Header";
@@ -5,9 +6,8 @@ import RichText from "~/components/RichText";
 import { privacy } from "~/resources/content";
 import { ROUTE_PRIVACY } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
-import type { Route } from "./+types/datenschutz";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_PRIVACY.title, matches);
 };
 

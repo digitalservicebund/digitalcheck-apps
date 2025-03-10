@@ -1,6 +1,11 @@
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { Link, useLoaderData, useOutletContext } from "react-router";
+import {
+  Link,
+  type MetaArgs,
+  useLoaderData,
+  useOutletContext,
+} from "react-router";
 
 import Background from "~/components/Background";
 import Box from "~/components/Box";
@@ -21,7 +26,7 @@ import {
 import { formatDate, gesetzStatusMap } from "~/utils/utilFunctions";
 import type { Route } from "./+types/beispiele.prinzipien.$prinzip";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_PRINCIPLES.title, matches);
 };
 

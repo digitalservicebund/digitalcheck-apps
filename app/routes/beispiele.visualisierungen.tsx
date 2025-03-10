@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, type MetaArgs } from "react-router";
 
 import Background from "~/components/Background";
 import Container from "~/components/Container";
@@ -13,9 +13,8 @@ import {
   visualisationFields,
   Visualisierung,
 } from "~/utils/strapiData.server";
-import type { Route } from "./+types/beispiele.visualisierungen";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);
 };
 

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useLoaderData } from "react-router";
+import { type MetaArgs, useLoaderData } from "react-router";
 
 import Background from "~/components/Background";
 import Container from "~/components/Container";
@@ -35,7 +35,7 @@ const groupRoutesByParent = (routes: Route[]): Route[] => {
   return Array.from(routeMap.values()).filter((route) => !route.parent);
 };
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_SITEMAP.title, matches);
 };
 

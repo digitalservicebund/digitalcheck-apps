@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { type MetaArgs, useLoaderData } from "react-router";
 
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
@@ -15,7 +15,7 @@ import PreCheckNavigation from "./vorpruefung.$questionId/PreCheckNavigation";
 const { questions, generalInfo } = preCheck;
 const { headline, text, nextButton, hint } = generalInfo;
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_GENERAL_INFO.title, matches);
 };
 

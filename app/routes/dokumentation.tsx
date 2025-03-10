@@ -1,3 +1,4 @@
+import { type MetaArgs } from "react-router";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
@@ -9,9 +10,8 @@ import SupportBanner from "~/components/SupportBanner";
 import { documentation } from "~/resources/content";
 import { ROUTE_DOCUMENTATION } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
-import type { Route } from "./+types/dokumentation";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_DOCUMENTATION.title, matches);
 };
 

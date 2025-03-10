@@ -1,7 +1,7 @@
 import { useForm, validationError } from "@rvf/react-router";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
-import { redirect, useLoaderData } from "react-router";
+import { redirect, useLoaderData, type MetaArgs } from "react-router";
 
 import { z } from "zod";
 import ButtonContainer from "~/components/ButtonContainer";
@@ -21,7 +21,7 @@ import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_PRECHECK.title, matches);
 };
 

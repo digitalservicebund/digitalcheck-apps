@@ -8,7 +8,7 @@ import {
 } from "@digitalservicebund/icons";
 import { validationError } from "@rvf/react-router";
 import React, { useState } from "react";
-import { data, redirect, useLoaderData } from "react-router";
+import { data, redirect, useLoaderData, type MetaArgs } from "react-router";
 import { twJoin } from "tailwind-merge";
 
 import Accordion from "~/components/Accordion";
@@ -49,7 +49,7 @@ const nextSteps = {
   [ResultType.NEGATIVE]: preCheck.result.negative.nextSteps,
 };
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_RESULT.title, matches);
 };
 

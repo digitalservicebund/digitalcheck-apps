@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { type MetaArgs, useLoaderData } from "react-router";
 
 import Background from "~/components/Background";
 import Box from "~/components/Box";
@@ -57,7 +57,7 @@ export function loader({ params }: Route.LoaderArgs) {
 export const meta: Route.MetaFunction = ({ data, matches }) => {
   return prependMetaTitle(
     data ? data.route.title : ROUTE_METHODS.title,
-    matches,
+    matches as MetaArgs["matches"],
   );
 };
 

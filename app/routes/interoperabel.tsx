@@ -1,5 +1,5 @@
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
-import { Link } from "react-router";
+import { Link, type MetaArgs } from "react-router";
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";
@@ -20,9 +20,8 @@ import {
 } from "~/resources/staticRoutes";
 import { useFeatureFlag } from "~/utils/featureFlags";
 import prependMetaTitle from "~/utils/metaTitle";
-import type { Route } from "./+types/interoperabel";
 
-export const meta: Route.MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_INTEROPERABILITY.title, matches);
 };
 
