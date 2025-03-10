@@ -1,6 +1,6 @@
-import { createRemixStub } from "@remix-run/testing";
 import { render, screen } from "@testing-library/react";
 import { act } from "react";
+import { createRoutesStub } from "react-router";
 import type { Absatz, Paragraph, Prinzip } from "~/utils/strapiData.server";
 import ParagraphList from "./ParagraphList";
 
@@ -141,7 +141,7 @@ const PARAGRAPHS: Paragraph[] = [
   },
 ];
 
-const RemixStubAllPrinciples = createRemixStub([
+const RemixStubAllPrinciples = createRoutesStub([
   {
     path: "/",
     Component: () =>
@@ -152,7 +152,7 @@ const RemixStubAllPrinciples = createRemixStub([
   },
 ]);
 
-const RemixStubFirstPrinciple = createRemixStub([
+const RemixStubFirstPrinciple = createRoutesStub([
   {
     path: "/",
     Component: () =>

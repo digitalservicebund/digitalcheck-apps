@@ -1,10 +1,10 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
 import { promises as fs } from "fs";
 import mime from "mime-types";
 import path from "path";
 import trackCustomEvent from "~/utils/trackCustomEvent.server";
+import type { Route } from "./+types/download.$fileName";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const { fileName } = params;
 
   if (!fileName) {

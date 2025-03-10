@@ -1,6 +1,6 @@
 import Check from "@digitalservicebund/icons/Check";
-import { Link } from "@remix-run/react";
 import { useId } from "react";
+import { Link } from "react-router";
 import { twJoin } from "tailwind-merge";
 import { preCheck } from "~/resources/content";
 import type {

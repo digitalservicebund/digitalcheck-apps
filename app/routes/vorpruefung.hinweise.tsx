@@ -1,5 +1,5 @@
-import { type LoaderFunctionArgs } from "@remix-run/node";
-import { type MetaFunction, useLoaderData } from "@remix-run/react";
+import { type MetaArgs, useLoaderData } from "react-router";
+
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
 import Heading from "~/components/Heading";
@@ -9,16 +9,17 @@ import { general, preCheck } from "~/resources/content";
 import { ROUTE_GENERAL_INFO, ROUTE_PRECHECK } from "~/resources/staticRoutes";
 import { getAnswersFromCookie } from "~/utils/cookies.server";
 import prependMetaTitle from "~/utils/metaTitle";
+import type { Route } from "./+types/vorpruefung.hinweise";
 import PreCheckNavigation from "./vorpruefung.$questionId/PreCheckNavigation";
 
 const { questions, generalInfo } = preCheck;
 const { headline, text, nextButton, hint } = generalInfo;
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_GENERAL_INFO.title, matches);
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const { answers } = await getAnswersFromCookie(request);
   return { answers };
 }

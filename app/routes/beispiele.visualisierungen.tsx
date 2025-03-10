@@ -1,4 +1,5 @@
-import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, type MetaArgs } from "react-router";
+
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import Header from "~/components/Header";
@@ -13,7 +14,7 @@ import {
   Visualisierung,
 } from "~/utils/strapiData.server";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_VISUALISATIONS.title, matches);
 };
 

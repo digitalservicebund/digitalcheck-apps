@@ -7,11 +7,11 @@
 import crypto from "node:crypto";
 import { PassThrough } from "node:stream";
 
-import type { EntryContext } from "@remix-run/node";
-import { createReadableStreamFromReadable } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
+import { createReadableStreamFromReadable } from "@react-router/node";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import type { EntryContext } from "react-router";
+import { ServerRouter } from "react-router";
 import logResponseStatus from "~/utils/logging";
 import { NonceProvider } from "~/utils/nonce";
 
@@ -34,7 +34,9 @@ if (
   });
 }
 
-const ABORT_DELAY = 5_000;
+// Reject/cancel all pending promises after 5 seconds
+export const streamTimeout = 5000;
+
 export const STRAPI_MEDIA_URL =
   process.env.STRAPI_MEDIA_URL ||
   "https://secure-dinosaurs-1a634d1a3d.media.strapiapp.com";
@@ -43,7 +45,7 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
 ) {
   const startTime = Date.now();
   const isReadinessCheck =
@@ -55,7 +57,7 @@ export default function handleRequest(
       request,
       responseStatusCode,
       responseHeaders,
-      remixContext,
+      reactRouterContext,
       startTime,
     );
   } else {
@@ -63,7 +65,7 @@ export default function handleRequest(
       request,
       responseStatusCode,
       responseHeaders,
-      remixContext,
+      reactRouterContext,
       startTime,
     );
   }
@@ -73,17 +75,13 @@ function handleBotRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
   startTime: number,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer
-        context={remixContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />,
+      <ServerRouter context={reactRouterContext} url={request.url} />,
       {
         onAllReady() {
           shellRendered = true;
@@ -124,7 +122,9 @@ function handleBotRequest(
       },
     );
 
-    setTimeout(abort, ABORT_DELAY);
+    // Automatically timeout the React renderer after 6 seconds, which ensures
+    // React has enough time to flush down the rejected boundary contents
+    setTimeout(abort, streamTimeout + 1000);
   });
 }
 
@@ -132,7 +132,7 @@ function handleBrowserRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
   startTime: number,
 ) {
   const nonce = crypto.randomBytes(16).toString("hex");
@@ -146,13 +146,14 @@ function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <NonceProvider value={nonce}>
-        <RemixServer
-          context={remixContext}
+        <ServerRouter
+          context={reactRouterContext}
           url={request.url}
-          abortDelay={ABORT_DELAY}
+          nonce={nonce}
         />
       </NonceProvider>,
       {
+        nonce,
         onShellReady() {
           shellRendered = true;
           const body = new PassThrough();
@@ -185,7 +186,9 @@ function handleBrowserRequest(
       },
     );
 
-    setTimeout(abort, ABORT_DELAY);
+    // Automatically timeout the React renderer after 6 seconds, which ensures
+    // React has enough time to flush down the rejected boundary contents
+    setTimeout(abort, streamTimeout + 1000);
   })
     .then((response) => {
       logResponseStatus(

@@ -1,10 +1,10 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PDFBool, PDFDocument, PDFName } from "pdf-lib";
 import { preCheck } from "~/resources/content";
 import { userAnswers } from "~/utils/cookies.server";
 import trackCustomEvent from "~/utils/trackCustomEvent.server";
+import type { Route } from "./+types/vorpruefung.ergebnis.$fileName[.pdf]";
 import { PreCheckAnswers } from "./vorpruefung.$questionId/route";
 
 export const FIELD_NAME_POLICY_TITLE = "Titel des Regelungsvorhabens";
@@ -101,14 +101,14 @@ const createPreCheckPDF = async function (
   }
 };
 
-export function loader({ request }: LoaderFunctionArgs) {
+export function loader({ request }: Route.LoaderArgs) {
   if (request.method !== "POST") {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
   }
 }
 
-export async function action({ params, request }: ActionFunctionArgs) {
+export async function action({ params, request }: Route.ActionArgs) {
   const { fileName } = params;
   const formData = await request.formData();
   const { title, negativeReasoning, ...answers } = Object.fromEntries(formData);

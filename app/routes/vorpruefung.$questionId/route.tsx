@@ -1,12 +1,8 @@
-import {
-  ActionFunctionArgs,
-  json,
-  type LoaderFunctionArgs,
-} from "@remix-run/node";
-import { MetaFunction, redirect, useLoaderData } from "@remix-run/react";
-import { useForm, validationError } from "@rvf/remix";
+import { useForm, validationError } from "@rvf/react-router";
 import { withZod } from "@rvf/zod";
 import { useEffect, useState } from "react";
+import { redirect, useLoaderData, type MetaArgs } from "react-router";
+
 import { z } from "zod";
 import ButtonContainer from "~/components/ButtonContainer";
 import Container from "~/components/Container";
@@ -20,15 +16,16 @@ import {
 } from "~/utils/cookies.server";
 import prependMetaTitle from "~/utils/metaTitle";
 import trackCustomEvent from "~/utils/trackCustomEvent.server";
+import type { Route } from "./+types/route";
 import PreCheckNavigation from "./PreCheckNavigation";
 
 const { questions, answerOptions, nextButton } = preCheck;
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_PRECHECK.title, matches);
 };
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
+export async function loader({ request, params }: Route.LoaderArgs) {
   const { answers } = await getAnswersFromCookie(request);
   const questionIdx = questions.findIndex((q) => q.id === params.questionId);
   // return 404 if the question is not found
@@ -47,7 +44,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     });
   }
 
-  return json({ questionIdx, question: questions[questionIdx], answers });
+  return { questionIdx, question: questions[questionIdx], answers };
 }
 
 const validator = withZod(
@@ -67,7 +64,7 @@ const validator = withZod(
   }),
 );
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const result = await validator.validate(await request.formData());
 
   if (result.error) {

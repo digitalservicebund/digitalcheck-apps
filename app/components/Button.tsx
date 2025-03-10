@@ -1,5 +1,5 @@
 import { cloneElement, type ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import twMerge from "~/utils/tailwindMerge";
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   fullWidth?: boolean;
+  prefetch?: "intent" | "viewport" | "render";
   onClickCallback?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
@@ -36,6 +37,7 @@ function Button({
   look,
   size,
   href,
+  prefetch,
   onClickCallback,
   ...props
 }: ButtonProps | ButtonLinkProps) {
@@ -95,6 +97,7 @@ function Button({
         reloadDocument={isDownload}
         download={isDownload}
         title={isDownload ? `${text} (${ext}-Datei)` : undefined}
+        prefetch={prefetch}
       >
         {iconLeft} {children ? childrenSpan : textSpan} {iconRight}
       </Link>

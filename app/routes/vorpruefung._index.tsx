@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/react";
+import { type MetaArgs } from "react-router";
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
@@ -21,7 +21,7 @@ import {
 import useFeatureFlag from "~/utils/featureFlags";
 import prependMetaTitle from "~/utils/metaTitle";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_PRECHECK.title, matches);
 };
 

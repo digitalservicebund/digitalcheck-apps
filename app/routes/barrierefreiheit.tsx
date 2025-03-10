@@ -1,4 +1,4 @@
-import { MetaFunction } from "@remix-run/react";
+import { type MetaArgs } from "react-router";
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import Header from "~/components/Header";
@@ -7,7 +7,7 @@ import { accessibility } from "~/resources/content";
 import { ROUTE_A11Y } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_A11Y.title, matches);
 };
 

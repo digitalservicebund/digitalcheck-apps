@@ -1,5 +1,5 @@
 import ZoomInOutlined from "@digitalservicebund/icons/ZoomInOutlined";
-import { Link, MetaFunction } from "@remix-run/react";
+import { Link, type MetaArgs } from "react-router";
 import Accordion from "~/components/Accordion";
 import Background from "~/components/Background";
 import ButtonContainer from "~/components/ButtonContainer";
@@ -21,7 +21,7 @@ import {
 import { useFeatureFlag } from "~/utils/featureFlags";
 import prependMetaTitle from "~/utils/metaTitle";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_INTEROPERABILITY.title, matches);
 };
 

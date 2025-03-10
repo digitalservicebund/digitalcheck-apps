@@ -1,4 +1,4 @@
-import { useOutletContext } from "@remix-run/react";
+import { useOutletContext } from "react-router";
 
 export const useFeatureFlag = (name: string) => {
   const { featureFlags } = useOutletContext<{

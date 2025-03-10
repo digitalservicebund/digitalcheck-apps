@@ -1,5 +1,3 @@
-import { LoaderFunction } from "@remix-run/node";
-
-export const loader: LoaderFunction = () => {
+export const loader = () => {
   return "OK";
 };

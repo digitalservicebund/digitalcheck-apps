@@ -1,5 +1,5 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { type MetaArgs, useLoaderData } from "react-router";
+
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
@@ -24,6 +24,7 @@ import {
   ROUTE_METHODS_TECHNICAL_FEASIBILITY,
 } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
+import type { Route } from "./+types/methoden_.$subPage";
 
 const contentMap = {
   [ROUTE_METHODS_RESPONSIBLE_ACTORS.title]: responsibleActors,
@@ -37,7 +38,7 @@ const notFound = new Response("Method page not found", {
   statusText: "Not Found",
 });
 
-export function loader({ params }: LoaderFunctionArgs) {
+export function loader({ params }: Route.LoaderArgs) {
   const { subPage } = params;
   if (!subPage) {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
@@ -53,10 +54,10 @@ export function loader({ params }: LoaderFunctionArgs) {
   return { route };
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data, matches }) => {
+export const meta: Route.MetaFunction = ({ data, matches }) => {
   return prependMetaTitle(
     data ? data.route.title : ROUTE_METHODS.title,
-    matches,
+    matches as MetaArgs["matches"],
   );
 };
 

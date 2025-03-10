@@ -1,9 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import {
-  MetaFunction,
-  PrefetchPageLinks,
-  useLoaderData,
-} from "@remix-run/react";
+import { type MetaArgs, useLoaderData } from "react-router";
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import Container from "~/components/Container";
@@ -25,12 +20,13 @@ import {
   Prinzip,
 } from "~/utils/strapiData.server";
 import { slugify } from "~/utils/utilFunctions";
+import type { Route } from "./+types/methoden_.fuenf-prinzipien";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_METHODS_FIVE_PRINCIPLES.title, matches);
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const referer = request.headers.get("referer");
   let pathname = "/";
 
@@ -114,6 +110,7 @@ export default function FivePrinciples() {
                       {
                         text: fivePrinciples.buttonText,
                         href: buttonLink,
+                        prefetch: "viewport",
                         look: "tertiary" as const,
                         "aria-label":
                           index > 0
@@ -124,8 +121,6 @@ export default function FivePrinciples() {
                   },
                 ]}
               />
-              {/* The button prop does not support prefetching, so we are using the PrefetchPageLinks component instead */}
-              <PrefetchPageLinks page={buttonLink} />
             </Container>
           </Background>
         );

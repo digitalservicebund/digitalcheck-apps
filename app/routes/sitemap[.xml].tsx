@@ -1,7 +1,6 @@
-import { LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 import allRoutes from "~/resources/allRoutes";
-
-export const loader: LoaderFunction = ({ request }: LoaderFunctionArgs) => {
+import type { Route } from "./+types/sitemap[.xml]";
+export const loader = ({ request }: Route.LoaderArgs) => {
   const origin = new URL(request.url).origin;
   const urls = allRoutes.map((route) => `${origin}${route.url}`);
 

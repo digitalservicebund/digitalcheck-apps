@@ -1,6 +1,7 @@
-import { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
+import { type MetaArgs } from "react-router";
 import { twJoin } from "tailwind-merge";
+
 import Background from "~/components/Background";
 import Box from "~/components/Box";
 import ButtonContainer from "~/components/ButtonContainer";
@@ -23,7 +24,7 @@ const {
   subtitle,
 } = support;
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_SUPPORT.title, matches);
 };
 

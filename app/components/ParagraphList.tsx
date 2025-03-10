@@ -1,7 +1,7 @@
 import ArrowUpwardOutlined from "@digitalservicebund/icons/ArrowUpwardOutlined";
-import { Link, useLocation } from "@remix-run/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ReactNode, useState } from "react";
+import { Link, useLocation } from "react-router";
 import { twJoin } from "tailwind-merge";
 import DetailsSummary from "~/components/DetailsSummary";
 import Heading from "~/components/Heading";

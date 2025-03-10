@@ -1,6 +1,6 @@
 import OpenInNewIcon from "@digitalservicebund/icons/OpenInNew";
-import { Link } from "@remix-run/react";
 import { ReactNode } from "react";
+import { Link } from "react-router";
 import twMerge from "~/utils/tailwindMerge";
 
 export type CustomLinkProps = {

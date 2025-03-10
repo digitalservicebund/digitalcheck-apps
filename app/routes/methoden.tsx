@@ -1,5 +1,6 @@
-import { type MetaFunction } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
+import { type MetaArgs } from "react-router";
+
 import Background from "~/components/Background";
 import Container from "~/components/Container";
 import FeedbackForm from "~/components/FeedbackForm";
@@ -11,7 +12,7 @@ import { methods } from "~/resources/content";
 import { ROUTE_METHODS } from "~/resources/staticRoutes";
 import prependMetaTitle from "~/utils/metaTitle";
 
-export const meta: MetaFunction = ({ matches }) => {
+export const meta = ({ matches }: MetaArgs) => {
   return prependMetaTitle(ROUTE_METHODS.title, matches);
 };
 

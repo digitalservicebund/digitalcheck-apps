@@ -1,9 +1,9 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { ROUTE_RESULT_PDF } from "~/resources/staticRoutes";
 import { ENCRYPTION_ALGORITHM, ENCRYPTION_KEY } from "~/utils/constants.server";
 import getBaseURL from "~/utils/getBaseURL";
+import type { Route } from "./+types/uniq.($encrypted).($iv)";
 
 enum QuestionAbbreviations {
   "it-system" = "a",
@@ -97,7 +97,7 @@ const unzip = (zipped: string) => {
   return unzippedText;
 };
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const { encrypted, iv } = params;
 
   if (encrypted && iv) {
@@ -143,7 +143,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   return null;
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   if (request.method !== "POST") {
     // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw new Response("Must be a POST request", { status: 405 });
