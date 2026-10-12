@@ -154,6 +154,7 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
           </summary>
           <div class="kern-accordion__body">
             <RichText
+              className="kern-body"
               markdown={dedent`
                 - **Core Person:** Für grundlegende Informationen über natürliche Personen, wie Name, Geburtsdatum und Geschlecht.
                 - **Core Business:** Zur eindeutigen Identifizierung und Beschreibung von Unternehmen und juristischen Personen.
@@ -253,12 +254,12 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
               <span class="kern-title">Wann ist eine Ausnahme zulässig?</span>
             </summary>
             <div class="kern-accordion__body">
-              <p>
+              <p class="kern-body">
                 Der Interoperable Europe Act (IEA) sieht vor, dass die Nutzung
                 von Standards wie DCAT-AP in begründeten Fällen abgelehnt werden
                 kann. Prüfen Sie folgende Punkte:
               </p>
-              <ul>
+              <ul class="kern-body">
                 <li>
                   <strong>Sicherheit & Geheimhaltung:</strong> Erfordert die
                   Struktur der Daten die Preisgabe von Informationen, die den
@@ -284,7 +285,7 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
               </span>
             </summary>
             <div class="kern-accordion__body space-y-24">
-              <div>
+              <div class="kern-body">
                 <p>
                   Als Hilfsmittel für die Informationsmodellierung verwenden Sie
                   eine gemeinsame Tabelle mit nachgelagerter Behörde und
@@ -297,7 +298,7 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                   zu verknüpfen. Im Folgenden ein Beispiel:
                 </p>
               </div>
-              <div class="kern-table-responsive">
+              <div class="kern-body kern-table-responsive">
                 <table
                   class:list={[
                     tableClasses,
@@ -422,6 +423,7 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
             </summary>
             <div class="kern-accordion__body">
               <RichText
+                className="kern-body"
                 markdown={dedent`
                   Der nationale Standard [„XHochschule"](https://www.xhochschule.de/web/vorgehen) (ein Standard der
                   Koordinierungsstelle für IT-Standards, KoSIT, für das Hochschulwesen)
@@ -466,6 +468,7 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
             </summary>
             <div class="kern-accordion__body">
               <RichText
+                className="kern-body"
                 markdown={dedent`
                   **[BRIS](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/blog/2017/09/19/533365899/Business+Register+Interconnection+System+BRIS) (Business Registers Interconnection System)**
 

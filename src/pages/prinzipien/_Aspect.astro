@@ -41,9 +41,9 @@ const number = `${prinzip.order}.${index + 1}`;
               <summary class="kern-accordion__header">
                 <span class="kern-title">{anwendung.Titel}</span>
               </summary>
-              <section class="kern-accordion__body space-y-40">
+              <section class="kern-accordion__body">
                 <RichText
-                  className="space-y-16"
+                  className="space-y-16 kern-body"
                   markdown={anwendung.Erklaerung}
                 />
                 {anwendung.Formulierungsbeispiel && (

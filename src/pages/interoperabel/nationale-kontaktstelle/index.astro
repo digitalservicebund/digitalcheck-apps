@@ -47,7 +47,7 @@ export const frontmatter = {
               <span class="kern-title">{item.title}</span>
             </summary>
             <div class="kern-accordion__body">
-              <RichText markdown={item.content} />
+              <RichText className="kern-body" markdown={item.content} />
             </div>
           </details>
         ))}

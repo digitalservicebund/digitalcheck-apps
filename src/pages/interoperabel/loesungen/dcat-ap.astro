@@ -162,12 +162,12 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
             <span class="kern-title">Wann ist eine Ausnahme zulässig?</span>
           </summary>
           <div class="kern-accordion__body">
-            <p>
+            <p class="kern-body">
               Der Interoperable Europe Act (IEA) sieht vor, dass die Nutzung von
               Standards wie DCAT-AP in begründeten Fällen abgelehnt werden kann.
               Prüfen Sie folgende Punkte:
             </p>
-            <ul>
+            <ul class="kern-body">
               <li>
                 <strong>Sicherheit & Geheimhaltung:</strong> Enthält die
                 Beschreibung des Datensatzes (die „Katalogkarte“) Informationen,
@@ -259,6 +259,7 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
             </summary>
             <div class="kern-accordion__body">
               <RichText
+                className="kern-body"
                 markdown={dedent`
                   Mit der Umsetzung der EU-Richtlinie über offene Daten (2019/1024) wurde
                   in Deutschland das Datennutzungsgesetz (DNG) geschaffen. Dieses
@@ -306,6 +307,7 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
             </summary>
             <div class="kern-accordion__body">
               <RichText
+                className="kern-body"
                 markdown={dedent`
                   Ein Meilenstein der rechtlich verankerten Interoperabilität. Die Richtlinie verpflichtete die
                   Mitgliedstaaten, Geodaten (z. B. zu Schutzgebieten oder Gewässernetzen) interoperabel
