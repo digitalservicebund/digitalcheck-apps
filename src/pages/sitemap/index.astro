@@ -1,5 +1,5 @@
 ---
-import { allRoutes, type Route } from "@/config/routes";
+import { allRoutes, home, type Route } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import SitemapList from "./_SitemapList.astro";
@@ -17,9 +17,10 @@ const groupRoutesByParent = (routes: readonly Route[]): RouteWithChildren[] => {
 
   routes.forEach((route) => {
     if (!route.sitemap) return;
-    // Top-level pages (parent: null, path !== "/") are treated as children of home,
+    // Top-level pages (parent: null, not home) are treated as children of home,
     // mirroring the old behaviour where home was the implicit root parent.
-    const parentPath = route.parent?.path ?? (route.path !== "/" ? "/" : null);
+    const parentPath =
+      route.parent?.path ?? (route.path !== home.path ? home.path : null);
     if (!parentPath) return;
     const parentRoute = routeMap.get(parentPath);
     if (parentRoute) {
@@ -27,7 +28,9 @@ const groupRoutesByParent = (routes: readonly Route[]): RouteWithChildren[] => {
     }
   });
 
-  return Array.from(routeMap.values()).filter((route) => route.path === "/");
+  return Array.from(routeMap.values()).filter(
+    (route) => route.path === home.path,
+  );
 };
 
 const routes = groupRoutesByParent(allRoutes);
