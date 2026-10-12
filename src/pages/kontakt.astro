@@ -3,10 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import KernCard from "@/components/KernCard.astro";
 import { interoperabel_nationaleKontaktstelle } from "@/config/routes";
-import {
-  ZFL_BASE_URL,
-  ZFL_PATH_DIGITALTAUGLICHKEIT,
-} from "@/resources/constants";
+import { ZFL_BASE_URL } from "@/resources/constants";
 import { contact } from "@/resources/content/shared/contact";
 import { withBase } from "@/utils/path";
 import regelungsbegleitungImage from "@/assets/images/regelungsbegleitung.png";
@@ -102,7 +99,7 @@ export const frontmatter = {
         />
         <KernCard
           title="Werkzeuge"
-          href={`${ZFL_BASE_URL}${ZFL_PATH_DIGITALTAUGLICHKEIT}`}
+          href={`${ZFL_BASE_URL}/werkzeuge`}
           body="Diverse Anleitungen und Hilfsmittel, die Sie bei Ihrer Regelungsarbeit unterstützen."
           image={werkzeugeImage}
           imageAlt="Symbolbild: Erstellung eines Flussdiagramms"
