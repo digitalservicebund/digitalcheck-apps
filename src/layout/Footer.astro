@@ -51,11 +51,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
   },
 ];
 
-const providerLinks: FooterLink[] = [
-  {
-    text: "DigitalService GmbH des Bundes",
-    url: "https://digitalservice.bund.de/",
-  },
+const metaLinks: FooterLink[] = [
   { text: "Zahlen und Fakten", url: `${ZFL_BASE_URL}/ueber/zahlen-und-fakten` },
   {
     text: "Open Source Code",
@@ -93,28 +89,39 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
           </div>
         ))}
       </nav>
-      <div class="flex flex-col gap-24">
-        <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-40">
+        <div class="kern-stack kern-stack-lg">
           <h2 class="kern-heading-medium mb-0 py-0">Kontaktieren Sie uns</h2>
-          <p class="kern-body kern-body--small py-0">
-            Support:{" "}
-            <a href={contact.phone} class="kern-link kern-link--small">
-              {contact.phoneDisplay}
-            </a>{" "}
-            oder{" "}
+          <ul class="list-unstyled flex flex-col gap-2">
+            <li>
+              <a href={contact.phone} class="kern-link kern-link--small">
+                {contact.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${contact.email}`}
+                class="kern-link kern-link--small"
+              >
+                {contact.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-24 gap-y-8">
+          <p class="kern-body kern-body--small mb-0 flex items-baseline gap-x-8 py-0">
+            Ein Angebot der
             <a
-              href={`mailto:${contact.email}`}
+              href="https://digitalservice.bund.de/"
+              target="_blank"
+              rel="noreferrer"
               class="kern-link kern-link--small"
             >
-              {contact.email}
+              DigitalService GmbH des Bundes
             </a>
           </p>
-        </div>
-        <p class="kern-body kern-body--small flex flex-wrap items-baseline gap-x-8 py-0 max-w-none">
-          Ein Angebot der
-          {providerLinks.map((link, index) => (
-            <>
-              {index > 0 && <span aria-hidden="true">·</span>}
+          <div class="flex flex-wrap gap-x-24">
+            {metaLinks.map((link) => (
               <a
                 href={link.url}
                 target="_blank"
@@ -123,9 +130,9 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
               >
                 {link.text}
               </a>
-            </>
-          ))}
-        </p>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </div>
