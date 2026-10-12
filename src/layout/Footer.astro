@@ -75,7 +75,7 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
       >
         {columns.map((column) => (
           <div class="kern-stack kern-stack-lg">
-            <h2 class="kern-heading-medium mb-0">{column.title}</h2>
+            <h2 class="kern-heading-medium mb-0 py-0">{column.title}</h2>
             <ul class="list-unstyled flex flex-col gap-2">
               {column.links.map((link) => (
                 <li>
@@ -83,7 +83,7 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
                     href={link.url}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noreferrer" : undefined}
-                    class="increase-tap-area kern-link kern-link--small"
+                    class="kern-link kern-link--small"
                   >
                     {link.text}
                   </a>
@@ -94,8 +94,8 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
         ))}
       </nav>
       <div class="kern-stack kern-stack-lg">
-        <h2 class="kern-heading-medium mb-0">Kontaktieren Sie uns</h2>
-        <p class="kern-body kern-body--small">
+        <h2 class="kern-heading-medium mb-0 py-0">Kontaktieren Sie uns</h2>
+        <p class="kern-body kern-body--small py-0">
           Support:{" "}
           <a href={contact.phone} class="kern-link kern-link--small">
             {contact.phoneDisplay}
@@ -109,7 +109,7 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
           </a>
         </p>
       </div>
-      <p class="kern-body kern-body--small">
+      <p class="kern-body kern-body--small py-0 -mt-8">
         Ein Angebot der{" "}
         <a
           href="https://digitalservice.bund.de/"
