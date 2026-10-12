@@ -36,6 +36,7 @@ const mockPrinzipData: PrinzipData & { Beschreibung: string } = {
   documentId: "id",
   URLBezeichnung: "nutzerfreundlichkeit",
   Name: "Prinzip Test 1: Nutzerfreundlichkeit",
+  Kurzbezeichnung: "Kurzbezeichnung",
   Beschreibung: "Beschreibung für Prinzip 1.",
   Kurzbeschreibung: "Kurzbeschreibung",
   Hilfetext: "",

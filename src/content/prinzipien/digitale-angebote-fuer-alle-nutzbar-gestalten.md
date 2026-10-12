@@ -2,6 +2,7 @@
 {
   "documentId": "r57rc9d82ulv2bsc3gdbnj73",
   "Name": "Digitale Angebote für alle nutzbar gestalten",
+  "Kurzbezeichnung": "Nutzbare Gestaltung",
   "order": 1,
   "Nummer": 1,
   "URLBezeichnung": "digitale-angebote-fuer-alle-nutzbar-gestalten",

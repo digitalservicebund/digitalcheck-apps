@@ -69,6 +69,7 @@ const aspekte: PrinzipAspekt[] = [
 const prinzips: Prinzip[] = [
   {
     Name: "Prinzip 1: Digitale Angebote",
+    Kurzbezeichnung: "Kurzbezeichnung",
     URLBezeichnung: "prinzip-1-digitale-angebote",
     documentId: "1",
     Nummer: 1,

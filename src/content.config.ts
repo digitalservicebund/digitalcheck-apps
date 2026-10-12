@@ -19,6 +19,7 @@ const prinzipAspektSchema = z.object({
 const prinzipSchema = z.object({
   documentId: z.string(),
   Name: z.string(),
+  Kurzbezeichnung: z.string(),
   Kurzbeschreibung: z.string(),
   Hilfetext: z.string(),
   Erklaerungshilfe: z.string(),

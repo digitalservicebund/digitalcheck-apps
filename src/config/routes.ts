@@ -349,7 +349,7 @@ export const prinzipien = {
   sitemap: true,
   isStagingOnly: false,
   navOrder: null,
-  navLabel: null,
+  navLabel: "Übersicht",
 } as const;
 
 export const sitemap = {

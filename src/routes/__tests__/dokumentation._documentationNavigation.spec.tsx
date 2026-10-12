@@ -43,6 +43,7 @@ import {
 const mockPrinzip: Prinzip = {
   documentId: `${dokumentation.path}/prinzipA`,
   Name: "Prinzip A",
+  Kurzbezeichnung: "Kurzbezeichnung",
   URLBezeichnung: "prinzipA",
   Kurzbeschreibung: "",
   Hilfetext: "",

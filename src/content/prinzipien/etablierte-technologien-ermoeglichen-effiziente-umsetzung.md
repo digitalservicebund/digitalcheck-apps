@@ -2,6 +2,7 @@
 {
   "documentId": "habu0yjh39lc5wug5mqsqzaj",
   "Name": "Etablierte Technologien ermöglichen effiziente Umsetzung",
+  "Kurzbezeichnung": "Etablierte Technologien",
   "order": 3,
   "Nummer": 6,
   "URLBezeichnung": "etablierte-technologien-ermoeglichen-effiziente-umsetzung",

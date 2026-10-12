@@ -2,6 +2,7 @@ import { prinzipien, type Route } from "@/config/routes";
 
 type PrinzipFrontmatter = {
   Name: string;
+  Kurzbezeichnung: string;
   URLBezeichnung: string;
   order: number;
 };
@@ -14,7 +15,7 @@ const frontmatters = import.meta.glob<PrinzipFrontmatter>(
 );
 
 export const prinzipienRoutes: Route[] = Object.values(frontmatters).map(
-  ({ Name, URLBezeichnung, order }) => ({
+  ({ Name, Kurzbezeichnung, URLBezeichnung, order }) => ({
     key: `prinzipien_${URLBezeichnung}`,
     path: `${prinzipien.path}/${URLBezeichnung}`,
     title: Name,
@@ -22,6 +23,6 @@ export const prinzipienRoutes: Route[] = Object.values(frontmatters).map(
     sitemap: true,
     isStagingOnly: false,
     navOrder: order,
-    navLabel: null,
+    navLabel: `Prinzip ${order}: ${Kurzbezeichnung}`,
   }),
 );

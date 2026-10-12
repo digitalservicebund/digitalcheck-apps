@@ -85,6 +85,7 @@ describe("DocumentationSummary", () => {
     mockNavigationContext.prinzips = [
       {
         Name: "Digitale Angebote für alle nutzbar gestalten",
+        Kurzbezeichnung: "Kurzbezeichnung",
         URLBezeichnung: "prinzip-digitale-angebote",
         documentId: "1",
         Nummer: 1,

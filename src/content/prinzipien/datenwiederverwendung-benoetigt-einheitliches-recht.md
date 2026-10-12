@@ -2,6 +2,7 @@
 {
   "documentId": "s18bibg9sdf0jt8up7h8btup",
   "Name": "Datenwiederverwendung benötigt einheitliches Recht",
+  "Kurzbezeichnung": "Datenwiederverwendung",
   "order": 2,
   "Nummer": 2,
   "URLBezeichnung": "datenwiederverwendung-benoetigt-einheitliches-recht",

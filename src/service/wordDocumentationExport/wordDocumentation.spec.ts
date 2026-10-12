@@ -18,6 +18,7 @@ const prinzips: Prinzip[] = [
   {
     documentId: "p1",
     Name: "Principle One",
+    Kurzbezeichnung: "Kurzbezeichnung",
     Kurzbeschreibung: "",
     Hilfetext: "DESC1",
     Erklaerungshilfe: "",
@@ -42,6 +43,7 @@ const prinzips: Prinzip[] = [
   {
     documentId: "p2",
     Name: "Principle Two",
+    Kurzbezeichnung: "Kurzbezeichnung",
     Kurzbeschreibung: "",
     Hilfetext: "DESC2",
     Erklaerungshilfe: "",
