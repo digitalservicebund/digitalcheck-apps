@@ -7,7 +7,9 @@ export const contact = {
     subject
       ? `[${email}](mailto:${email}?subject=${encodeURIComponent(subject)})`
       : `[${email}](mailto:${email})`,
-  phoneDisplay: "0151/40 76 78 39",
+  // Adds <wbr> after "@" and before each "." to allow clean line breaks
+  emailDisplayHtml: (email: string) => email.replace(/@|(?=\.)/g, "$&<wbr>"),
+  phoneDisplay: "0151 / 4076 7839",
   phone: "tel:+4915140767839",
   mdPhoneLink: () => `[${contact.phoneDisplay}](${contact.phone})`,
 };
