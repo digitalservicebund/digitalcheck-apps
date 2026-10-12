@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
+import ImageZoomable from "@/components/ImageZoomable";
 import RichText from "@/components/RichText";
 import TocContainer from "@/components/TocContainer.astro";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -16,7 +16,7 @@ export const frontmatter = {
 
 <Layout title={frontmatter.title}>
   <main>
-    <div class="breakout-grid-toc">
+    <div class="breakout-grid">
       <Hero>
         <h1>{frontmatter.title}</h1>
         <p>
@@ -32,12 +32,16 @@ export const frontmatter = {
         </p>
       </Hero>
       <figure class="breakout mt-64 space-y-24">
-        <Image
-          src={infographic}
-          alt="Infografik zum EU-Interoperabilitäts-Ökosystem: Sieben zentrale Rechtsakte (u. a. IEA, AI Act, DSGVO) sind kreisförmig um das Zentrum European Digital Single Market angeordnet. Die Grafik gruppiert diese in die Themenfelder Zusammenarbeit, Technologie & Datenschutz, Teilen von Daten sowie Zugang zu Diensten."
-          class="mx-auto"
+        <ImageZoomable
+          image={{
+            url: infographic.src,
+            width: infographic.width,
+            height: infographic.height,
+            alternativeText:
+              "Infografik zum EU-Interoperabilitäts-Ökosystem: Sieben zentrale Rechtsakte (u. a. IEA, AI Act, DSGVO) sind kreisförmig um das Zentrum European Digital Single Market angeordnet. Die Grafik gruppiert diese in die Themenfelder Zusammenarbeit, Technologie & Datenschutz, Teilen von Daten sowie Zugang zu Diensten.",
+          }}
         />
-        <figcaption class="kern-subline-small text-kern-layout-text-muted">
+        <figcaption class="kern-subline-small font-bold text-kern-layout-text-muted">
           Zusammenspiel europäischer Rechtsakte: Die Infografik zeigt, wie der
           Interoperable Europe Act und das EIF-Rahmenwerk mit weiteren zentralen
           Verordnungen des europäischen digitalen Binnenmarkts verzahnt sind.
