@@ -298,7 +298,12 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                 </p>
               </div>
               <div class="kern-table-responsive">
-                <table class={tableClasses}>
+                <table
+                  class:list={[
+                    tableClasses,
+                    "[&_tbody_tr:nth-child(even)]:bg-kern-layout-background-default",
+                  ]}
+                >
                   <thead class="kern-table__head">
                     <tr class="kern-table__row">
                       <th class="kern-table__header" scope="col">
