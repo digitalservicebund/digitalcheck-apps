@@ -8,7 +8,6 @@ import {
   home,
   impressum,
   interoperabel,
-  kontakt,
   methoden,
   normenkontrollrat,
   prinzipien,
@@ -19,15 +18,15 @@ import { ZFL_BASE_URL } from "@/resources/constants";
 import { contact } from "@/resources/content/shared/contact";
 import { withBase } from "@/utils/path";
 
-type FooterLink = { text: string; url: string; external?: boolean };
+type FooterLink = { text: string; url: string };
 
 const columns: { title: string; links: FooterLink[] }[] = [
   {
-    title: "Digitalcheck machen",
+    title: "Digitalcheck",
     links: [
       { text: "Übersicht", url: home.path },
       { text: "Vorprüfung", url: vorpruefung.path },
-      { text: "Regelung erarbeiten", url: methoden.path },
+      { text: "Erarbeitung", url: methoden.path },
       { text: "Dokumentation", url: dokumentation.path },
     ],
   },
@@ -38,12 +37,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { text: "EU-Interoperabilität", url: interoperabel.path },
       { text: "Bundesländer", url: bundeslaender.path },
       { text: "Normenkontrollrat", url: normenkontrollrat.path },
-      {
-        text: "Zahlen und Fakten",
-        url: `${ZFL_BASE_URL}/ueber/zahlen-und-fakten`,
-        external: true,
-      },
-      { text: "Kontakt", url: kontakt.path },
+      { text: "Das ist neu", url: dasIstNeu.path },
     ],
   },
   {
@@ -53,8 +47,19 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { text: "Datenschutzerklärung", url: datenschutz.path },
       { text: "Barrierefreiheit", url: barrierefreiheit.path },
       { text: "Sitemap", url: sitemap.path },
-      { text: "Das ist neu", url: dasIstNeu.path },
     ],
+  },
+];
+
+const providerLinks: FooterLink[] = [
+  {
+    text: "DigitalService GmbH des Bundes",
+    url: "https://digitalservice.bund.de/",
+  },
+  { text: "Zahlen und Fakten", url: `${ZFL_BASE_URL}/ueber/zahlen-und-fakten` },
+  {
+    text: "Open Source Code",
+    url: "https://github.com/digitalservicebund/digitalcheck-dito",
   },
 ];
 
@@ -68,7 +73,7 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
 >
   <!-- Re-map KERN's contextual colors so text and links render light-on-dark. -->
   <div class="bg-kern-darkblue-800 breakout border-t-2 border-blue-300 [--kern-color-action-default-contextual:var(--kern-color-white)] [--kern-color-action-focus-default-contextual:var(--kern-color-white)] [--kern-color-action-visited:var(--kern-color-white)] [--kern-color-layout-text-default-contextual:var(--kern-color-layout-text-inverse)]">
-    <div class="flex flex-col gap-40 pt-72 pb-40">
+    <div class="flex flex-col gap-40 pt-64 pb-40">
       <nav
         class="grid grid-cols-1 gap-32 sm:grid-cols-3"
         aria-label="Schnellübersicht"
@@ -79,12 +84,7 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
             <ul class="list-unstyled flex flex-col gap-2">
               {column.links.map((link) => (
                 <li>
-                  <a
-                    href={link.url}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noreferrer" : undefined}
-                    class="kern-link kern-link--small"
-                  >
+                  <a href={link.url} class="kern-link kern-link--small">
                     {link.text}
                   </a>
                 </li>
@@ -93,33 +93,40 @@ const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
           </div>
         ))}
       </nav>
-      <div class="kern-stack kern-stack-lg">
-        <h2 class="kern-heading-medium mb-0 py-0">Kontaktieren Sie uns</h2>
-        <p class="kern-body kern-body--small py-0">
-          Support:{" "}
-          <a href={contact.phone} class="kern-link kern-link--small">
-            {contact.phoneDisplay}
-          </a>{" "}
-          oder{" "}
-          <a
-            href={`mailto:${contact.email}`}
-            class="kern-link kern-link--small"
-          >
-            {contact.email}
-          </a>
+      <div class="flex flex-col gap-24">
+        <div class="flex flex-col gap-8">
+          <h2 class="kern-heading-medium mb-0 py-0">Kontaktieren Sie uns</h2>
+          <p class="kern-body kern-body--small py-0">
+            Support:{" "}
+            <a href={contact.phone} class="kern-link kern-link--small">
+              {contact.phoneDisplay}
+            </a>{" "}
+            oder{" "}
+            <a
+              href={`mailto:${contact.email}`}
+              class="kern-link kern-link--small"
+            >
+              {contact.email}
+            </a>
+          </p>
+        </div>
+        <p class="kern-body kern-body--small flex flex-wrap items-baseline gap-x-8 py-0 max-w-none">
+          Ein Angebot der
+          {providerLinks.map((link, index) => (
+            <>
+              {index > 0 && <span aria-hidden="true">·</span>}
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                class="kern-link kern-link--small"
+              >
+                {link.text}
+              </a>
+            </>
+          ))}
         </p>
       </div>
-      <p class="kern-body kern-body--small py-0 -mt-8">
-        Ein Angebot der{" "}
-        <a
-          href="https://digitalservice.bund.de/"
-          target="_blank"
-          rel="noreferrer"
-          class="kern-link kern-link--small"
-        >
-          DigitalService GmbH des Bundes
-        </a>
-      </p>
     </div>
   </div>
 
