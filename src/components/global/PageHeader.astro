@@ -126,12 +126,18 @@ function navItemStyle(active = false) {
   @reference "@/styles/globals.css";
 
   .mobile-menu-popover {
-    @apply bg-blue-200;
-    --active-item-bg-color: var(--color-blue-300);
+    @apply bg-kern-darkblue-100;
+    --active-item-bg-color: var(--color-kern-darkblue-150);
   }
 
   .mobile-menu-popover[data-depth="0"] {
     @apply bg-white;
+    --active-item-bg-color: var(--color-kern-darkblue-050);
+  }
+
+  .mobile-menu-popover[data-depth="1"] {
+    @apply bg-kern-darkblue-050;
+    --active-item-bg-color: var(--color-kern-darkblue-100);
   }
 
   [x-cloak] {
