@@ -26,6 +26,6 @@
 }
 ---
 
-Digitale Angebote können schneller bereitgestellt sowie günstiger entwickelt und betrieben werden, wenn sie auf bestehenden Technologien aufbauen. Offene, standardisierte Schnittstellen und Open Source erhöhen die [Sicherheit der Angebote](#datenschutz-und-informationssicherheit-schaffen-vertrauen) und fördern die Interoperabilität.
+Digitale Angebote können schneller bereitgestellt sowie günstiger entwickelt und betrieben werden, wenn sie auf bestehenden Technologien aufbauen. Offene, standardisierte Schnittstellen und Open Source erhöhen die [Sicherheit der Angebote](/prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen.) und fördern die Interoperabilität.
 
 Echte Regelungsbeispiele zu diesem Prinzip finden Sie im [Zentrum für Legistik](https://zfl.bund.de/werkzeuge/digitaltauglichkeit/beispiele#prinzip-3).
