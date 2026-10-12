@@ -111,7 +111,7 @@
     }
   }
 
-  a:not(.link-unstyled, .kern-link) {
+  a:not(.link-unstyled, .kern-link, .kern-btn) {
     @apply text-link;
   }
 
