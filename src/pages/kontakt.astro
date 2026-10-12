@@ -29,7 +29,7 @@ export const frontmatter = {
       </p>
     </Hero>
     <section>
-      <div class="grid grid-cols-1 gap-24 md:grid-cols-2">
+      <div class="grid grid-cols-1 gap-24 lg:grid-cols-2">
         <KernCard
           title="Digitalcheck"
           body="Erfahren Sie mehr zur Vorprüfung, Digitaltauglichkeit und Dokumentation."
@@ -44,11 +44,14 @@ export const frontmatter = {
             </li>
             <li>
               <a
-                class="kern-link items-center"
+                class="kern-link items-center wrap-anywhere"
                 href={`mailto:${contact.email}`}
               >
-                <IconMail class="size-24" aria-hidden="true" />
-                {contact.email}
+                <IconMail
+                  class="hidden size-24 shrink-0 sm:block"
+                  aria-hidden="true"
+                />
+                <span set:html={contact.emailDisplayHtml(contact.email)} />
               </a>
             </li>
           </ul>
@@ -61,11 +64,18 @@ export const frontmatter = {
           <ul class="list-unstyled space-y-8">
             <li>
               <a
-                class="kern-link items-center"
+                class="kern-link items-center wrap-anywhere"
                 href={`mailto:${contact.interoperabilityEmail}`}
               >
-                <IconMail class="size-24" aria-hidden="true" />
-                {contact.interoperabilityEmail}
+                <IconMail
+                  class="hidden size-24 shrink-0 sm:block"
+                  aria-hidden="true"
+                />
+                <span
+                  set:html={contact.emailDisplayHtml(
+                    contact.interoperabilityEmail,
+                  )}
+                />
               </a>
             </li>
             <li>
