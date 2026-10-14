@@ -1,5 +1,4 @@
 import { general } from "@/resources/content/shared/general";
-import twMerge from "@/utils/tailwindMerge";
 import { Check, WarningAmberOutlined } from "@digitalservicebund/icons";
 import {
   Disclosure,
@@ -8,7 +7,7 @@ import {
 } from "@headlessui/react";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, isValidElement, useContext, useMemo } from "react";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 const NavContext = createContext<{
   activeElementUrl?: string;
@@ -101,14 +100,15 @@ const containsMatchingAttr = (
 };
 
 const classes = {
-  hover: "hover:border-l-blue-300 hover:bg-blue-300 hover:underline",
+  hover:
+    "hover:border-l-kern-darkblue-100 hover:bg-kern-darkblue-100 hover:underline",
   hoverError: "hover:border-l-yellow-300 hover:bg-yellow-300 hover:underline",
   focus:
     "focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-blue-800",
-  active: "ds-label-02-bold pointer-events-none border-l-blue-800 bg-blue-400",
-  activeError:
-    "ds-label-02-bold pointer-events-none border-l-yellow-800 bg-yellow-300",
-  activeOpen: "pointer-events-none border-l-blue-400 bg-blue-400",
+  active: "pointer-events-none border-l-kern-darkblue-800 bg-kern-darkblue-150",
+  activeError: "pointer-events-none border-l-yellow-800 bg-yellow-300",
+  activeOpen:
+    "pointer-events-none border-l-kern-darkblue-150 bg-kern-darkblue-150",
   activeOpenError: "pointer-events-none border-l-yellow-200 bg-yellow-200",
   wrapper: "border-b border-b-white",
   base: "m-0 flex flex-row items-center gap-8 border-l-4 p-16 text-black",
@@ -126,7 +126,7 @@ function DisabledItem({
       <div
         className={twMerge(
           classes.base,
-          "justify-between border-l-transparent text-gray-800",
+          "text-kern-layout-text-muted justify-between border-l-transparent",
         )}
         aria-disabled
       >
@@ -176,7 +176,7 @@ function NavItemLink({
           aria-current="page"
           className={twMerge(
             classes.base,
-            "border-l-blue-100",
+            "border-l-kern-darkblue-025",
             classes.hover,
             classes.active,
             classes.focus,
@@ -197,7 +197,9 @@ function NavItemLink({
         className={twMerge(
           classes.base,
           "link-unstyled",
-          error ? "border-l-yellow-200 bg-yellow-200" : "border-l-blue-100",
+          error
+            ? "border-l-yellow-200 bg-yellow-200"
+            : "border-l-kern-darkblue-025",
           error ? classes.hoverError : classes.hover,
           classes.focus,
           isActive && (error ? classes.activeError : classes.active),
@@ -292,7 +294,7 @@ function NavItem({
                   "flex flex-row justify-between border-l-4 p-16",
                   hasError
                     ? "border-l-yellow-200 bg-yellow-200"
-                    : "border-l-blue-100",
+                    : "border-l-kern-darkblue-025",
                   hasError ? classes.hoverError : classes.hover,
                   isActive &&
                     !open &&
@@ -336,9 +338,7 @@ function NavItem({
 
 function NavItems({ children }: Readonly<NavItemsProps>) {
   return (
-    <ul className="ds-label-02-reg list-none space-y-0 bg-blue-100 p-0">
-      {children}
-    </ul>
+    <ul className="bg-kern-darkblue-025 list-none space-y-0 p-0">{children}</ul>
   );
 }
 

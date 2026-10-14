@@ -41,13 +41,13 @@ function getIconForReason(reason: Reason) {
     case "yes":
       return (
         <ControlPointOutlined
-          className={twJoin(defaultClasses, "fill-green-900")}
+          className={twJoin(defaultClasses, "fill-kern-feedback-success")}
         ></ControlPointOutlined>
       );
     case "no":
       return (
         <RemoveCircleOutline
-          className={twJoin(defaultClasses, "fill-ds-error")}
+          className={twJoin(defaultClasses, "fill-kern-feedback-danger")}
         ></RemoveCircleOutline>
       );
     case "unsure":
@@ -75,7 +75,7 @@ function PrintTitle({ title }: Readonly<{ title: string }>) {
   return (
     <Heading
       tagName="h2"
-      look="ds-heading-03-reg"
+      look="kern-heading-medium"
       className="hidden pb-24 font-bold print:block"
     >
       {preCheckResult.print.titlePrefix}
@@ -115,15 +115,15 @@ export default function Result() {
     result?.digital === ResultType.UNSURE ? preCheckResult.unsure.hint : "";
   return (
     <main>
-      <div className="bg-blue-100 py-40 print:pb-0">
+      <div className="bg-kern-darkblue-025 py-40 print:pb-0">
         <div className="space-y-40 px-16">
           <div>
             <Container
               className={twJoin(
                 "rounded-t-lg py-32",
                 result?.digital === ResultType.UNSURE
-                  ? "bg-yellow-200"
-                  : "bg-blue-300",
+                  ? "bg-kern-feedback-warning-background"
+                  : "bg-kern-darkblue-100",
               )}
             >
               {vorhabenTitle && <PrintTitle title={vorhabenTitle} />}
@@ -134,15 +134,12 @@ export default function Result() {
                 <div>
                   <Heading
                     tagName="h1"
-                    look="ds-heading-02-reg"
+                    look="kern-heading-large"
                     className="mb-0"
                     text={marked.parseInline(resultContent.title) as string}
                   />
                   {resultHint && (
-                    <RichText
-                      markdown={resultHint}
-                      className="ds-subhead mt-16"
-                    />
+                    <RichText markdown={resultHint} className="mt-16" />
                   )}
                 </div>
               </div>
@@ -153,7 +150,7 @@ export default function Result() {
                   heading={{
                     text: resultContent.infoboxContent.title,
                     tagName: "h2",
-                    look: "ds-heading-03-reg",
+                    look: "kern-heading-medium",
                   }}
                 >
                   <RichText markdown={resultContent.infoboxContent.text} />
@@ -168,7 +165,7 @@ export default function Result() {
                   <RichText markdown={resultContent.inlineNoticeContent.text} />
                 </InlineNotice>
               )}
-              <div className="border-b-2 border-solid border-gray-400 pb-40 last:border-0 last:pb-0 print:border-0 print:pb-0">
+              <div className="border-kern-decorative-border border-b-2 border-solid pb-40 last:border-0 last:pb-0 print:border-0 print:pb-0">
                 <DetailsSummary
                   data-testid="result-details"
                   title={preCheckResult.detailsTitle}
@@ -224,7 +221,7 @@ export default function Result() {
                 <div className="kern-stack kern-stack-md mt-40">
                   <Heading
                     tagName="h3"
-                    className="ds-label-section"
+
                     text={preCheckResult.form.faqs.title}
                   />
                   {preCheckResult.form.faqs.details.map((detail) => (
@@ -285,7 +282,7 @@ export default function Result() {
       <Container className="my-80 py-0 print:hidden">
         <Heading
           tagName="h2"
-          look="ds-heading-02-reg mb-64 max-sm:mb-56"
+          className="mb-64 max-sm:mb-56"
           text={preCheck.faq.title}
         />
         <PreCheckFAQ />

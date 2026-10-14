@@ -3,30 +3,27 @@ import DrilldownNavigation from "@/components/global/DrilldownNavigation.astro";
 import Kopfzeile from "@/components/global/Kopfzeile.astro";
 import {
   bundeslaender,
-  grundlagen_normenkontrollrat,
+  normenkontrollrat,
   home,
   interoperabel,
-  methoden_fuenfPrinzipien,
+  prinzipien,
   kontakt,
   type Route,
 } from "@/config/routes";
-import { contact } from "@/resources/content/shared/contact";
-import { header } from "@/resources/content/shared/header";
 import { getMobileMenuNavigation } from "@/utils/navigation/drilldown";
 import { getRouteLabel, isRouteVisible } from "@/utils/navigation/routeUtils";
 import { removeTrailingSlash, withBase } from "@/utils/path";
 import { twMerge } from "tailwind-merge";
 import IconClose from "~icons/ic/outline-close";
 import IconMenu from "~icons/ic/twotone-menu";
-import IconPhoneEnabled from "~icons/ic/twotone-phone-enabled";
 
 const currentPath = removeTrailingSlash(Astro.url.pathname);
 
 const HEADER_ROUTES: Route[] = [
-  methoden_fuenfPrinzipien,
+  prinzipien,
   interoperabel,
   bundeslaender,
-  grundlagen_normenkontrollrat,
+  normenkontrollrat,
   kontakt,
 ];
 const headerNavigation = HEADER_ROUTES.filter(isRouteVisible);
@@ -44,13 +41,15 @@ function navItemStyle(active = false) {
 ---
 
 <header
-  class="relative z-30 border-b-2 border-kern-darkblue-100 bg-white"
-  x-data="{ mobileMenuOpen: false }"
-  @resize.window="mobileMenuOpen = false"
+  class="page-header relative z-30 border-b-2 border-kern-darkblue-100 bg-white"
+  x-data="pageHeader()"
+  :class="{ 'header-floating': headerFloating, 'header-visible': headerVisible }"
+  @scroll.window="handleScroll($el)"
+  @resize.window="closeMenus()"
   @keydown.escape.window="mobileMenuOpen = false"
 >
   <Kopfzeile />
-  <div class="flex h-72 justify-between pl-16">
+  <div class="flex h-72 justify-between px-kern-lg">
     <!-- Logo and title -->
     <a href={home.path} class="link-unstyled flex items-center gap-24">
       <img
@@ -63,7 +62,7 @@ function navItemStyle(active = false) {
         alt="Logo des Bundes"
         class="hidden w-54 forced-colors:dark:block"
       />
-      <p class="text-xl font-bold max-lg:hidden">{header.title}</p>
+      <p class="text-xl font-bold max-lg:hidden">Digitalcheck</p>
     </a>
 
     <!-- Desktop Navigation -->
@@ -86,13 +85,6 @@ function navItemStyle(active = false) {
 
     <!-- Mobile Menu Toggle -->
     <div class="flex h-full lg:hidden">
-      <a
-        href={contact.phone}
-        class={navItemStyle()}
-        aria-label={`${header.contactTel.msg} ${contact.phoneDisplay}`}
-      >
-        <IconPhoneEnabled class="size-24 -scale-x-100" />
-      </a>
       <button
         type="button"
         class={navItemStyle()}
@@ -136,15 +128,45 @@ function navItemStyle(active = false) {
   @reference "@/styles/globals.css";
 
   .mobile-menu-popover {
-    @apply bg-blue-200;
-    --active-item-bg-color: var(--color-blue-300);
+    @apply bg-kern-darkblue-100;
+    --active-item-bg-color: white;
   }
 
   .mobile-menu-popover[data-depth="0"] {
     @apply bg-white;
+    --active-item-bg-color: var(--color-kern-darkblue-050);
+  }
+
+  .mobile-menu-popover[data-depth="1"] {
+    @apply bg-kern-darkblue-050;
+    --active-item-bg-color: var(--color-kern-darkblue-100);
+  }
+
+  /* Below the desktop nav breakpoint, the header scrolls away with the page
+     and only becomes a floating bar once the user scrolls back up. */
+  @media (width < 64rem) {
+    .page-header.header-floating {
+      position: sticky;
+      top: 0;
+      transform: translateY(-100%);
+      transition: transform 200ms ease-out;
+    }
+
+    .page-header.header-floating.header-visible {
+      transform: translateY(0);
+    }
   }
 
   [x-cloak] {
     display: none !important;
   }
 </style>
+
+<script>
+  import Alpine from "alpinejs";
+  import { pageHeaderData } from "@/utils/pageHeader";
+
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("pageHeader", pageHeaderData);
+  });
+</script>

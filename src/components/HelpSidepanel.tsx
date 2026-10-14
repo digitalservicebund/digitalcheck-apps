@@ -1,9 +1,8 @@
 import { useHelpPanel } from "@/contexts/HelpPanelContext";
 import { useElResize, useScroll } from "@/hooks/deviceHook";
-import customTwMerge from "@/utils/tailwindMerge";
 import { ChevronLeftOutlined, CloseOutlined } from "@digitalservicebund/icons";
 import { useEffect, useRef } from "react";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import Button from "./Button";
 import RichText from "./RichText";
 
@@ -25,7 +24,7 @@ function ToggleTabButton({
       type="button"
       aria-label={ariaLabel}
       look="tertiary"
-      className={twJoin("w-auto fill-blue-800 p-6", className)}
+      className={twJoin("fill-kern-action-default w-auto p-6", className)}
       onClick={onClick}
     >
       {children}
@@ -103,9 +102,9 @@ export default function HelpSidepanel() {
 
       {/* Main panel — desktop: grid item; mobile: fixed overlay */}
       <div
-        className={customTwMerge(
+        className={twMerge(
           // Base (desktop grid)
-          "help relative border-l border-blue-300 bg-white",
+          "help border-kern-darkblue-100 relative border-l bg-white",
           !isOpen && "hidden",
           // Mobile overlay (overrides grid behavior)
           "max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:z-50 max-xl:w-[80vw] max-xl:max-w-[400px] max-xl:shadow-2xl",
@@ -144,7 +143,7 @@ export default function HelpSidepanel() {
                     id={`help-section-${section.id}`}
                     className="scroll-my-80"
                   >
-                    <h3 className="kern-title mb-8 font-bold text-blue-800">
+                    <h3 className="kern-title text-kern-action-default mb-8 font-bold">
                       {section.title}
                     </h3>
                     {typeof section.content === "string" ? (

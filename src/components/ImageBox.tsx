@@ -2,8 +2,7 @@ import Heading from "@/components/Heading.tsx";
 import type { ImageProps } from "@/components/Image.tsx";
 import Image from "@/components/Image.tsx";
 import ImageZoomable from "@/components/ImageZoomable.tsx";
-import twMerge from "@/utils/tailwindMerge";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import RichText from "./RichText";
 
 export type ImageBoxProps = {
@@ -35,7 +34,7 @@ function ImageBox({
   return (
     <figure className={twMerge(className, "w-full")}>
       {title && (
-        <Heading className="ds-heading-03-reg pb-[24px]" tagName={headingTag}>
+        <Heading className="pb-[24px]" tagName={headingTag}>
           {title}
         </Heading>
       )}
@@ -47,15 +46,15 @@ function ImageBox({
       {image.caption && (
         <figcaption
           className={twJoin(
-            "ds-label-02-reg pt-[24px] text-gray-900 **:max-w-fit",
-            background && "bg-blue-100 p-16",
+            "text-kern-layout-text-default pt-[24px] **:max-w-fit",
+            background && "bg-kern-darkblue-025 p-16",
           )}
         >
           <RichText markdown={image.caption} />
         </figcaption>
       )}
       {border && (
-        <hr className="my-[16px] w-[120px] border-t-2 border-blue-300" />
+        <hr className="border-kern-darkblue-100 my-[16px] w-[120px] border-t-2" />
       )}
     </figure>
   );

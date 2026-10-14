@@ -22,43 +22,6 @@
   line-height: var(--kern-typography-line-height-medium-static, 24px);
 }
 
-@utility kern-stack {
-  display: flex;
-  flex-direction: column;
-}
-
-@utility kern-stack-xxs {
-  row-gap: var(--kern-metric-space-2x-small);
-}
-
-@utility kern-stack-xs {
-  row-gap: var(--kern-metric-space-x-small);
-}
-
-@utility kern-stack-sm {
-  row-gap: var(--kern-metric-space-small);
-}
-
-@utility kern-stack-md {
-  row-gap: var(--kern-metric-space-default);
-}
-
-@utility kern-stack-lg {
-  row-gap: var(--kern-metric-space-large);
-}
-
-@utility kern-stack-xl {
-  row-gap: var(--kern-metric-space-x-large);
-}
-
-@utility kern-stack-2xl {
-  row-gap: var(--kern-metric-space-2x-large);
-}
-
-@utility kern-stack-3xl {
-  row-gap: var(--kern-metric-space-3x-large);
-}
-
 /*
   Exposes the KERN design system's color palette as Tailwind utilities
   (e.g. bg-kern-red-500, text-kern-grey-800, border-kern-violet-300).

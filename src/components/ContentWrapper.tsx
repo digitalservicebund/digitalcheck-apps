@@ -1,5 +1,5 @@
-import twMerge from "@/utils/tailwindMerge.ts";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 /**
  * A div that encloses main content elements with appropriate margins.

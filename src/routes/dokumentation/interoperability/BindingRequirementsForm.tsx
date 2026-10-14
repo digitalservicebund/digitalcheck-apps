@@ -138,7 +138,7 @@ export default function BindingRequirementsForm({
       isEnabled: () => true,
       render: () => (
         <div className="space-y-24">
-          <h2 className="ds-heading-03-reg">
+          <h2 className="kern-heading-medium">
             In der Regelung enthaltene verbindliche{" "}
             <span className="text-nowrap">
               Anforderungen

@@ -71,7 +71,7 @@ export const frontmatter = {
         </div>
         <div
           data-tab-panel={preCheck.start.info.tabName}
-          class="flex flex-col-reverse items-center gap-48 bg-blue-100 px-16 py-40 md:flex-row md:gap-64 md:px-64"
+          class="flex flex-col-reverse items-center gap-48 bg-kern-darkblue-025 px-16 py-40 md:flex-row md:gap-64 md:px-64"
         >
           <Image
             url={preCheck.start.info.image.src}
@@ -82,7 +82,6 @@ export const frontmatter = {
           <InfoBox
             heading={{
               tagName: "h3",
-              look: "ds-heading-03-reg",
               text: preCheck.start.info.title,
             }}
           >
@@ -102,7 +101,7 @@ export const frontmatter = {
         <div data-tab-panel={preCheck.faq.tabName}>
           <Heading
             tagName="h2"
-            look="ds-he ading-02-reg mb-64 max-sm:mb-56"
+            look="mb-64 max-sm:mb-56"
             text={preCheck.faq.title}
           />
           <PreCheckFAQ />

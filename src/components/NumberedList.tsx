@@ -1,7 +1,6 @@
-import twMerge from "@/utils/tailwindMerge.ts";
 import type React from "react";
 import type { ReactElement } from "react";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 /*
  * NumberedList renders long-form content as a series of steps, placing a counter
@@ -41,9 +40,12 @@ function ListItem({
   return (
     <li
       id={id}
-      className={twJoin("scroll-my-40 space-y-40", disabled && "text-gray-800")}
+      className={twJoin(
+        "scroll-my-40 space-y-40",
+        disabled && "text-kern-layout-text-muted",
+      )}
     >
-      <div className="flex flex-col items-start gap-16 before:flex before:size-40 before:shrink-0 before:items-center before:justify-center before:rounded-full before:border-2 before:border-solid before:border-gray-400 before:content-[counter(list-item)] sm:flex-row">
+      <div className="before:border-kern-decorative-border flex flex-col items-start gap-16 before:flex before:size-40 before:shrink-0 before:items-center before:justify-center before:rounded-full before:border-2 before:border-solid before:content-[counter(list-item)] sm:flex-row">
         <div className={twMerge("mt-4", className)}>{children}</div>
       </div>
       {after}
@@ -64,7 +66,7 @@ function NumberedList({
   ...props
 }: NumberedListProps) {
   const separatorClass = separator
-    ? "[&>li]:border-b-2 [&>li]:border-blue-300 [&>li]:pb-80 [&>li]:last:border-none [&>li]:last:pb-0 space-y-80"
+    ? "[&>li]:border-b-2 [&>li]:border-kern-darkblue-100 [&>li]:pb-80 [&>li]:last:border-none [&>li]:last:pb-0 space-y-80"
     : "space-y-32";
 
   return (

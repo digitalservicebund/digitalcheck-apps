@@ -1,288 +1,353 @@
 ---
+import bundeslaenderImage from "@/assets/images/startseite-bundeslaender.png";
+import euInteroperabilitaetImage from "@/assets/images/europa-karte.png";
+import { LinkButton } from "@/components/Button";
+import FeatureItem from "@/components/FeatureItem.astro";
+import FeatureSet from "@/components/FeatureSet.astro";
+import Hero from "@/components/Hero.astro";
+import KernCard from "@/components/KernCard.astro";
 import {
+  bundeslaender,
   dokumentation,
-  grundlagen_normenkontrollrat,
+  interoperabel,
+  interoperabel_nationaleKontaktstelle,
   methoden,
-  methoden_fuenfPrinzipien,
-  unterstuetzung,
+  prinzipien,
   vorpruefung,
 } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
 import {
-  ContactPhoneOutlined as ContactPhoneOutlinedIcon,
-  FactCheckOutlined as FactCheckOutlinedIcon,
-  WidgetsOutlined as WidgetsOutlinedIcon,
-} from "@digitalservicebund/icons";
-import Badge from "@/components/Badge";
-import { LinkButton } from "@/components/Button";
-import Heading from "@/components/Heading";
-import { BreakoutHero } from "@/components/Hero";
-import InfoBox from "@/components/InfoBox";
-import InfoBoxSideBySide from "@/components/InfoBoxSideBySide";
-import RichText from "@/components/RichText";
-import { withBase } from "@/utils/path";
-import { dedent } from "@/utils/dedentMultilineStrings";
-import {
   ZFL_BASE_URL,
-  ZFL_PATH_BEISPIELE,
-  ZFL_PATH_DIGITALTAUGLICHKEIT,
-  ZFL_PATH_FLUSSDIAGRAMME,
-  ZFL_PATH_VISUALISIERUNGEN,
+  ZFL_PATH_RESSOURCEN,
+  ZFL_PATH_SCHULUNGEN,
 } from "@/resources/constants";
+import { contact } from "@/resources/content/shared/contact";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import IconArrowDownward from "~icons/ic/baseline-arrow-downward";
+import IconMail from "~icons/ic/baseline-mail";
+import IconPhone from "~icons/ic/baseline-phone";
+import IconAddLocationAlt from "~icons/ic/round-add-location-alt";
+import IconComputer from "~icons/ic/round-computer";
+import IconEditNote from "~icons/ic/round-edit-note";
+import IconQueryBuilder from "~icons/ic/round-query-builder";
 
 export const frontmatter = {
   title: "Startseite",
 };
 
+const WAS_IST_DIGITALTAUGLICHKEIT_ID = "was-ist-digitaltauglichkeit";
+
 const steps = [
   {
-    number: 1,
-    title: "Digitalbezug einschätzen",
-    link: {
-      text: "Digitalbezug einschätzen",
-      to: vorpruefung.path,
-      look: "primary" as const,
-    },
-    procedure:
-      "Sie identifizieren Digitalbezug und Inter&shy;operabilitäts&shy;an&shy;for&shy;der&shy;un&shy;gen für Ihr Vorhaben.",
-    duration: "Wenige Minuten",
-    result: dedent`
-      - Individueller Digital- und Interoperabilitätsbezug
-      - Ergebnis als E-Mail an Prüfstelle* schicken oder als Dokumentation zur Selbstprüfung nutzen.
-    `,
+    title: "Vorprüfung durchlaufen",
+    subline:
+      "Sie identifizieren den Digitalbezug und Interoperabilitätsanforderungen für Ihr Vorhaben.",
+    facts: [
+      { label: "Zeitpunkt", text: "Vor dem Schreiben der Regelung" },
+      { label: "Dauer", text: "Wenige Minuten" },
+      {
+        label: "Ergebnis",
+        text: "Individueller Digital- und Interoperabilitätsbezug",
+      },
+    ],
+    link: { text: "Vorprüfung starten", href: vorpruefung.path },
   },
   {
-    number: 2,
-    title: "Digitaltauglichkeit der Regelung sicherstellen",
-    link: {
-      text: "Regelung erarbeiten",
-      to: methoden.path,
-      look: "tertiary" as const,
+    title: "Regelung erarbeiten",
+    subline:
+      "Bei positivem Digitalbezug wenden Sie die fünf Prinzipien auf Ihre Regelungsvorhaben an. Zudem finden Sie verschiedene Hilfestellungen, die Sie unterstützen.",
+    facts: [
+      {
+        label: "Dauer",
+        text: "Punktuell über die gesamte Regelungsausarbeitung",
+      },
+      {
+        label: "Ergebnis",
+        text: "Digitaltaugliche Regelung und Visualisierungen",
+      },
+    ],
+    link: { text: "Zur Erarbeitung", href: methoden.path },
+    externalLink: {
+      text: "Ressourcen",
+      href: ZFL_BASE_URL + ZFL_PATH_RESSOURCEN,
     },
-    procedure:
-      "Bei einer positiven Vorprüfung wenden Sie die Werkzeuge und Methoden an, die die Digitaltauglichkeit Ihres Vorhabens sicherstellen.",
-    duration: "Punktuell über die gesamte Zeit der Regelungsausarbeitung",
-    result: dedent`
-      - Ihre Regelung wird digitaltauglich
-      - Visualisierungen zur digitaltauglichen Umsetzung Ihrer Regelung
-    `,
   },
   {
-    number: 3,
-    title: "Dokumentieren der Digitaltauglichkeit",
-    link: {
-      text: "Dokumentation erstellen",
-      to: dokumentation.path,
-      look: "tertiary" as const,
-    },
-    procedure:
+    title: "Digitalcheck dokumentieren",
+    subline:
       "Sie dokumentieren, wie Sie Digitaltauglichkeit in Ihrer Regelung sichergestellt haben.",
-    duration: "Ein bis zwei Stunden",
-    result: dedent`
-      - Ausgefülltes Word-Dokument - welches Sie an Ihre jeweilige Prüfstelle* senden
-      - Ihr Vorhaben ist formal bereit für die Ressortabstimmung
-    `,
+    facts: [
+      { label: "Zeitpunkt", text: "Parallel zum Erarbeiten der Regelung" },
+      { label: "Dauer", text: "Ein bis zwei Stunden" },
+      {
+        label: "Ergebnis",
+        text: "Abgeschlossene Dokumentation der Digitaltauglichkeit",
+      },
+    ],
+    link: { text: "Dokumentation erstellen", href: dokumentation.path },
   },
 ];
+
+// Highlight colors per principle, in display order.
+const principleColors = [
+  { number: "bg-kern-orange-025", text: "bg-kern-orange-025" },
+  { number: "bg-kern-red-100", text: "bg-kern-red-050" },
+  { number: "bg-kern-violet-050", text: "bg-kern-violet-050" },
+  { number: "bg-kern-green-025", text: "bg-kern-green-025" },
+  { number: "bg-kern-lightblue-025", text: "bg-kern-lightblue-025" },
+];
+
+const principles = (await getCollection("prinzipien"))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
 ---
 
 <Layout>
   <main class="breakout-grid">
-    <BreakoutHero
-      title="Digitaltaugliche Regelungen erarbeiten"
-      subtitle="Der Digitalcheck ist eine Prozessbegleitung für Ihr Regelungsvorhaben. Sie stellen damit Digitaltauglichkeit sicher."
-      className="bg-blue-800 text-white"
-    />
-    <div class="breakout bg-yellow-300 py-24">
-      <div>
-        <div class="flex items-center">
-          <Badge className="mr-8" look="hint">
-            INFO
-          </Badge>
-          <p>
-            <b>Digitalcheck und das Zentrum für Legistik wachsen zusammen</b>
-          </p>
-        </div>
-        <p class="kern-body">
-          Praxishilfen zum Digitalcheck finden Sie ab sofort im{" "}
-          <a href={ZFL_BASE_URL} target="_blank">
-            Zentrum für Legistik
-          </a>
-          .
-        </p>
+    <Hero variant="dark">
+      <h1 class="mb-24">Digitaltaugliche Regelungen erarbeiten</h1>
+      <p class="kern-body py-0">
+        Der Digitalcheck sorgt dafür, dass Regelungen digitaltauglich umsetzbar
+        sind – für praxistaugliche Abläufe und weniger Bürokratie in Bund und
+        Ländern.
+      </p>
+      <div class="flex flex-wrap gap-24 pt-24 pb-16">
+        <LinkButton href={vorpruefung.path} iconLeft="kern-icon--arrow-forward">
+          Digitalcheck starten
+        </LinkButton>
+        <a
+          href={`#${WAS_IST_DIGITALTAUGLICHKEIT_ID}`}
+          class="kern-btn kern-btn--secondary link-unstyled"
+        >
+          <IconArrowDownward class="size-24" aria-hidden="true" />
+          <span class="kern-label">Was ist Digitaltauglichkeit?</span>
+        </a>
       </div>
-    </div>
-    <div class="py-40 lg:py-80">
-      <Heading tagName="h2" text="Schritt für Schritt" className="mb-40" />
-      <div class="relative">
-        <div class="absolute h-16 w-16 rounded-full bg-blue-300 max-lg:-bottom-8 max-lg:left-10 lg:-top-6 lg:-right-1"></div>
-        <ol class="list-unstyled max-w-none max-lg:mx-16 lg:grid lg:grid-flow-col lg:grid-cols-3 lg:grid-rows-[repeat(6,auto)]">
-          {steps.map((step) => (
-            <li class="relative border-blue-300 max-lg:border-l-3 max-lg:pb-40 max-lg:pl-40 lg:row-span-6 lg:grid lg:grid-rows-subgrid lg:border-t-3 lg:pr-40">
-              <div class="absolute flex h-40 w-40 items-center justify-center rounded-full bg-blue-800 font-bold text-white max-lg:left-[-22px] lg:-top-20">
-                {step.number}
-              </div>
-              <Heading
-                tagName="h3"
-                text={step.title}
-                className="ds-heading-03-bold lg:mt-40"
-              />
-              <div class="mt-40 self-center">
-                <LinkButton href={step.link.to} look={step.link.look}>
-                  {step.link.text}
-                </LinkButton>
-              </div>
-              <div class="mt-40">
-                <p class="font-bold">Vorgehen:</p>
-                <RichText markdown={step.procedure} />
-              </div>
-              <div class="mt-24 border-t-2 border-gray-400 pt-16">
-                <p class="font-bold">Dauer:</p>
-                <RichText markdown={step.duration} />
-              </div>
-              <div class="mt-24">
-                <p class="font-bold">Ergebnis:</p>
-                <RichText markdown={step.result} />
-                {step.number === 1 && (
-                  <p class="mt-16">
-                    * Auf Bundesebene ist zum Beispiel der Normenkontrollrat
-                    (NKR) die zuständige Prüfstelle.
+    </Hero>
+
+    <section class="breakout py-64">
+      <div class="space-y-32">
+        <h2>Der Digitalcheck in drei Schritten</h2>
+        <p class="kern-body">
+          Wenden Sie den Digitalcheck auf Ihr Regelungsvorhaben an.
+        </p>
+        <ol class="list-unstyled grid gap-32 lg:grid-cols-3">
+          {steps.map((step, index) => (
+            <li class="[&_.kern-btn]:flex-none">
+              <KernCard
+                title={step.title}
+                headingLevel={3}
+                body={step.subline}
+                background="white"
+              >
+                <span
+                  slot="pre-header"
+                  class="kern-number border-kern-action-default text-kern-action-default mb-16"
+                  aria-hidden="true"
+                >
+                  {index + 1}
+                </span>
+                {step.facts.map((fact) => (
+                  <p class="kern-body kern-body--muted">
+                    <b>{fact.label}</b>: {fact.text}
                   </p>
-                )}
-              </div>
+                ))}
+                <Fragment slot="footer">
+                  <LinkButton href={step.link.href} look="secondary">
+                    {step.link.text}
+                  </LinkButton>
+                  {step.externalLink && (
+                    <LinkButton
+                      href={step.externalLink.href}
+                      look="ghost"
+                      className="px-0"
+                      iconLeft="kern-icon--open-in-new"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {step.externalLink.text}
+                    </LinkButton>
+                  )}
+                </Fragment>
+              </KernCard>
             </li>
           ))}
         </ol>
       </div>
-    </div>
+    </section>
 
-    <div class="breakout space-y-40 bg-blue-100 py-40 lg:py-80">
-      <Heading tagName="h2" text="Einführung zum Digitalcheck" />
-      <InfoBox
-        visual={{ type: "icon", Icon: WidgetsOutlinedIcon }}
-        look="highlight"
-        className="bg-white"
-      >
-        <Heading tagName="h3"> Was ist Digitaltauglichkeit? </Heading>
-        <RichText markdown="Digitaltaugliche Regelungen ermöglichen eine rechtlich und technisch reibungslose digitale Umsetzung und fördern die automatisierte Bearbeitung von Verfahrensschritten." />
-        <InfoBox.LinkList
-          links={[
-            {
-              text: "Mehr zur Digitaltauglichkeit erfahren",
-              to: ZFL_BASE_URL + ZFL_PATH_DIGITALTAUGLICHKEIT,
-              look: "ghost",
-              externalLink: true,
-            },
-          ]}
-        />
-      </InfoBox>
-
-      <InfoBox
-        visual={{ type: "icon", Icon: FactCheckOutlinedIcon }}
-        look="highlight"
-        className="bg-white"
-      >
-        <Badge look="hint" className="mr-8" text="Bundesebene" />
-        <Heading tagName="h3">
-          Worauf achtet der Nationale Normenkontrollrat?
-        </Heading>
-        <RichText markdown="Der Nationale Normenkontrollrat (NKR) prüft das Vorhaben auf Digitaltauglichkeit. Mit der Anwendung der **Prinzipien** und Erstellung von **Visualisierungen** kann der Nationale Normenkontrollrat die Digitaltauglichkeit besser und schneller nachvollziehen." />
-        <InfoBox.LinkList
-          links={[
-            {
-              text: `Mehr zum NKR erfahren`,
-              to: grundlagen_normenkontrollrat.path,
-              look: "ghost",
-            },
-          ]}
-        />
-      </InfoBox>
-    </div>
-
-    <div
-      class="breakout bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${withBase("/images/trainings.jpg")})`,
-      }}
+    <section
+      id={WAS_IST_DIGITALTAUGLICHKEIT_ID}
+      class="breakout bg-kern-darkblue-050 py-64"
     >
-      <div class="py-40 lg:py-80">
-        <InfoBoxSideBySide>
-          <InfoBox look="method" className="bg-white">
-            <Heading tagName="h3">
-              Das Potenzial von Visualisierungen nutzen
-            </Heading>
-            <RichText markdown="Visualisierungen helfen, bestehende Abläufe Ihrer Regelung einfach sichtbar zu machen und Digitaltauglichkeit einzuschätzen." />
-            <InfoBox.LinkList
-              links={[
-                {
-                  text: "Zu Visualisierungen",
-                  to: ZFL_BASE_URL + ZFL_PATH_FLUSSDIAGRAMME,
-                  look: "tertiary",
-                  externalLink: true,
-                },
-                {
-                  text: "Beispiele",
-                  to: ZFL_BASE_URL + ZFL_PATH_VISUALISIERUNGEN,
-                  look: "ghost",
-                  externalLink: true,
-                },
-              ]}
-            />
-          </InfoBox>
-
-          <InfoBox look="method" className="bg-white">
-            <Heading tagName="h3">
-              Prinzipien als Grundlage für Digitaltauglichkeit einsetzen
-            </Heading>
-            <RichText markdown="Fünf Prinzipien helfen Ihnen dabei, Chancen der digitalen Umsetzung auszuschöpfen und Hindernisse zu erkennen." />
-            <InfoBox.LinkList
-              links={[
-                {
-                  text: "Zu den Prinzipien",
-                  to: methoden_fuenfPrinzipien.path,
-                  look: "tertiary",
-                },
-                {
-                  text: "Beispiele",
-                  to: ZFL_BASE_URL + ZFL_PATH_BEISPIELE,
-                  look: "ghost",
-                  externalLink: true,
-                },
-              ]}
-            />
-          </InfoBox>
-        </InfoBoxSideBySide>
+      <div class="space-y-32">
+        <h2>Was ist Digitaltauglichkeit?</h2>
+        <FeatureSet>
+          <FeatureItem
+            title="Reibungslose digitale Umsetzung"
+            body="Regelungen werden vermehrt digital umgesetzt. Digitaltaugliche Regelungen stellen sicher, dass der digitalen Umsetzung nicht im Wege steht."
+          >
+            <IconComputer slot="icon" class="size-74" />
+          </FeatureItem>
+          <FeatureItem
+            title="Ressourcen sparen"
+            body="Eine gute digitale Umsetzung spart langfristig Zeit und sorgt dafür, dass Ziel und Wirkung des Vorhabens erreicht werden – für Bürgerinnen, Bürger und Verwaltung."
+          >
+            <IconQueryBuilder slot="icon" class="size-74" />
+          </FeatureItem>
+        </FeatureSet>
+        <FeatureSet>
+          <FeatureItem
+            title="Gilt für alle Bundesregelungen ..."
+            body="Der Digitalcheck gilt für alle Regelungsvorhaben auf Bundesebene – Gesetze, Verordnungen und Verwaltungsvorschriften, neu und bestehend."
+          >
+            <IconEditNote slot="icon" class="size-74" />
+          </FeatureItem>
+          <FeatureItem
+            title="... und für die Länder"
+            body="Immer mehr Länder prüfen ihre Regelungen verbindlich auf Digitaltauglichkeit. Mit unseren Kooperationspartnern verfolgen wir dasselbe Ziel: Regelungen, die von Anfang an digital umsetzbar sind."
+          >
+            <IconAddLocationAlt slot="icon" class="size-74" />
+          </FeatureItem>
+        </FeatureSet>
       </div>
-    </div>
+    </section>
 
-    <div class="space-y-48 py-40 lg:py-80">
-      <InfoBox>
-        <Heading tagName="h2">
-          Individuelle Unterstützung für Ihr Vorhaben
-        </Heading>
-        <RichText markdown="Nutzen Sie unsere persönlichen Unterstützungsangebote, um Ihr Regelungsvorhaben digitaltauglich zu gestalten und den Prozess erfolgreich zu durchlaufen." />
-        <InfoBox.LinkList
-          links={[
-            {
-              text: "Angebote kennenlernen",
-              to: unterstuetzung.path,
-              look: "tertiary",
-            },
-          ]}
-        />
-      </InfoBox>
+    <section class="breakout py-64">
+      <div class="flex flex-col gap-32 lg:flex-row lg:justify-between lg:gap-16">
+        <div class="space-y-16 lg:max-w-488">
+          <h2>Fünf Prinzipien der Digitaltauglichkeit</h2>
+          <p class="kern-body">
+            Fünf Prinzipien helfen Ihnen dabei, Chancen der digitaltauglichen
+            Umsetzung auszuschöpfen und Hindernisse frühzeitig zu erkennen.
+          </p>
+          <div class="pt-16">
+            <LinkButton href={prinzipien.path}>Zu den Prinzipien</LinkButton>
+          </div>
+        </div>
+        <ol class="list-unstyled flex flex-col gap-8 lg:w-712">
+          {principles.map((principle, index) => (
+            <li class="flex items-baseline gap-12 py-4">
+              <span
+                class:list={[
+                  "kern-number border-0",
+                  principleColors[index].number,
+                ]}
+              >
+                {index + 1}
+              </span>
+              <p class="kern-subline kern-subline--large text-kern-layout-text-default">
+                <span
+                  class:list={[
+                    "box-decoration-clone px-4 py-4",
+                    principleColors[index].text,
+                  ]}
+                >
+                  {principle.Name}
+                </span>
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
 
-      <InfoBox
-        look="highlight"
-        className="bg-blue-100"
-        visual={{ type: "icon", Icon: ContactPhoneOutlinedIcon }}
-      >
-        <Heading tagName="h3" className="ds-heading-03-reg mb-16">
-          „Der Digitalcheck erscheint mit den Hilfestellungen unkomplizierter
-          als gedacht.“
-        </Heading>
-        <RichText markdown="**Referentin**<br>aus einem Bundesministerium" />
-      </InfoBox>
-    </div>
+    <section class="breakout bg-kern-layout-layer-surface py-64">
+      <div class="grid gap-32 lg:grid-cols-2">
+        <KernCard
+          title="EU-Interoperabilität"
+          body="Neben der Digitaltauglichkeit prüft der Digitalcheck auch die Interoperabilitätsanforderungen gemäß EU-Verordnung 2024/903 (Interoperables Europa)."
+          background="white"
+        >
+          <Image
+            slot="image"
+            src={euInteroperabilitaetImage}
+            alt="Eine stilisierte Karte von Europa. Die EU-Mitgliedstaaten sind heller markiert und durch überlappende, gestrichelte Linien miteinander vernetzt."
+            widths={[600, 1200]}
+            sizes="(min-width: 64rem) 592px, 100vw"
+            class="aspect-video w-full object-cover"
+          />
+          <Fragment slot="footer">
+            <LinkButton href={interoperabel.path}>
+              Zu EU-Interoperabilität
+            </LinkButton>
+            <LinkButton
+              href={interoperabel_nationaleKontaktstelle.path}
+              look="secondary"
+            >
+              Nationale Kontaktstelle
+            </LinkButton>
+          </Fragment>
+        </KernCard>
+
+        <div class="[&_.kern-btn]:flex-none">
+          <KernCard
+            title="Digitalcheck für Bundesländer"
+            body="Durch eine Kooperation mit dem Bund können Sie den Digitalcheck für Ihr Bundesland direkt auf der Webseite des Digitalcheck Bund integrieren."
+            background="white"
+          >
+            <Image
+              slot="image"
+              src={bundeslaenderImage}
+              alt="Eine stilisierte Karte von Deutschland mit den Grenzen der 16 Bundesländer."
+              widths={[600, 1200]}
+              sizes="(min-width: 64rem) 592px, 100vw"
+              class="aspect-video w-full object-cover"
+            />
+            <LinkButton
+              slot="footer"
+              href={bundeslaender.path}
+              look="secondary"
+            >
+              Zur Übersicht
+            </LinkButton>
+          </KernCard>
+        </div>
+      </div>
+    </section>
+
+    <section class="breakout py-64">
+      <div class="space-y-24">
+        <h2>Unterstützungsangebote</h2>
+        <p class="kern-body">
+          Alle Angebote wie Schulungen, Werkzeuge und Beispiele finden Sie beim
+          Zentrum für Legistik.
+        </p>
+        <ul class="list-unstyled space-y-8">
+          <li>
+            <a class="kern-link items-center" href={contact.phone}>
+              <IconPhone class="size-24" aria-hidden="true" />
+              {contact.phoneDisplay}
+            </a>
+          </li>
+          <li>
+            <a class="kern-link items-center" href={`mailto:${contact.email}`}>
+              <IconMail class="size-24" aria-hidden="true" />
+              {contact.email}
+            </a>
+          </li>
+        </ul>
+        <div class="flex flex-wrap gap-24 pt-12">
+          <LinkButton
+            href={ZFL_BASE_URL}
+            iconLeft="kern-icon--open-in-new"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Zum Zentrum für Legistik
+          </LinkButton>
+          <LinkButton
+            href={ZFL_BASE_URL + ZFL_PATH_SCHULUNGEN}
+            look="secondary"
+            iconLeft="kern-icon--open-in-new"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Schulungen
+          </LinkButton>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>

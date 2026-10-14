@@ -1,10 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Tabs from "@/components/tabs/Tabs.astro";
-import Ueberblick from "./_Ueberblick.astro";
-import Heading from "@/components/Heading";
 import Hero from "@/components/Hero.astro";
+import ImageZoomable from "@/components/ImageZoomable";
 import RichText from "@/components/RichText";
+import { contact } from "@/resources/content/shared/contact";
+import IconMail from "~icons/ic/outline-mail";
+import IconPhone from "~icons/ic/outline-phone";
 import { spoc } from "./_content";
 
 export const frontmatter = {
@@ -16,48 +17,67 @@ export const frontmatter = {
   <main class="breakout-grid">
     <Hero>
       <h1>{spoc.headline}</h1>
-      <RichText slot="subtitle" markdown={spoc.content} />
+      <RichText markdown={spoc.content} />
+      <ul class="list-unstyled mt-24 space-y-8">
+        <li>
+          <a class="kern-link items-center" href={contact.phone}>
+            <IconPhone class="size-24" aria-hidden="true" />
+            {contact.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a
+            class="kern-link items-center"
+            href={`mailto:${contact.interoperabilityEmail}`}
+          >
+            <IconMail class="size-24" aria-hidden="true" />
+            {contact.interoperabilityEmail}
+          </a>
+        </li>
+      </ul>
     </Hero>
-    <div class="mt-40">
-      <Tabs
-        tabs={[
-          spoc.landscape.tabName,
-          spoc.states.tabName,
-          spoc.contact.tabName,
-        ]}
-      >
-        <div data-tab-panel={spoc.landscape.tabName}>
-          <Ueberblick />
-        </div>
 
-        <div data-tab-panel={spoc.states.tabName} class="container">
-          <Heading tagName="h2" text={spoc.states.headline} />
-          {spoc.states.sections.map((section) => (
-            <div class="last:mb-48">
-              <Heading
-                tagName="h3"
-                text={section.headline}
-                className="mt-32 mb-8"
-              />
-              <RichText markdown={section.content} />
+    <section class="breakout bg-kern-layout-layer-surface">
+      <h2>{spoc.responsibilities.headline}</h2>
+      <RichText markdown={spoc.responsibilities.content} className="mb-32" />
+      <div>
+        {spoc.responsibilities.items.map((item) => (
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">{item.title}</span>
+            </summary>
+            <div class="kern-accordion__body">
+              <RichText className="kern-body" markdown={item.content} />
             </div>
-          ))}
-        </div>
+          </details>
+        ))}
+      </div>
+    </section>
 
-        <div data-tab-panel={spoc.contact.tabName} class="container">
-          <Heading tagName="h2" text={spoc.contact.headline} />
-          {spoc.contact.sections.map((section) => (
-            <div class="last:mb-48">
-              <Heading
-                tagName="h3"
-                text={section.headline}
-                className="mt-32 mb-8"
-              />
-              <RichText markdown={section.content} className="kern-stack-lg" />
-            </div>
-          ))}
+    <section class="space-y-64">
+      <div class="space-y-32">
+        <div>
+          <h2>{spoc.landscape.headline}</h2>
+          <RichText markdown={spoc.landscape.content} />
         </div>
-      </Tabs>
-    </div>
+        <figure class="space-y-24">
+          <ImageZoomable
+            image={{
+              url: spoc.landscape.image.url,
+              alternativeText: spoc.landscape.image.alternativeText,
+            }}
+          />
+          <figcaption class="kern-subline kern-subline--small text-kern-layout-text-muted">
+            {spoc.landscape.image.caption}
+          </figcaption>
+        </figure>
+      </div>
+      {spoc.landscape.details.map((detail) => (
+        <div class="space-y-16 lg:grid lg:grid-cols-[336px_1fr] lg:gap-x-144 lg:space-y-0">
+          <h3 class="m-0">{detail.title}</h3>
+          <RichText markdown={detail.content} />
+        </div>
+      ))}
+    </section>
   </main>
 </Layout>

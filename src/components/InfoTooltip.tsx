@@ -56,7 +56,7 @@ export default function InfoTooltip({ children }: Readonly<InfoTooltipProps>) {
         id={id}
         role="tooltip"
         className={twJoin(
-          "ds-label-03-reg absolute w-160 rounded-sm border border-blue-300 bg-blue-100 px-12 py-8 text-gray-900 transition-opacity duration-300",
+          "border-kern-darkblue-100 bg-kern-darkblue-025 text-kern-layout-text-default absolute w-160 rounded-sm border px-12 py-8 transition-opacity duration-300",
           position === "left" ? "right-full mr-10" : "left-full ml-10",
           open ? "opacity-100" : "opacity-0",
         )}
@@ -64,7 +64,7 @@ export default function InfoTooltip({ children }: Readonly<InfoTooltipProps>) {
         {/* Tooltip Arrow */}
         <span
           className={twJoin(
-            "absolute h-12 w-12 rotate-45 border border-blue-300 bg-blue-100",
+            "border-kern-darkblue-100 bg-kern-darkblue-025 absolute h-12 w-12 rotate-45 border",
             position === "left" ? classNamesArrowRight : classNamesArrowLeft,
           )}
           aria-hidden

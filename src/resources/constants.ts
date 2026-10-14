@@ -26,3 +26,5 @@ export const ZFL_PATH_IT_SYSTEME = "/werkzeuge/ressourcen/it-systeme";
 export const ZFL_PATH_TECHNISCHE_UMSETZBARKEIT =
   "/werkzeuge/ressourcen/technische-umsetzbarkeit";
 export const ZFL_PATH_FLUSSDIAGRAMME = "/werkzeuge/ressourcen/flussdiagramme";
+export const ZFL_PATH_RESSOURCEN = "/werkzeuge/ressourcen";
+export const ZFL_PATH_SCHULUNGEN = "/schulungen";

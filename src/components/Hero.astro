@@ -1,19 +1,67 @@
 ---
-interface Props {
+import { tv, type VariantProps } from "tailwind-variants";
+
+interface Props extends VariantProps<typeof styles> {
   class?: string;
 }
 
-const { class: className } = Astro.props;
-const hasSubtitle = Astro.slots.has("subtitle");
+const styles = tv({
+  base: "breakout py-(--kern-metric-dimension-4x-large)",
+  variants: {
+    variant: {
+      default: "bg-kern-darkblue-100",
+      plain: "",
+      dark: "hero-dark bg-kern-darkblue-800",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+const { class: className, variant } = Astro.props;
 ---
 
-<div class:list={["breakout bg-blue-100", className]}>
-  <div class="space-y-16 py-40 pb-48 [&_h1]:sm:hyphens-none">
-    <slot />
-    {hasSubtitle && (
-      <div class="ds-subhead mt-16 space-y-8">
-        <slot name="subtitle" />
-      </div>
-    )}
-  </div>
-</div>
+<section class={styles({ variant, className })}>
+  <slot />
+</section>
+
+<style>
+  section {
+    > :global(h1) {
+      margin-bottom: 24px;
+    }
+    :global(p, ul, ol) {
+      font-size: var(--kern-typography-font-size-large-static, 21px);
+      line-height: var(--kern-typography-line-height-large-static, 32px);
+    }
+  }
+
+  /* Re-map KERN's contextual colors so text and buttons render light-on-dark. */
+  .hero-dark {
+    --kern-color-layout-text-default-contextual: var(
+      --kern-color-layout-text-inverse
+    );
+    --kern-color-action-default-contextual: var(--kern-color-white);
+    --kern-color-action-on-default-contextual: var(--kern-color-darkblue-800);
+    --kern-color-action-focus-default-contextual: var(--kern-color-white);
+    /* KERN derives hover/active states from the non-contextual action color at :root, so re-derive them from white. */
+    --kern-color-action-state-indicator-shade-hover: var(
+      --kern-color-darkblue-050
+    );
+    --kern-color-action-state-indicator-shade-active: var(
+      --kern-color-darkblue-100
+    );
+    --kern-color-action-state-indicator-tint-hover-opacity: color-mix(
+      in oklab,
+      var(--kern-color-white),
+      transparent var(--kern-color-action-state-opacity-hover)
+    );
+    --kern-color-action-state-indicator-tint-active-opacity: color-mix(
+      in oklab,
+      var(--kern-color-white),
+      transparent var(--kern-color-action-state-opacity-active)
+    );
+    color: var(--kern-color-layout-text-inverse);
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+
+/**
+ * Layout component that augments the standard Container with a sidebar that sits to its side.
+ * On narrow screens, the sidebar content is positioned on top.
+ */
+---
+
+<div
+  class:list={["breakout-grid-toc", className]}
+  x-data="sidebarToc()"
+  x-init="setup($el)"
+>
+  <div class="breakout lg:row-1" data-sidebar-content>
+    <slot />
+  </div>
+  <div class="toc order-first py-kern-xl mix-blend-multiply lg:sticky lg:top-0 lg:order-0 lg:row-1 lg:max-h-[calc(100vh-80px)] lg:self-start lg:overflow-y-auto lg:py-64 lg:pr-20 lg:pl-20">
+    <nav class="space-y-24" x-show="items.length > 0">
+      <p class="kern-heading-small">Auf dieser Seite</p>
+      <ul class="list-unstyled space-y-4">
+        <template x-for="item in items" :key="item.id">
+          <li class="list-none">
+            <a
+              class="kern-link kern-link--small toc-link"
+              :class="{ 'toc-link--active': activeId === item.id }"
+              :href="`#${item.id}`"
+              x-text="item.label"
+            ></a>
+            <ol x-show="item.children.length > 0" type="1">
+              <template x-for="child in item.children" :key="child.id">
+                <li>
+                  <a
+                    class="kern-link kern-link--small toc-link"
+                    :class="{ 'toc-link--active': activeId === child.id }"
+                    :href="`#${child.id}`"
+                    x-text="child.label"
+                  ></a>
+                </li>
+              </template>
+            </ol>
+          </li>
+        </template>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style>
+  ol li::marker {
+    color: var(--kern-color-action-default-contextual, #2044aa);
+    font-size: var(--kern-typography-font-size-small-static, 16px);
+    font-weight: var(--kern-typography-font-weight-body-default, 400);
+  }
+
+  .toc-link {
+    text-decoration: none;
+  }
+
+  .toc-link--active {
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  import Alpine from "alpinejs";
+  import { sidebarTocData } from "@/utils/toc";
+
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("sidebarToc", sidebarTocData);
+  });
+</script>

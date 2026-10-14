@@ -32,14 +32,14 @@ export function DocumentationParticipation() {
       <Heading
         text={participation.headline}
         tagName="h1"
-        look="ds-heading-02-reg"
+        look="kern-heading-large"
         className="mb-16"
       />
       <RichText markdown={participation.textIntro} className="gap-40" />
 
       <form className="space-y-40" {...form.getFormProps()}>
         <fieldset>
-          <legend className="ds-heading-03-reg mb-16">
+          <legend className="kern-heading-medium mb-16">
             {participation.formats.heading}
             <HelpButton sectionId="formats" title="Hinweis zur Erklärung">
               Beschreiben Sie stichpunktartig, wie Sie die Bedürfnisse der
@@ -60,7 +60,7 @@ export function DocumentationParticipation() {
         </fieldset>
 
         <fieldset>
-          <legend className="ds-heading-03-reg mb-16">
+          <legend className="kern-heading-medium mb-16">
             {participation.results.heading}
             <HelpButton sectionId="results" title="Hinweis zu Erkenntnissen">
               Bitte listen Sie stichpunktartig auf, welche Erkenntnisse

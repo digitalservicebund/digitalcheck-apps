@@ -2,14 +2,15 @@ import {
   bundeslaender,
   dasIstNeu,
   dokumentation,
-  grundlagen_normenkontrollrat,
   interoperabel,
+  interoperabel_angrenzendesEuRecht,
+  interoperabel_loesungen,
   interoperabel_nationaleKontaktstelle,
-  methoden_fuenfPrinzipien,
-  zahlenUndFakten,
+  normenkontrollrat,
+  prinzipien,
 } from "@/config/routes";
+import { ZFL_BASE_URL, ZFL_PATH_VISUALISIERUNGEN } from "@/resources/constants";
 import { dedent } from "@/utils/dedentMultilineStrings";
-import { getTabAnchorLink } from "@/utils/tabs";
 import { contact } from "./shared/contact";
 
 export const news = {
@@ -79,7 +80,7 @@ export const news = {
         text: "Neue Seite",
       },
       content: dedent`
-        Neue Seite: Gemeinsamer Digitalcheck für Bund und Länder
+        Gemeinsamer Digitalcheck für Bund und Länder
         
         [Hier ansehen](${bundeslaender.path})`,
     },
@@ -113,7 +114,7 @@ export const news = {
         - warum das relevant ist,
         - welchen Mehrwert die verbindliche Festschreibung zur Nutzung stiftet.
 
-        [Hier ansehen](${interoperabel.path}${getTabAnchorLink("interoperable-loesungen", "interoperable-loesungen")})`,
+        [Hier ansehen](${interoperabel_loesungen.path})`,
     },
     {
       badge: {
@@ -126,6 +127,8 @@ export const news = {
        - Titel zeigen nun die Alleinstellungsmerkmale der Visualisierungen (z. B. *Grenzüberschreitender Ablauf*).
        - Neues Feld *Aufwand für das Referat*.
        - Neuer Inhalt: Beratungs- und Erfassungsprozess.
+
+       [Hier ansehen](${ZFL_BASE_URL + ZFL_PATH_VISUALISIERUNGEN})
       `,
     },
     {
@@ -140,7 +143,7 @@ export const news = {
           - Welche EU-Rechtsakte könnten für Ihr Vorhaben relevant sein?
           - Was sind die wichtigsten Punkte bezüglich Interoperabilität in dem jeweiligen Rechtsakt?
        
-        [Hier ansehen](${interoperabel.path}${getTabAnchorLink("angrenzendes-eu-recht", "angrenzendes-eu-recht")})
+        [Hier ansehen](${interoperabel_angrenzendesEuRecht.path})
       `,
     },
     {
@@ -160,13 +163,13 @@ export const news = {
         text: "28.01.2026",
       },
       headline: {
-        text: "Struktur der Prinzipien-Seite verbessert",
+        text: "Struktur der Prinzipien-Seiten verbessert",
       },
       content: dedent`
          - Übersicht auf der Prinzipien-Startseite klarer strukturiert
          - Darstellung auf den Detailseiten der Prinzipien übersichtlicher gestaltet, einfacher navigierbar und durch Handlungsempfehlungen ergänzt
          
-        [Hier ansehen](${methoden_fuenfPrinzipien.path})`,
+        [Hier ansehen](${prinzipien.path})`,
     },
     {
       year: "2025",
@@ -180,8 +183,6 @@ export const news = {
       "Der Digitalcheck in Zahlen" gibt eine Übersicht, was mit dem Digitalcheck bisher erreicht wurde.
       Dazu zählen durchgeführte Digitalbezugsprüfungen, Regelungsbegleitungen durch das Team, Schulungen,
       Interoperabilitätsberatungen und Vernetzungsangebote.
-      
-      [Hier ansehen](${zahlenUndFakten.path})
       `,
     },
     {
@@ -203,7 +204,7 @@ export const news = {
       - Klare Anforderungen für Interoperabilitätsbewertungen
       - Hintergründe und Ziele der neuen EU-Verordnung
       
-      [Hier ansehen](${interoperabel.path}${getTabAnchorLink("hintergrund")})
+      [Hier ansehen](${interoperabel.path})
       `,
     },
     {
@@ -255,7 +256,7 @@ export const news = {
       badge: {
         text: "11.09.2025",
       },
-      headline: { text: "Design-Änderungen" },
+      headline: { text: "Design der Progress-Bar angepasst" },
       content: "Darstellung der Progress-Bar an Style der Startseite angepasst",
     },
     {
@@ -300,7 +301,7 @@ export const news = {
           - neu: digitalcheck.bund.de
         - Link zu [Digitale Verwaltung Projektseite](https://www.digitale-verwaltung.de/Webs/DV/DE/transformation/digitalcheck/digitalcheck-node.html) im Footer ergänzt
         - Neue Einstiegsseite / Landingpage für Visualisierungen gelauncht
-        - [NKR-Infoseite](${grundlagen_normenkontrollrat.path}) aktualisiert
+        - [NKR-Infoseite](${normenkontrollrat.path}) aktualisiert
       `,
     },
     {
@@ -314,7 +315,7 @@ export const news = {
 - wenn sinnvoll: für Aspekte je ein Beispiel ergänzt
 - Kontextinfo “Warum ist dieses Beispiel gut“ näher an Regelungsbeispiel-Text platziert
 
-[hier ansehen](${methoden_fuenfPrinzipien.path})
+[hier ansehen](${prinzipien.path})
       `,
     },
     {
@@ -322,12 +323,12 @@ export const news = {
         text: "05.08.2025",
       },
       headline: {
-        text: "Umfangreiches Struktur- und Inhalts-Update (neue Startseite)",
+        text: "Umfangreiches Struktur- und Inhalts-Update (Neue Startseite)",
       },
       content: dedent`
         - Neue [Startseite](/)
         - Neue Grundlagen-Seite: Was ist Digitaltauglichkeit?
-        - Neue Grundlagen-Seite: [NKR und Digitalcheck](${grundlagen_normenkontrollrat.path})
+        - Neue Grundlagen-Seite: [NKR und Digitalcheck](${normenkontrollrat.path})
         - Neue Dokumentation als Word-Datei v1.5.1 aktualisiert auf Digitalcheck Website, Github und DV
         - Beispiele sind wieder im Footer verlinkt
         - [Nationale Kontaktstelle-Seite](${interoperabel_nationaleKontaktstelle.path}): Zeitleiste neu sortiert (Aktuelles oben)

@@ -1,5 +1,5 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { PropsWithChildren } from "react";
+import { twMerge } from "tailwind-merge";
 
 type ContainerProps = {
   overhangingBackground?: boolean;

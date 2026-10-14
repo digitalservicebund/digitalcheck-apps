@@ -1,5 +1,5 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type FeatureListProps = {
   children: ReactNode;

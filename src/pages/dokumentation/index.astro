@@ -12,6 +12,6 @@ const prinzips = (await getCollection("prinzipien"))
   .sort((a, b) => a.order - b.order);
 ---
 
-<Layout title={frontmatter.title} showProgressBar>
+<Layout title={frontmatter.title} noMenu>
   <DokumentationIndexPageWithProvider client:load prinzips={prinzips} />
 </Layout>

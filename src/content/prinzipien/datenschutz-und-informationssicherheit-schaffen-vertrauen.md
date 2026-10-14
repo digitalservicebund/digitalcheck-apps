@@ -2,6 +2,7 @@
 {
   "documentId": "bnx9lmblnceu1m3uy3rziy0i",
   "Name": "Datenschutz und Informationssicherheit schaffen Vertrauen",
+  "Kurzbezeichnung": "Datenschutz und Informationssicherheit",
   "order": 5,
   "Nummer": 3,
   "URLBezeichnung": "datenschutz-und-informationssicherheit-schaffen-vertrauen",

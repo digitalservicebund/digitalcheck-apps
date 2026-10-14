@@ -1,0 +1,137 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import KernCard from "@/components/KernCard.astro";
+import IconDescription from "~icons/ic/round-description";
+import IconEditNote from "~icons/ic/round-edit-note";
+import IconLaptop from "~icons/ic/round-laptop";
+import IconSwapCalls from "~icons/ic/round-swap-calls";
+import {
+  dokumentation,
+  interoperabel,
+  methoden,
+  prinzipien,
+  vorpruefung,
+} from "@/config/routes";
+import { ZFL_BASE_URL, ZFL_PATH_FLUSSDIAGRAMME } from "@/resources/constants";
+
+export const frontmatter = {
+  title: "Die Rolle des Nationalen Normenkontrollrats",
+  navLabel: "NKR",
+};
+
+const documents = [
+  {
+    icon: IconLaptop,
+    title: "Ergebnis der Vorprüfung",
+    body: "Informieren Sie den NKR frühzeitig über Ihr Vorhaben und geben Sie an, ob ein Digitalbezug besteht.",
+    link: { label: "Zur Vorprüfung", href: vorpruefung.path },
+  },
+  {
+    icon: IconEditNote,
+    title: "Digitalcheck Dokumentation",
+    body: "Damit kann der NKR nachvollziehen, wie Sie die Digitaltauglichkeit Ihres Vorhabens sicherstellen.",
+    link: { label: "Zur Dokumentation", href: dokumentation.path },
+  },
+  {
+    icon: IconDescription,
+    title: "Regelungsentwurf",
+    body: "Der NKR prüft die Umsetzbarkeit und den Erfüllungsaufwand Ihres Vorhabens anhand des Referentenentwurfs.",
+    link: { label: "Regelung erarbeiten", href: methoden.path },
+  },
+  {
+    icon: IconSwapCalls,
+    title: "Visualisierungen",
+    subline: "Optional",
+    body: "Visualisierungen wie Flussdiagramme helfen dem NKR, Ihre Überlegungen zur Digitaltauglichkeit nachzuvollziehen.",
+    link: {
+      label: "Zur Methode „Flussdiagramm“",
+      href: `${ZFL_BASE_URL}${ZFL_PATH_FLUSSDIAGRAMME}`,
+    },
+  },
+];
+---
+
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>{frontmatter.title}</h1>
+      <p>
+        Hier erfahren Sie, worauf der Nationale Normenkontrollrat (NKR) beim
+        Digitalcheck Ihres Regelungsvorhabens achtet.
+      </p>
+      <p>
+        <i>
+          Hinweis: Diese Seite richtet sich ausschließlich an Bundesministerien.
+        </i>
+      </p>
+    </Hero>
+    <section>
+      <h2>Was sind die Aufgaben des NKR im Rahmen des Digitalcheck?</h2>
+      <p>
+        Der NKR hat den{" "}
+        <a href="https://www.gesetze-im-internet.de/nkrg/__4.html">
+          gesetzlichen Auftrag
+        </a>
+        , sicherzustellen, dass Digitalisierung bei der Erarbeitung neuer
+        Regelungsvorhaben berücksichtigt wird. Seit April 2023 fließen die
+        Ergebnisse des Digitalcheck in die Stellungnahmen des NKR ein und sind{" "}
+        <a href="https://www.normenkontrollrat.bund.de/Webs/NKR/DE/veroeffentlichungen/nkr-stellungnahmen/nkr-stellungnahmen_node.html">
+          öffentlich einsehbar
+        </a>
+        .
+      </p>
+      <p>
+        <b>Dabei gilt:</b>
+      </p>
+      <ul>
+        <li>
+          Der NKR prüft die Berücksichtigung der{" "}
+          <a href={prinzipien.path}>fünf Prinzipien</a> digitaltauglicher
+          Gesetzgebung.
+        </li>
+        <li>
+          Die Anforderungen der Verordnung für ein{" "}
+          <a href={interoperabel.path}>interoperables Europa</a> (EU) 2024/903
+          werden nicht vom NKR geprüft.
+        </li>
+        <li>
+          Der NKR gibt nicht zu jedem Regelungsvorhaben eine Stellungnahme ab.
+        </li>
+      </ul>
+      <p>
+        Bei weiteren Fragen wenden Sie sich bitte an die für Ihr Haus{" "}
+        <a href="https://www.normenkontrollrat.bund.de/Webs/NKR/DE/der-nkr/sekretariat/sekretariat_node.html">
+          zuständigen Ansprechpartner
+        </a>{" "}
+        beim NKR.
+      </p>
+    </section>
+    <section class="bg-kern-layout-layer-surface breakout">
+      <h2>Relevante Dokumente</h2>
+      <p>
+        Auf diese Unterlagen achtet der NKR beim Digitalcheck Ihres
+        Regelungsvorhabens.
+      </p>
+      <div class="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-kern-xl">
+        {documents.map(({ icon: Icon, title, subline, body, link }) => (
+          <KernCard
+            title={title}
+            subline={subline}
+            body={body}
+            background="white"
+          >
+            <Icon slot="icon" class="size-48 text-kern-darkblue-800" />
+            <a
+              slot="footer"
+              href={link.href}
+              class="kern-btn kern-btn--secondary link-unstyled"
+            >
+              <span class="kern-label">{link.label}</span>
+            </a>
+          </KernCard>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

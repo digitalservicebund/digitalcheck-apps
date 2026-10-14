@@ -22,7 +22,7 @@ describe("InfoBoxList", () => {
           <InfoBox>Lorem2</InfoBox>
         </InfoBoxList>,
       );
-      expect(screen.getByRole("list")).toHaveClass("kern-stack-3xl");
+      expect(screen.getByRole("list")).toHaveClass("gap-kern-3xl");
     });
 
     it("has expected padding when the separator is unset", () => {
@@ -32,7 +32,7 @@ describe("InfoBoxList", () => {
           <InfoBox>Lorem2</InfoBox>
         </InfoBoxList>,
       );
-      expect(screen.getByRole("list")).toHaveClass("kern-stack-3xl");
+      expect(screen.getByRole("list")).toHaveClass("gap-kern-3xl");
     });
   });
 

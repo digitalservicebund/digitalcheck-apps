@@ -1,5 +1,5 @@
-import twMerge from "@/utils/tailwindMerge";
 import type React from "react";
+import { twMerge } from "tailwind-merge";
 
 type ButtonContainerProps = {
   className?: string;

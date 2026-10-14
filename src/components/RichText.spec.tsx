@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import RichText from "./RichText";
 
 const EXAMPLE_MARKDOWN = `Jedes Regelungsvorhaben hat Auswirkungen auf die Digitalisierung.
@@ -66,5 +66,33 @@ describe("RichText", () => {
       expect(link).toHaveAttribute("download");
       expect(link.querySelector("svg")).not.toBeNull();
     }
+  });
+
+  it("prefixes root-relative links with the base path", async () => {
+    vi.stubEnv("BASE_URL", "/preview/");
+    render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
+    const links = await screen.findAllByRole("link");
+
+    expect(links[0]).toHaveAttribute("href", "/preview/methoden");
+    expect(links[1]).toHaveAttribute("href", "https://example.com");
+    expect(links[3]).toHaveAttribute(
+      "href",
+      "/preview/documents/digitalcheck-dokumentation.pdf",
+    );
+    vi.unstubAllEnvs();
+  });
+
+  it("does not prefix links that already contain the base path", async () => {
+    vi.stubEnv("BASE_URL", "/preview/");
+    render(
+      <RichText markdown="[Interoperabilitätsbewertung](/preview/interoperabel#verbindliche-anforderungen)" />,
+    );
+    const link = await screen.findByRole("link");
+
+    expect(link).toHaveAttribute(
+      "href",
+      "/preview/interoperabel#verbindliche-anforderungen",
+    );
+    vi.unstubAllEnvs();
   });
 });

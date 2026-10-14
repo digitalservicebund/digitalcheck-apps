@@ -1,8 +1,85 @@
 ---
+import {
+  interoperabel_loesungen_coreVocabularies,
+  interoperabel_loesungen_dcatAp,
+} from "@/config/routes";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import KernCard from "@/components/KernCard.astro";
+
 export const frontmatter = {
   title: "Interoperable Lösungen",
 };
 
-// Redirect to "/interoperabel?tab=interoperable-loesungen#interoperable-loesungen",
-// see astro.config.mjs
+const solutions = [
+  {
+    route: interoperabel_loesungen_coreVocabularies,
+    subline: "Die grenzüberschreitende Datensprache für das Once-Only-Prinzip",
+  },
+  {
+    route: interoperabel_loesungen_dcatAp,
+    subline:
+      "Der Metadatenstandard für Offene Daten und Transparenz (Data Catalogue Vocabulary Application Profile)",
+  },
+];
 ---
+
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>Lösungen für ein interoperables Europa</h1>
+      <p>
+        Statt das Rad neu zu erfinden, sollen Verwaltungen bewährte Lösungen
+        nutzen.
+      </p>
+    </Hero>
+
+    <section>
+      <h2>Nachnutzen vor neu beschaffen vor neu bauen</h2>
+      <p>
+        Bestehende und bewährte Bausteine, wie die Lösungen für ein
+        interoperables Europa (Art. 7 der Verordnung (EU) 2024/903), ermöglichen
+        es, digitale öffentliche Dienste schneller bereitzustellen, sowie
+        günstiger zu entwickeln und zu betreiben.
+      </p>
+      <p>
+        Lösungen können nicht nur IT-Komponenten sein, sondern z. B. auch
+        rechtliche Rahmenbedingungen, organisatorische Prozesse, semantische
+        Standards, technische Anwendungen oder Quellcode.
+      </p>
+      <p>
+        Hat Ihre Regelung Interoperabilitätsbezug, prüfen Sie, ob eine „Lösung
+        für ein interoperables Europa“ in Ihrem Kontext verwendet werden kann.
+        <strong>Die Nicht-Verwendung muss kurz begründet werden.</strong>
+      </p>
+    </section>
+
+    <section class="breakout space-y-32 bg-kern-darkblue-025">
+      <div>
+        <h2>Diese Lösungen sind aktuell verfügbar</h2>
+        <p>
+          Das Interoperable Europe Board legt fest, welche Lösungen zu prüfen
+          sind. Die Übersicht wird laufend ergänzt. Hintergründe finden Sie auf
+          der{" "}
+          <a
+            href="https://interoperable-europe.ec.europa.eu/interoperable-europe-solutions"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Webseite der Interoperable Europe Solutions.
+          </a>
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-32 md:grid-cols-2 lg:grid-cols-3">
+        {solutions.map(({ route, subline }) => (
+          <KernCard
+            title={route.title}
+            subline={subline}
+            href={route.path}
+            background="white"
+          />
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

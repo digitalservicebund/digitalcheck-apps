@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Variant =
+  "info" | "success" | "warning" | "danger" | "rechtsakt" | `prinzip-${number}`;
+
+interface Props extends HTMLAttributes<"span"> {
+  class?: string;
+  variant?: Variant;
+  showIcon?: boolean;
+  small?: boolean;
+}
+
+const {
+  class: className,
+  variant = "info",
+  showIcon = true,
+  small = false,
+  ...attrs
+} = Astro.props;
+---
+
+<span
+  class:list={[
+    "kern-badge",
+    `kern-badge--${variant}`,
+    small && "kern-badge--small",
+    className,
+  ]}
+  {...attrs}
+>
+  {showIcon && (
+    <span class={`kern-icon kern-icon--${variant}`} aria-hidden="true" />
+  )}
+  <span class="kern-label">
+    <slot />
+  </span>
+</span>

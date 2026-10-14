@@ -30,7 +30,11 @@ export default function SkipNoticeWrapper({
         </Button>
       </InlineNotice>
       {showAnyway && (
-        <div className={"p-16 outline-4 outline-gray-400 outline-dashed"}>
+        <div
+          className={
+            "outline-kern-decorative-border p-16 outline-4 outline-dashed"
+          }
+        >
           {children}
         </div>
       )}

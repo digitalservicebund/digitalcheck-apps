@@ -30,11 +30,11 @@ export function DocumentationHinweise() {
       <Heading
         text="Wichtige Hinweise"
         tagName="h1"
-        look="ds-heading-02-reg"
+        look="kern-heading-large"
         className="mb-16"
       />
       <RichText
-        className="[&>h2]:ds-heading-03-reg [&>h2]:mt-40"
+        className="[&>h2]:kern-heading-medium [&>h2]:mt-40"
         markdown={notes}
       />
 

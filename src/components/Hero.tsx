@@ -1,6 +1,5 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { ReactNode } from "react";
-import Container from "./Container";
+import { twMerge } from "tailwind-merge";
 import Heading from "./Heading";
 import RichText from "./RichText";
 
@@ -20,37 +19,12 @@ export default function Hero({
   className,
 }: Readonly<HeroProps>) {
   return (
-    <div className={twMerge("bg-blue-100", className)}>
-      <Container className="kern-stack kern-stack-md pb-48">
+    <section className={twMerge("bg-kern-darkblue-100 py-kern-4xl", className)}>
+      <div className="kern-stack kern-stack-md container">
         <Heading tagName="h1">{title}</Heading>
-        {subtitle && (
-          <RichText markdown={subtitle} className="ds-subhead mt-16" />
-        )}
+        {subtitle && <RichText markdown={subtitle} className="mt-16" />}
         {children}
-      </Container>
-    </div>
-  );
-}
-
-/**
- * An alternative Hero component that works with the
- * breakout-grid utility.
- */
-export function BreakoutHero({
-  preline,
-  children,
-  title,
-  subtitle,
-  className,
-}: Readonly<HeroProps>) {
-  return (
-    <div className={twMerge("breakout bg-blue-100 pt-40 pb-48", className)}>
-      {preline}
-      <Heading tagName="h1">{title}</Heading>
-      {subtitle && (
-        <RichText markdown={subtitle} className="ds-subhead mt-16" />
-      )}
-      {children}
-    </div>
+      </div>
+    </section>
   );
 }

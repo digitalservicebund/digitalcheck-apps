@@ -58,7 +58,7 @@ export function DocumentationInteroperabilityAssessmentLegal() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Rechtliche Interoperabilität</Badge>
-        <Heading tagName="h1" look="ds-heading-02-reg" className="mb-16">
+        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
           Rechtliche Grundlage für den Datenaustausch schaffen
         </Heading>
         <p>
@@ -75,7 +75,7 @@ export function DocumentationInteroperabilityAssessmentLegal() {
         </DetailsSummary>
       </div>
       <SkipNoticeWrapper>
-        <h2 id="question-label" className="ds-heading-03-reg mb-16">
+        <h2 id="question-label" className="kern-heading-medium mb-16">
           Schafft das Regelungsvorhaben die <strong>rechtlichen</strong>{" "}
           Voraussetzungen für einen Datenaustausch innerhalb der EU?
         </h2>

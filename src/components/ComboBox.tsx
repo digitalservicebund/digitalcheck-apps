@@ -79,14 +79,14 @@ export default function Combobox({
         </div>
         <ComboboxOptions
           anchor="bottom"
-          className="w-(--input-width) space-y-8 border border-gray-400 bg-white shadow-lg empty:invisible"
+          className="border-kern-decorative-border w-(--input-width) space-y-8 border bg-white shadow-lg empty:invisible"
         >
           {options.map((option) => {
             return (
               <ComboboxOption
                 key={option.value}
                 value={option.value}
-                className="group flex p-8 data-focus:bg-blue-200"
+                className="group data-focus:bg-kern-darkblue-050 flex p-8"
               >
                 <div className="grow">{option.label}</div>
                 <Check className={"hidden group-data-selected:block"} />

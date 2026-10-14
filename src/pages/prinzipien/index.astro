@@ -1,0 +1,114 @@
+---
+import { prinzipien } from "@/config/routes";
+import Layout from "@/layouts/Layout.astro";
+import FeatureSet from "@/components/FeatureSet.astro";
+import FeatureItem from "@/components/FeatureItem.astro";
+import Hero from "@/components/Hero.astro";
+import KernBadge from "@/components/KernBadge.astro";
+import KernCard from "@/components/KernCard.astro";
+import IconComputer from "~icons/ic/round-computer";
+import IconQueryBuilder from "~icons/ic/round-query-builder";
+import IconPlaylistAddCheck from "~icons/ic/round-playlist-add-check";
+import ImageTextOverlay from "@/components/ImageTextOverlay.astro";
+import posterImage from "@/assets/images/Poster_5Prinzipien.jpg";
+import { prinzipienPoster_pdf } from "@/config/downloads";
+import { getCollection } from "astro:content";
+
+export const frontmatter = {
+  title: "Fünf Prinzipien",
+};
+
+const prinzips = (await getCollection("prinzipien"))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
+---
+
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>Die fünf Prinzipien</h1>
+      <p class="kern-subline kern-subline--large">
+        Chancen und Hindernisse der digitalen Umsetzung identifizieren
+      </p>
+      <p>
+        Die folgenden Prinzipien helfen Ihnen dabei, Chancen der digitalen
+        Umsetzung auszuschöpfen und Hindernisse zu erkennen. Nutzen Sie die
+        Prinzipien auch, um mit beteiligten Akteurinnen und Akteuren über die
+        Umsetzung zu sprechen.
+      </p>
+    </Hero>
+
+    <section id="instruction" class="space-y-32">
+      <h2>So nutzen Sie die fünf Prinzipien für Ihr Regelungsvorhaben</h2>
+      <FeatureSet>
+        <FeatureItem title="Den Gesamtprozess überprüfen">
+          <IconComputer slot="icon" class="size-74" />
+          <p>
+            Wenden Sie die fünf Prinzipien direkt auf eine Skizze Ihres
+            Umsetzungsprozesses an. So lokalisieren Sie relevante Schnittstellen
+            Schritt für Schritt.
+          </p>
+        </FeatureItem>
+        <FeatureItem title="Starthilfe für den Regelungstext">
+          <IconQueryBuilder slot="icon" class="size-74" />
+          <p>
+            Verwenden Sie erprobte Praxisbeispiele als Fundament für Ihre
+            eigenen Formulierungen und profitieren Sie von der Wirklogik bereits
+            bestehender Lösungen.
+          </p>
+        </FeatureItem>
+        <FeatureItem title="Unterstützung durch Schulungsangebote und Praxistipps">
+          <IconPlaylistAddCheck slot="icon" class="size-74" />
+          <p>
+            Nutzen Sie konkrete Tipps, um die digitalen Potenziale Ihres
+            Regelungsvorhabens voll auszuschöpfen und Hürden frühzeitig zu
+            identifizieren.
+          </p>
+        </FeatureItem>
+      </FeatureSet>
+    </section>
+
+    <section class="breakout bg-kern-layout-layer-surface space-y-32">
+      <h2>Im Überblick</h2>
+      <div
+        class="grid grid-cols-1 gap-32 md:grid-cols-2 lg:grid-cols-3"
+        data-testid="prinzipien"
+      >
+        {prinzips.map((prinzip) => (
+          <KernCard
+            title={prinzip.Name}
+            body={prinzip.Kurzbeschreibung}
+            href={`${prinzipien.path}/${prinzip.URLBezeichnung}`}
+            background="white"
+          >
+            <KernBadge
+              slot="pre-header"
+              variant={`prinzip-${prinzip.order}`}
+              showIcon={false}
+              class="mb-16"
+            >
+              Prinzip {prinzip.order}
+            </KernBadge>
+          </KernCard>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <ImageTextOverlay
+        image={posterImage}
+        imageAlt="Poster der 5 Prinzipien"
+        linkHref={prinzipienPoster_pdf.path}
+        linkText="Poster herunterladen"
+        icon="download"
+      >
+        <p class="kern-preline">Download</p>
+        <h2 class="mt-0">Die Prinzipien als Poster</h2>
+        <p>
+          Drucken Sie sich das Poster in A4 oder A3 aus, um die Prinzipien für
+          digitaltaugliche Gesetzgebung immer im Blick zu haben.
+        </p>
+      </ImageTextOverlay>
+    </section>
+  </main>
+</Layout>

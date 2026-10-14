@@ -9,7 +9,7 @@ import {
   home,
   impressum,
   methoden,
-  methoden_fuenfPrinzipien,
+  prinzipien,
   type Route,
   vorpruefung,
   vorpruefung_ergebnis,
@@ -28,7 +28,7 @@ function getExpectedTitle(route: Pick<Route, "path" | "title">) {
     route.path === "/grundlagen/fuenf-prinzipien"
   ) {
     // this page does not exist and redirects to the sub-page
-    return `${methoden_fuenfPrinzipien.title}${titleSuffix}`;
+    return `${prinzipien.title}${titleSuffix}`;
   }
   if (
     route.path.startsWith(dokumentation.path) &&
@@ -98,7 +98,7 @@ test.describe("landing page", () => {
   test("CTA on landing works", async ({ page }) => {
     await page.goto(home.path);
     await page
-      .getByRole("link", { name: "Digitalbezug einschätzen" })
+      .getByRole("link", { name: "Digitalcheck starten" })
       .first()
       .click();
     await expect(page).toHaveURL(vorpruefung.path);
@@ -111,9 +111,6 @@ test("footer is displayed", async ({ page }) => {
   await expect(footerEl).toBeVisible();
   await expect(
     footerEl.getByRole("navigation", { name: "Schnellübersicht" }),
-  ).toBeVisible();
-  await expect(
-    footerEl.getByRole("navigation", { name: "Sitemap" }),
   ).toBeVisible();
   await expect(
     footerEl.getByRole("navigation", { name: "Externe Verlinkungen" }),
@@ -135,7 +132,10 @@ test.describe("links", () => {
 
   test("links in landing page work", async ({ page }) => {
     await page.goto(home.path);
-    await page.getByRole("link", { name: "Regelung erarbeiten" }).click();
+    await page
+      .getByRole("main")
+      .getByRole("link", { name: "Zur Erarbeitung" })
+      .click();
     await expect(page).toHaveURL(methoden.path);
   });
 
@@ -150,62 +150,6 @@ test.describe("links", () => {
         .getPropertyValue("background-color");
     });
     expect(afterBackgroundColor).toBeTruthy();
-  });
-});
-
-test.describe("progress bar", () => {
-  const routesWithProgressBarOrRedirects = allRoutes.filter(
-    (route) =>
-      route.path.startsWith(vorpruefung.path) ||
-      route.path.startsWith(methoden.path) ||
-      route.path.startsWith(dokumentation.path) ||
-      route.path === grundlagen.path,
-  );
-  routesWithProgressBarOrRedirects.forEach((route) => {
-    test(`${route.title} has progress bar`, async ({ page }) => {
-      await page.goto(route.path);
-      await expect(page.getByLabel("Digitalcheck-Fortschritt")).toBeVisible();
-    });
-  });
-
-  allRoutes.forEach((route) => {
-    if (routesWithProgressBarOrRedirects.includes(route)) {
-      return;
-    }
-
-    test(`${route.path} has no progress bar`, async ({ page }) => {
-      await page.goto(route.path);
-      await expect(page.getByLabel("Digitalcheck-Fortschritt")).toBeHidden();
-    });
-  });
-
-  test("Correct step is highlighted in progress bar", async ({ page }) => {
-    const navigation = page.getByRole("navigation", {
-      name: "Digitalcheck-Fortschritt",
-    });
-
-    const step1 = navigation.getByRole("listitem").filter({ hasText: "1" });
-    const step2 = navigation.getByRole("listitem").filter({ hasText: "2" });
-    const step3 = navigation.getByRole("listitem").filter({ hasText: "3" });
-
-    await page.goto(vorpruefung.path);
-    await expect(navigation).toBeVisible();
-    await expect(step1).toContainClass("font-bold");
-    await expect(step1).toHaveAttribute("aria-current", "step");
-    await expect(step2).not.toContainClass("font-bold");
-    await expect(step2).not.toHaveAttribute("aria-current", "step");
-
-    await page.goto(methoden.path);
-    await expect(step2).toContainClass("font-bold");
-    await expect(step2).toHaveAttribute("aria-current", "step");
-    await expect(step1).not.toContainClass("font-bold");
-    await expect(step1).not.toHaveAttribute("aria-current", "step");
-
-    await page.goto(dokumentation.path);
-    await expect(step3).toContainClass("font-bold");
-    await expect(step3).toHaveAttribute("aria-current", "step");
-    await expect(step2).not.toContainClass("font-bold");
-    await expect(step2).not.toHaveAttribute("aria-current", "step");
   });
 });
 

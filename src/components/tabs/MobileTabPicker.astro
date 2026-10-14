@@ -22,7 +22,7 @@ const { items, navigate = false, label, class: className } = Astro.props;
       data-tab-select={navigate ? undefined : ""}
       onchange={navigate ? "location.href = this.value" : undefined}
       aria-label={label}
-      class="ds-label-02-bold h-[70px] w-full cursor-pointer appearance-none border-4 border-transparent bg-blue-100 pr-[48px] pl-[16px] text-blue-800 hover:bg-blue-300 focus:border-blue-800 focus:outline-none"
+      class="h-[70px] w-full cursor-pointer appearance-none border-4 border-transparent bg-blue-100 pr-[48px] pl-[16px] text-blue-800 hover:bg-blue-300 focus:border-blue-800 focus:outline-none"
     >
       {items.map((item) => (
         <option value={item.value} selected={item.selected}>

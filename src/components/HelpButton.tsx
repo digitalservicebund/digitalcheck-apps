@@ -1,8 +1,8 @@
 import { useHelpPanel } from "@/contexts/HelpPanelContext";
-import customTwMerge from "@/utils/tailwindMerge";
 import { HelpOutlineOutlined } from "@digitalservicebund/icons";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 type HelpButtonProps = {
   sectionId: string;
@@ -36,9 +36,9 @@ export default function HelpButton({
       <button
         type="button"
         aria-label="Hilfe anzeigen"
-        className={customTwMerge(
+        className={twMerge(
           "inline cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-800",
-          "size-[1em] min-h-20 min-w-20 fill-blue-800",
+          "fill-kern-action-default size-[1em] min-h-20 min-w-20",
           "translate-y-4",
           className,
         )}

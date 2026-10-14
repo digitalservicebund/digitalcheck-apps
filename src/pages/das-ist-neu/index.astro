@@ -13,41 +13,68 @@ export const frontmatter = {
 };
 
 const TimelineItem = Timeline.Item;
+
+const PAGE_SIZE = 9;
+
+// Year markers get the index of the following entry, so they appear together with it
+let entryCount = 0;
+const items = news.items.map((item) => ({
+  ...item,
+  index: item.year ? entryCount : entryCount++,
+}));
 ---
 
 <Layout title={frontmatter.title}>
   <main class="breakout-grid">
     <Hero>
       <h1>Das ist neu</h1>
-      <p slot="subtitle">
+      <p>
         Das Digitalcheck-Angebot wird kontinuierlich{" "}
         <a href="https://zfl.bund.de/ueber/daran-arbeiten-wir">
           weiterentwickelt
         </a>
-        . Bedürfnisse und Rückmeldungen von Nutzenden werden kurzfristig
-        eingearbeitet. Auch geänderte und neue rechtliche Anforderungen führen
-        zu Anpassungen. Unten finden Sie eine chronologische Übersicht der
-        Ergänzungen und Änderungen auf der Website.
+        . Hier finden Sie eine Übersicht der neuesten Ergänzungen und
+        Änderungen.
       </p>
-      <p slot="subtitle">
-        Haben Sie Anregungen oder Wünsche? Kontaktieren Sie uns jederzeit gerne
-        unter <a href={contact.phone}>{contact.phoneDisplay}</a> oder{" "}
+      <p>
+        Haben Sie Anregungen oder Wünsche? Schreiben Sie uns gerne eine E-Mail
+        an{" "}
         <a href={mailto(contact.email, "Supportanfrage: digitalcheck.bund.de")}>
           {contact.email}
-        </a>
-        .
+        </a>{" "}
+        oder rufen Sie uns an unter{" "}
+        <a href={contact.phone}>{contact.phoneDisplay}</a>.
       </p>
-      <Metadata slot="subtitle" lastUpdate="31.08.2026" />
+      <Metadata lastUpdate="31.08.2026" />
     </Hero>
-    <section class="py-80">
-      <Timeline>
-        {news.items.map((item) =>
+    <section
+      class="py-80"
+      x-data={`{
+        visible: ${PAGE_SIZE},
+        showMore() {
+          const firstNew = this.visible;
+          this.visible += ${PAGE_SIZE};
+          this.$nextTick(() =>
+            this.$root.querySelector('[data-entry-index="' + firstNew + '"]')?.focus(),
+          );
+        },
+      }`}
+    >
+      {/* Indent so year badges, centered on the line, don't overhang the content column */}
+      <Timeline className="pl-28">
+        {items.map((item) =>
           item.year ? (
-            <TimelineItem year={item.year} />
+            <TimelineItem year={item.year} x-show={`visible > ${item.index}`} />
           ) : (
-            <TimelineItem bullet>
+            <TimelineItem
+              bullet
+              x-show={`visible > ${item.index}`}
+              data-entry-index={item.index}
+              tabIndex={-1}
+              className="pb-40 pl-8"
+            >
               {"badge" in item && (
-                <div>
+                <div class="flex">
                   <span class="kern-badge kern-badge--small border-0 bg-[#F3F4F7]">
                     <span class="kern-label font-normal">
                       {item.badge!.text}
@@ -56,13 +83,30 @@ const TimelineItem = Timeline.Item;
                 </div>
               )}
               {item.headline && (
-                <h2 class="kern-heading-medium py-16">{item.headline.text}</h2>
+                <h2 class="kern-heading-medium pt-24 pb-16">
+                  {item.headline.text}
+                </h2>
               )}
               {item.content && <RichText markdown={item.content} />}
             </TimelineItem>
           ),
         )}
       </Timeline>
+      {entryCount > PAGE_SIZE && (
+        <button
+          type="button"
+          class="kern-btn kern-btn--tertiary"
+          style="display: none"
+          x-show={`visible < ${entryCount}`}
+          x-on:click="showMore()"
+        >
+          <span
+            class="kern-icon kern-icon--arrow-down kern-icon--default"
+            aria-hidden="true"
+          ></span>
+          <span class="kern-label">Mehr anzeigen</span>
+        </button>
+      )}
     </section>
   </main>
 </Layout>

@@ -75,7 +75,7 @@ describe("Nav", () => {
 
     const disabledElement = screen.getByText("Navigation Item 2");
 
-    expect(disabledElement).toHaveClass("text-gray-800");
+    expect(disabledElement).toHaveClass("text-kern-layout-text-muted");
   });
 
   it("highlights the current element", () => {
@@ -84,10 +84,9 @@ describe("Nav", () => {
     const activeElement = screen.getByText("Navigation SubItem 1");
     expect(activeElement).toHaveAttribute("aria-current", "page");
     expect(activeElement).toHaveClass(
-      "ds-label-02-bold",
       "pointer-events-none",
-      "border-l-blue-800",
-      "bg-blue-400",
+      "border-l-kern-darkblue-800",
+      "bg-kern-darkblue-150",
     );
   });
 
@@ -167,7 +166,7 @@ describe("Nav", () => {
     );
 
     const item = screen.getByText("Principle 1");
-    expect(item).toHaveClass("ds-label-02-bold");
+    expect(item).toHaveClass("pointer-events-none");
   });
 
   it("activeUrls opens parent disclosure for alias URL", () => {

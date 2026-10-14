@@ -1,8 +1,8 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { FormScope, ValueOfInputType } from "@rvf/react";
 import { useField } from "@rvf/react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { useId } from "react";
+import { twMerge } from "tailwind-merge";
 import InputError from "./InputError";
 
 type BaseTextareaProps = ComponentPropsWithRef<"textarea">;
@@ -36,7 +36,7 @@ function Textarea({
         {children}
       </label>
       {description && (
-        <div className="ds-body-02-reg block text-gray-900" id={descriptionId}>
+        <div className="text-kern-layout-text-default block" id={descriptionId}>
           {description}
         </div>
       )}

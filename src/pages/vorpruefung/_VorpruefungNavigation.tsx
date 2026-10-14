@@ -16,7 +16,7 @@ export default function VorpruefungNavigation({
   const { answers, firstUnansweredQuestionIndex } = usePreCheckData();
 
   return (
-    <div className="container flex max-w-none justify-center space-x-80 bg-blue-100 py-40 lg:py-80">
+    <div className="bg-kern-darkblue-025 container flex max-w-none justify-center space-x-80 py-40 lg:py-80">
       <div className="hidden w-[265px] flex-none lg:block">
         <Nav
           ariaLabel="Alle Fragen"

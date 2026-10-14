@@ -1,0 +1,64 @@
+---
+import KernBadge from "@/components/KernBadge.astro";
+import RichText from "@/components/RichText.tsx";
+import type { Prinzip, PrinzipAspekt } from "@/content.config";
+import { slugify } from "@/utils/utilFunctions";
+
+interface Props {
+  aspect: PrinzipAspekt;
+  prinzip: Prinzip;
+  index: number;
+  class?: string;
+}
+
+const { aspect, prinzip, index, class: className } = Astro.props;
+const number = `${prinzip.order}.${index + 1}`;
+---
+
+<section class={className}>
+  <div class="space-y-32">
+    <div class="flex flex-col items-start gap-16">
+      <KernBadge variant={`prinzip-${prinzip.order}`} showIcon={false}>
+        Schwerpunkt
+      </KernBadge>
+      <h2
+        class="m-0 scroll-mt-112"
+        id={slugify(aspect.Kurzbezeichnung)}
+        data-toc-label={`${number} ${aspect.Kurzbezeichnung}`}
+      >
+        {number} {aspect.Titel}
+      </h2>
+      {aspect.Text && (
+        <RichText markdown={aspect.Text} className={"space-y-16"} />
+      )}
+    </div>
+    {!!aspect.Anwendung.length && (
+      <>
+        <h3 data-toc-ignore>So wenden Sie den Aspekt an</h3>
+        <div>
+          {aspect.Anwendung.map((anwendung) => (
+            <details class="kern-accordion">
+              <summary class="kern-accordion__header">
+                <span class="kern-title">{anwendung.Titel}</span>
+              </summary>
+              <section class="kern-accordion__body">
+                <RichText
+                  className="space-y-16 kern-body"
+                  markdown={anwendung.Erklaerung}
+                />
+                {anwendung.Formulierungsbeispiel && (
+                  <div class="space-y-16 border border-gray-600 bg-green-200 p-40">
+                    <h4 class="kern-heading-large">Formulierungsbeispiel</h4>
+                    <div>
+                      <RichText markdown={anwendung.Formulierungsbeispiel} />
+                    </div>
+                  </div>
+                )}
+              </section>
+            </details>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+</section>

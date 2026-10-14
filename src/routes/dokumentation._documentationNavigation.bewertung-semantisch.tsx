@@ -63,7 +63,7 @@ export function DocumentationInteroperabilityAssessmentSemantic() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Semantische Interoperabilität</Badge>
-        <Heading tagName="h1" look="ds-heading-02-reg" className="mb-16">
+        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
           Gemeinsame Bedeutung von Daten sicherstellen
         </Heading>
         <p>
@@ -88,7 +88,7 @@ export function DocumentationInteroperabilityAssessmentSemantic() {
         </DetailsSummary>
       </div>
       <SkipNoticeWrapper>
-        <h2 id="question-label" className="ds-heading-03-reg mb-16">
+        <h2 id="question-label" className="kern-heading-medium mb-16">
           Stellt das Regelungsvorhaben sicher, dass{" "}
           <strong>
             semantische Definitionen von Begriffen und Datenfeldern

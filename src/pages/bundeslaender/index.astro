@@ -1,18 +1,14 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import LaenderLayout from "@/layouts/LaenderLayout.astro";
 import { FileDownloadOutlined } from "@digitalservicebund/icons";
-import Container from "@/components/Container";
-import ContentWrapper from "@/components/ContentWrapper";
-import Heading from "@/components/Heading";
-import Hero from "@/components/Hero";
-import Image from "@/components/Image";
+import { Image } from "astro:assets";
 import Timeline from "@/components/Timeline";
-import AccordionItem from "@/components/AccordionItem";
 import KernCard from "@/components/KernCard.astro";
 import { contact } from "@/resources/content/shared/contact";
 import { withBase } from "@/utils/path";
 import { leitfadenDigitalcheckBundeslandAug2026_pdf } from "@/config/downloads";
 import leitfadenImg from "./_leitfaden.png";
+import angebotImg from "./_assets/angebot.png";
 
 export const frontmatter = {
   title: "Gemeinsamer Digitalcheck für Bund und Länder",
@@ -20,125 +16,121 @@ export const frontmatter = {
 };
 ---
 
-<Layout title={frontmatter.title}>
-  <main>
-    <Hero title="Gemeinsamer Digitalcheck für Bund und Länder" />
-    <div class="bg-blue-300">
-      <Container className="flex flex-col py-0 lg:flex-row">
-        <div class="py-32 sm:py-48 lg:w-1/2 lg:self-center lg:pr-48">
-          <p>
-            Weniger Doppelstrukturen, mehr Kooperation: Die{" "}
-            <a href="https://bmds.bund.de/themen/staatsmodernisierung/modernisierungsagenda-bund">
-              Modernisierungsagenda Bund
-            </a>{" "}
-            gibt im Handlungsfeld II Bessere Rechtsetzung vor, bestehende
-            Instrumente, Werkzeuge und Methoden im Zentrum für Legistik zu
-            konsolidieren und diese Angebote für Länder, Kommunen und
-            Körperschaften nutzbar zu machen.
-          </p>
-          <p>
-            Die{" "}
-            <a href="https://bmds.bund.de/themen/staatsmodernisierung/modernisierungsagenda-foederal">
-              Modernisierungsagenda Föderal{" "}
-            </a>
-            hält fest, dass die bereits erarbeiteten Methoden des Digitalchecks
-            weiterentwickelt, angewendet und von Bund und Ländern wechselseitig
-            zur Verfügung gestellt werden sollen. Langfristig soll der Abbau von
-            Doppelstrukturen im föderalen System gefördert werden.
-          </p>
-          <p>
-            <br />
-            In diesem Sinne hat der Bund bereits mit drei Bundesländern eine
-            Kooperation zur Nutzung des Digitalcheck Bund gestartet.
-          </p>
-        </div>
-        <div class="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
-          <div class="flex h-full w-[630px] flex-col justify-center bg-blue-500 align-middle lg:w-[50vw] [&>img]:object-contain lg:[&>img]:h-[550px]">
-            <Image
-              url={withBase("/images/bundeslaender.png")}
-              alternativeText="Eine stilisierte Karte von Deutschland mit den Grenzen der Bundesländer auf blauem Hintergrund."
-            />
-          </div>
-        </div>
-      </Container>
-    </div>
-    <ContentWrapper className="space-y-80">
-      <div>
-        <Heading tagName="h2" className="pb-8">
-          {" "}
-          Angebot{" "}
-        </Heading>
-        <p>
-          Durch eine Kooperation mit dem Bund können Sie den Digitalcheck für
-          Ihr Bundesland direkt auf der Webseite des Digitalcheck Bund
-          integrieren.
-        </p>
-        <br />
-        <ul>
-          <li>
-            <b>Personalisierte Landingpage:</b> Die Webseite für Ihren
-            Digitalcheck wird vom Team des Digitalcheck Bund aufgebaut, gewartet
-            und basierend auf Ihren Vorstellungen umgesetzt.
-          </li>
-          <li>
-            <b>Individuelle Inhalte:</b> Die inhaltliche Verantwortung liegt bei
-            Ihnen. Sie erhalten einen Leitfaden, der Sie bei der Erstellung von
-            verständlichen und barrierefreien Inhalten unterstützt. Die Inhalte
-            können jederzeit aktualisiert werden.
-          </li>
-          <li>
-            <b>Persönliche Unterstützung:</b> Das Team des Digitalcheck Bund
-            steht Ihnen für Rückfragen und Anpassungen zur Verfügung. In
-            gemeinsamen Gesprächen gehen wir auf Ihre Bedürfnisse ein.
-          </li>
-          <li>
-            <b>Klare Prozesse für bessere Rechtsetzung:</b> Sie stellen
-            Digitaltauglichkeit für Ihre Regelungsvorhaben auf Landesebene
-            sicher. Damit tragen Sie zum gemeinsamen Ziel von Bund und Ländern
-            bei, eine verständliche, praxistaugliche und wirkungsorientierte
-            Gesetzgebung sicherzustellen.
-          </li>
-        </ul>
-        <Image
-          url={withBase("/images/example-laender-page.png")}
-          alternativeText="Ein Laptop auf hellblauem Hintergrund zeigt den grafischen Entwurf einer Webseite der hessischen Landesregierung."
-          className="w-full max-w-630 pt-40"
-        />
-      </div>
-      <div>
-        <Heading tagName="h2" className="pb-40">
-          Vorteile der Kooperation auf einen Blick
-        </Heading>
-        <AccordionItem
-          headline="Gemeinsamer Standard und Nachnutzung erprobter Prozesse"
-          client:load
-        >
-          <span>
+<LaenderLayout title={frontmatter.title}>
+  <section class="bg-kern-layout-background-default-surface breakout">
+    <p>
+      Weniger Doppelstrukturen, mehr Kooperation: Die{" "}
+      <a href="https://bmds.bund.de/themen/staatsmodernisierung/modernisierungsagenda-bund">
+        Modernisierungsagenda Bund
+      </a>{" "}
+      gibt im Handlungsfeld II Bessere Rechtsetzung vor, bestehende Instrumente,
+      Werkzeuge und Methoden im Zentrum für Legistik zu konsolidieren und diese
+      Angebote für Länder, Kommunen und Körperschaften nutzbar zu machen.
+    </p>
+    <p>
+      Die{" "}
+      <a href="https://bmds.bund.de/themen/staatsmodernisierung/modernisierungsagenda-foederal">
+        Modernisierungsagenda Föderal{" "}
+      </a>
+      hält fest, dass die bereits erarbeiteten Methoden des Digitalchecks
+      weiterentwickelt, angewendet und von Bund und Ländern wechselseitig zur
+      Verfügung gestellt werden sollen. Langfristig soll der Abbau von
+      Doppelstrukturen im föderalen System gefördert werden.
+    </p>
+    <p>
+      In diesem Sinne hat der Bund bereits mit drei Bundesländern eine
+      Kooperation zur Nutzung des Digitalcheck Bund gestartet.
+    </p>
+  </section>
+  <section>
+    <h2>Angebot</h2>
+    <p>
+      Durch eine Kooperation mit dem Bund können Sie den Digitalcheck für Ihr
+      Bundesland direkt auf der Webseite des Digitalcheck Bund integrieren.
+    </p>
+    <ul>
+      <li>
+        <b>Personalisierte Landingpage:</b> Die Webseite für Ihren Digitalcheck
+        wird vom Team des Digitalcheck Bund aufgebaut, gewartet und basierend
+        auf Ihren Vorstellungen umgesetzt.
+      </li>
+      <li>
+        <b>Individuelle Inhalte:</b> Die inhaltliche Verantwortung liegt bei
+        Ihnen. Sie erhalten einen Leitfaden, der Sie bei der Erstellung von
+        verständlichen und barrierefreien Inhalten unterstützt. Die Inhalte
+        können jederzeit aktualisiert werden.
+      </li>
+      <li>
+        <b>Persönliche Unterstützung:</b> Das Team des Digitalcheck Bund steht
+        Ihnen für Rückfragen und Anpassungen zur Verfügung. In gemeinsamen
+        Gesprächen gehen wir auf Ihre Bedürfnisse ein.
+      </li>
+      <li>
+        <b>Klare Prozesse für bessere Rechtsetzung:</b> Sie stellen
+        Digitaltauglichkeit für Ihre Regelungsvorhaben auf Landesebene sicher.
+        Damit tragen Sie zum gemeinsamen Ziel von Bund und Ländern bei, eine
+        verständliche, praxistaugliche und wirkungsorientierte Gesetzgebung
+        sicherzustellen.
+      </li>
+    </ul>
+    <figure class="max-w-630 pt-40">
+      <Image
+        src={angebotImg}
+        alt="Ein Laptop auf hellblauem Hintergrund zeigt den grafischen Entwurf einer Webseite der hessischen Landesregierung."
+        class="w-full"
+        width={630}
+        densities={[1, 2]}
+      />
+      <figcaption class="kern-body kern-body--small kern-body--muted pt-16">
+        Ein Beispiel eines Entwurfs für eine personalisierte Landingpage eines
+        Bundeslandes
+      </figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2>Vorteile der Kooperation auf einen Blick</h2>
+    <div class="kern-accordion-group">
+      <details class="kern-accordion">
+        <summary class="kern-accordion__header">
+          <span class="kern-title">
+            Gemeinsamer Standard und Nachnutzung erprobter Prozesse
+          </span>
+        </summary>
+        <section class="kern-accordion__body">
+          <p class="kern-body">
             Als methodische Prozessbegleitung sichert der Digitalcheck auf
             Bundesebene die Digitaltauglichkeit von Regelungsvorhaben.
             Bundesländer können diesen bewährten Prozess für ihre
             Regelungsvorhaben auf Landesebene nutzen, statt ihn selbst neu zu
             entwickeln. Der Bund stellt dafür seine digitale Infrastruktur auf
             digitalcheck.bund.de zur Verfügung.
+          </p>
+        </section>
+      </details>
+      <details class="kern-accordion">
+        <summary class="kern-accordion__header">
+          <span class="kern-title">
+            Eigener Auftritt auf digitalcheck.bund.de
           </span>
-        </AccordionItem>
-        <AccordionItem
-          headline="Eigener Auftritt auf digitalcheck.bund.de"
-          client:load
-        >
-          <span>
+        </summary>
+        <section class="kern-accordion__body">
+          <p class="kern-body">
             Sie erhalten eine eigene Unterseite auf digitalcheck.bund.de. Die
             Inhalte der Seite werden individuell auf Ihren Landes-Digitalcheck
             zugeschnitten, etwa durch die Hinterlegung der zuständigen
             Prüfstelle des Landes. Bei der Erstellung stehen wir Ihnen
             unterstützend zur Seite.
+          </p>
+        </section>
+      </details>
+      <details class="kern-accordion">
+        <summary class="kern-accordion__header">
+          <span class="kern-title">
+            Umfangreiche Arbeitshilfen und Werkzeuge für Regelungsvorhaben
           </span>
-        </AccordionItem>
-        <AccordionItem
-          headline="Umfangreiche Arbeitshilfen und Werkzeuge für Regelungsvorhaben"
-          client:load
-        >
-          <span>
+        </summary>
+        <section class="kern-accordion__body">
+          <p class="kern-body">
             Auf digitalcheck.bund.de stehen Legistinnen und Legisten Werkzeuge
             und Vorlagen für die Erarbeitung von digitaltauglichen und
             praxisnahen Regelungen zur Verfügung. Vom Bund erprobte
@@ -148,153 +140,152 @@ export const frontmatter = {
             </a>{" "}
             oder Schulungsformate können von den Ländern übernommen und als
             Grundlage für eigene Prozesse genutzt werden.
+          </p>
+        </section>
+      </details>
+      <details class="kern-accordion">
+        <summary class="kern-accordion__header">
+          <span class="kern-title">
+            Unterstützung bei der Erfüllung der EU-Interoperabilitätsverordnung
           </span>
-        </AccordionItem>
-        <AccordionItem
-          headline="Unterstützung bei der Erfüllung der EU-Interoperabilitätsverordnung"
-          client:load
-        >
-          <span>
+        </summary>
+        <section class="kern-accordion__body">
+          <p class="kern-body">
             Der Digitalcheck integriert die Anforderungen der
             EU-Interoperabilitätsverordnung und stellt Legistinnen und Legisten
             gezielte Arbeitshilfen zur Verfügung, um Regelungen so zu schreiben,
             dass sie Grundlage für gut funktionierende, grenzüberschreitende
             Verwaltungsleistungen sind.
+          </p>
+        </section>
+      </details>
+      <details class="kern-accordion">
+        <summary class="kern-accordion__header">
+          <span class="kern-title">
+            Keine eigenen Entwicklungsaufwände, kein eigenes Hosting
           </span>
-        </AccordionItem>
-        <AccordionItem
-          headline="Keine eigenen Entwicklungsaufwände, kein eigenes Hosting"
-          client:load
-        >
-          <span>
+        </summary>
+        <section class="kern-accordion__body">
+          <p class="kern-body">
             Sämtliche Arbeitshilfen und Services werden laufend evaluiert und
             auf Grundlage von Feedback weiterentwickelt. Somit bleiben sie
             aktuell und neue Entwicklungen werden ohne eigenen Aufwand direkt in
             das Angebot integriert.
-          </span>
-        </AccordionItem>
-      </div>
-      <div>
-        <Heading tagName="h2" className="max-w-[800px] pb-40">
-          Prozess: Kooperation und Erstellung Ihrer Landingpage
-        </Heading>
-        <Timeline>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">Schritt 1: Kontakt aufnehmen</Heading>
-              <p>
-                Kontaktieren Sie uns bei Interesse direkt unter{" "}
-                <a href={`mailto:${contact.bmdsEmail}`}>{contact.bmdsEmail}</a>.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">Schritt 2: Gemeinsamer Termin</Heading>
-              <p>
-                In einem gemeinsamen Termin besprechen wir gegenseitige
-                Anforderungen und Möglichkeiten.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">
-                Schritt 3: Kooperationsvereinbarung
-              </Heading>
-              <p>
-                Eine Kooperationsvereinbarung zwischen Ihrem Bundesland und dem
-                Bundesministerium für Digitales und Staatsmodernisierung wird
-                unterzeichnet.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">Schritt 4: Inhalte erstellen</Heading>
-              <p>
-                Sie erstellen die Inhalte, die auf Ihrer personalisierten
-                Landingpage abgebildet werden sollen. Dazu zählen bspw.
-                Informationen zum Prozess, den jeweiligen Ansprechpartnern und
-                den landesspezifischen Anforderungen.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">
-                Schritt 5: Erstellung der Unterseite
-              </Heading>
-              <p>
-                Das Team des Digitalcheck Bund legt eine neue Unterseite für Ihr
-                Bundesland an.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item bullet className="w-full max-w-[694px]">
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-80 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3">Schritt 6: Freigabe</Heading>
-              <p>
-                Die Unterseite wird vor Veröffentlichung von Ihnen überprüft und
-                freigegeben.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-        </Timeline>
-      </div>
-      <div class="space-y-32">
-        <h2 id="leitfaden" class="scroll-mt-32">
-          Ihr Land hat noch keinen Digitalcheck?
-        </h2>
-        <div class="sm:w-380">
-          <KernCard
-            preline="Leitfaden"
-            title="Digitalcheck als Bundesland einführen"
-            body="Die Checkliste bündelt die wichtigsten Handlungsempfehlungen für Vorbereitung, Durchführung und Nachbereitung."
-            image={leitfadenImg}
-            imageAlt="Symbolbild Leitfaden"
-          >
-            <p></p>
-            <a
-              slot="footer"
-              href={leitfadenDigitalcheckBundeslandAug2026_pdf.path}
-              class="link-unstyled kern-btn kern-btn--secondary"
-            >
-              <span
-                class="kern-icon kern-icon--download kern-icon--default"
-                aria-hidden="true"
-              ></span>
-              <span class="kern-label">Leitfaden herunterladen (PDF)</span>
-            </a>
-          </KernCard>
-        </div>
-      </div>
-    </ContentWrapper>
-    <div class="bg-blue-300">
-      <Container className="py-32 sm:py-80">
-        <Heading tagName="h3" text="Kontakt" />
-        <div class="kern-stack pt-32 pb-[56px]">
+          </p>
+        </section>
+      </details>
+    </div>
+  </section>
+  <section>
+    <h2 class="max-w-[800px]">
+      Prozess: Kooperation und Erstellung Ihrer Landingpage
+    </h2>
+    <Timeline>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 1: Kontakt aufnehmen</h3>
           <p>
-            Sie haben Interesse an einer Kooperationsvereinbarung oder
-            Rückfragen zum Prozess? Kontaktieren Sie uns unter{" "}
+            Kontaktieren Sie uns bei Interesse direkt unter{" "}
             <a href={`mailto:${contact.bmdsEmail}`}>{contact.bmdsEmail}</a>.
           </p>
-          <br />
-          <p>Ansprechpartnerin: Katharina Berndt</p>
-        </div>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 2: Gemeinsamer Termin</h3>
+          <p>
+            In einem gemeinsamen Termin besprechen wir gegenseitige
+            Anforderungen und Möglichkeiten.
+          </p>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 3: Kooperationsvereinbarung</h3>
+          <p>
+            Eine Kooperationsvereinbarung zwischen Ihrem Bundesland und dem
+            Bundesministerium für Digitales und Staatsmodernisierung wird
+            unterzeichnet.
+          </p>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 4: Inhalte erstellen</h3>
+          <p>
+            Sie erstellen die Inhalte, die auf Ihrer personalisierten
+            Landingpage abgebildet werden sollen. Dazu zählen bspw.
+            Informationen zum Prozess, den jeweiligen Ansprechpartnern und den
+            landesspezifischen Anforderungen.
+          </p>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 5: Erstellung der Unterseite</h3>
+          <p>
+            Das Team des Digitalcheck Bund legt eine neue Unterseite für Ihr
+            Bundesland an.
+          </p>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+      <Timeline.Item bullet className="w-full max-w-[694px]">
+        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+          <h3>Schritt 6: Freigabe</h3>
+          <p>
+            Die Unterseite wird vor Veröffentlichung von Ihnen überprüft und
+            freigegeben.
+          </p>
+        </Timeline.ItemContent>
+      </Timeline.Item>
+    </Timeline>
+  </section>
+  <section class="space-y-32">
+    <h2 id="leitfaden" class="scroll-mt-32">
+      Ihr Land hat noch keinen Digitalcheck?
+    </h2>
+    <div class="sm:w-380">
+      <KernCard
+        preline="Leitfaden"
+        title="Digitalcheck als Bundesland einführen"
+        body="Die Checkliste bündelt die wichtigsten Handlungsempfehlungen für Vorbereitung, Durchführung und Nachbereitung."
+        image={leitfadenImg}
+        imageAlt="Symbolbild Leitfaden"
+      >
         <a
-          href={withBase("/documents/BundeslaenderInfoPage.pdf")}
-          download
-          class="inline-flex items-center gap-8"
+          slot="footer"
+          href={leitfadenDigitalcheckBundeslandAug2026_pdf.path}
+          class="link-unstyled kern-btn kern-btn--secondary"
         >
-          <FileDownloadOutlined
-            height="1.5em"
-            width="1.5em"
-            className="fill-current"
-          />
-          Diese Seite als PDF herunterladen
+          <span
+            class="kern-icon kern-icon--download kern-icon--default"
+            aria-hidden="true"
+          ></span>
+          <span class="kern-label">Leitfaden herunterladen (PDF)</span>
         </a>
-      </Container>
+      </KernCard>
     </div>
-  </main>
-</Layout>
+  </section>
+  <section class="breakout bg-kern-darkblue-025">
+    <h2>Kontakt</h2>
+    <p>
+      Sie haben Interesse an einer Kooperationsvereinbarung oder Rückfragen zum
+      Prozess? Kontaktieren Sie uns unter{" "}
+      <a href={`mailto:${contact.bmdsEmail}`}>{contact.bmdsEmail}</a>.
+    </p>
+    <br />
+    <p>Ansprechpartnerin: Katharina Berndt</p>
+    <a
+      href={withBase("/documents/BundeslaenderInfoPage.pdf")}
+      download
+      class="inline-flex items-center gap-8"
+    >
+      <FileDownloadOutlined
+        height="1.5em"
+        width="1.5em"
+        className="fill-current"
+      />
+      Diese Seite als PDF herunterladen
+    </a>
+  </section>
+</LaenderLayout>

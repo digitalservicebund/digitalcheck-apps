@@ -5,7 +5,6 @@ import { twJoin } from "tailwind-merge";
 export type DetailsSummaryProps = ComponentProps<"details"> & {
   identifier?: string;
   title?: string;
-  bold?: boolean;
   showVerticalLine?: boolean;
   className?: string;
   children?: ReactNode;
@@ -15,7 +14,6 @@ export type DetailsSummaryProps = ComponentProps<"details"> & {
 export default function DetailsSummary({
   identifier,
   title,
-  bold = true,
   showVerticalLine = true,
   className,
   children,
@@ -26,15 +24,13 @@ export default function DetailsSummary({
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const summaryRef = useRef<HTMLElement | null>(null);
 
-  const summaryClasses = twJoin(
-    "summary-content inline-flex focus:outline-hidden cursor-pointer bg-no-repeat pl-[24px] [&::-webkit-details-marker]:hidden",
-    bold ? "ds-label-01-bold" : "ds-label-01-reg",
-  );
+  const summaryClasses =
+    "summary-content inline-flex focus:outline-hidden cursor-pointer bg-no-repeat pl-[24px] [&::-webkit-details-marker]:hidden";
 
   const contentWrapperClasses = twJoin(
     "block pt-4 pl-[24px] text-black",
     showVerticalLine &&
-      "relative before:absolute before:top-0 before:bottom-0 before:w-px before:bg-blue-500 before:left-[11px]",
+      "relative before:absolute before:top-0 before:bottom-0 before:w-px before:bg-kern-darkblue-200 before:left-[11px]",
   );
 
   useEffect(() => {
@@ -79,7 +75,7 @@ export default function DetailsSummary({
         }}
         open={isOpen}
         className={twJoin(
-          "details scroll-mt-64 text-blue-800 has-focus-visible:outline-4 has-focus-visible:outline-offset-4 has-focus-visible:outline-blue-800",
+          "details text-kern-action-default scroll-mt-64 has-focus-visible:outline-4 has-focus-visible:outline-offset-4 has-focus-visible:outline-blue-800",
           expandInPrint && "print:hidden",
           className,
         )}

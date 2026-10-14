@@ -1,0 +1,31 @@
+---
+import KernBadge from "@/components/KernBadge.astro";
+import RichText from "@/components/RichText";
+
+interface Props {
+  title: string;
+  /** Short "Könnte relevant sein, wenn …" summary, shown before "Mehr erfahren". */
+  teaser: string;
+  badge?: string;
+}
+
+const { title, teaser, badge } = Astro.props;
+---
+
+<div class="space-y-16 rounded-sm bg-kern-darkblue-025 px-24 py-32 md:px-64">
+  {badge && (
+    <KernBadge variant="rechtsakt" showIcon={false}>
+      {badge}
+    </KernBadge>
+  )}
+  <h3 data-toc-ignore>{title}</h3>
+  <RichText markdown={teaser} className="space-y-16" />
+  <details class="kern-details">
+    <summary class="kern-details__header">
+      <span class="kern-title kern-title--small">Mehr erfahren</span>
+    </summary>
+    <div class="kern-details__body mt-4 space-y-16">
+      <slot />
+    </div>
+  </details>
+</div>

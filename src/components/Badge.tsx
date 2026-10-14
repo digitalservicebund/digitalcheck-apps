@@ -1,7 +1,7 @@
 import type { PrincipleNumber } from "@/resources/constants";
 import { PRINCIPLE_COLORS } from "@/resources/constants";
-import twMerge from "@/utils/tailwindMerge";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type BadgeProps = {
   children?: ReactNode;
@@ -21,7 +21,7 @@ function Badge({
   look = "default",
 }: Readonly<BadgeProps>) {
   const badgeStyle =
-    "ds-label-02-reg inline-flex flex-row items-center gap-4 self-start rounded-md bg-transparent p-4";
+    "inline-flex flex-row items-center gap-4 self-start rounded-md bg-transparent p-4";
   const highContrastDarkStyle =
     "forced-colors:dark:[forced-color-adjust:none] forced-colors:dark:bg-transparent forced-colors:dark:text-white";
   const principleStyle = principleNumber
@@ -33,16 +33,18 @@ function Badge({
       className={twMerge(
         badgeStyle,
         principleStyle,
-        look === "hint" && "bg-blue-300 text-blue-800",
-        look === "gray" && "bg-gray-300",
+        look === "hint" && "bg-kern-darkblue-100 text-kern-darkblue-800",
+        look === "gray" && "bg-kern-neutral-050",
         look === "white" && "bg-white",
-        look === "success" && "bg-green-200 text-green-700",
-        look === "danger" && "text-ds-error bg-red-200",
+        look === "success" &&
+          "bg-kern-feedback-success-background text-kern-feedback-success",
+        look === "danger" &&
+          "text-kern-feedback-danger bg-kern-feedback-danger-background",
         highContrastDarkStyle,
         className,
       )}
     >
-      {Icon && <Icon className="size-16 fill-gray-800" />}
+      {Icon && <Icon className="fill-kern-layout-text-muted size-16" />}
       {children || text}
     </mark>
   );

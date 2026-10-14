@@ -17,20 +17,20 @@ type AlertProps = {
 const lookConfig = {
   success: {
     backgroundColor: "bg-white",
-    borderColor: "border-green-700",
-    iconColor: "fill-green-700",
+    borderColor: "border-kern-feedback-success",
+    iconColor: "fill-kern-feedback-success",
     IconComponent: Check,
   },
   error: {
-    backgroundColor: "bg-red-200",
-    borderColor: "border-ds-error",
-    iconColor: "fill-ds-error",
+    backgroundColor: "bg-kern-feedback-danger-background",
+    borderColor: "border-kern-feedback-danger",
+    iconColor: "fill-kern-feedback-danger",
     IconComponent: ErrorOutline,
   },
   info: {
     backgroundColor: "bg-white",
-    borderColor: "border-blue-700",
-    iconColor: "fill-blue-700",
+    borderColor: "border-kern-feedback-info",
+    iconColor: "fill-kern-feedback-info",
     IconComponent: Sync,
   },
 };
@@ -66,9 +66,7 @@ const Alert = ({
           <IconComponent className={twJoin("mr-4 flex-none", iconColor)} />
         )}
         <div className="pr-32">
-          <Heading tagName={tagName} look="ds-label-01-bold">
-            {title}
-          </Heading>
+          <Heading tagName={tagName}>{title}</Heading>
           {content && (
             <div className="leading-[26px] tracking-[0.16px]">
               <RichText markdown={content} />
@@ -81,7 +79,7 @@ const Alert = ({
             className="flex size-24 cursor-pointer items-center justify-center rounded-[20px] outline-offset-2 hover:bg-white/50 focus-visible:bg-white/50 focus-visible:outline-4 focus-visible:outline-blue-800 active:bg-white/50"
             onClick={handleCloseButtonClick}
           >
-            <Clear className="size-16 fill-blue-800" />
+            <Clear className="fill-kern-action-default size-16" />
           </button>
         </div>
       </div>

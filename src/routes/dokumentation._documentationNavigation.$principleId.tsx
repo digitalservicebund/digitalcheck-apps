@@ -3,7 +3,7 @@ import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
-import { methoden_fuenfPrinzipien } from "@/config/routes";
+import { prinzipien } from "@/config/routes";
 import type { PrincipleNumber } from "@/resources/constants";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
 import DocumentationActions from "./dokumentation/DocumentationActions";
@@ -56,18 +56,14 @@ export function DocumentationPrinciple({
         <Badge principleNumber={prinzip.Nummer as PrincipleNumber}>
           Prinzip {prinzip.order}
         </Badge>
-        <Heading tagName="h1" look="ds-heading-02-reg" className="mb-16">
+        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
           {prinzip.Name}
           <HelpButton
             sectionId="1-prinzip"
             title={`Hinweis zu „${prinzip.Name}“`}
           >
             <RichText markdown={prinzip.Hilfetext} />
-            <a
-              href={
-                methoden_fuenfPrinzipien.path + "/" + prinzip.URLBezeichnung
-              }
-            >
+            <a href={prinzipien.path + "/" + prinzip.URLBezeichnung}>
               Mehr zum Prinzip
             </a>
           </HelpButton>
@@ -82,7 +78,7 @@ export function DocumentationPrinciple({
         <Heading
           id="question-label"
           tagName="h2"
-          look="ds-heading-03-reg"
+          look="kern-heading-medium"
           className="mb-16"
         >
           Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen für die

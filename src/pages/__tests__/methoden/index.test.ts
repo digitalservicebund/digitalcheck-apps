@@ -61,7 +61,7 @@ describe("Methoden Route - Integration Tests", () => {
 
     expect(within(principleItem).getByRole("link")).toHaveAttribute(
       "href",
-      "/methoden/fuenf-prinzipien",
+      "/prinzipien",
     );
 
     expect(

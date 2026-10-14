@@ -33,12 +33,12 @@ export function DocumentationVeroeffentlichung() {
 
   return (
     <div className="space-y-40">
-      <Heading tagName="h1" look="ds-heading-02-reg">
+      <Heading tagName="h1" look="kern-heading-large">
         Veröffentlichung
       </Heading>
       <SkipNoticeWrapper>
         <form {...form.getFormProps()} className="space-y-32">
-          <h2 className="ds-heading-03-reg mb-16" id="status-question-label">
+          <h2 className="kern-heading-medium mb-16" id="status-question-label">
             {publicationStatusQuestion.questionLabel}
           </h2>
 

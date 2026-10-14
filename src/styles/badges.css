@@ -1,0 +1,83 @@
+.kern-badge {
+  &.interactive[data-inactive="true"] {
+    opacity: 0.4;
+  }
+}
+.kern-badge--gemerkte_werkzeuge,
+.kern-badge--seite {
+  border: 1px solid #000000;
+  color: #000000;
+}
+.kern-badge--methode {
+  background-color: #e6fba2;
+  border: 1px solid #5d7200;
+  --kern-color-layout-text-default: #3d4d00;
+}
+.kern-badge--tool {
+  background-color: #d5f6ff;
+  border: 1px solid #051d91;
+  --kern-color-layout-text-default: #051d91;
+}
+.kern-badge--leitfaden {
+  background-color: #fffdb2;
+  border: 1px solid #8f7400;
+  --kern-color-layout-text-default: #645000;
+}
+.kern-badge--rechtsakt {
+  background-color: var(--color-kern-orange-100);
+  border: 1px solid #8f7400;
+  --kern-color-layout-text-default: #645000;
+}
+.kern-badge--ressource {
+  background-color: #e5cbf4;
+  border: 1px solid #8412af;
+  --kern-color-layout-text-default: #8412af;
+}
+.kern-badge--tag {
+  background-color: var(--kern-color-layout-background-default);
+  border: 1px solid var(--kern-color-layout-text-muted-contextual);
+}
+.kern-badge--tag .kern-label--subtle {
+  color: var(--kern-color-layout-text-muted-contextual);
+  font-weight: var(--kern-typography-font-weight-label-subtle, 400);
+}
+
+.kern-badge--filter {
+  background-color: var(--kern-color-layout-background-default);
+  border: 1px solid var(--kern-color-layout-text-default-contextual);
+}
+
+.kern-badge--filter .kern-label--subtle {
+  font-weight: var(--kern-typography-font-weight-label-subtle, 400);
+}
+
+[class*="kern-badge--prinzip"] {
+  border: 1px solid
+    var(
+      --prinzip-badge-border,
+      var(--kern-color-layout-text-default-contextual)
+    );
+}
+
+.kern-badge--prinzip-1 {
+  background-color: var(--color-kern-orange-050);
+  --kern-color-layout-text-default-contextual: #645000;
+  --prinzip-badge-border: #8f7400;
+}
+.kern-badge--prinzip-2 {
+  background-color: var(--color-kern-red-050);
+  --kern-color-layout-text-default-contextual: var(--color-kern-red-800);
+}
+.kern-badge--prinzip-3 {
+  background-color: var(--color-kern-violet-050);
+  --kern-color-layout-text-default-contextual: #8412af;
+}
+.kern-badge--prinzip-4 {
+  background-color: var(--color-kern-green-100);
+  --kern-color-layout-text-default-contextual: #3d4d00;
+  --prinzip-badge-border: #5d7200;
+}
+.kern-badge--prinzip-5 {
+  background-color: var(--color-kern-lightblue-025);
+  --kern-color-layout-text-default-contextual: #051d91;
+}

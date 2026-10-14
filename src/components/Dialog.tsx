@@ -48,7 +48,7 @@ function Dialog({
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center bg-black/60 p-4">
           <DialogPanel className="max-w-a11y w-full space-y-16 bg-white p-40">
-            <DialogTitle className="ds-heading-02-reg">{title}</DialogTitle>
+            <DialogTitle className="kern-heading-large">{title}</DialogTitle>
             {description && <Description>{description}</Description>}
             <div>{children}</div>
             {renderActionButtons ? (

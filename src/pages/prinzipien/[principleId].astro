@@ -1,0 +1,92 @@
+---
+import { prinzipien } from "@/config/routes";
+import Layout from "@/layouts/Layout.astro";
+import KernBadge from "@/components/KernBadge.astro";
+import KernCard from "@/components/KernCard.astro";
+import RichText from "@/components/RichText.tsx";
+import Hero from "@/components/Hero.astro";
+import TocContainer from "@/components/TocContainer.astro";
+import type { Prinzip } from "@/content.config";
+import { getCollection } from "astro:content";
+import Aspect from "./_Aspect.astro";
+
+export const frontmatter = {
+  title: "Fünf Prinzipien",
+  sitemap: false,
+};
+
+type PrinzipWithBeschreibung = Prinzip & { Beschreibung: string };
+
+export async function getStaticPaths() {
+  const entries = await getCollection("prinzipien");
+
+  // The overview description (`Beschreibung`) lives in the Markdown body,
+  // not the frontmatter `data`, so it has to be pulled in separately here.
+  const prinzips: PrinzipWithBeschreibung[] = entries
+    .map((entry) => ({ ...entry.data, Beschreibung: entry.body ?? "" }))
+    .sort((a, b) => a.order - b.order);
+
+  return prinzips.map((prinzip, index) => ({
+    params: { principleId: prinzip.URLBezeichnung },
+    // The last principle wraps around to the first one.
+    props: { prinzip, next: prinzips[(index + 1) % prinzips.length] },
+  }));
+}
+
+const { prinzip, next } = Astro.props;
+
+const title = prinzip ? `Prinzip: ${prinzip.Name}` : "Fünf Prinzipien";
+
+// Alternating backgrounds are only used for principles with 3+ aspects.
+const striped = prinzip.Aspekte.length >= 3;
+---
+
+<Layout title={title}>
+  <main>
+    <div class="breakout-grid-toc">
+      <Hero>
+        <div class="flex flex-col items-start gap-24">
+          <KernBadge variant={`prinzip-${prinzip.order}`} showIcon={false}>
+            Prinzip {prinzip.order}
+          </KernBadge>
+          <h1 class="m-0">{prinzip.Name}</h1>
+          <RichText className="space-y-16" markdown={prinzip.Beschreibung} />
+        </div>
+      </Hero>
+    </div>
+    <TocContainer>
+      {prinzip.Aspekte.map((aspect, index) => (
+        <Aspect
+          aspect={aspect}
+          prinzip={prinzip}
+          index={index}
+          class={
+            striped && index % 2 === 1
+              ? "breakout bg-kern-darkblue-025"
+              : undefined
+          }
+        />
+      ))}
+      <section class="breakout bg-kern-layout-layer-surface space-y-32">
+        <h2>Zum nächsten Prinzip</h2>
+        <div class="md:max-w-sm">
+          <KernCard
+            title={next.Name}
+            body={next.Kurzbeschreibung}
+            href={`${prinzipien.path}/${next.URLBezeichnung}`}
+            background="white"
+          >
+            <KernBadge
+              slot="pre-header"
+              variant={`prinzip-${next.order}`}
+              showIcon={false}
+              class="mb-16"
+            >
+              Prinzip {next.order}
+            </KernBadge>
+          </KernCard>
+        </div>
+      </section>
+    </TocContainer>
+  </main>
+</Layout>

@@ -1,6 +1,7 @@
 @import "@kern-ux/native/dist/kern.min.css" layer(base);
 @import "./fonts.css";
 @import "./kern-utils.css";
+@import "./badges.css";
 
 @import "tailwindcss";
 
@@ -15,19 +16,13 @@
   --color-principle-5: #cce7db; /* order 4 */
   --color-principle-3: #cce4f0; /* order 5 */
 
-  --color-ds-success: #005f34;
-  --color-ds-error: #8e001b; /* red 900 */
-  --color-ds-warning: #f5e05d; /* yellow 500 */
   --color-ds-feature: #f5e05d;
 
   --color-red-*: initial;
-  --color-red-200: #f9e5ec;
-  --color-red-800: #b0243f;
 
   --color-yellow-*: initial;
   --color-yellow-200: #fff9d2;
   --color-yellow-300: #f9ec9e;
-  --color-yellow-500: #f5e05d;
   --color-yellow-700: #e5ce5c;
   --color-yellow-800: #dac23c;
 
@@ -38,38 +33,26 @@
   --color-blue-400: #b8d7e8;
   --color-blue-500: #b3c9d6;
   --color-blue-600: #7ba4bf;
-  --color-blue-700: #336f91;
   --color-blue-800: #004b76;
-  --color-blue-900: #003350;
 
   --color-green-*: initial;
-  --color-green-100: #e8f7f0;
   --color-green-200: #ccebdd;
-  --color-green-700: #01854a;
-  --color-green-800: #006b3c;
-  --color-green-900: #005e34;
 
   --color-gray-*: initial;
-  --color-gray-50: #fcfcfd;
   --color-gray-100: #f6f7f8;
   --color-gray-200: #f0f1f3;
   --color-gray-300: #edeef0;
   --color-gray-400: #dcdee1;
-  --color-gray-500: #c9cdd2;
   --color-gray-600: #b8bdc3;
-  --color-gray-700: #a0a7b1;
-  --color-gray-800: #6f7785;
-  --color-gray-900: #4e596a;
 
   --color-ds-violet: #4c2c92;
 
   --container-padding-inline: clamp(1rem, 5vw, 3rem);
-  --max-content-width: 76rem; /* 1216px */
+  --max-content-width: 82rem; /* 1216px + container padding (2 x 48px) = 1312px or 82rem */
   --max-width-a11y: 630px;
 }
 
 :root {
-  --kern-color-action-default: var(--color-blue-800);
   --kern-color-action-visited: var(--color-ds-violet);
 }
 
@@ -80,8 +63,8 @@
   }
 
   body {
-    /* By default, text is 16px * 1.125 = 18px and line height is 150% of that (27px). */
-    @apply text-lg leading-[1.5em] antialiased;
+    /* KERN body default: 18px font size, 24px line height */
+    @apply text-(length:--kern-typography-font-size-medium-static) leading-(--kern-typography-line-height-medium-static) antialiased;
   }
 
   h1,
@@ -95,37 +78,60 @@
     @apply kern-heading-x-large;
   }
 
-  h2,
-  .ds-heading-02-reg,
-  .ds-heading-02-bold {
-    @apply kern-heading-large;
+  h2 {
+    @apply kern-heading-large mt-40 md:mt-64;
   }
 
-  h3,
-  .ds-heading-03-reg,
-  .ds-heading-03-bold {
-    @apply kern-heading-medium;
+  h3 {
+    @apply kern-heading-medium mt-32;
   }
 
   h4 {
-    @apply kern-heading-small;
+    @apply kern-heading-small mt-20;
   }
 
-  a:not(.link-unstyled, .kern-link) {
-    @apply text-link;
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 1rem;
+    word-break: auto-phrase;
+  }
 
-    &:not([download])[href^="http"]::after {
-      content: "";
-      display: inline-block;
-      width: 1.25em;
-      height: 1.25em;
-      margin-inline-start: 0.125em;
-      margin-bottom: -0.25em;
+  :is(h2, h3, h4):first-child {
+    margin-top: 0;
+  }
+
+  /* default padding for sections */
+  section {
+    padding-block: var(--kern-metric-dimension-3x-large);
+
+    /* collapse padding for consecutive sections with no background */
+    &:not(.breakout) + &:not(.breakout) {
+      padding-top: 0;
+    }
+  }
+
+  a:not(.link-unstyled, .kern-link, .kern-btn) {
+    @apply text-link;
+  }
+
+  a:not(.link-unstyled) {
+    /* ::before, as ::after is used by .kern-link--stretched */
+    /* inline (not inline-block) + word joiner, so the icon never wraps apart from the link text */
+    &:not([download])[href^="http"]::before {
+      content: "\2060";
+      padding-inline-start: 0.875em;
+      margin-inline-end: 0.25em;
       background-color: currentColor;
       mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/%3E%3C/svg%3E");
       mask-size: contain;
       mask-repeat: no-repeat;
       mask-position: center;
+    }
+
+    /* .kern-link is inline-flex and brings its own gap */
+    &.kern-link:not([download])[href^="http"]::before {
+      margin-inline-end: 0;
     }
   }
   a[href^="tel:"] {
@@ -157,20 +163,18 @@
   }
 
   h1,
-  h2,
-  .ds-heading-02-reg,
-  .ds-heading-02-bold {
-    /* 80ch @ 18px font size = 720px */
-    max-width: 720px;
-  }
-
-  h3,
-  .ds-heading-03-reg,
-  .ds-heading-03-bold,
   p,
   ul:not(.list-unstyled),
   ol:not(.list-unstyled) {
     @apply max-w-a11y;
+  }
+
+  p:not(.kern-card__header *):not(li p),
+  ul:not(.list-unstyled),
+  ol:not(.list-unstyled) {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
   }
 
   *:focus-visible {
@@ -193,14 +197,14 @@
 }
 
 @utility text-link {
-  @apply visited:text-ds-violet fill-blue-800 text-blue-800 underline decoration-1 underline-offset-4 active:text-black;
+  @apply visited:text-ds-violet fill-(--kern-color-action-default-contextual) text-(--kern-color-action-default-contextual) underline decoration-1 underline-offset-4 active:text-black;
 
   &:focus-visible {
-    @apply text-blue-800! no-underline!;
+    @apply text-(--kern-color-action-default-contextual)! no-underline!;
   }
 
   &:hover {
-    @apply decoration-[3px];
+    @apply decoration-3;
   }
 
   .text-white & {
@@ -211,7 +215,8 @@
 @utility increase-tap-area {
   @apply relative inline-block;
 
-  &::before {
+  /* ::after, as ::before is used for the external link icon */
+  &::after {
     @apply absolute -top-3 -right-12 -bottom-9 -left-12 content-[''];
   }
 }
@@ -222,27 +227,6 @@
 }
 
 @layer components {
-  .dc-comparison-table {
-    @apply min-w-full overflow-auto;
-
-    & th,
-    & td {
-      @apply w-1/4 p-16 pr-32;
-    }
-
-    & thead tr {
-      @apply bg-blue-400 text-left;
-    }
-
-    & tbody {
-      @apply divide-y divide-gray-200;
-    }
-
-    & tbody tr {
-      @apply hover:bg-gray-100;
-    }
-  }
-
   .summary-content {
     .details & {
       background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.5 17L14.5 12L9.5 7V17Z' fill='%23004B76'/%3E%3C/svg%3E%0A");
@@ -259,52 +243,27 @@
   }
 }
 
-@layer utilities {
-  .ds-input,
-  .ds-checkbox,
-  .ds-textarea,
-  .ds-radio {
-    &,
-    &:hover {
-      background-color: white !important;
-    }
-
-    &.has-warning {
-      box-shadow: inset 0 0 0 0.125rem var(--color-ds-warning);
-
-      &:hover,
-      &:focus {
-        box-shadow: inset 0 0 0 0.25rem var(--color-ds-warning);
-      }
-    }
-
-    &.has-error {
-      box-shadow: inset 0 0 0 2px var(--color-ds-error);
-      &:hover,
-      &:focus {
-        box-shadow: inset 0 0 0 0.25rem var(--color-ds-error);
-      }
-    }
-  }
-}
-
 /*
-  Creates a 3-column grid to center main content while allowing some elements to "break out" to full width.
-  The layout is: [gutter] [main content] [gutter].
-  - The grid lines are named: `full-start`, `content-start`, `content-end`, `full-end`.
+  Creates a 5-column grid to center main content while allowing some elements to "break out" to a wider or the full width.
+  The layout is: [gutter] [wide] [main content] [wide] [gutter].
+  - The grid lines are named: `full-start`, `wide-start`, `content-start`, `content-end`, `wide-end`, `full-end`.
   - The center `content` column is fluid but capped at `--max-content-width`.
+  - The `wide` columns share the remaining space with the gutters, so `wide` reaches about halfway into the side margins.
   - By default, direct children are placed in the `content` column.
   - Use the `breakout` utility on a child to make it span the full width (e.g., for banners).
+  - Use the `breakout-wide` utility to make a child wider, without expanding to the full width.
 */
 @utility breakout-grid {
   display: grid;
   grid-template-columns:
     [full-start] minmax(var(--container-padding-inline), 1fr)
+    [wide-start] minmax(0, 1fr)
     [content-start] min(
       100% - (var(--container-padding-inline) * 2),
       var(--max-content-width) - 2 * var(--container-padding-inline)
     )
     [content-end]
+    minmax(0, 1fr) [wide-end]
     minmax(var(--container-padding-inline), 1fr) [full-end];
 
   & > *:not([class*="breakout"]) {
@@ -409,11 +368,20 @@
 
   /*
     By default, children of a `breakout` element are placed back into the central `content` column of the parent grid.
-    To make a child of a `breakout` element also span the full width, apply `grid-column: full` to it.
+    To make a child of a `breakout` element also span the full width, apply `grid-column: full` to it (or nest another `.breakout`).
   */
-  & > * {
+  & > *:not([class*="breakout"]) {
     grid-column: content;
   }
+}
+
+@utility breakout-subgrid {
+  grid-template-columns: subgrid;
+  display: grid;
+}
+
+@utility breakout-wide {
+  grid-column: wide;
 }
 
 /*

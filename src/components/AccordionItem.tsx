@@ -1,5 +1,4 @@
 import RichText from "@/components/RichText";
-import twMerge from "@/utils/tailwindMerge";
 import { Add, Remove } from "@digitalservicebund/icons";
 import {
   Disclosure,
@@ -7,6 +6,7 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type AccordionItemProps = {
   headline: ReactNode;

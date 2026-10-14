@@ -1,6 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
+import KernCard from "@/components/KernCard.astro";
+import { interoperabel_nationaleKontaktstelle } from "@/config/routes";
+import { ZFL_BASE_URL } from "@/resources/constants";
+import { contact } from "@/resources/content/shared/contact";
+import { withBase } from "@/utils/path";
+import regelungsbegleitungImage from "@/assets/images/regelungsbegleitung.png";
+import schulungenImage from "@/assets/images/schulungen.jpg";
+import werkzeugeImage from "@/assets/images/werkzeuge.jpg";
+import IconArrowForward from "~icons/ic/baseline-arrow-forward";
+import IconMail from "~icons/ic/baseline-mail";
+import IconPhone from "~icons/ic/baseline-phone";
 
 export const frontmatter = {
   title: "Kontakt",
@@ -9,9 +20,110 @@ export const frontmatter = {
 ---
 
 <Layout title={frontmatter.title}>
-  <main>
+  <main class="breakout-grid">
     <Hero>
-      <h1>Sprechen Sie uns an</h1>
+      <h1>Kontakt</h1>
+      <p>
+        Das Digitalcheck-Team beantwortet gerne Ihre Fragen rund um das Thema
+        Digitaltauglichkeit und EU-Interoperabilität.
+      </p>
     </Hero>
+    <section>
+      <div class="grid grid-cols-1 gap-24 lg:grid-cols-2">
+        <KernCard
+          title="Digitalcheck"
+          body="Erfahren Sie mehr zur Vorprüfung, Digitaltauglichkeit und Dokumentation."
+          background="white"
+        >
+          <ul class="list-unstyled space-y-8">
+            <li>
+              <a class="kern-link items-center" href={contact.phone}>
+                <IconPhone class="size-24" aria-hidden="true" />
+                {contact.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                class="kern-link items-center wrap-anywhere"
+                href={`mailto:${contact.email}`}
+              >
+                <IconMail
+                  class="hidden size-24 shrink-0 sm:block"
+                  aria-hidden="true"
+                />
+                <span set:html={contact.emailDisplayHtml(contact.email)} />
+              </a>
+            </li>
+          </ul>
+        </KernCard>
+        <KernCard
+          title="EU-Interoperabilität"
+          body="Informationen zu Interoperabilitätsbewertung, Verordnung (EU) 2024/903 und Berichtspflichten."
+          background="white"
+        >
+          <ul class="list-unstyled space-y-8">
+            <li>
+              <a
+                class="kern-link items-center wrap-anywhere"
+                href={`mailto:${contact.interoperabilityEmail}`}
+              >
+                <IconMail
+                  class="hidden size-24 shrink-0 sm:block"
+                  aria-hidden="true"
+                />
+                <span
+                  set:html={contact.emailDisplayHtml(
+                    contact.interoperabilityEmail,
+                  )}
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                class="kern-link items-center"
+                href={withBase(interoperabel_nationaleKontaktstelle.path)}
+              >
+                <IconArrowForward class="size-24" aria-hidden="true" />
+                Zur Nationalen Kontaktstelle
+              </a>
+            </li>
+          </ul>
+        </KernCard>
+      </div>
+    </section>
+    <section class="breakout bg-kern-layout-layer-surface">
+      <h2>Weitere Unterstützungsangebote</h2>
+      <p>
+        Im <a href={ZFL_BASE_URL}>Zentrum für Legistik</a> finden Sie
+        Schulungen, Werkzeuge und individuelle Unterstützungsangebote für Ihr
+        Regelungsvorhaben.
+      </p>
+      <div class="mt-32 grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
+        <KernCard
+          title="Schulungen"
+          href={`${ZFL_BASE_URL}/schulungen`}
+          body="Praxisnahe Schulungen zum Digitalcheck und zu modernen Methoden der Gesetzgebung."
+          image={schulungenImage}
+          imageAlt="Symbolbild: Ein Laptop zeigt die fünf Prinzipien des Digitalchecks"
+          background="white"
+        />
+        <KernCard
+          title="Werkzeuge"
+          href={`${ZFL_BASE_URL}/werkzeuge`}
+          body="Diverse Anleitungen und Hilfsmittel, die Sie bei Ihrer Regelungsarbeit unterstützen."
+          image={werkzeugeImage}
+          imageAlt="Symbolbild: Erstellung eines Flussdiagramms"
+          background="white"
+        />
+        <KernCard
+          title="Regelungsbegleitung"
+          href={`${ZFL_BASE_URL}/begleitungen`}
+          body="Ein interdisziplinäres Team begleitet Sie persönlich bei der Erarbeitung Ihres Regelungsvorhabens."
+          image={regelungsbegleitungImage}
+          imageAlt="Mehrere Personen vor einem großen Whiteboard, an dem sie Klebepunkte an bereits vorhandenen Papieren und Post-its anbringen."
+          background="white"
+        />
+      </div>
+    </section>
   </main>
 </Layout>

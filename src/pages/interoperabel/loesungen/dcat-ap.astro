@@ -1,71 +1,39 @@
 ---
-import SidebarContainer from "@/components/SidebarContainer.astro";
 import { interoperabel_loesungen_dcatAp } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
-import { CheckOutlined, InfoOutlined } from "@digitalservicebund/icons";
-import AccordionItem from "@/components/AccordionItem";
-import Heading from "@/components/Heading";
-import InfoBox from "@/components/InfoBox";
+import Hero from "@/components/Hero.astro";
 import { InteroperableSolutionBanner } from "@/components/InteroperableSolutionBanner.tsx";
 import RichText from "@/components/RichText";
-import ToC from "@/components/TableOfContentsInteractive.tsx";
 import Timeline from "@/components/Timeline";
-import { interopsAssessment } from "@/pages/interoperabel/_tabs";
+import TocContainer from "@/components/TocContainer.astro";
+import { interopsAssessment } from "@/pages/interoperabel/_anchors";
 import { dedent } from "@/utils/dedentMultilineStrings";
-import { slugify } from "@/utils/utilFunctions";
-import ChapterBadge from "./_ChapterBadge.astro";
 
 export const frontmatter = {
   title: "Data Catalogue Vocabulary Application Profile (DCAT-AP)",
 };
 
-const sections = {
-  einfuehrung: {
-    id: "einfuehrung",
-    title: "Einführung",
-  },
-  erklaerung: {
-    id: "erklaerung",
-    title: "Erklärung",
-  },
-  umsetzung: {
-    id: "umsetzung",
-    title: "Umsetzung",
-  },
-  beispiele: {
-    id: "beispiele",
-    title: "Beispiele",
-  },
-  ressourcen: { id: "ressourcen", title: "Ressourcen" },
-};
+const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
 ---
 
 <Layout title={frontmatter.title}>
   <main>
-    <div class="breakout-grid-toc space-y-16 bg-blue-100 pt-40 pb-48">
-      <h1>{interoperabel_loesungen_dcatAp.title}</h1>
-      <p class="ds-subhead">
-        Der Metadatenstandard für offene Daten und Transparenz.
-      </p>
+    <div class="breakout-grid-toc">
+      <Hero variant="plain">
+        <h1>{interoperabel_loesungen_dcatAp.title}</h1>
+        <p>Der Metadatenstandard für offene Daten und Transparenz.</p>
+      </Hero>
     </div>
 
     <InteroperableSolutionBanner client:load />
 
-    <SidebarContainer class="space-y-80">
-      <ToC slot="sidebar" title="Inhalt" selector="section[id]" client:load>
-        <ToC.List className="list-unstyled list-none">
-          {Object.entries(sections).map(([, { id, title }]) => (
-            <ToC.Item href={`#${slugify(id)}`} title={title} />
-          ))}
-        </ToC.List>
-      </ToC>
-      <section
-        id={sections.einfuehrung.id}
-        class={"mt-80 scroll-my-40 space-y-40"}
-      >
-        <div class="space-y-8">
-          <ChapterBadge>{sections.einfuehrung.title}</ChapterBadge>
-          <h2>Betrifft mich dieses Thema als Legist oder Legistin?</h2>
+    <TocContainer>
+      <section class="breakout space-y-32 bg-kern-darkblue-025">
+        <div>
+          <p class="kern-preline">Einführung</p>
+          <h2 id="einfuehrung" class="mt-0" data-toc-label="Einführung">
+            Betrifft mich dieses Thema als Legist oder Legistin?
+          </h2>
           <p>
             Wenn Ihr Regelungsvorhaben die Bereitstellung oder den Austausch von
             offenen Verwaltungsdaten (z.B. Berichte, Register, Statistiken)
@@ -73,48 +41,46 @@ const sections = {
             Sie die Nutzung von DCAT-AP nach Art. 7 als &quot;Lösung für ein
             interoperables Europa&quot; in Ihrem Regelungsvorhaben prüfen.
           </p>
+          <p>
+            <strong>Warum?</strong>
+            <br />
+            Im Rahmen des <strong>Digitalchecks</strong> und der{" "}
+            <strong>Interoperabilitätsprüfung</strong> klären Sie, ob Ihr
+            Vorhaben die EU-weite Auffindbarkeit von offenen Daten fördert.
+          </p>
         </div>
 
-        <p>
-          <strong>Warum?</strong>
-          <br />
-          Im Rahmen des <strong>Digitalchecks</strong> und der{" "}
-          <strong>Interoperabilitätsprüfung</strong> klären Sie, ob Ihr Vorhaben
-          die EU-weite Auffindbarkeit von offenen Daten fördert.
-        </p>
-        <InfoBox
-          visual={{
-            type: "icon",
-            Icon: InfoOutlined,
-            className: "size-48 fill-blue-700",
-          }}
-        >
-          <p>
-            Wenn Ihr Vorhaben <strong class="text-red-800">keinen Bezug</strong>{" "}
-            dazu hat, ist diese Seite für Sie derzeit nicht zwingend
-            handlungsrelevant.
-          </p>
-        </InfoBox>
-        <InfoBox
-          visual={{
-            type: "icon",
-            Icon: CheckOutlined,
-            className: "size-48 fill-blue-700",
-          }}
-        >
-          <p>
-            Sofern Ihr Vorhaben{" "}
-            <strong class="text-green-800">Bezug hat</strong>, finden Sie auf
-            dieser Seite Unterstützung für diesen Arbeitsschritt zur Erarbeitung
-            Ihrer Regelung. Lesen Sie hier weiter:
-          </p>
-        </InfoBox>
-        <InfoBox
-          heading={{ text: "Auf einen Blick" }}
-          className="rounded-sm bg-blue-100"
-          look="method"
-        >
-          <ul class="space-y-32">
+        <ul class="list-unstyled space-y-24">
+          <li class="flex gap-32">
+            <span
+              class="kern-icon kern-icon--info kern-icon--large shrink-0 bg-kern-darkblue-800"
+              aria-hidden="true"
+            ></span>
+            <p>
+              Wenn Ihr Vorhaben{" "}
+              <strong class="text-kern-feedback-danger">keinen Bezug</strong>{" "}
+              dazu hat, ist diese Seite für Sie derzeit nicht zwingend
+              handlungsrelevant.
+            </p>
+          </li>
+          <li class="flex gap-32">
+            <span
+              class="kern-icon kern-icon--check kern-icon--large shrink-0 bg-kern-darkblue-800"
+              aria-hidden="true"
+            ></span>
+            <p>
+              Sofern Ihr Vorhaben{" "}
+              <strong class="text-kern-feedback-success">Bezug hat</strong>,
+              finden Sie auf dieser Seite Unterstützung für diesen
+              Arbeitsschritt zur Erarbeitung Ihrer Regelung. Lesen Sie hier
+              weiter:
+            </p>
+          </li>
+        </ul>
+
+        <div class="space-y-16 rounded-sm bg-white px-24 py-32 md:px-64">
+          <h3 data-toc-ignore>Auf einen Blick</h3>
+          <ul>
             <li>
               <strong>Was ist DCAT-AP?</strong> DCAT-AP ist ein Standard für die
               Beschreibung (nicht den Inhalt!) von offenen Datensätzen. Der
@@ -124,7 +90,7 @@ const sections = {
               IT-Planungsrat empfiehlt diesen Standard verbindlich für den
               Austausch offener Verwaltungsdaten. Das deutsche Profil ist frei
               verfügbar unter{" "}
-              <a href={"https://www.dcat-ap.de"}> www.dcat-ap.de </a>.
+              <a href="https://www.dcat-ap.de">www.dcat-ap.de</a>.
             </li>
             <li>
               <strong>Warum ist das wichtig?</strong> Damit Ihr Gesetz im
@@ -145,12 +111,14 @@ const sections = {
               (DigitalService).
             </li>
           </ul>
-        </InfoBox>
+        </div>
       </section>
 
-      <section class="scroll-my-40 space-y-8" id={sections.erklaerung.id}>
-        <ChapterBadge>{sections.erklaerung.title}</ChapterBadge>
-        <h2>Worum geht es bei DCAT-AP genau?</h2>
+      <section>
+        <p class="kern-preline">Erklärung</p>
+        <h2 id="erklaerung" class="mt-0" data-toc-label="Erklärung">
+          Worum geht es bei DCAT-AP genau?
+        </h2>
         <p>
           Stellen Sie sich vor, ein Startup möchte eine europaweite Wander-App
           entwickeln. Damit die App-Entwickler nicht mühsam tausende einzelne
@@ -169,212 +137,216 @@ const sections = {
           einer zentralen Stelle findbar machen.
         </p>
       </section>
-      <section class="scroll-my-40 space-y-8" id={sections.umsetzung.id}>
-        <ChapterBadge>{sections.umsetzung.title}</ChapterBadge>
-        <h2>So stellen Sie die Nutzung sicher</h2>
-        <p>
-          Fragen Sie sich als Legist oder Legistin, wie stellen wir sicher, dass
-          offene Verwaltungsdaten nicht in digitalen Silos verschwinden, sondern
-          EU-weit gefunden werden?
-        </p>
-        <p>
-          Integrieren Sie bereits im Gesetzentwurf eine klare Vorgabe zur
-          Nutzung des Standards. Damit schaffen Sie die rechtliche Grundlage,
-          dass die spätere technische Umsetzung zwingend nach DCAT-AP erfolgt,
-          um die EU-weite Auffindbarkeit zu garantieren.
-        </p>
+
+      <section class="breakout space-y-32 bg-kern-darkblue-025">
         <div>
-          <AccordionItem
-            headline={"Wann ist eine Ausnahme zulässig?"}
-            className={"my-40"}
-            client:load
-          >
-            <div class="space-y-8">
-              <p>
-                Der Interoperable Europe Act (IEA) sieht vor, dass die Nutzung
-                von Standards wie DCAT-AP in begründeten Fällen abgelehnt werden
-                kann. Prüfen Sie folgende Punkte:
-              </p>
-              <ul>
-                <li>
-                  Sicherheit & Geheimhaltung: Enthält die Beschreibung des
-                  Datensatzes (die „Katalogkarte“) Informationen, die aus
-                  Gründen der öffentlichen Sicherheit oder des Datenschutzes
-                  nicht veröffentlicht werden dürfen?
-                </li>
-                <li>
-                  Rechte Dritter: Verhindern bestehende Lizenzen oder
-                  Urheberrechte Dritter die Nutzung dieses offenen Standards?
-                </li>
-                <li>
-                  Unverhältnismäßigkeit: Übersteigt der Aufwand für die
-                  Umstellung eines bestehenden, isolierten Systems den Nutzen
-                  für den grenzüberschreitenden digitalen Binnenmarkt deutlich?
-                </li>
-              </ul>
+          <p class="kern-preline">Umsetzung</p>
+          <h2 id="umsetzung" class="mt-0" data-toc-label="Umsetzung">
+            So stellen Sie die Nutzung sicher
+          </h2>
+          <p>
+            Fragen Sie sich als Legist oder Legistin, wie stellen wir sicher,
+            dass offene Verwaltungsdaten nicht in digitalen Silos verschwinden,
+            sondern EU-weit gefunden werden?
+          </p>
+          <p>
+            Integrieren Sie bereits im Gesetzentwurf eine klare Vorgabe zur
+            Nutzung des Standards. Damit schaffen Sie die rechtliche Grundlage,
+            dass die spätere technische Umsetzung zwingend nach DCAT-AP erfolgt,
+            um die EU-weite Auffindbarkeit zu garantieren.
+          </p>
+        </div>
+
+        <details class="kern-accordion">
+          <summary class="kern-accordion__header">
+            <span class="kern-title">Wann ist eine Ausnahme zulässig?</span>
+          </summary>
+          <div class="kern-accordion__body">
+            <p class="kern-body">
+              Der Interoperable Europe Act (IEA) sieht vor, dass die Nutzung von
+              Standards wie DCAT-AP in begründeten Fällen abgelehnt werden kann.
+              Prüfen Sie folgende Punkte:
+            </p>
+            <ul class="kern-body">
+              <li>
+                <strong>Sicherheit & Geheimhaltung:</strong> Enthält die
+                Beschreibung des Datensatzes (die „Katalogkarte“) Informationen,
+                die aus Gründen der öffentlichen Sicherheit oder des
+                Datenschutzes nicht veröffentlicht werden dürfen?
+              </li>
+              <li>
+                <strong>Rechte Dritter:</strong> Verhindern bestehende Lizenzen
+                oder Urheberrechte Dritter die Nutzung dieses offenen Standards?
+              </li>
+              <li>
+                <strong>Unverhältnismäßigkeit:</strong> Übersteigt der Aufwand
+                für die Umstellung eines bestehenden, isolierten Systems den
+                Nutzen für den grenzüberschreitenden digitalen Binnenmarkt
+                deutlich?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div data-toc-ignore>
+          <Timeline>
+            <Timeline.Item bullet>
+              <Timeline.ItemContent backgroundClasses={stepClasses}>
+                <h3>Schritt 1: Bedarf & Prüfung (Ihre Domäne)</h3>
+                <p>
+                  Sie definieren das Ziel (z. B. „Umweltdaten vergleichbar
+                  machen“). Nutzen Sie den <strong>Digitalcheck</strong>, um zu
+                  prüfen: Führt das Gesetz neue Register oder Berichte ein, die
+                  als offene Daten EU-weit auffindbar sein sollen? Lautet die
+                  Antwort „Ja“, ist DCAT-AP der im Interoperable Europe Act zu
+                  nutzende Standard.
+                </p>
+              </Timeline.ItemContent>
+            </Timeline.Item>
+            <Timeline.Item bullet>
+              <Timeline.ItemContent backgroundClasses={stepClasses}>
+                <h3>Schritt 2: Technische Vorgabe</h3>
+                <p>
+                  Sie legen im Entwurf fest, dass für die Beschreibung der Daten
+                  der Standard <strong>DCAT-AP.de</strong> zu nutzen ist.
+                  IT-Experten setzen dies dann technisch um, indem sie die
+                  Metadaten entsprechend strukturieren.
+                </p>
+              </Timeline.ItemContent>
+            </Timeline.Item>
+            <Timeline.Item>
+              <RichText
+                markdown={dedent`
+                  Übermitteln Sie vor der Entscheidung über den Entwurf eine
+                  [Interoperabilitätsbewertung](${interopsAssessment.path}),
+                  falls erforderlich.
+                `}
+              />
+            </Timeline.Item>
+            <Timeline.Item bullet>
+              <Timeline.ItemContent backgroundClasses={stepClasses}>
+                <h3>Schritt 3: Der Dienst geht live</h3>
+                <p>
+                  Sobald der Dienst live geht, werden die Daten automatisch von
+                  nationalen und europäischen Portalen erkannt. Ihre Regelung
+                  entfaltet maximale Wirkung, da die Daten ohne manuellen
+                  Aufwand EU-weit gefunden werden.
+                </p>
+              </Timeline.ItemContent>
+            </Timeline.Item>
+          </Timeline>
+        </div>
+      </section>
+
+      <section class="space-y-32">
+        <div>
+          <p class="kern-preline">Beispiele</p>
+          <h2 id="beispiele" class="mt-0" data-toc-label="Beispiele">
+            DCAT-AP in Anwendung bei bestehenden Gesetzen und Richtlinien
+          </h2>
+          <p>
+            Hier finden Sie Referenzfälle und bestehende Gesetze, die DCAT-AP
+            bereits erfolgreich nutzen, um die EU-weite Interoperabilität von
+            Datensätzen sicherzustellen.
+          </p>
+        </div>
+        <div>
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">
+                Open-Data-Gesetz & Datennutzungsgesetz (DNG)
+              </span>
+            </summary>
+            <div class="kern-accordion__body">
+              <RichText
+                className="kern-body"
+                markdown={dedent`
+                  Mit der Umsetzung der EU-Richtlinie über offene Daten (2019/1024) wurde
+                  in Deutschland das Datennutzungsgesetz (DNG) geschaffen. Dieses
+                  verpflichtet die Verwaltung, hochwertige Datensätze (High-Value
+                  Datasets) in maschinenlesbaren Formaten bereitzustellen
+
+                  ### Warum reicht Maschinenlesbarkeit allein nicht aus?
+
+                  Damit diese Daten nicht nur lesbar, sondern auch
+                  EU-weit auffindbar und nutzbar sind, braucht es eine einheitliche
+                  Beschreibung – das „digitale Etikett”. Hier setzt der Standard DCAT-AP
+                  (in Deutschland: DCAT-AP.de) an:
+                  1. **Vom Datensatz zur Auffindbarkeit:**
+                  Während das DNG
+                  die Qualität des Datensatzes (z. B. als CSV oder JSON) vorgibt, sorgt
+                  DCAT-AP für die semantische Interoperabilität der beschreibenden
+                  Metadaten.
+                  2. **Grenzüberschreitender Standard:** Durch den Standard DCAT-AP werden Datensätze
+                  automatisch zwischen lokalen, nationalen (govdata.de) und europäischen
+                  Portalen (data.europa.eu) synchronisiert.
+
+                  **EU-Empfehlung:** Als "Lösung für ein interoperables Europa"
+                  ist DCAT-AP die Brücke, die dafür sorgt, dass offene Verwaltungsdaten im
+                  gesamten europäischen Binnenmarkt ohne manuellen Aufwand gefunden werden
+                  können.
+
+                  **Wem nützt das?**
+
+                  1. Der Wirtschaft: Start-ups nutzen diese Daten für neue
+                  Geschäftsmodelle (z. B. Mobilitäts-Apps oder KI-Training).
+                  2. Der Verwaltung: Behörden finden Daten anderer Stellen schneller, was die
+                  Effizienz steigert und Doppelerhebungen vermeidet.
+                  3. Der Wissenschaft: Durch europaweit einheitliche Metadaten können
+                  Forschende hochwertige Verwaltungsdaten über Fach- und Ländergrenzen
+                  hinweg effizient identifizieren, automatisiert zusammenführen und als
+                  verlässliche Basis nachnutzen.`}
+              />
             </div>
-          </AccordionItem>
-        </div>
+          </details>
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">
+                Die INSPIRE-Richtlinie (Geodateninfrastruktur in Europa)
+              </span>
+            </summary>
+            <div class="kern-accordion__body">
+              <RichText
+                className="kern-body"
+                markdown={dedent`
+                  Ein Meilenstein der rechtlich verankerten Interoperabilität. Die Richtlinie verpflichtete die
+                  Mitgliedstaaten, Geodaten (z. B. zu Schutzgebieten oder Gewässernetzen) interoperabel
+                  bereitzustellen.
 
-        <Timeline>
-          <Timeline.Item bullet>
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3" className="ds-heading-03-reg">
-                Schritt 1: Bedarf & Prüfung (Ihre Domäne)
-              </Heading>
-              <p>
-                Sie definieren das Ziel (z. B. „Umweltdaten vergleichbar
-                machen“). Nutzen Sie den <strong>Digitalcheck</strong>, um zu
-                prüfen: Führt das Gesetz neue Register oder Berichte ein, die
-                als offene Daten EU-weit auffindbar sein sollen? Lautet die
-                Antwort „Ja“, ist DCAT-AP der im Interoperable Europe Act zu
-                nutzende Standard.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
+                  Da INSPIRE technisch sehr komplex war, wurde für die Auffindbarkeit der Daten in nationalen Katalogen
+                  und im [EU-Geoportal](https://inspire-geoportal.ec.europa.eu/srv/eng/catalog.search) eine
+                  Metadaten-Struktur genutzt, die heute in weiten Teilen mit DCAT-AP kompatibel ist oder darin aufgegangen
+                  ist, um eine sektorübergreifende Suche zu ermöglichen.
 
-          <Timeline.Item bullet>
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3" className="ds-heading-03-reg">
-                Schritt 2: Technische Vorgabe
-              </Heading>
-              <p>
-                Sie legen im Entwurf fest, dass für die Beschreibung der Daten
-                der Standard <strong>DCAT-AP.de</strong> zu nutzen ist.
-                IT-Experten setzen dies dann technisch um, indem sie die
-                Metadaten entsprechend strukturieren.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-          <Timeline.Item>
-            <RichText
-              markdown={dedent`
-                Übermitteln Sie vor der Entscheidung über den Entwurf eine
-                [Interoperabilitätsbewertung](${interopsAssessment.path}),
-                falls erforderlich.
+                  **Warum man das braucht:** Umweltprobleme (wie Hochwasser oder Luftverschmutzung) halten sich nicht an
+                  Staatsgrenzen. Um eine europäische Strategie (z. B. den Green Deal) umzusetzen, müssen die Daten der
+                  Mitgliedstaaten technisch zueinander passen.
+
+                  **Wem nützt das?**
+                  - **Bürgerinnen und Bürgern:** Sie können sich grenzübergreifend über Umweltbelastungen informieren.
+                  - **Legistinnen und Legisten & Politik:** Sie erhalten eine verlässliche Datenbasis für grenzüberschreitende Infrastrukturprojekte und Klimaschutzmaßnahmen.
                 `}
-            />
-          </Timeline.Item>
-          <Timeline.Item bullet>
-            <Timeline.ItemContent backgroundClasses="bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48">
-              <Heading tagName="h3" className="ds-heading-03-reg">
-                Schritt 3: Der Dienst geht live
-              </Heading>
-              <p>
-                Sobald der Dienst live geht, werden die Daten automatisch von
-                nationalen und europäischen Portalen erkannt. Ihre Regelung
-                entfaltet maximale Wirkung, da die Daten ohne manuellen Aufwand
-                EU-weit gefunden werden.
-              </p>
-            </Timeline.ItemContent>
-          </Timeline.Item>
-        </Timeline>
-      </section>
-      <section class="scroll-my-40 space-y-8" id={sections.beispiele.id}>
-        <ChapterBadge>{sections.beispiele.title}</ChapterBadge>
-        <h2>DCAT-AP in Anwendung bei bestehenden Gesetzen und Richtlinien</h2>
-        <p>
-          Hier finden Sie Referenzfälle und bestehende Gesetze, die DCAT-AP
-          bereits erfolgreich nutzen, um die EU-weite Interoperabilität von
-          Datensätzen sicherzustellen.
-        </p>
-        <div>
-          <AccordionItem
-            headline={"Open-Data-Gesetz & Datennutzungsgesetz (DNG)"}
-            client:load
-          >
-            <RichText
-              markdown={dedent`
-                Mit der Umsetzung der EU-Richtlinie über offene Daten (2019/1024) wurde
-                in Deutschland das Datennutzungsgesetz (DNG) geschaffen. Dieses
-                verpflichtet die Verwaltung, hochwertige Datensätze (High-Value
-                Datasets) in maschinenlesbaren Formaten bereitzustellen
-                
-                ### Warum reicht Maschinenlesbarkeit allein nicht aus?
-                
-                Damit diese Daten nicht nur lesbar, sondern auch
-                EU-weit auffindbar und nutzbar sind, braucht es eine einheitliche
-                Beschreibung – das „digitale Etikett”. Hier setzt der Standard DCAT-AP
-                (in Deutschland: DCAT-AP.de) an:
-                1. **Vom Datensatz zur Auffindbarkeit:** 
-                Während das DNG
-                die Qualität des Datensatzes (z. B. als CSV oder JSON) vorgibt, sorgt
-                DCAT-AP für die semantische Interoperabilität der beschreibenden
-                Metadaten.
-                2. **Grenzüberschreitender Standard:** Durch den Standard DCAT-AP werden Datensätze
-                automatisch zwischen lokalen, nationalen (govdata.de) und europäischen
-                Portalen (data.europa.eu) synchronisiert.
-                
-                **EU-Empfehlung:** Als "Lösung für ein interoperables Europa"
-                ist DCAT-AP die Brücke, die dafür sorgt, dass offene Verwaltungsdaten im
-                gesamten europäischen Binnenmarkt ohne manuellen Aufwand gefunden werden
-                können.
-                
-                **Wem nützt das?**
-                
-                1. Der Wirtschaft: Start-ups nutzen diese Daten für neue
-                Geschäftsmodelle (z. B. Mobilitäts-Apps oder KI-Training).
-                2. Der Verwaltung: Behörden finden Daten anderer Stellen schneller, was die
-                Effizienz steigert und Doppelerhebungen vermeidet.
-                3. Der Wissenschaft: Durch europaweit einheitliche Metadaten können
-                Forschende hochwertige Verwaltungsdaten über Fach- und Ländergrenzen
-                hinweg effizient identifizieren, automatisiert zusammenführen und als
-                verlässliche Basis nachnutzen.`}
-            />
-          </AccordionItem>
-          <AccordionItem
-            headline={
-              "Die INSPIRE-Richtlinie (Geodateninfrastruktur in Europa)"
-            }
-            client:load
-          >
-            <RichText
-              markdown={dedent`
-                Ein Meilenstein der rechtlich verankerten Interoperabilität. Die Richtlinie verpflichtete die
-                Mitgliedstaaten, Geodaten (z. B. zu Schutzgebieten oder Gewässernetzen) interoperabel
-                bereitzustellen.
-                
-                Da INSPIRE technisch sehr komplex war, wurde für die Auffindbarkeit der Daten in nationalen Katalogen
-                und im [EU-Geoportal](https://inspire-geoportal.ec.europa.eu/srv/eng/catalog.search) eine
-                Metadaten-Struktur genutzt, die heute in weiten Teilen mit DCAT-AP kompatibel ist oder darin aufgegangen
-                ist, um eine sektorübergreifende Suche zu ermöglichen.
-                
-                **Warum man das braucht:** Umweltprobleme (wie Hochwasser oder Luftverschmutzung) halten sich nicht an
-                Staatsgrenzen. Um eine europäische Strategie (z. B. den Green Deal) umzusetzen, müssen die Daten der
-                Mitgliedstaaten technisch zueinander passen.
-                
-                **Wem nützt das?**
-                - **Bürgerinnen und Bürgern:** Sie können sich grenzübergreifend über Umweltbelastungen informieren.
-                - **Legistinnen und Legisten & Politik:** Sie erhalten eine verlässliche Datenbasis für grenzüberschreitende Infrastrukturprojekte und Klimaschutzmaßnahmen.
-                `}
-            />
-          </AccordionItem>
+              />
+            </div>
+          </details>
         </div>
       </section>
-      <section
-        class="breakout space-y-40 bg-blue-100 py-80"
-        id={sections.ressourcen.id}
-      >
-        <InfoBox look="white">
-          <ChapterBadge>{sections.ressourcen.title}</ChapterBadge>
-          <RichText
-            className="[&_h3]:mt-24"
-            markdown={dedent`
-              ## Weitere Informationen im europäischen Rahmen
-              
-              Hier finden Sie die offizielle Seite der europäischen Lösung
-                DCAT-AP im Interoperable Europe Portal mit allen
-                Hintergrundinformationen zur EU-weiten Spezifikation:
-              [DCAT Application Profile for data portals in Europe](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-data-portals-europe)
-              
-              Hier finden Sie die [Einordnung von DCAT-AP in den Europäischen Interoperabilitätsrahmen (EIF)](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-data-portals-europe/eif-perspective)
-              – diese Perspektive hilft Ihnen bei der fachlichen Begründung für die Interoperabilitätsbewertung.
-              
-              Auf dem Youtube-Kanal von Interoperable Europe finden Sie hier ein kurzes Einführungsvideo zu DCAT-AP: https://www.youtube.com/watch?v=EVsMeKBrAxg
-              `}
-          />
-        </InfoBox>
+
+      <section class="breakout bg-kern-darkblue-025">
+        <p class="kern-preline">Ressourcen</p>
+        <h2 id="ressourcen" class="mt-0" data-toc-label="Ressourcen">
+          Weitere Informationen im europäischen Rahmen
+        </h2>
+        <RichText
+          markdown={dedent`
+            Hier finden Sie die offizielle Seite der europäischen Lösung DCAT-AP im Interoperable Europe Portal mit allen Hintergrundinformationen zur EU-weiten Spezifikation: [DCAT Application Profile for data portals in Europe](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-data-portals-europe)
+
+            Hier finden Sie die [Einordnung von DCAT-AP in den Europäischen Interoperabilitätsrahmen (EIF)](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-data-portals-europe/eif-perspective) – diese Perspektive hilft Ihnen bei der fachlichen Begründung für die Interoperabilitätsbewertung.
+
+            Auf dem Youtube-Kanal von Interoperable Europe finden Sie hier ein kurzes [Einführungsvideo zu DCAT-AP](https://www.youtube.com/watch?v=EVsMeKBrAxg).
+          `}
+        />
       </section>
-    </SidebarContainer>
+    </TocContainer>
   </main>
 </Layout>

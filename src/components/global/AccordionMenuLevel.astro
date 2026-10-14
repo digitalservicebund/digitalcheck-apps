@@ -32,7 +32,7 @@ function linkHoverStyle(isCurrent = false) {
 
 function headerStyle(isCurrent = false) {
   return isCurrent
-    ? "bg-blue-300 font-bold"
+    ? "bg-kern-darkblue-050 font-bold"
     : "has-[>button:hover]:bg-kern-darkblue-800 has-[>button:hover]:[&>a]:text-white has-[>a:hover]:bg-kern-darkblue-800 has-[>a:hover]:text-white";
 }
 
@@ -73,7 +73,7 @@ function panelId(path: string) {
           type="button"
           class={twMerge(
             arrowHoverStyle(entry.isCurrent),
-            "mr-3 flex h-32 w-32 shrink-0 items-center justify-center rounded-sm",
+            "mr-3 flex h-32 w-32 shrink-0 items-center justify-center rounded-sm cursor-pointer",
           )}
           aria-label={`Untermenü ${entry.label} ein-/ausklappen`}
           aria-controls={panelId(entry.path)}

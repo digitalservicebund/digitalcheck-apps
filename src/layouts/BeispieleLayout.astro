@@ -11,17 +11,12 @@ import { contact } from "@/resources/content/shared/contact";
 interface Props {
   title?: string;
   description?: string;
-  showProgressBar?: boolean;
 }
 
-const { title, description, showProgressBar } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
-<Layout
-  title={title}
-  description={description}
-  showProgressBar={showProgressBar}
->
+<Layout title={title} description={description}>
   <slot />
   <aside aria-labelledby="your-example-heading">
     <Container className="mt-40 mb-80 bg-blue-100" overhangingBackground>

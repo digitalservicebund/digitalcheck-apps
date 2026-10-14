@@ -320,10 +320,10 @@ test.describe("test question navigation on mobile screens", () => {
     // Check that the first and second question link has a dark color
     await expect(
       linkBar.getByRole("link", { name: questions[0].title }),
-    ).toHaveClass(/bg-blue-800/);
+    ).toHaveClass(/bg-kern-darkblue-800/);
     await expect(
       linkBar.getByRole("link", { name: questions[1].title }),
-    ).toHaveClass(/bg-blue-800/);
+    ).toHaveClass(/bg-kern-darkblue-800/);
 
     // Navigate back to answered question
     await linkBar.getByRole("link", { name: questions[0].title }).click();
@@ -355,10 +355,10 @@ test.describe("test question navigation on mobile screens", () => {
     // Check that the second question link still has a dark color
     await expect(
       linkBar.getByRole("link", { name: questions[1].title }),
-    ).toHaveClass(/bg-blue-800/);
+    ).toHaveClass(/bg-kern-darkblue-800/);
     await expect(
       linkBar.getByRole("link", { name: questions[2].title }),
-    ).toHaveClass(/bg-blue-800/);
+    ).toHaveClass(/bg-kern-darkblue-800/);
 
     // Clicking on the second question should now navigate
     await linkBar.getByRole("link", { name: questions[1].title }).click();

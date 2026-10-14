@@ -31,7 +31,7 @@ const Stepper = <T extends { path: string; title: string }>({
               role="link"
               key={el.path}
               aria-disabled="true"
-              className="link-unstyled h-6 flex-1 bg-blue-300 transition-all duration-300"
+              className="link-unstyled bg-kern-darkblue-100 h-6 flex-1 transition-all duration-300"
             >
               <span className="sr-only">{el.title}</span>
             </a>
@@ -42,7 +42,9 @@ const Stepper = <T extends { path: string; title: string }>({
             href={el.path}
             className={twJoin(
               "link-unstyled h-6 flex-1 transition-all duration-300",
-              index <= currentIndex ? "bg-blue-800" : "bg-blue-600",
+              index <= currentIndex
+                ? "bg-kern-darkblue-800"
+                : "bg-kern-darkblue-300",
             )}
           >
             <span className="sr-only">{el.title}</span>

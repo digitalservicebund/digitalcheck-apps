@@ -1,0 +1,184 @@
+---
+import {
+  barrierefreiheit,
+  bundeslaender,
+  dasIstNeu,
+  datenschutz,
+  dokumentation,
+  home,
+  impressum,
+  interoperabel,
+  methoden,
+  normenkontrollrat,
+  prinzipien,
+  sitemap,
+  vorpruefung,
+} from "@/config/routes";
+import { ZFL_BASE_URL } from "@/resources/constants";
+import { contact } from "@/resources/content/shared/contact";
+import { withBase } from "@/utils/path";
+
+type FooterLink = { text: string; url: string };
+
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Digitalcheck",
+    links: [
+      { text: "Übersicht", url: home.path },
+      { text: "Vorprüfung", url: vorpruefung.path },
+      { text: "Erarbeitung", url: methoden.path },
+      { text: "Dokumentation", url: dokumentation.path },
+    ],
+  },
+  {
+    title: "Inhalte",
+    links: [
+      { text: "Fünf Prinzipien", url: prinzipien.path },
+      { text: "EU-Interoperabilität", url: interoperabel.path },
+      { text: "Bundesländer", url: bundeslaender.path },
+      { text: "Normenkontrollrat", url: normenkontrollrat.path },
+      { text: "Das ist neu", url: dasIstNeu.path },
+    ],
+  },
+  {
+    title: "Rechtliche Hinweise",
+    links: [
+      { text: "Impressum", url: impressum.path },
+      { text: "Datenschutzerklärung", url: datenschutz.path },
+      { text: "Barrierefreiheit", url: barrierefreiheit.path },
+      { text: "Sitemap", url: sitemap.path },
+    ],
+  },
+];
+
+const metaLinks: FooterLink[] = [
+  { text: "Zentrum für Legistik", url: ZFL_BASE_URL },
+  { text: "Zahlen und Fakten", url: `${ZFL_BASE_URL}/ueber/zahlen-und-fakten` },
+  {
+    text: "Open Source Code",
+    url: "https://github.com/digitalservicebund/digitalcheck-dito",
+  },
+];
+
+const bmdsName = "Bundesministerium für Digitales und Staatsmodernisierung";
+---
+
+<footer
+  id="footer"
+  class="breakout-grid print:hidden"
+  aria-label="Seitenfußbereich"
+>
+  <!-- Re-map KERN's contextual colors so text and links render light-on-dark. -->
+  <div class="bg-kern-darkblue-800 breakout border-t-2 border-blue-300 [--kern-color-action-default-contextual:var(--kern-color-white)] [--kern-color-action-focus-default-contextual:var(--kern-color-white)] [--kern-color-action-visited:var(--kern-color-white)] [--kern-color-layout-text-default-contextual:var(--kern-color-layout-text-inverse)]">
+    <div class="flex flex-col gap-40 pt-64 pb-40">
+      <nav
+        class="grid grid-cols-1 gap-32 sm:grid-cols-3"
+        aria-label="Schnellübersicht"
+      >
+        {columns.map((column) => (
+          <div class="kern-stack kern-stack-lg">
+            <h2 class="kern-heading-medium mb-0 py-0">{column.title}</h2>
+            <ul class="list-unstyled flex flex-col gap-2">
+              {column.links.map((link) => (
+                <li>
+                  <a href={link.url} class="kern-link kern-link--small">
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+      <div class="flex flex-col gap-40">
+        <div class="kern-stack kern-stack-lg">
+          <h2 class="kern-heading-medium mb-0 py-0">Kontaktieren Sie uns</h2>
+          <ul class="list-unstyled flex flex-col gap-2">
+            <li>
+              <a href={contact.phone} class="kern-link kern-link--small">
+                {contact.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${contact.email}`}
+                class="kern-link kern-link--small"
+              >
+                {contact.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-24 gap-y-8">
+          <p class="kern-body kern-body--small mb-0 flex items-baseline gap-x-8 py-0">
+            Ein Angebot der
+            <a
+              href="https://digitalservice.bund.de/"
+              target="_blank"
+              rel="noreferrer"
+              class="kern-link kern-link--small"
+            >
+              DigitalService GmbH des Bundes
+            </a>
+          </p>
+          <div class="flex flex-wrap gap-x-24">
+            {metaLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                class="kern-link kern-link--small"
+              >
+                {link.text}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav aria-label="Externe Verlinkungen" class="breakout bg-white">
+    <div class="flex flex-col gap-16 py-40 sm:flex-row sm:gap-48">
+      <img
+        src={withBase("/logo/bmds-logo.svg")}
+        width="137"
+        alt={`Logo des ${bmdsName}`}
+        class="shrink-0 self-start forced-colors:dark:hidden"
+      />
+      <img
+        src={withBase("/logo/bmds-logo-white.svg")}
+        width="137"
+        alt={`Logo des ${bmdsName}`}
+        class="hidden shrink-0 self-start forced-colors:dark:block"
+      />
+      <div class="max-w-3xl space-y-8 [&_p]:max-w-none">
+        <h3 class="kern-label kern-label--small">Federführung</h3>
+        <p class="kern-body kern-body--small">
+          Der Digitalcheck entsteht im Auftrag des{" "}
+          <a
+            href="https://bmds.bund.de/"
+            target="_blank"
+            rel="noreferrer"
+            class="kern-link kern-link--small"
+          >
+            {bmdsName}
+          </a>
+        </p>
+        <p class="kern-body kern-body--small">
+          Mehr über den politischen Auftrag und die Entstehung des Digitalcheck
+          finden Sie auf der{" "}
+          <a
+            href="https://www.digitale-verwaltung.de/Webs/DV/DE/transformation/digitalcheck/digitalcheck-node.html"
+            target="_blank"
+            rel="noreferrer"
+            class="kern-link kern-link--small"
+          >
+            Projektseite
+          </a>{" "}
+          des Bundesministeriums für Digitales und Staatsmodernisierung.
+        </p>
+      </div>
+    </div>
+  </nav>
+</footer>

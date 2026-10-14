@@ -1,142 +1,343 @@
 ---
+import { Image } from "astro:assets";
+import {
+  interoperabel_nationaleKontaktstelle,
+  vorpruefung,
+} from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
-import Tabs from "@/components/tabs/Tabs.astro";
-import { interoperabel_faq } from "@/config/routes";
-import { QuizOutlined as QuizIcon } from "@digitalservicebund/icons";
-import { LinkButton } from "@/components/Button";
-import Container from "@/components/Container";
-import ContentWrapper from "@/components/ContentWrapper.tsx";
-import Heading from "@/components/Heading";
-import Hero from "@/components/Hero";
-import Image from "@/components/Image";
-import InfoBox from "@/components/InfoBox.tsx";
+import FeatureItem from "@/components/FeatureItem.astro";
+import FeatureSet from "@/components/FeatureSet.astro";
+import Hero from "@/components/Hero.astro";
+import ImageZoomable from "@/components/ImageZoomable";
+import KernCard from "@/components/KernCard.astro";
 import RichText from "@/components/RichText";
-import { interoperability } from "@/resources/content/interoperabel";
 import { contact } from "@/resources/content/shared/contact";
-import EuRechtTab from "./_EuRechtTab.astro";
-import HintergrundTab from "./_HintergrundTab.astro";
-import InteroperableLoesungenTab from "./_InteroperableLoesungenTab.astro";
-import UeberblickTab from "./_UeberblickTab.astro";
-import { tabLabels } from "./_tabs";
+import { dedent } from "@/utils/dedentMultilineStrings";
+import { withBase } from "@/utils/path";
+import IconAccountTree from "~icons/ic/round-account-tree";
+import IconGroups from "~icons/ic/round-groups";
+import IconMail from "~icons/ic/outline-mail";
+import IconPhone from "~icons/ic/outline-phone";
+import IconSchedule from "~icons/ic/round-schedule";
+import europeMap from "@/assets/images/europa-karte.png";
+import { interopsAnchors } from "./_anchors";
 
 export const frontmatter = {
   title: "Interoperable Lösungen",
   navLabel: "EU-Interoperabilität",
 };
 
-const {
-  overviewTabLabel,
-  backgroundTabLabel,
-  euLawTabLabel,
-  interoperableSolutionsTabLabel,
-} = tabLabels;
+const IEA_URL =
+  "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32024R0903";
+
+const dimensions = [
+  {
+    title: "Rechtliche Interoperabilität",
+    subline: "definiert die rechtlichen Grundlagen eines Datenaustauschs",
+    body: "Gesetze sollten die Grundlage für grenzüberschreitenden Datenaustausch schaffen. Regelungen sollten sich dabei nicht gegenseitig widersprechen, sondern gegenseitige Anerkennung sicherstellen und dafür sorgen, dass rechtliche Rahmenbedingungen jeweils zusammen passen.",
+  },
+  {
+    title: "Organisatorische Interoperabilität",
+    subline:
+      "beschreibt die für den Datenaustausch notwendigen Geschäftsprozesse",
+    body: "Gesetze sollten die Zusammenarbeit zwischen den Verwaltungsstellen fördern, indem sie gemeinsame Geschäftsprozesse und Modelle festlegen. Dies beinhaltet die Koordination von Aufgaben und die Klärung der Rollen.",
+  },
+  {
+    title: "Semantische Interoperabilität",
+    subline: "stellt sicher, dass Daten und Begriffe gleich verstanden werden",
+    body: "Gesetze sollten die Verwendung gemeinsamer Vokabulare und Datenformate vorschreiben, um sicherzustellen, dass die Bedeutung der ausgetauschten Daten von allen Systemen die gleiche ist.",
+  },
+  {
+    title: "Technische Interoperabilität",
+    subline:
+      "beschreibt die erforderlichen technischen Systeme und Standards, die für den Datenaustausch notwendig sind",
+    body: "Technische Standards, Schnittstellen und Komponenten sollten aufeinander abgestimmt sein, damit Datenaustausch zwischen Diensten in Europa ermöglicht wird.",
+  },
+];
 ---
 
 <Layout title={frontmatter.title}>
-  <main>
-    <Hero
-      title={interoperability.headline}
-      subtitle={interoperability.content}
-    />
-
-    <div class="bg-blue-300">
-      <Container className="flex flex-col py-0 lg:h-[626px] lg:flex-row">
-        <div class="py-32 sm:py-48 lg:w-1/2 lg:self-center lg:pr-48">
-          <Heading
-            tagName="h2"
-            text={interoperability.andDigitalReadiness.headline}
-            className="mb-8"
-          />
-          <RichText markdown={interoperability.andDigitalReadiness.content} />
-        </div>
-        <div class="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
-          <div class="flex h-full w-[630px] flex-col justify-center bg-[#9FB6C6] align-middle lg:w-[50vw] [&>img]:object-contain lg:[&>img]:h-[550px]">
-            <Image
-              url={interoperability.andDigitalReadiness.image.url}
-              alternativeText={
-                interoperability.andDigitalReadiness.image.alternativeText
-              }
-            />
-          </div>
-        </div>
-      </Container>
-      <div class="sm:hidden">
-        <Image
-          url={interoperability.andDigitalReadiness.image.url}
-          alternativeText={
-            interoperability.andDigitalReadiness.image.alternativeText
-          }
-        />
+  <main class="breakout-grid">
+    <Hero class="relative overflow-hidden">
+      <div class="space-y-24 lg:w-1/2 lg:pr-32">
+        <h1>EU-Interoperabilität für ein digital vernetztes Europa</h1>
+        <p>
+          Hier erfahren Sie, was die Verordnung für ein interoperables Europa
+          (EU) 2024/903 für Ihr Regelungsvorhaben bedeutet und wie sie zu einem
+          vernetzten Europa beiträgt.
+        </p>
       </div>
-    </div>
-    <ContentWrapper compactTopSpacing className="mb-80">
-      <Tabs
-        tabs={[
-          overviewTabLabel,
-          backgroundTabLabel,
-          euLawTabLabel,
-          interoperableSolutionsTabLabel,
-        ]}
-        searchParams
-      >
-        <UeberblickTab data-tab-panel={overviewTabLabel} />
-        <HintergrundTab data-tab-panel={backgroundTabLabel} />
-        <EuRechtTab data-tab-panel={euLawTabLabel} />
-        <InteroperableLoesungenTab
-          data-tab-panel={interoperableSolutionsTabLabel}
-        />
-      </Tabs>
-    </ContentWrapper>
+      <Image
+        src={europeMap}
+        alt="Eine stilisierte Karte von Europa. Die EU-Mitgliedstaaten sind heller markiert und durch überlappende, gestrichelte Linien miteinander vernetzt"
+        class="absolute top-0 right-0 m-0 h-full w-1/2 object-cover object-left max-lg:hidden"
+      />
+    </Hero>
 
-    <div class="px-[clamp(1rem, 5vw, 3rem)] bg-blue-100 py-48">
-      <Container>
-        <Container overhangingBackground className="bg-white">
-          <Heading
-            tagName="h2"
-            text={interoperability.resources.headline}
-            className="mb-8"
-          />
-          <p>{interoperability.resources.subtitle}</p>
-          {interoperability.resources.groups.map((group) => (
-            <div class="mt-10 p-24 pl-0">
-              <div class="mb-10 flex items-center">
-                <group.icon className="mr-10 size-32" />
-                <Heading
-                  tagName="h3"
-                  look="ds-label-01-bold"
-                  text={group.title}
-                />
-              </div>
-              <p class="mb-20">{group.subtitle}</p>
-              <RichText markdown={group.content} />
-            </div>
-          ))}
-        </Container>
-      </Container>
-    </div>
+    <section>
+      <h2>Vernetzte Verwaltungen für Europa</h2>
+      <p>
+        Stellen Sie sich ein digitales Europa ohne Grenzen vor. Ziel der{" "}
+        <a href={IEA_URL}>
+          Verordnung für ein interoperables Europa (EU) 2024/903
+        </a>{" "}
+        ist es, diese Vision Realität werden zu lassen. Bürgerinnen, Bürger und
+        Unternehmen sollen digitale Verwaltungsleistungen nahtlos in allen
+        EU-Ländern nutzen können. Der digitale Datenaustausch über Landes- und
+        Sektorengrenzen hinweg wird zur Norm. Grenzüberschreitende
+        Verwaltungsakte, wie ein Umzug in einen anderen Mitgliedstaat oder die
+        Gründung eines Unternehmens im Ausland, lassen sich so einfach und
+        vollständig online erledigen. Das steigert die Effizienz für alle
+        Beteiligten und schafft einen einheitlichen digitalen Raum.
+      </p>
+    </section>
 
-    <Container className="py-80">
-      <InfoBox visual={{ type: "icon", Icon: QuizIcon }}>
-        <Heading tagName="h3">Häufig gestellte Fragen</Heading>
-        <p>
-          Weitere Informationen zur Umsetzung der EU-Interoperabilitäts-Vorgaben
-          und zur Erarbeitung von Regelungen finden Sie in unseren Bereich
-          “Fragen und Antworten”.
-        </p>
-        <p>
-          Wenn Sie weitere Fragen haben, dann kontaktieren Sie uns unter:{" "}
-          <a href={`mailto:${contact.interoperabilityEmail}`}>
-            {contact.interoperabilityEmail}
-          </a>{" "}
-          oder unter <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>
-          .
-        </p>
-        <div class="mt-24">
-          <LinkButton href={interoperabel_faq.path} look="tertiary">
-            Zu Fragen und Antworten{" "}
-          </LinkButton>
+    <section class="breakout bg-kern-layout-layer-surface">
+      <h2>Was bedeutet das für die Erarbeitung von Regelungen?</h2>
+      <p>
+        Für Sie bedeutet das, dass Sie grenzüberschreitende Auswirkungen eines
+        Regelungsvorhabens einschätzen sollten, bevor Regelungen geschrieben
+        werden. Denn nur wenn Sie die Interoperabilität von Anfang an mitdenken,
+        schaffen Sie die rechtliche Grundlage für Behörden, um europaweit Daten
+        auszutauschen und funktionierende, grenzüberschreitende
+        Verwaltungsleistungen anzubieten. Abschließend dokumentieren Sie in
+        einem zusammenhängenden Prozess mit der Dokumentation der
+        Digitaltauglichkeit in einem Fragebogen, wie Sie sichergestellt haben,
+        dass Ihre Regelungsinhalte förderlich für die EU-weite Interoperabilität
+        sind.
+      </p>
+      <p>
+        <strong>Hinweis:</strong> Die <a href={vorpruefung.path}>Vorprüfung</a>{" "}
+        im Digitalcheck identifiziert automatisch, ob Ihr Vorhaben
+        Interoperabilitätsanforderungen beinhaltet.
+      </p>
+    </section>
+
+    <section class="space-y-64">
+      <div class="space-y-32">
+        <div>
+          <h2 id={interopsAnchors.bindingRequirements} class="scroll-mt-40">
+            Verbindliche Anforderungen: In diesen Fällen ist eine
+            Interoperabilitätsbewertung verpflichtend
+          </h2>
+          <p>
+            Eine Interoperabilitäts-Bewertung muss durchgeführt werden, wenn Ihr
+            Regelungsvorhaben:
+          </p>
+          <ul>
+            <li>
+              eine (neue) <strong>verbindliche Anforderung</strong> definiert
+              und
+            </li>
+            <li>
+              <strong>grenzüberschreitende digitale Verwaltungsdienste</strong>{" "}
+              betrifft, das heißt
+              <ul>
+                <li>
+                  eine digitale Umsetzung ist vorgesehen oder davon betroffen
+                  ist,
+                </li>
+                <li>
+                  ein Austausch von Daten und Informationen zwischen
+                  Verwaltungen der EU-Mitgliedstaaten vorgesehen ist.
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </InfoBox>
-    </Container>
+        <div>
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">
+                Was ist eine verbindliche Anforderung?
+              </span>
+            </summary>
+            <div class="kern-accordion__body">
+              <RichText
+                className="kern-body"
+                markdown={dedent`
+                  Eine verbindliche Anforderung ist eine verpflichtende Regel. Das kann z.B. eine Definition, ein Standard, eine Richtlinie, ein Verbot oder eine Beschränkung sein. Eine exakte Definition finden Sie in der [Verordnung in der Präambel, Erwägungsgrund 18](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R0903).
+
+                  Falls sich eine Berichtspflicht an die Europäische Kommission ergibt, dann unterstützt Sie das Digitalcheck-Team dabei, die Interoperabilitätsbewertung durchzuführen, sie zu dokumentieren und den Bericht einzureichen.
+
+                  Weitere Quellen:
+
+                  [European Commission - European Interoperability Framework](https://ec.europa.eu/isa2/eif_en/)
+
+                  [Interoperable Europe Portal - FAQs](https://interoperable-europe.ec.europa.eu/interoperable-europe/faqs)
+                `}
+              />
+            </div>
+          </details>
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">
+                Was passiert mit der Interoperabilitäts-Bewertung?
+              </span>
+            </summary>
+            <div class="kern-accordion__body">
+              <p class="kern-body">
+                Die Inhalte der Interoperabilitäts-Bewertung werden auf dem{" "}
+                <a href="https://interoperable-europe.ec.europa.eu/collection/assessments/report/repository">
+                  Interoperable-Europe-Portal
+                </a>{" "}
+                in maschinenlesbarem Format veröffentlicht. Damit wird Ihr
+                Vorgehen transparent für andere Mitgliedstaaten und Sie tragen
+                dazu bei, dass andere öffentliche Stellen oder Einrichtungen der
+                Union sich in Bezug auf Interoperabilität daran ausrichten
+                können.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="space-y-32">
+        <div>
+          <h2>Kriterien der Interoperabilitätsbewertung</h2>
+          <p>
+            Der Entscheidungsbaum zeigt, wann eine Interoperabilitätsbewertung
+            verpflichtend ist.
+          </p>
+        </div>
+        <figure class="space-y-24">
+          <ImageZoomable
+            image={{
+              url: withBase(
+                "/images/kriterien-interoperabilitaetsbewertung-entscheidungsbaum.png",
+              ),
+              alternativeText:
+                "Ein Entscheidungsdiagramm zur Bestimmung der Verpflichtung zur Interoperabilitätsbewertung. Es beginnt mit der Frage, ob es sich um eine verbindliche Anforderung handelt. Je nach Antwort folgen verschiedene Entscheidungsstufen: Offenheit für Änderungen, Verpflichtung, digitale öffentliche Dienstleistungen, betroffene Akteure und Notwendigkeit des Austauschs in Netzwerken oder Informationssystemen. Wenn alle Bedingungen erfüllt sind, führt der Prozess zur verpflichtenden Interoperabilitätsbewertung. Andernfalls ist sie nicht verpflichtend.",
+            }}
+          />
+          <figcaption class="kern-subline kern-subline--small font-bold text-kern-layout-text-muted">
+            Entscheidungsbaum: Ist eine Interoperabilitätsbewertung
+            verpflichtend für mich?
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="breakout space-y-32 bg-kern-darkblue-025">
+      <div>
+        <h2 id={interopsAnchors.fourLevels} class="scroll-mt-40">
+          Die vier Dimensionen der Interoperabilität
+        </h2>
+        <p>
+          Der{" "}
+          <a href="https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/european-interoperability-framework-detail">
+            Europäische Interoperabilitätsrahmen
+          </a>{" "}
+          nennt vier eng miteinander verwobene Dimensionen, die in neuen
+          Regelungen erfüllt werden sollten:
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-32 md:grid-cols-2">
+        {dimensions.map((dimension) => (
+          <KernCard {...dimension} background="white" />
+        ))}
+      </div>
+    </section>
+
+    <section class="space-y-32">
+      <h2>Welche positiven Effekte sollen erreicht werden?</h2>
+      <FeatureSet>
+        <FeatureItem
+          title="Datenaustausch vereinfachen"
+          body="Bürokratische Hürden werden abgebaut – Daten fließen reibungslos zwischen Verwaltungen und Mitgliedsstaaten."
+        >
+          <IconAccountTree slot="icon" class="size-74" />
+        </FeatureItem>
+        <FeatureItem
+          title="Kosten und Zeit sparen"
+          body="Weniger Doppelarbeit für Bürgerinnen und Bürger, Unternehmen und Verwaltungen durch gemeinsame Standards."
+        >
+          <IconSchedule slot="icon" class="size-74" />
+        </FeatureItem>
+        <FeatureItem
+          title="Verwaltungen vernetzen"
+          body="Bis 2030 sollen öffentliche Verwaltungen enger vernetzt und transeuropäische digitale Dienste gestärkt werden."
+        >
+          <IconGroups slot="icon" class="size-74" />
+        </FeatureItem>
+      </FeatureSet>
+    </section>
+
+    <section class="breakout space-y-16 bg-kern-layout-layer-surface">
+      <h2>Unterstützung durch die Nationale Kontaktstelle</h2>
+      <p>
+        Das Team der{" "}
+        <a href={interoperabel_nationaleKontaktstelle.path}>
+          Nationalen Kontaktstelle
+        </a>{" "}
+        unterstützt Sie bei Fragen zur Interoperabilität, bei der Bewertung und
+        Dokumentation. Dies gilt auch für Landesvorhaben. Schreiben Sie uns bei
+        Fragen zum Interoperabilitätsbezug Ihres Vorhabens gerne an.
+      </p>
+      <ul class="list-unstyled space-y-8">
+        <li>
+          <a class="kern-link items-center" href={contact.phone}>
+            <IconPhone class="size-24" aria-hidden="true" />
+            {contact.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a
+            class="kern-link items-center"
+            href={`mailto:${contact.interoperabilityEmail}`}
+          >
+            <IconMail class="size-24" aria-hidden="true" />
+            {contact.interoperabilityEmail}
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-32">
+      <div>
+        <h2>Ressourcen und Links zu Interoperabilität</h2>
+        <p>
+          Hier finden Sie alle relevanten Links und Ressourcen zu den
+          Anforderungen der EU an Interoperabilität, die für Ihre Regelung
+          relevant sind.
+        </p>
+      </div>
+      <div>
+        <h3>Allgemein</h3>
+        <ul>
+          <li>
+            <a href={IEA_URL}>
+              Verordnung für ein interoperables Europa (EU) 2024/903
+            </a>
+          </li>
+          <li>
+            <a href="https://interoperable-europe.ec.europa.eu/">
+              Ressourcen auf dem Interoperable Europe Portal
+            </a>
+            : Hier finden sich zusätzliche Informationen, Best Practices und
+            Tools zur Unterstützung bei der Durchführung von
+            Interoperabilitätsbewertungen.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Interoperabilitätsbewertungen</h3>
+        <ul>
+          <li>
+            <a href="https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/solution/european-interoperability-framework-eif-toolbox">
+              Interoperabilitätsrahmen
+            </a>
+            : Rahmenwerk mit Prinzipien zur Erarbeitung von interoperablen
+            Regelungen
+          </li>
+          <li>
+            <a href="https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2025-05/DIGIT-2024-00047-00-00-DE-TRA-00.pdf">
+              Leitlinien für Interoperabilitätsbewertungen
+            </a>
+            : Anleitung zur Bewertung der Interoperabilität in Regelungen
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
 </Layout>

@@ -1,37 +1,32 @@
 ---
 import { home } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
 ---
 
 <Layout title="Fehler">
-  <div id="error" class="grow bg-blue-100">
-    <div class="container py-40">
-      <main class="space-y-8">
-        <span class="text-2xl font-bold">404</span>
-        <h1>Seite konnte nicht gefunden werden</h1>
-        <p>
-          Es tut uns leid. Diese Seite gibt es nicht mehr oder ihr Name wurde
-          geändert.
-        </p>
-        <ul>
-          <li>
-            Wenn Sie die URL direkt eingegeben haben, überprüfen Sie die
-            Schreibweise.
-          </li>
-          <li>
-            Versuchen Sie, die Seite von der Startseite aus erneut zu finden.
-          </li>
-        </ul>
-        <div class="mt-32">
-          <a
-            class="kern-btn kern-btn--primary"
-            id="error-back-button"
-            href={home.path}
-          >
-            <span class="kern-label">Zurück zur Startseite</span>
-          </a>
-        </div>
-      </main>
-    </div>
-  </div>
+  <main class="breakout-grid">
+    <Hero>
+      <span class="kern-preline block">404</span>
+      <h1>Seite konnte nicht gefunden werden</h1>
+    </Hero>
+    <section>
+      <p>
+        Es tut uns leid. Diese Seite gibt es nicht mehr oder ihr Name wurde
+        geändert.
+      </p>
+      <ul>
+        <li>
+          Wenn Sie die URL direkt eingegeben haben, überprüfen Sie die
+          Schreibweise.
+        </li>
+        <li>
+          Versuchen Sie, die Seite von der Startseite aus erneut zu finden.
+        </li>
+      </ul>
+      <a class="kern-btn kern-btn--primary mt-32" href={home.path}>
+        <span class="kern-label">Zurück zur Startseite</span>
+      </a>
+    </section>
+  </main>
 </Layout>

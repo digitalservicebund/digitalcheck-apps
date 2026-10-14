@@ -1,4 +1,4 @@
-import { methoden_fuenfPrinzipien } from "@/config/routes";
+import { prinzipien } from "@/config/routes";
 import { steps } from "@/resources/content/shared/naechste-schritte";
 import type { ContentLink, Step } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -54,7 +54,7 @@ export const methods = {
         links: [
           {
             text: "Prinzipien nutzen",
-            to: methoden_fuenfPrinzipien.path,
+            to: prinzipien.path,
           },
         ] satisfies ContentLink[],
       },

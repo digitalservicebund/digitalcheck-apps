@@ -5,7 +5,7 @@ import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton";
 import RichText from "@/components/RichText";
 import Textarea from "@/components/Textarea";
-import { methoden_fuenfPrinzipien } from "@/config/routes";
+import { prinzipien } from "@/config/routes";
 import type { Prinzip } from "@/content.config";
 import type { PrincipleNumber } from "@/resources/constants";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
@@ -81,7 +81,7 @@ function DocumentationPrincipleErlaeuterungForm({
       <input {...form.getHiddenInputProps("answer")} />
 
       <fieldset className="space-y-24">
-        <legend className="ds-heading-03-reg">{explanationTitle}</legend>
+        <legend className="kern-heading-medium">{explanationTitle}</legend>
 
         <div className="space-y-48">
           {isPositive && (
@@ -199,18 +199,14 @@ export function DocumentationPrincipleErlaeuterung({
         >
           Prinzip {prinzip.order}
         </Badge>
-        <Heading tagName="h1" look="ds-heading-02-reg" className="mb-16">
+        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
           {prinzip.Name}
           <HelpButton
             sectionId="prinzip"
             title={`Hinweis zu „${prinzip.Name}“`}
           >
             <RichText markdown={prinzip.Hilfetext} />
-            <a
-              href={
-                methoden_fuenfPrinzipien.path + "/" + prinzip.URLBezeichnung
-              }
-            >
+            <a href={prinzipien.path + "/" + prinzip.URLBezeichnung}>
               Mehr zum Prinzip
             </a>
           </HelpButton>
@@ -220,7 +216,7 @@ export function DocumentationPrincipleErlaeuterung({
           <RichText markdown={prinzip.Kurzbeschreibung} />
         )}
 
-        <div className="rounded-lg bg-blue-300 p-24">
+        <div className="bg-kern-darkblue-100 rounded-lg p-24">
           <p>{changeAnswerTitle}</p>
           <a href={currentUrl.replace("/erlaeuterung", "")}>Angaben ändern</a>
         </div>

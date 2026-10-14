@@ -1,0 +1,50 @@
+---
+import { tv, type VariantProps } from "tailwind-variants";
+import type { HTMLAttributes } from "astro/types";
+
+export interface Props
+  extends HTMLAttributes<"div">, VariantProps<typeof cardStyles> {
+  contentClass?: string;
+  class?: string;
+}
+
+const cardStyles = tv({
+  base: "scroll-my-md flex flex-row gap-32 rounded-sm bg-white lg:gap-64",
+  variants: {
+    padding: {
+      default: "p-24 md:p-32",
+      medium: "p-32 md:p-48",
+      wide: "px-lg py-md md:py-48",
+      center: "p-lg justify-center",
+    },
+    look: {
+      white: "white",
+      gray: "bg-kern-darkblue-050",
+    },
+  },
+  defaultVariants: {
+    padding: "default",
+  },
+});
+
+const contentStyles = tv({
+  base: "flex flex-col",
+});
+
+const iconStyle = tv({
+  base: "bg-kern-darkblue-025 [&_svg]:text-kern-darkblue-500 flex shrink-0 items-center rounded-sm px-18 py-22 max-sm:hidden [&_svg]:mx-50 [&_svg]:hidden [&_svg]:size-75 [&_svg]:sm:block [&_svg]:lg:mx-75 [&_svg]:lg:size-100",
+});
+
+const { class: className, contentClass, look, padding, ...attrs } = Astro.props;
+---
+
+<div class={cardStyles({ look, padding, className })} {...attrs}>
+  {Astro.slots.icon && (
+    <div class={iconStyle()}>
+      <slot name="icon" />
+    </div>
+  )}
+  <div class={contentStyles({ class: contentClass })}>
+    <slot />
+  </div>
+</div>

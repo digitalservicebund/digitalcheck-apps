@@ -2,6 +2,7 @@
 {
   "documentId": "got436pv8femeqmv6ee8wlm1",
   "Name": "Automatisierung basiert auf eindeutigen Regelungen",
+  "Kurzbezeichnung": "Automatisierung",
   "order": 4,
   "Nummer": 5,
   "URLBezeichnung": "automatisierung-basiert-auf-eindeutigen-regelungen",

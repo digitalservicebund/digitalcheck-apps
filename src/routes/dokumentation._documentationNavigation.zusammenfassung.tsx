@@ -63,7 +63,7 @@ const createInfoBoxItem = ({
   heading: {
     text: heading ?? route.title,
     tagName: "h2",
-    look: "ds-heading-03-reg",
+    look: "kern-heading-medium",
   },
   badge: badge,
   children: (
@@ -98,18 +98,12 @@ function Answer({
 }>) {
   return (
     <div className="space-y-24">
-      {heading && (
-        <Heading tagName="h3" look="ds-subhead">
-          {heading}
-        </Heading>
-      )}
+      {heading && <Heading tagName="h3">{heading}</Heading>}
       {answers
         .filter(({ answer }) => answer)
         .map(({ answer, prefix }) => (
           <div className="space-y-8" key={prefix + answer}>
-            <Heading tagName="h4" className="ds-body-01-bold">
-              {prefix}
-            </Heading>
+            <Heading tagName="h4">{prefix}</Heading>
             <p>{answer}</p>
           </div>
         ))}
@@ -188,9 +182,7 @@ function SimplifiedAspectsContent({
     <>
       {aspects?.length && (
         <div className="space-y-8">
-          <Heading tagName="h4" className="ds-body-01-bold">
-            Schwerpunkte
-          </Heading>
+          <Heading tagName="h4">Schwerpunkte</Heading>
           <div className="flex flex-wrap gap-16">
             {aspects.map((aspect) => {
               const aspekt = prinzip.Aspekte.find(
@@ -199,7 +191,7 @@ function SimplifiedAspectsContent({
               return (
                 <span
                   key={aspect}
-                  className="rounded-full border border-blue-400 bg-blue-400 px-16 py-6 text-sm font-medium"
+                  className="border-kern-darkblue-150 bg-kern-darkblue-150 rounded-full border px-16 py-6 text-sm font-medium"
                 >
                   {aspekt ? aspekt.Kurzbezeichnung : aspect}
                 </span>
@@ -289,7 +281,7 @@ function BindingRequirementSummary({
   return bindingRequirements.requirements.map((bindingRequirement, index) => {
     return (
       <>
-        {index > 0 && <hr className="text-gray-700" />}
+        {index > 0 && <hr className="text-kern-layout-text-muted" />}
         <div key={bindingRequirement.description}>
           <RequirementDetail requirement={bindingRequirement} />
         </div>
@@ -448,7 +440,7 @@ export function DocumentationSummary() {
       <Heading
         text={summary.headline}
         tagName="h1"
-        look="ds-heading-02-reg"
+        look="kern-heading-large"
         className="mb-16"
       />
       <RichText markdown={summary.text} />

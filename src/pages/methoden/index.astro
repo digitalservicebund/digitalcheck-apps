@@ -1,7 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Heading from "@/components/Heading";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Hero.astro";
 import InfoBox from "@/components/InfoBox";
 import InfoBoxSideBySide from "@/components/InfoBoxSideBySide";
 import NumberedList from "@/components/NumberedList";
@@ -16,11 +15,14 @@ export const frontmatter = {
 };
 ---
 
-<Layout title={frontmatter.title} showProgressBar>
-  <main>
-    <Hero subtitle={methods.subtitle} title={methods.title} />
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>{methods.title}</h1>
+      <RichText markdown={methods.subtitle} />
+    </Hero>
 
-    <div class="container my-40 space-y-40 lg:my-80 lg:space-y-80">
+    <section>
       <Timeline>
         {methods.steps.items.map((step, index) => {
           const headingId = `step-h-${index}`;
@@ -36,7 +38,6 @@ export const frontmatter = {
                   backgroundClasses="bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48"
                   headline={{
                     text: step.headline.text,
-                    look: "ds-heading-03-bold",
                     tagName: "h3",
                     id: headingId,
                   }}
@@ -59,63 +60,62 @@ export const frontmatter = {
           );
         })}
       </Timeline>
+    </section>
 
-      <section class="space-y-40">
+    <section class="space-y-40">
+      <InfoBox
+        heading={{ tagName: "h2", text: methods.furtherMethods.heading }}
+      >
+        <RichText markdown={methods.furtherMethods.content} />
+      </InfoBox>
+
+      <InfoBoxSideBySide>
         <InfoBox
-          heading={{ tagName: "h2", text: methods.furtherMethods.heading }}
+          look="method"
+          badge={{ children: methods.itSystems.badge, look: "hint" }}
+          heading={{
+            text: methods.itSystems.heading,
+            tagName: "h3",
+          }}
         >
-          <RichText markdown={methods.furtherMethods.content} />
+          <RichText markdown={methods.itSystems.content} />
+          <InfoBox.LinkList links={methods.itSystems.links} />
         </InfoBox>
+        <InfoBox
+          look="method"
+          badge={{
+            children: methods.technicalFeasibility.badge,
+            look: "hint",
+          }}
+          heading={{
+            text: methods.technicalFeasibility.heading,
+            tagName: "h3",
+          }}
+        >
+          <RichText markdown={methods.technicalFeasibility.content} />
+          <InfoBox.LinkList links={methods.technicalFeasibility.links} />
+        </InfoBox>
+        <InfoBox
+          look="method"
+          badge={{
+            children: methods.interviewMethods.badge,
+            look: "hint",
+          }}
+          heading={{
+            text: methods.interviewMethods.heading,
+            tagName: "h3",
+          }}
+        >
+          <RichText markdown={methods.interviewMethods.content} />
+          <InfoBox.LinkList links={methods.interviewMethods.links} />
+        </InfoBox>
+      </InfoBoxSideBySide>
+    </section>
 
-        <InfoBoxSideBySide>
-          <InfoBox
-            look="method"
-            badge={{ children: methods.itSystems.badge, look: "hint" }}
-            heading={{
-              text: methods.itSystems.heading,
-              tagName: "h3",
-              className: "ds-heading-03-bold",
-            }}
-          >
-            <RichText markdown={methods.itSystems.content} />
-            <InfoBox.LinkList links={methods.itSystems.links} />
-          </InfoBox>
-          <InfoBox
-            look="method"
-            badge={{
-              children: methods.technicalFeasibility.badge,
-              look: "hint",
-            }}
-            heading={{
-              text: methods.technicalFeasibility.heading,
-              tagName: "h3",
-              className: "ds-heading-03-bold",
-            }}
-          >
-            <RichText markdown={methods.technicalFeasibility.content} />
-            <InfoBox.LinkList links={methods.technicalFeasibility.links} />
-          </InfoBox>
-          <InfoBox
-            look="method"
-            badge={{
-              children: methods.interviewMethods.badge,
-              look: "hint",
-            }}
-            heading={{
-              text: methods.interviewMethods.heading,
-              tagName: "h3",
-              className: "ds-heading-03-bold",
-            }}
-          >
-            <RichText markdown={methods.interviewMethods.content} />
-            <InfoBox.LinkList links={methods.interviewMethods.links} />
-          </InfoBox>
-        </InfoBoxSideBySide>
-      </section>
-    </div>
     <SupportBanner {...supportBanner} />
-    <section class="container my-40 space-y-32 lg:my-80">
-      <Heading tagName="h2">{methods.nextSteps.title}</Heading>
+
+    <section class="space-y-32">
+      <h2>{methods.nextSteps.title}</h2>
       <NumberedList>
         {methods.nextSteps.items.map((item) => (
           <NumberedList.Item className="space-y-16" disabled={item.isDisabled}>

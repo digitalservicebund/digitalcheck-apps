@@ -1,8 +1,8 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { FormScope, ValueOfInputType } from "@rvf/react";
 import { useField } from "@rvf/react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { useId } from "react";
+import { twMerge } from "tailwind-merge";
 import InputError from "./InputError";
 
 type BaseInputProps = ComponentPropsWithRef<"input">;

@@ -1,0 +1,93 @@
+---
+import Layout from "./Layout.astro";
+import laenderMapUrl from "@/pages/bundeslaender/_assets/laender-map.svg?url";
+import onlineSchulungImg from "@/pages/bundeslaender/_assets/online-schulung.jpg";
+import KernCard from "@/components/KernCard.astro";
+
+interface Props {
+  title: string;
+  bundesland?: string;
+}
+
+const { title, bundesland } = Astro.props;
+---
+
+<Layout title={title}>
+  <main class="breakout-grid">
+    <div class="breakout bg-kern-darkblue-100">
+      <div class="flex flex-col lg:flex-row">
+        <div class="space-y-24 py-32 sm:py-48 lg:w-1/2 lg:self-center lg:pr-48">
+          <h1>{title}</h1>
+          <slot name="subtitle" />
+        </div>
+        <div class="relative max-lg:mb-48 max-sm:hidden lg:w-1/2">
+          <div class="flex h-full w-630 flex-col justify-center align-middle lg:w-[50vw]">
+            <div class="relative mx-auto h-400 py-24 lg:h-450">
+              <img
+                src={laenderMapUrl}
+                alt="Eine stilisierte Karte von Deutschland"
+                class="h-full w-auto object-contain"
+              />
+              {bundesland && (
+                <svg
+                  viewBox="0 0 592 801"
+                  class="absolute inset-0 h-full w-full"
+                  aria-hidden="true"
+                >
+                  <use
+                    href={`${laenderMapUrl}#${bundesland}`}
+                    fill="#a5b7e1"
+                    stroke="#0e2792"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <slot />
+    {bundesland && (
+      <section>
+        <h2>Schulungen</h2>
+        <p>
+          Als Landeslegistin oder Landeslegist können Sie die Schulungsangebote
+          des Zentrum für Legistik nutzen. Erfahren Sie zum Beispiel, wie Sie
+          Regelungen digitaltauglich gestalten können.
+        </p>
+        <div class="mt-32 sm:w-sm">
+          <KernCard
+            title="Schulungen des Zentrum für Legistik"
+            body="Termine, Schulungsmaterialien zum Herunterladen und weitere Angebote rund um Legistik."
+            href="https://zfl.bund.de/schulungen"
+            target_option="_blank"
+            background="white"
+            image={onlineSchulungImg}
+            imageAlt="Ein Mann leitet eine Präsentation vor einem Bildschirm mit der Aufschrift „Herzlich willkommen zur Online-Schulung“ für Personen an einem Besprechungstisch mit Laptops."
+          />
+        </div>
+      </section>
+    )}
+  </main>
+</Layout>
+
+<style>
+  @reference "../styles/globals.css";
+
+  /* TODO: these rules will be default after DC redesign and can be removed from here then */
+  main {
+    > section:not(.kern-card__body) {
+      @apply py-40 md:py-64;
+
+      /* collapse padding for consecutive sections with no background */
+      &:not(.breakout) + &:not(.breakout) {
+        @apply pt-0;
+      }
+
+      > h2 {
+        @apply mb-16;
+      }
+    }
+  }
+</style>

@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props;
     <Hero>
       <h1>{frontmatter.heroTitle ?? frontmatter.title}</h1>
     </Hero>
-    <div class="content-wrapper space-y-8 py-40 lg:py-80">
+    <div class="content-wrapper py-40 lg:py-80">
       <slot />
     </div>
   </main>

@@ -11,7 +11,6 @@ import Icons from "unplugin-icons/vite";
 import {
   ZFL_BASE_URL,
   ZFL_PATH_BEISPIELE,
-  ZFL_PATH_DIGITALTAUGLICHKEIT,
   ZFL_PATH_FLUSSDIAGRAMME,
   ZFL_PATH_INTERVIEW_LEITFADEN,
   ZFL_PATH_IT_SYSTEME,
@@ -28,11 +27,26 @@ const PREVIEW_SITE = "https://digitalservicebund.github.io";
 const base = isPreview ? PREVIEW_BASE_PATH : undefined;
 
 const rawRedirects = {
-  "/interoperabel/loesungen":
-    "/interoperabel?tab=interoperable-loesungen#interoperable-loesungen",
-  "/grundlagen": "/methoden/fuenf-prinzipien",
-  "/grundlagen/fuenf-prinzipien": "/methoden/fuenf-prinzipien",
-  "/methoden/ablaeufe-aufgaben-erfassen": `${ZFL_BASE_URL}/werkzeuge/ressourcen/flussdiagramm`,
+  "/interoperabel/faq": "/interoperabel",
+  "/grundlagen": "/prinzipien",
+  "/grundlagen/digitaltauglichkeit": "/#was-ist-digitaltauglichkeit",
+  "/grundlagen/normenkontrollrat": "/normenkontrollrat",
+  "/interoperabel?tab=angrenzendes-eu-recht":
+    "/interoperabel/angrenzendes-eu-recht",
+  "/grundlagen/fuenf-prinzipien": "/prinzipien",
+  "/methoden/fuenf-prinzipien": "/prinzipien",
+  // Not a dynamic [principleId] redirect, as Astro drops `base` from those
+  "/methoden/fuenf-prinzipien/digitale-angebote-fuer-alle-nutzbar-gestalten":
+    "/prinzipien/digitale-angebote-fuer-alle-nutzbar-gestalten",
+  "/methoden/fuenf-prinzipien/datenwiederverwendung-benoetigt-einheitliches-recht":
+    "/prinzipien/datenwiederverwendung-benoetigt-einheitliches-recht",
+  "/methoden/fuenf-prinzipien/etablierte-technologien-ermoeglichen-effiziente-umsetzung":
+    "/prinzipien/etablierte-technologien-ermoeglichen-effiziente-umsetzung",
+  "/methoden/fuenf-prinzipien/automatisierung-basiert-auf-eindeutigen-regelungen":
+    "/prinzipien/automatisierung-basiert-auf-eindeutigen-regelungen",
+  "/methoden/fuenf-prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen":
+    "/prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen",
+  "/unterstuetzung": "/kontakt",
 };
 
 // Some pages were moved to the Zentrum für Legistik
@@ -44,7 +58,6 @@ const zflRedirects = {
   "/beispiele/prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen": `${ZFL_BASE_URL}${ZFL_PATH_BEISPIELE}#prinzip-5`,
   "beispiele/prinzipien": `${ZFL_BASE_URL}${ZFL_PATH_BEISPIELE}`,
   "/beispiele/visualisierungen": `${ZFL_BASE_URL}${ZFL_PATH_VISUALISIERUNGEN}`,
-  "/grundlagen/digitaltauglichkeit": `${ZFL_BASE_URL}${ZFL_PATH_DIGITALTAUGLICHKEIT}`,
   "/methoden/interview-leitfaden": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}`,
   "/methoden/interview-leitfaden-schritte": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}`,
   "/methoden/zustaendige-akteurinnen-auflisten": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}#halten-sie-die-akteurinnen-und-akteure-in-einer-uebersicht-fest`,
@@ -52,6 +65,7 @@ const zflRedirects = {
   "/methoden/technische-umsetzbarkeit": `${ZFL_BASE_URL}${ZFL_PATH_TECHNISCHE_UMSETZBARKEIT}`,
   "/methoden/visualisieren": `${ZFL_BASE_URL}${ZFL_PATH_FLUSSDIAGRAMME}`,
   "/methoden/visualisieren/flussdiagramm": `${ZFL_BASE_URL}${ZFL_PATH_FLUSSDIAGRAMME}`,
+  "/methoden/ablaeufe-aufgaben-erfassen": `${ZFL_BASE_URL}/werkzeuge/ressourcen/flussdiagramm`,
 };
 
 const redirects = {

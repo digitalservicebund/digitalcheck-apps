@@ -130,7 +130,7 @@ export function PreCheckQuestion({
           <Heading
             text={question.question}
             tagName="h1"
-            look="ds-heading-02-reg"
+            look="kern-heading-large"
             id={questionLabelId}
           />
           <div className="sr-only">

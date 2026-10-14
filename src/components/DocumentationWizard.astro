@@ -16,7 +16,7 @@ const prinzips = (await getCollection("prinzipien"))
   .sort((a, b) => a.order - b.order);
 ---
 
-<Layout title={`Dokumentation: ${stepTitle}`} showProgressBar>
+<Layout title={`Dokumentation: ${stepTitle}`} noMenu>
   <ClientRouter />
   <DocumentationRouter
     client:only="react"

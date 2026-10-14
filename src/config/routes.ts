@@ -220,17 +220,6 @@ export const grundlagen = {
   navLabel: null,
 } as const;
 
-export const grundlagen_normenkontrollrat = {
-  key: "grundlagen_normenkontrollrat",
-  path: "/grundlagen/normenkontrollrat",
-  title: "Die Rolle des Nationalen Normenkontrollrats",
-  parent: grundlagen,
-  sitemap: true,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: "NKR",
-} as const;
-
 export const home = {
   key: "home",
   path: "/",
@@ -264,10 +253,10 @@ export const interoperabel = {
   navLabel: "EU-Interoperabilität",
 } as const;
 
-export const interoperabel_faq = {
-  key: "interoperabel_faq",
-  path: "/interoperabel/faq",
-  title: "Fragen und Antworten",
+export const interoperabel_angrenzendesEuRecht = {
+  key: "interoperabel_angrenzendesEuRecht",
+  path: "/interoperabel/angrenzendes-eu-recht",
+  title: "Angrenzendes EU-Recht",
   parent: interoperabel,
   sitemap: true,
   isStagingOnly: false,
@@ -341,11 +330,22 @@ export const methoden = {
   navLabel: null,
 } as const;
 
-export const methoden_fuenfPrinzipien = {
-  key: "methoden_fuenfPrinzipien",
-  path: "/methoden/fuenf-prinzipien",
+export const normenkontrollrat = {
+  key: "normenkontrollrat",
+  path: "/normenkontrollrat",
+  title: "Die Rolle des Nationalen Normenkontrollrats",
+  parent: null,
+  sitemap: true,
+  isStagingOnly: false,
+  navOrder: null,
+  navLabel: "NKR",
+} as const;
+
+export const prinzipien = {
+  key: "prinzipien",
+  path: "/prinzipien",
   title: "Fünf Prinzipien",
-  parent: methoden,
+  parent: null,
   sitemap: true,
   isStagingOnly: false,
   navOrder: null,
@@ -356,17 +356,6 @@ export const sitemap = {
   key: "sitemap",
   path: "/sitemap",
   title: "Sitemap",
-  parent: null,
-  sitemap: true,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: null,
-} as const;
-
-export const unterstuetzung = {
-  key: "unterstuetzung",
-  path: "/unterstuetzung",
-  title: "Unterstützungsangebote",
   parent: null,
   sitemap: true,
   isStagingOnly: false,
@@ -407,17 +396,6 @@ export const vorpruefung_hinweise = {
   navLabel: null,
 } as const;
 
-export const zahlenUndFakten = {
-  key: "zahlenUndFakten",
-  path: "/zahlen-und-fakten",
-  title: "Zahlen und Fakten",
-  parent: null,
-  sitemap: true,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: null,
-} as const;
-
 export const allRoutes = [
   barrierefreiheit,
   bundeslaender,
@@ -438,22 +416,20 @@ export const allRoutes = [
   dokumentation_veroeffentlichung,
   dokumentation_zusammenfassung,
   grundlagen,
-  grundlagen_normenkontrollrat,
   home,
   impressum,
   interoperabel,
-  interoperabel_faq,
+  interoperabel_angrenzendesEuRecht,
   interoperabel_loesungen,
   interoperabel_loesungen_coreVocabularies,
   interoperabel_loesungen_dcatAp,
   interoperabel_nationaleKontaktstelle,
   kontakt,
   methoden,
-  methoden_fuenfPrinzipien,
+  normenkontrollrat,
+  prinzipien,
   sitemap,
-  unterstuetzung,
   vorpruefung,
   vorpruefung_ergebnis,
   vorpruefung_hinweise,
-  zahlenUndFakten,
 ] as const;

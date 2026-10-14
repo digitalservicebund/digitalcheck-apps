@@ -1,8 +1,7 @@
 import type { ImageProps } from "@/components/Image";
 import Image from "@/components/Image";
-import twMerge from "@/utils/tailwindMerge";
 import { ZoomInOutlined } from "@digitalservicebund/icons";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 type ImageZoomableComponentProps = {
   image: Readonly<ImageProps>;
@@ -37,8 +36,8 @@ function ImageZoomable({
         )}
       />
       <ZoomInOutlined
-        className="absolute bottom-16 left-16 size-24 rounded-xs border-4 border-blue-800 bg-blue-800 p-1 shadow-sm"
-        fill="white"
+        className="text-kern-action-default absolute bottom-16 left-16 size-32"
+        fill="currentColor"
       />
     </a>
   );

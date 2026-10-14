@@ -1,7 +1,6 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { ReactNode } from "react";
 import React from "react";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import type { HeadingProps } from "./Heading";
 import Heading from "./Heading";
 
@@ -24,7 +23,7 @@ export default function InfoBoxList({
       <ul
         className={twMerge(
           "list-unstyled info-box kern-stack mt-32",
-          separator ? "kern-stack-xl" : "kern-stack-3xl",
+          separator ? "kern-stack-xl" : "gap-kern-3xl",
           className,
         )}
       >
@@ -34,7 +33,7 @@ export default function InfoBoxList({
             <li
               className={twJoin(
                 separator &&
-                  "border-0 border-b-2 border-solid border-gray-400 pb-40 last:border-none last:pb-0",
+                  "border-kern-decorative-border border-0 border-b-2 border-solid pb-40 last:border-none last:pb-0",
               )}
             >
               {child}

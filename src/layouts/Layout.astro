@@ -1,12 +1,10 @@
 ---
 import Posthog from "@/components/global/Posthog.astro";
-import ProgressBar from "@/components/global/ProgressBar.astro";
 import "@/styles/globals.css";
-import Footer from "@/layout/Footer";
-import PageHeader from "@/layout/PageHeader";
-import NewPageHeader from "@/components/global/PageHeader.astro";
+import Footer from "@/layout/Footer.astro";
+import PageHeader from "@/components/global/PageHeader.astro";
 import { siteMeta } from "@/resources/content/shared/meta";
-import { isDevelopment, isProduction } from "@/config/stage";
+import { isProduction } from "@/config/stage";
 import firaSansRegularUrl from "@kern-ux/native/dist/fonts/fira-sans/FiraSans-Regular.woff2?url";
 import firaSansMediumUrl from "@kern-ux/native/dist/fonts/fira-sans/FiraSans-Medium.woff2?url";
 import firaSansSemiBoldUrl from "@kern-ux/native/dist/fonts/fira-sans/FiraSans-SemiBold.woff2?url";
@@ -20,17 +18,10 @@ import SectionSidebar from "@/components/global/SectionSidebar.astro";
 interface Props {
   title?: string;
   description?: string;
-  /** Pass true for routes that have a progress bar (vorpruefung, dokumentation). */
-  showProgressBar?: boolean;
+  noMenu?: boolean;
 }
 
-const currentPath = Astro.url.pathname;
-
-const {
-  title,
-  description = siteMeta.description,
-  showProgressBar = false,
-} = Astro.props;
+const { title, description = siteMeta.description, noMenu } = Astro.props;
 
 const pageTitle = title
   ? `${title} — ${siteMeta.siteName}`
@@ -49,7 +40,8 @@ const jsonLdMetadata = {
 
 const currentRoute = getRouteByPath(Astro.url.pathname);
 const [sectionRoot] = currentRoute ? getRouteChain(currentRoute) : [];
-const showSectionSidebar = !!sectionRoot && hasVisibleChildren(sectionRoot);
+const showSectionSidebar =
+  !!sectionRoot && hasVisibleChildren(sectionRoot) && !noMenu;
 ---
 
 <!doctype html>
@@ -110,25 +102,16 @@ const showSectionSidebar = !!sectionRoot && hasVisibleChildren(sectionRoot);
     ></script>
   </head>
   <body class="flex min-h-screen flex-col">
-    {isDevelopment ? (
-      <NewPageHeader />
-    ) : (
-      <PageHeader client:load currentPath={currentPath} />
-    )}
-
-    {isDevelopment && showSectionSidebar ? (
+    <PageHeader />
+    {showSectionSidebar ? (
       <div class="h-full min-[900px]:grid min-[900px]:grid-cols-[264px_minmax(0,1fr)]">
         <SectionSidebar />
         <div>
-          {showProgressBar && <ProgressBar />}
           <slot />
         </div>
       </div>
     ) : (
-      <>
-        {showProgressBar && <ProgressBar />}
-        <slot />
-      </>
+      <slot />
     )}
     <Footer />
     {isProduction && <Posthog />}

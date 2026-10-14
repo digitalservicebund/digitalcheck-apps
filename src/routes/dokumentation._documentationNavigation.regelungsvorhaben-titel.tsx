@@ -27,7 +27,7 @@ export function DocumentationTitle() {
 
   return (
     <div className="space-y-40">
-      <h1 className="ds-heading-02-reg mb-40">
+      <h1 className="kern-heading-large mb-40">
         {info.headline}
         <HelpButton
           sectionId="title"

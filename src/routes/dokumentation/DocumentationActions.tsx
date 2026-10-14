@@ -57,8 +57,8 @@ export default function DocumentationActions({
       </ButtonContainer>
 
       {showSavingTip && (
-        <p className="text-ds-success flex flex-row gap-8">
-          <PublishedWithChangesOutlined className="fill-ds-success" />
+        <p className="text-kern-feedback-success flex flex-row gap-8">
+          <PublishedWithChangesOutlined className="fill-kern-feedback-success" />
           {digitalDocumentation.actions.savingTip}
         </p>
       )}

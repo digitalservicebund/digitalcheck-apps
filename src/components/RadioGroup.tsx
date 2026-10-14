@@ -1,8 +1,8 @@
-import twMerge from "@/utils/tailwindMerge";
 import type { FormScope } from "@rvf/react";
 import { useField } from "@rvf/react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { useId } from "react";
+import { twMerge } from "tailwind-merge";
 import InputError from "./InputError";
 
 export type Option<Value extends string | number> = {
@@ -78,7 +78,9 @@ function RadioGroup<FormData, Value extends string | number = string>({
             <label htmlFor={id} className="kern-label">
               {opt.label}
               {opt.subText && (
-                <span className="text-gray-800">{opt.subText}</span>
+                <span className="text-kern-layout-text-muted">
+                  {opt.subText}
+                </span>
               )}
             </label>
           </p>

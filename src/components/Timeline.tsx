@@ -5,11 +5,10 @@ import Heading from "@/components/Heading.tsx";
 import type { ImageProps } from "@/components/Image.tsx";
 import ImageZoomable from "@/components/ImageZoomable.tsx";
 import RichText from "@/components/RichText.tsx";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 import ButtonContainer from "@/components/ButtonContainer.tsx";
 import type { ContentLink } from "@/utils/contentTypes";
-import twMerge from "@/utils/tailwindMerge";
 import type React from "react";
 import type { ReactNode } from "react";
 
@@ -21,25 +20,15 @@ type BulletListProps = React.PropsWithChildren<{
 function Bullet() {
   return (
     <div
-      className={
-        "mt-6 ml-2 flex size-16 shrink-0 items-center justify-center rounded-full bg-blue-800 outline-4 outline-white"
-      }
+      className="bg-kern-darkblue-850 size-16 shrink-0 rounded-full"
       role="none"
     ></div>
   );
 }
 
-function BulletWrapper({ children }: Readonly<{ children?: React.ReactNode }>) {
-  return (
-    <div role="none" className="w-20 shrink-0 md:w-40">
-      {children}
-    </div>
-  );
-}
-
 function YearBadge({ children }: Readonly<{ children?: React.ReactNode }>) {
   return (
-    <span className="kern-badge ml-10 w-fit -translate-x-1/2 border border-blue-800 bg-white outline-4 outline-white">
+    <span className="kern-badge border-kern-darkblue-850 w-max shrink-0 border">
       <span className="kern-label">{children}</span>
     </span>
   );
@@ -69,7 +58,7 @@ export function TimelineItemContent({
   return (
     <div className={twJoin("flex flex-col gap-16", backgroundClasses)}>
       {badge && (
-        <div>
+        <div className="flex">
           <span className="kern-badge kern-badge--small border-0 bg-[#F3F4F7]">
             <span className="kern-label font-normal">{badge.text}</span>
           </span>
@@ -116,27 +105,42 @@ function TimelineItem({
   className,
   ...restProps
 }: TimelineItemProps) {
+  const marker = year ? <YearBadge>{year}</YearBadge> : bullet && <Bullet />;
   return (
-    <li
-      className="flex scroll-my-40 flex-row items-start gap-16 first:mt-16"
-      {...restProps}
-    >
-      <BulletWrapper>
-        {year ? <YearBadge>{year}</YearBadge> : bullet && <Bullet />}
-      </BulletWrapper>
-      {children && <div className={className}>{children}</div>}
+    <li className="flex scroll-my-40 gap-24" {...restProps}>
+      {/* Each item draws its own line segment below the marker, so no
+          background-colored ring is needed to separate line and marker. */}
+      <div
+        role="none"
+        className={twJoin(
+          "flex w-16 shrink-0 flex-col items-center gap-4",
+          bullet && !year && "pt-4",
+        )}
+      >
+        {marker}
+        {/* Year labels keep some distance to the next entry. */}
+        <div
+          className={twJoin(
+            "bg-kern-darkblue-850 w-px flex-1",
+            year && "min-h-28",
+          )}
+        />
+      </div>
+      <div className={twMerge("min-w-0 flex-1 pb-24", className)}>
+        {children}
+      </div>
     </li>
   );
 }
 
 function Timeline({ className, children, ...restProps }: BulletListProps) {
   return (
-    <div className={twMerge("relative ml-24 scroll-my-40", className)}>
-      <div className="absolute top-0 bottom-0 left-9.5 w-1 bg-blue-800"></div>
-      <ul className="list-unstyled relative space-y-40" {...restProps}>
-        {children}
-      </ul>
-    </div>
+    <ul
+      className={twMerge("list-unstyled scroll-my-40", className)}
+      {...restProps}
+    >
+      {children}
+    </ul>
   );
 }
 

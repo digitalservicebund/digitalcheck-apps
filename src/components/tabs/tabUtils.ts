@@ -20,7 +20,7 @@ export const mobileTabPickerOptionsClassName =
   "border-t border-blue-500 focus:outline-none";
 
 export const mobileTabPickerOptionClassName =
-  "ds-label-02-regular relative cursor-pointer border-4 border-transparent py-[10px] pr-[10px] pl-[16px] text-blue-800 select-none first:pt-[16px] last:pb-[16px] focus:border-blue-800";
+  "relative cursor-pointer border-4 border-transparent py-[10px] pr-[10px] pl-[16px] text-blue-800 select-none first:pt-[16px] last:pb-[16px] focus:border-blue-800";
 
 export const mobileTabPickerButtonClassName =
-  "ds-label-02-bold relative h-[70px] w-full cursor-pointer border-4 border-transparent bg-blue-100 pl-[16px] text-left text-blue-800 hover:bg-blue-300 focus:border-blue-800";
+  "relative h-[70px] w-full cursor-pointer border-4 border-transparent bg-blue-100 pl-[16px] text-left text-blue-800 hover:bg-blue-300 focus:border-blue-800";

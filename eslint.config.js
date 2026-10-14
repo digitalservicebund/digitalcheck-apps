@@ -142,12 +142,6 @@ export default defineConfig(
         {
           paths: [
             {
-              name: "tailwind-merge",
-              importNames: ["twMerge"],
-              message:
-                "Please import { twMerge } from '@/utils/tailwindMerge'.",
-            },
-            {
               name: "@digitalservicebund/icons/index",
               message:
                 "Import from '@digitalservicebund/icons' (package root) to prevent all icons from being bundled in dev mode.",

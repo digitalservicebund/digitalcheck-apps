@@ -10,7 +10,7 @@ interface Props {
 const { title, hideNav } = Astro.props;
 ---
 
-<Layout title={`Vorprüfung: ${title}`} showProgressBar>
+<Layout title={`Vorprüfung: ${title}`} noMenu>
   {hideNav ? (
     <slot />
   ) : (
