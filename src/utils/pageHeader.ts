@@ -23,6 +23,12 @@ export function pageHeaderData() {
       this.headerVisible = false;
     },
 
+    setScrollDownProps(currentScrollY: number) {
+      this.headerFloating = false;
+      this.headerVisible = false;
+      this.lastScrollY = currentScrollY;
+    },
+
     /**
      * Below the desktop nav breakpoint, the header scrolls away with the
      * page normally and only becomes a floating bar once the user scrolls
@@ -36,14 +42,11 @@ export function pageHeaderData() {
         return;
       }
 
-      if (currentScrollY <= el.offsetHeight) {
-        this.headerFloating = false;
-        this.headerVisible = false;
-        this.lastScrollY = currentScrollY;
-      } else if (currentScrollY > this.lastScrollY + SCROLL_THRESHOLD) {
-        this.headerFloating = false;
-        this.headerVisible = false;
-        this.lastScrollY = currentScrollY;
+      if (
+        currentScrollY <= el.offsetHeight ||
+        currentScrollY > this.lastScrollY + SCROLL_THRESHOLD
+      ) {
+        this.setScrollDownProps(currentScrollY);
       } else if (currentScrollY < this.lastScrollY - SCROLL_THRESHOLD) {
         this.headerFloating = true;
         // Apply the hidden floating state first so the slide-in transitions.
