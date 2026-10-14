@@ -51,7 +51,7 @@
     "docx": "^9.9.0",
     "file-saver": "^2.0.5",
     "marked": "^18.1.0",
-    "posthog-js": "^1.438.2",
+    "posthog-js": "^1.438.7",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "sharp": "^0.35.5",
