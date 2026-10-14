@@ -54,8 +54,8 @@ importers:
         specifier: ^7.3.8
         version: 7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
       astro-route-generator:
-        specifier: github:digitalservicebund/astro-route-generator#0.2.6
-        version: https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/d559c6b436c842a0d1e6abdb42ce759e89bdadfe(astro@7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: github:digitalservicebund/astro-route-generator#0.2.7
+        version: https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/be3ea5f39963ebbf497e929bb2f5baac86fb0658(astro@7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
       docx:
         specifier: ^9.9.0
         version: 9.9.0
@@ -2092,9 +2092,9 @@ packages:
     resolution: {integrity: sha512-WavQUarfgwSbpCq4xsdcIBdX5KArfI2d6DD8EIloJIMthnB1508iNpx4C77EhUyMd03LpEt8HAPzwF/cG0V39g==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-route-generator@https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/d559c6b436c842a0d1e6abdb42ce759e89bdadfe:
-    resolution: {gitHosted: true, integrity: sha512-7nneGE+htySZGPnOAWhq2cygimnvZhle6+NfI3KRkpYnItEz0oWJt6IYTQsMbEs518MAtstnM547g+BIGOq8gA==, tarball: https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/d559c6b436c842a0d1e6abdb42ce759e89bdadfe}
-    version: 0.2.6
+  astro-route-generator@https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/be3ea5f39963ebbf497e929bb2f5baac86fb0658:
+    resolution: {gitHosted: true, integrity: sha512-z9nevDCSIR4bksK3k5jUDG2s4ttP26a4MO+ZjvzANw6ZAT2501PIrt90XAf+HILl4uxkYCj8rl6KWcafOs65Fg==, tarball: https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/be3ea5f39963ebbf497e929bb2f5baac86fb0658}
+    version: 0.2.7
     peerDependencies:
       astro: '>=4.0.0'
 
@@ -6862,7 +6862,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-route-generator@https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/d559c6b436c842a0d1e6abdb42ce759e89bdadfe(astro@7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
+  astro-route-generator@https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/be3ea5f39963ebbf497e929bb2f5baac86fb0658(astro@7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       astro: 7.3.8(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
       js-yaml: 5.4.3
