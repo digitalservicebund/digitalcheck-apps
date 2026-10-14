@@ -81,4 +81,18 @@ describe("RichText", () => {
     );
     vi.unstubAllEnvs();
   });
+
+  it("does not prefix links that already contain the base path", async () => {
+    vi.stubEnv("BASE_URL", "/preview/");
+    render(
+      <RichText markdown="[Interoperabilitätsbewertung](/preview/interoperabel#verbindliche-anforderungen)" />,
+    );
+    const link = await screen.findByRole("link");
+
+    expect(link).toHaveAttribute(
+      "href",
+      "/preview/interoperabel#verbindliche-anforderungen",
+    );
+    vi.unstubAllEnvs();
+  });
 });
