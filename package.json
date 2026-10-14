@@ -47,7 +47,7 @@
     "@types/alpinejs": "^3.17.0",
     "alpinejs": "^3.17.4",
     "astro": "^7.3.8",
-    "astro-route-generator": "github:digitalservicebund/astro-route-generator#0.2.6",
+    "astro-route-generator": "github:digitalservicebund/astro-route-generator#0.2.7",
     "docx": "^9.9.0",
     "file-saver": "^2.0.5",
     "marked": "^18.1.0",
