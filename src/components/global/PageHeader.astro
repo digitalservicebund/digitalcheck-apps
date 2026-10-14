@@ -41,9 +41,11 @@ function navItemStyle(active = false) {
 ---
 
 <header
-  class="relative z-30 border-b-2 border-kern-darkblue-100 bg-white"
-  x-data="{ mobileMenuOpen: false }"
-  @resize.window="mobileMenuOpen = false"
+  class="page-header relative z-30 border-b-2 border-kern-darkblue-100 bg-white"
+  x-data="pageHeader()"
+  :class="{ 'header-floating': headerFloating, 'header-visible': headerVisible }"
+  @scroll.window="handleScroll($el)"
+  @resize.window="closeMenus()"
   @keydown.escape.window="mobileMenuOpen = false"
 >
   <Kopfzeile />
@@ -127,7 +129,7 @@ function navItemStyle(active = false) {
 
   .mobile-menu-popover {
     @apply bg-kern-darkblue-100;
-    --active-item-bg-color: var(--color-kern-darkblue-150);
+    --active-item-bg-color: white;
   }
 
   .mobile-menu-popover[data-depth="0"] {
@@ -140,7 +142,31 @@ function navItemStyle(active = false) {
     --active-item-bg-color: var(--color-kern-darkblue-100);
   }
 
+  /* Below the desktop nav breakpoint, the header scrolls away with the page
+     and only becomes a floating bar once the user scrolls back up. */
+  @media (width < 64rem) {
+    .page-header.header-floating {
+      position: sticky;
+      top: 0;
+      transform: translateY(-100%);
+      transition: transform 200ms ease-out;
+    }
+
+    .page-header.header-floating.header-visible {
+      transform: translateY(0);
+    }
+  }
+
   [x-cloak] {
     display: none !important;
   }
 </style>
+
+<script>
+  import Alpine from "alpinejs";
+  import { pageHeaderData } from "@/utils/pageHeader";
+
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("pageHeader", pageHeaderData);
+  });
+</script>
