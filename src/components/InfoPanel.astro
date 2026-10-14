@@ -20,10 +20,6 @@ const cardStyles = tv({
     look: {
       white: "white",
       gray: "bg-kern-darkblue-050",
-      // TODO: kern colors only!
-      lavender: "bg-lavender-400",
-      lightLavender: "bg-lavender-200",
-      blue: "bg-cosmic-blue-base text-white",
     },
   },
   defaultVariants: {
@@ -36,7 +32,7 @@ const contentStyles = tv({
 });
 
 const iconStyle = tv({
-  base: "bg-lavender-400 [&_svg]:text-cosmic-blue-400 flex shrink-0 items-center rounded-sm px-18 py-22 max-sm:hidden [&_svg]:mx-50 [&_svg]:hidden [&_svg]:size-75 [&_svg]:sm:block [&_svg]:lg:mx-75 [&_svg]:lg:size-100",
+  base: "bg-kern-darkblue-025 [&_svg]:text-kern-darkblue-500 flex shrink-0 items-center rounded-sm px-18 py-22 max-sm:hidden [&_svg]:mx-50 [&_svg]:hidden [&_svg]:size-75 [&_svg]:sm:block [&_svg]:lg:mx-75 [&_svg]:lg:size-100",
 });
 
 const { class: className, contentClass, look, padding, ...attrs } = Astro.props;
