@@ -11,7 +11,6 @@ import Icons from "unplugin-icons/vite";
 import {
   ZFL_BASE_URL,
   ZFL_PATH_BEISPIELE,
-  ZFL_PATH_DIGITALTAUGLICHKEIT,
   ZFL_PATH_FLUSSDIAGRAMME,
   ZFL_PATH_INTERVIEW_LEITFADEN,
   ZFL_PATH_IT_SYSTEME,
@@ -30,6 +29,10 @@ const base = isPreview ? PREVIEW_BASE_PATH : undefined;
 const rawRedirects = {
   "/interoperabel/faq": "/interoperabel",
   "/grundlagen": "/prinzipien",
+  "/grundlagen/digitaltauglichkeit": "/#was-ist-digitaltauglichkeit",
+  "/grundlagen/normenkontrollrat": "/normenkontrollrat",
+  "/interoperabel?tab=angrenzendes-eu-recht":
+    "/interoperabel/angrenzendes-eu-recht",
   "/grundlagen/fuenf-prinzipien": "/prinzipien",
   "/methoden/fuenf-prinzipien": "/prinzipien",
   // Not a dynamic [principleId] redirect, as Astro drops `base` from those
@@ -43,6 +46,7 @@ const rawRedirects = {
     "/prinzipien/automatisierung-basiert-auf-eindeutigen-regelungen",
   "/methoden/fuenf-prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen":
     "/prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen",
+  "/unterstuetzung": "/kontakt",
 };
 
 // Some pages were moved to the Zentrum für Legistik
@@ -54,7 +58,6 @@ const zflRedirects = {
   "/beispiele/prinzipien/datenschutz-und-informationssicherheit-schaffen-vertrauen": `${ZFL_BASE_URL}${ZFL_PATH_BEISPIELE}#prinzip-5`,
   "beispiele/prinzipien": `${ZFL_BASE_URL}${ZFL_PATH_BEISPIELE}`,
   "/beispiele/visualisierungen": `${ZFL_BASE_URL}${ZFL_PATH_VISUALISIERUNGEN}`,
-  "/grundlagen/digitaltauglichkeit": `${ZFL_BASE_URL}${ZFL_PATH_DIGITALTAUGLICHKEIT}`,
   "/methoden/interview-leitfaden": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}`,
   "/methoden/interview-leitfaden-schritte": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}`,
   "/methoden/zustaendige-akteurinnen-auflisten": `${ZFL_BASE_URL}${ZFL_PATH_INTERVIEW_LEITFADEN}#halten-sie-die-akteurinnen-und-akteure-in-einer-uebersicht-fest`,
