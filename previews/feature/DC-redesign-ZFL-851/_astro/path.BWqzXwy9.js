@@ -1,0 +1,1 @@
+var e=e=>`/digitalcheck-dito/previews/feature/DC-redesign-ZFL-851`.replace(/\/$/,``)+e;export{e as t};
