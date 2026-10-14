@@ -70,6 +70,8 @@ fileignoreconfig:
     checksum: 16edd1014115e3cdd0824566a1a9470dbd1e006d2b9774b8fb759337913ccedd
   - filename: src/assets/images/regelungsbegleitung.png
     checksum: 27bd925f90d37e2319f107d5f89c39da159281d6ac750b575a00044d165383e4
+  - filename: src/assets/images/europa-karte.png
+    checksum: 163fa3291c95269f69d69da29c8c287f979606e345a4887a246d50b6db059c3a
 
 allowed_patterns:
   - key
