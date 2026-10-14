@@ -1,1 +1,0 @@
-import{M as e,j as t}from"./icons.DZzFxxDG.js";var n=t(),r=({className:t,children:r})=>(0,n.jsx)(`div`,{className:e(`flex flex-wrap gap-16`,t),children:r});export{r as t};

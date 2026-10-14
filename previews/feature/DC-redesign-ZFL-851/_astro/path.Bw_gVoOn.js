@@ -1,1 +1,0 @@
-var e=e=>{let t=`/digitalcheck-dito/previews/feature/DC-redesign-ZFL-851`.replace(/\/$/,``),n=e.startsWith(`/`)&&!e.startsWith(`//`),r=!!t&&(e===t||e.startsWith(`${t}/`)||e.startsWith(`${t}#`)||e.startsWith(`${t}?`));return n&&!r?t+e:e};export{e as t};

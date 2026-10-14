@@ -1,1 +1,0 @@
-import{N as e,j as t}from"./icons.D3n0C5rt.js";var n=t(),r=({id:t,children:r})=>(0,n.jsxs)(`p`,{className:`kern-error`,id:t,children:[(0,n.jsx)(`span`,{className:e(`kern-icon kern-icon--warning kern-icon--md`,`!bg-yellow-700`),"aria-hidden":`true`}),(0,n.jsx)(`span`,{className:`kern-body`,children:r})]});export{r as t};
