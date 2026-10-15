@@ -1,7 +1,7 @@
+import prozessNationaleKontaktstelleImage from "@/assets/images/prozess-nationale-kontaktstelle.png";
 import { interoperabel_angrenzendesEuRecht } from "@/config/routes";
 import { ZFL_BASE_URL } from "@/resources/constants";
 import { dedent } from "@/utils/dedentMultilineStrings";
-import { withBase } from "@/utils/path";
 
 const IEA_LINK =
   "[Verordnung für ein interoperables Europa (EU) 2024/903](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R0903)";
@@ -64,7 +64,7 @@ export const spoc = {
       In Deutschland bettet sich diese Anforderung in die föderale Zusammenarbeit wie folgt ein:
     `,
     image: {
-      url: withBase("/images/prozess-nationale-kontaktstelle.png"),
+      src: prozessNationaleKontaktstelleImage,
       alternativeText:
         "Netzwerkdiagramm, das die Interaktionen verschiedener deutscher und EU-Behörden im Kontext der EU-Interoperabilitätsverordnung zeigt. Es verdeutlicht, wie Akteurinnen und Akteure wie der IT-Planungsrat, die Nationale Kontaktstelle, das BMDS und die EU-Kommission bei der Umsetzung, Koordination und dem Reporting zusammenarbeiten.",
       caption:

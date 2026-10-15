@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
-import ImageZoomable from "@/components/ImageZoomable";
+import ImageZoomable from "@/components/ImageZoomable.astro";
 import RichText from "@/components/RichText";
 import { contact } from "@/resources/content/shared/contact";
 import IconMail from "~icons/ic/outline-mail";
@@ -62,10 +62,8 @@ export const frontmatter = {
         </div>
         <figure class="space-y-24">
           <ImageZoomable
-            image={{
-              url: spoc.landscape.image.url,
-              alternativeText: spoc.landscape.image.alternativeText,
-            }}
+            src={spoc.landscape.image.src}
+            alt={spoc.landscape.image.alternativeText}
           />
           <figcaption class="kern-subline kern-subline--small text-kern-layout-text-muted">
             {spoc.landscape.image.caption}

@@ -1,3 +1,4 @@
+import prozessVorpruefungImage from "@/assets/images/prozess-vorpruefung-mit-interoperabilitaet.jpg";
 import {
   interoperabel,
   vorpruefung,
@@ -52,9 +53,7 @@ export const preCheck = {
       process: {
         heading: "So gehen Sie vor:",
         image: {
-          url: withBase(
-            "/images/prozess-vorpruefung-mit-interoperabilitaet.jpg",
-          ),
+          src: prozessVorpruefungImage,
           caption:
             "Der Ablauf des Digitalchecks auf Bundesebene: Von der Vorprüfung bis zur Dokumentation",
           alternativeText:

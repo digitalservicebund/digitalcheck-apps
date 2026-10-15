@@ -7,7 +7,7 @@ import PreCheckFAQ from "@/components/content/PreCheckFAQ.astro";
 import DetailsSummary from "@/components/DetailsSummary";
 import Hero from "@/components/Hero";
 import Image from "@/components/Image";
-import ImageBox from "@/components/ImageBox";
+import ImageZoomable from "@/components/ImageZoomable.astro";
 import InfoBox from "@/components/InfoBox.tsx";
 import InlineNotice from "@/components/InlineNotice";
 import RichText from "@/components/RichText.tsx";
@@ -57,11 +57,20 @@ export const frontmatter = {
           </InfoBox>
           <div class="space-y-8">
             <Badge look="hint" className="mr-8" text="Bundesebene" />
-            <ImageBox
-              title={preCheck.start.summary.process.heading}
-              image={preCheck.start.summary.process.image}
-              border
-            />
+            <figure class="w-full">
+              <h3 class="pb-[24px]">
+                {preCheck.start.summary.process.heading}
+              </h3>
+              <ImageZoomable
+                src={preCheck.start.summary.process.image.src}
+                alt={preCheck.start.summary.process.image.alternativeText}
+                class="object-cover"
+              />
+              <figcaption class="pt-[24px] text-kern-layout-text-default">
+                {preCheck.start.summary.process.image.caption}
+              </figcaption>
+              <hr class="my-[16px] w-[120px] border-t-2 border-kern-darkblue-100" />
+            </figure>
           </div>
 
           <InfoBox heading={preCheck.start.summary.relevance.heading}>

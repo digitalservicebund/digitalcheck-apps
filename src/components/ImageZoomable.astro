@@ -1,0 +1,27 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import { twMerge } from "tailwind-merge";
+import IconZoomIn from "~icons/ic/outline-zoom-in";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+}
+
+const { src, alt, class: className } = Astro.props;
+---
+
+<a
+  href={src.src}
+  target="_blank"
+  rel="noreferrer"
+  class="link-unstyled relative block cursor-zoom-in"
+>
+  <Image src={src} alt={alt} class={twMerge("h-auto w-full", className)} />
+  <IconZoomIn
+    class="absolute bottom-16 left-16 size-32 text-kern-action-default"
+    aria-hidden="true"
+  />
+</a>

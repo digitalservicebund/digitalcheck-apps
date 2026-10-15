@@ -1,7 +1,5 @@
 import type { BadgeProps } from "@/components/Badge.tsx";
 import { LinkButton } from "@/components/Button.tsx";
-import type { ImageProps } from "@/components/Image.tsx";
-import ImageZoomable from "@/components/ImageZoomable.tsx";
 import RichText from "@/components/RichText.tsx";
 import { twJoin, twMerge } from "tailwind-merge";
 
@@ -39,7 +37,6 @@ export type TimelineItemContentProps = {
   parentHasHeading?: boolean;
   content?: string;
   children?: ReactNode;
-  image?: ImageProps;
   links?: ContentLink[];
 };
 
@@ -49,7 +46,6 @@ export function TimelineItemContent({
   links,
   content,
   headline,
-  image,
   parentHasHeading,
   children,
 }: Readonly<TimelineItemContentProps>) {
@@ -70,7 +66,6 @@ export function TimelineItemContent({
       )}
       {content && <RichText markdown={content} />}
       {children}
-      {image && <ImageZoomable image={image} className="max-w-a11y" />}
       {links && links.length > 0 && (
         <ButtonContainer>
           {links.map((link) => {

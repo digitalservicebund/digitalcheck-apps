@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
-import ImageZoomable from "@/components/ImageZoomable";
+import ImageZoomable from "@/components/ImageZoomable.astro";
 import RichText from "@/components/RichText";
 import TocContainer from "@/components/TocContainer.astro";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -33,13 +33,8 @@ export const frontmatter = {
       </Hero>
       <figure class="breakout mt-64 space-y-24">
         <ImageZoomable
-          image={{
-            url: infographic.src,
-            width: infographic.width,
-            height: infographic.height,
-            alternativeText:
-              "Infografik zum EU-Interoperabilitäts-Ökosystem: Sieben zentrale Rechtsakte (u. a. IEA, AI Act, DSGVO) sind kreisförmig um das Zentrum European Digital Single Market angeordnet. Die Grafik gruppiert diese in die Themenfelder Zusammenarbeit, Technologie & Datenschutz, Teilen von Daten sowie Zugang zu Diensten.",
-          }}
+          src={infographic}
+          alt="Infografik zum EU-Interoperabilitäts-Ökosystem: Sieben zentrale Rechtsakte (u. a. IEA, AI Act, DSGVO) sind kreisförmig um das Zentrum European Digital Single Market angeordnet. Die Grafik gruppiert diese in die Themenfelder Zusammenarbeit, Technologie & Datenschutz, Teilen von Daten sowie Zugang zu Diensten."
         />
         <figcaption class="kern-subline kern-subline--small text-kern-layout-text-muted">
           Zusammenspiel europäischer Rechtsakte: Die Infografik zeigt, wie der
