@@ -30,7 +30,7 @@ const {
 
 {/* is:global so direct child selectors (>) work on slotted items; components layer so utilities on items can override */}
 <style is:global>
-  @reference "@/styles/globals.css";
+  @reference "@/styles/global.css";
 
   /* Declare Tailwind's layer order in case this style loads before the global CSS */
   @layer theme, base, components, utilities;

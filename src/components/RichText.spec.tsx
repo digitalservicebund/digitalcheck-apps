@@ -49,7 +49,7 @@ describe("RichText", () => {
     render(<RichText markdown={EXAMPLE_MARKDOWN} data-testid="rich-text" />);
     const links = await screen.findAllByRole("link");
 
-    // Internal link – no icon markup (styled via globals.css only for http links)
+    // Internal link – no icon markup (styled via global.css only for http links)
     expect(links[0].querySelector("svg")).toBeNull();
     expect(links[0]).not.toHaveAttribute("download");
     expect(links[0].getAttribute("href")).not.toMatch(/^https?:/);
