@@ -314,7 +314,7 @@ export const kontakt = {
   title: "Kontakt",
   parent: null,
   sitemap: true,
-  isStagingOnly: true,
+  isStagingOnly: false,
   navOrder: null,
   navLabel: null,
 } as const;
