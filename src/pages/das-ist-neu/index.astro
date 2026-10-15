@@ -58,8 +58,7 @@ const items = news.items.map((item) => ({
         },
       }`}
     >
-      {/* Indent so year badges, centered on the line, don't overhang the content column */}
-      <TimelineList class="pl-28">
+      <TimelineList variant="changelog">
         {items.map((item) =>
           item.year ? (
             <li class="timeline-year-item" x-show={`visible > ${item.index}`}>
@@ -72,7 +71,6 @@ const items = news.items.map((item) => ({
               x-show={`visible > ${item.index}`}
               data-entry-index={item.index}
               tabindex={-1}
-              class="pb-40 pl-48"
             >
               {"badge" in item && (
                 <div class="flex">
