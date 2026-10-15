@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { DetailsSummaryListProps } from "./InfoBox";
 import InfoBox from "./InfoBox";
 import RichText from "./RichText";
 
@@ -27,27 +26,6 @@ describe("InfoBox", () => {
       );
 
       expect(screen.getByRole("paragraph")).toHaveTextContent("Test Content");
-    });
-  });
-
-  describe("DetailsSummaryList", () => {
-    it("shows the detailSummary", () => {
-      const testDetailSummary: DetailsSummaryListProps = {
-        title: { text: "List Title", tagName: "h3" },
-        items: [
-          { title: "Test Detail 1", children: "Test Content 1" },
-          { title: "Test Detail 2", children: "Test Content 2" },
-        ],
-      };
-      render(<InfoBox.DetailsSummaryList {...testDetailSummary} />);
-
-      expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
-        "List Title",
-      );
-      expect(screen.getAllByRole("group")).toHaveLength(2);
-      expect(screen.getAllByRole("group").at(0)).toHaveTextContent(
-        "Test Detail 1Test Content 1",
-      );
     });
   });
 

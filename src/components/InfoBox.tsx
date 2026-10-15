@@ -5,8 +5,6 @@ import { twMerge } from "tailwind-merge";
 import type { BadgeProps } from "./Badge";
 import Badge from "./Badge";
 import { LinkButton } from "./Button";
-import type { DetailsSummaryProps } from "./DetailsSummary";
-import DetailsSummary from "./DetailsSummary";
 import type { ImageProps } from "./Image";
 import Image from "./Image";
 
@@ -106,27 +104,6 @@ const InfoBox = ({
     </div>
   );
 };
-export type DetailsSummaryListProps = {
-  title?: HeadingProps;
-  items?: DetailsSummaryProps[];
-};
-
-const DetailsSummaryList = ({ title, items }: DetailsSummaryListProps) => {
-  const Heading = title?.tagName ?? "h1";
-  return (
-    <div className="kern-stack kern-stack-sm mt-16">
-      {title && (
-        <Heading id={title.id} className={title.className}>
-          {title.text}
-        </Heading>
-      )}
-      {items?.map(({ title, ...details }) => (
-        <DetailsSummary key={title} title={title} {...details} />
-      ))}
-    </div>
-  );
-};
-InfoBox.DetailsSummaryList = DetailsSummaryList;
 
 const LinkList = ({ links }: { links: ContentLink[] }) => (
   <ButtonContainer className="mt-auto pt-24">
