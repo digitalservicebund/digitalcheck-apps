@@ -1,4 +1,5 @@
 ---
+import prozessVorpruefungImage from "@/assets/images/prozess-vorpruefung-mit-interoperabilitaet.jpg";
 import VorpruefungLayout from "@/layouts/VorpruefungLayout.astro";
 
 import Badge from "@/components/Badge";
@@ -62,7 +63,7 @@ export const frontmatter = {
                 {preCheck.start.summary.process.heading}
               </h3>
               <ImageZoomable
-                src={preCheck.start.summary.process.image.src}
+                src={prozessVorpruefungImage}
                 alt={preCheck.start.summary.process.image.alternativeText}
                 class="object-cover"
               />
