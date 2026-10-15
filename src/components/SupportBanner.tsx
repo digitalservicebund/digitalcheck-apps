@@ -20,7 +20,7 @@ export default function SupportBanner({
         <InfoBox
           heading={{
             tagName: "h2",
-            look: "font-bold",
+            className: "font-bold",
             text: title,
             id: "support-banner-heading",
           }}

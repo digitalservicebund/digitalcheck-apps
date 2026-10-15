@@ -2,7 +2,6 @@ import Alert from "@/components/Alert";
 import Button, { LinkButton } from "@/components/Button.tsx";
 import ButtonContainer from "@/components/ButtonContainer";
 import DetailsSummary from "@/components/DetailsSummary";
-import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import InputError from "@/components/InputError";
 import RichText from "@/components/RichText";
@@ -114,11 +113,9 @@ export default function ResultForm({
       <form {...form.getFormProps()} data-testid="result-form">
         <input {...resultField.getHiddenInputProps()} />
         <div className="kern-stack kern-stack-lg">
-          <Heading
-            tagName="h2"
-            className="kern-heading-medium"
-            text={preCheckResult.form.formLegend}
-          />
+          <h2 className="kern-heading-medium">
+            {preCheckResult.form.formLegend}
+          </h2>
 
           <div className="flex items-start pb-[40px]">
             <div className="mr-[16px] shrink-0">

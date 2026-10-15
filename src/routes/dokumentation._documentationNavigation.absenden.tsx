@@ -1,6 +1,5 @@
 import { DownloadButton } from "@/components/Button.tsx";
 import ButtonContainer from "@/components/ButtonContainer.tsx";
-import Heading from "@/components/Heading";
 import InfoBox from "@/components/InfoBox.tsx";
 import InfoBoxList from "@/components/InfoBoxList";
 import RichText from "@/components/RichText";
@@ -17,16 +16,14 @@ const { finish } = digitalDocumentation;
 function InteroperabilitySteps() {
   return (
     <>
-      <Heading
-        text={"Schritt 2: Interoperabilitäts-Bewertung abschließen"}
-        tagName="h2"
-        className="mt-64 mb-32"
-      />
+      <h2 className="mt-64 mb-32">
+        Schritt 2: Interoperabilitäts-Bewertung abschließen
+      </h2>
       <InfoBox
         look="white"
         heading={{
           tagName: "h2",
-          look: "kern-heading-medium",
+          className: "kern-heading-medium",
           text: "An die Nationale Kontaktstelle senden",
         }}
       >
@@ -59,12 +56,9 @@ export function DocumentationSend() {
 
   return (
     <>
-      <Heading
-        text={firstStepPrefix + finish.heading.text}
-        tagName="h1"
-        look="kern-heading-large"
-        className="mb-16"
-      />
+      <h1 className="kern-heading-large mb-16">
+        {firstStepPrefix + finish.heading.text}
+      </h1>
       <RichText markdown={finish.heading.markdown} />
 
       <InfoBoxList>
@@ -73,7 +67,7 @@ export function DocumentationSend() {
           className="bg-white"
           heading={{
             tagName: "h2",
-            look: "kern-heading-medium",
+            className: "kern-heading-medium",
             text: finish.download.heading,
           }}
         >
@@ -89,7 +83,7 @@ export function DocumentationSend() {
           className="bg-white"
           heading={{
             tagName: "h2",
-            look: "kern-heading-medium",
+            className: "kern-heading-medium",
             text: finish.send.heading,
           }}
         >
@@ -98,7 +92,7 @@ export function DocumentationSend() {
         <InfoBox
           heading={{
             tagName: "h2",
-            look: "kern-heading-medium",
+            className: "kern-heading-medium",
             text: finish.done,
           }}
           visual={{

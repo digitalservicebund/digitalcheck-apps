@@ -1,6 +1,5 @@
 import Button, { LinkButton } from "@/components/Button.tsx";
 import ButtonContainer from "@/components/ButtonContainer.tsx";
-import Heading from "@/components/Heading";
 import RichText from "@/components/RichText.tsx";
 import { general } from "@/resources/content/shared/general.ts";
 import { useState } from "react";
@@ -27,12 +26,7 @@ export function DocumentationHinweise() {
 
   return (
     <>
-      <Heading
-        text="Wichtige Hinweise"
-        tagName="h1"
-        look="kern-heading-large"
-        className="mb-16"
-      />
+      <h1 className="kern-heading-large mb-16">Wichtige Hinweise</h1>
       <RichText
         className="[&>h2]:kern-heading-medium [&>h2]:mt-40"
         markdown={notes}

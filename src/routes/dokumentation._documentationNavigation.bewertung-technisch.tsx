@@ -1,6 +1,5 @@
 import Badge from "@/components/Badge.tsx";
 import DetailsSummary from "@/components/DetailsSummary.tsx";
-import Heading from "@/components/Heading";
 import RadioGroup from "@/components/RadioGroup.tsx";
 import Textarea from "@/components/Textarea.tsx";
 import { dokumentation_zusammenfassung } from "@/config/routes.ts";
@@ -59,9 +58,9 @@ export function DocumentationInteroperabilityAssessmentTechnical() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Technische Interoperabilität</Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           Technische Voraussetzungen für den Datenaustausch schaffen
-        </Heading>
+        </h1>
         <p>
           Die technische Ebene der Interoperabilität sorgt dafür, dass
           verschiedene Verwaltungen über kompatible IT-Systeme, Datenstandards

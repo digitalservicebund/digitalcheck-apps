@@ -1,6 +1,5 @@
 import Badge from "@/components/Badge.tsx";
 import DetailsSummary from "@/components/DetailsSummary.tsx";
-import Heading from "@/components/Heading";
 import RadioGroup from "@/components/RadioGroup.tsx";
 import Textarea from "@/components/Textarea.tsx";
 import type { FormScope } from "@rvf/react";
@@ -58,9 +57,9 @@ export function DocumentationInteroperabilityAssessmentLegal() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Rechtliche Interoperabilität</Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           Rechtliche Grundlage für den Datenaustausch schaffen
-        </Heading>
+        </h1>
         <p>
           Eine Regelung sollte so gestaltet sein, dass Behörden Daten über
           Grenzen hinweg austauschen dürfen. Keine rechtlichen Barrieren dürfen

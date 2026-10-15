@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import {
   dokumentation_bewertungRechtlich,
   dokumentation_verbindlicheAnforderungen,
@@ -17,12 +16,9 @@ export function DocumentationBindingRequirements() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <p>EU-Interoperabilität</p>
-        <Heading
-          text={dokumentation_verbindlicheAnforderungen.title}
-          tagName="h1"
-          look="kern-heading-large"
-          className="mb-16"
-        />
+        <h1 className="kern-heading-large mb-16">
+          {dokumentation_verbindlicheAnforderungen.title}
+        </h1>
       </div>
       <SkipNoticeWrapper>
         <BindingRequirementsForm

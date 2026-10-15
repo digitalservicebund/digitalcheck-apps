@@ -1,6 +1,5 @@
 import Badge from "@/components/Badge.tsx";
 import DetailsSummary from "@/components/DetailsSummary.tsx";
-import Heading from "@/components/Heading";
 import RadioGroup from "@/components/RadioGroup.tsx";
 import RichText from "@/components/RichText.tsx";
 import Textarea from "@/components/Textarea.tsx";
@@ -63,9 +62,9 @@ export function DocumentationInteroperabilityAssessmentSemantic() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Semantische Interoperabilität</Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           Gemeinsame Bedeutung von Daten sicherstellen
-        </Heading>
+        </h1>
         <p>
           Semantische Klarheit sorgt dafür, dass „was gesendet wird, auch genau
           so verstanden wird“. Rechtsbegriffe müssen gleich definiert und

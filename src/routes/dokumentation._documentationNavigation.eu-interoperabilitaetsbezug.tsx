@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton.tsx";
 import RadioGroup from "@/components/RadioGroup.tsx";
 import RichText from "@/components/RichText.tsx";
@@ -50,12 +49,9 @@ export function DocumentationEuInteroperabilityRequirements() {
 
   return (
     <div className="space-y-40">
-      <Heading
-        text="Bezug zur EU-Interoperabilität"
-        tagName="h1"
-        look="kern-heading-large"
-        className="mb-16"
-      />
+      <h1 className="kern-heading-large mb-16">
+        Bezug zur EU-Interoperabilität
+      </h1>
       <form {...form.getFormProps()} className="space-y-20">
         <div>
           <p className="inline" id={labelId}>

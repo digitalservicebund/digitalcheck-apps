@@ -1,14 +1,12 @@
 import type { BadgeProps } from "@/components/Badge.tsx";
 import { LinkButton } from "@/components/Button.tsx";
-import type { HeadingProps } from "@/components/Heading.tsx";
-import Heading from "@/components/Heading.tsx";
 import type { ImageProps } from "@/components/Image.tsx";
 import ImageZoomable from "@/components/ImageZoomable.tsx";
 import RichText from "@/components/RichText.tsx";
 import { twJoin, twMerge } from "tailwind-merge";
 
 import ButtonContainer from "@/components/ButtonContainer.tsx";
-import type { ContentLink } from "@/utils/contentTypes";
+import type { ContentLink, HeadingProps } from "@/utils/contentTypes";
 import type React from "react";
 import type { ReactNode } from "react";
 
@@ -55,6 +53,7 @@ export function TimelineItemContent({
   parentHasHeading,
   children,
 }: Readonly<TimelineItemContentProps>) {
+  const Heading = headline?.tagName ?? (parentHasHeading ? "h3" : "h2");
   return (
     <div className={twJoin("flex flex-col gap-16", backgroundClasses)}>
       {badge && (
@@ -65,7 +64,9 @@ export function TimelineItemContent({
         </div>
       )}
       {headline && (
-        <Heading tagName={parentHasHeading ? "h3" : "h2"} {...headline} />
+        <Heading id={headline.id} className={headline.className}>
+          {headline.text}
+        </Heading>
       )}
       {content && <RichText markdown={content} />}
       {children}

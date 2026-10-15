@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Button, { LinkButton } from "@/components/Button.tsx";
 import ButtonContainer from "@/components/ButtonContainer";
 import DetailsSummary from "@/components/DetailsSummary";
-import Heading from "@/components/Heading";
 import InlineNotice from "@/components/InlineNotice";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
@@ -127,12 +126,9 @@ export function PreCheckQuestion({
       <input {...form.getHiddenInputProps("questionId")} />
       <section className="space-y-32">
         <div className="space-y-16">
-          <Heading
-            text={question.question}
-            tagName="h1"
-            look="kern-heading-large"
-            id={questionLabelId}
-          />
+          <h1 id={questionLabelId} className="kern-heading-large">
+            {question.question}
+          </h1>
           <div className="sr-only">
             Frage {questionIdx + 1} von {questions.length}
           </div>

@@ -1,8 +1,7 @@
+import type { HeadingProps } from "@/utils/contentTypes";
 import type { ReactNode } from "react";
 import React from "react";
 import { twJoin, twMerge } from "tailwind-merge";
-import type { HeadingProps } from "./Heading";
-import Heading from "./Heading";
 
 type InfoBoxListProps = {
   heading?: HeadingProps;
@@ -17,9 +16,14 @@ export default function InfoBoxList({
   className,
   children,
 }: Readonly<InfoBoxListProps>) {
+  const Heading = heading?.tagName ?? "h2";
   return (
     <section className="kern-stack kern-stack-sm">
-      {heading && <Heading tagName="h2" {...heading} />}
+      {heading && (
+        <Heading id={heading.id} className={heading.className}>
+          {heading.text}
+        </Heading>
+      )}
       <ul
         className={twMerge(
           "list-unstyled info-box kern-stack mt-32",

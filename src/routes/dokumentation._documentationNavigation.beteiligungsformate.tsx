@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton";
 import RichText from "@/components/RichText";
 import Textarea from "@/components/Textarea";
@@ -29,12 +28,7 @@ export function DocumentationParticipation() {
 
   return (
     <div className="space-y-40">
-      <Heading
-        text={participation.headline}
-        tagName="h1"
-        look="kern-heading-large"
-        className="mb-16"
-      />
+      <h1 className="kern-heading-large mb-16">{participation.headline}</h1>
       <RichText markdown={participation.textIntro} className="gap-40" />
 
       <form className="space-y-40" {...form.getFormProps()}>

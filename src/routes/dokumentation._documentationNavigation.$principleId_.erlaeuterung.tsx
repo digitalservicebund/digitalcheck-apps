@@ -1,7 +1,6 @@
 import AspectPills from "@/components/AspectPills";
 import Badge from "@/components/Badge";
 import DetailsSummary from "@/components/DetailsSummary";
-import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton";
 import RichText from "@/components/RichText";
 import Textarea from "@/components/Textarea";
@@ -199,7 +198,7 @@ export function DocumentationPrincipleErlaeuterung({
         >
           Prinzip {prinzip.order}
         </Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           {prinzip.Name}
           <HelpButton
             sectionId="prinzip"
@@ -210,7 +209,7 @@ export function DocumentationPrincipleErlaeuterung({
               Mehr zum Prinzip
             </a>
           </HelpButton>
-        </Heading>
+        </h1>
 
         {prinzip.Kurzbeschreibung && (
           <RichText markdown={prinzip.Kurzbeschreibung} />

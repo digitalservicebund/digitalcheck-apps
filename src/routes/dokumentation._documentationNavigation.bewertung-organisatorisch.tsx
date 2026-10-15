@@ -1,6 +1,5 @@
 import Badge from "@/components/Badge.tsx";
 import DetailsSummary from "@/components/DetailsSummary.tsx";
-import Heading from "@/components/Heading";
 import RadioGroup from "@/components/RadioGroup.tsx";
 import Textarea from "@/components/Textarea.tsx";
 import type { FormScope } from "@rvf/react";
@@ -61,9 +60,9 @@ export function DocumentationInteroperabilityAssessmentOrganizational() {
     <div className="space-y-40">
       <div className={"space-y-8"}>
         <Badge look="hint">Organisatorische Interoperabilität</Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           Organisatorische Strukturen für Interoperabilität
-        </Heading>
+        </h1>
         <p>
           Zuständigkeiten und Prozesse müssen so ausgestaltet sein, dass die
           Zusammenarbeit zwischen Behörden unterschiedlicher EU-Mitgliedstaaten

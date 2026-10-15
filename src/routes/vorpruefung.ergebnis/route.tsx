@@ -11,7 +11,6 @@ import { twJoin } from "tailwind-merge";
 
 import Container from "@/components/Container";
 import DetailsSummary from "@/components/DetailsSummary";
-import Heading from "@/components/Heading";
 import InfoBox from "@/components/InfoBox";
 import InfoTooltip from "@/components/InfoTooltip";
 import InlineNotice from "@/components/InlineNotice";
@@ -73,14 +72,10 @@ function getReasonListItem(reason: Reason) {
  */
 function PrintTitle({ title }: Readonly<{ title: string }>) {
   return (
-    <Heading
-      tagName="h2"
-      look="kern-heading-medium"
-      className="hidden pb-24 font-bold print:block"
-    >
+    <h2 className="kern-heading-medium hidden pb-24 font-bold print:block">
       {preCheckResult.print.titlePrefix}
       {title}
-    </Heading>
+    </h2>
   );
 }
 
@@ -132,11 +127,11 @@ export default function Result() {
                   {getHeaderIcon()}
                 </div>
                 <div>
-                  <Heading
-                    tagName="h1"
-                    look="kern-heading-large"
-                    className="mb-0"
-                    text={marked.parseInline(resultContent.title) as string}
+                  <h1
+                    className="kern-heading-large mb-0"
+                    dangerouslySetInnerHTML={{
+                      __html: marked.parseInline(resultContent.title) as string,
+                    }}
                   />
                   {resultHint && (
                     <RichText markdown={resultHint} className="mt-16" />
@@ -150,7 +145,7 @@ export default function Result() {
                   heading={{
                     text: resultContent.infoboxContent.title,
                     tagName: "h2",
-                    look: "kern-heading-medium",
+                    className: "kern-heading-medium",
                   }}
                 >
                   <RichText markdown={resultContent.infoboxContent.text} />
@@ -219,11 +214,7 @@ export default function Result() {
                   <RichText markdown={preCheckResult.form.outro.text} />
                 </InfoBox>
                 <div className="kern-stack kern-stack-md mt-40">
-                  <Heading
-                    tagName="h3"
-
-                    text={preCheckResult.form.faqs.title}
-                  />
+                  <h3>{preCheckResult.form.faqs.title}</h3>
                   {preCheckResult.form.faqs.details.map((detail) => (
                     <DetailsSummary key={detail.label} title={detail.label}>
                       <RichText markdown={detail.text} />
@@ -258,7 +249,7 @@ export default function Result() {
         )}
         {result && result.digital !== ResultType.UNSURE && nextSteps && (
           <>
-            <Heading tagName="h2">{nextSteps[result.digital].title}</Heading>
+            <h2>{nextSteps[result.digital].title}</h2>
             <NumberedList>
               {(nextSteps[result.digital].steps as Step[]).map((item) => (
                 <NumberedList.Item
@@ -280,11 +271,7 @@ export default function Result() {
         )}
       </Container>
       <Container className="my-80 py-0 print:hidden">
-        <Heading
-          tagName="h2"
-          className="mb-64 max-sm:mb-56"
-          text={preCheck.faq.title}
-        />
+        <h2 className="mb-64 max-sm:mb-56">{preCheck.faq.title}</h2>
         <PreCheckFAQ />
       </Container>
     </main>

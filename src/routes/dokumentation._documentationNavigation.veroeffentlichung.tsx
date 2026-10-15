@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import { useDocumentationDataService } from "@/routes/dokumentation/DocumentationDataProvider";
 import { useSyncedForm } from "@/routes/dokumentation/documentationDataHook";
@@ -33,9 +32,7 @@ export function DocumentationVeroeffentlichung() {
 
   return (
     <div className="space-y-40">
-      <Heading tagName="h1" look="kern-heading-large">
-        Veröffentlichung
-      </Heading>
+      <h1 className="kern-heading-large">Veröffentlichung</h1>
       <SkipNoticeWrapper>
         <form {...form.getFormProps()} className="space-y-32">
           <h2 className="kern-heading-medium mb-16" id="status-question-label">

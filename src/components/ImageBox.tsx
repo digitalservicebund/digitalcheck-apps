@@ -1,7 +1,7 @@
-import Heading from "@/components/Heading.tsx";
 import type { ImageProps } from "@/components/Image.tsx";
 import Image from "@/components/Image.tsx";
 import ImageZoomable from "@/components/ImageZoomable.tsx";
+import type { HeadingTag } from "@/utils/contentTypes";
 import { twJoin, twMerge } from "tailwind-merge";
 import RichText from "./RichText";
 
@@ -9,7 +9,7 @@ export type ImageBoxProps = {
   image: Readonly<ImageProps>;
   title?: string;
   className?: string;
-  tagName?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+  tagName?: HeadingTag;
   zoomable?: boolean;
   border?: boolean;
   background?: boolean;
@@ -19,13 +19,12 @@ function ImageBox({
   image,
   title,
   className,
-  tagName,
+  tagName: Heading = "h3",
   border,
   zoomable = true,
   background = false,
 }: Readonly<ImageBoxProps>) {
   if (!image.url) return null;
-  const headingTag = tagName ?? "h3";
   const imageForZoomable: ImageProps = {
     ...image,
     className: image.className,
@@ -33,11 +32,7 @@ function ImageBox({
 
   return (
     <figure className={twMerge(className, "w-full")}>
-      {title && (
-        <Heading className="pb-[24px]" tagName={headingTag}>
-          {title}
-        </Heading>
-      )}
+      {title && <Heading className="pb-[24px]">{title}</Heading>}
       {zoomable ? (
         <ImageZoomable image={imageForZoomable} className="object-cover" />
       ) : (

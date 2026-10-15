@@ -1,5 +1,5 @@
 import ButtonContainer from "@/components/ButtonContainer.tsx";
-import type { ContentLink } from "@/utils/contentTypes";
+import type { ContentLink, HeadingProps } from "@/utils/contentTypes";
 import type React from "react";
 import { twMerge } from "tailwind-merge";
 import type { BadgeProps } from "./Badge";
@@ -7,8 +7,6 @@ import Badge from "./Badge";
 import { LinkButton } from "./Button";
 import type { DetailsSummaryProps } from "./DetailsSummary";
 import DetailsSummary from "./DetailsSummary";
-import type { HeadingProps } from "./Heading";
-import Heading from "./Heading";
 import type { ImageProps } from "./Image";
 import Image from "./Image";
 
@@ -57,6 +55,7 @@ const InfoBox = ({
   look,
   children,
 }: InfoBoxProps) => {
+  const Heading = heading?.tagName ?? "h3";
   return (
     <div
       id={identifier}
@@ -97,7 +96,11 @@ const InfoBox = ({
         className={"kern-stack kern-stack-md grow wrap-break-word"}
       >
         {badge && <Badge className="self-start" {...badge} />}
-        {heading && <Heading tagName="h3" {...heading} />}
+        {heading && (
+          <Heading id={heading.id} className={heading.className}>
+            {heading.text}
+          </Heading>
+        )}
         {children}
       </div>
     </div>
@@ -108,14 +111,21 @@ export type DetailsSummaryListProps = {
   items?: DetailsSummaryProps[];
 };
 
-const DetailsSummaryList = ({ title, items }: DetailsSummaryListProps) => (
-  <div className="kern-stack kern-stack-sm mt-16">
-    {title && <Heading {...title} />}
-    {items?.map(({ title, ...details }) => (
-      <DetailsSummary key={title} title={title} {...details} />
-    ))}
-  </div>
-);
+const DetailsSummaryList = ({ title, items }: DetailsSummaryListProps) => {
+  const Heading = title?.tagName ?? "h1";
+  return (
+    <div className="kern-stack kern-stack-sm mt-16">
+      {title && (
+        <Heading id={title.id} className={title.className}>
+          {title.text}
+        </Heading>
+      )}
+      {items?.map(({ title, ...details }) => (
+        <DetailsSummary key={title} title={title} {...details} />
+      ))}
+    </div>
+  );
+};
 InfoBox.DetailsSummaryList = DetailsSummaryList;
 
 const LinkList = ({ links }: { links: ContentLink[] }) => (

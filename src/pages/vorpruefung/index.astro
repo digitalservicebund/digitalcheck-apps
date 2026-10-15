@@ -5,7 +5,6 @@ import Badge from "@/components/Badge";
 import Container from "@/components/Container";
 import PreCheckFAQ from "@/components/content/PreCheckFAQ.astro";
 import DetailsSummary from "@/components/DetailsSummary";
-import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
 import Image from "@/components/Image";
 import ImageBox from "@/components/ImageBox";
@@ -37,7 +36,7 @@ export const frontmatter = {
       <PreCheckContinueActions client:load />
       <noscript>
         <InlineNotice look="warning" className="mb-40">
-          <Heading tagName="h2">{preCheck.start.noscript.headline}</Heading>
+          <h2>{preCheck.start.noscript.headline}</h2>
           <RichText markdown={preCheck.start.noscript.content} />
         </InlineNotice>
       </noscript>
@@ -52,7 +51,7 @@ export const frontmatter = {
         ]}
       >
         <div data-tab-panel={preCheck.start.summary.tabName} class="space-y-40">
-          <Heading tagName="h2">{preCheck.start.summary.heading.text}</Heading>
+          <h2>{preCheck.start.summary.heading.text}</h2>
           <InfoBox heading={preCheck.start.summary.start.heading}>
             <RichText markdown={preCheck.start.summary.start.content} />
           </InfoBox>
@@ -99,11 +98,7 @@ export const frontmatter = {
           </InfoBox>
         </div>
         <div data-tab-panel={preCheck.faq.tabName}>
-          <Heading
-            tagName="h2"
-            look="mb-64 max-sm:mb-56"
-            text={preCheck.faq.title}
-          />
+          <h2 class="mb-64 max-sm:mb-56">{preCheck.faq.title}</h2>
           <PreCheckFAQ />
         </div>
       </Tabs>

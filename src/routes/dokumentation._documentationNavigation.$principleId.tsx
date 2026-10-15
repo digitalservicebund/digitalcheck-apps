@@ -1,5 +1,4 @@
 import Badge from "@/components/Badge";
-import Heading from "@/components/Heading";
 import HelpButton from "@/components/HelpButton";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
@@ -56,7 +55,7 @@ export function DocumentationPrinciple({
         <Badge principleNumber={prinzip.Nummer as PrincipleNumber}>
           Prinzip {prinzip.order}
         </Badge>
-        <Heading tagName="h1" look="kern-heading-large" className="mb-16">
+        <h1 className="kern-heading-large mb-16">
           {prinzip.Name}
           <HelpButton
             sectionId="1-prinzip"
@@ -67,7 +66,7 @@ export function DocumentationPrinciple({
               Mehr zum Prinzip
             </a>
           </HelpButton>
-        </Heading>
+        </h1>
 
         {prinzip.Kurzbeschreibung && (
           <RichText markdown={prinzip.Kurzbeschreibung} />
@@ -75,15 +74,10 @@ export function DocumentationPrinciple({
       </div>
 
       <form {...form.getFormProps()} className="space-y-40">
-        <Heading
-          id="question-label"
-          tagName="h2"
-          look="kern-heading-medium"
-          className="mb-16"
-        >
+        <h2 id="question-label" className="kern-heading-medium mb-16">
           Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen für die
           Umsetzung des Prinzips?
-        </Heading>
+        </h2>
         <RadioGroup
           aria-labelledby="question-label"
           scope={form.scope("answer")}

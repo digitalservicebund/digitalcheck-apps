@@ -2,7 +2,6 @@ import { DownloadButton } from "@/components/Button";
 import Container from "@/components/Container.tsx";
 import ContentWrapper from "@/components/ContentWrapper.tsx";
 import { Feature, FeatureList } from "@/components/FeatureList.tsx";
-import Heading from "@/components/Heading.tsx";
 import Hero from "@/components/Hero";
 import InfoBox from "@/components/InfoBox.tsx";
 import InlineNotice from "@/components/InlineNotice";
@@ -38,9 +37,7 @@ export function DokumentationIndexPage({
             <noscript>
               <InlineNotice
                 look="warning"
-                heading={
-                  <Heading tagName="h2">{start.noscript.headline}</Heading>
-                }
+                heading={<h2>{start.noscript.headline}</h2>}
                 className="mb-40"
               >
                 <RichText markdown={start.noscript.content} />
@@ -66,7 +63,7 @@ export function DokumentationIndexPage({
 
         <ContentWrapper className={"space-y-80"}>
           <section className="space-y-40">
-            <Heading tagName="h2">Vorteile der Online-Dokumentation</Heading>
+            <h2>Vorteile der Online-Dokumentation</h2>
             <FeatureList>
               <Feature>
                 <ViewListTwoTone className="fill-ds-feature size-80" />
@@ -91,7 +88,7 @@ export function DokumentationIndexPage({
             </FeatureList>
           </section>
           <section className="space-y-40">
-            <Heading tagName="h2">So funktioniert es</Heading>
+            <h2>So funktioniert es</h2>
             <NumberedList>
               <NumberedList.Item className={"space-y-8"}>
                 <p className="kern-body kern-body--large">
@@ -131,7 +128,7 @@ export function DokumentationIndexPage({
               heading={{
                 tagName: "h2",
                 text: "Hilfreiche Tipps zum Ausfüllen der Dokumentation",
-                look: "kern-heading-medium",
+                className: "kern-heading-medium",
               }}
             >
               <p>

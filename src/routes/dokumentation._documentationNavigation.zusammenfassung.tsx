@@ -1,5 +1,4 @@
 import type { BadgeProps } from "@/components/Badge";
-import Heading from "@/components/Heading";
 import type { InfoBoxProps } from "@/components/InfoBox";
 import InfoBox from "@/components/InfoBox";
 import InfoBoxList from "@/components/InfoBoxList";
@@ -63,7 +62,7 @@ const createInfoBoxItem = ({
   heading: {
     text: heading ?? route.title,
     tagName: "h2",
-    look: "kern-heading-medium",
+    className: "kern-heading-medium",
   },
   badge: badge,
   children: (
@@ -98,12 +97,12 @@ function Answer({
 }>) {
   return (
     <div className="space-y-24">
-      {heading && <Heading tagName="h3">{heading}</Heading>}
+      {heading && <h3>{heading}</h3>}
       {answers
         .filter(({ answer }) => answer)
         .map(({ answer, prefix }) => (
           <div className="space-y-8" key={prefix + answer}>
-            <Heading tagName="h4">{prefix}</Heading>
+            <h4>{prefix}</h4>
             <p>{answer}</p>
           </div>
         ))}
@@ -182,7 +181,7 @@ function SimplifiedAspectsContent({
     <>
       {aspects?.length && (
         <div className="space-y-8">
-          <Heading tagName="h4">Schwerpunkte</Heading>
+          <h4>Schwerpunkte</h4>
           <div className="flex flex-wrap gap-16">
             {aspects.map((aspect) => {
               const aspekt = prinzip.Aspekte.find(
@@ -437,12 +436,7 @@ export function DocumentationSummary() {
 
   return (
     <>
-      <Heading
-        text={summary.headline}
-        tagName="h1"
-        look="kern-heading-large"
-        className="mb-16"
-      />
+      <h1 className="kern-heading-large mb-16">{summary.headline}</h1>
       <RichText markdown={summary.text} />
       <InfoBoxList className="space-y-40">
         {items.map((item, i) => (

@@ -1,5 +1,5 @@
-import Heading from "@/components/Heading";
 import RichText from "@/components/RichText";
+import type { HeadingTag } from "@/utils/contentTypes";
 import { Check, Clear, ErrorOutline, Sync } from "@digitalservicebund/icons";
 import type { Dispatch, SetStateAction } from "react";
 import { twJoin } from "tailwind-merge";
@@ -7,7 +7,7 @@ import { twJoin } from "tailwind-merge";
 type AlertProps = {
   identifier?: string;
   title: string;
-  tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+  tagName: HeadingTag;
   look: "success" | "error" | "info";
   setShowAlert: Dispatch<SetStateAction<boolean>>;
   content?: string;
@@ -38,7 +38,7 @@ const lookConfig = {
 const Alert = ({
   identifier,
   title,
-  tagName,
+  tagName: Heading,
   look,
   content,
   setShowAlert,
@@ -66,7 +66,7 @@ const Alert = ({
           <IconComponent className={twJoin("mr-4 flex-none", iconColor)} />
         )}
         <div className="pr-32">
-          <Heading tagName={tagName}>{title}</Heading>
+          <Heading>{title}</Heading>
           {content && (
             <div className="leading-[26px] tracking-[0.16px]">
               <RichText markdown={content} />
