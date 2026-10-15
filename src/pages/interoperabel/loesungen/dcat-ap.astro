@@ -4,7 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import { InteroperableSolutionBanner } from "@/components/InteroperableSolutionBanner.tsx";
 import RichText from "@/components/RichText";
-import Timeline from "@/components/Timeline";
+import TimelineList from "@/components/TimelineList.astro";
 import TocContainer from "@/components/TocContainer.astro";
 import { interopsAssessment } from "@/pages/interoperabel/_anchors";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -13,7 +13,8 @@ export const frontmatter = {
   title: "Data Catalogue Vocabulary Application Profile (DCAT-AP)",
 };
 
-const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
+const stepClasses =
+  "flex flex-col gap-16 rounded-sm bg-white px-24 py-32 md:px-64";
 ---
 
 <Layout title={frontmatter.title}>
@@ -189,9 +190,9 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
         </details>
 
         <div data-toc-ignore>
-          <Timeline>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+          <TimelineList>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 1: Bedarf & Prüfung (Ihre Domäne)</h3>
                 <p>
                   Sie definieren das Ziel (z. B. „Umweltdaten vergleichbar
@@ -201,10 +202,10 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
                   Antwort „Ja“, ist DCAT-AP der im Interoperable Europe Act zu
                   nutzende Standard.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+              </div>
+            </li>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 2: Technische Vorgabe</h3>
                 <p>
                   Sie legen im Entwurf fest, dass für die Beschreibung der Daten
@@ -212,9 +213,9 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
                   IT-Experten setzen dies dann technisch um, indem sie die
                   Metadaten entsprechend strukturieren.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-            <Timeline.Item>
+              </div>
+            </li>
+            <li class="timeline-plain-item">
               <RichText
                 markdown={dedent`
                   Übermitteln Sie vor der Entscheidung über den Entwurf eine
@@ -222,9 +223,9 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
                   falls erforderlich.
                 `}
               />
-            </Timeline.Item>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+            </li>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 3: Der Dienst geht live</h3>
                 <p>
                   Sobald der Dienst live geht, werden die Daten automatisch von
@@ -232,9 +233,9 @@ const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
                   entfaltet maximale Wirkung, da die Daten ohne manuellen
                   Aufwand EU-weit gefunden werden.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-          </Timeline>
+              </div>
+            </li>
+          </TimelineList>
         </div>
       </section>
 

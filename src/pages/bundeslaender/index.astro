@@ -2,13 +2,16 @@
 import LaenderLayout from "@/layouts/LaenderLayout.astro";
 import { FileDownloadOutlined } from "@digitalservicebund/icons";
 import { Image } from "astro:assets";
-import Timeline from "@/components/Timeline";
+import TimelineList from "@/components/TimelineList.astro";
 import KernCard from "@/components/KernCard.astro";
 import { contact } from "@/resources/content/shared/contact";
 import { withBase } from "@/utils/path";
 import { leitfadenDigitalcheckBundeslandAug2026_pdf } from "@/config/downloads";
 import leitfadenImg from "./_leitfaden.png";
 import angebotImg from "./_assets/angebot.png";
+
+const stepClasses =
+  "flex max-w-[694px] flex-col gap-16 bg-kern-darkblue-025 px-64 py-32";
 
 export const frontmatter = {
   title: "Gemeinsamer Digitalcheck für Bund und Länder",
@@ -180,37 +183,37 @@ export const frontmatter = {
     <h2 class="max-w-[800px]">
       Prozess: Kooperation und Erstellung Ihrer Landingpage
     </h2>
-    <Timeline>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+    <TimelineList>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 1: Kontakt aufnehmen</h3>
           <p>
             Kontaktieren Sie uns bei Interesse direkt unter{" "}
             <a href={`mailto:${contact.bmdsEmail}`}>{contact.bmdsEmail}</a>.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+        </div>
+      </li>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 2: Gemeinsamer Termin</h3>
           <p>
             In einem gemeinsamen Termin besprechen wir gegenseitige
             Anforderungen und Möglichkeiten.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+        </div>
+      </li>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 3: Kooperationsvereinbarung</h3>
           <p>
             Eine Kooperationsvereinbarung zwischen Ihrem Bundesland und dem
             Bundesministerium für Digitales und Staatsmodernisierung wird
             unterzeichnet.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+        </div>
+      </li>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 4: Inhalte erstellen</h3>
           <p>
             Sie erstellen die Inhalte, die auf Ihrer personalisierten
@@ -218,27 +221,27 @@ export const frontmatter = {
             Informationen zum Prozess, den jeweiligen Ansprechpartnern und den
             landesspezifischen Anforderungen.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+        </div>
+      </li>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 5: Erstellung der Unterseite</h3>
           <p>
             Das Team des Digitalcheck Bund legt eine neue Unterseite für Ihr
             Bundesland an.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-      <Timeline.Item bullet className="w-full max-w-[694px]">
-        <Timeline.ItemContent backgroundClasses="bg-kern-darkblue-025 px-64 py-32">
+        </div>
+      </li>
+      <li>
+        <div class={stepClasses}>
           <h3>Schritt 6: Freigabe</h3>
           <p>
             Die Unterseite wird vor Veröffentlichung von Ihnen überprüft und
             freigegeben.
           </p>
-        </Timeline.ItemContent>
-      </Timeline.Item>
-    </Timeline>
+        </div>
+      </li>
+    </TimelineList>
   </section>
   <section class="space-y-32">
     <h2 id="leitfaden" class="scroll-mt-32">

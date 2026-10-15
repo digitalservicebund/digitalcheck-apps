@@ -1,14 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
+import ButtonContainer from "@/components/ButtonContainer";
+import { LinkButton } from "@/components/Button";
 import InfoBox from "@/components/InfoBox";
 import InfoBoxSideBySide from "@/components/InfoBoxSideBySide.astro";
 import NumberedList from "@/components/NumberedList";
 import RichText from "@/components/RichText";
 import SupportBanner from "@/components/SupportBanner";
-import Timeline from "@/components/Timeline.tsx";
+import TimelineList from "@/components/TimelineList.astro";
 import { methods } from "@/resources/content/methoden";
 import { supportBanner } from "@/resources/content/shared/support-banner";
+import type { ContentLink } from "@/utils/contentTypes";
 
 export const frontmatter = {
   title: "Regelung erarbeiten",
@@ -23,43 +26,49 @@ export const frontmatter = {
     </Hero>
 
     <section>
-      <Timeline>
+      <TimelineList>
         {methods.steps.items.map((step, index) => {
           const headingId = `step-h-${index}`;
 
           if (step.isSubstep)
             return (
-              <Timeline.Item
-                key={step.headline.text}
-                bullet
-                aria-labelledby={headingId}
-              >
-                <Timeline.ItemContent
-                  backgroundClasses="bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48"
-                  headline={{
-                    text: step.headline.text,
-                    tagName: "h3",
-                    id: headingId,
-                  }}
-                  links={step.links}
-                  content={step.text}
-                />
-              </Timeline.Item>
+              <li aria-labelledby={headingId}>
+                <div class="flex flex-col gap-16 bg-blue-100 px-16 py-32 sm:px-32 sm:pt-40 sm:pb-48">
+                  <h3 id={headingId}>{step.headline.text}</h3>
+                  <RichText markdown={step.text} />
+                  {step.links && (
+                    <ButtonContainer>
+                      {step.links.map(
+                        ({ to, text, externalLink, ...rest }: ContentLink) => (
+                          <LinkButton
+                            href={to}
+                            iconRight={
+                              externalLink
+                                ? "kern-icon--open-in-new"
+                                : undefined
+                            }
+                            {...rest}
+                          >
+                            {text}
+                          </LinkButton>
+                        ),
+                      )}
+                    </ButtonContainer>
+                  )}
+                </div>
+              </li>
             );
           return (
-            <Timeline.Item
-              className="mt-4 space-y-16"
-              key={step.headline.text}
+            <li
+              class="timeline-plain-item flex flex-col gap-16 pt-4"
               aria-labelledby={headingId}
             >
-              <Timeline.ItemContent
-                content={step.text}
-                headline={{ ...step.headline, id: headingId }}
-              />
-            </Timeline.Item>
+              <h2 id={headingId}>{step.headline.text}</h2>
+              <RichText markdown={step.text} />
+            </li>
           );
         })}
-      </Timeline>
+      </TimelineList>
     </section>
 
     <section class="space-y-40">

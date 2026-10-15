@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import Metadata from "./_Metadata.astro";
-import Timeline from "@/components/Timeline";
+import TimelineList from "@/components/TimelineList.astro";
 import RichText from "@/components/RichText.tsx";
 import { news } from "@/resources/content/das-ist-neu";
 import { contact } from "@/resources/content/shared/contact";
@@ -11,8 +11,6 @@ import { mailto } from "@/utils/mailtoHelper";
 export const frontmatter = {
   title: "Das ist neu",
 };
-
-const TimelineItem = Timeline.Item;
 
 const PAGE_SIZE = 9;
 
@@ -61,17 +59,20 @@ const items = news.items.map((item) => ({
       }`}
     >
       {/* Indent so year badges, centered on the line, don't overhang the content column */}
-      <Timeline className="pl-28">
+      <TimelineList class="pl-28">
         {items.map((item) =>
           item.year ? (
-            <TimelineItem year={item.year} x-show={`visible > ${item.index}`} />
+            <li class="timeline-year-item" x-show={`visible > ${item.index}`}>
+              <span class="timeline-year-badge kern-badge border-kern-darkblue-850 w-max border">
+                <span class="kern-label">{item.year}</span>
+              </span>
+            </li>
           ) : (
-            <TimelineItem
-              bullet
+            <li
               x-show={`visible > ${item.index}`}
               data-entry-index={item.index}
-              tabIndex={-1}
-              className="pb-40 pl-8"
+              tabindex={-1}
+              class="pb-40 pl-48"
             >
               {"badge" in item && (
                 <div class="flex">
@@ -88,10 +89,10 @@ const items = news.items.map((item) => ({
                 </h2>
               )}
               {item.content && <RichText markdown={item.content} />}
-            </TimelineItem>
+            </li>
           ),
         )}
-      </Timeline>
+      </TimelineList>
       {entryCount > PAGE_SIZE && (
         <button
           type="button"

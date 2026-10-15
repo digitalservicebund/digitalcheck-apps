@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"ol"> {
+  look?: "dito" | "zfl";
+}
+
+const { look = "dito", class: className, ...attrs } = Astro.props;
+---
+
+{/* Items: plain <li> (bullet), li.timeline-plain-item (no marker), li.timeline-year-item (.timeline-year-badge centered on the line) */}
+<ol
+  class:list={["timeline list-unstyled", `timeline--${look}`, className]}
+  {...attrs}
+>
+  <slot />
+</ol>
+
+{/* is:global so direct child selectors (>) work on slotted items; components layer so utilities on items can override */}
+<style is:global>
+  @reference "@/styles/globals.css";
+
+  @layer components {
+    .timeline--dito {
+      --timeline-color: var(--color-kern-darkblue-850);
+    }
+    .timeline--zfl {
+      --timeline-color: var(--color-cosmic-blue-base);
+    }
+
+    .timeline {
+      @apply scroll-my-40;
+
+      /* Each item draws its own line segment below its marker, so no
+         background-colored ring is needed to separate line and marker. */
+      & > li {
+        @apply relative scroll-my-40 pb-24 pl-40;
+      }
+      & > li::before {
+        content: "";
+        @apply absolute top-4 left-0 size-16 rounded-full bg-(--timeline-color);
+      }
+      & > li::after {
+        content: "";
+        @apply absolute top-24 bottom-0 left-[7.5px] w-px bg-(--timeline-color);
+      }
+
+      & > li.timeline-plain-item::before {
+        content: none;
+      }
+      & > li.timeline-plain-item::after {
+        @apply top-0;
+      }
+
+      /* Year labels keep some distance to the next entry. */
+      & > li.timeline-year-item {
+        @apply pb-32 pl-0;
+      }
+      & > li.timeline-year-item::before {
+        content: none;
+      }
+      & > li.timeline-year-item::after {
+        @apply top-auto h-28;
+      }
+      & > li.timeline-year-item > .timeline-year-badge {
+        @apply relative left-8 -translate-x-1/2;
+      }
+    }
+  }
+</style>

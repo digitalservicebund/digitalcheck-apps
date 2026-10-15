@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import { InteroperableSolutionBanner } from "@/components/InteroperableSolutionBanner.tsx";
 import RichText from "@/components/RichText";
-import Timeline from "@/components/Timeline";
+import TimelineList from "@/components/TimelineList.astro";
 import TocContainer from "@/components/TocContainer.astro";
 import { interopsAssessment } from "@/pages/interoperabel/_anchors";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -12,7 +12,8 @@ export const frontmatter = {
   title: "Semantic Core Vocabularies",
 };
 
-const stepClasses = "rounded-sm bg-white px-24 py-32 md:px-64";
+const stepClasses =
+  "flex flex-col gap-16 rounded-sm bg-white px-24 py-32 md:px-64";
 const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
 ---
 
@@ -344,9 +345,9 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
         </div>
 
         <div data-toc-ignore>
-          <Timeline>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+          <TimelineList>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 1: Bedarf & Prüfung (Ihre Domäne)</h3>
                 <p>
                   Nutzen Sie den Digitalcheck, um den Regelungsbedarf zu
@@ -361,10 +362,10 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                   für ein interoperables Europa” nach Art. 7 (EU) 2024/903) als
                   Standard heranzuziehen.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+              </div>
+            </li>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 2: Technische Vorgabe</h3>
                 <p>
                   Sie legen im Entwurf fest, dass für die Strukturierung der
@@ -372,9 +373,9 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                   <strong>Core Vocabularies</strong> als Grundlage zu nutzen
                   sind. Der IT-Vollzug setzt dies im Nachgang technisch um.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-            <Timeline.Item>
+              </div>
+            </li>
+            <li class="timeline-plain-item">
               <RichText
                 markdown={dedent`
                   Übermitteln Sie vor der Entscheidung über den Entwurf eine
@@ -382,9 +383,9 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                   falls erforderlich.
                 `}
               />
-            </Timeline.Item>
-            <Timeline.Item bullet>
-              <Timeline.ItemContent backgroundClasses={stepClasses}>
+            </li>
+            <li>
+              <div class={stepClasses}>
                 <h3>Schritt 3: Der Dienst geht live</h3>
                 <p>
                   Sobald der Dienst live geht, können die Systeme Dank der Core
@@ -394,9 +395,9 @@ const tableClasses = "kern-table [&_thead]:bg-kern-darkblue-100";
                   Vollzug Ihrer Regelung semantische Konsistenz für den
                   Datenaustausch.
                 </p>
-              </Timeline.ItemContent>
-            </Timeline.Item>
-          </Timeline>
+              </div>
+            </li>
+          </TimelineList>
         </div>
       </section>
 
