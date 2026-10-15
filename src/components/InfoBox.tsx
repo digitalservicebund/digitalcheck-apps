@@ -5,12 +5,6 @@ import { twMerge } from "tailwind-merge";
 import type { BadgeProps } from "./Badge";
 import Badge from "./Badge";
 import { LinkButton } from "./Button";
-import type { ImageProps } from "./Image";
-import Image from "./Image";
-
-export type InfoImageProps = ImageProps & {
-  size: "icon" | "small" | "medium" | "large";
-};
 
 type BaseInfoBoxProps = {
   identifier?: string;
@@ -27,20 +21,12 @@ type VisualProps =
       Icon: React.FC<React.SVGProps<SVGSVGElement>>;
       className?: string;
     }
-  | { type: "image"; image: InfoImageProps }
   | { type: "component"; Component: React.ReactElement }
   | { type: "none" };
 
 export type InfoBoxProps = BaseInfoBoxProps & {
   visual?: VisualProps;
   children?: React.ReactNode;
-};
-
-const imageSizes = {
-  icon: "size-80",
-  small: "size-[120px]",
-  medium: "size-[280px]",
-  large: "size-[280px] sm:size-[400px] md:size-[280px] lg:size-[400px]",
 };
 
 const InfoBox = ({
@@ -60,7 +46,6 @@ const InfoBox = ({
       data-testid={testId || "info-box-container"}
       className={twMerge(
         "flex scroll-my-40 flex-col gap-32 md:flex-row",
-        // visual?.type === "image" ? "flex-col-reverse" : "flex-col",
         look === "highlight" &&
           "bg-kern-darkblue-025 rounded-lg px-16 py-40 sm:px-80",
         look === "white" && "rounded-lg bg-white px-16 py-40 sm:px-80",
@@ -72,19 +57,8 @@ const InfoBox = ({
       {visual?.type === "icon" && (
         <visual.Icon
           className={twMerge(
-            "fill-kern-darkblue-300 hidden sm:block",
-            imageSizes["icon"],
+            "fill-kern-darkblue-300 hidden size-80 sm:block",
             visual.className,
-          )}
-        />
-      )}
-      {visual?.type === "image" && (
-        <Image
-          {...visual.image}
-          className={twMerge(
-            "shrink-0 self-center object-cover md:self-start",
-            imageSizes[visual.image.size],
-            visual.image.className,
           )}
         />
       )}
