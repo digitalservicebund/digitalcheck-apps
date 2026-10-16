@@ -57,8 +57,8 @@ importers:
         specifier: github:digitalservicebund/astro-route-generator#0.2.7
         version: https://codeload.github.com/digitalservicebund/astro-route-generator/tar.gz/be3ea5f39963ebbf497e929bb2f5baac86fb0658(astro@7.3.8(@types/node@26.6.5)(jiti@2.7.0)(yaml@2.9.1))
       docx:
-        specifier: ^9.10.0
-        version: 9.10.0
+        specifier: ^9.11.0
+        version: 9.11.0
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -2254,8 +2254,8 @@ packages:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
 
-  docx@9.10.0:
-    resolution: {integrity: sha512-ogiWhZvSTsN6+Pjs5uQrSdyR0TI6A1ou+cVzZ/b1mCfaoiW3cIzaUMnF4fISIA26QBq4xCz7r38GvjMZAYB3iw==}
+  docx@9.11.0:
+    resolution: {integrity: sha512-vQLEYi45vlN/auiMHgx4oC95wbP5qPaD7Vanfixcd3wtTl5gLUPWqUpwbw6yVN0/U6o3p3EX4P5puAeYPXvcSQ==}
     engines: {node: '>=10'}
 
   dom-accessibility-api@0.5.16:
@@ -6996,7 +6996,7 @@ snapshots:
     dependencies:
       esutils: 2.0.3
 
-  docx@9.10.0:
+  docx@9.11.0:
     dependencies:
       '@types/node': 26.6.5
       hash.js: 1.1.7
