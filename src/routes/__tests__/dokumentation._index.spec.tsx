@@ -4,7 +4,7 @@ import "./utils/mockRouter";
 // End of mocks
 
 import { dokumentation_hinweise } from "@/config/routes";
-import { DokumentationIndexPage } from "@/routes/dokumentation._index";
+import { DokumentationIndexActions } from "@/routes/dokumentation._index";
 import { DocumentationDataProvider } from "@/routes/dokumentation/DocumentationDataProvider";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
@@ -30,7 +30,7 @@ describe("Dokumentation Index Route - Integration Tests", () => {
   };
 
   beforeEach(() => {
-    renderWithRouter(<DokumentationIndexPage prinzips={[]} />);
+    renderWithRouter(<DokumentationIndexActions prinzips={[]} />);
   });
 
   it("renders the main CTA button to start documentation", () => {
@@ -48,14 +48,5 @@ describe("Dokumentation Index Route - Integration Tests", () => {
       name: "Word-Vorlage herunterladen (.docx)",
     });
     expect(downloadButton).toBeInTheDocument();
-  });
-
-  it("renders the support banner", () => {
-    expect(
-      screen.getByRole("heading", {
-        name: "Sie haben Gesprächsbedarf zu Ihrem Vorhaben?",
-        level: 2,
-      }),
-    ).toBeInTheDocument();
   });
 });
