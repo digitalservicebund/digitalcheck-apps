@@ -1,11 +1,11 @@
 import type {
   BindingRequirementsData,
   DocumentationData,
-} from "@/routes/dokumentation/documentationDataSchema";
+} from "@/pages/dokumentation/_react/documentationDataSchema";
 import {
   serviceAreaOptions,
   stakeholderOptions,
-} from "@/routes/dokumentation/interoperability/values.ts";
+} from "@/pages/dokumentation/_react/interoperability/values.ts";
 import { metadataTable } from "@/service/wordDocumentationExport/docxUtils.ts";
 import { keyValueToMap } from "@/utils/keyValue.ts";
 import type { FileChild } from "docx";

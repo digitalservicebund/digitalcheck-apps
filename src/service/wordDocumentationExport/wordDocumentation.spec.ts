@@ -1,9 +1,9 @@
 import "./mockDocx.ts"; // set up mocks first
 
 import type { Prinzip } from "@/content.config";
+import type { DocumentationData } from "@/pages/dokumentation/_react/documentationDataSchema";
 import { documentationDocument } from "@/resources/content/documentation-document";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
-import type { DocumentationData } from "@/routes/dokumentation/documentationDataSchema";
 import { PatchType } from "docx";
 import { describe, expect, it, vi } from "vitest";
 import { getTextFromTextRun } from "./testUtils.ts";

@@ -1,7 +1,7 @@
 ---
 import VorpruefungLayout from "@/layouts/VorpruefungLayout.astro";
 import { preCheck } from "@/resources/content/vorpruefung";
-import { PreCheckQuestion } from "@/routes/vorpruefung._preCheckNavigation.$questionId";
+import { PreCheckQuestion } from "@/pages/vorpruefung/_react/question";
 
 export function getStaticPaths() {
   return preCheck.questions.map((question, questionIdx) => ({

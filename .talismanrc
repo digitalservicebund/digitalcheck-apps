@@ -20,14 +20,14 @@ fileignoreconfig:
   - filename: src/utils/localStorageVersioned.spec.ts
     allowed_patterns:
       - testKey
-  - filename: src/routes/dokumentation/DocumentationDataProvider.tsx
+  - filename: src/pages/dokumentation/_react/DocumentationDataProvider.tsx
     allowed_patterns:
       - STORAGE_KEY
       - testKey
-  - filename: src/routes/dokumentation/DocumentationDataProvider.spec.tsx
+  - filename: src/pages/dokumentation/_react/DocumentationDataProvider.spec.tsx
     allowed_patterns:
       - STORAGE_KEY
-  - filename: src/routes/vorpruefung/preCheckDataService.ts
+  - filename: src/pages/vorpruefung/_react/preCheckDataService.ts
     allowed_patterns:
       - STORAGE_KEY
   - filename: src/resources/content/das-ist-neu.ts

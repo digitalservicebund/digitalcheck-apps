@@ -1,16 +1,16 @@
 import { templateDokumentationDerDigitaltauglichkeitInteroperabilitaet_docx } from "@/config/downloads";
 import type { Prinzip } from "@/content.config";
-import { documentationDocument } from "@/resources/content/documentation-document";
-import { digitalDocumentation } from "@/resources/content/dokumentation";
-import { contact } from "@/resources/content/shared/contact";
-import { useDocumentationDataService } from "@/routes/dokumentation/DocumentationDataProvider";
-import type { DocumentationData } from "@/routes/dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION } from "@/routes/dokumentation/documentationDataSchema";
+import { useDocumentationDataService } from "@/pages/dokumentation/_react/DocumentationDataProvider";
+import type { DocumentationData } from "@/pages/dokumentation/_react/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "@/pages/dokumentation/_react/documentationDataSchema";
 import {
   euInteroperabilityQuestion,
   formatRating,
   interoperabilityRatingPlaceholder,
-} from "@/routes/dokumentation/interoperability/values.ts";
+} from "@/pages/dokumentation/_react/interoperability/values.ts";
+import { documentationDocument } from "@/resources/content/documentation-document";
+import { digitalDocumentation } from "@/resources/content/dokumentation";
+import { contact } from "@/resources/content/shared/contact";
 import {
   toMailtoHyperlinkPatch,
   toParagraphPatch,

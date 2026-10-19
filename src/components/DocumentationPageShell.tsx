@@ -1,8 +1,8 @@
 "use client";
 
 import type { Prinzip } from "@/content.config";
-import { LayoutWithDocumentationNavigation } from "@/routes/dokumentation._documentationNavigation";
-import { DocumentationDataProvider } from "@/routes/dokumentation/DocumentationDataProvider";
+import { DocumentationDataProvider } from "@/pages/dokumentation/_react/DocumentationDataProvider";
+import { LayoutWithDocumentationNavigation } from "@/pages/dokumentation/_react/DocumentationNavigation";
 import type { ReactNode } from "react";
 
 export function DocumentationPageShell({

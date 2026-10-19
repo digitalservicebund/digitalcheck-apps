@@ -4,7 +4,7 @@ import {
   vorpruefung_ergebnis,
   vorpruefung_hinweise,
 } from "@/config/routes";
-import type { TQuestion } from "@/routes/vorpruefung._preCheckNavigation.$questionId";
+import type { TQuestion } from "@/pages/vorpruefung/_react/question";
 import type { ContentLink } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
 import { withBase } from "@/utils/path";
