@@ -13,8 +13,7 @@ import { digitalDocumentation } from "@/resources/content/dokumentation";
 import {
   type BindingRequirementsData,
   bindingRequirementsNavigationSchema,
-  DATA_SCHEMA_VERSION_V1,
-  DATA_SCHEMA_VERSION_V2,
+  DATA_SCHEMA_VERSION,
   type DocumentationData,
   type EuInteroperabilityOutcome,
   euInteroperabilityOutcomeNavigationSchema,
@@ -28,9 +27,7 @@ import {
   type PolicyTitle,
   policyTitleSchema,
   type Principle,
-  principleSchemaV2,
-  type V1,
-  type V2,
+  principleSchema,
 } from "@/routes/dokumentation/documentationDataSchema";
 import type { ReactNode } from "react";
 import {
@@ -203,64 +200,26 @@ function getRouteData(
         ({ id }) => id === routeOrDataIdentifier,
       );
   const schema =
-    routeDefinitions[routeOrDataIdentifier]?.schema ?? principleSchemaV2;
+    routeDefinitions[routeOrDataIdentifier]?.schema ?? principleSchema;
 
   return { formData, schema, validate: routeDefinition?.validate };
 }
 
 const { radioOptions } = digitalDocumentation.principlePages;
 
-function migrateV1ToV2(v1: DocumentationData<V1>): DocumentationData<V2> {
-  const principles = v1.principles?.map((p) => {
-    if (p.answer !== radioOptions[0] || !Array.isArray(p.reasoning)) return p;
-    const checked = p.reasoning.filter((r) => r.checkbox);
-    return {
-      id: p.id,
-      answer: p.answer,
-      aspects: checked
-        .map((r) => r.aspect)
-        .filter((a): a is string => Boolean(a)),
-      reasoning: checked
-        .map((r) => r.reason)
-        .filter(Boolean)
-        .join("\n"),
-    } as Principle;
-  });
-
-  const updatedDocumentationData: DocumentationData<V2> = {
-    version: DATA_SCHEMA_VERSION_V2,
-    policyTitle: v1.policyTitle,
-    participation: v1.participation,
-    euInteroperabilityOutcome: v1.euInteroperabilityOutcome,
-    bindingRequirements: v1.bindingRequirements,
-    interoperabilityAssessment: v1.interoperabilityAssessment,
-    principles: principles as Principle[],
-  };
-
-  writeToStorage(updatedDocumentationData);
-
-  return updatedDocumentationData;
-}
-
 function getInitialState(): DocumentationData {
-  let storedData = readDataFromLocalStorage<
-    DocumentationData<V1> | DocumentationData
-  >(STORAGE_KEY);
+  const storedData = readDataFromLocalStorage<DocumentationData>(STORAGE_KEY);
 
-  if (storedData?.version === DATA_SCHEMA_VERSION_V1) {
-    storedData = migrateV1ToV2(storedData);
-  }
-
-  if (storedData !== null)
-    return { ...storedData, initialized: true } as DocumentationData;
-  return { version: DATA_SCHEMA_VERSION_V2, initialized: true };
+  if (storedData?.version === DATA_SCHEMA_VERSION)
+    return { ...storedData, initialized: true };
+  return { version: DATA_SCHEMA_VERSION, initialized: true };
 }
 
 export function DocumentationDataProvider({
   children,
 }: Readonly<DocumentationDataProviderProps>) {
   const [documentationData, setDocumentationData] = useState<DocumentationData>(
-    { version: DATA_SCHEMA_VERSION_V2, initialized: false },
+    { version: DATA_SCHEMA_VERSION, initialized: false },
   );
 
   useEffect(() => {

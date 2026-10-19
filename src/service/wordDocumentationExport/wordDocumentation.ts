@@ -5,7 +5,7 @@ import { digitalDocumentation } from "@/resources/content/dokumentation";
 import { contact } from "@/resources/content/shared/contact";
 import { useDocumentationDataService } from "@/routes/dokumentation/DocumentationDataProvider";
 import type { DocumentationData } from "@/routes/dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V2 } from "@/routes/dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "@/routes/dokumentation/documentationDataSchema";
 import {
   euInteroperabilityQuestion,
   formatRating,
@@ -41,9 +41,7 @@ export function useWordDocumentation() {
         const templateData = await template.arrayBuffer();
         const doc = await createDoc(
           templateData,
-          templateOnly
-            ? { version: DATA_SCHEMA_VERSION_V2 }
-            : documentationData,
+          templateOnly ? { version: DATA_SCHEMA_VERSION } : documentationData,
           prinzips,
           { templateOnly },
         );

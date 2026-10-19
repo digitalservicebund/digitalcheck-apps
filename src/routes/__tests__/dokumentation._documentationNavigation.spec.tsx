@@ -26,15 +26,8 @@ import {
 } from "@/routes/dokumentation/DocumentationNavigationContext";
 import { readDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import { DocumentationDataProvider } from "../dokumentation/DocumentationDataProvider";
-import type {
-  DocumentationData,
-  V1,
-  V2,
-} from "../dokumentation/documentationDataSchema";
-import {
-  DATA_SCHEMA_VERSION_V1,
-  DATA_SCHEMA_VERSION_V2,
-} from "../dokumentation/documentationDataSchema";
+import type { DocumentationData } from "../dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "../dokumentation/documentationDataSchema";
 
 /**
  * A minimal prinzip stub so the nav renders a "Prinzip A" entry,
@@ -77,7 +70,7 @@ const documentationFormRoutes = flattenedMockRoutes.filter(
 
 type ValidationScenario = {
   name: string;
-  documentationData: DocumentationData<V1> | DocumentationData<V2>;
+  documentationData: DocumentationData;
   expected: {
     completedTitle: boolean;
     completedParticipation: boolean;
@@ -90,118 +83,6 @@ type ValidationScenario = {
     warningInteroperabilityLevelLegal: boolean;
   };
 };
-
-const validationScenarios: ValidationScenario[] = [
-  {
-    name: "all valid completed",
-    documentationData: {
-      version: DATA_SCHEMA_VERSION_V1,
-      policyTitle: {
-        title: "Valid Title",
-        organization: "Valid Organization",
-      },
-      participation: {
-        formats: "Valid Formats",
-        results: "Valid Results",
-      },
-      euInteroperabilityOutcome: { outcomeId: "REQUIRED" },
-      interoperabilityAssessment: {
-        legal: { rating: "positive", detail: "Valid legal detail" },
-        organizational: { rating: "", detail: "" },
-        semantic: { rating: "", detail: "" },
-        technical: { rating: "", detail: "" },
-      },
-      principles: [
-        {
-          answer: "Ja, gänzlich oder teilweise",
-          id: `${dokumentation.path}/prinzipA`,
-          reasoning: [
-            {
-              checkbox: "on",
-              aspect: "aspect-1",
-              paragraphs: "paragraf 1",
-              reason: "begründung 1",
-            },
-          ],
-        },
-      ],
-    },
-    expected: {
-      completedTitle: false, // is current route so no states are shown
-      completedParticipation: true,
-      completedPrinciples: true,
-      completedInteroperability: true,
-      enabledInteroperability: true,
-      warningTitle: false,
-      warningParticipation: false,
-      warningPrinciples: false,
-      warningInteroperabilityLevelLegal: false,
-    },
-  },
-  {
-    name: "unfilled form",
-    documentationData: {
-      version: DATA_SCHEMA_VERSION_V1,
-    },
-    expected: {
-      completedTitle: false, // is current route so no states are shown
-      completedParticipation: false,
-      completedPrinciples: false,
-      completedInteroperability: false,
-      enabledInteroperability: false,
-      warningTitle: false,
-      warningParticipation: false,
-      warningPrinciples: false,
-      warningInteroperabilityLevelLegal: false,
-    },
-  },
-  {
-    name: "partial filled form with warnings",
-    documentationData: {
-      version: DATA_SCHEMA_VERSION_V1,
-      policyTitle: {
-        title: "",
-        organization: "",
-      },
-      participation: {
-        formats: "Valid Formats",
-        results: "Valid Results",
-      },
-      euInteroperabilityOutcome: { outcomeId: "REQUIRED" },
-      interoperabilityAssessment: {
-        legal: { rating: "positive", detail: "" },
-        organizational: { rating: "", detail: "" },
-        semantic: { rating: "", detail: "" },
-        technical: { rating: "", detail: "" },
-      },
-      principles: [
-        {
-          answer: "Ja, gänzlich oder teilweise",
-          id: `${dokumentation.path}/prinzipA`,
-          reasoning: [
-            {
-              checkbox: "on",
-              aspect: "aspect-1",
-              paragraphs: "paragraf 1",
-              reason: "",
-            },
-          ],
-        },
-      ],
-    },
-    expected: {
-      completedTitle: false, // is current route so no states are shown
-      completedParticipation: true,
-      completedPrinciples: false,
-      completedInteroperability: false,
-      enabledInteroperability: true,
-      warningTitle: false,
-      warningParticipation: false,
-      warningPrinciples: true,
-      warningInteroperabilityLevelLegal: true,
-    },
-  },
-];
 
 function renderPage({ path }: Route) {
   function DummyElement() {
@@ -345,59 +226,11 @@ describe("navigation on pages of documentation", () => {
   });
 
   describe("States", () => {
-    describe.each(validationScenarios)(
-      "Scenario: $name",
-      ({ documentationData, expected }) => {
-        beforeEach(async () => {
-          vi.mocked(
-            readDataFromLocalStorage<DocumentationData<V1>>,
-          ).mockReturnValue(documentationData);
-          // eslint-disable-next-line @typescript-eslint/require-await
-          await act(async () => {
-            renderPage(currentRoute);
-          });
-        });
-
-        it("shows correct completed states", () => {
-          if (expected.completedTitle) expectCompleted(getTitel());
-          else expectNotCompleted(getTitel());
-          if (expected.completedParticipation)
-            expectCompleted(getBeteiligungsformate());
-          else expectNotCompleted(getBeteiligungsformate());
-          if (expected.enabledInteroperability) {
-            if (expected.completedInteroperability)
-              expectCompleted(getRechtlicheInteroperabilitaet());
-            else expectNotCompleted(getRechtlicheInteroperabilitaet());
-          }
-
-          if (expected.completedPrinciples) expectCompleted(getPrinzipA());
-          else expectNotCompleted(getPrinzipA());
-        });
-
-        it("shows correct warning states", () => {
-          if (expected.warningTitle) expectWarning(getTitel());
-          else expectNotWarning(getTitel());
-          if (expected.warningParticipation)
-            expectWarning(getBeteiligungsformate());
-          else expectNotWarning(getBeteiligungsformate());
-          if (expected.enabledInteroperability) {
-            if (expected.warningInteroperabilityLevelLegal)
-              expectWarning(getRechtlicheInteroperabilitaet());
-            else expectNotWarning(getRechtlicheInteroperabilitaet());
-          }
-          if (expected.warningPrinciples) expectWarning(getPrinzipA());
-          else expectNotWarning(getPrinzipA());
-        });
-      },
-    );
-  });
-
-  describe("V2 States", () => {
-    const validationScenariosV2: ValidationScenario[] = [
+    const validationScenarios: ValidationScenario[] = [
       {
-        name: "all valid completed (V2)",
+        name: "all valid completed",
         documentationData: {
-          version: DATA_SCHEMA_VERSION_V2,
+          version: DATA_SCHEMA_VERSION,
           policyTitle: {
             title: "Valid Title",
             organization: "Valid Organization",
@@ -438,9 +271,9 @@ describe("navigation on pages of documentation", () => {
         },
       },
       {
-        name: "unfilled form (V2)",
+        name: "unfilled form",
         documentationData: {
-          version: DATA_SCHEMA_VERSION_V2,
+          version: DATA_SCHEMA_VERSION,
         },
         expected: {
           completedTitle: false,
@@ -455,9 +288,9 @@ describe("navigation on pages of documentation", () => {
         },
       },
       {
-        name: "partial filled form (V2)",
+        name: "partial filled form",
         documentationData: {
-          version: DATA_SCHEMA_VERSION_V2,
+          version: DATA_SCHEMA_VERSION,
           policyTitle: {
             title: "",
             organization: "",
@@ -478,14 +311,14 @@ describe("navigation on pages of documentation", () => {
               answer: "Ja, gänzlich oder teilweise",
               id: `${dokumentation.path}/prinzipA`,
               reasoning: "Some reasoning",
-              aspects: [], // empty aspects fails V2 validation
+              aspects: [], // empty aspects fails validation
             },
           ],
         },
         expected: {
           completedTitle: false, // is current route so no states are shown
           completedParticipation: true,
-          completedPrinciples: false, // aspects empty -> invalid in V2
+          completedPrinciples: false, // aspects empty -> invalid
           completedInteroperability: false,
           enabledInteroperability: true,
           warningTitle: false,
@@ -496,12 +329,12 @@ describe("navigation on pages of documentation", () => {
       },
     ];
 
-    describe.each(validationScenariosV2)(
+    describe.each(validationScenarios)(
       "Scenario: $name",
       ({ documentationData, expected }) => {
         beforeEach(async () => {
           vi.mocked(
-            readDataFromLocalStorage<DocumentationData<V1>>,
+            readDataFromLocalStorage<DocumentationData>,
           ).mockReturnValue(documentationData);
           // eslint-disable-next-line @typescript-eslint/require-await
           await act(async () => {
@@ -577,9 +410,9 @@ describe("navigation on pages of documentation", () => {
     describe("when interoperability is NOT required (disabled routes)", () => {
       beforeEach(() => {
         // No euInteroperabilityOutcome set → all bewertung routes are disabled
-        vi.mocked(
-          readDataFromLocalStorage<DocumentationData<V2>>,
-        ).mockReturnValue({ version: DATA_SCHEMA_VERSION_V2 });
+        vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+          version: DATA_SCHEMA_VERSION,
+        });
       });
 
       it("nextUrl skips all disabled EU routes when on euInteroperabilitaetsbezug", () => {
@@ -617,10 +450,8 @@ describe("navigation on pages of documentation", () => {
 
     describe("when interoperability IS required (routes enabled)", () => {
       beforeEach(() => {
-        vi.mocked(
-          readDataFromLocalStorage<DocumentationData<V2>>,
-        ).mockReturnValue({
-          version: DATA_SCHEMA_VERSION_V2,
+        vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+          version: DATA_SCHEMA_VERSION,
           euInteroperabilityOutcome: { outcomeId: "REQUIRED" },
         });
       });

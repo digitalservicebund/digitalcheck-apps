@@ -15,12 +15,8 @@ import {
   STORAGE_KEY,
   useDocumentationDataService,
 } from "./DocumentationDataProvider";
-import type {
-  DocumentationData,
-  Principle,
-  V2,
-} from "./documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V2 } from "./documentationDataSchema";
+import type { DocumentationData, Principle } from "./documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "./documentationDataSchema";
 
 const mockRead = vi.mocked(readDataFromLocalStorage);
 const mockWrite = vi.mocked(writeVersionedDataToLocalStorage);
@@ -30,8 +26,8 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   <DocumentationDataProvider>{children}</DocumentationDataProvider>
 );
 
-const baseData: DocumentationData<V2> = {
-  version: DATA_SCHEMA_VERSION_V2,
+const baseData: DocumentationData = {
+  version: DATA_SCHEMA_VERSION,
   initialized: true,
 };
 
@@ -43,7 +39,7 @@ describe("DocumentationDataProvider", () => {
 
   describe("documentationData (initial load)", () => {
     it("returns data from localStorage on mount", async () => {
-      const storedData: DocumentationData<V2> = {
+      const storedData: DocumentationData = {
         ...baseData,
         policyTitle: {
           title: "Stored Title",
@@ -87,7 +83,7 @@ describe("DocumentationDataProvider", () => {
 
   describe("createOrUpdateDocumentationData", () => {
     it("writes single field data to localStorage", async () => {
-      const data: DocumentationData<V2> = {
+      const data: DocumentationData = {
         ...baseData,
         policyTitle: { title: "My Policy", organization: "My Organization" },
       };
@@ -103,7 +99,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("writes complete data object to localStorage", async () => {
-      const data: DocumentationData<V2> = {
+      const data: DocumentationData = {
         ...baseData,
         policyTitle: { title: "My Policy", organization: "My organization" },
         participation: { formats: "Workshops", results: "Results" },
@@ -147,7 +143,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("updates policyTitle while preserving existing data", async () => {
-      const existingData: DocumentationData<V2> = {
+      const existingData: DocumentationData = {
         ...baseData,
         policyTitle: { title: "Old Title", organization: "Old Organization" },
         participation: { formats: "Online", results: "Some results" },
@@ -198,7 +194,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("updates participation while preserving existing data", async () => {
-      const existingData: DocumentationData<V2> = {
+      const existingData: DocumentationData = {
         ...baseData,
         policyTitle: { title: "My Policy", organization: "My Organization" },
         participation: { formats: "Old format", results: "Old results" },
@@ -251,7 +247,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("adds principle to an empty principles array", async () => {
-      const existingData: DocumentationData<V2> = {
+      const existingData: DocumentationData = {
         ...baseData,
         principles: [],
       };
@@ -271,7 +267,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("appends principle to existing principles array", async () => {
-      const existingData: DocumentationData<V2> = {
+      const existingData: DocumentationData = {
         ...baseData,
         principles: [principle1],
       };
@@ -291,7 +287,7 @@ describe("DocumentationDataProvider", () => {
     });
 
     it("updates principle with matching id in-place, preserving other principles", async () => {
-      const existingData: DocumentationData<V2> = {
+      const existingData: DocumentationData = {
         ...baseData,
         principles: [principle1, principle2],
       };

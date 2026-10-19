@@ -19,11 +19,8 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DocumentationPrincipleErlaeuterung } from "../dokumentation._documentationNavigation.$principleId_.erlaeuterung";
 import { DocumentationDataProvider } from "../dokumentation/DocumentationDataProvider";
-import type {
-  DocumentationData,
-  V2,
-} from "../dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V2 } from "../dokumentation/documentationDataSchema";
+import type { DocumentationData } from "../dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "../dokumentation/documentationDataSchema";
 
 type RouteGroup = {
   title: string;
@@ -96,8 +93,8 @@ const mockStoredData = (
   reasoning = "",
   aspects: string[] = [],
 ) => {
-  vi.mocked(readDataFromLocalStorage<DocumentationData<V2>>).mockReturnValue({
-    version: DATA_SCHEMA_VERSION_V2,
+  vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+    version: DATA_SCHEMA_VERSION,
     principles: [
       {
         id: "1",

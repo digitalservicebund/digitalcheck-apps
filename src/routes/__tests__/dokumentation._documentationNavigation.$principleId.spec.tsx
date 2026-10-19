@@ -21,11 +21,8 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DocumentationPrinciple } from "../dokumentation._documentationNavigation.$principleId";
 import { DocumentationDataProvider } from "../dokumentation/DocumentationDataProvider";
-import type {
-  DocumentationData,
-  V2,
-} from "../dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V2 } from "../dokumentation/documentationDataSchema";
+import type { DocumentationData } from "../dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "../dokumentation/documentationDataSchema";
 
 const routes: (RouteGroup | Route)[] = [
   dokumentation_hinweise,
@@ -76,7 +73,7 @@ const renderWithRouter = () => {
   );
 };
 
-describe("DocumentationPrincipleV2", () => {
+describe("DocumentationPrinciple", () => {
   beforeEach(() => {
     mockNavigationContext.currentUrl = "/current-url";
     mockNavigationContext.navigationBaseUrl = "/current-url";
@@ -142,7 +139,7 @@ describe("DocumentationPrincipleV2", () => {
     expect(backButton).toHaveAttribute("href", "/previous-url");
   });
 
-  describe("V2 simplicity - no aspects or reasoning on this page", () => {
+  describe("no aspects or reasoning on this page", () => {
     let user: UserEvent;
 
     beforeEach(() => {
@@ -174,10 +171,8 @@ describe("DocumentationPrincipleV2", () => {
 
   describe("pre-filled data from localStorage", () => {
     it("pre-selects the saved answer", () => {
-      vi.mocked(
-        readDataFromLocalStorage<DocumentationData<V2>>,
-      ).mockReturnValue({
-        version: DATA_SCHEMA_VERSION_V2,
+      vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+        version: DATA_SCHEMA_VERSION,
         principles: [
           {
             id: "1",
@@ -197,7 +192,7 @@ describe("DocumentationPrincipleV2", () => {
     });
   });
 
-  // Note: V2 principle page uses warningInsteadOfError and navigates via onBeforeSubmit,
+  // Note: principle page uses warningInsteadOfError and navigates via onBeforeSubmit,
   // so form-level validation is intentionally lenient here. Full validation is tested
   // on the erlaeuterung page where aspects and reasoning are collected.
 });

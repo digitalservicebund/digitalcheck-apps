@@ -12,7 +12,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DocumentationDataProvider } from "../dokumentation/DocumentationDataProvider";
 import type { DocumentationData } from "../dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V1 } from "../dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "../dokumentation/documentationDataSchema";
 
 const mockedReadDataFromLocalStorage = vi.mocked(
   readDataFromLocalStorage<DocumentationData>,
@@ -73,7 +73,7 @@ describe("DocumentationTitle", () => {
   describe("validation", () => {
     beforeEach(() => {
       mockedReadDataFromLocalStorage.mockReturnValue({
-        ...{ version: DATA_SCHEMA_VERSION_V1 },
+        ...{ version: DATA_SCHEMA_VERSION },
         policyTitle: { title: "", organization: "" },
       });
 

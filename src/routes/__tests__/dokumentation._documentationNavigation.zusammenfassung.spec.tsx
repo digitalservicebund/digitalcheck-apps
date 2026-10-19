@@ -14,7 +14,6 @@ import type {
   Participation,
   PolicyTitle,
   Principle,
-  V2,
 } from "@/routes/dokumentation/documentationDataSchema";
 import type { RouteGroup } from "@/routes/dokumentation/DocumentationNavigationContext.tsx";
 import { readDataFromLocalStorage } from "@/utils/localStorageVersioned";
@@ -51,9 +50,9 @@ function createDocumentationDataMock({
 }: {
   policyTitle?: PolicyTitle;
   participation?: Participation;
-  principles?: Principle<V2>[];
+  principles?: Principle[];
 } = {}) {
-  vi.mocked(readDataFromLocalStorage<DocumentationData<V2>>).mockReturnValue({
+  vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
     version: "2",
     policyTitle: policyTitle,
     participation: participation,
@@ -70,7 +69,7 @@ describe("DocumentationSummary", () => {
     );
   };
 
-  const mockDocumentationData: DocumentationData<V2> = {
+  const mockDocumentationData: DocumentationData = {
     version: "2",
     policyTitle: { title: "Titel des Vorhabens", organization: "Organisation" },
     participation: {
@@ -446,7 +445,7 @@ describe("DocumentationSummary", () => {
       },
     ],
     [MOCK_ROUTE_PRINCIPLE.path, { principles: undefined }],
-    [MOCK_ROUTE_PRINCIPLE.path, { principles: [] as Principle<V2>[] }],
+    [MOCK_ROUTE_PRINCIPLE.path, { principles: [] as Principle[] }],
   ])(
     "shows warning for step %s when data is undefined or empty",
     (stepId, mockData) => {

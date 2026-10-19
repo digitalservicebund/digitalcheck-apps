@@ -16,8 +16,8 @@ import { navigate } from "astro:transitions/client";
 import type React from "react";
 import { DocumentationContinueActions } from "./DocumentationContinueActions";
 import { DocumentationDataProvider } from "./DocumentationDataProvider";
-import type { DocumentationData, V1 } from "./documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V1 } from "./documentationDataSchema";
+import type { DocumentationData } from "./documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "./documentationDataSchema";
 
 vi.mock("astro:transitions/client", () => ({
   navigate: vi.fn(),
@@ -54,10 +54,8 @@ describe("DocumentationContinueActions", () => {
 
   describe("when a saved documentation exists", () => {
     beforeEach(() => {
-      vi.mocked(
-        readDataFromLocalStorage<DocumentationData<V1>>,
-      ).mockReturnValue({
-        version: DATA_SCHEMA_VERSION_V1,
+      vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+        version: DATA_SCHEMA_VERSION,
         policyTitle: { title: "Test", organization: "Organization" },
       });
       renderWithRouter(<DocumentationContinueActions prinzips={[]} />);

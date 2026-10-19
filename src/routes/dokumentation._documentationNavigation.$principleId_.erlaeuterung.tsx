@@ -14,7 +14,7 @@ import DocumentationActions from "./dokumentation/DocumentationActions";
 import { useSyncedForm } from "./dokumentation/documentationDataHook";
 import { useDocumentationDataService } from "./dokumentation/DocumentationDataProvider";
 import type { Principle } from "./dokumentation/documentationDataSchema";
-import { principleAnswerSchemaV2 } from "./dokumentation/documentationDataSchema";
+import { principleAnswerSchema } from "./dokumentation/documentationDataSchema";
 import { useDocumentationNavigation } from "./dokumentation/DocumentationNavigationContext";
 
 const { radioOptions } = digitalDocumentation.principlePages;
@@ -38,7 +38,7 @@ function DocumentationPrincipleErlaeuterungForm({
   const { addOrUpdatePrincipleReasoning } = useDocumentationDataService();
 
   const form = useSyncedForm({
-    schema: principleAnswerSchemaV2,
+    schema: principleAnswerSchema,
     defaultValues: { answer, reasoning: "", aspects: [] },
     setDataCallback: (data) =>
       addOrUpdatePrincipleReasoning(

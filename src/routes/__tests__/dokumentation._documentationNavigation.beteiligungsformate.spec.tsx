@@ -11,11 +11,8 @@ import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DocumentationDataProvider } from "../dokumentation/DocumentationDataProvider";
-import type {
-  DocumentationData,
-  V1,
-} from "../dokumentation/documentationDataSchema";
-import { DATA_SCHEMA_VERSION_V1 } from "../dokumentation/documentationDataSchema";
+import type { DocumentationData } from "../dokumentation/documentationDataSchema";
+import { DATA_SCHEMA_VERSION } from "../dokumentation/documentationDataSchema";
 
 const renderWithRouter = () => {
   return render(
@@ -87,10 +84,8 @@ describe("DocumentationParticipation", () => {
 
   describe("validation", () => {
     beforeEach(() => {
-      vi.mocked(
-        readDataFromLocalStorage<DocumentationData<V1>>,
-      ).mockReturnValue({
-        version: DATA_SCHEMA_VERSION_V1,
+      vi.mocked(readDataFromLocalStorage<DocumentationData>).mockReturnValue({
+        version: DATA_SCHEMA_VERSION,
         participation: {
           formats: "",
           results: "",

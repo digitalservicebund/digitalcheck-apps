@@ -257,7 +257,7 @@ function InteroperabilityMetaContent({
 
 function InteroperabilityContent({
   data,
-}: Readonly<{ data: DocumentationData<"2"> }>) {
+}: Readonly<{ data: DocumentationData }>) {
   if (!data.euInteroperabilityOutcome?.outcomeId) return null;
   const outcome =
     data.euInteroperabilityOutcome?.outcomeId === "REQUIRED" ? "Ja" : "Nein";
@@ -290,7 +290,7 @@ function BindingRequirementSummary({
 }
 
 function createInteroperabilityInfoBoxItems(
-  documentationData: DocumentationData<"2">,
+  documentationData: DocumentationData,
 ): InfoBoxProps[] {
   const detailsRequired =
     documentationData.euInteroperabilityOutcome?.outcomeId === "REQUIRED";
