@@ -62,6 +62,9 @@ importers:
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
+      form-graph-engine:
+        specifier: github:digitalservicebund/form-graph-engine#v0.0.10
+        version: https://codeload.github.com/digitalservicebund/form-graph-engine/tar.gz/67a435fd5aeb8fab3ceb7cecf28d9927c3669faf(zod@4.6.7)
       marked:
         specifier: ^18.1.1
         version: 18.1.1
@@ -2653,6 +2656,13 @@ packages:
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
+
+  form-graph-engine@https://codeload.github.com/digitalservicebund/form-graph-engine/tar.gz/67a435fd5aeb8fab3ceb7cecf28d9927c3669faf:
+    resolution: {gitHosted: true, integrity: sha512-slKrhThtA8cfF9rd264G2rlnVBtjvbVJQAOtMe10D04zmAEjHH3SI1uCUVkMaxCpYHMa5EoqoXzk6YgD/ZEE7A==, tarball: https://codeload.github.com/digitalservicebund/form-graph-engine/tar.gz/67a435fd5aeb8fab3ceb7cecf28d9927c3669faf}
+    version: 0.0.10
+    engines: {node: '>=22', pnpm: ^11}
+    peerDependencies:
+      zod: '>=4.3.0 <5'
 
   fs-minipass@3.0.3:
     resolution: {integrity: sha512-XUBA9XClHbnJWSfBzjkm6RvPsyg3sryZt06BEQoXcF7EK/xpGaQYJgQKDJSUH5SGZ76Y7pFx1QBnXz09rU5Fbw==}
@@ -7523,6 +7533,10 @@ snapshots:
   for-each@0.3.5:
     dependencies:
       is-callable: 1.2.7
+
+  form-graph-engine@https://codeload.github.com/digitalservicebund/form-graph-engine/tar.gz/67a435fd5aeb8fab3ceb7cecf28d9927c3669faf(zod@4.6.7):
+    dependencies:
+      zod: 4.6.7
 
   fs-minipass@3.0.3:
     dependencies:
