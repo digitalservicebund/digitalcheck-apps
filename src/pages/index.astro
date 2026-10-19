@@ -135,12 +135,7 @@ const principles = (await getCollection("prinzipien"))
         <ol class="list-unstyled grid gap-32 lg:grid-cols-3">
           {steps.map((step, index) => (
             <li class="[&_.kern-btn]:flex-none">
-              <KernCard
-                title={step.title}
-                headingLevel={3}
-                body={step.subline}
-                background="white"
-              >
+              <KernCard title={step.title} headingLevel={3} body={step.subline}>
                 <span
                   slot="pre-header"
                   class="kern-number border-kern-action-default text-kern-action-default mb-16"
@@ -258,7 +253,6 @@ const principles = (await getCollection("prinzipien"))
         <KernCard
           title="EU-Interoperabilität"
           body="Neben der Digitaltauglichkeit prüft der Digitalcheck auch die Interoperabilitätsanforderungen gemäß EU-Verordnung 2024/903 (Interoperables Europa)."
-          background="white"
         >
           <Image
             slot="image"
@@ -285,7 +279,6 @@ const principles = (await getCollection("prinzipien"))
           <KernCard
             title="Digitalcheck für Bundesländer"
             body="Durch eine Kooperation mit dem Bund können Sie den Digitalcheck für Ihr Bundesland direkt auf der Webseite des Digitalcheck Bund integrieren."
-            background="white"
           >
             <Image
               slot="image"

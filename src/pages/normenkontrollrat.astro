@@ -115,12 +115,7 @@ const documents = [
       </p>
       <div class="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-kern-xl">
         {documents.map(({ icon: Icon, title, subline, body, link }) => (
-          <KernCard
-            title={title}
-            subline={subline}
-            body={body}
-            background="white"
-          >
+          <KernCard title={title} subline={subline} body={body}>
             <Icon slot="icon" class="size-48 text-kern-darkblue-800" />
             <a
               slot="footer"

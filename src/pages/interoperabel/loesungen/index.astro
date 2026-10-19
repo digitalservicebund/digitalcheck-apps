@@ -72,12 +72,7 @@ const solutions = [
       </div>
       <div class="grid grid-cols-1 gap-32 md:grid-cols-2 lg:grid-cols-3">
         {solutions.map(({ route, subline }) => (
-          <KernCard
-            title={route.title}
-            subline={subline}
-            href={route.path}
-            background="white"
-          />
+          <KernCard title={route.title} subline={subline} href={route.path} />
         ))}
       </div>
     </section>

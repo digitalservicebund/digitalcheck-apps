@@ -1,22 +1,8 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
-import { tv, type VariantProps } from "tailwind-variants";
 
-const cardStyles = tv({
-  base: "kern-card",
-  variants: {
-    background: {
-      lavender: "bg-lavender-200",
-      white: "bg-white",
-    },
-  },
-  defaultVariants: {
-    background: "lavender",
-  },
-});
-
-interface Props extends VariantProps<typeof cardStyles> {
+interface Props {
   title: string;
   headingLevel?: 2 | 3;
   target_option?: "_blank" | "_self";
@@ -24,7 +10,6 @@ interface Props extends VariantProps<typeof cardStyles> {
   preline?: string;
   body?: string;
   subline?: string;
-  background?: "lavender" | "white";
   image?: ImageMetadata;
   imageAlt?: string | null;
   imageSource?: string;
@@ -39,7 +24,6 @@ const {
   href,
   subline,
   body,
-  background,
   image,
   imageAlt,
   imageSource,
@@ -52,12 +36,7 @@ const hasIcon = Astro.slots.has("icon");
 const hasFooter = Astro.slots.has("footer");
 ---
 
-<article
-  class={cardStyles({
-    background,
-    class: interactive ? "kern-card--interactive" : undefined,
-  })}
->
+<article class:list={["kern-card", interactive && "kern-card--interactive"]}>
   {hasImage && (
     <div class="kern-card__media relative">
       <slot name="image" />
