@@ -35,12 +35,7 @@ export function DocumentationParticipation() {
         <fieldset>
           <legend className="kern-heading-medium mb-16">
             {participation.formats.heading}
-            <HelpButton sectionId="formats" title="Hinweis zur Erklärung">
-              Beschreiben Sie stichpunktartig, wie Sie die Bedürfnisse der
-              Betroffenen erhoben haben – z. B. durch Befragungen, Gespräche mit
-              Vollzugsakteurinnen und -akteuren oder formelle
-              Beteiligungsverfahren.
-            </HelpButton>
+            <HelpButton sectionId="formats" />
           </legend>
 
           <Textarea
@@ -56,11 +51,7 @@ export function DocumentationParticipation() {
         <fieldset>
           <legend className="kern-heading-medium mb-16">
             {participation.results.heading}
-            <HelpButton sectionId="results" title="Hinweis zu Erkenntnissen">
-              Bitte listen Sie stichpunktartig auf, welche Erkenntnisse
-              eingearbeitet wurden, und geben Sie Hinweise auf Paragrafen, die
-              besonders umsetzungsrelevant sind.
-            </HelpButton>
+            <HelpButton sectionId="results" />
           </legend>
           <Textarea
             scope={form.scope("results")}

@@ -29,13 +29,7 @@ export function DocumentationTitle() {
     <div className="space-y-40">
       <h1 className="kern-heading-large mb-40">
         {info.headline}
-        <HelpButton
-          sectionId="title"
-          title="Hinweis zu Titel des Regelungsvorhabens"
-        >
-          Geben Sie hier den offiziellen Titel Ihres Regelungsvorhabens ein.
-          Dieser Titel wird in der fertigen Dokumentation verwendet.
-        </HelpButton>
+        <HelpButton sectionId="title" />
       </h1>
 
       <form {...form.getFormProps()}>

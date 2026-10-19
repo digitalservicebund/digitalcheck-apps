@@ -1,28 +1,3 @@
-export function markdownLinkIEA({
-  article,
-  recital,
-  paragraph,
-  format = "short",
-}: {
-  article?: number;
-  recital?: number;
-  paragraph?: number;
-  format?: "short" | "long";
-}) {
-  let text = recital ? `ErwG ${recital}` : `Art. ${article}`;
-  if (paragraph) {
-    const paragraphName = article === 2 ? "Nr." : "Abs.";
-    text += ` ${paragraphName} ${paragraph}`;
-  }
-
-  text +=
-    format === "long"
-      ? " der Verordnung für ein interoperables Europa (EU) 2024/903"
-      : " der Verordnung (EU) 2024/903";
-  const href = linkToIEAArticle({ article, recital });
-  return `<a href="${href}" target="_blank" rel="noopener">${text}</a>`;
-}
-
 export function linkToIEAArticle({
   article,
   recital,

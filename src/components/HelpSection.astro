@@ -1,0 +1,16 @@
+---
+interface Props {
+  /** Referenced by the `sectionId` of a `HelpButton` */
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<div id={`help-section-${id}`} class="scroll-my-80">
+  <h3 class="kern-title mb-8 font-bold text-kern-action-default">{title}</h3>
+  <div class="space-y-8">
+    <slot />
+  </div>
+</div>

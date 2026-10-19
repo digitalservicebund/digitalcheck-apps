@@ -1,6 +1,12 @@
 ---
 import { DocumentationRouter } from "@/pages/dokumentation/_react/DocumentationRouter.tsx";
+import HelpSidepanel from "@/components/HelpSidepanel.astro";
 import LoadingPage from "@/components/LoadingPage.astro";
+import {
+  dokumentation_absenden,
+  dokumentation_hinweise,
+  dokumentation_zusammenfassung,
+} from "@/config/routes";
 import { ClientRouter } from "astro:transitions";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
@@ -14,18 +20,35 @@ const { principleId, stepTitle, isErlaeuterung } = Astro.props;
 const prinzips = (await getCollection("prinzipien"))
   .map((entry) => entry.data)
   .sort((a, b) => a.order - b.order);
+
+const showHelpPanel = ![
+  dokumentation_hinweise.path,
+  dokumentation_zusammenfassung.path,
+  dokumentation_absenden.path,
+].some((url) => Astro.url.pathname.startsWith(url));
 ---
 
 <Layout title={`Dokumentation: ${stepTitle}`} noMenu>
   <ClientRouter />
-  <DocumentationRouter
-    client:only="react"
-    transition:persist={"documentation"}
-    prinzips={prinzips}
-    path={Astro.url.pathname}
-    principleId={principleId}
-    isErlaeuterung={isErlaeuterung}
+  <div
+    class:list={[
+      "breakout-grid-form-steps grow bg-kern-darkblue-025",
+      !showHelpPanel && "[--content-max-width:750px] [--help-width:0]",
+    ]}
   >
-    <LoadingPage slot="fallback">Lade Dokumentation…</LoadingPage>
-  </DocumentationRouter>
+    <DocumentationRouter
+      client:only="react"
+      transition:persist={"documentation"}
+      prinzips={prinzips}
+      path={Astro.url.pathname}
+      principleId={principleId}
+      isErlaeuterung={isErlaeuterung}
+    >
+      <LoadingPage slot="fallback">Lade Dokumentation…</LoadingPage>
+    </DocumentationRouter>
+    {/* Always rendered, as it registers its Alpine.js data on the first page load */}
+    <HelpSidepanel>
+      <slot />
+    </HelpSidepanel>
+  </div>
 </Layout>

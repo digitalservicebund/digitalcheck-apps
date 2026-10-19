@@ -1,5 +1,6 @@
 ---
 import DocumentationWizard from "@/components/DocumentationWizard.astro";
+import HelpSection from "@/components/HelpSection.astro";
 
 export const frontmatter = {
   title: "Regelungsvorhaben",
@@ -7,4 +8,9 @@ export const frontmatter = {
 };
 ---
 
-<DocumentationWizard stepTitle={frontmatter.title} />
+<DocumentationWizard stepTitle={frontmatter.title}>
+  <HelpSection id="title" title="Hinweis zu Titel des Regelungsvorhabens">
+    Geben Sie hier den offiziellen Titel Ihres Regelungsvorhabens ein. Dieser
+    Titel wird in der fertigen Dokumentation verwendet.
+  </HelpSection>
+</DocumentationWizard>

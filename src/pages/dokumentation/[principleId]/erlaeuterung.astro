@@ -1,15 +1,38 @@
 ---
+import DetailsSummary from "@/components/DetailsSummary";
 import DocumentationWizard from "@/components/DocumentationWizard.astro";
+import HelpSection from "@/components/HelpSection.astro";
+import RichText from "@/components/RichText";
+import { prinzipien } from "@/config/routes";
 import { getPrinzipienStaticPaths } from "@/content.config";
 
 export const getStaticPaths = getPrinzipienStaticPaths;
 
-const { principleName } = Astro.props;
+const { prinzip } = Astro.props;
 const { principleId } = Astro.params;
 ---
 
 <DocumentationWizard
-  stepTitle={principleName}
+  stepTitle={prinzip.Name}
   principleId={principleId}
   isErlaeuterung={true}
-/>
+>
+  <HelpSection id="prinzip" title={`Hinweis zu „${prinzip.Name}“`}>
+    <RichText markdown={prinzip.Hilfetext} />
+    <a href={`${prinzipien.path}/${prinzip.URLBezeichnung}`}>
+      Mehr zum Prinzip
+    </a>
+  </HelpSection>
+  <HelpSection id="aspects" title="Hinweis zu Schwerpunkten">
+    <p>Wählen Sie aus, welche Schwerpunkte für Ihr Vorhaben relevant sind.</p>
+    <p>
+      Diese dienen Ihnen als roter Faden für Ihre Erklärung. So formulieren Sie
+      präzise und stellen sicher, dass Ihre Regelung das Prinzip erfüllt.
+    </p>
+    {prinzip.Aspekte.map((aspect) => (
+      <DetailsSummary title={aspect.Kurzbezeichnung}>
+        {aspect.Text && <RichText markdown={aspect.Text} />}
+      </DetailsSummary>
+    ))}
+  </HelpSection>
+</DocumentationWizard>

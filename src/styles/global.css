@@ -311,7 +311,8 @@
   Extends `breakout-grid` to create a 3-column layout for pages with a Nav, Main, and Help section.
   The layout is: [gutter] [Nav] [gutter] [main content] [gutter] [Help].
   - It adjusts the main content width to make space for the Nav and Help components.
-  - As seen in `_documentationNavigation.tsx`, this is used for desktop layouts.
+  - As seen in `DocumentationWizard.astro`, this is used for desktop layouts.
+  - Nav and main are rendered by a React island, which has `display: contents`.
 */
 @utility breakout-grid-form-steps {
   --nav-min-width: 250px;
@@ -322,6 +323,10 @@
   --gutter: 5rem; /* 80px */
 
   @apply breakout-grid;
+
+  & > astro-island > * {
+    grid-column: content;
+  }
 
   @media (width >= 80rem) {
     --help-width: 300px;
@@ -342,16 +347,12 @@
       [help-start] var(--help-width)
       [help-end full-end];
 
-    & > .nav {
+    & > astro-island > .nav {
       grid-column: nav;
     }
 
     & > .help {
       grid-column: help;
-    }
-
-    & > main {
-      grid-column: content;
     }
   }
 }

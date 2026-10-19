@@ -2,7 +2,6 @@ import Badge from "@/components/Badge";
 import HelpButton from "@/components/HelpButton";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
-import { prinzipien } from "@/config/routes";
 import type { PrincipleNumber } from "@/resources/constants";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
 import DocumentationActions from "./DocumentationActions";
@@ -57,15 +56,7 @@ export function DocumentationPrinciple({
         </Badge>
         <h1 className="kern-heading-large mb-16">
           {prinzip.Name}
-          <HelpButton
-            sectionId="1-prinzip"
-            title={`Hinweis zu „${prinzip.Name}“`}
-          >
-            <RichText markdown={prinzip.Hilfetext} />
-            <a href={prinzipien.path + "/" + prinzip.URLBezeichnung}>
-              Mehr zum Prinzip
-            </a>
-          </HelpButton>
+          <HelpButton sectionId="1-prinzip" />
         </h1>
 
         {prinzip.Kurzbeschreibung && (

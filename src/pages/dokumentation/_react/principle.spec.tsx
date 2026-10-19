@@ -8,7 +8,6 @@ import {
   dokumentation_regelungsvorhabenTitel,
 } from "@/config/routes";
 import type { Prinzip, PrinzipAspekt } from "@/content.config";
-import { HelpPanelProvider } from "@/contexts/HelpPanelContext";
 import type {
   Route,
   RouteGroup,
@@ -65,11 +64,9 @@ const prinzips: Prinzip[] = [
 
 const renderWithRouter = () => {
   return render(
-    <HelpPanelProvider currentPath="/dokumentation/prinzip-1-digitale-angebote">
-      <DocumentationDataProvider>
-        <DocumentationPrinciple principleId="prinzip-1-digitale-angebote" />
-      </DocumentationDataProvider>
-    </HelpPanelProvider>,
+    <DocumentationDataProvider>
+      <DocumentationPrinciple principleId="prinzip-1-digitale-angebote" />
+    </DocumentationDataProvider>,
   );
 };
 

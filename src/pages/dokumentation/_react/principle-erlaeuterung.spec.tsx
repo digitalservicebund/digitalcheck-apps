@@ -9,7 +9,6 @@ import {
   dokumentation_regelungsvorhabenTitel,
 } from "@/config/routes";
 import type { Prinzip, PrinzipAspekt } from "@/content.config";
-import { HelpPanelProvider } from "@/contexts/HelpPanelContext";
 import type { digitalDocumentation } from "@/resources/content/dokumentation";
 import { readDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import "@testing-library/jest-dom";
@@ -80,11 +79,9 @@ const prinzips: Prinzip[] = [
 
 const renderWithRouter = () => {
   return render(
-    <HelpPanelProvider currentPath="/dokumentation/prinzip-1-digitale-angebote/erlaeuterung">
-      <DocumentationDataProvider>
-        <DocumentationPrincipleErlaeuterung principleId="prinzip-1-digitale-angebote" />
-      </DocumentationDataProvider>
-    </HelpPanelProvider>,
+    <DocumentationDataProvider>
+      <DocumentationPrincipleErlaeuterung principleId="prinzip-1-digitale-angebote" />
+    </DocumentationDataProvider>,
   );
 };
 
