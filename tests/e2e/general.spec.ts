@@ -10,10 +10,9 @@ import {
   impressum,
   methoden,
   prinzipien,
-  type Route,
   vorpruefung,
   vorpruefung_ergebnis,
-  vorpruefung_hinweise,
+  type Route,
 } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { waitForHydration } from "./helpers";
@@ -64,16 +63,13 @@ test.describe("page titles", () => {
     await page.goto(vorpruefung.path);
     await expect(page).toHaveTitle(getExpectedTitle(vorpruefung));
 
-    await page.goto(vorpruefung_hinweise.path);
-    await expect(page).toHaveTitle(getExpectedTitle(vorpruefung_hinweise));
-
     await page.goto(preCheck.questions[0].path);
     for (const question of preCheck.questions) {
       await page.waitForURL(question.path);
       await waitForHydration(page);
       await expect(page).toHaveTitle(getExpectedTitle(question));
       await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
+      await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
 
     await expect(page).toHaveURL(vorpruefung_ergebnis.path);

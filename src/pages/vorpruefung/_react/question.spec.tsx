@@ -14,6 +14,22 @@ vi.stubGlobal("location", {
 
 const { questions } = preCheck;
 
+// "Weiter" lives in the WizardButtonBar outside the island and submits via the form id
+const renderQuestion = (questionIdx: number) =>
+  render(
+    <>
+      <PreCheckQuestion
+        questionIdx={questionIdx}
+        question={questions[questionIdx]}
+        formId="step-form"
+        labelledBy="question-label"
+      />
+      <button type="submit" form="step-form">
+        Weiter
+      </button>
+    </>,
+  );
+
 vi.mock(
   "@/pages/vorpruefung/_react/preCheckDataHook",
   async (importOriginal) => {
@@ -54,15 +70,13 @@ describe("PreCheck", () => {
 
   describe("PreCheck validation", () => {
     beforeEach(() => {
-      render(<PreCheckQuestion questionIdx={0} question={questions[0]} />);
+      renderQuestion(0);
     });
 
     it("shows error when trying to click next without selecting an answer", async () => {
       const user = userEvent.setup();
 
-      await user.click(
-        screen.getByRole("button", { name: "Übernehmen & weiter" }),
-      );
+      await user.click(screen.getByRole("button", { name: "Weiter" }));
 
       expect(screen.getByLabelText("Ja")).toHaveAccessibleErrorMessage(
         "Bitte wählen Sie eine Option aus.",
@@ -83,9 +97,7 @@ describe("PreCheck", () => {
     it("allows next when selecting an answer", async () => {
       const user = userEvent.setup();
 
-      await user.click(
-        screen.getByRole("button", { name: "Übernehmen & weiter" }),
-      );
+      await user.click(screen.getByRole("button", { name: "Weiter" }));
 
       expect(screen.getByLabelText("Ja")).toHaveAccessibleErrorMessage(
         "Bitte wählen Sie eine Option aus.",
@@ -93,9 +105,7 @@ describe("PreCheck", () => {
 
       await user.click(screen.getByLabelText("Ja"));
 
-      await user.click(
-        screen.getByRole("button", { name: "Übernehmen & weiter" }),
-      );
+      await user.click(screen.getByRole("button", { name: "Weiter" }));
 
       expect(screen.getByLabelText("Ja")).not.toHaveAccessibleErrorMessage(
         "Bitte wählen Sie eine Option aus.",
@@ -109,13 +119,13 @@ describe("PreCheck", () => {
     });
 
     it("redirects to last unanswered question", () => {
-      render(<PreCheckQuestion questionIdx={2} question={questions[2]} />);
+      renderQuestion(2);
 
       expect(globalThis.location.href).toBe("/vorpruefung/it-system");
     });
 
     it("does not redirect when all questions are answered", async () => {
-      render(<PreCheckQuestion questionIdx={0} question={questions[0]} />);
+      renderQuestion(0);
 
       await waitFor(() => {
         expect(globalThis.location.href).toBe("/vorpruefung");

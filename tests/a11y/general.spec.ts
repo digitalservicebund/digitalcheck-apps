@@ -74,7 +74,7 @@ test.describe("basic example a11y test", () => {
       await page.waitForURL(question.path);
       await checkPage(page);
       await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
+      await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
 
     // Check the result page after all questions are answered

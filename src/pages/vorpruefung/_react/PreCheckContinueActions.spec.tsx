@@ -1,4 +1,3 @@
-import { vorpruefung_hinweise } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { readVersionedDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import "@testing-library/jest-dom";
@@ -29,7 +28,7 @@ describe("PreCheckContinueActions", () => {
       const startButton = screen.getByRole("link", {
         name: "Vorprüfung starten",
       });
-      expect(startButton).toHaveAttribute("href", vorpruefung_hinweise.path);
+      expect(startButton).toHaveAttribute("href", questions[0].path);
     });
   });
 
@@ -81,7 +80,7 @@ describe("PreCheckContinueActions", () => {
       const startButton = screen.getByRole("link", {
         name: "Vorprüfung fortsetzen",
       });
-      expect(startButton).toHaveAttribute("href", vorpruefung_hinweise.path);
+      expect(startButton).toHaveAttribute("href", questions[0].path);
     });
 
     it("renders the CTA button to restart vorpruefung", () => {

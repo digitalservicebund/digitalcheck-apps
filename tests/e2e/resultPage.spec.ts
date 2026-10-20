@@ -27,7 +27,7 @@ test.describe("Vorprüfung Ergebnis happy path", () => {
       await page.waitForURL(question.path);
       await waitForHydration(page);
       await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Übernehmen" }).click();
+      await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
   });
 

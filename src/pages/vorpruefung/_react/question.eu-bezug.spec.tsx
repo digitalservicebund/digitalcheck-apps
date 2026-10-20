@@ -140,6 +140,8 @@ describe.each(scenarios)("test $name", ({ answers, expected }) => {
       <PreCheckQuestion
         questionIdx={questionIdx}
         question={questions[questionIdx]}
+        formId="step-form"
+        labelledBy="question-label"
       />,
     );
   });
