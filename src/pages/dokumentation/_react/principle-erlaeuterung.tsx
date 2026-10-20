@@ -1,10 +1,8 @@
 import AspectPills from "@/components/AspectPills";
 import Badge from "@/components/Badge";
-import DetailsSummary from "@/components/DetailsSummary";
 import HelpButton from "@/components/HelpButton";
 import RichText from "@/components/RichText";
 import Textarea from "@/components/Textarea";
-import { prinzipien } from "@/config/routes";
 import type { Prinzip } from "@/content.config";
 import type { PrincipleNumber } from "@/resources/constants";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
@@ -92,28 +90,7 @@ function DocumentationPrincipleErlaeuterungForm({
             >
               <p className="kern-label">
                 Schwerpunkte auswählen
-                <HelpButton
-                  sectionId="aspects"
-                  title="Hinweis zu Schwerpunkten"
-                >
-                  <p>
-                    Wählen Sie aus, welche Schwerpunkte für Ihr Vorhaben
-                    relevant sind.
-                  </p>
-                  <p>
-                    Diese dienen Ihnen als roter Faden für Ihre Erklärung. So
-                    formulieren Sie präzise und stellen sicher, dass Ihre
-                    Regelung das Prinzip erfüllt.
-                  </p>
-                  {prinzip.Aspekte.map((aspect) => (
-                    <DetailsSummary
-                      key={aspect.Kurzbezeichnung}
-                      title={aspect.Kurzbezeichnung}
-                    >
-                      {aspect.Text && <RichText markdown={aspect.Text} />}
-                    </DetailsSummary>
-                  ))}
-                </HelpButton>
+                <HelpButton sectionId="aspects" />
               </p>
             </AspectPills>
           )}
@@ -200,15 +177,7 @@ export function DocumentationPrincipleErlaeuterung({
         </Badge>
         <h1 className="kern-heading-large mb-16">
           {prinzip.Name}
-          <HelpButton
-            sectionId="prinzip"
-            title={`Hinweis zu „${prinzip.Name}“`}
-          >
-            <RichText markdown={prinzip.Hilfetext} />
-            <a href={prinzipien.path + "/" + prinzip.URLBezeichnung}>
-              Mehr zum Prinzip
-            </a>
-          </HelpButton>
+          <HelpButton sectionId="prinzip" />
         </h1>
 
         {prinzip.Kurzbeschreibung && (

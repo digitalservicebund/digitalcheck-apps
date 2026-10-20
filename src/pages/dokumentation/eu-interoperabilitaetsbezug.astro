@@ -1,5 +1,8 @@
 ---
 import DocumentationWizard from "@/components/DocumentationWizard.astro";
+import HelpSection from "@/components/HelpSection.astro";
+import { interoperabel } from "@/config/routes";
+import { linkToIEAArticle } from "@/pages/dokumentation/_react/interoperability/markdownLinkIEA";
 
 export const frontmatter = {
   title: "Interoperabilitäts-Bezug",
@@ -7,4 +10,37 @@ export const frontmatter = {
 };
 ---
 
-<DocumentationWizard stepTitle={frontmatter.title} />
+<DocumentationWizard stepTitle={frontmatter.title}>
+  <HelpSection
+    id="bezug-interoperabilität"
+    title="Bezug zu EU-Interoperabilität"
+  >
+    <p>
+      <strong>Was bedeutet das?</strong>
+    </p>
+    <p>
+      Sofern durch Ihre Regelung vorgesehen ist, dass Daten und Informationen
+      zwischen Verwaltungen von EU-Mitgliedstaaten ausgetauscht werden, muss
+      nach
+      <a href={linkToIEAArticle({ article: 3 })} target="_blank" rel="noopener">
+        Art. 3 der Verordnung für ein interoperables Europa (EU) 2024/903
+      </a>
+      in der Regel eine Interoperabilitätsbewertung durchgeführt werden.
+    </p>
+    <p>
+      <a
+        href={`${interoperabel.path}#verbindliche-anforderungen`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Wann ist eine Interoperabilitäts-Bewertung verpflichtend?
+      </a>
+    </p>
+    <p>
+      Sollte sich nach den Bestimmungen der Verordnung dennoch keine
+      Verpflichtung zu einer Bewertung ergeben und Sie möchten auch keine
+      freiwillige Bewertung durchführen, wählen Sie die Option „Nein, es ist
+      kein Bezug vorhanden“.
+    </p>
+  </HelpSection>
+</DocumentationWizard>

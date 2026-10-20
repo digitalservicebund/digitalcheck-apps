@@ -1,0 +1,65 @@
+---
+/**
+ * Help panel of the documentation wizard, filled with the page's `HelpSection`s.
+ * A `HelpButton` opens it by setting `data-open`.
+ */
+---
+
+<div
+  id="help-panel"
+  x-data
+  class="help peer relative hidden bg-(--helppanel-bg) data-open:block max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:z-50 max-xl:w-[80vw] max-xl:max-w-400 max-xl:shadow-2xl"
+>
+  <div class="sticky top-0">
+    <div class="absolute right-16 left-0 z-10 flex justify-end bg-(--helppanel-bg) px-24 pt-40">
+      <button
+        type="button"
+        aria-label="Hilfe-Panel schließen"
+        class="kern-btn kern-btn--secondary w-48 px-0"
+        @click="$root.removeAttribute('data-open')"
+      >
+        <span class="kern-icon kern-icon--close" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="before:pointer-events-none before:absolute before:top-88 before:right-16 before:left-0 before:h-32 before:bg-linear-to-b before:from-(--helppanel-bg) before:blur-xs before:content-[''] after:pointer-events-none after:absolute after:right-16 after:bottom-0 after:left-0 after:h-40 after:bg-linear-to-t after:from-(--helppanel-bg) after:blur-xs after:content-['']">
+      <div class="max-h-screen scrollbar-gutter-stable overflow-x-hidden overflow-y-hidden pt-120 pb-40 wrap-break-word hover:overflow-y-auto max-lg:scrollbar-gutter-auto max-lg:overflow-y-auto">
+        <div class="w-full space-y-32 pr-24 pl-24">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile backdrop -->
+<div
+  x-data
+  @click="document.getElementById('help-panel').removeAttribute('data-open')"
+  class="fixed inset-0 z-40 hidden bg-black/20 backdrop-blur-sm max-xl:peer-data-open:block"
+  aria-hidden="true"
+></div>
+
+<style is:global>
+  #help-panel {
+    --helppanel-bg: var(--kern-color-white);
+    /* TODO: switch once the other components are updated to the new design */
+    /* --helppanel-bg: var(--kern-color-layout-background-hued); */
+  }
+
+  @media (width < 80rem) {
+    body:has(#help-panel[data-open]) {
+      overflow: hidden;
+    }
+  }
+</style>
+
+<script>
+  // Keep the panel open across wizard steps
+  document.addEventListener("astro:before-swap", (event) => {
+    if (document.getElementById("help-panel")?.hasAttribute("data-open")) {
+      event.newDocument
+        .getElementById("help-panel")
+        ?.setAttribute("data-open", "");
+    }
+  });
+</script>

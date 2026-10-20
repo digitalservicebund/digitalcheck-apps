@@ -51,6 +51,6 @@ export async function getPrinzipienStaticPaths() {
 
   return prinzips.map((p) => ({
     params: { principleId: p.URLBezeichnung },
-    props: { principleName: p.Name },
+    props: { prinzip: p },
   }));
 }

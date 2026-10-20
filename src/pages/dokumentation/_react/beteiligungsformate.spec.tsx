@@ -3,7 +3,6 @@ import "./testUtils/mockLocalStorageVersioned";
 import "./testUtils/mockRouter";
 // End of mocks
 
-import { HelpPanelProvider } from "@/contexts/HelpPanelContext";
 import { DocumentationParticipation } from "@/pages/dokumentation/_react/beteiligungsformate";
 import { readDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import "@testing-library/jest-dom";
@@ -16,11 +15,9 @@ import { DATA_SCHEMA_VERSION } from "./documentationDataSchema";
 
 const renderWithRouter = () => {
   return render(
-    <HelpPanelProvider currentPath="/dokumentation/beteiligungsformate">
-      <DocumentationDataProvider>
-        <DocumentationParticipation />
-      </DocumentationDataProvider>
-    </HelpPanelProvider>,
+    <DocumentationDataProvider>
+      <DocumentationParticipation />
+    </DocumentationDataProvider>,
   );
 };
 

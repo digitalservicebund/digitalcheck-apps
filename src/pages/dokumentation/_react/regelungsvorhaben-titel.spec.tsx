@@ -3,7 +3,6 @@ import "./testUtils/mockLocalStorageVersioned";
 import "./testUtils/mockRouter";
 // End of mocks
 
-import { HelpPanelProvider } from "@/contexts/HelpPanelContext";
 import { DocumentationTitle } from "@/pages/dokumentation/_react/regelungsvorhaben-titel";
 import { readDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import "@testing-library/jest-dom";
@@ -20,11 +19,9 @@ const mockedReadDataFromLocalStorage = vi.mocked(
 
 const renderWithRouter = () => {
   return render(
-    <HelpPanelProvider currentPath="/dokumentation/regelungsvorhaben-titel">
-      <DocumentationDataProvider>
-        <DocumentationTitle />
-      </DocumentationDataProvider>
-    </HelpPanelProvider>,
+    <DocumentationDataProvider>
+      <DocumentationTitle />
+    </DocumentationDataProvider>,
   );
 };
 

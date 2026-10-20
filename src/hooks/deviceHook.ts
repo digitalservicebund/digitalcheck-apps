@@ -22,28 +22,6 @@ export function useResize(onResize: () => void, init = true) {
   }, [init]);
 }
 
-export function useScroll(onScroll: () => void) {
-  const onScrollRef = useRef(onScroll);
-
-  // Update the ref when the callback changes
-  useEffect(() => {
-    onScrollRef.current = onScroll;
-  }, [onScroll]);
-
-  useEffect(() => {
-    if (globalThis.window === undefined) return;
-
-    const handleScroll = () => {
-      onScrollRef.current();
-    };
-
-    globalThis.window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initialize
-
-    return () => globalThis.window.removeEventListener("scroll", handleScroll);
-  }, []);
-}
-
 export function useIsMobileSize() {
   // Start with undefined to indicate we don't know the size yet (avoiding hydration mismatch)
   // On the server, we can't determine the screen size, so we defer this until client-side
@@ -59,16 +37,4 @@ export function useIsMobileSize() {
 
   // Default to false (desktop) if not yet determined to maintain backward compatibility
   return isMobileSize ?? false;
-}
-
-export function useElResize(elName: string, onResize: () => void, init = true) {
-  useEffect(() => {
-    if (init) onResize();
-
-    const el = document.getElementsByTagName(elName)[0];
-    if (!el) return;
-    const observer = new ResizeObserver(onResize);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [elName, onResize, init]);
 }

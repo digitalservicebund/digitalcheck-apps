@@ -1,5 +1,7 @@
 ---
 import DocumentationWizard from "@/components/DocumentationWizard.astro";
+import HelpSection from "@/components/HelpSection.astro";
+import { linkToIEAArticle } from "@/pages/dokumentation/_react/interoperability/markdownLinkIEA";
 
 export const frontmatter = {
   title: "Verbindliche Anforderungen",
@@ -7,4 +9,71 @@ export const frontmatter = {
 };
 ---
 
-<DocumentationWizard stepTitle={frontmatter.title} />
+<DocumentationWizard stepTitle={frontmatter.title}>
+  <HelpSection
+    id="verbindliche-anforderungen"
+    title="Was ist eine verbindliche Anforderung?"
+  >
+    <p>
+      Verbindliche Anforderungen können Vorgaben z. B. durch Gesetze oder
+      Verordnungen sein. Der Begriff schließt aber auch Verträge oder
+      Ausschreibungen ein. Entscheidend ist außerdem die Frage, ob die Vorgabe
+      festschreibt, wie Daten zwischen Systemen verschiedener EU-Länder fließen.
+    </p>
+    <p>
+      Siehe{" "}
+      <a href={linkToIEAArticle({ article: 2 })} target="_blank" rel="noopener">
+        Art. 2 Nr. 15 der Verordnung für ein interoperables Europa (EU) 2024/903
+      </a>
+      .
+    </p>
+  </HelpSection>
+  <HelpSection
+    id="transeuropean_services"
+    title="Was sind grenzüberschreitende digitale Verwaltungsdienste?"
+  >
+    <p>
+      Die Verordnung spricht wörtlich von "transeuropäischen digitalen
+      öffentlichen Diensten". Gemeint sind digitale Dienste und IT-Systeme, bei
+      denen Daten zwischen Verwaltungen von EU-Mitgliedstaaten ausgetauscht
+      werden.
+    </p>
+    <p>
+      Das können grenzüberschreitende Registerabfragen oder Meldungen sein. Die
+      Verordnung nennt folgende Beispiele:
+    </p>
+    <ul>
+      <li>
+        Gegenseitige Anerkennung akademischer Diplome oder Berufsqualifikationen
+      </li>
+      <li>Austausch von Fahrzeugdaten für die Verkehrssicherheit</li>
+      <li>
+        Zugang zu Sozialversicherungs- und Gesundheitsdaten – darunter Pandemie-
+        und Impfbescheinigungen
+      </li>
+      <li>
+        Informationsaustausch in Bezug auf Steuern, Zölle, Vergabe öffentlicher
+        Aufträge
+      </li>
+      <li>Digitale Führerscheine</li>
+      <li>Handelsregister</li>
+    </ul>
+    <p>
+      Siehe{" "}
+      <a href={linkToIEAArticle({ recital: 6 })} target="_blank" rel="noopener">
+        ErwG 6 der Verordnung (EU) 2024/903
+      </a>
+      .
+    </p>
+    <p>
+      <strong>Was ist hier zu dokumentieren?</strong>
+    </p>
+    <p>
+      <em>Bevor</em> Sie neue oder wesentlich veränderte verbindliche
+      Anforderungen festschreiben, die das Design, die Beschaffung, die
+      Entwicklung oder die Implementierung solcher digitalen transeuropäischen
+      Dienste betreffen, müssen Sie deren Auswirkungen auf die Interoperabilität
+      bewerten.
+    </p>
+  </HelpSection>
+</DocumentationWizard>

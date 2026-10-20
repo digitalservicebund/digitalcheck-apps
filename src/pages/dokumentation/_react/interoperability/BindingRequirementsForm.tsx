@@ -3,7 +3,6 @@ import Button from "@/components/Button";
 import Combobox from "@/components/ComboBox.tsx";
 import HelpButton from "@/components/HelpButton.tsx";
 import Input from "@/components/Input";
-import RichText from "@/components/RichText";
 import Textarea from "@/components/Textarea.tsx";
 import { useSyncedForm } from "@/pages/dokumentation/_react/documentationDataHook.ts";
 import { useDocumentationDataService } from "@/pages/dokumentation/_react/DocumentationDataProvider.tsx";
@@ -11,15 +10,11 @@ import {
   type BindingRequirementsData,
   bindingRequirementsSchema,
 } from "@/pages/dokumentation/_react/documentationDataSchema.ts";
-import {
-  linkToIEAArticle,
-  markdownLinkIEA,
-} from "@/pages/dokumentation/_react/interoperability/markdownLinkIEA.tsx";
+import { linkToIEAArticle } from "@/pages/dokumentation/_react/interoperability/markdownLinkIEA.tsx";
 import {
   serviceAreaOptions,
   stakeholderOptions,
 } from "@/pages/dokumentation/_react/interoperability/values.ts";
-import { dedent } from "@/utils/dedentMultilineStrings";
 import { DeleteOutlineTwoTone } from "@digitalservicebund/icons";
 import { useFieldArray } from "@rvf/react";
 import type React from "react";
@@ -83,52 +78,13 @@ export default function BindingRequirementsForm({
             </a>
             {", "}
             von Ihrer Regelung betroffen sind.
-            <HelpButton
-              sectionId={"verbindliche-anforderungen"}
-              title={"Was ist eine verbindliche Anforderung?"}
-            >
-              <RichText
-                markdown={dedent`
-                  Verbindliche Anforderungen können Vorgaben z. B. durch Gesetze oder Verordnungen sein. Der Begriff schließt aber auch Verträge oder Ausschreibungen ein.
-                  Entscheidend ist außerdem die Frage, ob die Vorgabe festschreibt, wie Daten zwischen Systemen verschiedener EU-Länder fließen.
-                  
-                  Siehe ${markdownLinkIEA({ article: 2, paragraph: 15, format: "long" })}.
-            `}
-              />
-            </HelpButton>
+            <HelpButton sectionId="verbindliche-anforderungen" />
           </p>
           <p>
             Geben Sie außerdem an, auf welche grenzüberschreitenden digitalen
             Verwaltungsdienste sich diese Anforderungen auswirken. Dies betrifft
             sowohl von der Regelung benannte Dienste als auch den Vollzug.
-            <HelpButton
-              sectionId={"transeuropean_services"}
-              title={
-                "Was sind grenzüberschreitende digitale Verwaltungsdienste?"
-              }
-            >
-              <RichText
-                markdown={dedent`
-                          Die Verordnung spricht wörtlich von "transeuropäischen digitalen öffentlichen Diensten".
-                          Gemeint sind digitale Dienste und IT-Systeme, bei denen Daten zwischen Verwaltungen von
-                          EU-Mitgliedstaaten ausgetauscht werden.
-                          
-                          Das können grenzüberschreitende Registerabfragen oder Meldungen sein. Die Verordnung nennt folgende Beispiele:
-                          - Gegenseitige Anerkennung akademischer Diplome oder Berufsqualifikationen
-                          - Austausch von Fahrzeugdaten für die Verkehrssicherheit
-                          - Zugang zu Sozialversicherungs- und Gesundheitsdaten – darunter Pandemie- und Impfbescheinigungen
-                          - Informationsaustausch in Bezug auf Steuern, Zölle, Vergabe öffentlicher Aufträge
-                          - Digitale Führerscheine
-                          - Handelsregister
-                          
-                          Siehe ${markdownLinkIEA({ recital: 6, format: "short" })}.
-                          
-                          **Was ist hier zu dokumentieren?**
-                          
-                          *Bevor* Sie neue oder wesentlich veränderte verbindliche Anforderungen festschreiben, die das Design, die Beschaffung, die Entwicklung oder die Implementierung solcher digitalen transeuropäischen Dienste betreffen, müssen Sie deren Auswirkungen auf die Interoperabilität bewerten.
-                        `}
-              />
-            </HelpButton>
+            <HelpButton sectionId="transeuropean_services" />
           </p>
         </>
       ),
@@ -142,10 +98,7 @@ export default function BindingRequirementsForm({
             In der Regelung enthaltene verbindliche{" "}
             <span className="text-nowrap">
               Anforderungen
-              <HelpButton
-                sectionId={"verbindliche-anforderungen"}
-                title={"Was ist eine verbindliche Anforderung?"}
-              ></HelpButton>
+              <HelpButton sectionId="verbindliche-anforderungen" />
             </span>
           </h2>
 
@@ -198,10 +151,7 @@ export default function BindingRequirementsForm({
                     >
                       Betroffene grenzüberschreitende digitale
                       Verwaltungsdienste
-                      <HelpButton
-                        sectionId={"transeuropean_services"}
-                        title={"Was sind digitale transeuropäische Dienste?"}
-                      ></HelpButton>
+                      <HelpButton sectionId="transeuropean_services" />
                     </Textarea>
 
                     <Combobox

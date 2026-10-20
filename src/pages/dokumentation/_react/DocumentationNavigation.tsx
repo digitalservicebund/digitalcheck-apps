@@ -1,4 +1,3 @@
-import HelpSidepanel from "@/components/HelpSidepanel";
 import Nav from "@/components/Nav";
 import Stepper from "@/components/Stepper";
 import {
@@ -17,10 +16,8 @@ import {
   dokumentation_zusammenfassung,
 } from "@/config/routes";
 import type { Prinzip } from "@/content.config";
-import { HelpPanelProvider } from "@/contexts/HelpPanelContext";
 import { digitalDocumentation } from "@/resources/content/dokumentation";
 import { type ReactNode, useCallback, useMemo } from "react";
-import { twJoin } from "tailwind-merge";
 import {
   useDocumentationDataService,
   ValidationResult,
@@ -223,15 +220,6 @@ export function LayoutWithDocumentationNavigation({
 
   const isNavigationDisabled = currentUrl === dokumentation_hinweise.path;
 
-  const excludedPanelRoutes = [
-    dokumentation_hinweise.path,
-    dokumentation_zusammenfassung.path,
-    dokumentation_absenden.path,
-  ];
-  const showHelpPanel = !excludedPanelRoutes.some((url) =>
-    currentUrl.startsWith(url),
-  );
-
   const getNavItem = (route: Route) => {
     const { formData, validationResult } = validateDocumentationDataForRoute(
       route.path,
@@ -276,50 +264,40 @@ export function LayoutWithDocumentationNavigation({
 
   return (
     <DocumentationNavigationContext.Provider value={navigationContextValue}>
-      <HelpPanelProvider currentPath={currentUrl}>
-        <div
-          className={twJoin(
-            "breakout-grid-form-steps bg-kern-darkblue-025 grow",
-            !showHelpPanel && "[--content-max-width:750px] [--help-width:0]",
-          )}
-        >
-          <Nav
-            className="sticky top-0 hidden self-start py-80 lg:block"
-            activeElementUrl={currentUrl}
-            ariaLabel={digitalDocumentation.navigation.ariaLabel}
-          >
-            <Nav.Items>
-              {displayedRoutes.map((route) => {
-                if ("routes" in route)
-                  return (
-                    <Nav.Item
-                      key={route.title}
-                      disabled={isNavigationDisabled}
-                      subItems={
-                        <Nav.Items>
-                          {route.routes.map((element) => getNavItem(element))}
-                        </Nav.Items>
-                      }
-                    >
-                      {route.title}
-                    </Nav.Item>
-                  );
-                return getNavItem(route);
-              })}
-            </Nav.Items>
-          </Nav>
-          <main className="space-y-40 py-80">
-            <div className="lg:hidden">
-              <Stepper
-                currentElementUrl={navigationBaseUrl}
-                elements={flatRoutes}
-              />
-            </div>
-            {children}
-          </main>
-          {showHelpPanel && <HelpSidepanel />}
+      <Nav
+        className="sticky top-0 hidden self-start py-80 lg:block"
+        activeElementUrl={currentUrl}
+        ariaLabel={digitalDocumentation.navigation.ariaLabel}
+      >
+        <Nav.Items>
+          {displayedRoutes.map((route) => {
+            if ("routes" in route)
+              return (
+                <Nav.Item
+                  key={route.title}
+                  disabled={isNavigationDisabled}
+                  subItems={
+                    <Nav.Items>
+                      {route.routes.map((element) => getNavItem(element))}
+                    </Nav.Items>
+                  }
+                >
+                  {route.title}
+                </Nav.Item>
+              );
+            return getNavItem(route);
+          })}
+        </Nav.Items>
+      </Nav>
+      <main className="space-y-40 py-80">
+        <div className="lg:hidden">
+          <Stepper
+            currentElementUrl={navigationBaseUrl}
+            elements={flatRoutes}
+          />
         </div>
-      </HelpPanelProvider>
+        {children}
+      </main>
     </DocumentationNavigationContext.Provider>
   );
 }

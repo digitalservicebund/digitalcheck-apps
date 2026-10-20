@@ -1,9 +1,22 @@
 ---
 import DocumentationWizard from "@/components/DocumentationWizard.astro";
+import HelpSection from "@/components/HelpSection.astro";
+
 export const frontmatter = {
   title: "Beteiligungsformate",
   sitemap: false,
 };
 ---
 
-<DocumentationWizard stepTitle={frontmatter.title} />
+<DocumentationWizard stepTitle={frontmatter.title}>
+  <HelpSection id="formats" title="Hinweis zur Erklärung">
+    Beschreiben Sie stichpunktartig, wie Sie die Bedürfnisse der Betroffenen
+    erhoben haben – z. B. durch Befragungen, Gespräche mit Vollzugsakteurinnen
+    und -akteuren oder formelle Beteiligungsverfahren.
+  </HelpSection>
+  <HelpSection id="results" title="Hinweis zu Erkenntnissen">
+    Bitte listen Sie stichpunktartig auf, welche Erkenntnisse eingearbeitet
+    wurden, und geben Sie Hinweise auf Paragrafen, die besonders
+    umsetzungsrelevant sind.
+  </HelpSection>
+</DocumentationWizard>
