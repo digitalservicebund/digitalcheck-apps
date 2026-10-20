@@ -61,6 +61,7 @@ async function loadNavigationHelpers(
   vi.resetModules();
   vi.doMock("@/config/routes", () => ({ allRoutes: routes }));
   vi.doMock("@/config/prinzipienRoutes", () => ({ prinzipienRoutes: [] }));
+  vi.doMock("@/config/vorpruefungRoutes", () => ({ vorpruefungRoutes: [] }));
   vi.doMock("@/config/stage", () => ({
     isProduction,
     isStaging: false,
@@ -76,6 +77,7 @@ afterEach(() => {
   vi.resetModules();
   vi.doUnmock("@/config/routes");
   vi.doUnmock("@/config/prinzipienRoutes");
+  vi.doUnmock("@/config/vorpruefungRoutes");
   vi.doUnmock("@/config/stage");
 });
 
