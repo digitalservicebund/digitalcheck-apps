@@ -7,15 +7,18 @@ type HelpButtonProps = {
 };
 
 /**
- * Renders an inline help icon that opens the help panel (see `HelpSidepanel.astro`)
- * at the `HelpSection` with the matching id.
+ * Renders an inline help icon that toggles the help panel (see `HelpSidepanel.astro`),
+ * scrolling to the `HelpSection` with the matching id when opening.
  */
 export default function HelpButton({
   sectionId,
   className,
 }: Readonly<HelpButtonProps>) {
-  const openHelp = () => {
-    document.getElementById("help-panel")?.setAttribute("data-open", "");
+  const toggleHelp = () => {
+    const isOpen = document
+      .getElementById("help-panel")
+      ?.toggleAttribute("data-open");
+    if (!isOpen) return;
     document
       .getElementById(`help-section-${sectionId}`)
       ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -33,7 +36,7 @@ export default function HelpButton({
           "translate-y-4",
           className,
         )}
-        onClick={openHelp}
+        onClick={toggleHelp}
       >
         <HelpOutlineOutlined className="h-full w-full" />
       </button>
