@@ -1,0 +1,1 @@
+var e=e=>{let t=`/digitalcheck-dito/previews/refactor/help-sidepanel-astro`.replace(/\/$/,``),n=e.startsWith(`/`)&&!e.startsWith(`//`),r=!!t&&(e===t||e.startsWith(`${t}/`)||e.startsWith(`${t}#`)||e.startsWith(`${t}?`));return n&&!r?t+e:e};export{e as t};
