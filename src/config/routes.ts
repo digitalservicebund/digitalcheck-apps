@@ -374,6 +374,28 @@ export const vorpruefung = {
   navLabel: null,
 } as const;
 
+export const vorpruefung_automatisierung = {
+  key: "vorpruefung_automatisierung",
+  path: "/vorpruefung/automatisierung",
+  title: "Automatisierung",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 5,
+  navLabel: null,
+} as const;
+
+export const vorpruefung_datenaustausch = {
+  key: "vorpruefung_datenaustausch",
+  path: "/vorpruefung/datenaustausch",
+  title: "Datenaustausch",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 3,
+  navLabel: null,
+} as const;
+
 export const vorpruefung_ergebnis = {
   key: "vorpruefung_ergebnis",
   path: "/vorpruefung/ergebnis",
@@ -382,6 +404,50 @@ export const vorpruefung_ergebnis = {
   sitemap: false,
   isStagingOnly: false,
   navOrder: null,
+  navLabel: null,
+} as const;
+
+export const vorpruefung_euBezug = {
+  key: "vorpruefung_euBezug",
+  path: "/vorpruefung/eu-bezug",
+  title: "EU-Bezug",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 6,
+  navLabel: null,
+} as const;
+
+export const vorpruefung_itSystem = {
+  key: "vorpruefung_itSystem",
+  path: "/vorpruefung/it-system",
+  title: "IT-System",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 1,
+  navLabel: null,
+} as const;
+
+export const vorpruefung_kommunikation = {
+  key: "vorpruefung_kommunikation",
+  path: "/vorpruefung/kommunikation",
+  title: "Digitale Kommunikation",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 4,
+  navLabel: null,
+} as const;
+
+export const vorpruefung_verpflichtungenFuerBeteiligte = {
+  key: "vorpruefung_verpflichtungenFuerBeteiligte",
+  path: "/vorpruefung/verpflichtungen-fuer-beteiligte",
+  title: "Verpflichtungen für Beteiligte",
+  parent: vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 2,
   navLabel: null,
 } as const;
 
@@ -419,5 +485,11 @@ export const allRoutes = [
   prinzipien,
   sitemap,
   vorpruefung,
+  vorpruefung_automatisierung,
+  vorpruefung_datenaustausch,
   vorpruefung_ergebnis,
+  vorpruefung_euBezug,
+  vorpruefung_itSystem,
+  vorpruefung_kommunikation,
+  vorpruefung_verpflichtungenFuerBeteiligte,
 ] as const;

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import InlineNotice from "@/components/InlineNotice";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
-import { vorpruefung } from "@/config/routes";
+import { vorpruefung_ergebnis } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { usePreCheckData, useSyncedForm } from "./preCheckDataHook";
 import type { PreCheckAnswerSchema } from "./preCheckDataSchema";
@@ -17,7 +17,6 @@ const { questions, answerOptions } = preCheck;
 export type TQuestion = {
   id: string;
   title: string;
-  question: string;
   positiveResult: string;
   negativeResult: string;
   resultHint?: {
@@ -30,14 +29,7 @@ export type TQuestion = {
     negativeResult?: string;
     unsureResult?: string;
   };
-  text: string;
   path: string;
-  prevLink: string;
-  nextLink: string;
-  hint?: {
-    title: string;
-    text: string;
-  };
   accordion?: {
     title: string;
     text: string;
@@ -50,7 +42,7 @@ export type PreCheckAnswerOption = {
   label: string;
 };
 
-// Only the form: heading, text and buttons are rendered by [questionId].astro.
+// Only the form: heading, text and buttons are rendered by _QuestionPage.astro.
 // The "Weiter" button sits outside the form and submits it via the form id.
 export function PreCheckQuestion({
   questionIdx,
@@ -69,7 +61,7 @@ export function PreCheckQuestion({
     usePreCheckData();
   const storedAnswer = answerForQuestionId(question.id);
   const nextLink =
-    questions.find((q) => q.id === question.id)?.nextLink ?? vorpruefung.path;
+    questions[questionIdx + 1]?.path ?? vorpruefung_ergebnis.path;
 
   const form = useSyncedForm({
     // set via RVF, which also links the inputs to this id

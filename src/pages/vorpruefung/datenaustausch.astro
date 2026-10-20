@@ -1,0 +1,30 @@
+---
+import DetailsSummary from "@/components/DetailsSummary";
+import QuestionPage from "./_QuestionPage.astro";
+
+export const frontmatter = {
+  title: "Datenaustausch",
+  sitemap: false,
+  navOrder: 3,
+};
+---
+
+<QuestionPage
+  questionId="datenaustausch"
+  question="Soll ein Datenaustausch stattfinden, z. B. weil durch die Regelung Daten erhoben werden, die der Verwaltung bereits vorliegen?"
+>
+  <p>
+    <strong>Praxisbeispiel</strong>: Arbeitnehmende müssen ihr Gehalt in der
+    Einkommenssteuererklärung angeben. Diese Information liegt der
+    Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist
+    bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.
+  </p>
+  <DetailsSummary slot="hint" title="Was ist mit „Daten erheben“ gemeint?">
+    <p>
+      Einige Informationen liegen in der Verwaltung bereits vor: Dies können
+      Daten von Bürgerinnen und Bürgern, Unternehmen und Organisationen, z.B.
+      von Vereinen, sein. Im besten Fall werden diese Daten automatisiert
+      zwischen den Behörden ausgetauscht.
+    </p>
+  </DetailsSummary>
+</QuestionPage>

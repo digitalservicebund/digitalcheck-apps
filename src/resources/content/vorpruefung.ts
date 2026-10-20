@@ -1,18 +1,17 @@
 import {
   interoperabel,
-  vorpruefung,
-  vorpruefung_ergebnis,
+  vorpruefung_automatisierung,
+  vorpruefung_datenaustausch,
+  vorpruefung_euBezug,
+  vorpruefung_itSystem,
+  vorpruefung_kommunikation,
+  vorpruefung_verpflichtungenFuerBeteiligte,
 } from "@/config/routes";
 import type { TQuestion } from "@/pages/vorpruefung/_react/question";
 import type { ContentLink } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
 import { withBase } from "@/utils/path";
 import { contact } from "./shared/contact";
-
-// Question pages are rendered by the dynamic route src/pages/vorpruefung/[questionId].astro,
-// so their paths are derived from the question ids instead of generated route objects.
-const questionPath = (questionId: string) =>
-  `${vorpruefung.path}/${questionId}`;
 
 export const preCheck = {
   preCheckName: "Vorprüfung",
@@ -198,93 +197,56 @@ export const preCheck = {
         
         Bitte überprüfen Sie ihre Angaben.
 
-        [Frage 3 zum Datenaustausch überprüfen](${questionPath("datenaustausch")})
+        [Frage 3 zum Datenaustausch überprüfen](${vorpruefung_datenaustausch.path})
       `,
     },
   },
   questions: [
     {
       id: "it-system",
+      path: vorpruefung_itSystem.path,
       title: "IT-System",
-      question:
-        "Muss durch die Regelung ein IT-System angepasst oder neu entwickelt werden?",
       positiveResult: "einer Anpassung oder Neuentwicklung einer IT-Lösung.",
       negativeResult: "keiner Anpassung oder Neuentwicklung einer IT-Lösung.",
-      text: "**Praxisbeispiel**: Eine Regelung schreibt vor, dass eine Datenbank potenzielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das IT-System) angepasst werden.",
-      hint: {
-        title: "Was ist ein IT-System?",
-        text: dedent`
-          IT-Systeme sind technische Lösungen, die aus Hardware (wie Computern, Kartenlesegeräten, Routern) oder Software (Programmen wie ELSTER und Word, Websites, Apps) bestehen, um Informationen zu speichern, zu verarbeiten und zu übertragen. 
-
-          Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der Einkommenssteuererklärung mit ELSTER.
-        `,
-      },
     },
     {
       id: "verpflichtungen-fuer-beteiligte",
+      path: vorpruefung_verpflichtungenFuerBeteiligte.path,
       title: "Verpflichtungen für Beteiligte",
-      question:
-        "Entstehen durch die Regelung Mitwirkungspflichten für Akteurinnen und Akteure?",
       positiveResult:
         "einer Festlegung von Mitwirkungspflichten für Akteurinnen und Akteure.",
       negativeResult:
         "keiner Festlegung von Mitwirkungspflichten für Akteurinnen und Akteure.",
-      text: "**Praxisbeispiel**: Für eine staatliche Förderung ist neben der Land- und Forstwirtschaft nun auch das produzierende Gewerbe berechtigt. Der Anspruch dieser Unternehmen kann nicht nach denselben Kriterien geprüft werden. Die Vorhalte-/Nachweispflichten müssen auf diese Gruppe angepasst werden. Dabei müssen die für die Beteiligten üblichen digitalen Möglichkeiten mitgedacht bzw. geschaffen werden.",
-      hint: {
-        title: "Wer sind Akteurinnen und Akteure?",
-        text: dedent`
-          Akteurinnen und Akteure sind in diesem Zusammenhang all diejenigen, die an der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl Vollzugsakteurinnen und -akteure als auch Betroffene sein.
-          
-          Beispiele für Akteurinnen und Akteure sind:
-          - Bürgerinnen und Bürger, 
-          - Einwohnende, 
-          - Kommunen, Verwaltungen und Behörden, deren IT- oder Rechtsabteilungen,
-          - IT-Dienstleistende,
-          - Unternehmen und 
-          - weitere Organisationen wie z. B. Vereine.
-        `,
-      },
     },
     {
       id: "datenaustausch",
+      path: vorpruefung_datenaustausch.path,
       title: "Datenaustausch",
-      question:
-        "Soll ein Datenaustausch stattfinden, z. B. weil durch die Regelung Daten erhoben werden, die der Verwaltung bereits vorliegen?",
       positiveResult: "einem Austausch von Daten.",
       negativeResult: "keinem Austausch von Daten.",
-      text: "**Praxisbeispiel**: Arbeitnehmende müssen ihr Gehalt in der Einkommenssteuererklärung angeben. Diese Information liegt der Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.",
-      hint: {
-        title: "Was ist mit „Daten erheben“ gemeint?",
-        text: "Einige Informationen liegen in der Verwaltung bereits vor: Dies können Daten von Bürgerinnen und Bürgern, Unternehmen und Organisationen, z.B. von Vereinen, sein. Im besten Fall werden diese Daten automatisiert zwischen den Behörden ausgetauscht.",
-      },
     },
     {
       id: "kommunikation",
+      path: vorpruefung_kommunikation.path,
       title: "Digitale Kommunikation",
-      question:
-        "Führt die Regelung zu einer Interaktion zwischen Behörden und Bürgerinnen und Bürgern bzw. Unternehmen?",
       positiveResult:
         "einer Interaktion zwischen Behörden und Bürgerinnen und Bürgern bzw. Unternehmen.",
       negativeResult:
         "keiner Interaktion zwischen Behörden und Bürgerinnen und Bürgern bzw. Unternehmen.",
-      text: "**Praxisbeispiel**: Ein Antrag für Steuerentlastung muss gestellt und abgeschickt werden. Dies kann digital, ohne händische Unterschrift oder analoge Nachweise geschehen. Es können z. B. Unternehmen, Bürgerinnen und Bürger oder Organisationen den Antrag einreichen.",
     },
     {
       id: "automatisierung",
+      path: vorpruefung_automatisierung.path,
       title: "Automatisierung",
-      question:
-        "Kann die Umsetzung der Regelung verbessert werden, indem man Schritte automatisiert?",
       positiveResult:
         "einer Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
       negativeResult:
         "keiner Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
-      text: "**Praxisbeispiel**: Durch die automatisierte Auszahlung der Energiepreispauschale entfällt sowohl das Errechnen eines Leistungsanspruchs als auch die manuelle Antragstellung durch Leistungsberechtigte.",
     },
     {
       id: "eu-bezug",
+      path: vorpruefung_euBezug.path,
       title: "EU-Bezug",
-      question:
-        "Ist durch die Regelung vorgesehen, dass Daten und Informationen zwischen Verwaltungen von EU-Mitgliedstaaten ausgetauscht werden?",
       positiveResult:
         "einem Daten- und Informationsaustausch zwischen EU-Mitgliedstaaten.",
       negativeResult:
@@ -295,27 +257,7 @@ export const preCheck = {
       resultTooltip: {
         positiveResult: "Bitte beachten Sie den oberen Hinweis.",
       },
-      text: "**Praxisbeispiel**: Ein Vorhaben sieht vor, dass Bürgerinnen und Bürger in der EU eine digitale Identitäts-Wallet nutzen können, die von ihrem Heimatstaat ausgestellt wird. Diese Wallet erlaubt es, Identitätsnachweise und Dokumente (z. B. Führerscheine, Berufsqualifikationen) grenzüberschreitend zu verwenden. Damit andere Mitgliedstaaten diese Nachweise anerkennen können, ist ein Austausch von Daten und harmonisierten Standards erforderlich, um deren Echtheit zu überprüfen.",
-      hint: {
-        title: "Wen betrifft dieser Daten- und Informationsaustausch?",
-        text: dedent`
-          Daten und Informationen können zwischen den digitalen öffentlichen Diensten in der EU ausgetauscht werden:
-          - Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben oder Dienste zu erfüllen.
-          - Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von EU-Programmen oder Richtlinien.
-          - Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der Übermittlung von Informationen oder der Koordination von Maßnahmen auf europäischer Ebene.
-        `,
-      },
       interoperability: true,
     },
-  ].map((question, index, questions) => ({
-    // generate list from the questions such that each list has a path, a previous link and a next link
-    ...question,
-    path: questionPath(question.id),
-    prevLink:
-      index === 0 ? vorpruefung.path : questionPath(questions[index - 1].id),
-    nextLink:
-      index === questions.length - 1
-        ? vorpruefung_ergebnis.path
-        : questionPath(questions[index + 1].id),
-  })) as TQuestion[],
+  ] as TQuestion[],
 };

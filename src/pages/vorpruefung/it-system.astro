@@ -1,0 +1,35 @@
+---
+import DetailsSummary from "@/components/DetailsSummary";
+import QuestionPage from "./_QuestionPage.astro";
+
+export const frontmatter = {
+  title: "IT-System",
+  sitemap: false,
+  navOrder: 1,
+};
+---
+
+<QuestionPage
+  questionId="it-system"
+  question="Muss durch die Regelung ein IT-System angepasst oder neu entwickelt werden?"
+>
+  <p>
+    <strong>Praxisbeispiel</strong>: Eine Regelung schreibt vor, dass eine
+    Datenbank potenzielle Schadstoffe in Lebensmitteln erfasst. Nun kommen neue
+    Inhaltsstoffe dazu. Oder pro Inhaltsstoff müssen weitere Daten zur
+    langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das
+    IT-System) angepasst werden.
+  </p>
+  <DetailsSummary slot="hint" title="Was ist ein IT-System?">
+    <p>
+      IT-Systeme sind technische Lösungen, die aus Hardware (wie Computern,
+      Kartenlesegeräten, Routern) oder Software (Programmen wie ELSTER und Word,
+      Websites, Apps) bestehen, um Informationen zu speichern, zu verarbeiten
+      und zu übertragen.
+    </p>
+    <p>
+      Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der
+      Einkommenssteuererklärung mit ELSTER.
+    </p>
+  </DetailsSummary>
+</QuestionPage>

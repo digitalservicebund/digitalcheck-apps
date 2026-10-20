@@ -1,14 +1,9 @@
 import { prinzipienRoutes } from "@/config/prinzipienRoutes";
 import { allRoutes, type Route } from "@/config/routes";
 import { isProduction } from "@/config/stage";
-import { vorpruefungRoutes } from "@/config/vorpruefungRoutes";
 import { removeTrailingSlash } from "../path";
 
-const navigationRoutes: Route[] = [
-  ...allRoutes,
-  ...prinzipienRoutes,
-  ...vorpruefungRoutes,
-];
+const navigationRoutes: Route[] = [...allRoutes, ...prinzipienRoutes];
 
 export const getRouteByPath = (path: string): Route | null =>
   navigationRoutes.find((route) => route.path === removeTrailingSlash(path)) ??

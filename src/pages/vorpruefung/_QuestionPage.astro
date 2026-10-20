@@ -1,18 +1,20 @@
 ---
-import RichText from "@/components/RichText";
 import RadioStepForm from "@/components/wizard/RadioStepForm";
 import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
 import WizardLayout from "@/layouts/WizardLayout.astro";
+import { vorpruefung } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 
-export function getStaticPaths() {
-  return preCheck.questions.map((question, questionIdx) => ({
-    params: { questionId: question.id },
-    props: { question, questionIdx },
-  }));
+interface Props {
+  questionId: string;
+  /** Heading of the page, labels the radio group */
+  question: string;
 }
 
-const { question, questionIdx } = Astro.props;
+const { questionId, question } = Astro.props;
+const questionIdx = preCheck.questions.findIndex((q) => q.id === questionId);
+const { title } = preCheck.questions[questionIdx];
+
 const formId = "step-form";
 const labelId = "question-label";
 const answerOptions = Object.entries(preCheck.answerOptions).map(
@@ -20,30 +22,37 @@ const answerOptions = Object.entries(preCheck.answerOptions).map(
 );
 ---
 
+<!--
+  Slots:
+  - default: text below the question, e.g. "Praxisbeispiel"
+  - hint: hint below the text, e.g. <DetailsSummary />
+-->
 <WizardLayout
-  title={`Vorprüfung: ${question.title}`}
+  title={`Vorprüfung: ${title}`}
   pageNumber={questionIdx + 1}
   totalPages={preCheck.questions.length}
 >
   <section class="space-y-32">
     <div class="space-y-16">
       <h1 id={labelId} class="kern-heading-large">
-        {question.question}
+        {question}
       </h1>
-      <!-- Refactor this - content should come from an astro content collection -->
-      <RichText markdown={question.text} />
+      <slot />
+      <slot name="hint" />
     </div>
     <RadioStepForm
       client:load
       formId={formId}
       labelledBy={labelId}
       options={answerOptions}
-      nextPath={question.nextLink}
+      wizardId="vorpruefung"
+      name={questionId}
     />
   </section>
   <WizardButtonBar
     slot="button-bar"
-    backHref={question.prevLink}
+    wizardId="vorpruefung"
     formId={formId}
+    fallbackBackHref={vorpruefung.path}
   />
 </WizardLayout>

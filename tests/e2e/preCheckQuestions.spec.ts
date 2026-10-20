@@ -28,13 +28,7 @@ test.describe("test questions form", () => {
     for (const element of questions) {
       await page.waitForURL(element.path);
       await waitForHydration(page);
-      await expect(page.getByRole("heading", { level: 1 })).toContainText(
-        element.question.replaceAll("&#8209;", "‑"), // workaround for non-breaking hyphen present in last question
-      );
-      const hint = element.hint;
-      if (hint) {
-        await expect(page.getByRole("main")).toContainText(hint.title);
-      }
+      await expect(page.getByRole("heading", { level: 1 })).not.toBeEmpty();
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }

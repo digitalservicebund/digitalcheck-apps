@@ -1,17 +1,35 @@
 ---
+import { getWizardSession, type WizardId } from "@/wizard/session";
 import IconPublishedWithChanges from "~icons/ic/baseline-published-with-changes";
 
 interface Props {
-  backHref?: string;
+  wizardId: WizardId;
   /** id of the step form that "Weiter" submits (the button sits outside the form) */
   formId?: string;
+  /** Used for "Zurück" on the first step, which has no previous page in the flow */
+  fallbackBackHref?: string;
   showAutosaveHint?: boolean;
 }
 
-const { backHref, formId, showAutosaveHint = true } = Astro.props;
+const {
+  wizardId,
+  formId,
+  fallbackBackHref,
+  showAutosaveHint = true,
+} = Astro.props;
+
+// Without user data at build time; the script below recalculates the
+// links in the browser with the stored answers.
+const session = getWizardSession(wizardId, Astro.url.pathname);
+const backHref = session.prevPath ?? fallbackBackHref;
+const nextHref = session.nextPath();
 ---
 
-<div class="bg-kern-layout-background-default sticky bottom-0 z-10 flex flex-wrap items-center gap-kern-md border-t border-kern-layout-border px-kern-md py-kern-md min-[900px]:px-64">
+<div
+  data-wizard-button-bar={wizardId}
+  data-fallback-back-href={fallbackBackHref}
+  class="bg-kern-layout-background-default sticky bottom-0 z-10 flex flex-wrap items-center gap-kern-md border-t border-kern-layout-border px-kern-md py-kern-md min-[900px]:px-64"
+>
   {showAutosaveHint && (
     <p class="flex flex-1 items-center gap-kern-sm text-kern-layout-text-muted">
       <IconPublishedWithChanges class="size-22 shrink-0" aria-hidden="true" />
@@ -21,13 +39,59 @@ const { backHref, formId, showAutosaveHint = true } = Astro.props;
   <div class="ml-auto flex flex-wrap justify-end gap-kern-md">
     {/* additional actions, e.g. "Zwischenstand herunterladen" */}
     <slot />
-    {backHref && (
-      <a href={backHref} class="kern-btn kern-btn--secondary link-unstyled">
-        <span class="kern-label">Zurück</span>
+    <a
+      data-wizard-back
+      href={backHref}
+      hidden={!backHref}
+      class="kern-btn kern-btn--secondary link-unstyled"
+    >
+      <span class="kern-label">Zurück</span>
+    </a>
+    {formId ? (
+      <button type="submit" form={formId} class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    ) : (
+      <a
+        data-wizard-next
+        href={nextHref}
+        hidden={!nextHref}
+        class="kern-btn kern-btn--primary link-unstyled"
+      >
+        <span class="kern-label">Weiter</span>
       </a>
     )}
-    <button type="submit" form={formId} class="kern-btn kern-btn--primary">
-      <span class="kern-label">Weiter</span>
-    </button>
   </div>
 </div>
+
+<script>
+  import {
+    getWizardSession,
+    readUserData,
+    type WizardId,
+  } from "@/wizard/session";
+
+  const setLink = (link: HTMLAnchorElement | null, path?: string) => {
+    if (!link) return;
+    link.hidden = !path;
+    if (path) link.href = path;
+    else link.removeAttribute("href");
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-wizard-button-bar]")
+    .forEach((bar) => {
+      const wizardId = bar.dataset.wizardButtonBar as WizardId;
+      const session = getWizardSession(
+        wizardId,
+        globalThis.location.pathname,
+        readUserData(wizardId),
+      );
+
+      setLink(
+        bar.querySelector("[data-wizard-back]"),
+        session.prevPath ?? bar.dataset.fallbackBackHref,
+      );
+      setLink(bar.querySelector("[data-wizard-next]"), session.nextPath());
+    });
+</script>

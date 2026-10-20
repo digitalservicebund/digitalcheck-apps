@@ -1,4 +1,12 @@
-import { vorpruefung, vorpruefung_ergebnis } from "@/config/routes";
+import {
+  vorpruefung_automatisierung,
+  vorpruefung_datenaustausch,
+  vorpruefung_ergebnis,
+  vorpruefung_euBezug,
+  vorpruefung_itSystem,
+  vorpruefung_kommunikation,
+  vorpruefung_verpflichtungenFuerBeteiligte,
+} from "@/config/routes";
 import { compileFlowConfig } from "form-graph-engine";
 import { z } from "zod";
 
@@ -13,12 +21,6 @@ const questionIds = [
 
 type QuestionId = (typeof questionIds)[number];
 
-// Question pages are rendered by the dynamic route src/pages/vorpruefung/[questionId].astro
-// and therefore missing in routes.ts, so their paths are derived from the question ids.
-// Literal path types let form-graph-engine infer the page schema per path.
-const questionPath = <Id extends QuestionId>(questionId: Id) =>
-  `${vorpruefung.path}/${questionId}` as const;
-
 const answer = z.enum(
   ["yes", "no", "unsure"],
   "Bitte wählen Sie eine Option aus.",
@@ -27,31 +29,34 @@ const answer = z.enum(
 const allQuestionsAnswered = (data: Partial<Record<QuestionId, unknown>>) =>
   questionIds.every((id) => answer.safeParse(data[id]).success);
 
+// Each question has its own page in src/pages/vorpruefung/, so the paths come
+// from the generated routes. Their literal types let form-graph-engine infer
+// the page schema per path.
 // Field names are the question ids: user data is one flat object across all pages.
 export const vorpruefungFlow = compileFlowConfig({
   pages: {
     itSystem: {
-      path: questionPath("it-system"),
+      path: vorpruefung_itSystem.path,
       pageSchema: { "it-system": answer },
     },
     verpflichtungenFuerBeteiligte: {
-      path: questionPath("verpflichtungen-fuer-beteiligte"),
+      path: vorpruefung_verpflichtungenFuerBeteiligte.path,
       pageSchema: { "verpflichtungen-fuer-beteiligte": answer },
     },
     datenaustausch: {
-      path: questionPath("datenaustausch"),
+      path: vorpruefung_datenaustausch.path,
       pageSchema: { datenaustausch: answer },
     },
     kommunikation: {
-      path: questionPath("kommunikation"),
+      path: vorpruefung_kommunikation.path,
       pageSchema: { kommunikation: answer },
     },
     automatisierung: {
-      path: questionPath("automatisierung"),
+      path: vorpruefung_automatisierung.path,
       pageSchema: { automatisierung: answer },
     },
     euBezug: {
-      path: questionPath("eu-bezug"),
+      path: vorpruefung_euBezug.path,
       pageSchema: { "eu-bezug": answer },
     },
     ergebnis: { path: vorpruefung_ergebnis.path },

@@ -1,0 +1,50 @@
+---
+import DetailsSummary from "@/components/DetailsSummary";
+import QuestionPage from "./_QuestionPage.astro";
+
+export const frontmatter = {
+  title: "EU-Bezug",
+  sitemap: false,
+  navOrder: 6,
+};
+---
+
+<QuestionPage
+  questionId="eu-bezug"
+  question="Ist durch die Regelung vorgesehen, dass Daten und Informationen zwischen Verwaltungen von EU-Mitgliedstaaten ausgetauscht werden?"
+>
+  <p>
+    <strong>Praxisbeispiel</strong>: Ein Vorhaben sieht vor, dass Bürgerinnen
+    und Bürger in der EU eine digitale Identitäts-Wallet nutzen können, die von
+    ihrem Heimatstaat ausgestellt wird. Diese Wallet erlaubt es,
+    Identitätsnachweise und Dokumente (z. B. Führerscheine,
+    Berufsqualifikationen) grenzüberschreitend zu verwenden. Damit andere
+    Mitgliedstaaten diese Nachweise anerkennen können, ist ein Austausch von
+    Daten und harmonisierten Standards erforderlich, um deren Echtheit zu
+    überprüfen.
+  </p>
+  <DetailsSummary
+    slot="hint"
+    title="Wen betrifft dieser Daten- und Informationsaustausch?"
+  >
+    <p>
+      Daten und Informationen können zwischen den digitalen öffentlichen
+      Diensten in der EU ausgetauscht werden:
+    </p>
+    <ul>
+      <li>
+        Zwischen Verwaltungen von EU-Mitgliedstaaten, um gemeinsame Aufgaben
+        oder Dienste zu erfüllen.
+      </li>
+      <li>
+        Zwischen EU-Institutionen, etwa bei der Zusammenarbeit zur Umsetzung von
+        EU-Programmen oder Richtlinien.
+      </li>
+      <li>
+        Zwischen EU-Institutionen und nationalen Verwaltungen, z. B. bei der
+        Übermittlung von Informationen oder der Koordination von Maßnahmen auf
+        europäischer Ebene.
+      </li>
+    </ul>
+  </DetailsSummary>
+</QuestionPage>
