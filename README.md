@@ -94,9 +94,9 @@ The snapshot tests capture screenshots of static routes across different devices
 To create a component snapshot with Vitest, use `toMatchSnapshot()` in your test file. For example:
 
 ```ts
-// In a test like src/layout/Footer.spec.tsx
-const { container } = render(<Footer />);
-expect(container).toMatchSnapshot();
+// In a test like src/components/global/Footer.spec.ts
+const { html } = await renderToDOM(Footer as AstroComponentFactory);
+expect(html).toMatchSnapshot();
 ```
 
 To update failing snapshots, run all tests and press `u` in the interactive prompt, or use the update flag directly:

@@ -1,5 +1,5 @@
 // @vitest-environment node
-import Footer from "@/layout/Footer.astro";
+import Footer from "@/components/global/Footer.astro";
 import { renderToDOM } from "@/utils/testUtils";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import { describe, expect, it } from "vitest";
