@@ -2,7 +2,6 @@ import {
   interoperabel,
   vorpruefung,
   vorpruefung_ergebnis,
-  vorpruefung_hinweise,
 } from "@/config/routes";
 import type { TQuestion } from "@/pages/vorpruefung/_react/question";
 import type { ContentLink } from "@/utils/contentTypes.ts";
@@ -177,20 +176,10 @@ export const preCheck = {
       },
     ],
   },
-  nextButton: "Übernehmen & weiter",
   answerOptions: {
     yes: "Ja",
     no: "Nein",
     unsure: "Ich bin unsicher",
-  },
-  generalInfo: {
-    headline: "Allgemeine Hinweise",
-    text: "Alle Fragen beziehen sich auch auf die **Umsetzung** nach Inkrafttreten des Regelungsvorhabens.",
-    hint: {
-      title: "Eine oder mehrere Vorprüfungen?",
-      text: "Füllen Sie eine gemeinsame Vorprüfung für alle inhaltlich zusammenhängenden Regelungen eines Vorhabens aus. So viele wie nötig, so wenige wie möglich.",
-    },
-    nextButton: "Okay & weiter",
   },
   nav: {
     ariaLabel: "Alle Fragen",
@@ -323,9 +312,7 @@ export const preCheck = {
     ...question,
     path: questionPath(question.id),
     prevLink:
-      index === 0
-        ? vorpruefung_hinweise.path
-        : questionPath(questions[index - 1].id),
+      index === 0 ? vorpruefung.path : questionPath(questions[index - 1].id),
     nextLink:
       index === questions.length - 1
         ? vorpruefung_ergebnis.path

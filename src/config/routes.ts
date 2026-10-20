@@ -385,17 +385,6 @@ export const vorpruefung_ergebnis = {
   navLabel: null,
 } as const;
 
-export const vorpruefung_hinweise = {
-  key: "vorpruefung_hinweise",
-  path: "/vorpruefung/hinweise",
-  title: "Allgemeine Hinweise",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: null,
-} as const;
-
 export const allRoutes = [
   barrierefreiheit,
   bundeslaender,
@@ -431,5 +420,4 @@ export const allRoutes = [
   sitemap,
   vorpruefung,
   vorpruefung_ergebnis,
-  vorpruefung_hinweise,
 ] as const;

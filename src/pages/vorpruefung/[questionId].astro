@@ -1,7 +1,9 @@
 ---
-import VorpruefungLayout from "@/layouts/VorpruefungLayout.astro";
+import RichText from "@/components/RichText";
+import RadioStepForm from "@/components/wizard/RadioStepForm";
+import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
+import WizardLayout from "@/layouts/WizardLayout.astro";
 import { preCheck } from "@/resources/content/vorpruefung";
-import { PreCheckQuestion } from "@/pages/vorpruefung/_react/question";
 
 export function getStaticPaths() {
   return preCheck.questions.map((question, questionIdx) => ({
@@ -11,8 +13,37 @@ export function getStaticPaths() {
 }
 
 const { question, questionIdx } = Astro.props;
+const formId = "step-form";
+const labelId = "question-label";
+const answerOptions = Object.entries(preCheck.answerOptions).map(
+  ([value, label]) => ({ value, label }),
+);
 ---
 
-<VorpruefungLayout title={question.title}>
-  <PreCheckQuestion client:load questionIdx={questionIdx} question={question} />
-</VorpruefungLayout>
+<WizardLayout
+  title={`Vorprüfung: ${question.title}`}
+  pageNumber={questionIdx + 1}
+  totalPages={preCheck.questions.length}
+>
+  <section class="space-y-32">
+    <div class="space-y-16">
+      <h1 id={labelId} class="kern-heading-large">
+        {question.question}
+      </h1>
+      <!-- Refactor this - content should come from an astro content collection -->
+      <RichText markdown={question.text} />
+    </div>
+    <RadioStepForm
+      client:load
+      formId={formId}
+      labelledBy={labelId}
+      options={answerOptions}
+      nextPath={question.nextLink}
+    />
+  </section>
+  <WizardButtonBar
+    slot="button-bar"
+    backHref={question.prevLink}
+    formId={formId}
+  />
+</WizardLayout>

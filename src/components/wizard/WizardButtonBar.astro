@@ -1,0 +1,33 @@
+---
+import IconPublishedWithChanges from "~icons/ic/baseline-published-with-changes";
+
+interface Props {
+  backHref?: string;
+  /** id of the step form that "Weiter" submits (the button sits outside the form) */
+  formId?: string;
+  showAutosaveHint?: boolean;
+}
+
+const { backHref, formId, showAutosaveHint = true } = Astro.props;
+---
+
+<div class="bg-kern-layout-background-default sticky bottom-0 z-10 flex flex-wrap items-center gap-kern-md border-t border-kern-layout-border px-kern-md py-kern-md min-[900px]:px-64">
+  {showAutosaveHint && (
+    <p class="flex flex-1 items-center gap-kern-sm text-kern-layout-text-muted">
+      <IconPublishedWithChanges class="size-22 shrink-0" aria-hidden="true" />
+      Ihre Daten werden automatisch im Browser gespeichert.
+    </p>
+  )}
+  <div class="ml-auto flex flex-wrap justify-end gap-kern-md">
+    {/* additional actions, e.g. "Zwischenstand herunterladen" */}
+    <slot />
+    {backHref && (
+      <a href={backHref} class="kern-btn kern-btn--secondary link-unstyled">
+        <span class="kern-label">Zurück</span>
+      </a>
+    )}
+    <button type="submit" form={formId} class="kern-btn kern-btn--primary">
+      <span class="kern-label">Weiter</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+type Props = {
+  title: string;
+  pageNumber: number;
+  totalPages: number;
+  isWide?: boolean;
+  showProgressBar?: boolean;
+};
+
+const {
+  title,
+  pageNumber,
+  totalPages,
+  isWide = false,
+  showProgressBar = true,
+} = Astro.props;
+---
+
+<!--
+  Slots:
+  - default: step content (heading, text, form)
+  - context: context bar, e.g. "Vorprüfung für: Bund"
+  - button-bar: <WizardButtonBar />
+  The section sidebar is rendered by Layout.astro.
+-->
+<Layout title={title}>
+  <!-- h-full fills the sidebar grid cell, flex-1 the body without sidebar -->
+  <div class="flex h-full min-w-0 flex-1 flex-col">
+    {Astro.slots.has("context") && (
+      <div class="px-kern-md pt-kern-md pb-kern-sm">
+        <slot name="context" />
+      </div>
+    )}
+    <main class="flex-1 px-kern-md pt-64 pb-80">
+      <div
+        class:list={[
+          "mx-auto w-full space-y-kern-xl",
+          isWide ? "max-w-[1248px]" : "max-w-[736px]",
+        ]}
+      >
+        {showProgressBar && (
+          <div class="kern-progress">
+            <label for="wizard-progress" class="kern-label">
+              Schritt {pageNumber} von {totalPages}
+            </label>
+            <progress
+              id="wizard-progress"
+              value={pageNumber}
+              max={totalPages}
+            />
+          </div>
+        )}
+        <slot />
+      </div>
+    </main>
+    <slot name="button-bar" />
+  </div>
+</Layout>

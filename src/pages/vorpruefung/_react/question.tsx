@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 
-import Button, { LinkButton } from "@/components/Button.tsx";
-import ButtonContainer from "@/components/ButtonContainer";
-import DetailsSummary from "@/components/DetailsSummary";
 import InlineNotice from "@/components/InlineNotice";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
 import { vorpruefung } from "@/config/routes";
-import { general } from "@/resources/content/shared/general";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { usePreCheckData, useSyncedForm } from "./preCheckDataHook";
 import type { PreCheckAnswerSchema } from "./preCheckDataSchema";
@@ -16,7 +12,7 @@ import { addOrUpdateAnswer } from "./preCheckDataService";
 
 // data fetching moved to @/src/pages/vorpruefung/
 
-const { questions, answerOptions, nextButton } = preCheck;
+const { questions, answerOptions } = preCheck;
 
 export type TQuestion = {
   id: string;
@@ -54,12 +50,18 @@ export type PreCheckAnswerOption = {
   label: string;
 };
 
+// Only the form: heading, text and buttons are rendered by [questionId].astro.
+// The "Weiter" button sits outside the form and submits it via the form id.
 export function PreCheckQuestion({
   questionIdx,
   question,
+  formId,
+  labelledBy,
 }: Readonly<{
   questionIdx: number;
   question: TQuestion;
+  formId: string;
+  labelledBy: string;
 }>) {
   const [hasAnswerConflict, setHasAnswerConflict] = useState(false);
 
@@ -70,6 +72,8 @@ export function PreCheckQuestion({
     questions.find((q) => q.id === question.id)?.nextLink ?? vorpruefung.path;
 
   const form = useSyncedForm({
+    // set via RVF, which also links the inputs to this id
+    id: formId,
     schema: answerSchema,
     defaultValues: {
       questionId: question.id,
@@ -119,63 +123,25 @@ export function PreCheckQuestion({
     }),
   );
 
-  const questionLabelId = `question${questionIdx}-label`;
-
   return (
     <form {...form.getFormProps()} className="space-y-40">
       <input {...form.getHiddenInputProps("questionId")} />
-      <section className="space-y-32">
-        <div className="space-y-16">
-          <h1 id={questionLabelId} className="kern-heading-large">
-            {question.question}
-          </h1>
-          <div className="sr-only">
-            Frage {questionIdx + 1} von {questions.length}
-          </div>
-          <div>
-            <RichText markdown={question.text} />
-          </div>
-          {question.hint && (
-            <DetailsSummary title={question.hint.title}>
-              <RichText markdown={question.hint.text} />
-            </DetailsSummary>
-          )}
-        </div>
-        <RadioGroup
-          scope={form.scope("answer")}
-          options={options}
-          aria-labelledby={questionLabelId}
-        />
-      </section>
-      <div className="space-y-40">
-        {hasAnswerConflict && (
-          <InlineNotice
-            className="[&_p]:mt-24"
-            look="warning"
-            heading={preCheck.answerConflictHint.euBezugHint.title}
-          >
-            <RichText
-              markdown={preCheck.answerConflictHint.euBezugHint.content}
-            />
-          </InlineNotice>
-        )}
-        <ButtonContainer>
-          <LinkButton
-            id={"preCheck-back-button"}
-            href={question.prevLink}
-            look={"secondary"}
-          >
-            {general.buttonBack.text}
-          </LinkButton>
-          <Button
-            type="submit"
-            disabled={form.formState.isSubmitting}
-            id={"preCheck-next-button"}
-          >
-            {nextButton}
-          </Button>
-        </ButtonContainer>
-      </div>
+      <RadioGroup
+        scope={form.scope("answer")}
+        options={options}
+        aria-labelledby={labelledBy}
+      />
+      {hasAnswerConflict && (
+        <InlineNotice
+          className="[&_p]:mt-24"
+          look="warning"
+          heading={preCheck.answerConflictHint.euBezugHint.title}
+        >
+          <RichText
+            markdown={preCheck.answerConflictHint.euBezugHint.content}
+          />
+        </InlineNotice>
+      )}
     </form>
   );
 }

@@ -2,7 +2,6 @@ import Button, { LinkButton } from "@/components/Button.tsx";
 import ButtonContainer from "@/components/ButtonContainer.tsx";
 import Dialog from "@/components/Dialog.tsx";
 import RichText from "@/components/RichText.tsx";
-import { vorpruefung_hinweise } from "@/config/routes";
 import { PRE_CHECK_START_BUTTON_ID } from "@/resources/constants";
 import { general } from "@/resources/content/shared/general.ts";
 import { preCheck } from "@/resources/content/vorpruefung";
@@ -30,7 +29,7 @@ function StartOverDialog() {
             type="button"
             onClick={() => {
               deletePreCheckData();
-              globalThis.location.href = vorpruefung_hinweise.path;
+              globalThis.location.href = preCheck.questions[0].path;
             }}
           >
             {preCheck.startOver.confirm}
@@ -56,7 +55,7 @@ export function PreCheckContinueActions() {
   const resumeLink =
     firstUnansweredQuestionIndex === null ||
     firstUnansweredQuestionIndex === preCheck.questions.length
-      ? vorpruefung_hinweise.path
+      ? preCheck.questions[0].path
       : preCheck.questions[firstUnansweredQuestionIndex].path;
 
   return (
@@ -72,7 +71,7 @@ export function PreCheckContinueActions() {
         <LinkButton
           className="js-only"
           id={PRE_CHECK_START_BUTTON_ID}
-          href={vorpruefung_hinweise.path}
+          href={preCheck.questions[0].path}
         >
           {preCheck.start.buttonText}
         </LinkButton>

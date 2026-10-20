@@ -1,9 +1,4 @@
-import {
-  interoperabel,
-  methoden,
-  vorpruefung,
-  vorpruefung_hinweise,
-} from "@/config/routes";
+import { interoperabel, methoden, vorpruefung } from "@/config/routes";
 import { steps } from "@/resources/content/shared/naechste-schritte";
 import type { ContentLink, Step } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -82,8 +77,6 @@ export const preCheckResult = {
       **Beachten Sie in diesem Kontext:** Interoperabilität ist die Fähigkeit digitaler Systeme, miteinander zu kommunizieren und Daten auszutauschen. **Das heisst, ohne Digitalbezug ist Interoperabilität nicht möglich.**
 
       Haben Sie Fragen? Kontaktieren Sie uns unter ${contact.mdPhoneLink()} oder ${contact.mdMailToLink(contact.email)}.
-
-      [Zurück zum Vorprüfungs-Formular](${vorpruefung_hinweise.path})
     `,
   },
   interoperability: {
