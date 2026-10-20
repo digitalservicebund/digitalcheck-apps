@@ -23,4 +23,23 @@ const { principleId } = Astro.params;
       Mehr zum Prinzip
     </a>
   </HelpSection>
+  <HelpSection id="schwerpunkte" title="Schwerpunkte dieses Prinzips">
+    <p>Wählen Sie aus, welche Schwerpunkte für Ihr Vorhaben relevant sind.</p>
+    <p>
+      Diese dienen Ihnen als roter Faden für Ihre Erklärung. So formulieren Sie
+      präzise und stellen sicher, dass Ihre Regelung das Prinzip erfüllt.
+    </p>
+    <div>
+      {prinzip.Aspekte.map((aspekt) => (
+        <details class="kern-accordion">
+          <summary class="kern-accordion__header">
+            <span class="kern-title">{aspekt.Kurzbezeichnung}</span>
+          </summary>
+          <div class="kern-accordion__body">
+            <RichText className="kern-body" markdown={aspekt.Text} />
+          </div>
+        </details>
+      ))}
+    </div>
+  </HelpSection>
 </DocumentationWizard>
