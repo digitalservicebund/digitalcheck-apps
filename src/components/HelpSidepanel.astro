@@ -9,10 +9,7 @@ import IconClose from "~icons/ic/outline-close";
 
 <div
   id="help-panel"
-  x-data="helpSidepanel()"
-  x-init="setup($refs.scrollable)"
-  @scroll.window="adjustHeight()"
-  @resize.window="adjustHeight()"
+  x-data
   class="help peer relative hidden border-l border-kern-darkblue-100 bg-white data-open:block max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:z-50 max-xl:w-[80vw] max-xl:max-w-[400px] max-xl:shadow-2xl"
 >
   <div class="sticky top-0">
@@ -27,10 +24,7 @@ import IconClose from "~icons/ic/outline-close";
       </button>
     </div>
     <div class="before:pointer-events-none before:absolute before:top-48 before:right-16 before:left-0 before:h-40 before:bg-[linear-gradient(to_bottom,white,transparent)] before:blur-xs before:content-[''] after:pointer-events-none after:absolute after:right-16 after:bottom-0 after:left-0 after:h-40 after:bg-[linear-gradient(to_top,white,transparent)] after:blur-xs after:content-['']">
-      <div
-        x-ref="scrollable"
-        class="max-h-screen [scrollbar-gutter:stable] overflow-x-hidden overflow-y-hidden pt-80 pb-40 wrap-break-word hover:overflow-y-auto max-lg:[scrollbar-gutter:auto] max-lg:overflow-y-auto"
-      >
+      <div class="max-h-screen [scrollbar-gutter:stable] overflow-x-hidden overflow-y-hidden pt-80 pb-40 wrap-break-word hover:overflow-y-auto max-lg:[scrollbar-gutter:auto] max-lg:overflow-y-auto">
         <div class="w-full space-y-32 pr-16 pl-32">
           <slot />
         </div>
@@ -54,12 +48,3 @@ import IconClose from "~icons/ic/outline-close";
     }
   }
 </style>
-
-<script>
-  import Alpine from "alpinejs";
-  import { helpSidepanelData } from "@/utils/helpSidepanel";
-
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("helpSidepanel", helpSidepanelData);
-  });
-</script>
