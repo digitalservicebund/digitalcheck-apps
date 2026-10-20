@@ -15,7 +15,11 @@ const { principleId } = Astro.params;
 <DocumentationWizard stepTitle={prinzip.Name} principleId={principleId}>
   <HelpSection id="1-prinzip" title={`Hinweis zu „${prinzip.Name}“`}>
     <RichText markdown={prinzip.Hilfetext} />
-    <a href={`${prinzipien.path}/${prinzip.URLBezeichnung}`}>
+    <a href={`${prinzipien.path}/${prinzip.URLBezeichnung}`} class="kern-link">
+      <span
+        class="kern-icon kern-icon--arrow-forward"
+        aria-hidden="true"
+      ></span>
       Mehr zum Prinzip
     </a>
   </HelpSection>

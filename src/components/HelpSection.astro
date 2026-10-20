@@ -8,8 +8,8 @@ interface Props {
 const { id, title } = Astro.props;
 ---
 
-<div id={`help-section-${id}`} class="scroll-my-80">
-  <h3 class="kern-title mb-8 font-bold text-kern-action-default">{title}</h3>
+<div id={`help-section-${id}`} class="scroll-my-120">
+  <h3 class="kern-label kern-label--large mb-8">{title}</h3>
   <div class="space-y-8">
     <slot />
   </div>
