@@ -1,6 +1,7 @@
 import { preCheck } from "@/resources/content/vorpruefung";
 import { createFlowSession } from "form-graph-engine";
 import { vorpruefungFlow } from "./vorpruefungFlow";
+import { vorpruefungFields } from "./vorpruefungSchema";
 
 const questionPaths = preCheck.questions.map((question) => question.path);
 const allYes = Object.fromEntries(
@@ -71,6 +72,24 @@ describe("vorpruefungFlow", () => {
     });
 
     expect(session.nextIncomplete()).toBe("/vorpruefung/datenaustausch");
+  });
+
+  it("only uses fields from vorpruefungFields, with their schemas", () => {
+    for (const path of questionPaths) {
+      const pageSchema = vorpruefungFlow.getSchema(path);
+      expect(pageSchema).toBeDefined();
+      for (const [name, fieldSchema] of Object.entries(pageSchema!.shape)) {
+        expect(fieldSchema).toBe(
+          vorpruefungFields[name as keyof typeof vorpruefungFields],
+        );
+      }
+    }
+  });
+
+  it("has a field for every question of the content", () => {
+    expect(Object.keys(vorpruefungFields)).toEqual(
+      preCheck.questions.map((question) => question.id),
+    );
   });
 
   it("only accepts the defined answer options", () => {

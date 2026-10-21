@@ -5,6 +5,7 @@ import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
 import { vorpruefung_ergebnis } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
+import { answerOptions, type Answer } from "@/wizard/vorpruefungSchema";
 import { usePreCheckData, useSyncedForm } from "./preCheckDataHook";
 import type { PreCheckAnswerSchema } from "./preCheckDataSchema";
 import { answerSchema } from "./preCheckDataSchema";
@@ -12,7 +13,7 @@ import { addOrUpdateAnswer } from "./preCheckDataService";
 
 // data fetching moved to @/src/pages/vorpruefung/
 
-const { questions, answerOptions } = preCheck;
+const { questions } = preCheck;
 
 export type TQuestion = {
   id: string;
@@ -38,7 +39,7 @@ export type TQuestion = {
 };
 
 export type PreCheckAnswerOption = {
-  value: "yes" | "no" | "unsure";
+  value: Answer;
   label: string;
 };
 
@@ -108,19 +109,12 @@ export function PreCheckQuestion({
     return () => unsubscribe();
   }, [question.id, answers, storedAnswer, form]);
 
-  const options: PreCheckAnswerOption[] = Object.entries(answerOptions).map(
-    ([value, label]) => ({
-      value: value as PreCheckAnswerOption["value"],
-      label,
-    }),
-  );
-
   return (
     <form {...form.getFormProps()} className="space-y-40">
       <input {...form.getHiddenInputProps("questionId")} />
       <RadioGroup
         scope={form.scope("answer")}
-        options={options}
+        options={answerOptions}
         aria-labelledby={labelledBy}
       />
       {hasAnswerConflict && (

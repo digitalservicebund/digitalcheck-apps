@@ -1,12 +1,13 @@
-import { preCheck } from "@/resources/content/vorpruefung";
 import { preCheckResult } from "@/resources/content/vorpruefung-ergebnis";
+import { answerValues } from "@/wizard/vorpruefungSchema";
 import { z } from "zod";
 import { ResultType } from "./PreCheckResult";
 
 export const answerSchema = z.object({
   questionId: z.string(),
-  answer: z.enum(
-    Object.keys(preCheck.answerOptions),
+  // Typed as string like before, the legacy form and its tests rely on that
+  answer: z.enum<readonly string[]>(
+    answerValues,
     "Bitte wählen Sie eine Option aus.",
   ),
 });

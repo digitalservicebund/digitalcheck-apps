@@ -8,56 +8,43 @@ import {
   vorpruefung_verpflichtungenFuerBeteiligte,
 } from "@/config/routes";
 import { compileFlowConfig } from "form-graph-engine";
-import { z } from "zod";
+import { vorpruefungFields, vorpruefungSchema } from "./vorpruefungSchema";
 
-const questionIds = [
-  "it-system",
-  "verpflichtungen-fuer-beteiligte",
-  "datenaustausch",
-  "kommunikation",
-  "automatisierung",
-  "eu-bezug",
-] as const;
-
-type QuestionId = (typeof questionIds)[number];
-
-const answer = z.enum(
-  ["yes", "no", "unsure"],
-  "Bitte wählen Sie eine Option aus.",
-);
-
-const allQuestionsAnswered = (data: Partial<Record<QuestionId, unknown>>) =>
-  questionIds.every((id) => answer.safeParse(data[id]).success);
+const allQuestionsAnswered = (data: unknown) =>
+  vorpruefungSchema.safeParse(data).success;
 
 // Each question has its own page in src/pages/vorpruefung/, so the paths come
 // from the generated routes. Their literal types let form-graph-engine infer
 // the page schema per path.
-// Field names are the question ids: user data is one flat object across all pages.
+// Page schemas only pick fields from vorpruefungFields, don't define them inline.
 export const vorpruefungFlow = compileFlowConfig({
   pages: {
     itSystem: {
       path: vorpruefung_itSystem.path,
-      pageSchema: { "it-system": answer },
+      pageSchema: { "it-system": vorpruefungFields["it-system"] },
     },
     verpflichtungenFuerBeteiligte: {
       path: vorpruefung_verpflichtungenFuerBeteiligte.path,
-      pageSchema: { "verpflichtungen-fuer-beteiligte": answer },
+      pageSchema: {
+        "verpflichtungen-fuer-beteiligte":
+          vorpruefungFields["verpflichtungen-fuer-beteiligte"],
+      },
     },
     datenaustausch: {
       path: vorpruefung_datenaustausch.path,
-      pageSchema: { datenaustausch: answer },
+      pageSchema: { datenaustausch: vorpruefungFields.datenaustausch },
     },
     kommunikation: {
       path: vorpruefung_kommunikation.path,
-      pageSchema: { kommunikation: answer },
+      pageSchema: { kommunikation: vorpruefungFields.kommunikation },
     },
     automatisierung: {
       path: vorpruefung_automatisierung.path,
-      pageSchema: { automatisierung: answer },
+      pageSchema: { automatisierung: vorpruefungFields.automatisierung },
     },
     euBezug: {
       path: vorpruefung_euBezug.path,
-      pageSchema: { "eu-bezug": answer },
+      pageSchema: { "eu-bezug": vorpruefungFields["eu-bezug"] },
     },
     ergebnis: { path: vorpruefung_ergebnis.path },
   },

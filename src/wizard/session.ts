@@ -1,12 +1,28 @@
 import { removeTrailingSlash } from "@/utils/path";
 import { createFlowSession } from "form-graph-engine";
+import type { z } from "zod";
 import { vorpruefungFlow } from "./vorpruefungFlow";
+import { vorpruefungFields } from "./vorpruefungSchema";
 
 export const wizardFlows = {
   vorpruefung: vorpruefungFlow,
 } as const;
 
 export type WizardId = keyof typeof wizardFlows;
+
+// Field schemas per wizard, so generic form components can look up their
+// field by name. Requires unique field names within a wizard.
+export const wizardFields = {
+  vorpruefung: vorpruefungFields,
+} as const satisfies Record<WizardId, unknown>;
+
+export const getFieldSchema = (wizardId: WizardId, name: string) => {
+  const fields: Readonly<Record<string, z.ZodType>> = wizardFields[wizardId];
+  if (!Object.hasOwn(fields, name)) {
+    throw new Error(`Unknown field "${name}" in wizard "${wizardId}"`);
+  }
+  return fields[name];
+};
 
 type UserData = Parameters<typeof createFlowSession>[1];
 

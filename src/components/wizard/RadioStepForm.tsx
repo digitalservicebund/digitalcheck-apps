@@ -1,6 +1,7 @@
 import type { Option } from "@/components/RadioGroup";
 import RadioGroup from "@/components/RadioGroup";
 import {
+  getFieldSchema,
   getWizardSession,
   readUserData,
   type WizardId,
@@ -13,11 +14,10 @@ type RadioStepFormProps = {
   formId: string;
   /** id of the heading that labels the radio group */
   labelledBy: string;
-  options: Option<string>[];
+  options: readonly Option<string>[];
   wizardId: WizardId;
-  /** Field name in the wizard's flow, e.g. the question id */
+  /** Field name in the wizard's schema, e.g. the question id. Its schema validates the answer. */
   name: string;
-  errorMessage?: string;
 };
 
 // No data storage yet: a valid answer only decides where to navigate next.
@@ -27,26 +27,20 @@ export default function RadioStepForm({
   options,
   wizardId,
   name,
-  errorMessage = "Bitte wählen Sie eine Option aus.",
 }: Readonly<RadioStepFormProps>) {
   const form = useForm({
     // set via RVF, which also links the inputs to this id
     id: formId,
-    schema: z.object({
-      answer: z.enum(
-        options.map((option) => option.value),
-        errorMessage,
-      ),
-    }),
-    defaultValues: { answer: "" },
-    handleSubmit: ({ answer }) => {
+    schema: z.object({ [name]: getFieldSchema(wizardId, name) }),
+    defaultValues: { [name]: "" },
+    handleSubmit: (data) => {
       const session = getWizardSession(
         wizardId,
         globalThis.location.pathname,
         readUserData(wizardId),
       );
       // Include the new answer, guards (e.g. for the result page) may depend on it
-      const nextPath = session.nextPath({ [name]: answer });
+      const nextPath = session.nextPath(data);
       if (nextPath) globalThis.location.href = nextPath;
     },
   });
@@ -54,7 +48,7 @@ export default function RadioStepForm({
   return (
     <form {...form.getFormProps()}>
       <RadioGroup
-        scope={form.scope("answer")}
+        scope={form.scope(name)}
         options={options}
         aria-labelledby={labelledBy}
       />

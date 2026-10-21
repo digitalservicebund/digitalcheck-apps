@@ -1,5 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { getWizardSession } from "./session";
+import { getFieldSchema, getWizardSession } from "./session";
+import { vorpruefungFields } from "./vorpruefungSchema";
+
+describe("getFieldSchema", () => {
+  it("returns the schema of the field", () => {
+    expect(getFieldSchema("vorpruefung", "it-system")).toBe(
+      vorpruefungFields["it-system"],
+    );
+  });
+
+  it("throws for unknown fields", () => {
+    expect(() => getFieldSchema("vorpruefung", "unknown")).toThrow(
+      'Unknown field "unknown" in wizard "vorpruefung"',
+    );
+    expect(() => getFieldSchema("vorpruefung", "toString")).toThrow();
+  });
+});
 
 describe("getWizardSession", () => {
   it("resolves previous and next page from the current path", () => {

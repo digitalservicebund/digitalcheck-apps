@@ -175,11 +175,6 @@ export const preCheck = {
       },
     ],
   },
-  answerOptions: {
-    yes: "Ja",
-    no: "Nein",
-    unsure: "Ich bin unsicher",
-  },
   nav: {
     ariaLabel: "Alle Fragen",
   },
