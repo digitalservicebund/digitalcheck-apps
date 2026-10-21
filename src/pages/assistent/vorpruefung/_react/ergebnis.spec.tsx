@@ -4,8 +4,8 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { dokumentation, interoperabel, methoden } from "@/config/routes";
-import Result from "@/pages/vorpruefung/_react/ergebnis";
-import type { TQuestion } from "@/pages/vorpruefung/_react/question";
+import Result from "@/pages/assistent/vorpruefung/_react/ergebnis";
+import type { TQuestion } from "@/pages/assistent/vorpruefung/_react/question";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { readVersionedDataFromLocalStorage } from "@/utils/localStorageVersioned";
 import type { PreCheckData } from "./preCheckDataService";
@@ -446,7 +446,7 @@ describe("Vorprüfung Ergebnis Page", () => {
 
   describe("Redirect Guard", () => {
     it("redirects to start if questions are unanswered", async () => {
-      globalThis.location.href = "/vorpruefung/ergebnis";
+      globalThis.location.href = "/assistent/vorpruefung/ergebnis";
       vi.mocked(readVersionedDataFromLocalStorage).mockReturnValue({
         version: DATA_SCHEMA_VERSION,
         answers: [{ questionId: questions[0].id, answer: "yes" }], // Only 1 answered
@@ -456,14 +456,14 @@ describe("Vorprüfung Ergebnis Page", () => {
       render(<Result />);
 
       await waitFor(() => {
-        expect(globalThis.location.href).toBe("/vorpruefung");
+        expect(globalThis.location.href).toBe("/assistent/vorpruefung");
       });
     });
 
     it("does not redirect when all questions are answered", () => {
-      globalThis.location.href = "/vorpruefung/ergebnis";
+      globalThis.location.href = "/assistent/vorpruefung/ergebnis";
       setup(() => "Ja");
-      expect(globalThis.location.href).toBe("/vorpruefung/ergebnis");
+      expect(globalThis.location.href).toBe("/assistent/vorpruefung/ergebnis");
     });
   });
 });

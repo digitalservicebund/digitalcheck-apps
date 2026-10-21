@@ -21,17 +21,20 @@ describe("getWizardSession", () => {
   it("resolves previous and next page from the current path", () => {
     const session = getWizardSession(
       "vorpruefung",
-      "/vorpruefung/datenaustausch/",
+      "/assistent/vorpruefung/datenaustausch/",
     );
 
     expect(session.prevPath).toBe(
-      "/vorpruefung/verpflichtungen-fuer-beteiligte",
+      "/assistent/vorpruefung/verpflichtungen-fuer-beteiligte",
     );
-    expect(session.nextPath()).toBe("/vorpruefung/kommunikation");
+    expect(session.nextPath()).toBe("/assistent/vorpruefung/kommunikation");
   });
 
   it("has no previous page on the first step", () => {
-    const session = getWizardSession("vorpruefung", "/vorpruefung/it-system");
+    const session = getWizardSession(
+      "vorpruefung",
+      "/assistent/vorpruefung/it-system",
+    );
 
     expect(session.prevPath).toBeUndefined();
   });
@@ -47,14 +50,17 @@ describe("getWizardSession", () => {
     } as const;
 
     expect(
-      getWizardSession("vorpruefung", "/vorpruefung/eu-bezug").nextPath(),
+      getWizardSession(
+        "vorpruefung",
+        "/assistent/vorpruefung/eu-bezug",
+      ).nextPath(),
     ).toBeUndefined();
     expect(
       getWizardSession(
         "vorpruefung",
-        "/vorpruefung/eu-bezug",
+        "/assistent/vorpruefung/eu-bezug",
         answers,
       ).nextPath(),
-    ).toBe("/vorpruefung/ergebnis");
+    ).toBe("/assistent/vorpruefung/ergebnis");
   });
 });

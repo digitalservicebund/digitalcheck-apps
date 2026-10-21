@@ -1,4 +1,4 @@
-import type { ResultContent } from "@/pages/vorpruefung/_react/getContentForResult";
+import type { ResultContent } from "@/pages/assistent/vorpruefung/_react/getContentForResult";
 import { preCheckResult } from "@/resources/content/vorpruefung-ergebnis";
 import type { PreCheckResult } from "./PreCheckResult";
 import { ResultType } from "./PreCheckResult";

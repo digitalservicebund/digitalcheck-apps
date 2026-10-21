@@ -2,17 +2,21 @@ import { AxeBuilder } from "@axe-core/playwright";
 import type { Page } from "@playwright/test";
 import { expect, test } from "@playwright/test";
 
-import { allRoutes, prinzipien, vorpruefung_ergebnis } from "@/config/routes";
+import {
+  allRoutes,
+  assistent_vorpruefung_ergebnis,
+  prinzipien,
+} from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { waitForHydration } from "../e2e/helpers";
 import { checkHeadingsForFlowContent } from "./utils.ts";
 
-// The vorpruefung sub-routes redirect to the first step (/vorpruefung/it-system)
+// The vorpruefung sub-routes redirect to the first step (/assistent/vorpruefung/it-system)
 // when no answer data is stored, which causes the axe analysis to fail mid-navigation.
 // A separate test with automated interaction is added below
 const excludedRoutes = [
   ...preCheck.questions.map((question) => question.path),
-  vorpruefung_ergebnis.path,
+  assistent_vorpruefung_ergebnis.path,
 ];
 
 async function checkPage(page: Page) {
@@ -78,7 +82,7 @@ test.describe("basic example a11y test", () => {
     }
 
     // Check the result page after all questions are answered
-    await page.waitForURL(vorpruefung_ergebnis.path);
+    await page.waitForURL(assistent_vorpruefung_ergebnis.path);
     await checkPage(page);
   });
 });

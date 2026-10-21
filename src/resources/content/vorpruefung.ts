@@ -1,13 +1,13 @@
 import {
+  assistent_vorpruefung_automatisierung,
+  assistent_vorpruefung_datenaustausch,
+  assistent_vorpruefung_euBezug,
+  assistent_vorpruefung_itSystem,
+  assistent_vorpruefung_kommunikation,
+  assistent_vorpruefung_verpflichtungenFuerBeteiligte,
   interoperabel,
-  vorpruefung_automatisierung,
-  vorpruefung_datenaustausch,
-  vorpruefung_euBezug,
-  vorpruefung_itSystem,
-  vorpruefung_kommunikation,
-  vorpruefung_verpflichtungenFuerBeteiligte,
 } from "@/config/routes";
-import type { TQuestion } from "@/pages/vorpruefung/_react/question";
+import type { TQuestion } from "@/pages/assistent/vorpruefung/_react/question";
 import type { ContentLink } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
 import { withBase } from "@/utils/path";
@@ -192,21 +192,21 @@ export const preCheck = {
         
         Bitte überprüfen Sie ihre Angaben.
 
-        [Frage 3 zum Datenaustausch überprüfen](${vorpruefung_datenaustausch.path})
+        [Frage 3 zum Datenaustausch überprüfen](${assistent_vorpruefung_datenaustausch.path})
       `,
     },
   },
   questions: [
     {
       id: "it-system",
-      path: vorpruefung_itSystem.path,
+      path: assistent_vorpruefung_itSystem.path,
       title: "IT-System",
       positiveResult: "einer Anpassung oder Neuentwicklung einer IT-Lösung.",
       negativeResult: "keiner Anpassung oder Neuentwicklung einer IT-Lösung.",
     },
     {
       id: "verpflichtungen-fuer-beteiligte",
-      path: vorpruefung_verpflichtungenFuerBeteiligte.path,
+      path: assistent_vorpruefung_verpflichtungenFuerBeteiligte.path,
       title: "Verpflichtungen für Beteiligte",
       positiveResult:
         "einer Festlegung von Mitwirkungspflichten für Akteurinnen und Akteure.",
@@ -215,14 +215,14 @@ export const preCheck = {
     },
     {
       id: "datenaustausch",
-      path: vorpruefung_datenaustausch.path,
+      path: assistent_vorpruefung_datenaustausch.path,
       title: "Datenaustausch",
       positiveResult: "einem Austausch von Daten.",
       negativeResult: "keinem Austausch von Daten.",
     },
     {
       id: "kommunikation",
-      path: vorpruefung_kommunikation.path,
+      path: assistent_vorpruefung_kommunikation.path,
       title: "Digitale Kommunikation",
       positiveResult:
         "einer Interaktion zwischen Behörden und Bürgerinnen und Bürgern bzw. Unternehmen.",
@@ -231,7 +231,7 @@ export const preCheck = {
     },
     {
       id: "automatisierung",
-      path: vorpruefung_automatisierung.path,
+      path: assistent_vorpruefung_automatisierung.path,
       title: "Automatisierung",
       positiveResult:
         "einer Verbesserung der Umsetzung der Regelung durch die Automatisierung von Schritten.",
@@ -240,7 +240,7 @@ export const preCheck = {
     },
     {
       id: "eu-bezug",
-      path: vorpruefung_euBezug.path,
+      path: assistent_vorpruefung_euBezug.path,
       title: "EU-Bezug",
       positiveResult:
         "einem Daten- und Informationsaustausch zwischen EU-Mitgliedstaaten.",

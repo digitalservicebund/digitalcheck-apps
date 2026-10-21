@@ -1,4 +1,4 @@
-import type { PreCheckAnswerOption } from "@/pages/vorpruefung/_react/question";
+import type { PreCheckAnswerOption } from "@/pages/assistent/vorpruefung/_react/question";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { preCheckResult } from "@/resources/content/vorpruefung-ergebnis";
 import type { PreCheckAnswerSchema } from "./preCheckDataSchema";

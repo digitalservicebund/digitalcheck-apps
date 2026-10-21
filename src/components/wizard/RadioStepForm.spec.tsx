@@ -35,7 +35,7 @@ const renderForm = (questionId: string) =>
   );
 
 const openQuestion = (questionId: string) => {
-  location.pathname = `/vorpruefung/${questionId}`;
+  location.pathname = `/assistent/vorpruefung/${questionId}`;
   location.href = location.pathname;
   // the store reads the URL on import, before the stub above
   store.$path.set(location.pathname);
@@ -64,7 +64,7 @@ describe("RadioStepForm", () => {
     expect(screen.getByLabelText("Ja")).toHaveAccessibleErrorMessage(
       "Bitte wählen Sie eine Option aus.",
     );
-    expect(location.href).toBe("/vorpruefung/it-system");
+    expect(location.href).toBe("/assistent/vorpruefung/it-system");
   });
 
   it("navigates to the next page of the flow with an answer", async () => {
@@ -74,7 +74,9 @@ describe("RadioStepForm", () => {
     await user.click(screen.getByLabelText("Nein"));
     await user.click(screen.getByRole("button", { name: "Weiter" }));
 
-    expect(location.href).toBe("/vorpruefung/verpflichtungen-fuer-beteiligte");
+    expect(location.href).toBe(
+      "/assistent/vorpruefung/verpflichtungen-fuer-beteiligte",
+    );
   });
 
   it("saves the answer in the wizard store", async () => {
@@ -103,7 +105,7 @@ describe("RadioStepForm", () => {
     await user.click(screen.getByRole("button", { name: "Weiter" }));
 
     // the result page is guarded by all answers
-    expect(location.href).toBe("/vorpruefung/eu-bezug");
+    expect(location.href).toBe("/assistent/vorpruefung/eu-bezug");
   });
 
   it("navigates to the result once all questions are answered", async () => {
@@ -121,6 +123,6 @@ describe("RadioStepForm", () => {
     await user.click(screen.getByLabelText("Ja"));
     await user.click(screen.getByRole("button", { name: "Weiter" }));
 
-    expect(location.href).toBe("/vorpruefung/ergebnis");
+    expect(location.href).toBe("/assistent/vorpruefung/ergebnis");
   });
 });

@@ -11,6 +11,105 @@ export type Route = {
   readonly navLabel: string | null;
 };
 
+export const assistent = {
+  key: "assistent",
+  path: "/assistent",
+  title: "Assistent",
+  parent: null,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: null,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung = {
+  key: "assistent_vorpruefung",
+  path: "/assistent/vorpruefung",
+  title: "Digitalbezug einschätzen",
+  parent: assistent,
+  sitemap: true,
+  isStagingOnly: false,
+  navOrder: null,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_automatisierung = {
+  key: "assistent_vorpruefung_automatisierung",
+  path: "/assistent/vorpruefung/automatisierung",
+  title: "Automatisierung",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 5,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_datenaustausch = {
+  key: "assistent_vorpruefung_datenaustausch",
+  path: "/assistent/vorpruefung/datenaustausch",
+  title: "Datenaustausch",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 3,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_ergebnis = {
+  key: "assistent_vorpruefung_ergebnis",
+  path: "/assistent/vorpruefung/ergebnis",
+  title: "Ergebnis",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: null,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_euBezug = {
+  key: "assistent_vorpruefung_euBezug",
+  path: "/assistent/vorpruefung/eu-bezug",
+  title: "EU-Bezug",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 6,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_itSystem = {
+  key: "assistent_vorpruefung_itSystem",
+  path: "/assistent/vorpruefung/it-system",
+  title: "IT-System",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 1,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_kommunikation = {
+  key: "assistent_vorpruefung_kommunikation",
+  path: "/assistent/vorpruefung/kommunikation",
+  title: "Digitale Kommunikation",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 4,
+  navLabel: null,
+} as const;
+
+export const assistent_vorpruefung_verpflichtungenFuerBeteiligte = {
+  key: "assistent_vorpruefung_verpflichtungenFuerBeteiligte",
+  path: "/assistent/vorpruefung/verpflichtungen-fuer-beteiligte",
+  title: "Verpflichtungen für Beteiligte",
+  parent: assistent_vorpruefung,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 2,
+  navLabel: null,
+} as const;
+
 export const barrierefreiheit = {
   key: "barrierefreiheit",
   path: "/barrierefreiheit",
@@ -363,95 +462,16 @@ export const sitemap = {
   navLabel: null,
 } as const;
 
-export const vorpruefung = {
-  key: "vorpruefung",
-  path: "/vorpruefung",
-  title: "Digitalbezug einschätzen",
-  parent: null,
-  sitemap: true,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_automatisierung = {
-  key: "vorpruefung_automatisierung",
-  path: "/vorpruefung/automatisierung",
-  title: "Automatisierung",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 5,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_datenaustausch = {
-  key: "vorpruefung_datenaustausch",
-  path: "/vorpruefung/datenaustausch",
-  title: "Datenaustausch",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 3,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_ergebnis = {
-  key: "vorpruefung_ergebnis",
-  path: "/vorpruefung/ergebnis",
-  title: "Ergebnis",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: null,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_euBezug = {
-  key: "vorpruefung_euBezug",
-  path: "/vorpruefung/eu-bezug",
-  title: "EU-Bezug",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 6,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_itSystem = {
-  key: "vorpruefung_itSystem",
-  path: "/vorpruefung/it-system",
-  title: "IT-System",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 1,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_kommunikation = {
-  key: "vorpruefung_kommunikation",
-  path: "/vorpruefung/kommunikation",
-  title: "Digitale Kommunikation",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 4,
-  navLabel: null,
-} as const;
-
-export const vorpruefung_verpflichtungenFuerBeteiligte = {
-  key: "vorpruefung_verpflichtungenFuerBeteiligte",
-  path: "/vorpruefung/verpflichtungen-fuer-beteiligte",
-  title: "Verpflichtungen für Beteiligte",
-  parent: vorpruefung,
-  sitemap: false,
-  isStagingOnly: false,
-  navOrder: 2,
-  navLabel: null,
-} as const;
-
 export const allRoutes = [
+  assistent,
+  assistent_vorpruefung,
+  assistent_vorpruefung_automatisierung,
+  assistent_vorpruefung_datenaustausch,
+  assistent_vorpruefung_ergebnis,
+  assistent_vorpruefung_euBezug,
+  assistent_vorpruefung_itSystem,
+  assistent_vorpruefung_kommunikation,
+  assistent_vorpruefung_verpflichtungenFuerBeteiligte,
   barrierefreiheit,
   bundeslaender,
   dasIstNeu,
@@ -484,12 +504,4 @@ export const allRoutes = [
   normenkontrollrat,
   prinzipien,
   sitemap,
-  vorpruefung,
-  vorpruefung_automatisierung,
-  vorpruefung_datenaustausch,
-  vorpruefung_ergebnis,
-  vorpruefung_euBezug,
-  vorpruefung_itSystem,
-  vorpruefung_kommunikation,
-  vorpruefung_verpflichtungenFuerBeteiligte,
 ] as const;

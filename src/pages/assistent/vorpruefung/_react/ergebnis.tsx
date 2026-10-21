@@ -16,10 +16,10 @@ import InfoTooltip from "@/components/InfoTooltip";
 import InlineNotice from "@/components/InlineNotice";
 import NumberedList from "@/components/NumberedList";
 import RichText from "@/components/RichText";
-import { vorpruefung } from "@/config/routes";
-import type { Reason } from "@/pages/vorpruefung/_react/getContentForResult";
-import getContentForResult from "@/pages/vorpruefung/_react/getContentForResult";
-import ResultForm from "@/pages/vorpruefung/_react/ResultForm";
+import { assistent_vorpruefung } from "@/config/routes";
+import type { Reason } from "@/pages/assistent/vorpruefung/_react/getContentForResult";
+import getContentForResult from "@/pages/assistent/vorpruefung/_react/getContentForResult";
+import ResultForm from "@/pages/assistent/vorpruefung/_react/ResultForm";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { preCheckResult } from "@/resources/content/vorpruefung-ergebnis";
 import { marked } from "marked";
@@ -102,7 +102,7 @@ export default function Result() {
       firstUnansweredQuestionIndex !== null &&
       firstUnansweredQuestionIndex < preCheck.questions.length - 1
     ) {
-      globalThis.location.href = vorpruefung.path;
+      globalThis.location.href = assistent_vorpruefung.path;
     }
   }, [firstUnansweredQuestionIndex]);
 

@@ -2,6 +2,8 @@ import { expect, test } from "@playwright/test";
 
 import {
   allRoutes,
+  assistent_vorpruefung,
+  assistent_vorpruefung_ergebnis,
   barrierefreiheit,
   datenschutz,
   dokumentation,
@@ -10,8 +12,6 @@ import {
   impressum,
   methoden,
   prinzipien,
-  vorpruefung,
-  vorpruefung_ergebnis,
   type Route,
 } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
@@ -36,7 +36,7 @@ function getExpectedTitle(route: Pick<Route, "path" | "title">) {
     // subpages of documentation
     return `Dokumentation: ${route.title}${titleSuffix}`;
   }
-  if (route.path.startsWith(vorpruefung.path)) {
+  if (route.path.startsWith(assistent_vorpruefung.path)) {
     return `Vorprüfung: ${route.title}${titleSuffix}`;
   }
 
@@ -49,7 +49,7 @@ test.describe("page titles", () => {
       (route) =>
         !route.isStagingOnly &&
         !route.path.endsWith(".pdf") &&
-        !route.path.startsWith(vorpruefung.path),
+        !route.path.startsWith(assistent_vorpruefung.path),
     )
     .forEach((route) => {
       test(`${route.path} has correct title`, async ({ page }) => {
@@ -60,8 +60,8 @@ test.describe("page titles", () => {
 
   // pre-check pages redirect to first unanswered question
   test("pre-check page titles", async ({ page }) => {
-    await page.goto(vorpruefung.path);
-    await expect(page).toHaveTitle(getExpectedTitle(vorpruefung));
+    await page.goto(assistent_vorpruefung.path);
+    await expect(page).toHaveTitle(getExpectedTitle(assistent_vorpruefung));
 
     await page.goto(preCheck.questions[0].path);
     for (const question of preCheck.questions) {
@@ -72,8 +72,10 @@ test.describe("page titles", () => {
       await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
 
-    await expect(page).toHaveURL(vorpruefung_ergebnis.path);
-    await expect(page).toHaveTitle(getExpectedTitle(vorpruefung_ergebnis));
+    await expect(page).toHaveURL(assistent_vorpruefung_ergebnis.path);
+    await expect(page).toHaveTitle(
+      getExpectedTitle(assistent_vorpruefung_ergebnis),
+    );
   });
 
   test("error page title is correct", async ({ page }) => {
@@ -97,7 +99,7 @@ test.describe("landing page", () => {
       .getByRole("link", { name: "Digitalcheck starten" })
       .first()
       .click();
-    await expect(page).toHaveURL(vorpruefung.path);
+    await expect(page).toHaveURL(assistent_vorpruefung.path);
   });
 });
 

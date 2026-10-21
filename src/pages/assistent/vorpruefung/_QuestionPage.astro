@@ -2,7 +2,7 @@
 import RadioStepForm from "@/components/wizard/RadioStepForm";
 import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
 import WizardLayout from "@/layouts/WizardLayout.astro";
-import { vorpruefung } from "@/config/routes";
+import { assistent_vorpruefung } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { answerOptions } from "@/wizard/vorpruefungSchema";
 
@@ -51,6 +51,6 @@ const labelId = "question-label";
     slot="button-bar"
     wizardId="vorpruefung"
     formId={formId}
-    fallbackBackHref={vorpruefung.path}
+    fallbackBackHref={assistent_vorpruefung.path}
   />
 </WizardLayout>

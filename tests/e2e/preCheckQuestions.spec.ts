@@ -1,4 +1,7 @@
-import { vorpruefung, vorpruefung_ergebnis } from "@/config/routes";
+import {
+  assistent_vorpruefung,
+  assistent_vorpruefung_ergebnis,
+} from "@/config/routes";
 import { PRE_CHECK_START_BUTTON_ID } from "@/resources/constants";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { expect, test } from "@playwright/test";
@@ -18,11 +21,11 @@ test.describe("test questions form", () => {
       await page.getByLabel(answerOptions[i % answerOptions.length]).click();
       await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
-    await expect(page).toHaveURL(vorpruefung_ergebnis.path);
+    await expect(page).toHaveURL(assistent_vorpruefung_ergebnis.path);
   });
 
   test("clicking through pre-check works", async ({ page }) => {
-    await page.goto(vorpruefung.path);
+    await page.goto(assistent_vorpruefung.path);
     await waitForHydration(page);
     await page.getByTestId(PRE_CHECK_START_BUTTON_ID).click();
     for (const element of questions) {
@@ -32,7 +35,7 @@ test.describe("test questions form", () => {
       await page.getByLabel("Ja").click();
       await page.getByRole("button", { name: "Weiter", exact: true }).click();
     }
-    await expect(page).toHaveURL(vorpruefung_ergebnis.path);
+    await expect(page).toHaveURL(assistent_vorpruefung_ergebnis.path);
   });
 
   test("cant submit form without answers", async ({ page }) => {
@@ -49,7 +52,7 @@ test.describe("test questions form", () => {
     await page.goto(questions[0].path);
     await waitForHydration(page);
     await page.getByRole("link", { name: "Zurück" }).click();
-    await expect(page).toHaveURL(vorpruefung.path);
+    await expect(page).toHaveURL(assistent_vorpruefung.path);
     await page.goto(questions[0].path);
     await waitForHydration(page);
     await page.getByLabel("Ja").click();

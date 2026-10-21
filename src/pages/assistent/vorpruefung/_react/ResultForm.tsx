@@ -9,7 +9,7 @@ import Textarea from "@/components/Textarea";
 import {
   buildEmailBody,
   buildMailtoUri,
-} from "@/pages/vorpruefung/_react/buildMailtoUri";
+} from "@/pages/assistent/vorpruefung/_react/buildMailtoUri";
 import { preCheckResult } from "@/resources/content/vorpruefung-ergebnis";
 import {
   DriveFileRenameOutline,

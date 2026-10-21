@@ -12,14 +12,17 @@ describe("vorpruefungFlow", () => {
   it("matches the question order from the content, followed by the result page", () => {
     const session = createFlowSession(vorpruefungFlow, allYes);
 
-    expect(session.path).toEqual([...questionPaths, "/vorpruefung/ergebnis"]);
+    expect(session.path).toEqual([
+      ...questionPaths,
+      "/assistent/vorpruefung/ergebnis",
+    ]);
     expect(session.isComplete).toBe(true);
   });
 
   it("makes the result page reachable once all questions are answered", () => {
     const session = createFlowSession(vorpruefungFlow, allYes);
 
-    expect(session.isReachable("/vorpruefung/ergebnis")).toBe(true);
+    expect(session.isReachable("/assistent/vorpruefung/ergebnis")).toBe(true);
   });
 
   it.each(preCheck.questions.map((question) => question.id))(
@@ -28,7 +31,9 @@ describe("vorpruefungFlow", () => {
       const { [questionId]: _, ...answers } = allYes;
       const session = createFlowSession(vorpruefungFlow, answers);
 
-      expect(session.isReachable("/vorpruefung/ergebnis")).toBe(false);
+      expect(session.isReachable("/assistent/vorpruefung/ergebnis")).toBe(
+        false,
+      );
       expect(session.isComplete).toBe(false);
     },
   );
@@ -38,19 +43,19 @@ describe("vorpruefungFlow", () => {
     const session = createFlowSession(
       vorpruefungFlow,
       answers,
-      "/vorpruefung/eu-bezug",
+      "/assistent/vorpruefung/eu-bezug",
     );
 
     expect(session.nextPath()).toBeUndefined();
     expect(session.nextPath({ "eu-bezug": "no" })).toBe(
-      "/vorpruefung/ergebnis",
+      "/assistent/vorpruefung/ergebnis",
     );
   });
 
   it("starts with the first question", () => {
     const session = createFlowSession(vorpruefungFlow, {});
 
-    expect(session.initialPath).toBe("/vorpruefung/it-system");
+    expect(session.initialPath).toBe("/assistent/vorpruefung/it-system");
     expect(session.prevPath).toBeUndefined();
   });
 
@@ -58,11 +63,11 @@ describe("vorpruefungFlow", () => {
     const session = createFlowSession(
       vorpruefungFlow,
       { "it-system": "yes" },
-      "/vorpruefung/verpflichtungen-fuer-beteiligte",
+      "/assistent/vorpruefung/verpflichtungen-fuer-beteiligte",
     );
 
-    expect(session.nextPath()).toBe("/vorpruefung/datenaustausch");
-    expect(session.prevPath).toBe("/vorpruefung/it-system");
+    expect(session.nextPath()).toBe("/assistent/vorpruefung/datenaustausch");
+    expect(session.prevPath).toBe("/assistent/vorpruefung/it-system");
   });
 
   it("points to the first unanswered question", () => {
@@ -71,7 +76,9 @@ describe("vorpruefungFlow", () => {
       "verpflichtungen-fuer-beteiligte": "unsure",
     });
 
-    expect(session.nextIncomplete()).toBe("/vorpruefung/datenaustausch");
+    expect(session.nextIncomplete()).toBe(
+      "/assistent/vorpruefung/datenaustausch",
+    );
   });
 
   it("only uses fields from vorpruefungFields, with their schemas", () => {
@@ -96,7 +103,7 @@ describe("vorpruefungFlow", () => {
     const session = createFlowSession(
       vorpruefungFlow,
       {},
-      "/vorpruefung/it-system",
+      "/assistent/vorpruefung/it-system",
     );
 
     expect(session.pageSchema.safeParse({ "it-system": "yes" }).success).toBe(

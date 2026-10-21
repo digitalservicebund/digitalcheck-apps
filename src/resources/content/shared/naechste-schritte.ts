@@ -1,4 +1,8 @@
-import { dokumentation, methoden, vorpruefung } from "@/config/routes";
+import {
+  assistent_vorpruefung,
+  dokumentation,
+  methoden,
+} from "@/config/routes";
 import type { Step } from "@/utils/contentTypes.ts";
 
 const stepPruefstelle: Step = {
@@ -18,7 +22,7 @@ export const steps = {
       "Finden Sie heraus, ob Sie in Ihrem Regelungsvorhaben Aspekte der digitalen Umsetzung und EU-Anforderungen an Interoperabilität beachten müssen. Danach entscheidet sich, ob die weiteren Schritte für Sie relevant sind.",
     link: {
       text: "Digitalbezug einschätzen",
-      to: vorpruefung.path,
+      to: assistent_vorpruefung.path,
     },
     finished: {
       headline: {

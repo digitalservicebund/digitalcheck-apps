@@ -13,7 +13,7 @@ import {
   interoperabel_nationaleKontaktstelle,
   methoden,
   prinzipien,
-  vorpruefung,
+  assistent_vorpruefung,
 } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
 import {
@@ -51,7 +51,7 @@ const steps = [
         text: "Individueller Digital- und Interoperabilitätsbezug",
       },
     ],
-    link: { text: "Vorprüfung starten", href: vorpruefung.path },
+    link: { text: "Vorprüfung starten", href: assistent_vorpruefung.path },
   },
   {
     title: "Regelung erarbeiten",
@@ -113,7 +113,10 @@ const principles = (await getCollection("prinzipien"))
         Ländern.
       </p>
       <div class="flex flex-wrap gap-24 pt-24 pb-16">
-        <LinkButton href={vorpruefung.path} iconLeft="kern-icon--arrow-forward">
+        <LinkButton
+          href={assistent_vorpruefung.path}
+          iconLeft="kern-icon--arrow-forward"
+        >
           Digitalcheck starten
         </LinkButton>
         <a

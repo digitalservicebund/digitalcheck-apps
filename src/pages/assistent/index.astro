@@ -1,0 +1,27 @@
+---
+import { LinkButton } from "@/components/Button";
+import Hero from "@/components/Hero.astro";
+import { assistent_vorpruefung } from "@/config/routes";
+import Layout from "@/layouts/Layout.astro";
+
+export const frontmatter = {
+  title: "Assistent",
+  sitemap: false,
+};
+---
+
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>Assistent</h1>
+    </Hero>
+    <section>
+      <LinkButton
+        href={assistent_vorpruefung.path}
+        iconLeft="kern-icon--arrow-forward"
+      >
+        Vorprüfung starten
+      </LinkButton>
+    </section>
+  </main>
+</Layout>

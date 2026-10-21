@@ -1,6 +1,6 @@
 import Nav from "@/components/Nav";
 import Stepper from "@/components/Stepper";
-import { usePreCheckData } from "@/pages/vorpruefung/_react/preCheckDataHook";
+import { usePreCheckData } from "@/pages/assistent/vorpruefung/_react/preCheckDataHook";
 import { preCheck } from "@/resources/content/vorpruefung";
 import type { ReactNode } from "react";
 

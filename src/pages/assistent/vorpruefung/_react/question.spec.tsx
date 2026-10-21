@@ -2,14 +2,14 @@ import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { PreCheckQuestion } from "@/pages/vorpruefung/_react/question";
+import { PreCheckQuestion } from "@/pages/assistent/vorpruefung/_react/question";
 import { preCheck } from "@/resources/content/vorpruefung";
 import userEvent from "@testing-library/user-event";
 import { ResultType } from "./PreCheckResult";
 import { usePreCheckData } from "./preCheckDataHook";
 
 vi.stubGlobal("location", {
-  href: "/vorpruefung",
+  href: "/assistent/vorpruefung",
 });
 
 const { questions } = preCheck;
@@ -31,11 +31,11 @@ const renderQuestion = (questionIdx: number) =>
   );
 
 vi.mock(
-  "@/pages/vorpruefung/_react/preCheckDataHook",
+  "@/pages/assistent/vorpruefung/_react/preCheckDataHook",
   async (importOriginal) => {
     const actual =
       await importOriginal<
-        typeof import("@/pages/vorpruefung/_react/preCheckDataHook")
+        typeof import("@/pages/assistent/vorpruefung/_react/preCheckDataHook")
       >();
 
     return {
@@ -115,20 +115,20 @@ describe("PreCheck", () => {
 
   describe("redirect guard", () => {
     beforeEach(() => {
-      globalThis.location.href = "/vorpruefung";
+      globalThis.location.href = "/assistent/vorpruefung";
     });
 
     it("redirects to last unanswered question", () => {
       renderQuestion(2);
 
-      expect(globalThis.location.href).toBe("/vorpruefung/it-system");
+      expect(globalThis.location.href).toBe("/assistent/vorpruefung/it-system");
     });
 
     it("does not redirect when all questions are answered", async () => {
       renderQuestion(0);
 
       await waitFor(() => {
-        expect(globalThis.location.href).toBe("/vorpruefung");
+        expect(globalThis.location.href).toBe("/assistent/vorpruefung");
       });
     });
   });

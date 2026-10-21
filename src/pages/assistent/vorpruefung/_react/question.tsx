@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import InlineNotice from "@/components/InlineNotice";
 import RadioGroup from "@/components/RadioGroup";
 import RichText from "@/components/RichText";
-import { vorpruefung_ergebnis } from "@/config/routes";
+import { assistent_vorpruefung_ergebnis } from "@/config/routes";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { answerOptions, type Answer } from "@/wizard/vorpruefungSchema";
 import { usePreCheckData, useSyncedForm } from "./preCheckDataHook";
@@ -11,7 +11,7 @@ import type { PreCheckAnswerSchema } from "./preCheckDataSchema";
 import { answerSchema } from "./preCheckDataSchema";
 import { addOrUpdateAnswer } from "./preCheckDataService";
 
-// data fetching moved to @/src/pages/vorpruefung/
+// data fetching moved to @/src/pages/assistent/vorpruefung/
 
 const { questions } = preCheck;
 
@@ -62,7 +62,7 @@ export function PreCheckQuestion({
     usePreCheckData();
   const storedAnswer = answerForQuestionId(question.id);
   const nextLink =
-    questions[questionIdx + 1]?.path ?? vorpruefung_ergebnis.path;
+    questions[questionIdx + 1]?.path ?? assistent_vorpruefung_ergebnis.path;
 
   const form = useSyncedForm({
     // set via RVF, which also links the inputs to this id

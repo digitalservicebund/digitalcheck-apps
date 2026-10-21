@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import {
   interoperabel_nationaleKontaktstelle,
-  vorpruefung,
+  assistent_vorpruefung,
 } from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
 import FeatureItem from "@/components/FeatureItem.astro";
@@ -107,8 +107,9 @@ const dimensions = [
         sind.
       </p>
       <p>
-        <strong>Hinweis:</strong> Die <a href={vorpruefung.path}>Vorprüfung</a>{" "}
-        im Digitalcheck identifiziert automatisch, ob Ihr Vorhaben
+        <strong>Hinweis:</strong> Die{" "}
+        <a href={assistent_vorpruefung.path}>Vorprüfung</a> im Digitalcheck
+        identifiziert automatisch, ob Ihr Vorhaben
         Interoperabilitätsanforderungen beinhaltet.
       </p>
     </section>

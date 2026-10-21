@@ -1,4 +1,8 @@
-import { interoperabel, methoden, vorpruefung } from "@/config/routes";
+import {
+  assistent_vorpruefung,
+  interoperabel,
+  methoden,
+} from "@/config/routes";
 import { steps } from "@/resources/content/shared/naechste-schritte";
 import type { ContentLink, Step } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
@@ -41,7 +45,7 @@ export const preCheckResult = {
     hint: `Bitte kontaktieren Sie den Digitalcheck-Support unter: ${contact.mdPhoneLink()} oder schreiben Sie uns eine E-Mail an ${contact.mdMailToLink(contact.email, "Supportanfrage: digitalcheck.bund.de")} mit Ihren Fragen. Wir helfen Ihnen, die Vorprüfung auszufüllen.`,
     actionButton: {
       text: "Vorprüfung wiederholen",
-      to: vorpruefung.path,
+      to: assistent_vorpruefung.path,
     } satisfies ContentLink,
     nextStep: {
       title:

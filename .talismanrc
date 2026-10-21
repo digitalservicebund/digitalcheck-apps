@@ -27,7 +27,7 @@ fileignoreconfig:
   - filename: src/pages/dokumentation/_react/DocumentationDataProvider.spec.tsx
     allowed_patterns:
       - STORAGE_KEY
-  - filename: src/pages/vorpruefung/_react/preCheckDataService.ts
+  - filename: src/pages/assistent/vorpruefung/_react/preCheckDataService.ts
     allowed_patterns:
       - STORAGE_KEY
   - filename: src/resources/content/das-ist-neu.ts

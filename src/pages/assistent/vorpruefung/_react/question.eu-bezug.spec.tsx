@@ -2,9 +2,9 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { usePreCheckData } from "@/pages/vorpruefung/_react/preCheckDataHook";
-import type { TQuestion } from "@/pages/vorpruefung/_react/question";
-import { PreCheckQuestion } from "@/pages/vorpruefung/_react/question";
+import { usePreCheckData } from "@/pages/assistent/vorpruefung/_react/preCheckDataHook";
+import type { TQuestion } from "@/pages/assistent/vorpruefung/_react/question";
+import { PreCheckQuestion } from "@/pages/assistent/vorpruefung/_react/question";
 import { preCheck } from "@/resources/content/vorpruefung";
 import { ResultType } from "./PreCheckResult";
 import type { PreCheckAnswerSchema } from "./preCheckDataSchema";
@@ -96,11 +96,11 @@ function mapUserAnswersToMockAnswers(
 }
 
 vi.mock(
-  "@/pages/vorpruefung/_react/preCheckDataHook",
+  "@/pages/assistent/vorpruefung/_react/preCheckDataHook",
   async (importOriginal) => {
     const actual =
       await importOriginal<
-        typeof import("@/pages/vorpruefung/_react/preCheckDataHook")
+        typeof import("@/pages/assistent/vorpruefung/_react/preCheckDataHook")
       >();
 
     return {

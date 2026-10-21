@@ -1,5 +1,5 @@
 // @vitest-environment node
-import Index from "@/pages/vorpruefung/index.astro";
+import Index from "@/pages/assistent/vorpruefung/index.astro";
 import { renderToDOM } from "@/utils/testUtils";
 import type { BoundFunctions, queries } from "@testing-library/dom";
 import { within } from "@testing-library/dom";
