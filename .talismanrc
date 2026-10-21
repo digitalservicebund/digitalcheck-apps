@@ -27,9 +27,6 @@ fileignoreconfig:
   - filename: src/pages/dokumentation/_react/DocumentationDataProvider.spec.tsx
     allowed_patterns:
       - STORAGE_KEY
-  - filename: src/pages/assistent/vorpruefung/_react/preCheckDataService.ts
-    allowed_patterns:
-      - STORAGE_KEY
   - filename: src/resources/content/das-ist-neu.ts
     ignore_detectors: [filecontent]
   - filename: src/layouts/BeispieleLayout.astro # Google Forms link misinterpreted as base64

@@ -7,11 +7,33 @@ import {
   assistent_vorpruefung_verpflichtungenFuerBeteiligte,
   interoperabel,
 } from "@/config/routes";
-import type { TQuestion } from "@/pages/assistent/vorpruefung/_react/question";
 import type { ContentLink } from "@/utils/contentTypes.ts";
 import { dedent } from "@/utils/dedentMultilineStrings";
 import { withBase } from "@/utils/path";
 import { contact } from "./shared/contact";
+
+export type TQuestion = {
+  id: string;
+  title: string;
+  positiveResult: string;
+  negativeResult: string;
+  resultHint?: {
+    positiveResult?: string;
+    negativeResult?: string;
+    unsureResult?: string;
+  };
+  resultTooltip?: {
+    positiveResult?: string;
+    negativeResult?: string;
+    unsureResult?: string;
+  };
+  path: string;
+  accordion?: {
+    title: string;
+    text: string;
+  };
+  interoperability?: boolean;
+};
 
 export const preCheck = {
   preCheckName: "Vorprüfung",
