@@ -3,18 +3,22 @@ import RadioStepForm from "@/components/wizard/RadioStepForm";
 import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
 import WizardLayout from "@/layouts/WizardLayout.astro";
 import { assistent_vorpruefung } from "@/config/routes";
-import { preCheck } from "@/resources/content/vorpruefung";
 import { answerOptions } from "@/wizard/vorpruefungSchema";
+import { getWizardSession } from "@/wizard/session";
 
 interface Props {
+  /** Short page title, used in the document title */
+  title: string;
   questionId: string;
   /** Heading of the page, labels the radio group */
   question: string;
 }
 
-const { questionId, question } = Astro.props;
-const questionIdx = preCheck.questions.findIndex((q) => q.id === questionId);
-const { title } = preCheck.questions[questionIdx];
+const { title, questionId, question } = Astro.props;
+
+const { steps } = getWizardSession("vorpruefung", Astro.url.pathname).progress;
+// The flow counts the terminal Ergebnis page as a step, but it's not a question.
+const totalPages = steps.total - 1;
 
 const formId = "step-form";
 const labelId = "question-label";
@@ -27,8 +31,8 @@ const labelId = "question-label";
 -->
 <WizardLayout
   title={`Vorprüfung: ${title}`}
-  pageNumber={questionIdx + 1}
-  totalPages={preCheck.questions.length}
+  pageNumber={steps.current}
+  totalPages={totalPages}
 >
   <section class="space-y-32">
     <div class="space-y-16">
