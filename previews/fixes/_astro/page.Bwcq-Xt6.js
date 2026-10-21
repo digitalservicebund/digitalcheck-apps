@@ -1,1 +1,0 @@
-import{t as e}from"./prefetch.fQP9D0Mh.js";import{t}from"./module.esm.BsdidMpC.js";window.Alpine=t,document.addEventListener(`DOMContentLoaded`,()=>t.start()),e();
