@@ -1,13 +1,29 @@
 ---
-import VorpruefungLayout from "@/layouts/VorpruefungLayout.astro";
-import ErgebnisPage from "@/pages/assistent/vorpruefung/_react/ergebnis";
+import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
+import WizardLayout from "@/layouts/WizardLayout.astro";
+import { getWizardSession } from "@/wizard/session";
+import ResultTable from "./_ResultTable";
 
 export const frontmatter = {
   title: "Ergebnis",
   sitemap: false,
 };
+
+const { steps } = getWizardSession("vorpruefung", Astro.url.pathname).progress;
 ---
 
-<VorpruefungLayout title={frontmatter.title} hideNav>
-  <ErgebnisPage client:load />
-</VorpruefungLayout>
+<WizardLayout
+  title={`Vorprüfung: ${frontmatter.title}`}
+  pageNumber={steps.current}
+  totalPages={steps.total}
+  showProgressBar={false}
+>
+  <h1 class="kern-heading-large">{frontmatter.title}</h1>
+  <section class="space-y-16">
+    <h2 class="kern-heading-small">
+      So kommt das Ergebnis zustande – jede Antwort einzeln korrigierbar:
+    </h2>
+    <ResultTable client:load />
+  </section>
+  <WizardButtonBar slot="button-bar" wizardId="vorpruefung" />
+</WizardLayout>
