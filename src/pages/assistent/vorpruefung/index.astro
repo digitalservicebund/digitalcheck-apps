@@ -1,117 +1,28 @@
 ---
-import prozessVorpruefungImage from "@/assets/images/prozess-vorpruefung-mit-interoperabilitaet.jpg";
-import VorpruefungLayout from "@/layouts/VorpruefungLayout.astro";
-
-import Badge from "@/components/Badge";
-import Container from "@/components/Container";
-import PreCheckFAQ from "@/components/content/PreCheckFAQ.astro";
-import DetailsSummary from "@/components/DetailsSummary";
-import Hero from "@/components/Hero";
-import ImageZoomable from "@/components/ImageZoomable.astro";
-import InfoBox from "@/components/InfoBox.tsx";
-import InlineNotice from "@/components/InlineNotice";
-import RichText from "@/components/RichText.tsx";
-import SupportBanner from "@/components/SupportBanner";
-import Tabs from "@/components/tabs/Tabs.astro";
-import { supportBanner } from "@/resources/content/shared/support-banner";
-import { preCheck } from "@/resources/content/vorpruefung";
-import { PreCheckContinueActions } from "@/pages/assistent/vorpruefung/_react/PreCheckContinueActions";
+import { LinkButton } from "@/components/Button";
+import Hero from "@/components/Hero.astro";
+import { assistent_vorpruefung_itSystem } from "@/config/routes";
+import Layout from "@/layouts/Layout.astro";
 
 export const frontmatter = {
-  title: "Digitalbezug einschätzen",
+  title: "Vorprüfung",
+  navLabel: "Vorprüfung",
+  sitemap: false,
 };
 ---
 
-<VorpruefungLayout title={frontmatter.title} hideNav>
-  <main>
-    <Hero title={preCheck.start.title} subtitle={preCheck.start.subtitle}>
-      <div class="kern-stack kern-stack-md mb-40">
-        {preCheck.start.hints.map((hint) => (
-          <DetailsSummary key={hint.title} title={hint.title}>
-            <RichText markdown={hint.text} />
-          </DetailsSummary>
-        ))}
-      </div>
-
-      <PreCheckContinueActions client:load />
-      <noscript>
-        <InlineNotice look="warning" className="mb-40">
-          <h2>{preCheck.start.noscript.headline}</h2>
-          <RichText markdown={preCheck.start.noscript.content} />
-        </InlineNotice>
-      </noscript>
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero>
+      <h1>{frontmatter.title}</h1>
     </Hero>
-
-    <Container className="lg:pb-80">
-      <Tabs
-        tabs={[
-          preCheck.start.summary.tabName,
-          preCheck.start.info.tabName,
-          preCheck.faq.tabName,
-        ]}
+    <section>
+      <LinkButton
+        href={assistent_vorpruefung_itSystem.path}
+        iconLeft="kern-icon--arrow-forward"
       >
-        <div data-tab-panel={preCheck.start.summary.tabName} class="space-y-40">
-          <h2>{preCheck.start.summary.heading.text}</h2>
-          <InfoBox heading={preCheck.start.summary.start.heading}>
-            <RichText markdown={preCheck.start.summary.start.content} />
-          </InfoBox>
-          <div class="space-y-8">
-            <Badge look="hint" className="mr-8" text="Bundesebene" />
-            <figure class="w-full">
-              <h3 class="pb-[24px]">
-                {preCheck.start.summary.process.heading}
-              </h3>
-              <ImageZoomable
-                src={prozessVorpruefungImage}
-                alt={preCheck.start.summary.process.image.alternativeText}
-                class="object-cover"
-              />
-              <figcaption class="pt-[24px] text-kern-layout-text-default">
-                {preCheck.start.summary.process.image.caption}
-              </figcaption>
-              <hr class="my-[16px] w-[120px] border-t-2 border-kern-darkblue-100" />
-            </figure>
-          </div>
-
-          <InfoBox heading={preCheck.start.summary.relevance.heading}>
-            <RichText markdown={preCheck.start.summary.relevance.content} />
-          </InfoBox>
-        </div>
-        <div
-          data-tab-panel={preCheck.start.info.tabName}
-          class="flex flex-col-reverse items-center gap-48 bg-kern-darkblue-025 px-16 py-40 md:flex-row md:gap-64 md:px-64"
-        >
-          <img
-            src={preCheck.start.info.image.src}
-            alt={preCheck.start.info.image.alt}
-            class="md:w-1/3 md:pl-32"
-          />
-
-          <InfoBox
-            heading={{
-              tagName: "h3",
-              text: preCheck.start.info.title,
-            }}
-          >
-            <RichText markdown={preCheck.start.info.text} />
-            <InfoBox.LinkList
-              links={[
-                {
-                  text: preCheck.start.info.action.text,
-                  to: preCheck.start.info.action.to,
-                  look: "tertiary",
-                  className: "mt-20",
-                },
-              ]}
-            />
-          </InfoBox>
-        </div>
-        <div data-tab-panel={preCheck.faq.tabName}>
-          <h2 class="mb-64 max-sm:mb-56">{preCheck.faq.title}</h2>
-          <PreCheckFAQ />
-        </div>
-      </Tabs>
-    </Container>
-    <SupportBanner {...supportBanner} />
+        Vorprüfung starten
+      </LinkButton>
+    </section>
   </main>
-</VorpruefungLayout>
+</Layout>
