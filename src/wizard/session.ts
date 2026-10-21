@@ -26,10 +26,8 @@ export const getFieldSchema = (wizardId: WizardId, name: string) => {
 
 type UserData = Parameters<typeof createFlowSession>[1];
 
-// TODO: read from the wizard store once it exists. Until then, guards that
-// depend on earlier answers (e.g. the result page) cannot be passed.
-export const readUserData = (_wizardId: WizardId): UserData => ({});
-
+// For the build, where no user data is known. In the browser, use
+// $session from wizardStores, which reads the stored data.
 export const getWizardSession = (
   wizardId: WizardId,
   pathname: string,

@@ -65,11 +65,8 @@ const nextHref = session.nextPath();
 </div>
 
 <script>
-  import {
-    getWizardSession,
-    readUserData,
-    type WizardId,
-  } from "@/wizard/session";
+  import type { WizardId } from "@/wizard/session";
+  import { wizardStores } from "@/wizard/stores";
 
   const setLink = (link: HTMLAnchorElement | null, path?: string) => {
     if (!link) return;
@@ -82,16 +79,16 @@ const nextHref = session.nextPath();
     .querySelectorAll<HTMLElement>("[data-wizard-button-bar]")
     .forEach((bar) => {
       const wizardId = bar.dataset.wizardButtonBar as WizardId;
-      const session = getWizardSession(
-        wizardId,
-        globalThis.location.pathname,
-        readUserData(wizardId),
-      );
 
-      setLink(
-        bar.querySelector("[data-wizard-back]"),
-        session.prevPath ?? bar.dataset.fallbackBackHref,
-      );
-      setLink(bar.querySelector("[data-wizard-next]"), session.nextPath());
+      // Updates the links with the stored data, also when it changes later
+      // (e.g. an answer saved by the form island or in another tab)
+      wizardStores[wizardId].$session.subscribe((session) => {
+        if (!session) return;
+        setLink(
+          bar.querySelector("[data-wizard-back]"),
+          session.prevPath ?? bar.dataset.fallbackBackHref,
+        );
+        setLink(bar.querySelector("[data-wizard-next]"), session.nextPath());
+      });
     });
 </script>

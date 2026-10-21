@@ -96,6 +96,7 @@ allowed_patterns:
   - firstKey
   - tabKey
   - btnKey
+  - STORAGE_KEY
 
 scopeconfig:
   - scope: node # ignores files such as package-lock.json
