@@ -1,0 +1,37 @@
+---
+// Usage example:
+// <button popovertarget="my-modal">Open Modal</button>
+// <Modal id="my-modal">
+//   <p>Main content goes here (default slot).</p>
+// </Modal>
+
+interface Props {
+  id: string;
+  contentClass?: string;
+}
+
+const { id, contentClass = "max-w-a11y max-h-screen" } = Astro.props;
+---
+
+<dialog id={id} popover class="kern-dialog m-auto">
+  <header class="kern-dialog__header">
+    <slot
+      name="heading"
+      class="kern-title kern-title--large"
+      id="modal1_heading"
+    />
+    <button class="kern-btn kern-btn--tertiary" popovertarget={id}>
+      <span class="kern-icon kern-icon--close" aria-hidden="true"></span>
+      <span class="kern-sr-only">Schließen</span>
+    </button>
+  </header>
+  <section class="kern-dialog__body">
+    <div class="kern-body">
+      <slot name="body" />
+    </div>
+  </section>
+  <footer class="kern-dialog__footer">
+    <slot name="buttonLeft" />
+    <slot name="buttonRight" />
+  </footer>
+</dialog>

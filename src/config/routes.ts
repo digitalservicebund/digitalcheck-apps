@@ -27,10 +27,10 @@ export const assistent_vorpruefung = {
   path: "/assistent/vorpruefung",
   title: "Vorprüfung",
   parent: assistent,
-  sitemap: false,
+  sitemap: true,
   isStagingOnly: false,
   navOrder: null,
-  navLabel: "Vorprüfung",
+  navLabel: null,
 } as const;
 
 export const assistent_vorpruefung_automatisierung = {

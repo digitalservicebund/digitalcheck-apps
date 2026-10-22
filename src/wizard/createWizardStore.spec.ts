@@ -104,4 +104,21 @@ describe("createWizardStore", () => {
 
     expect($data.get()).toEqual({});
   });
+
+  it("knows whether answers are stored", () => {
+    const { save, reset, $hasAnswers } = createStore();
+    expect($hasAnswers.get()).toBe(false);
+
+    save({ first: "a" });
+    expect($hasAnswers.get()).toBe(true);
+
+    reset();
+    expect($hasAnswers.get()).toBe(false);
+  });
+
+  it("has no answers when storage only holds invalid values", () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ unknown: "x" }));
+
+    expect(createStore().$hasAnswers.get()).toBe(false);
+  });
 });

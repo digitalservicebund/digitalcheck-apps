@@ -18,6 +18,7 @@ type CompiledFlow<C extends PageConfigMap> = ReturnType<
  * Astro <script>s (via subscribe), e.g. the button bar or the sidebar.
  *
  * - $data: user data, persisted in localStorage and synced across tabs
+ * - $hasAnswers: whether $data contains any answer
  * - $path: current page, set from the URL in the browser
  * - $session: flow session for $data and $path, undefined outside the flow
  *   (e.g. on the server, where neither localStorage nor the URL is known)
@@ -65,6 +66,8 @@ export const createWizardStore = <C extends PageConfigMap>(
       : undefined;
   });
 
+  const $hasAnswers = computed($data, (data) => Object.keys(data).length > 0);
+
   const save = (values: UserData) => {
     $data.set({ ...$data.get(), ...values });
   };
@@ -73,5 +76,5 @@ export const createWizardStore = <C extends PageConfigMap>(
     $data.set({});
   };
 
-  return { $data, $path, $session, save, reset };
+  return { $data, $path, $session, $hasAnswers, save, reset };
 };
