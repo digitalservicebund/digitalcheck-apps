@@ -1,14 +1,23 @@
 ---
 /**
- * Help panel of the documentation wizard, filled with the page's `HelpSection`s.
+ * Help panel of the wizards, filled with the page's `HelpSection`s.
  * A `HelpButton` opens it by setting `data-open`.
  */
+interface Props {
+  /** Extra classes, e.g. a width when not placed in a `breakout-grid-form-steps` */
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
 <div
   id="help-panel"
   x-data
-  class="help peer relative hidden bg-(--helppanel-bg) data-open:block max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:z-50 max-xl:w-[80vw] max-xl:max-w-400 max-xl:shadow-2xl"
+  class:list={[
+    "help peer relative hidden bg-(--helppanel-bg) data-open:block max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:z-50 max-xl:w-[80vw] max-xl:max-w-400 max-xl:shadow-2xl",
+    className,
+  ]}
 >
   <div class="sticky top-0">
     <div class="absolute right-16 left-0 z-10 flex justify-end bg-(--helppanel-bg) px-24 pt-40">
@@ -41,9 +50,7 @@
 
 <style is:global>
   #help-panel {
-    --helppanel-bg: var(--kern-color-white);
-    /* TODO: switch once the other components are updated to the new design */
-    /* --helppanel-bg: var(--kern-color-layout-background-hued); */
+    --helppanel-bg: var(--kern-color-layout-background-hued);
   }
 
   @media (width < 80rem) {

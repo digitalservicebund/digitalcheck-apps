@@ -5,6 +5,7 @@ import WizardLayout from "@/layouts/WizardLayout.astro";
 import { assistent_vorpruefung } from "@/config/routes";
 import { answerOptions } from "@/wizard/vorpruefungSchema";
 import { getWizardSession } from "@/wizard/session";
+import HelpButton from "@/components/HelpButton";
 
 interface Props {
   /** Short page title, used in the document title */
@@ -27,7 +28,7 @@ const labelId = "question-label";
 <!--
   Slots:
   - default: text below the question, e.g. "Praxisbeispiel"
-  - hint: hint below the text, e.g. <DetailsSummary />
+  - help: <HelpSection id={questionId} /> shown in the help panel
 -->
 <WizardLayout
   title={`Vorprüfung: ${title}`}
@@ -38,9 +39,11 @@ const labelId = "question-label";
     <div class="space-y-16">
       <h1 id={labelId} class="kern-heading-large">
         {question}
+        {Astro.slots.has("help") && (
+          <HelpButton client:load sectionId={questionId} />
+        )}
       </h1>
       <slot />
-      <slot name="hint" />
     </div>
     <RadioStepForm
       client:load
@@ -51,6 +54,7 @@ const labelId = "question-label";
       name={questionId}
     />
   </section>
+  <slot name="help" slot="help" />
   <WizardButtonBar
     slot="button-bar"
     wizardId="vorpruefung"

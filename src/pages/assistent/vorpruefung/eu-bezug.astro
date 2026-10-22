@@ -1,5 +1,5 @@
 ---
-import DetailsSummary from "@/components/DetailsSummary";
+import HelpSection from "@/components/HelpSection.astro";
 import QuestionPage from "./_QuestionPage.astro";
 
 export const frontmatter = {
@@ -24,8 +24,9 @@ export const frontmatter = {
     Daten und harmonisierten Standards erforderlich, um deren Echtheit zu
     überprüfen.
   </p>
-  <DetailsSummary
-    slot="hint"
+  <HelpSection
+    slot="help"
+    id="eu-bezug"
     title="Wen betrifft dieser Daten- und Informationsaustausch?"
   >
     <p>
@@ -47,5 +48,5 @@ export const frontmatter = {
         europäischer Ebene.
       </li>
     </ul>
-  </DetailsSummary>
+  </HelpSection>
 </QuestionPage>

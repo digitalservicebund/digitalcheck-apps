@@ -1,5 +1,5 @@
 ---
-import DetailsSummary from "@/components/DetailsSummary";
+import HelpSection from "@/components/HelpSection.astro";
 import QuestionPage from "./_QuestionPage.astro";
 
 export const frontmatter = {
@@ -20,12 +20,16 @@ export const frontmatter = {
     Sozialversicherung bereits vor. Eine Wiederverwendung dieser Daten ist
     bürokratiearm und sollte bei der Erarbeitung der Regelung angestrebt werden.
   </p>
-  <DetailsSummary slot="hint" title="Was ist mit „Daten erheben“ gemeint?">
+  <HelpSection
+    slot="help"
+    id="datenaustausch"
+    title="Was ist mit „Daten erheben“ gemeint?"
+  >
     <p>
       Einige Informationen liegen in der Verwaltung bereits vor: Dies können
       Daten von Bürgerinnen und Bürgern, Unternehmen und Organisationen, z.B.
       von Vereinen, sein. Im besten Fall werden diese Daten automatisiert
       zwischen den Behörden ausgetauscht.
     </p>
-  </DetailsSummary>
+  </HelpSection>
 </QuestionPage>

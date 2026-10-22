@@ -1,6 +1,6 @@
 ---
-import DetailsSummary from "@/components/DetailsSummary";
 import QuestionPage from "./_QuestionPage.astro";
+import HelpSection from "@/components/HelpSection.astro";
 
 export const frontmatter = {
   title: "IT-System",
@@ -21,7 +21,7 @@ export const frontmatter = {
     langfristigen Schädlichkeit erfasst werden. Dafür muss die Datenbank (das
     IT-System) angepasst werden.
   </p>
-  <DetailsSummary slot="hint" title="Was ist ein IT-System?">
+  <HelpSection slot="help" id="it-system" title="Was ist ein IT-System?">
     <p>
       IT-Systeme sind technische Lösungen, die aus Hardware (wie Computern,
       Kartenlesegeräten, Routern) oder Software (Programmen wie ELSTER und Word,
@@ -32,5 +32,5 @@ export const frontmatter = {
       Mit ihnen können Aufgaben ausgeführt werden, wie das Übermitteln der
       Einkommenssteuererklärung mit ELSTER.
     </p>
-  </DetailsSummary>
+  </HelpSection>
 </QuestionPage>

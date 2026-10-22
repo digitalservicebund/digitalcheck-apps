@@ -1,5 +1,5 @@
 ---
-import DetailsSummary from "@/components/DetailsSummary";
+import HelpSection from "@/components/HelpSection.astro";
 import QuestionPage from "./_QuestionPage.astro";
 
 export const frontmatter = {
@@ -22,7 +22,11 @@ export const frontmatter = {
     werden. Dabei müssen die für die Beteiligten üblichen digitalen
     Möglichkeiten mitgedacht bzw. geschaffen werden.
   </p>
-  <DetailsSummary slot="hint" title="Wer sind Akteurinnen und Akteure?">
+  <HelpSection
+    slot="help"
+    id="verpflichtungen-fuer-beteiligte"
+    title="Wer sind Akteurinnen und Akteure?"
+  >
     <p>
       Akteurinnen und Akteure sind in diesem Zusammenhang all diejenigen, die an
       der Umsetzung des Regelungsvorhabens beteiligt sind. Das können sowohl
@@ -39,5 +43,5 @@ export const frontmatter = {
       <li>Unternehmen und</li>
       <li>weitere Organisationen wie z. B. Vereine.</li>
     </ul>
-  </DetailsSummary>
+  </HelpSection>
 </QuestionPage>
