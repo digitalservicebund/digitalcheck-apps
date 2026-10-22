@@ -46,7 +46,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/alpinejs": "^3.17.0",
     "alpinejs": "^3.17.4",
-    "astro": "^7.4.0",
+    "astro": "^7.4.1",
     "astro-route-generator": "github:digitalservicebund/astro-route-generator#0.2.7",
     "docx": "^9.12.0",
     "file-saver": "^2.0.5",
