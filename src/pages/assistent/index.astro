@@ -1,11 +1,18 @@
 ---
+import IconQueryBuilder from "~icons/ic/outline-query-builder";
+import IconTimer from "~icons/ic/outline-timer";
 import { LinkButton } from "@/components/Button";
 import Hero from "@/components/Hero.astro";
-import { assistent_vorpruefung } from "@/config/routes";
+import TimelineList from "@/components/TimelineList.astro";
+import {
+  assistent_vorpruefung,
+  dokumentation,
+  methoden,
+} from "@/config/routes";
 import Layout from "@/layouts/Layout.astro";
 
 export const frontmatter = {
-  title: "Assistent",
+  title: "Drei Schritte zur Digitaltauglichkeit",
   navLabel: "Übersicht",
   sitemap: false,
 };
@@ -13,16 +20,136 @@ export const frontmatter = {
 
 <Layout title={frontmatter.title}>
   <main class="breakout-grid">
-    <Hero>
-      <h1>Assistent</h1>
+    <Hero variant="plain">
+      <h1>{frontmatter.title}</h1>
+      <p>
+        Mit diesem Tool durchlaufen Sie die relevanten Schritte, um
+        Digitaltauglichkeit in Ihrem Regelungsvorhaben sicherzustellen.
+      </p>
     </Hero>
-    <section>
-      <LinkButton
-        href={assistent_vorpruefung.path}
-        iconLeft="kern-icon--arrow-forward"
-      >
-        Vorprüfung starten
-      </LinkButton>
-    </section>
+    <div>
+      <TimelineList>
+        <li>
+          <div class="flex max-w-776 flex-col gap-16 rounded-sm bg-kern-darkblue-025 px-16 py-32 sm:px-64">
+            <p class="text-kern-layout-text-muted text-(length:--kern-typography-font-size-small-static) italic">
+              Schritt 1
+            </p>
+            <h2 class="m-0">Vorprüfung</h2>
+            <p class="flex items-center gap-8">
+              <IconTimer
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Dauer</strong>: Wenige Minuten
+              </span>
+            </p>
+            <p class="flex items-center gap-8">
+              <IconQueryBuilder
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Zeitpunkt</strong>: Vor dem Schreiben der Regelung
+              </span>
+            </p>
+            <p>
+              Zu Beginn Ihres Regelungsvorhabens identifizieren Sie Digitalbezug
+              und Interoperabilitätsanforderungen für Ihr Vorhaben.
+            </p>
+            <div>
+              <LinkButton
+                href={assistent_vorpruefung.path}
+                iconRight="kern-icon--arrow-forward"
+              >
+                Zu diesem Schritt
+              </LinkButton>
+            </div>
+          </div>
+        </li>
+        {/* No line next to the condition, as in the design */}
+        <li class="timeline-plain-item pt-8 text-(length:--kern-typography-font-size-large-static) leading-(--kern-typography-line-height-large-static) font-medium after:hidden">
+          Falls Digitalbezug besteht:
+        </li>
+        <li>
+          <div class="flex max-w-776 flex-col gap-16 rounded-sm bg-kern-darkblue-025 px-16 py-32 sm:px-64">
+            <p class="text-kern-layout-text-muted text-(length:--kern-typography-font-size-small-static) italic">
+              Schritt 2
+            </p>
+            <h2 class="m-0">Erarbeitung</h2>
+            <p class="flex items-center gap-8">
+              <IconTimer
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Dauer</strong>: Punktuell über die gesamte Zeit der
+                Regelungsausarbeitung
+              </span>
+            </p>
+            <p class="flex items-center gap-8">
+              <IconQueryBuilder
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Zeitpunkt</strong>: Beim Schreiben der Regelung
+              </span>
+            </p>
+            <p>
+              Bei einer positiven Vorprüfung wenden Sie die Werkzeuge und
+              Methoden an, die die Digitaltauglichkeit Ihres Vorhabens
+              sicherstellen.
+            </p>
+            <div>
+              <LinkButton
+                href={methoden.path}
+                iconRight="kern-icon--arrow-forward"
+              >
+                Zu diesem Schritt
+              </LinkButton>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex max-w-776 flex-col gap-16 rounded-sm bg-kern-darkblue-025 px-16 py-32 sm:px-64">
+            <p class="text-kern-layout-text-muted text-(length:--kern-typography-font-size-small-static) italic">
+              Schritt 3
+            </p>
+            <h2 class="m-0">Dokumentation</h2>
+            <p class="flex items-center gap-8">
+              <IconTimer
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Dauer</strong>: Ein bis zwei Stunden
+              </span>
+            </p>
+            <p class="flex items-center gap-8">
+              <IconQueryBuilder
+                class="size-24 shrink-0 text-kern-darkblue-850"
+                aria-hidden="true"
+              />
+              <span>
+                <strong>Zeitpunkt</strong>: Parallel zum Erarbeiten der Regelung
+              </span>
+            </p>
+            <p>
+              Sie dokumentieren, wie Sie Digitaltauglichkeit in Ihrer Regelung
+              sichergestellt haben.
+            </p>
+            <div>
+              <LinkButton
+                href={dokumentation.path}
+                iconRight="kern-icon--arrow-forward"
+              >
+                Zu diesem Schritt
+              </LinkButton>
+            </div>
+          </div>
+        </li>
+      </TimelineList>
+    </div>
   </main>
 </Layout>

@@ -15,6 +15,13 @@ const {
 } = Astro.props;
 ---
 
+{/* Optional preline: shown above the list, indented like the items, without marker or line */}
+{Astro.slots.has("preline") && (
+  <div class:list={["timeline-preline", `timeline-preline--${variant}`]}>
+    <slot name="preline" />
+  </div>
+)}
+
 {/* Items: plain <li> (bullet), li.timeline-plain-item (no marker), li.timeline-year-item (.timeline-year-badge centered on the line) */}
 <ol
   class:list={[
@@ -41,6 +48,13 @@ const {
     }
     .timeline--zfl {
       --timeline-color: var(--color-cosmic-blue-base);
+    }
+
+    .timeline-preline {
+      @apply pb-24 pl-40;
+    }
+    .timeline-preline--changelog {
+      @apply ml-26 pl-48;
     }
 
     .timeline {
