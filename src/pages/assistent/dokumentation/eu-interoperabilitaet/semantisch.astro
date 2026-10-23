@@ -1,5 +1,6 @@
 ---
-import StepPage from "../_StepPage.astro";
+import { interoperabel_loesungen_coreVocabularies } from "@/config/routes";
+import EbenePage from "./_EbenePage.astro";
 
 export const frontmatter = {
   title: "Semantische Interoperabilität",
@@ -8,7 +9,37 @@ export const frontmatter = {
 };
 ---
 
-<!-- TODO: implement step -->
-<StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
-</StepPage>
+<EbenePage ebene="semantisch" title={frontmatter.title}>
+  <Fragment slot="heading">
+    Gemeinsame Bedeutung von Daten sicherstellen
+  </Fragment>
+  <p>
+    Semantische Klarheit sorgt dafür, dass „was gesendet wird, auch genau so
+    verstanden wird“. Rechtsbegriffe müssen gleich definiert und Datenfelder
+    kompatibel sein, damit IT-Systeme sie zweifelsfrei verarbeiten können.
+  </p>
+  <p>
+    <strong>Beispiel:</strong> Das Datenfeld für „Wohnsitz“ wird in ganz Europa
+    nach demselben Standard (z. B. den{" "}
+    <a
+      href={interoperabel_loesungen_coreVocabularies.path}
+      target="_blank"
+      rel="noopener"
+    >
+      Semantic Core Vocabularies
+    </a>
+    ) definiert. So verstehen das spanische System und das deutsche System
+    dasselbe.
+  </p>
+  <p>
+    Dieser Standard wird in der Regelung referenziert und im Vollzug genutzt.
+  </p>
+  <Fragment slot="question">
+    Stellt das Regelungsvorhaben sicher, dass semantische Definitionen von
+    Begriffen und Datenfeldern den Datenaustausch über EU-Grenzen ermöglichen?
+  </Fragment>
+  <Fragment slot="hint">
+    Tragen Sie Ihre Erläuterung ein, z. B. „Datenbegriffe werden gemäß dem
+    Vokabular X einheitlich definiert“.
+  </Fragment>
+</EbenePage>

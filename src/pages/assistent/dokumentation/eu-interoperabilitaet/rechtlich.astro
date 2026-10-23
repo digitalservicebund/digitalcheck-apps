@@ -1,5 +1,5 @@
 ---
-import StepPage from "../_StepPage.astro";
+import EbenePage from "./_EbenePage.astro";
 
 export const frontmatter = {
   title: "Rechtliche Interoperabilität",
@@ -8,7 +8,28 @@ export const frontmatter = {
 };
 ---
 
-<!-- TODO: implement step -->
-<StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
-</StepPage>
+<EbenePage ebene="rechtlich" title={frontmatter.title}>
+  <Fragment slot="heading">
+    Rechtliche Grundlage für den Datenaustausch schaffen
+  </Fragment>
+  <p>
+    Eine Regelung sollte so gestaltet sein, dass Behörden Daten über Grenzen
+    hinweg austauschen dürfen. Keine rechtlichen Barrieren dürfen einen
+    digitalen Austausch blockieren.
+  </p>
+  <p>
+    <strong>Beispiel:</strong> Eine Regelung sieht vor, dass eine zuständige
+    deutsche Behörde Nachweise zu Bildungsabschlüssen direkt bei den zuständigen
+    Stellen anderer EU-Mitgliedstaaten überprüfen kann. Gleichzeitig wird den
+    ausländischen Behörden das Recht eingeräumt, Abschlüsse bei deutschen
+    Behörden zu verifizieren.
+  </p>
+  <Fragment slot="question">
+    Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen für einen
+    Datenaustausch innerhalb der EU?
+  </Fragment>
+  <Fragment slot="hint">
+    Tragen Sie Ihre Erläuterung ein, z. B. „Behörde A wird ermächtigt, Daten von
+    Behörde B abzurufen“.
+  </Fragment>
+</EbenePage>

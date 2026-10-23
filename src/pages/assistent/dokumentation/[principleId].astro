@@ -11,7 +11,7 @@ import { prinzipien } from "@/config/routes";
 import { getPrinzipienStaticPaths } from "@/content.config";
 import { slugify } from "@/utils/utilFunctions";
 import {
-  prinzipAnswerOptions,
+  bewertungOptions,
   prinzipFieldNames,
   prinzipSchema,
   toPrinzipOrder,
@@ -55,9 +55,9 @@ const schwerpunkteOptions = prinzip.Aspekte.map((aspekt) => ({
         Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen für die
         Umsetzung des Prinzips?
       </h2>
-      <RadioField field={answer} options={prinzipAnswerOptions} />
+      <RadioField field={answer} options={bewertungOptions} />
     </div>
-    <ShowIf field={answer} is={prinzipAnswerOptions.map(({ value }) => value)}>
+    <ShowIf field={answer} is={bewertungOptions.map(({ value }) => value)}>
       <div class="space-y-16">
         <ShowIf field={answer} is={["yes"]}>
           <div class="space-y-16 pb-16">

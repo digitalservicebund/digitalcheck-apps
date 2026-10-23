@@ -1,5 +1,5 @@
 ---
-import StepPage from "../_StepPage.astro";
+import EbenePage from "./_EbenePage.astro";
 
 export const frontmatter = {
   title: "Organisatorische Interoperabilität",
@@ -8,7 +8,30 @@ export const frontmatter = {
 };
 ---
 
-<!-- TODO: implement step -->
-<StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
-</StepPage>
+<EbenePage ebene="organisatorisch" title={frontmatter.title}>
+  <Fragment slot="heading">
+    Organisatorische Strukturen für Interoperabilität
+  </Fragment>
+  <p>
+    Zuständigkeiten und Prozesse müssen so ausgestaltet sein, dass die
+    Zusammenarbeit zwischen Behörden unterschiedlicher EU-Mitgliedstaaten
+    reibungslos funktionieren kann.
+  </p>
+  <p>
+    <strong>Beispiel: internationale Gewerbeummeldung.</strong> Wenn ein
+    Unternehmen seinen Standort von Deutschland nach Spanien verlegt, sollten
+    die beteiligten Behörden beider Länder (z. B. über das Single Digital
+    Gateway) zusammenarbeiten können, damit die Gewerbeummeldung abgewickelt
+    werden kann. Dazu müssen die organisatorischen Prozesse und Zuständigkeiten
+    vorhanden sein.
+  </p>
+  <Fragment slot="question">
+    Schafft das Regelungsvorhaben die organisatorischen Voraussetzungen für
+    einen Datenaustausch innerhalb der EU?
+  </Fragment>
+  <Fragment slot="hint">
+    Tragen Sie Ihre Erläuterung ein, z. B. „Anträge müssen innerhalb von 3 Tagen
+    an die zuständige Stelle weitergeleitet werden“, und die Benennung der
+    zuständigen Behörden.
+  </Fragment>
+</EbenePage>

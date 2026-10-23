@@ -1,0 +1,63 @@
+---
+import RadioField from "@/components/wizard/RadioField.astro";
+import ShowIf from "@/components/wizard/ShowIf.astro";
+import TextareaField from "@/components/wizard/TextareaField.astro";
+import {
+  bewertungOptions,
+  ebeneFieldNames,
+  ebeneSchemas,
+  type Bewertung,
+  type Ebene,
+} from "@/wizard/dokumentationSchema";
+import { stepFields, type StepField } from "@/wizard/stepFields";
+import StepPage from "../_StepPage.astro";
+
+interface Props {
+  ebene: Ebene;
+  /** Short page title, used in the document title */
+  title: string;
+}
+
+const { ebene, title } = Astro.props;
+
+const names = ebeneFieldNames(ebene);
+// The levels' fields only differ in their prefix, so the handles are typed by
+// their values: TypeScript can't index the union of all levels' handles
+const fields: Record<string, StepField> = stepFields(ebeneSchemas[ebene]);
+const bewertung = fields[names.bewertung] as StepField<Bewertung>;
+const erklaerung = fields[names.erklaerung] as StepField<string>;
+---
+
+<!--
+  Shared by the levels of interoperability (Rechtlich, Organisatorisch, …),
+  which only differ in their texts. The Erklärung is asked for "yes" and "no".
+  Slots:
+  - heading: heading of the page
+  - default: text below the heading, e.g. an example
+  - question: labels the answer
+  - hint: hint of the Erklärung
+-->
+<StepPage title={title}>
+  <div class="space-y-48">
+    <div class="space-y-16">
+      <h1 class="kern-heading-large">
+        <slot name="heading" />
+      </h1>
+      <slot />
+    </div>
+    <div class="space-y-16">
+      <h2 id={bewertung.labelId} class="kern-heading-medium">
+        <slot name="question" />
+      </h2>
+      <RadioField field={bewertung} options={bewertungOptions} />
+    </div>
+    <ShowIf field={bewertung} is={["yes", "no"]}>
+      <TextareaField field={erklaerung} rows={3}>
+        Erklärung
+        <Fragment slot="description">
+          <slot name="hint" />
+        </Fragment>
+      </TextareaField>
+    </ShowIf>
+  </div>
+</StepPage>

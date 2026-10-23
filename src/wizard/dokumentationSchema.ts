@@ -7,14 +7,18 @@ import { z } from "zod";
 const text = (message: string) => z.string().trim().min(1, message);
 
 // Labels live next to the values, so the rendered options can't drift from the schema.
-export const prinzipAnswerOptions = [
+// Answers to "Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen …?"
+// for the Prinzipien and the levels of interoperability
+export const bewertungOptions = [
   { value: "yes", label: "Ja, gänzlich oder teilweise" },
   { value: "no", label: "Nein" },
   { value: "not-relevant", label: "Nicht relevant" },
 ] as const;
 
-const prinzipAnswer = z.enum(
-  prinzipAnswerOptions.map((option) => option.value),
+export type Bewertung = (typeof bewertungOptions)[number]["value"];
+
+const bewertung = z.enum(
+  bewertungOptions.map((option) => option.value),
   "Bitte wählen Sie eine Option aus.",
 );
 
@@ -25,7 +29,7 @@ const erklaerungMessage = "Bitte geben Sie eine Erklärung an.";
 // Slugs of the Aspekte's Kurzbezeichnung, as in the old Dokumentation
 const prinzipSchwerpunkte = z.array(z.string()).min(1, schwerpunkteMessage);
 
-const prinzipErklaerung = text(erklaerungMessage);
+const erklaerung = text(erklaerungMessage);
 
 // The Prinzip pages share one route, their fields are numbered by the
 // Prinzip's order, like their pages in the flow (prinzip1 to prinzip5).
@@ -49,20 +53,59 @@ export const prinzipFieldNames = <Order extends PrinzipOrder>(order: Order) =>
   }) as const;
 
 type PrinzipFields = {
-  [Order in PrinzipOrder as `prinzip${Order}-antwort`]: typeof prinzipAnswer;
+  [Order in PrinzipOrder as `prinzip${Order}-antwort`]: typeof bewertung;
 } & {
   [
     Order in PrinzipOrder as `prinzip${Order}-schwerpunkte`
   ]: typeof prinzipSchwerpunkte;
 } & {
-  [
-    Order in PrinzipOrder as `prinzip${Order}-erklaerung`
-  ]: typeof prinzipErklaerung;
+  [Order in PrinzipOrder as `prinzip${Order}-erklaerung`]: typeof erklaerung;
 };
 
 export const euInteroperabilitaetOptions = [
   { value: "yes", label: "Ja, Bezug zu EU-Interoperabilität ist vorhanden." },
   { value: "no", label: "Nein, es ist kein Bezug vorhanden." },
+] as const;
+
+// The levels of interoperability share their fields and page, prefixed with
+// their page
+const ebenen = [
+  "rechtlich",
+  "organisatorisch",
+  "semantisch",
+  "technisch",
+] as const;
+
+export type Ebene = (typeof ebenen)[number];
+
+export const ebeneFieldNames = <E extends Ebene>(ebene: E) =>
+  ({
+    bewertung: `${ebene}-bewertung`,
+    erklaerung: `${ebene}-erklaerung`,
+  }) as const;
+
+type EbeneFields = {
+  [E in Ebene as `${E}-bewertung`]: typeof bewertung;
+} & {
+  [E in Ebene as `${E}-erklaerung`]: typeof erklaerung;
+};
+
+const ebeneFields = Object.fromEntries(
+  ebenen.flatMap((ebene) => {
+    const names = ebeneFieldNames(ebene);
+    return [
+      [names.bewertung, bewertung],
+      [names.erklaerung, erklaerung],
+    ];
+  }),
+) as EbeneFields;
+
+export const veroeffentlichungOptions = [
+  { value: "planned", label: "Die Veröffentlichung ist geplant am..." },
+  {
+    value: "published",
+    label: "Der Referentenentwurf ist bereits veröffentlicht",
+  },
 ] as const;
 
 // The same options as in the old Dokumentation
@@ -102,9 +145,9 @@ const prinzipFields = Object.fromEntries(
   prinzipOrders.flatMap((order) => {
     const names = prinzipFieldNames(order);
     return [
-      [names.antwort, prinzipAnswer],
+      [names.antwort, bewertung],
       [names.schwerpunkte, prinzipSchwerpunkte],
-      [names.erklaerung, prinzipErklaerung],
+      [names.erklaerung, erklaerung],
     ];
   }),
 ) as PrinzipFields;
@@ -124,6 +167,12 @@ export const dokumentationFields = {
     "Bitte wählen Sie eine Option aus.",
   ),
   "verbindliche-anforderungen": z.array(anforderungSchema),
+  ...ebeneFields,
+  "veroeffentlichung-status": z.enum(
+    veroeffentlichungOptions.map((option) => option.value),
+    "Bitte wählen Sie eine Option aus.",
+  ),
+  "veroeffentlichung-datum": text("Bitte geben Sie ein Datum an."),
 } as const;
 
 export type DokumentationField = keyof typeof dokumentationFields;
@@ -149,15 +198,15 @@ export const prinzipSchema = <Order extends PrinzipOrder>(order: Order) => {
   const names = prinzipFieldNames(order);
   // Computed keys are typed as `string`, so their literal types are restored here
   const shape = {
-    [names.antwort]: prinzipAnswer,
+    [names.antwort]: bewertung,
     [names.schwerpunkte]: prinzipSchwerpunkte.optional(),
-    [names.erklaerung]: prinzipErklaerung.optional(),
-  } as Record<typeof names.antwort, typeof prinzipAnswer> &
+    [names.erklaerung]: erklaerung.optional(),
+  } as Record<typeof names.antwort, typeof bewertung> &
     Record<
       typeof names.schwerpunkte,
       z.ZodOptional<typeof prinzipSchwerpunkte>
     > &
-    Record<typeof names.erklaerung, z.ZodOptional<typeof prinzipErklaerung>>;
+    Record<typeof names.erklaerung, z.ZodOptional<typeof erklaerung>>;
 
   // Schwerpunkte (only for "yes") and Erklärung depend on the answer, like their
   // <ShowIf>s on the page. Hidden fields are missing, shown but empty ones are
@@ -203,4 +252,44 @@ export const verbindlicheAnforderungenSchema = z.object({
       anforderungenMessage,
     )
     .min(1, anforderungenMessage),
+});
+
+/**
+ * Page schema of a level of interoperability (e.g. Rechtlich): the Erklärung
+ * is only asked for "yes" and "no", like its <ShowIf> on the page.
+ */
+const ebeneSchema = <E extends Ebene>(ebene: E) => {
+  const names = ebeneFieldNames(ebene);
+  // Computed keys are typed as `string`, so their literal types are restored here
+  const shape = {
+    [names.bewertung]: bewertung,
+    [names.erklaerung]: erklaerung.optional(),
+  } as Record<typeof names.bewertung, typeof bewertung> &
+    Record<typeof names.erklaerung, z.ZodOptional<typeof erklaerung>>;
+
+  // Hidden fields are missing, shown but empty ones are invalid on their own,
+  // so this only catches answers stored without an Erklärung
+  return z.object(shape).superRefine((data, ctx) => {
+    const values: Record<string, unknown> = data;
+    const answer = values[names.bewertung];
+    if (answer !== "not-relevant" && values[names.erklaerung] === undefined) {
+      ctx.addIssue({
+        code: "custom",
+        message: erklaerungMessage,
+        path: [names.erklaerung],
+      });
+    }
+  });
+};
+
+// Through `unknown`, as the entries' types don't keep their level
+export const ebeneSchemas = Object.fromEntries(
+  ebenen.map((ebene) => [ebene, ebeneSchema(ebene)]),
+) as unknown as { [E in Ebene]: ReturnType<typeof ebeneSchema<E>> };
+
+// The date is optional, as in the old Dokumentation: an approximate one is
+// enough, and only asked for "planned"
+export const veroeffentlichungSchema = z.object({
+  "veroeffentlichung-status": dokumentationFields["veroeffentlichung-status"],
+  "veroeffentlichung-datum": z.string().optional(),
 });

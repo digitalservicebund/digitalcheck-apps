@@ -15,10 +15,12 @@ import {
 import { compileFlowConfig } from "form-graph-engine";
 import {
   beteiligungsformateSchema,
+  ebeneSchemas,
   euInteroperabilitaetSchema,
   prinzipSchema,
   regelungsvorhabenSchema,
   verbindlicheAnforderungenSchema,
+  veroeffentlichungSchema,
 } from "./dokumentationSchema";
 
 // The Prinzip pages share the dynamic route [principleId].astro, so their paths
@@ -53,18 +55,23 @@ export const dokumentationFlow = compileFlowConfig({
     },
     rechtlich: {
       path: assistent_dokumentation_euInteroperabilitaet_rechtlich.path,
+      pageSchema: ebeneSchemas.rechtlich,
     },
     organisatorisch: {
       path: assistent_dokumentation_euInteroperabilitaet_organisatorisch.path,
+      pageSchema: ebeneSchemas.organisatorisch,
     },
     semantisch: {
       path: assistent_dokumentation_euInteroperabilitaet_semantisch.path,
+      pageSchema: ebeneSchemas.semantisch,
     },
     technisch: {
       path: assistent_dokumentation_euInteroperabilitaet_technisch.path,
+      pageSchema: ebeneSchemas.technisch,
     },
     veroeffentlichung: {
       path: assistent_dokumentation_euInteroperabilitaet_veroeffentlichung.path,
+      pageSchema: veroeffentlichungSchema,
     },
     zusammenfassung: { path: assistent_dokumentation_zusammenfassung.path },
     abschliessen: { path: assistent_dokumentation_abschliessen.path },

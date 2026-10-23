@@ -1,4 +1,12 @@
 ---
+import InputField from "@/components/wizard/InputField.astro";
+import RadioField from "@/components/wizard/RadioField.astro";
+import ShowIf from "@/components/wizard/ShowIf.astro";
+import {
+  veroeffentlichungOptions,
+  veroeffentlichungSchema,
+} from "@/wizard/dokumentationSchema";
+import { stepFields } from "@/wizard/stepFields";
 import StepPage from "../_StepPage.astro";
 
 export const frontmatter = {
@@ -6,9 +14,26 @@ export const frontmatter = {
   sitemap: false,
   navOrder: 6,
 };
+
+const fields = stepFields(veroeffentlichungSchema);
+const status = fields["veroeffentlichung-status"];
 ---
 
-<!-- TODO: implement step -->
+<!-- The heading is the question, so it labels the answer -->
 <StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
+  <div class="space-y-32">
+    <h1 id={status.labelId} class="kern-heading-large">
+      Wann soll der Referentenentwurf voraussichtlich auf der Webseite Ihres
+      Ministeriums veröffentlicht werden?
+    </h1>
+    <RadioField field={status} options={veroeffentlichungOptions} />
+    <ShowIf field={status} is={["planned"]}>
+      <InputField field={fields["veroeffentlichung-datum"]}>
+        Voraussichtliches Veröffentlichungsdatum
+        <Fragment slot="description">
+          Eine ungefähre Angabe (Monat) ist ausreichend.
+        </Fragment>
+      </InputField>
+    </ShowIf>
+  </div>
 </StepPage>

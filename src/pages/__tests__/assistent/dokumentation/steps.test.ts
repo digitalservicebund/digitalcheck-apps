@@ -3,14 +3,24 @@ import { dokumentationPrinzipienRoutes } from "@/config/prinzipienRoutes";
 import {
   assistent_dokumentation_beteiligungsformate,
   assistent_dokumentation_euInteroperabilitaet,
+  assistent_dokumentation_euInteroperabilitaet_organisatorisch,
+  assistent_dokumentation_euInteroperabilitaet_rechtlich,
+  assistent_dokumentation_euInteroperabilitaet_semantisch,
+  assistent_dokumentation_euInteroperabilitaet_technisch,
   assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen,
+  assistent_dokumentation_euInteroperabilitaet_veroeffentlichung,
   assistent_dokumentation_regelungsvorhaben,
 } from "@/config/routes";
 import { getPrinzipienStaticPaths } from "@/content.config";
 import Prinzip from "@/pages/assistent/dokumentation/[principleId].astro";
 import Beteiligungsformate from "@/pages/assistent/dokumentation/beteiligungsformate.astro";
 import EuInteroperabilitaet from "@/pages/assistent/dokumentation/eu-interoperabilitaet/index.astro";
+import Organisatorisch from "@/pages/assistent/dokumentation/eu-interoperabilitaet/organisatorisch.astro";
+import Rechtlich from "@/pages/assistent/dokumentation/eu-interoperabilitaet/rechtlich.astro";
+import Semantisch from "@/pages/assistent/dokumentation/eu-interoperabilitaet/semantisch.astro";
+import Technisch from "@/pages/assistent/dokumentation/eu-interoperabilitaet/technisch.astro";
 import VerbindlicheAnforderungen from "@/pages/assistent/dokumentation/eu-interoperabilitaet/verbindliche-anforderungen.astro";
+import Veroeffentlichung from "@/pages/assistent/dokumentation/eu-interoperabilitaet/veroeffentlichung.astro";
 import Regelungsvorhaben from "@/pages/assistent/dokumentation/regelungsvorhaben.astro";
 import { renderToDOM } from "@/utils/testUtils";
 import { slugify } from "@/utils/utilFunctions";
@@ -18,10 +28,12 @@ import {
   anforderungSchema,
   bereichOptions,
   beteiligungsformateSchema,
+  ebeneSchemas,
   euInteroperabilitaetSchema,
   prinzipSchema,
   regelungsvorhabenSchema,
   toPrinzipOrder,
+  veroeffentlichungSchema,
 } from "@/wizard/dokumentationSchema";
 import { within } from "@testing-library/dom";
 import "@testing-library/jest-dom";
@@ -278,6 +290,97 @@ describe("Dokumentation step Verbindliche Anforderungen", () => {
     ).toHaveTextContent("ErwG 6 der Verordnung (EU) 2024/903");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       "Verbindliche Anforderungen",
+    );
+  });
+});
+
+describe("Dokumentation steps of the levels of interoperability", () => {
+  // `as unknown`: .astro imports aren't typed in tests
+  it.each([
+    {
+      ebene: "rechtlich",
+      Page: Rechtlich as unknown,
+      route: assistent_dokumentation_euInteroperabilitaet_rechtlich,
+      question: /rechtlichen Voraussetzungen/,
+      hint: /Behörde A wird ermächtigt/,
+    },
+    {
+      ebene: "organisatorisch",
+      Page: Organisatorisch as unknown,
+      route: assistent_dokumentation_euInteroperabilitaet_organisatorisch,
+      question: /organisatorischen Voraussetzungen/,
+      hint: /Anträge müssen innerhalb von 3 Tagen/,
+    },
+    {
+      ebene: "semantisch",
+      Page: Semantisch as unknown,
+      route: assistent_dokumentation_euInteroperabilitaet_semantisch,
+      question: /semantische Definitionen/,
+      hint: /Vokabular X/,
+    },
+    {
+      ebene: "technisch",
+      Page: Technisch as unknown,
+      route: assistent_dokumentation_euInteroperabilitaet_technisch,
+      question: /technischen Voraussetzungen/,
+      hint: /Protokoll Y/,
+    },
+  ] as const)(
+    "$ebene asks for an Erklärung for 'yes' and 'no' only",
+    async ({ ebene, Page, route, question, hint }) => {
+      const { screen, names } = await renderStep(Page, route.path);
+
+      expect([...names]).toEqual(Object.keys(ebeneSchemas[ebene].shape));
+      const radios = screen.getByRole("radiogroup", { name: question });
+      expect(
+        within(radios)
+          .getAllByRole("radio")
+          .map((radio) => radio.getAttribute("value")),
+      ).toEqual(["yes", "no", "not-relevant"]);
+
+      // The condition is applied by bindStepForm in the browser
+      const erklaerung = screen.getByRole("textbox", {
+        name: "Erklärung",
+        hidden: true,
+      });
+      expect(erklaerung).toHaveAccessibleDescription(hint);
+      expect(erklaerung.closest("[data-wizard-show-if]")).toHaveAttribute(
+        "data-wizard-show-is",
+        '["yes","no"]',
+      );
+    },
+  );
+});
+
+describe("Dokumentation step Veröffentlichung", () => {
+  it("asks for the date only if the publication is planned", async () => {
+    const { screen, names } = await renderStep(
+      Veroeffentlichung,
+      assistent_dokumentation_euInteroperabilitaet_veroeffentlichung.path,
+    );
+
+    expect([...names]).toEqual(Object.keys(veroeffentlichungSchema.shape));
+    // The heading is the question
+    const radios = screen.getByRole("radiogroup", {
+      name: /Wann soll der Referentenentwurf/,
+    });
+    expect(
+      within(radios)
+        .getAllByRole("radio")
+        .map((radio) => radio.getAttribute("value")),
+    ).toEqual(["planned", "published"]);
+
+    // The condition is applied by bindStepForm in the browser
+    const datum = screen.getByRole("textbox", {
+      name: "Voraussichtliches Veröffentlichungsdatum",
+      hidden: true,
+    });
+    expect(datum).toHaveAccessibleDescription(
+      "Eine ungefähre Angabe (Monat) ist ausreichend.",
+    );
+    expect(datum.closest("[data-wizard-show-if]")).toHaveAttribute(
+      "data-wizard-show-is",
+      '["planned"]',
     );
   });
 });

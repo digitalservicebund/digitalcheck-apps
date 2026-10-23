@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   dokumentationFields,
+  ebeneSchemas,
   prinzipSchema,
   toPrinzipOrder,
 } from "./dokumentationSchema";
@@ -83,5 +84,32 @@ describe("toPrinzipOrder", () => {
     expect(() => toPrinzipOrder(6)).toThrow(
       "The Dokumentation has no fields for Prinzip 6.",
     );
+  });
+});
+
+describe("ebeneSchemas", () => {
+  const issuesOfRechtlich = (data: Record<string, unknown>) =>
+    (ebeneSchemas.rechtlich.safeParse(data).error?.issues ?? []).map((issue) =>
+      issue.path.join("."),
+    );
+
+  it("requires an Erklärung for 'yes' and 'no'", () => {
+    for (const answer of ["yes", "no"]) {
+      expect(issuesOfRechtlich({ "rechtlich-bewertung": answer })).toEqual([
+        "rechtlich-erklaerung",
+      ]);
+    }
+  });
+
+  it("doesn't ask for an Erklärung if not relevant", () => {
+    expect(
+      issuesOfRechtlich({ "rechtlich-bewertung": "not-relevant" }),
+    ).toEqual([]);
+  });
+
+  it("only uses fields of the Dokumentation", () => {
+    for (const name of Object.keys(ebeneSchemas.rechtlich.shape)) {
+      expect(dokumentationFields).toHaveProperty(name);
+    }
   });
 });
