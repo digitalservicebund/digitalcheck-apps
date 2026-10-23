@@ -1,4 +1,7 @@
 ---
+import InputField from "@/components/wizard/InputField.astro";
+import { regelungsvorhabenSchema } from "@/wizard/dokumentationSchema";
+import { stepFields } from "@/wizard/stepFields";
 import StepPage from "./_StepPage.astro";
 
 export const frontmatter = {
@@ -6,9 +9,23 @@ export const frontmatter = {
   sitemap: false,
   navOrder: 1,
 };
+
+const fields = stepFields(regelungsvorhabenSchema);
 ---
 
-<!-- TODO: implement step -->
 <StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
+  <h1 class="kern-heading-large">
+    Tragen Sie Daten zu Ihrem Regelungsvorhaben ein
+  </h1>
+  <div class="space-y-32">
+    <InputField field={fields["regelungsvorhaben-titel"]}>
+      Titel des Regelungsvorhabens
+      <Fragment slot="description">
+        Der offizielle Titel wird in der fertigen Dokumentation verwendet.
+      </Fragment>
+    </InputField>
+    <InputField field={fields["regelungsvorhaben-organisation"]}>
+      Ministerium / Organisation
+    </InputField>
+  </div>
 </StepPage>

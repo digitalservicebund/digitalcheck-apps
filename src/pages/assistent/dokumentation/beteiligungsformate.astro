@@ -1,4 +1,7 @@
 ---
+import TextareaField from "@/components/wizard/TextareaField.astro";
+import { beteiligungsformateSchema } from "@/wizard/dokumentationSchema";
+import { stepFields } from "@/wizard/stepFields";
 import StepPage from "./_StepPage.astro";
 
 export const frontmatter = {
@@ -6,9 +9,39 @@ export const frontmatter = {
   sitemap: false,
   navOrder: 2,
 };
+
+const fields = stepFields(beteiligungsformateSchema);
 ---
 
-<!-- TODO: implement step -->
+<!-- The question is the fieldset's legend, so it's announced with the field -->
 <StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
+  <h1 class="kern-heading-large">{frontmatter.title}</h1>
+  <fieldset>
+    <legend class="kern-heading-medium mb-16">
+      Entspricht die Umsetzung des Regelungsvorhabens den Bedürfnissen der
+      Betroffenen? Wie haben Sie das überprüft?
+    </legend>
+    <TextareaField field={fields["beteiligungsformate-erklaerung"]} rows={5}>
+      Erklärung
+      <Fragment slot="description">
+        Beschreiben Sie stichpunktartig, wie Sie die Bedürfnisse der Betroffenen
+        erhoben haben – z. B. durch Befragungen, Gespräche mit
+        Vollzugsakteurinnen und -akteuren oder formelle Beteiligungsverfahren.
+      </Fragment>
+    </TextareaField>
+  </fieldset>
+  <fieldset>
+    <legend class="kern-heading-medium mb-16">
+      Wie spiegeln sich die Erkenntnisse, die durch die oben genannten Schritte
+      gewonnen wurden, im Regelungsvorhaben wider?
+    </legend>
+    <TextareaField field={fields["beteiligungsformate-erkenntnisse"]} rows={5}>
+      Erkenntnisse
+      <Fragment slot="description">
+        Bitte listen Sie stichpunktartig auf, welche Erkenntnisse eingearbeitet
+        wurden, und geben Sie Hinweise auf Paragrafen, die besonders
+        umsetzungsrelevant sind.
+      </Fragment>
+    </TextareaField>
+  </fieldset>
 </StepPage>

@@ -13,34 +13,27 @@ import {
   assistent_dokumentation_zusammenfassung,
 } from "@/config/routes";
 import { compileFlowConfig } from "form-graph-engine";
-import { dokumentationFields } from "./dokumentationSchema";
+import {
+  beteiligungsformateSchema,
+  regelungsvorhabenSchema,
+} from "./dokumentationSchema";
 
 // The Prinzip pages share the dynamic route [principleId].astro, so their paths
 // come from prinzipienRoutes.ts (sorted by order) instead of the generated routes.
 const [prinzip1, prinzip2, prinzip3, prinzip4, prinzip5] =
   dokumentationPrinzipienRoutes;
 
-// Page schemas only pick fields from dokumentationFields, don't define them inline.
+// Page schemas live in dokumentationSchema.ts, so steps can use them too (see stepFields).
 // TODO: add remaining page schemas and guards (e.g. skip EU steps without EU-Bezug)
 export const dokumentationFlow = compileFlowConfig({
   pages: {
     regelungsvorhaben: {
       path: assistent_dokumentation_regelungsvorhaben.path,
-      pageSchema: {
-        "regelungsvorhaben-titel":
-          dokumentationFields["regelungsvorhaben-titel"],
-        "regelungsvorhaben-organisation":
-          dokumentationFields["regelungsvorhaben-organisation"],
-      },
+      pageSchema: regelungsvorhabenSchema,
     },
     beteiligungsformate: {
       path: assistent_dokumentation_beteiligungsformate.path,
-      pageSchema: {
-        "beteiligungsformate-formate":
-          dokumentationFields["beteiligungsformate-formate"],
-        "beteiligungsformate-ergebnisse":
-          dokumentationFields["beteiligungsformate-ergebnisse"],
-      },
+      pageSchema: beteiligungsformateSchema,
     },
     prinzip1: { path: prinzip1.path },
     prinzip2: { path: prinzip2.path },
