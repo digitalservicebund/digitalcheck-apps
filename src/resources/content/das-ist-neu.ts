@@ -26,6 +26,17 @@ export const news = {
     },
     {
       badge: {
+        text: "14.09.2026",
+      },
+      headline: {
+        text: "Neue Digitalcheck Website",
+      },
+      content: dedent`
+        - Vereinfachte Navigation: Schnellerer Zugang zu relevanten Seiten.
+        - Einheitliches Design: Vollständige Adaption des KERN-Design-Systems.`,
+    },
+    {
+      badge: {
         text: "28.08.2026",
       },
       headline: {
