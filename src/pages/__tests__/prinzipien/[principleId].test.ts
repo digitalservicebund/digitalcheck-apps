@@ -111,7 +111,8 @@ describe("FivePrinciples Route - Integration Tests", () => {
   });
 
   it("renders a principle-colored badge in the Hero", () => {
-    const badge = screen
+    // scoped to main, as the navigation also lists "Prinzip 1" (Dokumentation step)
+    const badge = within(screen.getByRole("main"))
       .getByText(`Prinzip ${mockPrinzipData.order}`)
       .closest(".kern-badge");
     expect(badge).toHaveClass(`kern-badge--prinzip-${mockPrinzipData.order}`);
