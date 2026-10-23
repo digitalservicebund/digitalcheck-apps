@@ -47,7 +47,7 @@ function Textarea({
           "aria-invalid": hasError || hasWarning,
           "aria-errormessage": hasError || hasWarning ? errorId : undefined,
           className: twMerge(
-            "kern-form-input__input bg-white",
+            "kern-form-input__input",
             hasError && "kern-form-input__input--error",
             hasWarning &&
               "bg-white border-yellow-700 text-black focus:border-4 focus:border-yellow-700 focus:outline-none",
