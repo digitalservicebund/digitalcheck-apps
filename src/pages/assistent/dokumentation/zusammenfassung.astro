@@ -1,0 +1,16 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+export const frontmatter = {
+  title: "Zusammenfassung",
+  sitemap: false,
+  navOrder: 9,
+};
+---
+
+<!-- TODO: implement step -->
+<Layout title={frontmatter.title}>
+  <main>
+    <h1>{frontmatter.title}</h1>
+  </main>
+</Layout>

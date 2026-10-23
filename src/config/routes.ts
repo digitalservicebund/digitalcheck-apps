@@ -33,6 +33,128 @@ export const assistent_dokumentation = {
   navLabel: null,
 } as const;
 
+export const assistent_dokumentation_abschliessen = {
+  key: "assistent_dokumentation_abschliessen",
+  path: "/assistent/dokumentation/abschliessen",
+  title: "Abschließen",
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 10,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_beteiligungsformate = {
+  key: "assistent_dokumentation_beteiligungsformate",
+  path: "/assistent/dokumentation/beteiligungsformate",
+  title: "Beteiligungsformate",
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 2,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet = {
+  key: "assistent_dokumentation_euInteroperabilitaet",
+  path: "/assistent/dokumentation/eu-interoperabilitaet",
+  title: "EU-Interoperabilität",
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 8,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_organisatorisch = {
+  key: "assistent_dokumentation_euInteroperabilitaet_organisatorisch",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/organisatorisch",
+  title: "Organisatorische Interoperabilität",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 3,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_rechtlich = {
+  key: "assistent_dokumentation_euInteroperabilitaet_rechtlich",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/rechtlich",
+  title: "Rechtliche Interoperabilität",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 2,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_semantisch = {
+  key: "assistent_dokumentation_euInteroperabilitaet_semantisch",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/semantisch",
+  title: "Semantische Interoperabilität",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 4,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_technisch = {
+  key: "assistent_dokumentation_euInteroperabilitaet_technisch",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/technisch",
+  title: "Technische Interoperabilität",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 5,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen =
+  {
+    key: "assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen",
+    path: "/assistent/dokumentation/eu-interoperabilitaet/verbindliche-anforderungen",
+    title: "Verbindliche Anforderungen",
+    parent: assistent_dokumentation_euInteroperabilitaet,
+    sitemap: false,
+    isStagingOnly: false,
+    navOrder: 1,
+    navLabel: null,
+  } as const;
+
+export const assistent_dokumentation_euInteroperabilitaet_veroeffentlichung = {
+  key: "assistent_dokumentation_euInteroperabilitaet_veroeffentlichung",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/veroeffentlichung",
+  title: "Veröffentlichung",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 6,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_regelungsvorhaben = {
+  key: "assistent_dokumentation_regelungsvorhaben",
+  path: "/assistent/dokumentation/regelungsvorhaben",
+  title: "Regelungsvorhaben",
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 1,
+  navLabel: null,
+} as const;
+
+export const assistent_dokumentation_zusammenfassung = {
+  key: "assistent_dokumentation_zusammenfassung",
+  path: "/assistent/dokumentation/zusammenfassung",
+  title: "Zusammenfassung",
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 9,
+  navLabel: null,
+} as const;
+
 export const assistent_vorpruefung = {
   key: "assistent_vorpruefung",
   path: "/assistent/vorpruefung",
@@ -476,6 +598,17 @@ export const sitemap = {
 export const allRoutes = [
   assistent,
   assistent_dokumentation,
+  assistent_dokumentation_abschliessen,
+  assistent_dokumentation_beteiligungsformate,
+  assistent_dokumentation_euInteroperabilitaet,
+  assistent_dokumentation_euInteroperabilitaet_organisatorisch,
+  assistent_dokumentation_euInteroperabilitaet_rechtlich,
+  assistent_dokumentation_euInteroperabilitaet_semantisch,
+  assistent_dokumentation_euInteroperabilitaet_technisch,
+  assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen,
+  assistent_dokumentation_euInteroperabilitaet_veroeffentlichung,
+  assistent_dokumentation_regelungsvorhaben,
+  assistent_dokumentation_zusammenfassung,
   assistent_vorpruefung,
   assistent_vorpruefung_automatisierung,
   assistent_vorpruefung_datenaustausch,

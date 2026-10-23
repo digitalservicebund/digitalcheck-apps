@@ -1,4 +1,8 @@
-import { prinzipien, type Route } from "@/config/routes";
+import {
+  assistent_dokumentation,
+  prinzipien,
+  type Route,
+} from "@/config/routes";
 
 type PrinzipFrontmatter = {
   Name: string;
@@ -26,3 +30,18 @@ export const prinzipienRoutes: Route[] = Object.values(frontmatters).map(
     navLabel: `Prinzip ${order}: ${Kurzbezeichnung}`,
   }),
 );
+
+// Same for assistent/dokumentation/[principleId].astro
+export const dokumentationPrinzipienRoutes: Route[] = Object.values(
+  frontmatters,
+).map(({ Name, URLBezeichnung, order }) => ({
+  key: `assistent_dokumentation_${URLBezeichnung}`,
+  path: `${assistent_dokumentation.path}/${URLBezeichnung}`,
+  title: Name,
+  parent: assistent_dokumentation,
+  sitemap: false,
+  isStagingOnly: false,
+  // after Regelungsvorhaben (1) and Beteiligungsformate (2)
+  navOrder: order + 2,
+  navLabel: `Prinzip ${order}`,
+}));
