@@ -2,16 +2,19 @@
 import { dokumentationPrinzipienRoutes } from "@/config/prinzipienRoutes";
 import {
   assistent_dokumentation_beteiligungsformate,
+  assistent_dokumentation_euInteroperabilitaet,
   assistent_dokumentation_regelungsvorhaben,
 } from "@/config/routes";
 import { getPrinzipienStaticPaths } from "@/content.config";
 import Prinzip from "@/pages/assistent/dokumentation/[principleId].astro";
 import Beteiligungsformate from "@/pages/assistent/dokumentation/beteiligungsformate.astro";
+import EuInteroperabilitaet from "@/pages/assistent/dokumentation/eu-interoperabilitaet/index.astro";
 import Regelungsvorhaben from "@/pages/assistent/dokumentation/regelungsvorhaben.astro";
 import { renderToDOM } from "@/utils/testUtils";
 import { slugify } from "@/utils/utilFunctions";
 import {
   beteiligungsformateSchema,
+  euInteroperabilitaetSchema,
   prinzipSchema,
   regelungsvorhabenSchema,
   toPrinzipOrder,
@@ -185,5 +188,42 @@ describe("Dokumentation step Prinzip", () => {
           details.querySelector("summary")?.textContent?.trim(),
         ),
     ).toEqual(prinzip.Aspekte.map((aspekt) => aspekt.Kurzbezeichnung));
+  });
+});
+
+describe("Dokumentation step EU-Interoperabilität", () => {
+  it("asks for the EU-Bezug and links the regulation in the help", async () => {
+    const { dom, screen, names } = await renderStep(
+      EuInteroperabilitaet,
+      assistent_dokumentation_euInteroperabilitaet.path,
+    );
+
+    expect([...names]).toEqual(Object.keys(euInteroperabilitaetSchema.shape));
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Bezug zu EU-Interoperabilität",
+    );
+    const radios = screen.getByRole("radiogroup", {
+      name: "Ergab die Vorprüfung Bezug zu EU-Interoperabilität?",
+    });
+    expect(
+      within(radios)
+        .getAllByRole("radio")
+        .map((radio) => radio.getAttribute("value")),
+    ).toEqual(["yes", "no"]);
+
+    const help = within(
+      dom.getElementById("help-section-eu-interoperabilitaet")!,
+    );
+    expect(
+      help.getByRole("link", { name: /Art\. 3 der Verordnung/ }),
+    ).toHaveAttribute("href", expect.stringContaining("art_3"));
+    expect(
+      help.getByRole("link", {
+        name: "Wann ist eine Interoperabilitäts-Bewertung verpflichtend?",
+      }),
+    ).toHaveAttribute(
+      "href",
+      expect.stringContaining("#verbindliche-anforderungen"),
+    );
   });
 });

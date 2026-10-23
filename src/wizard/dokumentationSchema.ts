@@ -60,6 +60,11 @@ type PrinzipFields = {
   ]: typeof prinzipErklaerung;
 };
 
+export const euInteroperabilitaetOptions = [
+  { value: "yes", label: "Ja, Bezug zu EU-Interoperabilität ist vorhanden." },
+  { value: "no", label: "Nein, es ist kein Bezug vorhanden." },
+] as const;
+
 const prinzipFields = Object.fromEntries(
   prinzipOrders.flatMap((order) => {
     const names = prinzipFieldNames(order);
@@ -81,6 +86,10 @@ export const dokumentationFields = {
   "beteiligungsformate-erklaerung": text("Bitte geben Sie eine Antwort."),
   "beteiligungsformate-erkenntnisse": text("Bitte geben Sie eine Antwort."),
   ...prinzipFields,
+  "eu-interoperabilitaet-bezug": z.enum(
+    euInteroperabilitaetOptions.map((option) => option.value),
+    "Bitte wählen Sie eine Option aus.",
+  ),
 } as const;
 
 export type DokumentationField = keyof typeof dokumentationFields;
@@ -138,3 +147,8 @@ export const prinzipSchema = <Order extends PrinzipOrder>(order: Order) => {
     }
   });
 };
+
+export const euInteroperabilitaetSchema = z.object({
+  "eu-interoperabilitaet-bezug":
+    dokumentationFields["eu-interoperabilitaet-bezug"],
+});

@@ -15,6 +15,7 @@ import {
 import { compileFlowConfig } from "form-graph-engine";
 import {
   beteiligungsformateSchema,
+  euInteroperabilitaetSchema,
   prinzipSchema,
   regelungsvorhabenSchema,
 } from "./dokumentationSchema";
@@ -43,6 +44,7 @@ export const dokumentationFlow = compileFlowConfig({
     prinzip5: { path: prinzip5.path, pageSchema: prinzipSchema(5) },
     euInteroperabilitaet: {
       path: assistent_dokumentation_euInteroperabilitaet.path,
+      pageSchema: euInteroperabilitaetSchema,
     },
     verbindlicheAnforderungen: {
       path: assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen.path,
