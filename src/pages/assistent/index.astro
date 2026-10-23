@@ -4,6 +4,7 @@ import IconTimer from "~icons/ic/outline-timer";
 import { LinkButton } from "@/components/Button";
 import Hero from "@/components/Hero.astro";
 import TimelineList from "@/components/TimelineList.astro";
+import WizardStartActions from "@/components/wizard/WizardStartActions.astro";
 import {
   assistent_vorpruefung,
   dokumentation,
@@ -27,7 +28,7 @@ export const frontmatter = {
         Digitaltauglichkeit in Ihrem Regelungsvorhaben sicherzustellen.
       </p>
     </Hero>
-    <div>
+    <div class="pb-32">
       <TimelineList>
         <li>
           <div class="flex max-w-776 flex-col gap-16 rounded-sm bg-kern-darkblue-025 px-16 py-32 sm:px-64">
@@ -57,14 +58,19 @@ export const frontmatter = {
               Zu Beginn Ihres Regelungsvorhabens identifizieren Sie Digitalbezug
               und Interoperabilitätsanforderungen für Ihr Vorhaben.
             </p>
-            <div>
-              <LinkButton
-                href={assistent_vorpruefung.path}
-                iconRight="kern-icon--arrow-forward"
-              >
-                Zu diesem Schritt
-              </LinkButton>
-            </div>
+            <WizardStartActions
+              wizardId="vorpruefung"
+              href={assistent_vorpruefung.path}
+            >
+              <Fragment slot="startLabel">Zu diesem Schritt</Fragment>
+              <Fragment slot="continueLabel">Vorprüfung fortsetzen</Fragment>
+              <Fragment slot="restartLabel">Neue Vorprüfung beginnen</Fragment>
+              <Fragment slot="modalBody">
+                Mit einer neuen Vorprüfung werden die Daten der begonnenen
+                Vorprüfung gelöscht. Diese können nicht wiederhergestellt
+                werden.
+              </Fragment>
+            </WizardStartActions>
           </div>
         </li>
         {/* No line next to the condition, as in the design */}

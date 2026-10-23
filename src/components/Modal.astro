@@ -13,7 +13,7 @@ interface Props {
 const { id, contentClass = "max-w-a11y max-h-screen" } = Astro.props;
 ---
 
-<dialog id={id} popover class="kern-dialog m-auto">
+<dialog id={id} popover class:list={["kern-dialog m-auto", contentClass]}>
   <header class="kern-dialog__header">
     <slot
       name="heading"

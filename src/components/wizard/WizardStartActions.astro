@@ -1,0 +1,130 @@
+---
+import Modal from "@/components/Modal.astro";
+import type { WizardId } from "@/wizard/session";
+import IconPublishedWithChanges from "~icons/ic/outline-published-with-changes";
+
+// Slots:
+// - startLabel / continueLabel: label of the start link, depending on whether answers are stored
+// - restartLabel: label of the restart button, also used as the modal heading
+// - modalBody: body of the restart modal
+
+interface Props {
+  wizardId: WizardId;
+  /** Target of the start link and of "Neu beginnen" in the modal. The continue link goes to the first unanswered question instead. */
+  href: string;
+  /** Shows the autosave hint while no answers are stored */
+  showAutosaveHint?: boolean;
+}
+
+const { wizardId, href, showAutosaveHint = false } = Astro.props;
+
+const modalId = `${wizardId}-start-over-modal`;
+---
+
+<div data-wizard-start-actions={wizardId} class="flex items-center gap-24">
+  {/* Hidden until the script below knows whether answers are stored */}
+  <a class="kern-btn kern-btn--primary" href={href} data-start-link hidden>
+    <span class="kern-label" data-show-if="no-answers-stored">
+      <slot name="startLabel" />
+    </span>
+    <span class="kern-label" data-show-if="answers-stored" hidden>
+      <slot name="continueLabel" />
+    </span>
+    <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+  </a>
+  <button
+    type="button"
+    class="kern-btn kern-btn--tertiary"
+    data-show-if="answers-stored"
+    popovertarget={modalId}
+    hidden
+  >
+    <span class="kern-label">
+      <slot name="restartLabel" />
+    </span>
+    <span
+      class="kern-icon kern-icon--autorenew kern-icon--default"
+      aria-hidden="true"
+    ></span>
+  </button>
+  <Modal id={modalId} contentClass="max-w-600 max-h-screen">
+    <h2 slot="heading" class="kern-title kern-title--large mt-0">
+      <slot name="restartLabel" />
+    </h2>
+    <p slot="body">
+      <slot name="modalBody" />
+    </p>
+    <button
+      type="button"
+      class="kern-btn kern-btn--secondary"
+      popovertarget={modalId}
+      popovertargetaction="hide"
+      slot="buttonLeft"
+    >
+      <span class="kern-label">Abbrechen</span>
+    </button>
+    <a
+      class="kern-btn kern-btn--primary"
+      href={href}
+      data-reset-wizard
+      slot="buttonRight"
+    >
+      <span class="kern-label">Neu beginnen</span>
+    </a>
+  </Modal>
+  {showAutosaveHint && (
+    <div
+      class="flex items-center gap-8"
+      data-show-if="no-answers-stored"
+      hidden
+    >
+      <IconPublishedWithChanges class="size-22 shrink-0" aria-hidden="true" />
+      <p class="kern-body kern-body--small py-0 text-feedback-loader">
+        Keine Sorge, Ihre Daten werden automatisch im Browser gespeichert.
+      </p>
+    </div>
+  )}
+</div>
+
+<script>
+  import type { WizardId } from "@/wizard/session";
+  import { wizardStores } from "@/wizard/stores";
+
+  document
+    .querySelectorAll<HTMLElement>("[data-wizard-start-actions]")
+    .forEach((container) => {
+      const wizardId = container.dataset.wizardStartActions as WizardId;
+      const { $hasAnswers, $resumePath, reset } = wizardStores[wizardId];
+      const startLink =
+        container.querySelector<HTMLAnchorElement>("[data-start-link]");
+      const startHref = startLink?.getAttribute("href") ?? "";
+
+      // Also updates when the answers change later, e.g. in another tab
+      $hasAnswers.subscribe((hasAnswers) => {
+        const visibleIf = hasAnswers ? "answers-stored" : "no-answers-stored";
+        container
+          .querySelectorAll<HTMLElement>("[data-show-if]")
+          .forEach(
+            (element) =>
+              (element.hidden = element.dataset.showIf !== visibleIf),
+          );
+      });
+
+      // Continuing jumps to the first unanswered question
+      $resumePath.subscribe((resumePath) => {
+        startLink?.setAttribute(
+          "href",
+          $hasAnswers.get() ? resumePath : startHref,
+        );
+      });
+
+      // Buttons starts hidden until html is hydrated,
+      // to avoid flashing the wrong state.
+      startLink?.removeAttribute("hidden");
+
+      // Clears the answers once the user confirms the dialog, before the link navigates to the first question
+      container
+        .querySelector("[data-reset-wizard]")
+        ?.addEventListener("click", () => reset());
+    });
+</script>

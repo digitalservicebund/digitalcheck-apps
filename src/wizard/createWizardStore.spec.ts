@@ -121,4 +121,19 @@ describe("createWizardStore", () => {
 
     expect(createStore().$hasAnswers.get()).toBe(false);
   });
+
+  it("resumes at the first unanswered question", () => {
+    const { save, reset, $resumePath } = createStore();
+    expect($resumePath.get()).toBe("/test/first");
+
+    save({ first: "a" });
+    expect($resumePath.get()).toBe("/test/second");
+
+    save({ second: "text" });
+    expect($resumePath.get()).toBe("/test/end");
+
+    reset();
+    save({ second: "text" });
+    expect($resumePath.get()).toBe("/test/first");
+  });
 });

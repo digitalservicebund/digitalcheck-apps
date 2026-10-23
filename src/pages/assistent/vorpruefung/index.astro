@@ -1,13 +1,11 @@
 ---
-import { LinkButton } from "@/components/Button";
 import Hero from "@/components/Hero.astro";
-import Modal from "@/components/Modal.astro";
+import WizardStartActions from "@/components/wizard/WizardStartActions.astro";
 import Layout from "@/layouts/Layout.astro";
 import { contact } from "@/resources/content/shared/contact";
 import { vorpruefungFlow } from "@/wizard/vorpruefungFlow";
 import IconMail from "~icons/ic/outline-mail";
 import IconPhone from "~icons/ic/outline-phone";
-import IconPublishedWithChanges from "~icons/ic/outline-published-with-changes";
 
 export const frontmatter = {
   title: "Vorprüfung",
@@ -113,78 +111,19 @@ const faqItems = [
         </div>
       </div>
 
-      <!-- Hidden until the script below knows whether answers are stored -->
-      <div class="flex items-center gap-24">
-        <a
-          class="kern-btn kern-btn--primary"
-          href={vorpruefungFlow.initialPath}
-          data-hidden-until-checked
-          hidden
-        >
-          <span class="kern-label" data-show-if="no-answers-stored">
-            Vorprüfung starten
-          </span>
-          <span class="kern-label" data-show-if="answers-stored" hidden>
-            Vorprüfung fortsetzen
-          </span>
-          <span
-            class="kern-icon kern-icon--arrow-forward"
-            aria-hidden="true"
-          ></span>
-        </a>
-        <button
-          type="button"
-          class="kern-btn kern-btn--tertiary"
-          data-show-if="answers-stored"
-          popovertarget="start-over-modal"
-          hidden
-        >
-          <span class="kern-label">Neue Vorprüfung beginnen</span>
-          <span
-            class="kern-icon kern-icon--autorenew kern-icon--default"
-            aria-hidden="true"
-          ></span>
-        </button>
-        <Modal id="start-over-modal">
-          <h2 slot="heading" class="kern-title kern-title--large mt-0">
-            Neue Vorprüfung beginnen
-          </h2>
-          <p slot="body">
-            Mit einer neuen Vorprüfung werden die Daten der begonnenen
-            Vorprüfung gelöscht. Diese können nicht wiederhergestellt werden.
-          </p>
-          <button
-            type="button"
-            class="kern-btn kern-btn--secondary"
-            popovertarget="start-over-modal"
-            popovertargetaction="hide"
-            slot="buttonLeft"
-          >
-            <span class="kern-label">Abbrechen</span>
-          </button>
-          <a
-            class="kern-btn kern-btn--primary"
-            href={vorpruefungFlow.initialPath}
-            data-reset-wizard
-            slot="buttonRight"
-          >
-            <span class="kern-label">Neu beginnen</span>
-          </a>
-        </Modal>
-        <div
-          class="flex items-center gap-8"
-          data-show-if="no-answers-stored"
-          hidden
-        >
-          <IconPublishedWithChanges
-            class="size-22 shrink-0"
-            aria-hidden="true"
-          />
-          <p class="kern-body kern-body--small py-0 text-feedback-loader">
-            Keine Sorge, Ihre Daten werden automatisch im Browser gespeichert.
-          </p>
-        </div>
-      </div>
+      <WizardStartActions
+        wizardId="vorpruefung"
+        href={vorpruefungFlow.initialPath}
+        showAutosaveHint
+      >
+        <Fragment slot="startLabel">Vorprüfung starten</Fragment>
+        <Fragment slot="continueLabel">Vorprüfung fortsetzen</Fragment>
+        <Fragment slot="restartLabel">Neue Vorprüfung beginnen</Fragment>
+        <Fragment slot="modalBody">
+          Mit einer neuen Vorprüfung werden die Daten der begonnenen Vorprüfung
+          gelöscht. Diese können nicht wiederhergestellt werden.
+        </Fragment>
+      </WizardStartActions>
     </Hero>
 
     <section class="space-y-16">
@@ -257,30 +196,3 @@ const faqItems = [
     </section>
   </main>
 </Layout>
-
-<script>
-  import { wizardStores } from "@/wizard/stores";
-
-  const { $hasAnswers, reset } = wizardStores.vorpruefung;
-
-  // Also updates when the answers change later, e.g. in another tab
-  $hasAnswers.subscribe((hasAnswers) => {
-    const visibleIf = hasAnswers ? "answers-stored" : "no-answers-stored";
-    document
-      .querySelectorAll<HTMLElement>("[data-show-if]")
-      .forEach(
-        (element) => (element.hidden = element.dataset.showIf !== visibleIf),
-      );
-  });
-
-  // Buttons starts hidden until html is hydrated,
-  // to avoid flashing the wrong state.
-  document
-    .querySelector<HTMLElement>("[data-hidden-until-checked]")
-    ?.removeAttribute("hidden");
-
-  // Clears the answers once the user confirms the dialog, before the link navigates to the first question
-  document
-    .querySelector("[data-reset-wizard]")
-    ?.addEventListener("click", () => reset());
-</script>

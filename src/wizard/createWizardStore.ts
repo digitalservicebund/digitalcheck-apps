@@ -22,6 +22,7 @@ type CompiledFlow<C extends PageConfigMap> = ReturnType<
  * - $path: current page, set from the URL in the browser
  * - $session: flow session for $data and $path, undefined outside the flow
  *   (e.g. on the server, where neither localStorage nor the URL is known)
+ * - $resumePath: first page with unanswered questions, to continue the wizard
  */
 export const createWizardStore = <C extends PageConfigMap>(
   storageKey: string,
@@ -68,6 +69,17 @@ export const createWizardStore = <C extends PageConfigMap>(
 
   const $hasAnswers = computed($data, (data) => Object.keys(data).length > 0);
 
+  // nextIncomplete only looks at the pages after the current one,
+  // so the initial page is checked separately.
+  const $resumePath = computed($data, (data) => {
+    const session = createFlowSession(flow, data, flow.initialPath);
+    const initialPageSchema = flow.getSchemaFromNodeKey(session.nodeKey);
+    if (initialPageSchema && !initialPageSchema.safeParse(data).success) {
+      return flow.initialPath;
+    }
+    return session.nextIncomplete() ?? flow.initialPath;
+  });
+
   const save = (values: UserData) => {
     $data.set({ ...$data.get(), ...values });
   };
@@ -76,5 +88,13 @@ export const createWizardStore = <C extends PageConfigMap>(
     $data.set({});
   };
 
-  return { $data, $path, $session, $hasAnswers, save, reset };
+  return {
+    $data,
+    $path,
+    $session,
+    $hasAnswers,
+    $resumePath,
+    save,
+    reset,
+  };
 };
