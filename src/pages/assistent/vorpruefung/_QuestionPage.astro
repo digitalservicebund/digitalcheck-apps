@@ -35,15 +35,17 @@ const labelId = "question-label";
   pageNumber={steps.current}
   totalPages={totalPages}
 >
-  <section class="space-y-32">
+  <div class="space-y-32">
     <div class="space-y-16">
-      <h1 id={labelId} class="kern-heading-large">
+      <h1 id={labelId} class="kern-heading-medium">
         {question}
         {Astro.slots.has("help") && (
           <HelpButton client:load sectionId={questionId} />
         )}
       </h1>
-      <slot />
+      <p class="kern-body kern-body--small">
+        <slot />
+      </p>
     </div>
     <RadioStepForm
       client:load
@@ -53,7 +55,7 @@ const labelId = "question-label";
       wizardId="vorpruefung"
       name={questionId}
     />
-  </section>
+  </div>
   <slot name="help" slot="help" />
   <WizardButtonBar
     slot="button-bar"
