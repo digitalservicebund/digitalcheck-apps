@@ -3,7 +3,7 @@ import Hero from "@/components/Hero.astro";
 import WizardStartActions from "@/components/wizard/WizardStartActions.astro";
 import Layout from "@/layouts/Layout.astro";
 import { contact } from "@/resources/content/shared/contact";
-import { vorpruefungFlow } from "@/wizard/vorpruefungFlow";
+import { dokumentationFlow } from "@/wizard/dokumentationFlow";
 import IconMail from "~icons/ic/outline-mail";
 import IconPhone from "~icons/ic/outline-phone";
 
@@ -103,10 +103,9 @@ const faqItems = [
           </select>
         </div>
       </div>
-      <!-- TODO: wire new dokumentationFlow -->
       <WizardStartActions
-        wizardId="vorpruefung"
-        href={vorpruefungFlow.initialPath}
+        wizardId="dokumentation"
+        href={dokumentationFlow.initialPath}
         showAutosaveHint
       >
         <Fragment slot="startLabel">Dokumentation starten</Fragment>
