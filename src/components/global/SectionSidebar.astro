@@ -14,7 +14,7 @@ const showSidebar = !!sectionRoot && hasVisibleChildren(sectionRoot);
 {showSidebar && sectionRoot && currentRoute && (
   <nav
     aria-label="Abschnittsnavigation"
-    class="bg-kern-layout-layer-surface hidden border-r border-neutral-300 *:sticky *:top-0 min-[900px]:block"
+    class="bg-kern-layout-layer-surface hidden border-r border-neutral-300 *:sticky *:top-0 *:max-h-dvh min-[900px]:block"
   >
     <AccordeonMenu sectionRoot={sectionRoot} currentPath={currentRoute.path} />
   </nav>
