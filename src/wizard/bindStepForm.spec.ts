@@ -240,3 +240,190 @@ describe("bindStepForm", () => {
     });
   });
 });
+
+describe("bindStepForm with list fields", () => {
+  const item = z.object({
+    titel: z.string(),
+    ort: z.string(),
+    tags: z.array(z.string()),
+  });
+  const listFields = { anforderungen: z.array(item) };
+  const listFlow = compileFlowConfig({
+    pages: {
+      liste: {
+        path: "/test/liste",
+        pageSchema: {
+          anforderungen: z.array(
+            item.refine(
+              ({ titel, ort }) => titel.trim() || ort.trim(),
+              "Bitte füllen Sie mindestens ein Feld aus.",
+            ),
+          ),
+        },
+      },
+      ende: { path: "/test/ende" },
+    },
+    transitions: { liste: "ende", ende: null },
+    initialStep: "liste",
+  });
+  const listStore = createWizardStore("testList", listFlow, listFields);
+
+  // Same markup as ListField with two InputFields renders
+  const listPage = `
+    <form novalidate>
+      <div data-wizard-list="anforderungen">
+        <div data-wizard-list-items></div>
+        <template>
+          <div data-wizard-field="anforderungen.{index}">
+            <p>Anforderung {number}</p>
+            <button type="button" aria-label="Anforderung {number} entfernen" data-wizard-list-remove></button>
+            <div data-wizard-field="anforderungen.{index}.titel">
+              <label for="anforderungen.{index}.titel">Titel {number}</label>
+              <input id="anforderungen.{index}.titel" name="anforderungen.{index}.titel" aria-errormessage="anforderungen.{index}.titel-error" />
+              <p id="anforderungen.{index}.titel-error" data-wizard-error hidden><span data-wizard-error-text></span></p>
+            </div>
+            <div data-wizard-field="anforderungen.{index}.ort">
+              <label for="anforderungen.{index}.ort">Ort {number}</label>
+              <input id="anforderungen.{index}.ort" name="anforderungen.{index}.ort" aria-errormessage="anforderungen.{index}.ort-error" />
+              <p id="anforderungen.{index}.ort-error" data-wizard-error hidden><span data-wizard-error-text></span></p>
+            </div>
+            <div data-wizard-field="anforderungen.{index}.tags">
+              <label><input type="checkbox" name="anforderungen.{index}.tags" value="a" aria-errormessage="x" />Tag A {number}</label>
+              <label><input type="checkbox" name="anforderungen.{index}.tags" value="b" aria-errormessage="x" />Tag B {number}</label>
+            </div>
+            <p id="anforderungen-{index}-error" data-wizard-error hidden><span data-wizard-error-text></span></p>
+          </div>
+        </template>
+        <button type="button" data-wizard-list-add>Hinzufügen</button>
+      </div>
+    </form>
+  `;
+
+  const openList = () => {
+    location.pathname = "/test/liste";
+    listStore.$path.set("/test/liste");
+    document.body.innerHTML = listPage;
+    unbind = bindStepForm(
+      document.querySelector<HTMLFormElement>("form")!,
+      listStore,
+      listFields,
+    );
+    return userEvent.setup();
+  };
+
+  const removeButtons = () =>
+    screen.queryAllByRole("button", { name: /entfernen$/ });
+
+  beforeEach(() => listStore.reset());
+
+  it("starts with one item, which can't be removed", () => {
+    const error = vi.spyOn(console, "error");
+    openList();
+
+    expect(screen.getByLabelText("Titel 1")).toBeVisible();
+    expect(screen.queryByLabelText("Titel 2")).not.toBeInTheDocument();
+    expect(removeButtons()).toEqual([]);
+    expect(error).not.toHaveBeenCalled();
+    error.mockRestore();
+  });
+
+  it("saves the items as a list of objects", async () => {
+    const user = openList();
+    await user.type(screen.getByLabelText("Titel 1"), "Berichte");
+
+    expect(listStore.$data.get()).toEqual({
+      anforderungen: [{ titel: "Berichte", ort: "", tags: [] }],
+    });
+  });
+
+  it("adds an empty item and moves the focus into it", async () => {
+    const user = openList();
+    await user.type(screen.getByLabelText("Titel 1"), "Berichte");
+    await user.click(screen.getByRole("button", { name: "Hinzufügen" }));
+
+    expect(screen.getByLabelText("Titel 2")).toHaveFocus();
+    expect(removeButtons()).toHaveLength(2);
+    expect(listStore.$data.get()).toEqual({
+      anforderungen: [
+        { titel: "Berichte", ort: "", tags: [] },
+        { titel: "", ort: "", tags: [] },
+      ],
+    });
+  });
+
+  it("removes an item, renumbering the ones after it", async () => {
+    listStore.save({
+      anforderungen: [
+        { titel: "Erste", ort: "", tags: [] },
+        { titel: "Zweite", ort: "Bonn", tags: [] },
+      ],
+    });
+    const user = openList();
+    await user.click(
+      screen.getByRole("button", { name: "Anforderung 1 entfernen" }),
+    );
+
+    expect(screen.getByLabelText("Titel 1")).toHaveValue("Zweite");
+    expect(screen.getByLabelText("Ort 1")).toHaveValue("Bonn");
+    expect(screen.getByLabelText("Titel 1")).toHaveFocus();
+    expect(screen.queryByLabelText("Titel 2")).not.toBeInTheDocument();
+    expect(removeButtons()).toEqual([]);
+    expect(listStore.$data.get()).toEqual({
+      anforderungen: [{ titel: "Zweite", ort: "Bonn", tags: [] }],
+    });
+  });
+
+  it("prefills all stored items", () => {
+    listStore.save({
+      anforderungen: [
+        { titel: "Erste", ort: "", tags: [] },
+        { titel: "Zweite", ort: "", tags: [] },
+        { titel: "Dritte", ort: "Bonn", tags: ["b"] },
+      ],
+    });
+    openList();
+
+    expect(screen.getByLabelText("Titel 3")).toHaveValue("Dritte");
+    expect(screen.getByLabelText("Ort 3")).toHaveValue("Bonn");
+    expect(screen.getByLabelText("Tag B 3")).toBeChecked();
+    expect(screen.getByLabelText("Tag A 3")).not.toBeChecked();
+  });
+
+  it("warns about an empty item without marking its fields", () => {
+    listStore.save({
+      anforderungen: [
+        { titel: "Erste", ort: "", tags: [] },
+        { titel: "", ort: "", tags: [] },
+      ],
+    });
+    openList();
+
+    expect(
+      screen.getByText("Bitte füllen Sie mindestens ein Feld aus."),
+    ).toBeVisible();
+    expect(screen.getByLabelText("Titel 2")).not.toHaveAttribute(
+      "aria-invalid",
+    );
+  });
+
+  it("saves checked values of an item as a list", async () => {
+    const user = openList();
+    await user.click(screen.getByLabelText("Tag B 1"));
+
+    expect(listStore.$data.get()).toEqual({
+      anforderungen: [{ titel: "", ort: "", tags: ["b"] }],
+    });
+  });
+
+  it("dispatches wizard:update after writing values from the store", () => {
+    openList();
+    const update = vi.fn();
+    document.querySelector("form")!.addEventListener("wizard:update", update);
+    listStore.save({
+      anforderungen: [{ titel: "Aus anderem Tab", ort: "", tags: [] }],
+    });
+
+    expect(update).toHaveBeenCalledOnce();
+    expect(screen.getByLabelText("Titel 1")).toHaveValue("Aus anderem Tab");
+  });
+});

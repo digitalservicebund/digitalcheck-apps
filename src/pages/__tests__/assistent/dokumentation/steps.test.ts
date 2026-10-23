@@ -3,16 +3,20 @@ import { dokumentationPrinzipienRoutes } from "@/config/prinzipienRoutes";
 import {
   assistent_dokumentation_beteiligungsformate,
   assistent_dokumentation_euInteroperabilitaet,
+  assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen,
   assistent_dokumentation_regelungsvorhaben,
 } from "@/config/routes";
 import { getPrinzipienStaticPaths } from "@/content.config";
 import Prinzip from "@/pages/assistent/dokumentation/[principleId].astro";
 import Beteiligungsformate from "@/pages/assistent/dokumentation/beteiligungsformate.astro";
 import EuInteroperabilitaet from "@/pages/assistent/dokumentation/eu-interoperabilitaet/index.astro";
+import VerbindlicheAnforderungen from "@/pages/assistent/dokumentation/eu-interoperabilitaet/verbindliche-anforderungen.astro";
 import Regelungsvorhaben from "@/pages/assistent/dokumentation/regelungsvorhaben.astro";
 import { renderToDOM } from "@/utils/testUtils";
 import { slugify } from "@/utils/utilFunctions";
 import {
+  anforderungSchema,
+  bereichOptions,
   beteiligungsformateSchema,
   euInteroperabilitaetSchema,
   prinzipSchema,
@@ -224,6 +228,56 @@ describe("Dokumentation step EU-Interoperabilität", () => {
     ).toHaveAttribute(
       "href",
       expect.stringContaining("#verbindliche-anforderungen"),
+    );
+  });
+});
+
+describe("Dokumentation step Verbindliche Anforderungen", () => {
+  it("renders the fields of one Anforderung as the list's template", async () => {
+    const { dom, screen } = await renderStep(
+      VerbindlicheAnforderungen,
+      assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen.path,
+    );
+
+    // The items are rendered by bindStepForm in the browser
+    const list = dom.querySelector(
+      '[data-wizard-list="verbindliche-anforderungen"]',
+    )!;
+    const item = list.querySelector("template")!.content;
+    // The Bereiche are checkboxes sharing a name
+    expect([
+      ...new Set(
+        Array.from(item.querySelectorAll("[name]"), (control) =>
+          control.getAttribute("name"),
+        ),
+      ),
+    ]).toEqual(
+      Object.keys(anforderungSchema.shape).map(
+        (key) => `verbindliche-anforderungen.{index}.${key}`,
+      ),
+    );
+    expect(
+      Array.from(
+        item.querySelectorAll(
+          'input[type="checkbox"][name="verbindliche-anforderungen.{index}.bereiche"]',
+        ),
+        (option) => option.getAttribute("value"),
+      ),
+    ).toEqual(bereichOptions.map(({ value }) => value));
+    expect(
+      within(list as HTMLElement).getByRole("button", {
+        name: "Verbindliche Anforderung hinzufügen",
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      dom.getElementById("help-section-verbindliche-anforderungen"),
+    ).toHaveTextContent("Art. 2 Nr. 15 der Verordnung");
+    expect(
+      dom.getElementById("help-section-grenzueberschreitende-dienste"),
+    ).toHaveTextContent("ErwG 6 der Verordnung (EU) 2024/903");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Verbindliche Anforderungen",
     );
   });
 });

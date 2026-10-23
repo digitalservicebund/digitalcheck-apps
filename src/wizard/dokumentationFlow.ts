@@ -18,6 +18,7 @@ import {
   euInteroperabilitaetSchema,
   prinzipSchema,
   regelungsvorhabenSchema,
+  verbindlicheAnforderungenSchema,
 } from "./dokumentationSchema";
 
 // The Prinzip pages share the dynamic route [principleId].astro, so their paths
@@ -48,6 +49,7 @@ export const dokumentationFlow = compileFlowConfig({
     },
     verbindlicheAnforderungen: {
       path: assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen.path,
+      pageSchema: verbindlicheAnforderungenSchema,
     },
     rechtlich: {
       path: assistent_dokumentation_euInteroperabilitaet_rechtlich.path,

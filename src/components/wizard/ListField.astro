@@ -1,0 +1,59 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+import FieldError from "./FieldError.astro";
+
+interface Props {
+  field: StepField<unknown[]>;
+  /** Label of each item, numbered, e.g. "Anforderung" for "Anforderung 1" */
+  itemLabel: string;
+  addLabel: string;
+}
+
+const { field, itemLabel, addLabel } = Astro.props;
+---
+
+<!--
+  A list of items the user can add and remove, each with the same fields.
+  Slots:
+  - default: fields of one item, named with `stepListFields`
+  bindStepForm renders the items from the <template>, replacing `{index}`
+  and `{number}`, at least one. The last item can't be removed.
+-->
+<div class="space-y-24" data-wizard-list={field.name}>
+  <div class="space-y-24" data-wizard-list-items></div>
+  <template>
+    <div
+      class="space-y-24 rounded border border-kern-layout-border p-16"
+      data-wizard-field={`${field.name}.{index}`}
+    >
+      <div class="flex min-h-32 items-center justify-between gap-16">
+        <p class="kern-label m-0 text-kern-layout-text-muted">
+          {itemLabel} {"{number}"}
+        </p>
+        <button
+          type="button"
+          aria-label={`${itemLabel} {number} entfernen`}
+          class="flex cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-800"
+          data-wizard-list-remove
+        >
+          <span
+            class="kern-icon kern-icon--delete m-0 size-32 bg-kern-feedback-danger"
+            aria-hidden="true"
+          ></span>
+        </button>
+      </div>
+      <!-- Warnings about the whole item, e.g. that it's empty. Below the header,
+           so it takes no space while hidden. -->
+      <FieldError id={`${field.name}-{index}-error`} />
+      <slot />
+    </div>
+  </template>
+  <button
+    type="button"
+    class="kern-btn kern-btn--tertiary"
+    data-wizard-list-add
+  >
+    <span class="kern-icon kern-icon--add" aria-hidden="true"></span>
+    <span class="kern-label">{addLabel}</span>
+  </button>
+</div>

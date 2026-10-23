@@ -1,0 +1,68 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+import FieldError from "./FieldError.astro";
+
+interface Props<Value extends string> {
+  field: StepField<Value[]>;
+  /** Values are checked against the field's schema */
+  options: readonly { value: NoInfer<Value>; label: string }[];
+  placeholder?: string;
+}
+
+const { field, options, placeholder = "Bitte auswählen" } = Astro.props;
+const selectionId = `${field.name}-selection`;
+---
+
+<!--
+  A select with several answers: a disclosure that looks like a KERN select,
+  opening a group of checkboxes. The selection is shown in the closed state.
+  Slots:
+  - default: label
+  Wired up by bindStepForm via `name`, the opening/closing and the shown
+  selection by bindMultiSelects (multiSelect.ts). Not by a <script> here: Astro
+  renders it where the component first appears, which can be a ListField's
+  <template>, whose scripts never run.
+-->
+<div class="kern-form-input" data-wizard-field={field.name}>
+  <span id={field.labelId} class="kern-label">
+    <slot />
+  </span>
+  <details class="relative w-full" data-multiselect>
+    <summary
+      aria-labelledby={`${field.labelId} ${selectionId}`}
+      class="kern-form-input__select-wrapper cursor-pointer list-none focus:outline-none focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-blue-800 has-[~fieldset_[aria-invalid=true]]:border-b-yellow-700 [&::-webkit-details-marker]:hidden"
+    >
+      <span
+        id={selectionId}
+        class="kern-form-input__select min-w-0 flex-1 self-center truncate"
+        data-multiselect-selection
+        data-placeholder={placeholder}
+      >
+        {placeholder}
+      </span>
+    </summary>
+    <fieldset
+      aria-labelledby={field.labelId}
+      class="absolute inset-x-0 top-full z-20 mt-4 min-w-0 rounded border border-kern-layout-border bg-white py-8 shadow-lg"
+    >
+      {options.map((option, index) => (
+        <label class="flex cursor-pointer items-center justify-between gap-16 px-16 py-12 hover:bg-kern-layout-background-hued has-focus-visible:outline-4 has-focus-visible:-outline-offset-4 has-focus-visible:outline-blue-800">
+          <input
+            type="checkbox"
+            id={`${field.name}-${index}`}
+            name={field.name}
+            value={option.value}
+            aria-errormessage={field.errorId}
+            class="peer sr-only"
+          />
+          <span class="kern-body">{option.label}</span>
+          <span
+            class="kern-icon kern-icon--check invisible m-0 bg-kern-layout-text-default peer-checked:visible"
+            aria-hidden="true"
+          />
+        </label>
+      ))}
+    </fieldset>
+  </details>
+  <FieldError id={field.errorId} />
+</div>

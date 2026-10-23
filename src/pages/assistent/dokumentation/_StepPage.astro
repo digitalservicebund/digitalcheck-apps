@@ -48,10 +48,14 @@ const { steps } = session.progress;
 </WizardLayout>
 
 <script>
+  import { bindMultiSelects } from "@/components/wizard/multiSelect";
   import { bindStepForm } from "@/wizard/bindStepForm";
   import { wizardFields, type WizardId } from "@/wizard/session";
   import { wizardStores } from "@/wizard/stores";
 
+  // Here instead of in the components, see MultiSelectField.astro. Before
+  // bindStepForm, which updates the shown selection while prefilling.
+  bindMultiSelects();
   document
     .querySelectorAll<HTMLFormElement>("form[data-wizard-step-form]")
     .forEach((form) => {

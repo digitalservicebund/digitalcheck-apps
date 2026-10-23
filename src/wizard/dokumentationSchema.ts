@@ -65,6 +65,39 @@ export const euInteroperabilitaetOptions = [
   { value: "no", label: "Nein, es ist kein Bezug vorhanden." },
 ] as const;
 
+// The same options as in the old Dokumentation
+export const bereichOptions = [
+  { value: "defense", label: "Verteidigung" },
+  { value: "economicAffairs", label: "Wirtschaftliche Angelegenheiten" },
+  { value: "education", label: "Bildung" },
+  { value: "environmentalProtection", label: "Umweltschutz" },
+  { value: "generalPublicServices", label: "Allgemeine öffentliche Dienste" },
+  { value: "health", label: "Gesundheit" },
+  {
+    value: "housingAndCommunityAmenities",
+    label: "Wohnungswesen und kommunale Einrichtungen",
+  },
+  {
+    value: "publicOrderAndSafety",
+    label: "Öffentliche Ordnung und Sicherheit",
+  },
+  {
+    value: "recreationCultureAndReligion",
+    label: "Freizeit, Kultur und Religion",
+  },
+  { value: "socialProtection", label: "Sozialschutz" },
+] as const;
+
+// One box of the Verbindliche Anforderungen, read as "" or [] while empty. Empty
+// boxes are valid here, so they don't keep the other boxes from being saved.
+export const anforderungSchema = z.object({
+  titel: z.string(),
+  rechtsgrundlage: z.string(),
+  dienste: z.string(),
+  bereiche: z.array(z.enum(bereichOptions.map((option) => option.value))),
+  betroffene: z.string(),
+});
+
 const prinzipFields = Object.fromEntries(
   prinzipOrders.flatMap((order) => {
     const names = prinzipFieldNames(order);
@@ -90,6 +123,7 @@ export const dokumentationFields = {
     euInteroperabilitaetOptions.map((option) => option.value),
     "Bitte wählen Sie eine Option aus.",
   ),
+  "verbindliche-anforderungen": z.array(anforderungSchema),
 } as const;
 
 export type DokumentationField = keyof typeof dokumentationFields;
@@ -151,4 +185,22 @@ export const prinzipSchema = <Order extends PrinzipOrder>(order: Order) => {
 export const euInteroperabilitaetSchema = z.object({
   "eu-interoperabilitaet-bezug":
     dokumentationFields["eu-interoperabilitaet-bezug"],
+});
+
+const anforderungenMessage =
+  "Bitte geben Sie mindestens eine verbindliche Anforderung an.";
+
+export const verbindlicheAnforderungenSchema = z.object({
+  "verbindliche-anforderungen": z
+    .array(
+      anforderungSchema.refine(
+        (anforderung) =>
+          Object.values(anforderung).some((value) =>
+            typeof value === "string" ? value.trim() : value.length,
+          ),
+        "Bitte füllen Sie mindestens ein Feld der Anforderung aus.",
+      ),
+      anforderungenMessage,
+    )
+    .min(1, anforderungenMessage),
 });

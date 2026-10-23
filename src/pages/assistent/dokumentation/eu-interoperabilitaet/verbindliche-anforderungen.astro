@@ -1,4 +1,17 @@
 ---
+import HelpButton from "@/components/HelpButton.astro";
+import HelpSection from "@/components/HelpSection.astro";
+import InputField from "@/components/wizard/InputField.astro";
+import ListField from "@/components/wizard/ListField.astro";
+import MultiSelectField from "@/components/wizard/MultiSelectField.astro";
+import TextareaField from "@/components/wizard/TextareaField.astro";
+import { linkToIEAArticle } from "@/pages/dokumentation/_react/interoperability/markdownLinkIEA";
+import {
+  anforderungSchema,
+  bereichOptions,
+  verbindlicheAnforderungenSchema,
+} from "@/wizard/dokumentationSchema";
+import { stepFields, stepListFields } from "@/wizard/stepFields";
 import StepPage from "../_StepPage.astro";
 
 export const frontmatter = {
@@ -6,9 +19,120 @@ export const frontmatter = {
   sitemap: false,
   navOrder: 1,
 };
+
+const list = stepFields(verbindlicheAnforderungenSchema)[
+  "verbindliche-anforderungen"
+];
+const anforderung = stepListFields(list, anforderungSchema);
 ---
 
-<!-- TODO: implement step -->
 <StepPage title={frontmatter.title}>
-  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
+  <div class="space-y-48">
+    <h1 class="kern-heading-large">
+      Verbindliche Anforderungen
+      <HelpButton sectionId="verbindliche-anforderungen" />
+    </h1>
+    <div class="space-y-24">
+      <h2 class="kern-heading-medium">
+        In der Regelung enthaltene verbindliche Anforderungen
+      </h2>
+      <ListField
+        field={list}
+        itemLabel="Anforderung"
+        addLabel="Verbindliche Anforderung hinzufügen"
+      >
+        <InputField field={anforderung.titel}>
+          Kurzbeschreibung oder Titel
+          <Fragment slot="description">
+            z. B. Übermittlung von Berichten an EU-Behörde
+          </Fragment>
+        </InputField>
+        <InputField field={anforderung.rechtsgrundlage}>
+          Rechtsgrundlage für die verbindliche Anforderung
+          <Fragment slot="description">z. B. § 6</Fragment>
+        </InputField>
+        <TextareaField field={anforderung.dienste} rows={3}>
+          Betroffene grenzüberschreitende digitale Verwaltungsdienste
+          <HelpButton sectionId="grenzueberschreitende-dienste" />
+          <Fragment slot="description">
+            Abkürzungen bitte ausschreiben.
+          </Fragment>
+        </TextareaField>
+        <MultiSelectField field={anforderung.bereiche} options={bereichOptions}>
+          Für welche Bereiche sind diese Dienste relevant?
+        </MultiSelectField>
+        <InputField field={anforderung.betroffene}>
+          Für wen gilt diese verbindliche Anforderung?
+        </InputField>
+      </ListField>
+    </div>
+  </div>
+
+  <HelpSection
+    slot="help"
+    id="verbindliche-anforderungen"
+    title="Was ist eine verbindliche Anforderung?"
+  >
+    <p>
+      Verbindliche Anforderungen können Vorgaben z. B. durch Gesetze oder
+      Verordnungen sein. Der Begriff schließt aber auch Verträge oder
+      Ausschreibungen ein. Entscheidend ist außerdem die Frage, ob die Vorgabe
+      festschreibt, wie Daten zwischen Systemen verschiedener EU-Länder fließen.
+    </p>
+    <p>
+      Siehe{" "}
+      <a href={linkToIEAArticle({ article: 2 })} target="_blank" rel="noopener">
+        Art. 2 Nr. 15 der Verordnung für ein interoperables Europa (EU) 2024/903
+      </a>
+      .
+    </p>
+  </HelpSection>
+  <HelpSection
+    slot="help"
+    id="grenzueberschreitende-dienste"
+    title="Was sind grenzüberschreitende digitale Verwaltungsdienste?"
+  >
+    <p>
+      Die Verordnung spricht wörtlich von "transeuropäischen digitalen
+      öffentlichen Diensten". Gemeint sind digitale Dienste und IT-Systeme, bei
+      denen Daten zwischen Verwaltungen von EU-Mitgliedstaaten ausgetauscht
+      werden.
+    </p>
+    <p>
+      Das können grenzüberschreitende Registerabfragen oder Meldungen sein. Die
+      Verordnung nennt folgende Beispiele:
+    </p>
+    <ul>
+      <li>
+        Gegenseitige Anerkennung akademischer Diplome oder Berufsqualifikationen
+      </li>
+      <li>Austausch von Fahrzeugdaten für die Verkehrssicherheit</li>
+      <li>
+        Zugang zu Sozialversicherungs- und Gesundheitsdaten – darunter Pandemie-
+        und Impfbescheinigungen
+      </li>
+      <li>
+        Informationsaustausch in Bezug auf Steuern, Zölle, Vergabe öffentlicher
+        Aufträge
+      </li>
+      <li>Digitale Führerscheine</li>
+      <li>Handelsregister</li>
+    </ul>
+    <p>
+      Siehe{" "}
+      <a href={linkToIEAArticle({ recital: 6 })} target="_blank" rel="noopener">
+        ErwG 6 der Verordnung (EU) 2024/903
+      </a>
+      .
+    </p>
+    <p>
+      <strong>Was ist hier zu dokumentieren?</strong>
+    </p>
+    <p>
+      Bevor Sie neue oder wesentlich veränderte verbindliche Anforderungen
+      festschreiben, die das Design, die Beschaffung, die Entwicklung oder die
+      Implementierung solcher digitalen transeuropäischen Dienste betreffen,
+      müssen Sie deren Auswirkungen auf die Interoperabilität bewerten.
+    </p>
+  </HelpSection>
 </StepPage>
