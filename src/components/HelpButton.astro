@@ -1,0 +1,50 @@
+---
+import IconHelpOutline from "~icons/ic/outline-help-outline";
+
+interface Props {
+  /** id of the `HelpSection` to scroll to when opening the help panel */
+  sectionId: string;
+  class?: string;
+}
+
+const { sectionId, class: className } = Astro.props;
+---
+
+<!--
+  Inline help icon that toggles the help panel (see `HelpSidepanel.astro`),
+  scrolling to the `HelpSection` with the matching id when opening.
+  Same as HelpButton.tsx, without React.
+  The span keeps the space and the icon together.
+-->
+<span class="whitespace-nowrap">
+  &nbsp;
+  <button
+    type="button"
+    aria-label="Hilfe anzeigen"
+    data-help-section={sectionId}
+    class:list={[
+      "inline cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-800",
+      "text-kern-action-default size-[1em] min-h-20 min-w-20",
+      "translate-y-4",
+      className,
+    ]}
+  >
+    <IconHelpOutline class="h-full w-full" aria-hidden="true" />
+  </button>
+</span>
+<script>
+  // One listener for all buttons, also those of later page swaps
+  document.addEventListener("click", (event) => {
+    const button = (event.target as Element).closest<HTMLElement>(
+      "[data-help-section]",
+    );
+    if (!button) return;
+    const isOpen = document
+      .getElementById("help-panel")
+      ?.toggleAttribute("data-open");
+    if (!isOpen) return;
+    document
+      .getElementById(`help-section-${button.dataset.helpSection}`)
+      ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+</script>

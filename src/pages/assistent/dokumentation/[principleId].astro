@@ -1,5 +1,5 @@
 ---
-import HelpButton from "@/components/HelpButton";
+import HelpButton from "@/components/HelpButton.astro";
 import HelpSection from "@/components/HelpSection.astro";
 import KernBadge from "@/components/KernBadge.astro";
 import RichText from "@/components/RichText";
@@ -47,7 +47,7 @@ const schwerpunkteOptions = prinzip.Aspekte.map((aspekt) => ({
       </KernBadge>
       <h1 class="kern-heading-large">
         {prinzip.Name}
-        <HelpButton client:load sectionId="prinzip" />
+        <HelpButton sectionId="prinzip" />
       </h1>
     </div>
     <div class="space-y-24">
@@ -70,7 +70,7 @@ const schwerpunkteOptions = prinzip.Aspekte.map((aspekt) => ({
               variant={`prinzip-${order}`}
             >
               Schwerpunkte auswählen
-              <HelpButton client:load sectionId="schwerpunkte" />
+              <HelpButton sectionId="schwerpunkte" />
             </CheckboxPillsField>
           </div>
         </ShowIf>
