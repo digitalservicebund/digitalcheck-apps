@@ -7,22 +7,20 @@ import { getWizardSession } from "@/wizard/session";
 interface Props {
   /** Short page title, used in the document title */
   title: string;
-  /** id of the step's form, submitted by "Weiter". Without it, "Weiter" links to the next page. */
-  formId?: string;
 }
 
-const { title, formId } = Astro.props;
+const { title } = Astro.props;
 
-const { steps } = getWizardSession(
-  "dokumentation",
-  Astro.url.pathname,
-).progress;
+const session = getWizardSession("dokumentation", Astro.url.pathname);
+const { steps } = session.progress;
 ---
 
 <!--
   Shell shared by all Dokumentation steps, the content differs per step.
+  Fields are plain markup (e.g. <RadioField />), wired to the store by bindStepForm.
+  Answers are never required to continue, so "Weiter" always links to the next page.
   Slots:
-  - default: step content (heading, text, form)
+  - default: step content (heading, text, fields)
   - help: <HelpSection />s shown in the help panel
 -->
 <WizardLayout
@@ -30,12 +28,34 @@ const { steps } = getWizardSession(
   pageNumber={steps.current}
   totalPages={steps.total}
 >
-  <slot />
+  {session.pageSchema ? (
+    <form
+      class="space-y-kern-xl"
+      novalidate
+      data-wizard-step-form="dokumentation"
+    >
+      <slot />
+    </form>
+  ) : (
+    <slot />
+  )}
   <slot name="help" slot="help" />
   <WizardButtonBar
     slot="button-bar"
     wizardId="dokumentation"
-    formId={formId}
     fallbackBackHref={assistent_dokumentation.path}
   />
 </WizardLayout>
+
+<script>
+  import { bindStepForm } from "@/wizard/bindStepForm";
+  import { wizardFields, type WizardId } from "@/wizard/session";
+  import { wizardStores } from "@/wizard/stores";
+
+  document
+    .querySelectorAll<HTMLFormElement>("form[data-wizard-step-form]")
+    .forEach((form) => {
+      const wizardId = form.dataset.wizardStepForm as WizardId;
+      bindStepForm(form, wizardStores[wizardId], wizardFields[wizardId]);
+    });
+</script>

@@ -1,0 +1,30 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+
+// Values are checked against the field's schema
+type Props<Value extends string> = {
+  /** Field whose value decides the visibility */
+  field: StepField<Value>;
+} & (
+  | { is: readonly NoInfer<Value>[]; not?: never }
+  | { not: readonly NoInfer<Value>[]; is?: never }
+);
+
+const { field, is, not } = Astro.props;
+---
+
+<!--
+  Hidden until bindStepForm sees a matching value of `field`. While hidden,
+  the fieldset is disabled, so its fields are left out of validation.
+  The page schema has to require them under the same condition.
+-->
+<fieldset
+  class="min-w-0"
+  data-wizard-show-if={field.name}
+  data-wizard-show-is={is && JSON.stringify(is)}
+  data-wizard-show-not={not && JSON.stringify(not)}
+  hidden
+  disabled
+>
+  <slot />
+</fieldset>

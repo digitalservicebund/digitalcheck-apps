@@ -1,0 +1,17 @@
+---
+interface Props {
+  /** Referenced by `aria-errormessage` of the field's controls */
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<!-- Filled and shown by bindStepForm -->
+<p class="kern-error" id={id} data-wizard-error hidden>
+  <span
+    class="kern-icon kern-icon--warning kern-icon--md !bg-yellow-700"
+    aria-hidden="true"
+  ></span>
+  <span class="kern-body" data-wizard-error-text></span>
+</p>

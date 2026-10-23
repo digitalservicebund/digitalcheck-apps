@@ -1,0 +1,38 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+import FieldError from "./FieldError.astro";
+
+interface Props {
+  field: StepField<string>;
+  rows?: number;
+}
+
+const { field, rows } = Astro.props;
+const hasDescription = Astro.slots.has("description");
+---
+
+<!--
+  Slots:
+  - default: label
+  - description: hint below the label
+  Wired up by bindStepForm via `name`.
+-->
+<div class="kern-form-input space-y-8" data-wizard-field={field.name}>
+  <label for={field.name} class="kern-label">
+    <slot />
+  </label>
+  {hasDescription && (
+    <div class="text-kern-layout-text-default block" id={field.descriptionId}>
+      <slot name="description" />
+    </div>
+  )}
+  <textarea
+    id={field.name}
+    name={field.name}
+    rows={rows}
+    aria-describedby={hasDescription ? field.descriptionId : undefined}
+    aria-errormessage={field.errorId}
+    class="kern-form-input__input aria-invalid:border-yellow-700 aria-invalid:text-black aria-invalid:focus:border-4 aria-invalid:focus:border-yellow-700 aria-invalid:focus:outline-none"
+  ></textarea>
+  <FieldError id={field.errorId} />
+</div>

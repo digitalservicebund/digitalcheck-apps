@@ -1,0 +1,42 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+import FieldError from "./FieldError.astro";
+
+interface Props<Value extends string> {
+  /** Labelled by the element with `field.labelId`, e.g. the heading of the question */
+  field: StepField<Value>;
+  /** Values are checked against the field's schema */
+  options: readonly { value: NoInfer<Value>; label: string }[];
+}
+
+const { field, options } = Astro.props;
+---
+
+<!--
+  div[role="radiogroup"] instead of fieldset/legend, since our steps use
+  headings to label these sections. Wired up by bindStepForm via `name`.
+-->
+<div
+  role="radiogroup"
+  class="kern-fieldset__body"
+  aria-labelledby={field.labelId}
+  data-wizard-field={field.name}
+>
+  {options.map((option, index) => (
+    <p class="kern-form-check">
+      <input
+        type="radio"
+        id={`${field.name}-${index}`}
+        name={field.name}
+        value={option.value}
+        aria-required="true"
+        aria-errormessage={field.errorId}
+        class="kern-form-check__radio self-start aria-invalid:border-yellow-700 aria-invalid:bg-yellow-200 aria-invalid:text-black"
+      />
+      <label for={`${field.name}-${index}`} class="kern-label">
+        {option.label}
+      </label>
+    </p>
+  ))}
+  <FieldError id={field.errorId} />
+</div>
