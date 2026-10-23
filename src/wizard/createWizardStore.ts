@@ -26,6 +26,8 @@ type CompiledFlow<C extends PageConfigMap> = ReturnType<
  * - $isReachable: whether a page can be opened with $data, e.g. the result
  *   page only once all questions are answered. Independent of $path, so
  *   it's also known outside the flow (e.g. in the sidebar of the start page).
+ * - $isAnswered: whether all questions of a page are answered with $data,
+ *   e.g. to mark them in the sidebar. Pages without questions never are.
  */
 export const createWizardStore = <C extends PageConfigMap>(
   storageKey: string,
@@ -88,6 +90,12 @@ export const createWizardStore = <C extends PageConfigMap>(
     (data) => createFlowSession(flow, data, flow.initialPath).isReachable,
   );
 
+  const $isAnswered = computed($data, (data) => (path: string) => {
+    const nodeKey = flow.getNodeKeyFromPath(removeTrailingSlash(path));
+    const pageSchema = nodeKey && flow.getSchemaFromNodeKey(nodeKey);
+    return !!pageSchema && pageSchema.safeParse(data).success;
+  });
+
   const save = (values: UserData) => {
     $data.set({ ...$data.get(), ...values });
   };
@@ -103,6 +111,7 @@ export const createWizardStore = <C extends PageConfigMap>(
     $hasAnswers,
     $resumePath,
     $isReachable,
+    $isAnswered,
     save,
     reset,
   };

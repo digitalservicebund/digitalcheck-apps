@@ -94,6 +94,8 @@ allowed_patterns:
   - tabKey
   - btnKey
   - STORAGE_KEY
+  - getNodeKeyFromPath
+  - nodeKey
 
 scopeconfig:
   - scope: node # ignores files such as package-lock.json

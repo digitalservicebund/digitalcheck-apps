@@ -146,4 +146,15 @@ describe("createWizardStore", () => {
     expect($isReachable.get()("/test/second")).toBe(true);
     expect($isReachable.get()("/test/end")).toBe(true);
   });
+
+  it("knows which pages are answered, also outside the flow", () => {
+    const { save, $isAnswered } = createStore("/elsewhere");
+    expect($isAnswered.get()("/test/first")).toBe(false);
+
+    save({ second: "text" });
+    expect($isAnswered.get()("/test/first")).toBe(false);
+    expect($isAnswered.get()("/test/second/")).toBe(true);
+    // Pages without questions are never answered
+    expect($isAnswered.get()("/test/end")).toBe(false);
+  });
 });

@@ -128,12 +128,28 @@ function panelId(path: string) {
         aria-disabled={isLockedWizardPage(entry.path) ? "true" : undefined}
         class={twMerge(
           linkHoverStyle(currentPath === entry.path),
-          "accordion-item link-unstyled kern-body block rounded-sm",
+          "accordion-item link-unstyled kern-body relative block rounded-sm",
           "aria-disabled:text-kern-layout-text-muted aria-disabled:cursor-not-allowed aria-disabled:hover:bg-transparent aria-disabled:hover:text-kern-layout-text-muted",
         )}
         style={indentStyle(level)}
         aria-current={currentPath === entry.path ? "page" : undefined}
       >
+        {/* Placed in the left padding, so the label doesn't shift when the
+            script reveals the icon after loading the stored answers */}
+        {getWizardIdForPath(entry.path) && (
+          <span
+            data-wizard-answered
+            data-testid="CheckIcon"
+            class="absolute top-kern-sm left-kern-xxs flex"
+            hidden
+          >
+            <span
+              class="kern-icon kern-icon--check kern-icon--default bg-kern-feedback-success"
+              aria-hidden="true"
+            />
+            <span class="sr-only">Beantwortet:</span>
+          </span>
+        )}
         {entry.label}
       </a>
       {entry.children.length > 0 && (
@@ -157,7 +173,14 @@ function panelId(path: string) {
       const wizardId = link.dataset.wizardLink as WizardId;
       const path = link.dataset.path ?? "";
 
-      // Also updates when the answers change later, e.g. in another tab
+      // Also update when the answers change later, e.g. in another tab
+      wizardStores[wizardId].$isAnswered.subscribe((isAnswered) => {
+        const answeredMark = link.querySelector<HTMLElement>(
+          "[data-wizard-answered]",
+        );
+        if (answeredMark) answeredMark.hidden = !isAnswered(path);
+      });
+
       wizardStores[wizardId].$isReachable.subscribe((isReachable) => {
         if (isReachable(path)) {
           link.href = path;
