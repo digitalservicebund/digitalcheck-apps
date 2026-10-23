@@ -11,11 +11,8 @@ interface Props {
 
 const { entries, currentPath, level = 0 } = Astro.props;
 
-function isFirstLevelChildWithChildren(
-  entry: AccordeonNavigationEntry,
-  currentLevel: number,
-) {
-  return currentLevel === 1 && entry.children.length > 0;
+function isCollapsible(entry: AccordeonNavigationEntry, currentLevel: number) {
+  return currentLevel >= 1 && entry.children.length > 0;
 }
 
 function arrowHoverStyle(isCurrent = false) {
@@ -37,9 +34,10 @@ function headerStyle(isCurrent = false) {
 }
 
 function indentStyle(currentLevel: number) {
+  // each level below 2 is indented further
   const paddingLeft =
     currentLevel > 1
-      ? "var(--kern-metric-space-x-large)"
+      ? `calc(var(--kern-metric-space-x-large) + ${currentLevel - 2} * var(--kern-metric-space-default))`
       : "var(--kern-metric-space-small)";
   return `padding: var(--kern-metric-space-small) var(--kern-metric-space-small) var(--kern-metric-space-small) ${paddingLeft}`;
 }
@@ -50,7 +48,7 @@ function panelId(path: string) {
 ---
 
 {entries.map((entry) =>
-  isFirstLevelChildWithChildren(entry, level) ? (
+  isCollapsible(entry, level) ? (
     <div class="accordion-item" x-data={`{ open: ${entry.isInCurrentBranch} }`}>
       <div
         class={twMerge(
