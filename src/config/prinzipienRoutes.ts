@@ -13,12 +13,14 @@ type PrinzipFrontmatter = {
 
 // astro-route-generator skips dynamic routes, so the routes for
 // prinzipien/[principleId].astro are derived from the content files instead.
-const frontmatters = import.meta.glob<PrinzipFrontmatter>(
-  "/src/content/prinzipien/*.md",
-  { eager: true, import: "frontmatter" },
-);
+const frontmatters = Object.values(
+  import.meta.glob<PrinzipFrontmatter>("/src/content/prinzipien/*.md", {
+    eager: true,
+    import: "frontmatter",
+  }),
+).toSorted((a, b) => a.order - b.order);
 
-export const prinzipienRoutes: Route[] = Object.values(frontmatters).map(
+export const prinzipienRoutes: Route[] = frontmatters.map(
   ({ Name, Kurzbezeichnung, URLBezeichnung, order }) => ({
     key: `prinzipien_${URLBezeichnung}`,
     path: `${prinzipien.path}/${URLBezeichnung}`,
@@ -32,16 +34,16 @@ export const prinzipienRoutes: Route[] = Object.values(frontmatters).map(
 );
 
 // Same for assistent/dokumentation/[principleId].astro
-export const dokumentationPrinzipienRoutes: Route[] = Object.values(
-  frontmatters,
-).map(({ Name, URLBezeichnung, order }) => ({
-  key: `assistent_dokumentation_${URLBezeichnung}`,
-  path: `${assistent_dokumentation.path}/${URLBezeichnung}`,
-  title: Name,
-  parent: assistent_dokumentation,
-  sitemap: false,
-  isStagingOnly: false,
-  // after Regelungsvorhaben (1) and Beteiligungsformate (2)
-  navOrder: order + 2,
-  navLabel: `Prinzip ${order}`,
-}));
+export const dokumentationPrinzipienRoutes: Route[] = frontmatters.map(
+  ({ Name, URLBezeichnung, order }) => ({
+    key: `assistent_dokumentation_${URLBezeichnung}`,
+    path: `${assistent_dokumentation.path}/${URLBezeichnung}`,
+    title: Name,
+    parent: assistent_dokumentation,
+    sitemap: false,
+    isStagingOnly: false,
+    // after Regelungsvorhaben (1) and Beteiligungsformate (2)
+    navOrder: order + 2,
+    navLabel: `Prinzip ${order}`,
+  }),
+);
