@@ -1,10 +1,13 @@
 ---
-import { getWizardSession, type WizardId } from "@/wizard/session";
+import { getWizardSession, wizardFlows, type WizardId } from "@/wizard/session";
 import IconPublishedWithChanges from "~icons/ic/baseline-published-with-changes";
 
 interface Props {
   wizardId: WizardId;
-  /** id of the step form that "Weiter" submits (the button sits outside the form) */
+  /**
+   * id of the step form that "Weiter" submits (the button sits outside the form).
+   * Without it, "Weiter" links to the next page, so a step can be skipped.
+   */
   formId?: string;
   /** Used for "Zurück" on the first step, which has no previous page in the flow */
   fallbackBackHref?: string;
@@ -23,6 +26,10 @@ const {
 const session = getWizardSession(wizardId, Astro.url.pathname);
 const backHref = session.prevPath ?? fallbackBackHref;
 const nextHref = session.nextPath();
+// The last page has no "Weiter". On other pages it's disabled while a guard
+// blocks the next page, e.g. the result until all questions are answered.
+const flow = wizardFlows[wizardId];
+const isFinal = flow.isFinal(flow.getPathFromNodeKey(session.nodeKey) ?? "");
 ---
 
 <div
@@ -52,14 +59,16 @@ const nextHref = session.nextPath();
         <span class="kern-label">Weiter</span>
       </button>
     ) : (
-      <a
-        data-wizard-next
-        href={nextHref}
-        hidden={!nextHref}
-        class="kern-btn kern-btn--primary link-unstyled"
-      >
-        <span class="kern-label">Weiter</span>
-      </a>
+      !isFinal && (
+        <a
+          data-wizard-next
+          href={nextHref}
+          aria-disabled={nextHref ? undefined : "true"}
+          class="kern-btn kern-btn--primary link-unstyled"
+        >
+          <span class="kern-label">Weiter</span>
+        </a>
+      )
     )}
   </div>
 </div>
@@ -75,6 +84,18 @@ const nextHref = session.nextPath();
     else link.removeAttribute("href");
   };
 
+  // Keeps the link visible, but without href while there is no next page
+  const setNextLink = (link: HTMLAnchorElement | null, path?: string) => {
+    if (!link) return;
+    if (path) {
+      link.href = path;
+      link.removeAttribute("aria-disabled");
+    } else {
+      link.removeAttribute("href");
+      link.setAttribute("aria-disabled", "true");
+    }
+  };
+
   document
     .querySelectorAll<HTMLElement>("[data-wizard-button-bar]")
     .forEach((bar) => {
@@ -88,7 +109,10 @@ const nextHref = session.nextPath();
           bar.querySelector("[data-wizard-back]"),
           session.prevPath ?? bar.dataset.fallbackBackHref,
         );
-        setLink(bar.querySelector("[data-wizard-next]"), session.nextPath());
+        setNextLink(
+          bar.querySelector("[data-wizard-next]"),
+          session.nextPath(),
+        );
       });
     });
 </script>

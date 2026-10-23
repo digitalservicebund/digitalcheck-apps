@@ -136,4 +136,14 @@ describe("createWizardStore", () => {
     save({ second: "text" });
     expect($resumePath.get()).toBe("/test/first");
   });
+
+  it("knows which pages are reachable, also outside the flow", () => {
+    const { save, $isReachable } = createStore("/elsewhere");
+    expect($isReachable.get()("/test/first")).toBe(true);
+    expect($isReachable.get()("/test/second")).toBe(false);
+
+    save({ first: "a" });
+    expect($isReachable.get()("/test/second")).toBe(true);
+    expect($isReachable.get()("/test/end")).toBe(true);
+  });
 });

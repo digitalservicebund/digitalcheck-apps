@@ -79,14 +79,16 @@ describe("RadioStepForm", () => {
     );
   });
 
-  it("saves the answer in the wizard store", async () => {
+  it("saves the answer in the wizard store on change, without submitting", async () => {
     const user = userEvent.setup();
     renderForm("it-system");
 
     await user.click(screen.getByLabelText("Nein"));
-    await user.click(screen.getByRole("button", { name: "Weiter" }));
-
     expect(store.$data.get()).toEqual({ "it-system": "no" });
+
+    await user.click(screen.getByLabelText("Ich bin unsicher"));
+    expect(store.$data.get()).toEqual({ "it-system": "unsure" });
+    expect(location.href).toBe("/assistent/vorpruefung/it-system");
   });
 
   it("pre-fills the stored answer", () => {

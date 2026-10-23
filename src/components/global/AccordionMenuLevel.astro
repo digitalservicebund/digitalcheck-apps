@@ -2,6 +2,11 @@
 import Self from "@/components/global/AccordionMenuLevel.astro";
 import { twMerge } from "tailwind-merge";
 import type { AccordeonNavigationEntry } from "@/utils/navigation/accordion";
+import {
+  getWizardIdForPath,
+  getWizardSession,
+  wizardFlows,
+} from "@/wizard/session";
 
 interface Props {
   entries: AccordeonNavigationEntry[];
@@ -40,6 +45,15 @@ function indentStyle(currentLevel: number) {
       ? `calc(var(--kern-metric-space-x-large) + ${currentLevel - 2} * var(--kern-metric-space-default))`
       : "var(--kern-metric-space-small)";
   return `padding: var(--kern-metric-space-small) var(--kern-metric-space-small) var(--kern-metric-space-small) ${paddingLeft}`;
+}
+
+// Wizard pages that can't be reached without user data, e.g. the result page,
+// are disabled at build time. The script below enables them with the stored data.
+function isLockedWizardPage(path: string) {
+  const wizardId = getWizardIdForPath(path);
+  if (!wizardId) return false;
+  const { initialPath } = wizardFlows[wizardId];
+  return !getWizardSession(wizardId, initialPath).isReachable(path);
 }
 
 function panelId(path: string) {
@@ -108,10 +122,14 @@ function panelId(path: string) {
   ) : (
     <>
       <a
-        href={entry.path}
+        href={isLockedWizardPage(entry.path) ? undefined : entry.path}
+        data-wizard-link={getWizardIdForPath(entry.path)}
+        data-path={entry.path}
+        aria-disabled={isLockedWizardPage(entry.path) ? "true" : undefined}
         class={twMerge(
           linkHoverStyle(currentPath === entry.path),
           "accordion-item link-unstyled kern-body block rounded-sm",
+          "aria-disabled:text-kern-layout-text-muted aria-disabled:cursor-not-allowed aria-disabled:hover:bg-transparent aria-disabled:hover:text-kern-layout-text-muted",
         )}
         style={indentStyle(level)}
         aria-current={currentPath === entry.path ? "page" : undefined}
@@ -128,6 +146,29 @@ function panelId(path: string) {
     </>
   ),
 )}
+
+<script>
+  import type { WizardId } from "@/wizard/session";
+  import { wizardStores } from "@/wizard/stores";
+
+  document
+    .querySelectorAll<HTMLAnchorElement>("a[data-wizard-link]")
+    .forEach((link) => {
+      const wizardId = link.dataset.wizardLink as WizardId;
+      const path = link.dataset.path ?? "";
+
+      // Also updates when the answers change later, e.g. in another tab
+      wizardStores[wizardId].$isReachable.subscribe((isReachable) => {
+        if (isReachable(path)) {
+          link.href = path;
+          link.removeAttribute("aria-disabled");
+        } else {
+          link.removeAttribute("href");
+          link.setAttribute("aria-disabled", "true");
+        }
+      });
+    });
+</script>
 
 <style>
   .kern-accordion__header,

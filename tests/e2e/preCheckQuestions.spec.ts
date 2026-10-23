@@ -19,7 +19,7 @@ test.describe("test questions form", () => {
       await page.waitForURL(questions[i].path);
       await waitForHydration(page);
       await page.getByLabel(answerOptions[i % answerOptions.length]).click();
-      await page.getByRole("button", { name: "Weiter", exact: true }).click();
+      await page.getByRole("link", { name: "Weiter", exact: true }).click();
     }
     await expect(page).toHaveURL(assistent_vorpruefung_ergebnis.path);
   });
@@ -33,19 +33,49 @@ test.describe("test questions form", () => {
       await waitForHydration(page);
       await expect(page.getByRole("heading", { level: 1 })).not.toBeEmpty();
       await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Weiter", exact: true }).click();
+      await page.getByRole("link", { name: "Weiter", exact: true }).click();
     }
     await expect(page).toHaveURL(assistent_vorpruefung_ergebnis.path);
   });
 
-  test("cant submit form without answers", async ({ page }) => {
+  test("questions can be skipped, but the result stays locked", async ({
+    page,
+  }) => {
     await page.goto(questions[0].path);
     await waitForHydration(page);
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    for (let i = 0; i < questions.length - 1; i++) {
+      await page.getByRole("link", { name: "Weiter", exact: true }).click();
+      await page.waitForURL(questions[i + 1].path);
+      await waitForHydration(page);
+    }
+    const next = page.getByRole("link", { name: "Weiter", exact: true });
+    await expect(next).toHaveAttribute("aria-disabled", "true");
+    await page.getByLabel("Ja").click();
+    await expect(next).toHaveAttribute("aria-disabled", "true");
+
+    await page.goto(assistent_vorpruefung_ergebnis.path);
     await expect(page).toHaveURL(questions[0].path);
-    await expect(page.getByRole("main")).toContainText(
-      "Bitte wählen Sie eine Option aus.",
+  });
+
+  test("answers are kept when leaving via the sidebar", async ({
+    page,
+    viewport,
+  }) => {
+    test.skip(
+      Boolean(viewport && viewport.width < 900),
+      "sidebar is hidden on small screens",
     );
+    await page.goto(questions[0].path);
+    await waitForHydration(page);
+    await page.getByLabel("Nein").click();
+    const sidebar = page.getByRole("navigation", {
+      name: "Abschnittsnavigation",
+    });
+    await sidebar.getByRole("link", { name: questions[2].title }).click();
+    await page.waitForURL(questions[2].path);
+    await sidebar.getByRole("link", { name: questions[0].title }).click();
+    await waitForHydration(page);
+    await expect(page.getByLabel("Nein")).toBeChecked();
   });
 
   test("back button works", async ({ page }) => {
@@ -56,7 +86,7 @@ test.describe("test questions form", () => {
     await page.goto(questions[0].path);
     await waitForHydration(page);
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await expect(page).toHaveURL(questions[1].path);
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page).toHaveURL(questions[0].path);
@@ -79,15 +109,15 @@ test.describe("test questions form", () => {
     await page.waitForURL(questions[0].path);
     await waitForHydration(page);
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[1].path);
     await waitForHydration(page);
     await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[2].path);
     await waitForHydration(page);
     await page.getByLabel("Ich bin unsicher").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[3].path);
     await waitForHydration(page);
     await expect(page).toHaveURL(questions[3].path);
@@ -103,10 +133,10 @@ test.describe("test questions form", () => {
     await page.goto(questions[0].path);
     await waitForHydration(page);
     await expect(page.getByLabel("Ja")).toBeChecked();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[1].path);
     await expect(page.getByLabel("Nein")).toBeChecked();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[2].path);
     await expect(page.getByLabel("Ich bin unsicher")).toBeChecked();
     await page.getByRole("link", { name: "Zurück" }).click();
@@ -115,13 +145,13 @@ test.describe("test questions form", () => {
     await waitForHydration(page);
     await page.getByRole("link", { name: "Zurück" }).click();
     await expect(page.getByLabel("Ja")).toBeChecked();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[1].path);
     await expect(page.getByLabel("Nein")).toBeChecked();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[2].path);
     await expect(page.getByLabel("Ich bin unsicher")).toBeChecked();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[3].path);
     await expect(page.getByLabel("Ja")).not.toBeChecked();
     await expect(page.getByLabel("Nein")).not.toBeChecked();
@@ -133,17 +163,17 @@ test.describe("test questions form", () => {
     await page.waitForURL(questions[0].path);
     await waitForHydration(page);
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[1].path);
     await waitForHydration(page);
     await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[2].path);
     await page.goto(questions[4].path);
     await expect(page).toHaveURL(questions[2].path);
     await waitForHydration(page);
     await page.getByLabel("Nein").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await page.waitForURL(questions[3].path);
     await page.goto(questions[4].path);
     await expect(page).toHaveURL(questions[3].path);
@@ -165,7 +195,7 @@ test.describe("test question navigation", () => {
       await page.waitForURL(questions[i].path);
       await waitForHydration(page);
       await page.getByLabel("Ja").click();
-      await page.getByRole("button", { name: "Weiter", exact: true }).click();
+      await page.getByRole("link", { name: "Weiter", exact: true }).click();
     }
     // wait for last question to show
     await page.waitForURL(questions.at(-1)!.path);
@@ -192,7 +222,7 @@ test.describe("test question navigation", () => {
     }
 
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
     await expect(
       page.getByRole("link", { name: questions[0].title }),
     ).toBeEnabled();
@@ -241,7 +271,7 @@ test.describe("test question navigation", () => {
 
     // Navigate to the second question
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
 
     await page.waitForURL(questions[1].path);
 
@@ -255,7 +285,7 @@ test.describe("test question navigation", () => {
     await page.goto(questions[0].path);
     await waitForHydration(page);
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
 
     // Check if the first question has a check mark icon
     await expect(
@@ -273,7 +303,7 @@ test.describe("test question navigation", () => {
 
     // Answer the second question
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
 
     // Check if the second question has a check mark icon
     await expect(
@@ -299,7 +329,7 @@ test.describe("test question navigation on mobile screens", () => {
 
     // Answer the first question
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
 
     await page.waitForURL(questions[1].path);
 
@@ -336,7 +366,7 @@ test.describe("test question navigation on mobile screens", () => {
 
     // Answer the second question
     await page.getByLabel("Ja").click();
-    await page.getByRole("button", { name: "Weiter", exact: true }).click();
+    await page.getByRole("link", { name: "Weiter", exact: true }).click();
 
     await page.waitForURL(questions[2].path);
 

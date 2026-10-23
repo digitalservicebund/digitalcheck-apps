@@ -28,6 +28,12 @@ export const getFieldSchema = (wizardId: WizardId, name: string) => {
   return fields[name];
 };
 
+// The wizard a page belongs to, e.g. to mark its pages in the sidebar.
+export const getWizardIdForPath = (pathname: string): WizardId | undefined =>
+  (Object.keys(wizardFlows) as WizardId[]).find((wizardId) =>
+    wizardFlows[wizardId].getNodeKeyFromPath(removeTrailingSlash(pathname)),
+  );
+
 type UserData = Parameters<typeof createFlowSession>[1];
 
 // One factory per wizard, as createFlowSession can't infer its config

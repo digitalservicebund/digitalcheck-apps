@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { z } from "zod";
 
 type RadioStepFormProps = {
-  /** Referenced by the "Weiter" button in the WizardButtonBar outside of the island */
+  /** Referenced by the "Weiter" button in the WizardButtonBar outside of the island, if it submits the form */
   formId: string;
   /** id of the heading that labels the radio group */
   labelledBy: string;
@@ -30,11 +30,12 @@ export default function RadioStepForm({
   const data: Record<string, unknown> = useStore($data, { ssr: () => ({}) });
   const storedAnswer = data[name];
   const defaultValues: Record<string, string> = { [name]: "" };
+  const fieldSchema = getFieldSchema(wizardId, name);
 
   const form = useForm({
     // set via RVF, which also links the inputs to this id
     id: formId,
-    schema: z.object({ [name]: getFieldSchema(wizardId, name) }),
+    schema: z.object({ [name]: fieldSchema }),
     defaultValues,
     handleSubmit: (values) => {
       save(values);
@@ -49,6 +50,18 @@ export default function RadioStepForm({
     if (typeof storedAnswer === "string")
       form.resetForm({ [name]: storedAnswer });
   }, [form, name, storedAnswer]);
+
+  // Save every valid answer right away, so it's kept however the user leaves
+  // the page (button bar, sidebar, browser back)
+  useEffect(
+    () =>
+      form.subscribe.value(name, (value) => {
+        const stored: Record<string, unknown> = $data.get();
+        if (value === stored[name]) return;
+        if (fieldSchema.safeParse(value).success) save({ [name]: value });
+      }),
+    [form, name, fieldSchema, $data, save],
+  );
 
   return (
     <form {...form.getFormProps()}>

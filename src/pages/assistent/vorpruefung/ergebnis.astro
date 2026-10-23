@@ -27,3 +27,16 @@ const { steps } = getWizardSession("vorpruefung", Astro.url.pathname).progress;
   </section>
   <WizardButtonBar slot="button-bar" wizardId="vorpruefung" />
 </WizardLayout>
+
+<script>
+  import { assistent_vorpruefung_ergebnis } from "@/config/routes";
+  import { wizardStores } from "@/wizard/stores";
+
+  // Only reachable once all questions are answered, e.g. not via a bookmark
+  const { $isReachable, $resumePath } = wizardStores.vorpruefung;
+  $isReachable.subscribe((isReachable) => {
+    if (!isReachable(assistent_vorpruefung_ergebnis.path)) {
+      globalThis.location.replace($resumePath.get());
+    }
+  });
+</script>

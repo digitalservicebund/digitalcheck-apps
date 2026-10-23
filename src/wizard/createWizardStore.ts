@@ -23,6 +23,9 @@ type CompiledFlow<C extends PageConfigMap> = ReturnType<
  * - $session: flow session for $data and $path, undefined outside the flow
  *   (e.g. on the server, where neither localStorage nor the URL is known)
  * - $resumePath: first page with unanswered questions, to continue the wizard
+ * - $isReachable: whether a page can be opened with $data, e.g. the result
+ *   page only once all questions are answered. Independent of $path, so
+ *   it's also known outside the flow (e.g. in the sidebar of the start page).
  */
 export const createWizardStore = <C extends PageConfigMap>(
   storageKey: string,
@@ -80,6 +83,11 @@ export const createWizardStore = <C extends PageConfigMap>(
     return session.nextIncomplete() ?? flow.initialPath;
   });
 
+  const $isReachable = computed(
+    $data,
+    (data) => createFlowSession(flow, data, flow.initialPath).isReachable,
+  );
+
   const save = (values: UserData) => {
     $data.set({ ...$data.get(), ...values });
   };
@@ -94,6 +102,7 @@ export const createWizardStore = <C extends PageConfigMap>(
     $session,
     $hasAnswers,
     $resumePath,
+    $isReachable,
     save,
     reset,
   };
