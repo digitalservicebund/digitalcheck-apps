@@ -6,6 +6,71 @@ import { z } from "zod";
 
 const text = (message: string) => z.string().trim().min(1, message);
 
+// Labels live next to the values, so the rendered options can't drift from the schema.
+export const prinzipAnswerOptions = [
+  { value: "yes", label: "Ja, gänzlich oder teilweise" },
+  { value: "no", label: "Nein" },
+  { value: "not-relevant", label: "Nicht relevant" },
+] as const;
+
+const prinzipAnswer = z.enum(
+  prinzipAnswerOptions.map((option) => option.value),
+  "Bitte wählen Sie eine Option aus.",
+);
+
+const schwerpunkteMessage =
+  "Bitte wählen Sie mindestens einen Schwerpunkt aus.";
+const erklaerungMessage = "Bitte geben Sie eine Erklärung an.";
+
+// Slugs of the Aspekte's Kurzbezeichnung, as in the old Dokumentation
+const prinzipSchwerpunkte = z.array(z.string()).min(1, schwerpunkteMessage);
+
+const prinzipErklaerung = text(erklaerungMessage);
+
+// The Prinzip pages share one route, their fields are numbered by the
+// Prinzip's order, like their pages in the flow (prinzip1 to prinzip5).
+const prinzipOrders = [1, 2, 3, 4, 5] as const;
+
+export type PrinzipOrder = (typeof prinzipOrders)[number];
+
+/** Narrows the order from the content, which has to match the fields here */
+export const toPrinzipOrder = (order: number) => {
+  if (!prinzipOrders.includes(order as PrinzipOrder)) {
+    throw new Error(`The Dokumentation has no fields for Prinzip ${order}.`);
+  }
+  return order as PrinzipOrder;
+};
+
+export const prinzipFieldNames = <Order extends PrinzipOrder>(order: Order) =>
+  ({
+    antwort: `prinzip${order}-antwort`,
+    schwerpunkte: `prinzip${order}-schwerpunkte`,
+    erklaerung: `prinzip${order}-erklaerung`,
+  }) as const;
+
+type PrinzipFields = {
+  [Order in PrinzipOrder as `prinzip${Order}-antwort`]: typeof prinzipAnswer;
+} & {
+  [
+    Order in PrinzipOrder as `prinzip${Order}-schwerpunkte`
+  ]: typeof prinzipSchwerpunkte;
+} & {
+  [
+    Order in PrinzipOrder as `prinzip${Order}-erklaerung`
+  ]: typeof prinzipErklaerung;
+};
+
+const prinzipFields = Object.fromEntries(
+  prinzipOrders.flatMap((order) => {
+    const names = prinzipFieldNames(order);
+    return [
+      [names.antwort, prinzipAnswer],
+      [names.schwerpunkte, prinzipSchwerpunkte],
+      [names.erklaerung, prinzipErklaerung],
+    ];
+  }),
+) as PrinzipFields;
+
 // Field names are prefixed with their page: user data is one flat object across all pages.
 // TODO: add fields of the remaining pages
 export const dokumentationFields = {
@@ -15,6 +80,7 @@ export const dokumentationFields = {
   ),
   "beteiligungsformate-erklaerung": text("Bitte geben Sie eine Antwort."),
   "beteiligungsformate-erkenntnisse": text("Bitte geben Sie eine Antwort."),
+  ...prinzipFields,
 } as const;
 
 export type DokumentationField = keyof typeof dokumentationFields;
@@ -34,3 +100,41 @@ export const beteiligungsformateSchema = z.object({
   "beteiligungsformate-erkenntnisse":
     dokumentationFields["beteiligungsformate-erkenntnisse"],
 });
+
+/** Page schema of the Prinzip with the given order */
+export const prinzipSchema = <Order extends PrinzipOrder>(order: Order) => {
+  const names = prinzipFieldNames(order);
+  // Computed keys are typed as `string`, so their literal types are restored here
+  const shape = {
+    [names.antwort]: prinzipAnswer,
+    [names.schwerpunkte]: prinzipSchwerpunkte.optional(),
+    [names.erklaerung]: prinzipErklaerung.optional(),
+  } as Record<typeof names.antwort, typeof prinzipAnswer> &
+    Record<
+      typeof names.schwerpunkte,
+      z.ZodOptional<typeof prinzipSchwerpunkte>
+    > &
+    Record<typeof names.erklaerung, z.ZodOptional<typeof prinzipErklaerung>>;
+
+  // Schwerpunkte (only for "yes") and Erklärung depend on the answer, like their
+  // <ShowIf>s on the page. Hidden fields are missing, shown but empty ones are
+  // invalid on their own, so this only catches answers stored without them.
+  return z.object(shape).superRefine((data, ctx) => {
+    const values: Record<string, unknown> = data;
+    const answer = values[names.antwort];
+    if (answer === "yes" && values[names.schwerpunkte] === undefined) {
+      ctx.addIssue({
+        code: "custom",
+        message: schwerpunkteMessage,
+        path: [names.schwerpunkte],
+      });
+    }
+    if (answer !== undefined && values[names.erklaerung] === undefined) {
+      ctx.addIssue({
+        code: "custom",
+        message: erklaerungMessage,
+        path: [names.erklaerung],
+      });
+    }
+  });
+};

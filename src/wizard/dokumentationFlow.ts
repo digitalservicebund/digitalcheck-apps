@@ -15,6 +15,7 @@ import {
 import { compileFlowConfig } from "form-graph-engine";
 import {
   beteiligungsformateSchema,
+  prinzipSchema,
   regelungsvorhabenSchema,
 } from "./dokumentationSchema";
 
@@ -35,11 +36,11 @@ export const dokumentationFlow = compileFlowConfig({
       path: assistent_dokumentation_beteiligungsformate.path,
       pageSchema: beteiligungsformateSchema,
     },
-    prinzip1: { path: prinzip1.path },
-    prinzip2: { path: prinzip2.path },
-    prinzip3: { path: prinzip3.path },
-    prinzip4: { path: prinzip4.path },
-    prinzip5: { path: prinzip5.path },
+    prinzip1: { path: prinzip1.path, pageSchema: prinzipSchema(1) },
+    prinzip2: { path: prinzip2.path, pageSchema: prinzipSchema(2) },
+    prinzip3: { path: prinzip3.path, pageSchema: prinzipSchema(3) },
+    prinzip4: { path: prinzip4.path, pageSchema: prinzipSchema(4) },
+    prinzip5: { path: prinzip5.path, pageSchema: prinzipSchema(5) },
     euInteroperabilitaet: {
       path: assistent_dokumentation_euInteroperabilitaet.path,
     },

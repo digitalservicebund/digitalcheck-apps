@@ -1,14 +1,20 @@
 // @vitest-environment node
+import { dokumentationPrinzipienRoutes } from "@/config/prinzipienRoutes";
 import {
   assistent_dokumentation_beteiligungsformate,
   assistent_dokumentation_regelungsvorhaben,
 } from "@/config/routes";
+import { getPrinzipienStaticPaths } from "@/content.config";
+import Prinzip from "@/pages/assistent/dokumentation/[principleId].astro";
 import Beteiligungsformate from "@/pages/assistent/dokumentation/beteiligungsformate.astro";
 import Regelungsvorhaben from "@/pages/assistent/dokumentation/regelungsvorhaben.astro";
 import { renderToDOM } from "@/utils/testUtils";
+import { slugify } from "@/utils/utilFunctions";
 import {
   beteiligungsformateSchema,
+  prinzipSchema,
   regelungsvorhabenSchema,
+  toPrinzipOrder,
 } from "@/wizard/dokumentationSchema";
 import { within } from "@testing-library/dom";
 import "@testing-library/jest-dom";
@@ -16,9 +22,14 @@ import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import { describe, expect, it } from "vitest";
 import { baseUrl } from "../../../../../vitest.config";
 
-const renderStep = async (page: unknown, path: string) => {
+const renderStep = async (
+  page: unknown,
+  path: string,
+  props?: Record<string, unknown>,
+) => {
   const { dom } = await renderToDOM(page as AstroComponentFactory, {
     request: new Request(baseUrl + path),
+    props,
   });
   const form = dom.querySelector("form[data-wizard-step-form]")!;
   const names = new Set(
@@ -26,7 +37,7 @@ const renderStep = async (page: unknown, path: string) => {
       control.getAttribute("name"),
     ),
   );
-  return { screen: within(dom.body), names };
+  return { dom, screen: within(dom.body), names };
 };
 
 describe("Dokumentation step Regelungsvorhaben", () => {
@@ -65,5 +76,114 @@ describe("Dokumentation step Beteiligungsformate", () => {
     expect(
       screen.getByRole("textbox", { name: "Erkenntnisse" }),
     ).toBeInTheDocument();
+  });
+});
+
+describe("Dokumentation step Prinzip", () => {
+  it.each(dokumentationPrinzipienRoutes)(
+    "renders the answer of $title as a radio group labelled by the question",
+    async ({ path }) => {
+      const staticPaths = await getPrinzipienStaticPaths();
+      const { prinzip } = staticPaths.find((staticPath) =>
+        path.endsWith(`/${staticPath.params.principleId}`),
+      )!.props;
+      const { screen, names } = await renderStep(Prinzip, path, { prinzip });
+
+      const order = toPrinzipOrder(prinzip.order);
+      expect([...names]).toEqual(Object.keys(prinzipSchema(order).shape));
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+        prinzip.Name,
+      );
+      const radios = screen.getByRole("radiogroup", {
+        name: "Schafft das Regelungsvorhaben die rechtlichen Voraussetzungen für die Umsetzung des Prinzips?",
+      });
+      expect(
+        within(radios)
+          .getAllByRole("radio")
+          .map((radio) => radio.getAttribute("value")),
+      ).toEqual(["yes", "no", "not-relevant"]);
+    },
+  );
+
+  const renderFirstPrinzip = async () => {
+    const [{ props }] = await getPrinzipienStaticPaths();
+    const { prinzip } = props;
+    const rendered = await renderStep(
+      Prinzip,
+      dokumentationPrinzipienRoutes[0].path,
+      { prinzip },
+    );
+    return { prinzip, ...rendered };
+  };
+
+  // The conditions are applied by bindStepForm in the browser
+  it("renders the content of each answer, hidden until it's chosen", async () => {
+    const { prinzip, dom, screen } = await renderFirstPrinzip();
+    const showIf = (heading: string) =>
+      screen
+        .getByRole("heading", { name: heading, hidden: true })
+        .closest("[data-wizard-show-if]");
+
+    expect(
+      showIf("Erklären Sie, inwiefern Sie auf dieses Prinzip eingegangen sind"),
+    ).toHaveAttribute("data-wizard-show-is", '["yes"]');
+    expect(
+      showIf("Erklären Sie, warum das Prinzip nicht auf Ihr Vorhaben zutrifft"),
+    ).toHaveAttribute("data-wizard-show-is", '["no"]');
+    expect(
+      showIf(
+        "Erklären Sie, warum das Prinzip nicht relevant für Ihr Vorhaben ist",
+      ),
+    ).toHaveAttribute("data-wizard-show-is", '["not-relevant"]');
+
+    const schwerpunkte = screen.getByRole("group", {
+      name: /^Schwerpunkte auswählen/,
+      hidden: true,
+    });
+    expect(
+      within(schwerpunkte)
+        .getAllByRole("checkbox", { hidden: true })
+        .map((checkbox) => checkbox.getAttribute("value")),
+    ).toEqual(prinzip.Aspekte.map((aspekt) => slugify(aspekt.Kurzbezeichnung)));
+
+    // One Erklärung for all answers, its hint only for "yes"
+    const erklaerung = screen.getByRole("textbox", {
+      name: "Erklärung",
+      hidden: true,
+    });
+    const hint = dom.getElementById(
+      erklaerung.getAttribute("aria-describedby")!,
+    )!;
+    expect(hint.querySelector("[data-wizard-show-if]")).toHaveAttribute(
+      "data-wizard-show-is",
+      '["yes"]',
+    );
+    expect(hint).toHaveTextContent(prinzip.Erklaerungshilfe.slice(0, 20));
+  });
+
+  it("shows the Prinzip's help and Schwerpunkte in the help panel", async () => {
+    const { prinzip, dom, screen } = await renderFirstPrinzip();
+
+    // next to the heading and the Schwerpunkte
+    expect(
+      screen.getAllByRole("button", { name: "Hilfe anzeigen", hidden: true }),
+    ).toHaveLength(2);
+    const help = within(dom.getElementById("help-section-prinzip")!);
+    expect(help.getByRole("heading")).toHaveTextContent(
+      `Hinweis zu „${prinzip.Name}“`,
+    );
+    expect(
+      help.getByRole("link", { name: `Mehr zum Prinzip ${prinzip.order}` }),
+    ).toHaveAttribute("href", expect.stringContaining(prinzip.URLBezeichnung));
+    const schwerpunkte = within(
+      dom.getElementById("help-section-schwerpunkte")!,
+    );
+    expect(
+      schwerpunkte
+        .getAllByRole("group")
+        .map((details) =>
+          details.querySelector("summary")?.textContent?.trim(),
+        ),
+    ).toEqual(prinzip.Aspekte.map((aspekt) => aspekt.Kurzbezeichnung));
   });
 });

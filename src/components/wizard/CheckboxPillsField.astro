@@ -1,0 +1,54 @@
+---
+import type { StepField } from "@/wizard/stepFields";
+import FieldError from "./FieldError.astro";
+
+interface Props {
+  field: StepField<string[]>;
+  options: readonly { value: string; label: string }[];
+  /** KERN badge variant of the pills, e.g. `prinzip-1` */
+  variant: string;
+}
+
+const { field, options, variant } = Astro.props;
+---
+
+<!--
+  Checkboxes shown as badges: filled with a check mark when selected.
+  White when unselected needs `!`, the badge colors (badges.css) aren't in a layer.
+  Slots:
+  - default: legend
+  Wired up by bindStepForm via `name`.
+-->
+<fieldset class="min-w-0" data-wizard-field={field.name}>
+  <legend class="kern-heading-small mb-16">
+    <slot />
+  </legend>
+  <div class="space-y-8">
+    <div class="flex flex-wrap gap-16">
+      {options.map((option, index) => (
+        <label
+          class:list={[
+            "kern-badge cursor-pointer not-has-checked:!bg-white",
+            `kern-badge--${variant}`,
+            "has-focus-visible:outline-4 has-focus-visible:outline-offset-4 has-focus-visible:outline-blue-800",
+          ]}
+        >
+          <input
+            type="checkbox"
+            id={`${field.name}-${index}`}
+            name={field.name}
+            value={option.value}
+            aria-errormessage={field.errorId}
+            class="peer sr-only"
+          />
+          <span
+            class="kern-icon kern-icon--check hidden peer-checked:inline-block"
+            aria-hidden="true"
+          ></span>
+          <span class="kern-label">{option.label}</span>
+        </label>
+      ))}
+    </div>
+    <FieldError id={field.errorId} />
+  </div>
+</fieldset>

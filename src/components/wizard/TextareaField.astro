@@ -14,7 +14,9 @@ const hasDescription = Astro.slots.has("description");
 <!--
   Slots:
   - default: label
-  - description: hint below the label
+  - description: hint below the label, can be conditional (e.g. in a <ShowIf>).
+    A hidden hint takes no space, but its wrapper stays rendered (not display: none),
+    so the hidden content isn't read out as the description.
   Wired up by bindStepForm via `name`.
 -->
 <div class="kern-form-input space-y-8" data-wizard-field={field.name}>
@@ -22,7 +24,10 @@ const hasDescription = Astro.slots.has("description");
     <slot />
   </label>
   {hasDescription && (
-    <div class="text-kern-layout-text-default block" id={field.descriptionId}>
+    <div
+      class="text-kern-layout-text-default block has-[>[hidden]:only-child]:mb-0"
+      id={field.descriptionId}
+    >
       <slot name="description" />
     </div>
   )}
