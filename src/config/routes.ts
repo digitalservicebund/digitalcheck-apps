@@ -110,17 +110,16 @@ export const assistent_dokumentation_euInteroperabilitaet_technisch = {
   navLabel: null,
 } as const;
 
-export const assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen =
-  {
-    key: "assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen",
-    path: "/assistent/dokumentation/eu-interoperabilitaet/verbindliche-anforderungen",
-    title: "Verbindliche Anforderungen",
-    parent: assistent_dokumentation_euInteroperabilitaet,
-    sitemap: false,
-    isStagingOnly: false,
-    navOrder: 1,
-    navLabel: null,
-  } as const;
+export const assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen = {
+  key: "assistent_dokumentation_euInteroperabilitaet_verbindlicheAnforderungen",
+  path: "/assistent/dokumentation/eu-interoperabilitaet/verbindliche-anforderungen",
+  title: "Verbindliche Anforderungen",
+  parent: assistent_dokumentation_euInteroperabilitaet,
+  sitemap: false,
+  isStagingOnly: false,
+  navOrder: 1,
+  navLabel: null,
+} as const;
 
 export const assistent_dokumentation_euInteroperabilitaet_veroeffentlichung = {
   key: "assistent_dokumentation_euInteroperabilitaet_veroeffentlichung",
