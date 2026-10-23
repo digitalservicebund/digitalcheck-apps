@@ -1,0 +1,202 @@
+---
+import Hero from "@/components/Hero.astro";
+import WizardStartActions from "@/components/wizard/WizardStartActions.astro";
+import Layout from "@/layouts/Layout.astro";
+import { contact } from "@/resources/content/shared/contact";
+import { vorpruefungFlow } from "@/wizard/vorpruefungFlow";
+import IconMail from "~icons/ic/outline-mail";
+import IconPhone from "~icons/ic/outline-phone";
+
+export const frontmatter = {
+  title: "Dokumentation",
+  navOrder: 3,
+};
+
+const faqItems = [
+  {
+    question:
+      "Kann ich mehrere Regelungen in einer Dokumentation zusammenfassen?",
+    answer:
+      "Inhaltlich zusammengehörige Regelungen können Sie in einer Dokumentation zusammenfassen.",
+  },
+  {
+    question: "Kann ich Zwischenstände mit Kolleginnen und Kollegen teilen?",
+    answer:
+      "Zur externen Weiterbearbeitung, internen Abstimmung oder für Änderungen können Sie den aktuellen Stand Ihrer Angaben als Word-Dokument exportieren und lokal speichern. Für die Bundesebene: Die finale Datei können Sie zu jedem Zeitpunkt per E-Mail an den NKR versenden.",
+  },
+  {
+    question: "Wie binde ich meine Visualisierung ein?",
+    answer:
+      "Nutzen Sie Ihre bereits selbst erstellten Visualisierungen (auf Basis der fünf Prinzipien) als Grundlage und senden Sie diese am Ende an den NKR. Dies müssen Sie separat zur Dokumentation tun.",
+  },
+];
+---
+
+<Layout title={frontmatter.title}>
+  <main class="breakout-grid">
+    <Hero class="space-y-24">
+      <p class="kern-preline">Digitaltauglichkeit dokumentieren</p>
+      <h1>Dokumentation</h1>
+
+      <div class="space-y-8">
+        <p>
+          Sie dokumentieren entlang der fünf Prinzipien, wie Digitaltauglichkeit
+          in Ihre Regelung eingeflossen ist und bewerten ggf. die
+          EU-Interoperabilität.
+        </p>
+        <p>
+          <b>Das brauchen Sie:</b>
+        </p>
+        <ul>
+          <li>
+            Am besten halten Sie Ihre Überlegungen schon während der Erarbeitung
+            fest – so ist die Dokumentation zur Ressortabstimmung fertig
+          </li>
+          <li>Ihren Regelungstext</li>
+        </ul>
+      </div>
+      <div class="space-y-8">
+        <p>
+          <b>Ergebnis:</b>
+        </p>
+        <ul>
+          <li>
+            Abgeschlossene Dokumentation der Digitaltauglichkeit Ihres Vorhabens
+          </li>
+          <li>
+            Als Word-Datei exportierbar und an die zuständige Prüfstelle sendbar
+          </li>
+        </ul>
+      </div>
+      <noscript>
+        <div class="kern-alert kern-alert--warning" role="alert">
+          <div class="kern-alert__header">
+            <span
+              class="kern-icon kern-icon--warning"
+              aria-hidden="true"
+            ></span>
+            <h2 class="kern-title">Erlauben Sie die Nutzung von JavaScript</h2>
+          </div>
+          <div class="kern-alert__body">
+            <p class="kern-body">
+              Um die Dokumentation zu starten, müssen Sie Ihrem Browser die
+              Nutzung von JavaScript erlauben. Das ist nötig, damit die Seite
+              Ihre Daten zwischenspeichern kann.
+            </p>
+            <p>
+              <b>So geht es:</b> Suchen Sie in den Einstellungen Ihres Browsers
+              nach JavaScript und erlauben Sie die Nutzung.
+            </p>
+          </div>
+        </div>
+      </noscript>
+
+      <div class="kern-form-input max-w-400">
+        <label class="kern-label" for="pruefbereich">
+          Für welchen Bereich prüfen Sie?
+        </label>
+        <div class="kern-form-input__select-wrapper">
+          <select class="kern-form-input__select" id="pruefbereich">
+            <option value="bund" selected>
+              Bund
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- TODO: wire new dokumentationFlow -->
+      <WizardStartActions
+        wizardId="vorpruefung"
+        href={vorpruefungFlow.initialPath}
+        showAutosaveHint
+      >
+        <Fragment slot="startLabel">Dokumentation starten</Fragment>
+        <Fragment slot="continueLabel">Dokumentation fortsetzen</Fragment>
+        <Fragment slot="restartLabel">Neue Dokumentation beginnen</Fragment>
+        <Fragment slot="modalBody">
+          Mit einer neuen Dokumentation werden die Daten der begonnenen
+          Dokumentation gelöscht. Diese können nicht wiederhergestellt werden.
+        </Fragment>
+      </WizardStartActions>
+    </Hero>
+
+    <section>
+      <div class="bg-kern-layout-layer-surface space-y-16 rounded-sm px-16 py-32 md:px-64">
+        <h2>Alternativ: Mit der Word-Vorlage arbeiten</h2>
+        <p class="max-w-688">
+          Laden Sie die Vorlage herunter und füllen Sie sie in Ihrem eigenen
+          Arbeitsumfeld aus – zum Beispiel wenn Sie offline oder gemeinsam im
+          Dokument arbeiten. Inhaltlich gibt es keine Unterschiede zur
+          Online-Dokumentation.
+        </p>
+        <!-- TODO: wire docx generation (see useWordDocumentation in old wizard) -->
+        <button type="button" class="kern-btn kern-btn--secondary">
+          <span class="kern-icon kern-icon--download" aria-hidden="true"></span>
+          <span class="kern-label">Word-Vorlage herunterladen (.docx)</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="space-y-16">
+      <h2>Häufige Fragen</h2>
+      <div>
+        {faqItems.map((item) => (
+          <details class="kern-accordion">
+            <summary class="kern-accordion__header">
+              <span class="kern-title">{item.question}</span>
+            </summary>
+            <div class="kern-accordion__body space-y-16">
+              {(Array.isArray(item.answer) ? item.answer : [item.answer]).map(
+                (paragraph) => (
+                  <p class="kern-body">{paragraph}</p>
+                ),
+              )}
+            </div>
+          </details>
+        ))}
+        <details class="kern-accordion">
+          <summary class="kern-accordion__header">
+            <span class="kern-title">
+              Wie lange werden meine Eingaben gespeichert?
+            </span>
+          </summary>
+          <div class="kern-accordion__body">
+            <p class="kern-body">
+              Ihre eingegebenen Daten werden <b>unbegrenzt lange</b> in der
+              Sitzung gespeichert, bis
+            </p>
+            <ol class="kern-body list-[lower-alpha]">
+              <li>Sie eine neue Dokumentation starten, oder</li>
+              <li>
+                Ihr SINA-Rechner die Daten löscht (falls das bei Ihnen
+                voreingestellt ist)
+              </li>
+            </ol>
+            <p>
+              <b>Bitte beachten Sie:</b> Es ist jeweils nur die Bearbeitung
+              einer Dokumentation möglich. Sie können den Vorgang unterbrechen
+              und später fortsetzen. Der aktuelle Stand bleibt auch nach
+              Schließen des Fensters erhalten.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <section class="space-y-16">
+      <p>Ihre Frage war nicht dabei? Kontaktieren Sie uns gerne:</p>
+      <ul class="list-unstyled space-y-8">
+        <li>
+          <a class="kern-link items-center" href={contact.phone}>
+            <IconPhone class="size-24" aria-hidden="true" />
+            {contact.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a class="kern-link items-center" href={`mailto:${contact.email}`}>
+            <IconMail class="size-24" aria-hidden="true" />
+            {contact.email}
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+</Layout>

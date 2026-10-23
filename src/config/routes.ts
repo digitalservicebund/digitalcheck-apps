@@ -22,6 +22,17 @@ export const assistent = {
   navLabel: "Übersicht",
 } as const;
 
+export const assistent_dokumentation = {
+  key: "assistent_dokumentation",
+  path: "/assistent/dokumentation",
+  title: "Dokumentation",
+  parent: assistent,
+  sitemap: true,
+  isStagingOnly: false,
+  navOrder: 3,
+  navLabel: null,
+} as const;
+
 export const assistent_vorpruefung = {
   key: "assistent_vorpruefung",
   path: "/assistent/vorpruefung",
@@ -464,6 +475,7 @@ export const sitemap = {
 
 export const allRoutes = [
   assistent,
+  assistent_dokumentation,
   assistent_vorpruefung,
   assistent_vorpruefung_automatisierung,
   assistent_vorpruefung_datenaustausch,
