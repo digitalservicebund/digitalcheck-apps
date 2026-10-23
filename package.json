@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^1.0.0",
-    "@astrojs/mdx": "^8.1.0",
-    "@astrojs/react": "^7.1.0",
+    "@astrojs/mdx": "^8.1.1",
+    "@astrojs/react": "^7.1.1",
     "@astrojs/sitemap": "^3.7.4",
     "@digitalservicebund/icons": "^2.1.0",
     "@headlessui/react": "^2.2.10",
@@ -45,13 +45,13 @@
     "@rvf/zod": "^7.0.6",
     "@tailwindcss/vite": "^4.3.3",
     "@types/alpinejs": "^3.17.0",
-    "alpinejs": "^3.17.4",
-    "astro": "^7.4.1",
+    "alpinejs": "^3.17.5",
+    "astro": "^7.4.2",
     "astro-route-generator": "github:digitalservicebund/astro-route-generator#0.2.7",
-    "docx": "^9.12.0",
+    "docx": "^9.13.0",
     "file-saver": "^2.0.5",
     "marked": "^18.1.1",
-    "posthog-js": "^1.438.12",
+    "posthog-js": "^1.438.15",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "sharp": "^0.35.5",
@@ -61,7 +61,7 @@
     "zod": "~4.6.7"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.11",
+    "@astrojs/check": "^0.9.12",
     "@axe-core/playwright": "^4.14.0",
     "@commitlint/config-conventional": "^21.2.4",
     "@commitlint/types": "^21.2.3",
@@ -101,9 +101,9 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.2",
+    "typescript-eslint": "^8.72.0",
     "undici": "^8.12.3",
-    "vite": "^8.3.4",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5"
   }
 }
