@@ -1,5 +1,5 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import StepPage from "../_StepPage.astro";
 
 export const frontmatter = {
   title: "Verbindliche Anforderungen",
@@ -9,8 +9,6 @@ export const frontmatter = {
 ---
 
 <!-- TODO: implement step -->
-<Layout title={frontmatter.title}>
-  <main>
-    <h1>{frontmatter.title}</h1>
-  </main>
-</Layout>
+<StepPage title={frontmatter.title}>
+  <h1 class="kern-heading-medium">{frontmatter.title}</h1>
+</StepPage>

@@ -1,6 +1,6 @@
 ---
 import { getPrinzipienStaticPaths } from "@/content.config";
-import Layout from "@/layouts/Layout.astro";
+import StepPage from "./_StepPage.astro";
 
 export const frontmatter = {
   sitemap: false,
@@ -13,8 +13,6 @@ const { prinzip } = Astro.props;
 ---
 
 <!-- TODO: implement step -->
-<Layout title={`Prinzip ${prinzip.order}: ${prinzip.Name}`}>
-  <main>
-    <h1>{prinzip.Name}</h1>
-  </main>
-</Layout>
+<StepPage title={`Prinzip ${prinzip.order}: ${prinzip.Name}`}>
+  <h1 class="kern-heading-medium">{prinzip.Name}</h1>
+</StepPage>

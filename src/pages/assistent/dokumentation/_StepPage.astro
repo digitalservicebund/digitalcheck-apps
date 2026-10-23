@@ -1,0 +1,41 @@
+---
+import WizardButtonBar from "@/components/wizard/WizardButtonBar.astro";
+import { assistent_dokumentation } from "@/config/routes";
+import WizardLayout from "@/layouts/WizardLayout.astro";
+import { getWizardSession } from "@/wizard/session";
+
+interface Props {
+  /** Short page title, used in the document title */
+  title: string;
+  /** id of the step's form, submitted by "Weiter". Without it, "Weiter" links to the next page. */
+  formId?: string;
+}
+
+const { title, formId } = Astro.props;
+
+const { steps } = getWizardSession(
+  "dokumentation",
+  Astro.url.pathname,
+).progress;
+---
+
+<!--
+  Shell shared by all Dokumentation steps, the content differs per step.
+  Slots:
+  - default: step content (heading, text, form)
+  - help: <HelpSection />s shown in the help panel
+-->
+<WizardLayout
+  title={`Dokumentation: ${title}`}
+  pageNumber={steps.current}
+  totalPages={steps.total}
+>
+  <slot />
+  <slot name="help" slot="help" />
+  <WizardButtonBar
+    slot="button-bar"
+    wizardId="dokumentation"
+    formId={formId}
+    fallbackBackHref={assistent_dokumentation.path}
+  />
+</WizardLayout>
